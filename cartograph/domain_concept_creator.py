@@ -29,15 +29,15 @@ def create_domain_concept(urls):
 
 def create_csv(articles, directory):
     df = pd.DataFrame(articles, columns=['article_name'])
-    df.to_csv(directory + '/domain-concept.csv', index_label='article_id')
+    df.to_csv(directory + '/domain_concept.csv', index_label='article_id')
 
 
 def main():
-    if not os.path.exists('../' + sys.argv[1]):
-        os.mkdir('../' + sys.argv[1])
+    if not os.path.exists(sys.argv[1]):
+        os.mkdir(sys.argv[1])
     urls = create_urls(sys.argv[2], sys.argv[3])
     articles = create_domain_concept(urls)
-    create_csv(articles, '../' + sys.argv[1])
+    create_csv(articles, sys.argv[1])
 
 
 if __name__ == '__main__':
