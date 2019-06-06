@@ -34,7 +34,6 @@ def map_domain_concept_id_to_article_vector(domain_concept_df):
     temp_map_dict = {}  # for fast look up
     for i, row in domain_concept_df.iterrows():
         temp_map_dict[row['article_name'].replace(" ", "_")] = row['article_id']
-    #print("mapping of dc to av",len(temp_map_dict))
     return temp_map_dict
 
 
@@ -50,8 +49,8 @@ def find_intersection_btw_dom_concept_vectors(dom_con_to_art_vecs, vectors):
 
 def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_to_art_vecs):
     vector_ids = ['vector_'+str(i) for i in range(100)]  # we know the size of the vectors previously
-    #domain_concept_df = pd.read_csv('../data/food/domain_concept.csv')
     for i, row in domain_concept_df.iterrows():
+        # assigning article_id from domain_concept.csv
         dom_con_to_art_vecs[row['article_name'].replace(" ", "_")] = row['article_id']
 
     # a Dataframe expects a dictionary where {col:[list of values in column]
@@ -61,7 +60,8 @@ def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_
             article_w_vectors.insert(0, 'article_id', dom_con_to_art_vecs[row['article_name']])
         else:
             article_w_vectors.loc[i, 'article_id'] = dom_con_to_art_vecs[row['article_name']]
-    article_w_vectors.sort_values(by=['article_id']).to_csv("../data/article_vectors.csv", index=False) # get article ids from domain_concepts file
+    article_w_vectors.sort_values(by=['article_id']).to_csv("../data/article_vectors.csv", index=False)
+    return
 
 
 def main(map_directory, vector_directory):
