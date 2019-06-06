@@ -98,7 +98,7 @@ def create_labels(domain_concept_csv):
     rows_list = []
 
     # Loop through the domain concepts
-    for index, row in df.head(10).iterrows():
+    for index, row in df.iterrows():
         article_id = row[0]
         domain_concept = row[1]
         categories = fetch_categories_from_json(domain_concept)
