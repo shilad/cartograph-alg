@@ -26,7 +26,7 @@ def read_vectors(vec_path):
             values = line.split()
             vectors[values[0]] = [vec_str_to_float(x) for x in values[1:]]
     end = time.time()
-    print("Reading in data takes: "+str(end-start)+" seconds.")
+    # print("Reading in data takes: "+str(end-start)+" seconds.")
     return vectors
 
 
@@ -43,11 +43,11 @@ def find_intersection_btw_dom_concept_vectors(dom_con_to_art_vecs, vectors):
     for article in vectors.keys():
         if article in article_set:
             article_vectors_df_ready.append([article]+vectors[article])
-    print("av_df_ready",len(article_vectors_df_ready))
+    # print("av_df_ready",len(article_vectors_df_ready))
     return article_vectors_df_ready
 
 
-def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_to_art_vecs):
+def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_to_art_vecs, map_directory):
     vector_ids = ['vector_'+str(i) for i in range(100)]  # we know the size of the vectors previously
     for i, row in domain_concept_df.iterrows():
         # assigning article_id from domain_concept.csv
@@ -60,7 +60,7 @@ def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_
             article_w_vectors.insert(0, 'article_id', dom_con_to_art_vecs[row['article_name']])
         else:
             article_w_vectors.loc[i, 'article_id'] = dom_con_to_art_vecs[row['article_name']]
-    article_w_vectors.sort_values(by=['article_id']).to_csv("../data/article_vectors.csv", index=False)
+    article_w_vectors.sort_values(by=['article_id']).to_csv(map_directory + "/article_vectors.csv", index=False)
     return
 
 
@@ -69,7 +69,7 @@ def main(map_directory, vector_directory):
     vectors = read_vectors(vector_directory)
     dom_con2vec = map_domain_concept_id_to_article_vector(domain_concept_df)
     article_vectors_df_ready = find_intersection_btw_dom_concept_vectors(dom_con2vec, vectors)
-    create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con2vec)
+    create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con2vec, map_directory)
 
 
 if __name__ == '__main__':
