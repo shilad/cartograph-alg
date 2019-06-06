@@ -1,10 +1,10 @@
 """
-Given lists of vectors, outputs a list of article ids, article names, and the countries each article
-belongs to.
+    Given lists of vectors, outputs a list of article ids, article names, and the countries each article
+    belongs to.
 
-This implementation uses the kmeans ++ algorithm.
+    This implementation uses the kmeans ++ algorithm.
 
-Authors: Jonathan Scott, Lu Li
+    Authors: Jonathan Scott, Lu Li
 """
 
 from sklearn.cluster import KMeans
@@ -16,13 +16,12 @@ def get_cluster(path):
     article_vectors = pd.read_csv(path + '/article_vectors.csv')
     article_id = article_vectors['article_id']
     only_vectors = pd.read_csv(path + '/article_vectors.csv').iloc[:, 1:]
-
     matrix = only_vectors.iloc[:, 1:].as_matrix()
     kmeans = KMeans().fit(matrix[0:len(matrix)])
     article_vectors['country'] = kmeans.labels_
-    df = pd.DataFrame(article_vectors, columns=['article_name', 'country'])
+    df = pd.DataFrame(article_vectors, columns=['country'])
     df['article_id'] = article_id
-    df = df.set_index(df['article_id']).iloc[:, 0:2]
+    df = df.set_index(df['article_id']).iloc[:, 0:1]
     return df
 
 
