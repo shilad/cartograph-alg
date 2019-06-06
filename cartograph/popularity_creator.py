@@ -1,10 +1,10 @@
 """
-Given a domain concept, gets the popularity score for each article in that domain concept,
-produces a csv file that contains article ids, article names, and popularity scores.
+    Given a domain concept, gets the popularity score for each article in that domain concept,
+    produces a csv file that contains article ids, article names, and popularity scores.
 
-This implementation uses Wikipedia's PageView API.
+    This implementation uses Wikipedia's PageView API.
 
-Authors: Jonathan Scott, Lu Li
+    Authors: Jonathan Scott, Lu Li
 """
 import pageviewapi as pv
 import pandas as pd
@@ -29,7 +29,7 @@ pop_list = []
 
 def create_popularity_score(path):
 
-    domain_concepts = pd.read_csv(path + '/domain_concept.csv')
+    domain_concepts = pd.read_csv(path + '/domain_concept.csv').iloc[1:10]
     for index, row in domain_concepts.iterrows():
         try:
             popularity_score = get_popularity_score(row['article_name'])
@@ -37,7 +37,7 @@ def create_popularity_score(path):
         except:
             pop_list.append('na')
     domain_concepts["popularity_score"] = pop_list
-    return domain_concepts.iloc[:, 1:]
+    return domain_concepts.drop('article_name', axis=1).iloc[:, 1:]
 
 
 def create_csv( directory):
