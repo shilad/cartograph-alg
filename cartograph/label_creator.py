@@ -5,13 +5,6 @@
     Author: Yuren "Rock" Pang
 """
 
-"""
-1. get url
-2. get categories through get request
-3. Hashset to assign each category with an id
-4. key-value categories
-5. key-value article and categories
-"""
 import requests
 import pandas as pd
 import os
@@ -44,20 +37,22 @@ def build_category_list(categories_generator):
     category_list = []
 
     # Convert the generator to a list of dictionary
-    temp_lst = list(categories_generator)[0]
+    try:
+        temp_lst = list(categories_generator)[0]
 
-    for cat in temp_lst:
-        # Clean the category string, removing 'Category:'
-        curr_category = cat['title'].replace("Category:", "")
+        for cat in temp_lst:
+            # Clean the category string, removing 'Category:'
+            curr_category = cat['title'].replace("Category:", "")
 
-        # Update the label_id_str_dic, with new id
-        if curr_category not in label_id_str_dic.keys():
-            label_id_str_dic[curr_category] = id_counter
-            id_counter = id_counter + 1
+            # Update the label_id_str_dic, with new id
+            if curr_category not in label_id_str_dic.keys():
+                label_id_str_dic[curr_category] = id_counter
+                id_counter = id_counter + 1
 
-        category_list.append(curr_category)
-
-    return category_list
+            category_list.append(curr_category)
+        return category_list
+    except IndexError:
+        return []
 
 
 def fetch_categories_from_json(domain_concept):
@@ -81,7 +76,7 @@ def fetch_categories_from_json(domain_concept):
     data = R.json()
 
     # go to the subcategory 'query' -> 'pages'
-    categories = find_categories(data["query"]["pages"])
+    categories = find_categories(data)
 
     return build_category_list(categories)
 
