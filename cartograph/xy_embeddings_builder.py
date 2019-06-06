@@ -1,6 +1,8 @@
+"""
+Given vectors for domain concepts, produces (x, y) embeddings.
+"""
 import pandas as pd
 from sklearn.manifold import TSNE
-import sys
 
 
 def create_embeddings(csv):
@@ -15,10 +17,17 @@ def create_csv(xy_embeddings, directory):
     df.to_csv(directory + '/xy_embeddings.csv', index=False)
 
 
-def main():
-    xy_embedding = create_embeddings(sys.argv[1] + '/' + sys.argv[2])
-    create_csv(xy_embedding, sys.argv[1])
+def main(map_directory):
+    xy_embedding = create_embeddings(map_directory + '/article_vectors.csv')
+    create_csv(xy_embedding, map_directory)
 
 
 if __name__ == '__main__':
-    main()
+    import sys
+
+    if len(sys.argv) != 2:
+        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
+        sys.exit(1)
+
+    map_directory = sys.argv[1]
+    main(map_directory)
