@@ -14,4 +14,4 @@ python -m cartograph.popularity_creator data/food
 python -m cartograph.xy_embeddings_builder data/food
 python -m cartograph.label_creator data/food
 python -m cartograph.cluster_builder data/food
-
+python -m cartograph.json_generator.py data/food
