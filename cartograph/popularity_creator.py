@@ -29,7 +29,7 @@ pop_list = []
 
 def create_popularity_score(path):
 
-    domain_concepts = pd.read_csv(path + '/domain_concept.csv').iloc[1:10]
+    domain_concepts = pd.read_csv(path + '/domain_concept.csv')
     for index, row in domain_concepts.iterrows():
         try:
             popularity_score = get_popularity_score(row['article_name'])
