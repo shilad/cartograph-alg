@@ -3,3 +3,5 @@ numpy
 sklearn
 bs4
 requests
+pageviewapi
+datetime

@@ -27,9 +27,9 @@ def get_popularity_score(page_name):
 pop_list = []
 
 
-def create_popularity_score(project_name):
+def create_popularity_score(path):
 
-    domain_concepts = pd.read_csv('/Users/research/Documents/Projects/cartograph-alg/data/' + project_name + '/domain_concept.csv')
+    domain_concepts = pd.read_csv(path + '/domain_concept.csv').iloc[1:10]
     for index, row in domain_concepts.iterrows():
         try:
             popularity_score = get_popularity_score(row['article_name'])
@@ -40,15 +40,15 @@ def create_popularity_score(project_name):
     return domain_concepts.iloc[:, 1:]
 
 
-def create_csv(project_name, directory):
-    df = create_popularity_score(project_name)
+def create_csv( directory):
+    df = create_popularity_score(directory)
     df.to_csv(directory + '/popularity_score.csv', index_label='article_id')
 
 
-def main(map_directory, project_name):
+def main(map_directory):
     if not os.path.exists(map_directory):
         os.makedirs(map_directory)
-    create_csv(project_name, sys.argv[1])
+    create_csv( map_directory)
 
 
 if __name__ == '__main__':
@@ -59,5 +59,5 @@ if __name__ == '__main__':
         sys.exit(1)
 
     map_directory, project_name = sys.argv[1:]
-    main(map_directory, project_name)
+    main(map_directory)
 
