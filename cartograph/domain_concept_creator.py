@@ -9,7 +9,7 @@ def create_urls(wikiproject, num_articles):
     urls = []
     offset = 1
     while offset < int(num_articles):
-        urls.append('https://tools.wmflabs.org/enwp10/cgi-bin/list2.fcgi?run=yes&projecta=' + wikiproject + '&namespace=&pagename=&quality=&importance=&score=&limit=1000&' + str(offset) + '&sorta=Quality&sortb=Quality')
+        urls.append('https://tools.wmflabs.org/enwp10/cgi-bin/list2.fcgi?run=yes&projecta=' + wikiproject + '&namespace=&pagename=&quality=&importance=&score=&limit=1000&offset=' + str(offset) + '&sorta=Quality&sortb=Quality')
         offset += 1000
     return urls
 
