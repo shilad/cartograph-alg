@@ -7,6 +7,7 @@ This implementation uses WikiProjects and the enwp10 tool to generate the list.
 Author: Lily Irvin
 """
 
+
 from bs4 import BeautifulSoup
 from requests import get
 import os
@@ -31,7 +32,7 @@ def create_domain_concept(urls):
         soup = BeautifulSoup(response.text, 'html.parser')
         center = soup.find('center')
         rows = center.find_all('tr')
-        for i in range(1, len(rows) + 1):
+        for i in range(1, len(rows)):
             article = rows[i].find_all('td')
             articles.append(article[1].a.text.strip())
     return articles

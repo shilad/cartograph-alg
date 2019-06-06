@@ -1,5 +1,7 @@
 """
 Given vectors for domain concepts, produces (x, y) embeddings.
+
+Author: Lily Irvin
 """
 import pandas as pd
 from sklearn.manifold import TSNE
