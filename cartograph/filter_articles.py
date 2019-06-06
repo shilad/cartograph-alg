@@ -7,7 +7,7 @@ def filter_articles(article_labels_csv, article_vectors_csv):
     article_vectors = pd.read_csv(article_vectors_csv)
     for index, row in article_labels.iterrows():
         if row['article_id'] not in article_vectors['article_id']:
-            article_labels.drop([row['article_id']])
+            article_labels.drop([row['article_id']], axis=0, inplace=True)
     print(article_labels['article_id'].nunique())
     return article_labels
 
