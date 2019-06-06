@@ -9,6 +9,6 @@
 
 python -m cartograph.domain_concept_creator data/food Food_and_drink 5000
 # Add label_creator command here
-# Add vector_creator command here
+python -m cartograph.vector_creator data/food data/original_vectors
 # Add popularity_creator command here
 python -m cartograph.xy_embeddings_builder data/food article_vectors.csv
