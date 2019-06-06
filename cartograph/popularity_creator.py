@@ -4,7 +4,7 @@ produces a csv file that contains article ids, article names, and popularity sco
 
 This implementation uses Wikipedia's PageView API.
 
-Author: Jonathan Scott, Lu Li
+Authors: Jonathan Scott, Lu Li
 """
 import pageviewapi as pv
 import pandas as pd
