@@ -1,5 +1,6 @@
 """
-Given list of vector representations of Wikipedia articles, output a dataframe containing the article id and the vectors.
+Given a list of vector representations of Wikipedia articles,
+output a data frame containing the article id and the vectors.
 Author: Lily Irvin, Jonathan Scott
 """
 
