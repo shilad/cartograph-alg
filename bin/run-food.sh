@@ -7,4 +7,6 @@
 #
 # Run this script using ./bin/run-food.sh
 
-python -m cartograph.domain_concept_creator data/food Food_and_drink 5000
+# python -m cartograph.domain_concept_creator data/food Food_and_drink 5000
+
+# python -m cartograph.popularity_creator /Users/research/Documents/Projects/cartograph-alg/data/food food
