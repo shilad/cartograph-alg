@@ -12,3 +12,5 @@ python -m cartograph.domain_concept_creator data/food Food_and_drink 5000
 python -m cartograph.vector_creator data/food data/original_vectors
 # python -m cartograph.popularity_creator data/food food
 python -m cartograph.xy_embeddings_builder data/food
+
+python -m cartograph.label_creator data/food
