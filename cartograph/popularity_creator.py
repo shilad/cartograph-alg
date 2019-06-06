@@ -4,7 +4,7 @@ produces a csv file that contains article ids, article names, and popularity sco
 
 This implementation uses Wikipedia's PageView API.
 
-Author: Lu Li
+Author: Jonathan Scott, Lu Li
 """
 import pageviewapi as pv
 import pandas as pd
@@ -29,7 +29,7 @@ pop_list = []
 
 def create_popularity_score(path):
 
-    domain_concepts = pd.read_csv(path + '/domain_concept.csv').iloc[1:10]
+    domain_concepts = pd.read_csv(path + '/domain_concept.csv')
     for index, row in domain_concepts.iterrows():
         try:
             popularity_score = get_popularity_score(row['article_name'])
@@ -54,7 +54,7 @@ def main(map_directory):
 if __name__ == '__main__':
     import sys
 
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 2:
         sys.stderr.write('Usage: %s map_directory project_name number_of_articles' % sys.argv[0])
         sys.exit(1)
 
