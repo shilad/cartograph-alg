@@ -14,3 +14,5 @@ python -m cartograph.vector_creator data/food data/original_vectors
 python -m cartograph.xy_embeddings_builder data/food
 
 python -m cartograph.label_creator data/food
+
+python -m cartograph.cluster_builder data/food
