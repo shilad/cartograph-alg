@@ -98,7 +98,7 @@ def create_labels(domain_concept_csv):
     rows_list = []
 
     # Loop through the domain concepts
-    for index, row in df.iterrows():
+    for index, row in df.iterrows():  # test df.head(10).iterrows()
         article_id = row[0]
         domain_concept = row[1]
         categories = fetch_categories_from_json(domain_concept)
@@ -121,7 +121,11 @@ def create_labels(domain_concept_csv):
 def create_label_id_str_csv(directory):
     global label_id_str_dic
 
-    label_id_str_df = pd.DataFrame(list(label_id_str_dic.items()), columns=["label", "label_id"])  # category label_id and label
+    label_str_id_df = pd.DataFrame(list(label_id_str_dic.items()), columns=["label", "label_id"])  # category label_id and label
+
+    column_titles = ["label_id", "label"]
+    label_id_str_df = label_str_id_df.reindex(columns=column_titles)
+
     label_id_str_df.to_csv(directory + '/label_ids.csv', index=False)
 
 
