@@ -39,7 +39,6 @@ def get_country_label_counts(labels_df, num_countries):
     """Output: List of default dictionaries (one per country) --> key = label id, value = number of times that label
                appears in that country"""
     country_label_counts = [defaultdict(int) for x in range(num_countries)]
-    print(country_label_counts)
     for index, row in labels_df.iterrows():
         country_label_counts[row['country']][row['label_id']] += 1
     return country_label_counts
@@ -81,7 +80,7 @@ def get_label(label_id, map_directory):
 
 
 def create_csv(df, directory):
-    df.T.to_csv(directory + '/country_labels.csv', index=True)
+    df.to_csv(directory + '/country_labels.csv', index=True)
 
 
 def main(map_directory):
@@ -92,7 +91,8 @@ def main(map_directory):
     total_counts = get_total_counts(labels_df)
     tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countries)
     country_labels = assign_country_label_ids(tfidf_scores, num_countries)
-    df = pd.DataFrame(country_labels,  index=[0])
+    df = pd.DataFrame(country_labels,  index=[0]).T
+    df['country'] = df.index
     create_csv(df, map_directory)
 
 
