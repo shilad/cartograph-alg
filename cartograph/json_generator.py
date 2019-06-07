@@ -34,7 +34,6 @@ def get_countries(map_directory):
 def get_xy(map_directory):
     return pd.read_csv(map_directory + 'xy_embeddings.csv')
 
-
 def get_selected_label(map_directory):
     return pd.read_csv(map_directory + 'country_labels.csv')
 
@@ -80,7 +79,6 @@ def get_labels_as_list(id, label_df):
 
 
 def create_list_article_data(merged_df, map_directory):
-    # print(merged_df.columns)
     labels_df = get_labels(map_directory)
     article_data = {}
     for i, row in merged_df.iterrows():
@@ -95,7 +93,6 @@ def create_list_article_data(merged_df, map_directory):
 
 
 def generate_json(map_directory, article_data):
-    #print(len(article_data))
     with open(map_directory + 'domain.json', 'w') as outfile:
         json.dump(article_data, outfile)
     return
