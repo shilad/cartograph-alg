@@ -84,7 +84,7 @@ def create_csv(df, directory):
 
 
 def main(map_directory):
-    labels_df = add_countries(map_directory + '/filtered_article_labels.csv',
+    labels_df = add_countries(map_directory + '/article_labels.csv',
                               map_directory + '/cluster_groups.csv')
     num_countries = get_num_countries(map_directory + '/cluster_groups.csv')
     country_label_counts = get_country_label_counts(labels_df, num_countries)
