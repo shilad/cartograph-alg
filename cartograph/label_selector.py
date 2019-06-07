@@ -12,22 +12,22 @@ import math
 import operator
 
 
-def add_countries(article_labels_csv, country_clusters_csv):
-    """Appends a new column with country assignments to the article_labels dataframe."""
-    article_labels = pd.read_csv(article_labels_csv)
-    countries = []
-    country_dictionary = get_country_dictionary(country_clusters_csv)
-    for index, row in article_labels.iterrows():
-        country = country_dictionary['country'][row['article_id']]
-        countries.append(country)
-    article_labels.insert(2, 'country', countries)
-    return article_labels
-
-
 def get_country_dictionary(country_clusters_csv):
+    """Appends a new column with country assignments to the article_labels dataframe."""
+
     country_clusters = pd.read_csv(country_clusters_csv)
     country_clusters.set_index('article_id')
-    return country_clusters.to_dict()
+    return country_clusters.iloc[:, 1:].to_dict()
+
+
+def add_countries(article_labels_csv, country_clusters_csv):
+    """Appends a new column with country assignments to the article_labels dataframe."""
+
+    article_labels = pd.read_csv(article_labels_csv)
+    country_clusters = pd.read_csv(country_clusters_csv)
+    article_labels = pd.merge(article_labels, country_clusters, on='article_id')
+
+    return article_labels
 
 
 def get_num_countries(country_clusters_csv):
@@ -39,6 +39,7 @@ def get_country_label_counts(labels_df, num_countries):
     """Output: List of default dictionaries (one per country) --> key = label id, value = number of times that label
                appears in that country"""
     country_label_counts = [defaultdict(int) for x in range(num_countries)]
+    print(country_label_counts)
     for index, row in labels_df.iterrows():
         country_label_counts[row['country']][row['label_id']] += 1
     return country_label_counts
@@ -59,7 +60,7 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countrie
     tfidf_scores = [defaultdict(int) for x in range(num_countries)]
     for index, row in labels_df.iterrows():
         tfidf_scores[row['country']][row['label_id']] = math.log(country_label_counts[row['country']][row['label_id']] + 1.0) / \
-                                                        math.log(total_counts['row_id'] + 10.0)
+                                                    math.log(total_counts['row_id'] + 10.0)
     return tfidf_scores
 
 
@@ -68,18 +69,19 @@ def assign_country_label_ids(tfidf_scores, num_countries):
     country_labels = {}
     for i in range(num_countries):
         label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
-        country_labels[i] = get_label(label_id)
+        country_labels[i] = get_label(label_id, map_directory)
+
     return country_labels
 
 
-def get_label(label_id):
+def get_label(label_id, map_directory):
     label_ids = pd.read_csv(map_directory + '/label_ids.csv')
-    return label_ids[label_id]
+
+    return label_ids.iloc[label_id].loc['label']
 
 
-def create_csv(labels, directory):
-    df = pd.DataFrame(labels, columns=['country', 'label'])
-    df.to_csv(directory + '/country_labels.csv', index=False)
+def create_csv(df, directory):
+    df.T.to_csv(directory + '/country_labels.csv', index=True)
 
 
 def main(map_directory):
@@ -90,7 +92,8 @@ def main(map_directory):
     total_counts = get_total_counts(labels_df)
     tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countries)
     country_labels = assign_country_label_ids(tfidf_scores, num_countries)
-    create_csv(country_labels, map_directory)
+    df = pd.DataFrame(country_labels,  index=[0])
+    create_csv(df, map_directory)
 
 
 if __name__ == '__main__':
@@ -102,3 +105,4 @@ if __name__ == '__main__':
 
     map_directory = sys.argv[1]
     main(map_directory)
+
