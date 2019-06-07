@@ -73,11 +73,12 @@ def get_labels_as_list(id, label_df):
     return label_list
 
 
-def create_list_article_data(merged_df,map_directory):
+def create_list_article_data(merged_df, map_directory):
+    #print(merged_df.columns)
     labels_df = get_labels(map_directory)
     article_data = {}
     for i, row in merged_df.iterrows():
-        article_data[row['article_id']] = {'Article': row['article_name'],
+        article_data[row['article_id']] = {'Article': row['article_name_x'], # Should clean this up maybe get rid of one of the columns my fault
                                           'Popularity': row['popularity_score'],
                                           'Vectors': get_vec_as_list(i, merged_df),
                                           'Labels': get_labels_as_list(row['article_id'], labels_df),
@@ -88,6 +89,7 @@ def create_list_article_data(merged_df,map_directory):
 
 
 def generate_json(map_directory, article_data):
+    #print(len(article_data))
     with open(map_directory + 'domain.json', 'w') as outfile:
         json.dump(article_data, outfile)
     return
