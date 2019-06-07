@@ -14,5 +14,7 @@
 # python -m cartograph.xy_embeddings_builder data/food
 # python -m cartograph.cluster_builder data/food
 #python -m cartograph.json_generator data/food
-python -m cartograph.filter_articles data/food
+#python -m cartograph.filter_articles data/food
 # python -m cartograph.label_selector data/food
+
+python -m cartograph.svg_generator data/food 1000 1000
