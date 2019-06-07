@@ -35,11 +35,17 @@ def get_xy(map_directory):
     return pd.read_csv(map_directory + 'xy_embeddings.csv')
 
 
+def get_selected_label(map_directory):
+    return pd.read_csv(map_directory + 'country_labels.csv')
+
+
 def list_results(map_directory):
     domain_concepts_df = get_articles(map_directory)
     pop_scores_df = get_popularity_scores(map_directory)
     vectors_df = get_vectors(map_directory)
-    countries_df = get_countries(map_directory)
+    country_label_df = get_selected_label(map_directory)
+    countries_df = pd.merge(get_countries(map_directory), country_label_df, on='country').drop(['country'], axis=1)\
+        .rename({'0': 'country'}, axis=1)
     xy_df = get_xy(map_directory)
 
     return [domain_concepts_df, pop_scores_df, vectors_df,
@@ -47,11 +53,11 @@ def list_results(map_directory):
 
 
 def merge_results(df_list):
-    df = reduce(lambda df1,df2: pd.merge(df1,df2,on='article_id'), df_list) #reduce(pd.merge, df_list)
+    df = reduce(lambda df1, df2: pd.merge(df1, df2, on='article_id'), df_list) #reduce(pd.merge, df_list)
     return df
 
 
-def get_vec_as_list(idx,df):
+def get_vec_as_list(idx, df):
     vec_list = []
     for i in range(100):
         vec_list.append(df.loc[idx, 'vector_' + str(i)])
@@ -74,7 +80,7 @@ def get_labels_as_list(id, label_df):
 
 
 def create_list_article_data(merged_df, map_directory):
-    #print(merged_df.columns)
+    # print(merged_df.columns)
     labels_df = get_labels(map_directory)
     article_data = {}
     for i, row in merged_df.iterrows():
