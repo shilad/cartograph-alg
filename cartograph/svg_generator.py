@@ -8,8 +8,12 @@ import json
 import random
 import statistics
 import os
+import sys
 
 colors = {}
+XY_RATIO = 7
+FONT_RATION = 10
+CIRCLE_RATIO = 10
 
 
 def scale(data):
@@ -22,7 +26,7 @@ def scale(data):
     min = sys.maxsize
 
     for v in data.values():
-        popularity_score = v["Popularity"]
+        popularity_score = float(v["Popularity"])
         if popularity_score > max:
             max = popularity_score
         if popularity_score < min:
@@ -50,8 +54,9 @@ def get_color(country):
         return colors[country]
     else:
         random_color = "%06x" % random.randint(0, 0xFFFFFF)
-        colors.update({country: random_color})
-        return str(random_color)
+        html_color = "#" + random_color
+        colors.update({country: html_color})
+        return html_color
 
 
 def get_country_labels_xy(articles):
@@ -84,9 +89,11 @@ def get_country_labels_xy(articles):
     return country_labels
 
 
-def draw_country_labels(d, country_labels_xy, font_size=50):
+def draw_country_labels(d, country_labels_xy, font_size):
     for country, position in country_labels_xy.items():
-        d.append(draw.Text(str(country), font_size, position[0], position[1], fill=get_color(country)))  #k is the country
+        x, y = position[0] * XY_RATIO, position[1] * XY_RATIO
+
+        d.append(draw.Text(str(country), font_size, x, y, fill=get_color(country)))  #k is the country
 
 
 def create_svg_file(directory, d):
@@ -94,7 +101,7 @@ def create_svg_file(directory, d):
     d.saveSvg(directory + '/graph.svg')
 
 
-def draw_svg(json_articles, width, height, font_threshold=3, country_font_size=50):
+def draw_svg(json_articles, width, height, font_threshold=0.05*FONT_RATION, country_font_size=20):
     """
     Given a cleaned articles (popularity score scaled) as json, calculate the country label positions and draw the entire svg
     :param json_articles:
@@ -109,10 +116,10 @@ def draw_svg(json_articles, width, height, font_threshold=3, country_font_size=5
     for v in json_articles.values():
         # Draw each article
         title = v["Article"]
-        x = v["x"]
-        y = v["y"]
+        x = v["x"] * XY_RATIO
+        y = v["y"] * XY_RATIO  # The original x, y are too small to visualize
         country = v["Country"]
-        size = v["Popularity"]
+        size = v["Popularity"] * FONT_RATION  # Augment the font_size and circle size correspondingly
         color = get_color(country)
         d.append(draw.Circle(x, y, size, fill=color))
         if size > font_threshold:
@@ -124,6 +131,13 @@ def draw_svg(json_articles, width, height, font_threshold=3, country_font_size=5
 
     return d
 
+#
+# map_directory = "../data/food"
+# width = 1000
+# height = 1000
+# articles = get_articles_json(map_directory + "/domain.json")
+# d = draw_svg(articles, float(width), float(height))
+# create_svg_file(map_directory, d)
 
 def main(map_directory, width, height):
     if not os.path.exists(map_directory):
