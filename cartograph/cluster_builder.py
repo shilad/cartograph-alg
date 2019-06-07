@@ -1,10 +1,10 @@
 """
-    Given lists of vectors, outputs a list of article ids, article names, and the countries each article
-    belongs to.
+Given lists of vectors, outputs a list of article ids and the country each article
+belongs to.
 
-    This implementation uses the kmeans ++ algorithm.
+This implementation uses the kmeans ++ algorithm.
 
-    Authors: Jonathan Scott, Lu Li
+Author: Lu Li
 """
 
 from sklearn.cluster import KMeans
