@@ -5,54 +5,10 @@
     Author: Yuren "Rock" Pang
 """
 
+import logging
 import requests
 import pandas as pd
 import os
-
-label_id_str_dic = {}
-id_counter = 0
-
-
-def find_categories(json_dic):
-    """
-    Recursively find categories in the json tree
-    :param dict_var:
-    :return:
-    """
-    for k, v in json_dic.items():
-        if k == "categories":
-            yield v
-        elif isinstance(v, dict):
-            for id_val in find_categories(v):
-                yield id_val
-
-
-def build_category_list(categories_generator):
-    """
-    Given a domain concept, build a list of categories from json from API call
-    :param categories_generator:
-    :return:
-    """
-    global label_id_str_dic, id_counter
-    category_list = []
-
-    # Convert the generator to a list of dictionary
-    try:
-        temp_lst = list(categories_generator)[0]
-
-        for cat in temp_lst:
-            # Clean the category string, removing 'Category:'
-            curr_category = cat['title'].replace("Category:", "")
-
-            # Update the label_id_str_dic, with new id
-            if curr_category not in label_id_str_dic.keys():
-                label_id_str_dic[curr_category] = id_counter
-                id_counter = id_counter + 1
-
-            category_list.append(curr_category)
-        return category_list
-    except IndexError:
-        return []
 
 
 def fetch_categories_from_json(domain_concept):
@@ -75,20 +31,27 @@ def fetch_categories_from_json(domain_concept):
     R = S.get(url=URL, params=PARAMS)
     data = R.json()
 
-    # go to the subcategory 'query' -> 'pages'
-    categories = find_categories(data)
+    categories = []
+    page_ids = list(data['query']['pages'].keys())
+    if len(page_ids) == 1:
+        page_info = data['query']['pages'][page_ids[0]]
+        for cat_info in page_info['categories']:
+            categories.append(cat_info['title'].replace("Category:", ""))
+    else:
+        logging.warning('Couldnt find categories for %s. Discovered %d pages when expected 1',
+                        domain_concept, len(page_ids))
 
-    return build_category_list(categories)
+    return categories
 
 
 def create_labels(domain_concept_csv):
     """
-    Find the categories of each domain concept and prepare for a dataframe construction
-    :param domain_concept_csv:
+    Find the categories of each domain concept and creates a data frame with articles and labels
     :return: a dataframe with article id and label id
     """
-    global label_id_str_dic
 
+    # mapping from ids to labels
+    labels_to_id  = {}
     df = pd.read_csv(domain_concept_csv)
     rows_list = []
 
@@ -96,32 +59,19 @@ def create_labels(domain_concept_csv):
     for index, row in df.iterrows():  # test df.head(10).iterrows()
         article_id = row[0]
         domain_concept = row[1]
-        categories = fetch_categories_from_json(domain_concept)
-        # Use key-value pair to prepare a pd df creation
-        for cat in categories:
-            temp_row_dic = {}
-            temp_row_dic.update({"article_id": article_id, "labels": cat})
-            rows_list.append(temp_row_dic)
+        for cat in fetch_categories_from_json(domain_concept):
+            if cat not in labels_to_id:
+                labels_to_id[cat] = len(labels_to_id)
+            id = labels_to_id.get(cat, len(labels_to_id))
+            rows_list.append({"article_id": article_id, "label_id": id})
 
-    # Replace the labels with label_id
-    for row in rows_list:
-        row.update({"label_id": label_id_str_dic[row["labels"]]})
-
-    article_label_df = pd.DataFrame(rows_list)
-    article_label_df.drop(columns='labels', inplace=True)
-
-    return article_label_df
+    return labels_to_id, pd.DataFrame(rows_list)
 
 
-def create_label_id_str_csv(directory):
-    global label_id_str_dic
-
-    label_str_id_df = pd.DataFrame(list(label_id_str_dic.items()), columns=["label", "label_id"])  # category label_id and label
-
-    column_titles = ["label_id", "label"]
-    label_id_str_df = label_str_id_df.reindex(columns=column_titles)
-
-    label_id_str_df.to_csv(directory + '/label_ids.csv', index=False)
+def create_label_id_str_csv(directory, labels_to_ids):
+    id_to_label = [ (id, label) for (label, id) in labels_to_ids.items() ]
+    labels_df = pd.DataFrame(id_to_label, columns=["label_id", "label"])
+    labels_df.to_csv(directory + '/label_ids.csv', index=False)
 
 
 def create_article_label_csv(article_label_df, directory):
@@ -132,9 +82,9 @@ def main(map_directory):
     if not os.path.exists(map_directory):
         os.makedirs(map_directory)
 
-    label_df = create_labels(map_directory + "/domain_concept.csv")
+    labels_to_id, label_df = create_labels(map_directory + "/domain_concept.csv")
     create_article_label_csv(label_df, map_directory)
-    create_label_id_str_csv(map_directory)
+    create_label_id_str_csv(map_directory, labels_to_id)
 
 
 if __name__ == '__main__':
