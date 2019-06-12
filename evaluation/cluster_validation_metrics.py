@@ -1,5 +1,6 @@
 """
 Internal evaluation methods on clustering algorithms.
+Author: Lu Li
 """
 import numpy as np
 import pandas as pd
@@ -10,7 +11,6 @@ import sklearn.metrics as metrics
 # from hdbscan import HDBSCAN
 
 from scipy import stats
-
 
 
 def db_score(xy_list, labels):
@@ -46,7 +46,7 @@ def ch_score(xy_list, labels):
 
 def read_cluster(map_directory, method):
     original = pd.read_csv(map_directory + '/cluster_groups_' + method + '.csv').sort_values(by=['article_id'])['country']
-
+    return original
 
 
 def main(map_directory, method):
@@ -54,6 +54,7 @@ def main(map_directory, method):
     X = datapoints.values
     original_cluster = read_cluster(map_directory, method)
     print(ch_score(X, original_cluster))
+
 
 if __name__ == '__main__':
     import sys
