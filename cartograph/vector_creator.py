@@ -26,12 +26,12 @@ def vec_str_to_float(string):
 
 def read_vectors(vec_path):
     vectors = {}
-    start = time.time()
+    #start = time.time()
     with open(vec_path, encoding="ISO-8859-1") as file:
         for line in file:
             values = line.split()
             vectors[values[0]] = [vec_str_to_float(x) for x in values[1:]]
-    end = time.time()
+    #end = time.time()
     # print("Reading in data takes: "+str(end-start)+" seconds.")
     return vectors
 
@@ -49,13 +49,14 @@ def find_intersection_btw_dom_concept_vectors(dom_con_to_art_vecs, vectors):
     for article in vectors.keys():
         if article in article_set:
             article_vectors_df_ready.append([article]+vectors[article])
-    # print("av_df_ready",len(article_vectors_df_ready))
     return article_vectors_df_ready
 
 
 def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_to_art_vecs, map_directory, method = "original"):
-    """If method is "original", returns a matrix containing article ids and their vectors;
-    If method is "combined", return a matrix with article ids, vectors, and label ids. """
+    """
+    If method is "original", returns a matrix containing article ids and their vectors;
+    If method is "combined", return a matrix with article ids, vectors, and label ids.
+    """
     vector_ids = ['vector_'+str(i) for i in range(100)]  # we know the size of the vectors previously
     for i, row in domain_concept_df.iterrows():
         # assigning article_id from domain_concept.csv
@@ -68,6 +69,7 @@ def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_
             article_w_vectors.insert(0, 'article_id', dom_con_to_art_vecs[row['article_name']])
         else:
             article_w_vectors.loc[i, 'article_id'] = dom_con_to_art_vecs[row['article_name']]
+    article_w_vectors = article_w_vectors.drop(columns='article_name')
     article_w_vectors.sort_values(by=['article_id']).to_csv(map_directory + "/article_vectors_original.csv", index=False)
     # need to specify method in the shell script
     if method == "combined":
