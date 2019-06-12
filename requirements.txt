@@ -7,3 +7,4 @@ pageviewapi
 datetime
 drawSvg
 seaborn
+Wikipedia-API
