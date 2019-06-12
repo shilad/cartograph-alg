@@ -6,26 +6,42 @@ import pandas as pd
 from sklearn.metrics import normalized_mutual_info_score
 import functools
 import sklearn.metrics as metrics
-from s_dbw import S_Dbw
-from hdbscan import HDBSCAN
+# from s_dbw import S_Dbw
+# from hdbscan import HDBSCAN
 
 from scipy import stats
 
 
 
 def db_score(xy_list, labels):
+    """
+    :param xy_list:
+    :param labels:
+    :return: A value in range [0,inf) The lower the value the better the quality of clustering.
+    """
     # return davies bouldin score, the smaller the better a cluster is.
     return metrics.cluster.davies_bouldin_score(xy_list, labels)
 
 
 def silhouette_score(xy_list, labels):
+    """
+    :param xy_list:
+    :param labels:
+    :return: A value in range [-1,1] where 1 is the best value,
+    -1 is the worst and 0 indicates overlapping clusters.
+    """
     # return silhouette score, the larger the better a cluster is.
     return metrics.cluster.silhouette_score(xy_list, labels)
 
 
 def ch_score(xy_list, labels):
+    """
+    :param xy_list:
+    :param labels:
+    :return: A float where a higher value indicates better quality of clusters.
+    """
     # return silhouette score, the larger the better a cluster is.
-    return metrics.cluster.silhouette_score(xy_list, labels)
+    return metrics.cluster.calinski_harabasz_score(xy_list, labels)
 
 
 def read_cluster(map_directory, method):
