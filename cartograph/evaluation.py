@@ -24,7 +24,7 @@ def evaluate_xy_embed(x, x_embed):
 def main(map_directory):
     X = pd.read_csv(map_directory+"article_vectors.csv").iloc[:, 2:]
     X_embed = pd.read_csv(map_directory+"xy_embeddings.csv").iloc[:, 1:]
-    print("Trustworthiness: " +str(evaluate_xy_embed(X, X_embed)))
+    print("\n Trustworthiness: " +str(evaluate_xy_embed(X, X_embed)))
 
 
 if __name__ == '__main__':

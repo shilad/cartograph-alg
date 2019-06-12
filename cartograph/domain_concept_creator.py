@@ -25,14 +25,14 @@ def create_urls(wikiproject, num_articles):
     return urls[:num_articles]
 
 
-def create_domain_concept(urls):
+def create_domain_concept(urls, num_articles):
     articles = []
     for url in urls:
         response = get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
         center = soup.find('center')
         rows = center.find_all('tr')
-        for i in range(1, len(rows)):
+        for i in range(1, num_articles + 1):
             article = rows[i].find_all('td')
             articles.append(article[1].a.text.strip())
     return articles
@@ -47,7 +47,7 @@ def main(map_directory, project_name, number_of_articles):
     if not os.path.exists(map_directory):
         os.makedirs(map_directory)
     urls = create_urls(project_name, number_of_articles)
-    articles = create_domain_concept(urls)
+    articles = create_domain_concept(urls, number_of_articles)
     create_csv(articles, map_directory)
 
 
