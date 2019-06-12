@@ -10,19 +10,34 @@ def get_sdbw_score(xy_list, labels):
     # return S Dbw validity index, the smaller the better a cluster is.
     return S_Dbw(xy_list, labels)
 
-
-def get_db_score(xy_list, labels):
-    # return Davies-Bouldin index, the smaller the better a cluster is.
+def db_score(xy_list, labels):
+    """
+    :param xy_list:
+    :param labels:
+    :return: A value in range [0,inf) The lower the value the better the quality of clustering.
+    """
+    # return davies bouldin score, the smaller the better a cluster is.
     return metrics.cluster.davies_bouldin_score(xy_list, labels)
 
 
-def get_silhouette_score(xy_list, labels):
-    # return silhouette index, the larger the better a cluster is.
+def silhouette_score(xy_list, labels):
+    """
+    :param xy_list:
+    :param labels:
+    :return: A value in range [-1,1] where 1 is the best value,
+    -1 is the worst and 0 indicates overlapping clusters.
+    """
+    # return silhouette score, the larger the better a cluster is.
     return metrics.cluster.silhouette_score(xy_list, labels)
 
 
-def get_ch_score(xy_list, labels):
-    # return Calinski Harabasz index, the larger the better a cluster is.
+def ch_score(xy_list, labels):
+    """
+    :param xy_list:
+    :param labels:
+    :return: A float where a higher value indicates better quality of clusters.
+    """
+    # return silhouette score, the larger the better a cluster is.
     return metrics.cluster.calinski_harabasz_score(xy_list, labels)
 
 
