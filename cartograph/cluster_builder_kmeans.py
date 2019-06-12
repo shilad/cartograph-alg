@@ -26,7 +26,7 @@ def get_cluster(map_directory, method='original'):
 
         article_vectors = get_original_article_vectors(map_directory)
         article_id = article_vectors['article_id']
-        matrix = article_vectors.iloc[:, 2:].as_matrix()
+        matrix = article_vectors.iloc[:, 2:].values
         kmeans = KMeans(10).fit(matrix[0:len(matrix)])
         # HDBSCAN.fit()
         article_vectors['country'] = kmeans.labels_
