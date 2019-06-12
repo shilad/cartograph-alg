@@ -1,7 +1,11 @@
 """
 Given a list of vector representations of Wikipedia articles,
 output a data frame containing the article id and the vectors.
-Author: Lily Irvin, Jonathan Scott
+
+If input method is "combined", return a combined matrix
+that contains article vectors as well as label vectors.
+
+Author: Lily Irvin, Jonathan Scott, Lu, Li
 """
 
 import pandas as pd
@@ -49,7 +53,9 @@ def find_intersection_btw_dom_concept_vectors(dom_con_to_art_vecs, vectors):
     return article_vectors_df_ready
 
 
-def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_to_art_vecs, map_directory, method = "original", is_svd=False, svd_column=5):
+def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_to_art_vecs, map_directory, method = "original"):
+    """If method is "original", returns a matrix containing article ids and their vectors;
+    If method is "combined", return a matrix with article ids, vectors, and label ids. """
     vector_ids = ['vector_'+str(i) for i in range(100)]  # we know the size of the vectors previously
     for i, row in domain_concept_df.iterrows():
         # assigning article_id from domain_concept.csv
@@ -63,18 +69,18 @@ def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_
         else:
             article_w_vectors.loc[i, 'article_id'] = dom_con_to_art_vecs[row['article_name']]
     article_w_vectors.sort_values(by=['article_id']).to_csv(map_directory + "/ordinary_article_vectors.csv", index=False)
-
+    # need to specify method in the shell script
     if method == "combined":
         art_labels = pd.read_csv(map_directory + '/article_labels.csv')
         label_wide_matrix = create_label_matrix(art_labels)
         combined_matrix = pd.merge(article_w_vectors, label_wide_matrix, on='article_id')
         combined_matrix.to_csv(map_directory + "/combined_article_vectors.csv", index=False)
-        # if is_svd:
 
     return
 
 
 def create_label_matrix(label_matrix):
+    """Creates a matrix that contains a article ids and label ids."""
     output_matrix = np.zeros((max(label_matrix['article_id'])+1, max(label_matrix['label_id'])+1))
     for i in range(len(label_matrix['article_id'])):
         current_article = label_matrix.iloc[i].iloc[0]
