@@ -4,10 +4,6 @@ Given a json file of articles, construct the svg visualization map
 Author: Yuren "Rock" Pang
 """
 
-# wrap titles (multi-line), make title size as big as largest city label,
-# create classes of font sizes (first 15 cities get ____ size, next 30 get
-# ____ size, etc.
-
 
 import drawSvg as draw
 import json
@@ -137,7 +133,16 @@ def get_country_labels_xy(articles):
 def draw_country_labels(d, country_labels_xy, font_size, colors):
     for country, position in country_labels_xy.items():
         x, y = position[0] * XY_RATIO, position[1] * XY_RATIO
-        d.append(draw.Text(str(country).upper(), font_size, x, y, fill=colors[country], center=True, stroke='black', stroke_width=0.4))  #k is the country
+        words = country.split()
+        offset = 0
+        for i in range(0, len(words), 2):
+            if i + 1 == len(words):
+                d.append(draw.Text(words[i].upper(), font_size, x, y - offset, fill=colors[country], center=True,
+                                   stroke='black', stroke_width=0.4))
+            else:
+                d.append(draw.Text(words[i].upper() + ' ' + words[i+1].upper(), font_size, x, y - offset,
+                                   fill=colors[country], center=True, stroke='black', stroke_width=0.4))
+            offset += 30
 
 
 def create_svg_file(directory, d):
