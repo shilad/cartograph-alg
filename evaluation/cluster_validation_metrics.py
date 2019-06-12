@@ -10,7 +10,7 @@ def get_sdbw_score(xy_list, labels):
     # return S Dbw validity index, the smaller the better a cluster is.
     return S_Dbw(xy_list, labels)
 
-def db_score(xy_list, labels):
+def get_db_score(xy_list, labels):
     """
     :param xy_list:
     :param labels:
@@ -20,7 +20,7 @@ def db_score(xy_list, labels):
     return metrics.cluster.davies_bouldin_score(xy_list, labels)
 
 
-def silhouette_score(xy_list, labels):
+def get_silhouette_score(xy_list, labels):
     """
     :param xy_list:
     :param labels:
@@ -31,13 +31,13 @@ def silhouette_score(xy_list, labels):
     return metrics.cluster.silhouette_score(xy_list, labels)
 
 
-def ch_score(xy_list, labels):
+def get_ch_score(xy_list, labels):
     """
     :param xy_list:
     :param labels:
     :return: A float where a higher value indicates better quality of clusters.
     """
-    # return silhouette score, the larger the better a cluster is.
+    # return silhgit aouette score, the larger the better a cluster is.
     return metrics.cluster.calinski_harabasz_score(xy_list, labels)
 
 
@@ -47,7 +47,7 @@ def read_cluster(map_directory, method):
 
 
 def get_data_points(map_directory, method):
-    datapoints = pd.read_csv(map_directory + '/article_vectors_' + method + '.csv').drop(columns='article_name')
+    datapoints = pd.read_csv(map_directory + '/article_vectors_' + method + '.csv')
     return datapoints.values
 
 def compare_across_metrics(map_directory, algorithm_1, algorithm_2):
