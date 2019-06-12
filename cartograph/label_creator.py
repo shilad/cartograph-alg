@@ -51,7 +51,7 @@ def create_labels(domain_concept_csv):
     """
 
     # mapping from ids to labels
-    labels_to_id  = {}
+    labels_to_id = {}
     df = pd.read_csv(domain_concept_csv)
     rows_list = []
 
