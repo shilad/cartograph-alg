@@ -68,13 +68,13 @@ def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_
             article_w_vectors.insert(0, 'article_id', dom_con_to_art_vecs[row['article_name']])
         else:
             article_w_vectors.loc[i, 'article_id'] = dom_con_to_art_vecs[row['article_name']]
-    article_w_vectors.sort_values(by=['article_id']).to_csv(map_directory + "/ordinary_article_vectors.csv", index=False)
+    article_w_vectors.sort_values(by=['article_id']).to_csv(map_directory + "/article_vectors_original.csv", index=False)
     # need to specify method in the shell script
     if method == "combined":
         art_labels = pd.read_csv(map_directory + '/article_labels.csv')
         label_wide_matrix = create_label_matrix(art_labels)
         combined_matrix = pd.merge(article_w_vectors, label_wide_matrix, on='article_id')
-        combined_matrix.to_csv(map_directory + "/combined_article_vectors.csv", index=False)
+        combined_matrix.to_csv(map_directory + "/article_vectors_combined.csv", index=False)
 
     return
 
