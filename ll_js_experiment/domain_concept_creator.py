@@ -27,18 +27,14 @@ def create_urls(wikiproject, num_articles):
 
 def create_domain_concept(urls, num_articles):
     articles = []
-    article_count = 0
     for url in urls:
         response = get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
         center = soup.find('center')
         rows = center.find_all('tr')
-        for i in range(1, len(rows)):
-            if article_count == num_articles:
-                break
+        for i in range(1, num_articles + 1):
             article = rows[i].find_all('td')
             articles.append(article[1].a.text.strip())
-            article_count += 1
     return articles
 
 

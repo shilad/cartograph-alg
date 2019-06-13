@@ -1,7 +1,9 @@
 """
 Given lists of vectors, outputs a list of article ids and the country each article
 belongs to.
+
 This implementation uses the kmeans ++ algorithm.
+
 Author: Lu Li
 """
 
@@ -17,7 +19,7 @@ def get_article_vectors(map_directory):
 def get_cluster(map_directory):
     article_vectors = get_article_vectors(map_directory)
     article_id = article_vectors['article_id']
-    matrix = article_vectors.iloc[:, 2:].values
+    matrix = article_vectors.iloc[:, 2:].as_matrix()
     kmeans = KMeans().fit(matrix[0:len(matrix)])
     article_vectors['country'] = kmeans.labels_
     df = pd.DataFrame(article_vectors, columns=['country'])

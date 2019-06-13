@@ -1,11 +1,17 @@
 """
 Given a list of vector representations of Wikipedia articles,
 output a data frame containing the article id and the vectors.
-Author: Lily Irvin, Jonathan Scott
+
+If input method is "combined", return a combined matrix
+that contains article vectors as well as label vectors.
+
+Author: Lily Irvin, Jonathan Scott, Lu, Li
 """
 
 import pandas as pd
 import time
+import numpy as np
+from functools import reduce
 
 
 def read_domain_concepts(path):
@@ -21,12 +27,12 @@ def vec_str_to_float(string):
 
 def read_vectors(vec_path):
     vectors = {}
-    start = time.time()
+    #start = time.time()
     with open(vec_path, encoding="ISO-8859-1") as file:
         for line in file:
             values = line.split()
             vectors[values[0]] = [vec_str_to_float(x) for x in values[1:]]
-    end = time.time()
+    #end = time.time()
     # print("Reading in data takes: "+str(end-start)+" seconds.")
     return vectors
 
@@ -44,11 +50,14 @@ def find_intersection_btw_dom_concept_vectors(dom_con_to_art_vecs, vectors):
     for article in vectors.keys():
         if article in article_set:
             article_vectors_df_ready.append([article]+vectors[article])
-    # print("av_df_ready",len(article_vectors_df_ready))
     return article_vectors_df_ready
 
 
-def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_to_art_vecs, map_directory):
+def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_to_art_vecs, map_directory, method = "original"):
+    """
+    If method is "original", returns a matrix containing article ids and their vectors;
+    If method is "combined", return a matrix with article ids, vectors, and label ids.
+    """
     vector_ids = ['vector_'+str(i) for i in range(100)]  # we know the size of the vectors previously
     for i, row in domain_concept_df.iterrows():
         # assigning article_id from domain_concept.csv
@@ -62,22 +71,49 @@ def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_
         else:
             article_w_vectors.loc[i, 'article_id'] = dom_con_to_art_vecs[row['article_name']]
     article_w_vectors = article_w_vectors.drop(columns='article_name')
-    article_w_vectors.sort_values(by=['article_id']).to_csv(map_directory + "/article_vectors.csv", index=False)
+    article_w_vectors.sort_values(by=['article_id']).to_csv(map_directory + "/article_vectors_original.csv", index=False)
+    # need to specify method in the shell script
+    if method == "combined":
+        art_labels = pd.read_csv(map_directory + '/article_labels.csv')
+        label_wide_matrix = create_label_matrix(art_labels)
+        pop_matrix = pd.read_csv(map_directory + '/popularity_score.csv')
+        df_list = [art_labels, label_wide_matrix, pop_matrix]
+        combined_matrix = reduce(lambda df1, df2: pd.merge(df1, df2, on='article_id'), df_list)
+        #combined_matrix = pd.merge(article_w_vectors, label_wide_matrix, on='article_id')
+        combined_matrix.to_csv(map_directory + "/article_vectors_combined.csv", index=False)
+
+    return
 
 
-def main(map_directory, vector_directory):
+def create_label_matrix(label_matrix):
+    """Creates a matrix that contains a article ids and label ids."""
+    output_matrix = np.zeros((max(label_matrix['article_id'])+1, max(label_matrix['label_id'])+1))
+    for i in range(len(label_matrix['article_id'])):
+        current_article = label_matrix.iloc[i].iloc[0]
+        output_matrix[current_article][label_matrix.iloc[i][1]] = 1
+    output_matrix = pd.DataFrame(output_matrix)
+    output_matrix.index.name = 'article_id'
+    return output_matrix
+
+
+def main(map_directory, vector_directory, method):
     domain_concept_df = read_domain_concepts(map_directory)
     vectors = read_vectors(vector_directory)
     dom_con2vec = map_domain_concept_id_to_article_vector(domain_concept_df)
     article_vectors_df_ready = find_intersection_btw_dom_concept_vectors(dom_con2vec, vectors)
-    create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con2vec, map_directory)
+    create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con2vec, map_directory, method)
 
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         sys.stderr.write('Usage: %s map_directory vector_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory, vector_directory = sys.argv[1:]
-    main(map_directory, vector_directory)
+    map_directory, vector_directory, method = sys.argv[1:]
+    main(map_directory, vector_directory, method)
+
+
+
+
+
