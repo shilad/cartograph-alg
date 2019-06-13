@@ -15,13 +15,6 @@ def read_domain_concepts(path):
     return pd.read_csv(path+'/domain_concept.csv')
 
 
-def vec_str_to_float(string):
-    try:
-        return float(string)
-    except ValueError:
-        pass
-
-
 def read_vectors(vec_path):
     vectors = {}
     start = time.time()
@@ -44,9 +37,8 @@ def read_vectors(vec_path):
                 logging.warning("invalid float in line %d: %s", line_num, repr(line))
             except UnicodeDecodeError:
                 logging.warning("invalid encoding in line %d: %s", line_num, repr(line))
-
     end = time.time()
-    # print("Reading in data takes: "+str(end-start)+" seconds.")
+    #print("Reading in data takes: "+str(end-start)+" seconds.")
     return vectors
 
 
@@ -84,16 +76,15 @@ def main(map_directory, orig_vector_directory):
     domain_concept_df = read_domain_concepts(map_directory)
     vectors = read_vectors(orig_vector_directory)
     domain_names_to_ids = map_domain_names_to_ids(domain_concept_df)
-    create_domain_vector_csv(vectors, domain_concept_df, domain_names_to_ids, map_directory)
+    create_domain_vector_csv(vectors, domain_names_to_ids, map_directory)
 
 
 if __name__ == '__main__':
-    read_vectors('data/original_vectors')
 
-    # import sys
-    # if len(sys.argv) != 3:
-    #     sys.stderr.write('Usage: %s map_directory vector_directory\n' % sys.argv[0])
-    #     sys.exit(1)
-    #
-    # map_directory, orig_vector_directory = sys.argv[1:]
-    # main(map_directory, orig_vector_directory)
+    import sys
+    if len(sys.argv) != 3:
+        sys.stderr.write('Usage: %s map_directory orig_vector_directory\n' % sys.argv[0])
+        sys.exit(1)
+
+    map_directory, orig_vector_directory = sys.argv[1:]
+    main(map_directory, orig_vector_directory)
