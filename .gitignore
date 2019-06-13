@@ -111,3 +111,6 @@ data/
 
 # Ignore .DS_Store
 .DS_Store
+
+# Ignore experiment folder
+cartograph_pop_svd_experiment/

@@ -16,7 +16,6 @@ def get_db_score(xy_list, labels):
     :param labels:
     :return: A value in range [0,inf) The lower the value the better the quality of clustering.
     """
-    # return davies bouldin score, the smaller the better a cluster is.
     return metrics.cluster.davies_bouldin_score(xy_list, labels)
 
 
@@ -27,7 +26,6 @@ def get_silhouette_score(xy_list, labels):
     :return: A value in range [-1,1] where 1 is the best value,
     -1 is the worst and 0 indicates overlapping clusters.
     """
-    # return silhouette score, the larger the better a cluster is.
     return metrics.cluster.silhouette_score(xy_list, labels)
 
 
@@ -37,7 +35,6 @@ def get_ch_score(xy_list, labels):
     :param labels:
     :return: A float where a higher value indicates better quality of clusters.
     """
-    # return silhgit aouette score, the larger the better a cluster is.
     return metrics.cluster.calinski_harabasz_score(xy_list, labels)
 
 
@@ -47,8 +44,14 @@ def read_cluster(map_directory, method):
 
 
 def get_data_points(map_directory, method):
+    """
+    :param map_directory:
+    :param method:
+    :return: gets vectors.
+    """
     datapoints = pd.read_csv(map_directory + '/article_vectors_' + method + '.csv')
-    return datapoints.values
+    return datapoints.to_numpy()
+
 
 def compare_across_metrics(map_directory, algorithm_1, algorithm_2):
     X_1 = get_data_points(map_directory, algorithm_1)
@@ -91,6 +94,6 @@ def compare_across_metrics(map_directory, algorithm_1, algorithm_2):
 
 
 map_directory = '../data/food'
-method = 'original'
+#method = 'original'
 
-compare_across_metrics(map_directory, "original", "combined")
+compare_across_metrics(map_directory, "no_svd", "svd_pop")
