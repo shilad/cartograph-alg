@@ -1,8 +1,11 @@
 """
-Given a list of vector representations of Wikipedia articles,
+Given a list of vector representations for all Wikipedia articles,
+and a list of Wikipedia titles representing our domain concepts,
 output a data frame containing the article id and the vectors.
 Author: Lily Irvin, Jonathan Scott
 """
+
+import logging
 
 import pandas as pd
 import time
@@ -22,62 +25,75 @@ def vec_str_to_float(string):
 def read_vectors(vec_path):
     vectors = {}
     start = time.time()
-    with open(vec_path, encoding="ISO-8859-1") as file:
-        for line in file:
-            values = line.split()
-            vectors[values[0]] = [vec_str_to_float(x) for x in values[1:]]
+    with open(vec_path, encoding="UTF-8", errors='replace') as file:
+        header = file.readline()
+        num_dimensions = int(header.split()[1])
+        for line_num, line in enumerate(file):
+            try:
+                tokens = line.split()
+                title, values = tokens[0], tokens[1:]
+                if num_dimensions < 0:
+                    num_dimensions = len(values)
+                if len(values) != num_dimensions:
+                    logging.warning("invalid vector length in line %d for article %s (%d)",
+                                    line_num, title, len(values))
+                vectors[title] = [float(x) for x in values]
+                if line_num % 100000 == 0:
+                    logging.warning("decoding vector %d for article %s", line_num, title)
+            except ValueError:
+                logging.warning("invalid float in line %d: %s", line_num, repr(line))
+            except UnicodeDecodeError:
+                logging.warning("invalid encoding in line %d: %s", line_num, repr(line))
+
     end = time.time()
     # print("Reading in data takes: "+str(end-start)+" seconds.")
     return vectors
 
 
-def map_domain_concept_id_to_article_vector(domain_concept_df):
+def map_domain_names_to_ids(domain_concept_df):
     temp_map_dict = {}  # for fast look up
-    for i, row in domain_concept_df.iterrows():
+    for _, row in domain_concept_df.iterrows():
         temp_map_dict[row['article_name'].replace(" ", "_")] = row['article_id']
     return temp_map_dict
 
 
-def find_intersection_btw_dom_concept_vectors(dom_con_to_art_vecs, vectors):
-    article_set = set(dom_con_to_art_vecs.keys())  # O(1) look up.
-    article_vectors_df_ready = []
-    for article in vectors.keys():
-        if article in article_set:
-            article_vectors_df_ready.append([article]+vectors[article])
-    # print("av_df_ready",len(article_vectors_df_ready))
-    return article_vectors_df_ready
+def create_domain_vector_csv(orig_vectors, domain_names_to_ids, map_directory):
+    some_vector = next(iter(orig_vectors.values()))
+    num_dimensions = len(some_vector)
+    id_name_pairs = [ (id, name) for (name, id) in domain_names_to_ids.items() ]
 
-
-def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_to_art_vecs, map_directory):
-    vector_ids = ['vector_'+str(i) for i in range(100)]  # we know the size of the vectors previously
-    for i, row in domain_concept_df.iterrows():
-        # assigning article_id from domain_concept.csv
-        dom_con_to_art_vecs[row['article_name'].replace(" ", "_")] = row['article_id']
-
-    # a Dataframe expects a dictionary where {col:[list of values in column]
-    article_w_vectors = pd.DataFrame(article_vectors_df_ready, columns=['article_name']+vector_ids)
-    for i, row in article_w_vectors.iterrows():
-        if i == 0:
-            article_w_vectors.insert(0, 'article_id', dom_con_to_art_vecs[row['article_name']])
+    num_missing = 0
+    rows = []
+    for id, name in sorted(id_name_pairs):
+        if name in orig_vectors:
+            vector = orig_vectors[name]
+            fields = { 'article_id' : id }
+            for i in range(num_dimensions):
+                fields['vector_' + str(i)] = vector[i]
+            rows.append(fields)
         else:
-            article_w_vectors.loc[i, 'article_id'] = dom_con_to_art_vecs[row['article_name']]
-    article_w_vectors = article_w_vectors.drop(columns='article_name')
-    article_w_vectors.sort_values(by=['article_id']).to_csv(map_directory + "/article_vectors.csv", index=False)
+            num_missing += 1
+    logging.warning('did not find vectors for %d articles', num_missing)
+
+    columns = ['article_id'] + ['vector_' + str(i) for i in range(num_dimensions)]
+    df = pd.DataFrame(rows, columns=columns)
+    df.to_csv(map_directory + "/article_vectors.csv", index=False)
 
 
-def main(map_directory, vector_directory):
+def main(map_directory, orig_vector_directory):
     domain_concept_df = read_domain_concepts(map_directory)
-    vectors = read_vectors(vector_directory)
-    dom_con2vec = map_domain_concept_id_to_article_vector(domain_concept_df)
-    article_vectors_df_ready = find_intersection_btw_dom_concept_vectors(dom_con2vec, vectors)
-    create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con2vec, map_directory)
+    vectors = read_vectors(orig_vector_directory)
+    domain_names_to_ids = map_domain_names_to_ids(domain_concept_df)
+    create_domain_vector_csv(vectors, domain_concept_df, domain_names_to_ids, map_directory)
 
 
 if __name__ == '__main__':
-    import sys
-    if len(sys.argv) != 3:
-        sys.stderr.write('Usage: %s map_directory vector_directory' % sys.argv[0])
-        sys.exit(1)
+    read_vectors('data/original_vectors')
 
-    map_directory, vector_directory = sys.argv[1:]
-    main(map_directory, vector_directory)
+    # import sys
+    # if len(sys.argv) != 3:
+    #     sys.stderr.write('Usage: %s map_directory vector_directory\n' % sys.argv[0])
+    #     sys.exit(1)
+    #
+    # map_directory, orig_vector_directory = sys.argv[1:]
+    # main(map_directory, orig_vector_directory)
