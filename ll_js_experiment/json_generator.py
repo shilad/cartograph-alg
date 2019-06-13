@@ -12,30 +12,30 @@ from functools import reduce
 
 
 def get_articles(map_directory):
-    return pd.read_csv(map_directory+'/domain_concept.csv')
+    return pd.read_csv(map_directory+'domain_concept.csv')
 
 
 def get_popularity_scores(map_directory):
-    return pd.read_csv(map_directory + '/popularity_score.csv')
+    return pd.read_csv(map_directory + 'popularity_score.csv')
 
 
 def get_vectors(map_directory):
-    return pd.read_csv(map_directory + '/article_vectors.csv')
+    return pd.read_csv(map_directory + 'article_vectors.csv')
 
 
 def get_labels(map_directory):
-    return pd.read_csv(map_directory + '/article_labels.csv')
+    return pd.read_csv(map_directory + 'article_labels.csv')
 
 
 def get_countries(map_directory):
-    return pd.read_csv(map_directory + '/cluster_groups.csv')
+    return pd.read_csv(map_directory + 'cluster_groups.csv')
 
 
 def get_xy(map_directory):
-    return pd.read_csv(map_directory + '/xy_embeddings.csv')
+    return pd.read_csv(map_directory + 'xy_embeddings.csv')
 
 def get_selected_label(map_directory):
-    return pd.read_csv(map_directory + '/country_labels.csv')
+    return pd.read_csv(map_directory + 'country_labels.csv')
 
 
 def list_results(map_directory):
@@ -82,7 +82,7 @@ def create_list_article_data(merged_df, map_directory):
     labels_df = get_labels(map_directory)
     article_data = {}
     for i, row in merged_df.iterrows():
-        article_data[row['article_id']] = {'Article': row['article_name'], # Should clean this up maybe get rid of one of the columns my fault
+        article_data[row['article_id']] = {'Article': row['article_name_x'], # Should clean this up maybe get rid of one of the columns my fault
                                           'Popularity': row['popularity_score'],
                                           'Vectors': get_vec_as_list(i, merged_df),
                                           'Labels': get_labels_as_list(row['article_id'], labels_df),
@@ -93,7 +93,7 @@ def create_list_article_data(merged_df, map_directory):
 
 
 def generate_json(map_directory, article_data):
-    with open(map_directory + '/domain.json', 'w') as outfile:
+    with open(map_directory + 'domain.json', 'w') as outfile:
         json.dump(article_data, outfile)
     return
 

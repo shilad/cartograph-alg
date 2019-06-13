@@ -1,6 +1,6 @@
-
 """
 Given a json file of articles, construct the svg visualization map
+
 Author: Yuren "Rock" Pang
 """
 
@@ -167,3 +167,4 @@ if __name__ == '__main__':
 
     map_directory, width, height, color_palette = sys.argv[1:]
     main(map_directory, width, height, color_palette)
+

@@ -1,7 +1,9 @@
 """
 Given a domain concept, gets the popularity score for each article in that domain concept,
 produces a csv file that contains article ids and its corresponding popularity scores.
+
 This implementation uses Wikipedia's PageView API.
+
 Author: Lu Li
 """
 import pageviewapi as pv
@@ -39,7 +41,7 @@ def create_popularity_score(path):
     return domain_concepts.drop('article_name', axis=1).iloc[:, 1:]
 
 
-def create_csv(directory):
+def create_csv( directory):
     df = create_popularity_score(directory)
     df.to_csv(directory + '/popularity_score.csv', index_label='article_id')
 
@@ -59,3 +61,4 @@ if __name__ == '__main__':
 
     map_directory = sys.argv[1]
     main(map_directory)
+
