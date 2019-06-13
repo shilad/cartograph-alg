@@ -8,7 +8,7 @@ from s_dbw import S_Dbw
 
 def get_sdbw_score(xy_list, labels):
     # return S Dbw validity index, the smaller the better a cluster is.
-    return S_Dbw(xy_list, labels)
+    return S_Dbw(xy_list, labels) # add cosine metric and see Halkidi vs Tong
 
 def get_db_score(xy_list, labels):
     """

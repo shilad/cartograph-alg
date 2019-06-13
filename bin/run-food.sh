@@ -13,7 +13,7 @@ python -m cartograph.vector_creator data/food data/original_vectors combined
 # python -m cartograph.popularity_creator data/food
 # python -m cartograph.xy_embeddings_builder data/food
 # python -m cartograph.evaluation data/food/
-python -m cartograph.cluster_builder_kmeans data/food combined
+python -m cartograph.cluster_builder_kmeans data/food original
 # python -m cartograph.label_selector data/food
 
 # python -m cartograph.json_generator data/food/
