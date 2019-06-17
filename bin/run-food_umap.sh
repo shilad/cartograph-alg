@@ -14,7 +14,7 @@
 # python -m cartograph_pop_svd_experiment.xy_embeddings_builder data/food
 # python -m cartograph_pop_svd_experiment.evaluation data/food/
 # python -m cartograph_pop_svd_experiment.cluster_builder_kmeans data/food original
-# python -m cartograph_pop_svd_experiment.label_selector data/food
+python -m cartograph_pop_svd_experiment.label_selector data/food svd_pop
 
 # python -m cartograph_pop_svd_experiment.json_generator data/food/
 # python -m cartograph_pop_svd_experiment.svg_generator data/food 1500 1500 colorblind
