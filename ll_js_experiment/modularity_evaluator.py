@@ -135,5 +135,5 @@ if __name__ == '__main__':
     xy_embeddings_csv = sys.argv[2]
     cluster_groups_csv = sys.argv[3]
     method = sys.argv[4]
-    main(map_directory, xy_embeddings_csv, cluster_groups_csv, method)
+    main(map_directory, xy_embeddings_csv, cluster_groups_csv, method='nn')
 
