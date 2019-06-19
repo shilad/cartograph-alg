@@ -48,7 +48,7 @@ def main(directory, vec_method, cluster_algorithm, k):
         os.makedirs(directory)
     article_vectors = pd.read_csv('%s/article_vectors_%s.csv' % (directory, vec_method))
     cluster_df = get_cluster(article_vectors, cluster_algorithm, k)
-    cluster_df.to_csv('%s/cluster_groups_%s_%s.csv' % (directory, vec_method, algorithm),
+    cluster_df.to_csv('%s/cluster_groups_%s_%s.csv' % (directory, vec_method, cluster_algorithm),
                       index_label='article_id')
 
 
