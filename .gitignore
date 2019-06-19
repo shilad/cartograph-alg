@@ -106,9 +106,6 @@ venv.bak/
 # Pycharm / IntelliJ
 .idea/
 
-# Don't check in data files.
-data/
-
 # Ignore .DS_Store
 .DS_Store
 
