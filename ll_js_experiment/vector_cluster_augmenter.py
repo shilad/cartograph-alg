@@ -16,8 +16,7 @@ def create_cluster_art_csv(article_vec_csv, cluster_csv):
     num_of_countries = len(cluster_csv['country'].unique())
     cluster_matrix = np.zeros((cluster_csv.shape[0], num_of_countries + 1))
     for i in range(len(cluster_csv['article_id'])):
-        current_article = cluster_csv.iloc[i].iloc[0]
-        cluster_matrix[i][0] = current_article  # assign the first column to be article ids
+        cluster_matrix[i][0] = cluster_csv.iloc[i].iloc[0]  # assign the first column to be article ids
         offset = 1 - min(cluster_csv['country'].unique())  # HDBSCAN cluster labels start from -1 instead of 0
         cluster_matrix[i][cluster_csv.iloc[i][1] + offset] = 1
     country_labels = ['country_' + str(i) for i in range(num_of_countries)]
@@ -35,10 +34,9 @@ def main(directory, vec_method, cluster_algorithm):
     """
     if not os.path.exists(directory):
         os.makedirs(directory)
-    art_vec_csv = pd.read_csv(directory + "/article_vectors_original.csv")
-    cluster_csv = pd.read_csv(directory + "/cluster_groups_" + vec_method + "_" + cluster_algorithm + ".csv")
-    create_cluster_art_csv(art_vec_csv, cluster_csv).to_csv(directory + "/article_vectors_cluster_" + vec_method + "_" +
-                                                            cluster_algorithm + ".csv", index=False)
+    art_vec_csv = pd.read_csv("%s/article_vectors_original.csv" % directory)
+    cluster_csv = pd.read_csv("%s/cluster_groups_%s_%s.csv" % (directory, vec_method, cluster_algorithm))
+    create_cluster_art_csv(art_vec_csv, cluster_csv).to_csv("%s/article_vectors_cluster_%s_%s.csv" % (directory, vec_method, cluster_algorithm), index=False)
 
 
 if __name__ == '__main__':
