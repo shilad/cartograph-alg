@@ -9,22 +9,31 @@
 #
 # Author: Shilad Sen
 
-# Import the experiment utilities functions
-source ./bin/experiment-utils.sh
-
 set -e
 
-# Get the experiment id. This is *not* map specific.
+# Step 0: Import the experiment utilities functions
+source ./bin/experiment-utils.sh
+
+
+# Step 1: Get the experiment id. This is *not* map specific.
 # An experiment id can be used for multiple maps.
 exp_id=$(get_experiment_id)
 
-# Prepare a map
-exp_dir=$(prepare_experiment_dir food ${exp_id} spread 0.05)
+# Step 2: Prepare an experiment directory for a specific map.
+# You MUST pass any configuration parameters important to the experiment as key-value pairs.
+# The example below passes the equivalent of { "spread" : "17", "target_weight" : "0.5" }.
+exp_dir=$(prepare_experiment_dir food ${exp_id} spread 17 target_weight 0.5)
 
+# Step 3: If you needed to generate augmented vectors,
+# do so now from vanilla_vectors.csv in the experiment directory.
 
-#python -m cartograph.xy_embeddings_builder data/food
+# Step 4: Run any algorithmic steps that are necessary.
+python -m cartograph.xy_embed.tsne_embed --experiment ${exp_dir} --vectors ${exp_dir}/vanilla_vectors.csv
 #python -m cartograph.cluster_builder data/food
 #python -m cartograph.label_selector data/food
 #python -m cartograph.json_generator data/food
+
+
+# Step 5: Run evaluation metrics and generate HTML & SVG
 #python -m cartograph.svg_generator data/food 1500 1500 muted
 
