@@ -36,6 +36,9 @@ prepare_experiment_dir() {
     # Copy in the script used to run the experiment
     cp -p $0 ${exp_dir}
 
+    # Link in the vanilla vector file
+    ln data/${map_name}/article_vectors.csv ${exp_dir}/vanilla_vectors.csv
+
     # Copy extra parameters to file
     touch ${exp_dir}/params.json
 
