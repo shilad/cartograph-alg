@@ -34,8 +34,11 @@ def fetch_categories_from_json(domain_concept):
     page_ids = list(data['query']['pages'].keys())
     if len(page_ids) == 1:
         page_info = data['query']['pages'][page_ids[0]]
-        for cat_info in page_info['categories']:
-            categories.append(cat_info['title'].replace("Category:", ""))
+        try:
+            for cat_info in page_info['categories']:
+                categories.append(cat_info['title'].replace("Category:", ""))
+        except KeyError or IndexError:
+            logging.warning('%s: article found, but no category appears.', page_info["title"])
     else:
         logging.warning('Couldnt find categories for %s. Discovered %d pages when expected 1',
                         domain_concept, len(page_ids))
