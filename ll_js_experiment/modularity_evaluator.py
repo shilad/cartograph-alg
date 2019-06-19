@@ -13,6 +13,7 @@ from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 from igraph import *
 import logging
+import json
 
 
 def preprocess(x_y_embeddings_csv):
@@ -106,10 +107,12 @@ def calc_modularity(Graph, cluster_groups_csv):
     return Graph.modularity(country)
 
 
-# feature_space, indices_to_id = preprocess("../data/food/xy_embeddings.csv")
-# distance_lst, indices_lst = find_neighbors_within_d_distance(feature_space)
+# feature_space, indices_to_id = preprocess("../data/tech/xy_embeddings.csv")
+# distance_lst, indices_lst = find_k_near_neighbors(feature_space)
 # G = build_network(distance_lst, indices_lst, indices_to_id)
-# print("Modularity Score: %.6f", calc_modularity(G, "../data/food/cluster_groups.csv"))
+# mod_score = calc_modularity(G, "../data/tech/cluster_groups.csv")
+# print(str(json.dumps({'modularity':mod_score})))
+# print("Modularity Score: %.6f", calc_modularity(G, "../data/tech/cluster_groups.csv"))
 
 
 def main(map_directory, xy_embedding_csv, cluster_groups_csv, method='nn'):
@@ -121,19 +124,21 @@ def main(map_directory, xy_embedding_csv, cluster_groups_csv, method='nn'):
         distance_lst, indices_lst = find_neighbors_within_d_distance(feature_space)
 
     G = build_network(distance_lst, indices_lst, indices_to_id)
-    logging.warning("Modularity Score: %.6f", calc_modularity(G, cluster_groups_csv))
+    mod_score = calc_modularity(G, map_directory + cluster_groups_csv)
+    print(str(json.dumps({'modularity':mod_score})))
+    # logging.warning("Modularity Score: %.6f", mod_score)
 
 
 if __name__ == '__main__':
     import sys
 
     if len(sys.argv) != 5:
-        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
+        sys.stderr.write('Usage: %s map_directory xy_embeddings.csv cluster_group_csv method (nn)' % sys.argv[0])
         sys.exit(1)
 
     map_directory = sys.argv[1]
     xy_embeddings_csv = sys.argv[2]
     cluster_groups_csv = sys.argv[3]
     method = sys.argv[4]
-    main(map_directory, xy_embeddings_csv, cluster_groups_csv, method='nn')
+    main(map_directory, xy_embeddings_csv, cluster_groups_csv, method=method)
 
