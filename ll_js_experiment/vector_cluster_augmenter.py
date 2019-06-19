@@ -17,7 +17,7 @@ def create_cluster_art_csv(article_vec_csv, cluster_csv):
     cluster_matrix = np.zeros((cluster_csv.shape[0], num_of_countries + 1))
     for i in range(len(cluster_csv['article_id'])):
         cluster_matrix[i][0] = cluster_csv.iloc[i].iloc[0]  # assign the first column to be article ids
-        offset = 1 - min(cluster_csv['country'].unique())  # HDBSCAN cluster labels start from -1 instead of 0
+        offset = 1 - min(cluster_csv['country'].unique())  # HDBSCAN cluster labels has -1 for noisy samples
         cluster_matrix[i][cluster_csv.iloc[i][1] + offset] = 1
     country_labels = ['country_' + str(i) for i in range(num_of_countries)]
     cluster_df = pd.DataFrame(cluster_matrix, columns=['article_id'] + country_labels)
