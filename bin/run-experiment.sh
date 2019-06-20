@@ -27,13 +27,28 @@ exp_dir=$(prepare_experiment_dir food ${exp_id} spread 17 target_weight 0.5)
 # Step 3: If you needed to generate augmented vectors,
 # do so now from vanilla_vectors.csv in the experiment directory.
 
-# Step 4: Run any algorithmic steps that are necessary.
-python -m cartograph.xy_embed.tsne_embed --experiment ${exp_dir} --vectors ${exp_dir}/vanilla_vectors.csv
-#python -m cartograph.cluster_builder data/food
-#python -m cartograph.label_selector data/food
-#python -m cartograph.json_generator data/food
+# Step 4: Run algorithmic steps that are necessary.
+
+python -m cartograph.cluster_builder \
+        --experiment ${exp_dir} \
+        --vectors ${exp_dir}/vanilla_vectors.csv \
+        --clustering kmeans \
+        --k 8
+
+python -m cartograph.xy_embed.tsne_embed \
+        --experiment ${exp_dir} \
+        --vectors ${exp_dir}/vanilla_vectors.csv
+
+python -m cartograph.label_selector \
+        --experiment ${exp_dir} \
+        --articles_to_labels data/food/article_categories.csv \
+        --label_names data/food/category_names.csv
 
 
-# Step 5: Run evaluation metrics and generate HTML & SVG
-#python -m cartograph.svg_generator data/food 1500 1500 muted
+# Step 5: Generate JSON
+python -m cartograph.json_generator data/food ${exp_dir}
+
+
+# Step 6: Run evaluation metrics and generate HTML & SVG
+python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted
 

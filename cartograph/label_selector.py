@@ -3,7 +3,7 @@ Given two data frames (one containing article id's and label id's, and one inclu
 outputs a list countries and their labels.
 Author: Lily Irvin
 """
-
+import argparse
 
 import pandas as pd
 from collections import defaultdict
@@ -62,45 +62,42 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countrie
     return tfidf_scores
 
 
-def assign_country_label_ids(tfidf_scores, num_countries):
+def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
     """Output: Dictionary --> key = country, value = label"""
     country_labels = {}
     for i in range(num_countries):
         label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
-        country_labels[i] = get_label(label_id, map_directory)
+        country_labels[i] = label_names_df.iloc[label_id].loc['label']
 
     return country_labels
 
 
-def get_label(label_id, map_directory):
-    label_ids = pd.read_csv(map_directory + '/label_ids.csv')
+def main(experiment_dir, article_to_label_path, label_name_path):
+    # Read in labels datasets
+    labels_df = add_countries(article_to_label_path, experiment_dir + '/cluster_groups.csv')
+    label_names_df = pd.read_csv(label_name_path)
 
-    return label_ids.iloc[label_id].loc['label']
-
-
-def create_csv(df, directory):
-    df.to_csv(directory + '/country_labels.csv', index=True)
-
-
-def main(map_directory):
-    labels_df = add_countries(map_directory + '/article_labels.csv',
-                              map_directory + '/cluster_groups.csv')
-    num_countries = get_num_countries(map_directory + '/cluster_groups.csv')
+    # Calculate tf-idf scores
+    num_countries = get_num_countries(experiment_dir + '/cluster_groups.csv')
     country_label_counts = get_country_label_counts(labels_df, num_countries)
     total_counts = get_total_counts(labels_df)
     tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countries)
-    country_labels = assign_country_label_ids(tfidf_scores, num_countries)
+
+    # Assign labels
+    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries)
+
+    # Create results data frame
     df = pd.DataFrame(country_labels,  index=[0]).T
     df['country'] = df.index
-    create_csv(df, map_directory)
+    df.to_csv(experiment_dir + '/country_labels.csv', index=True)
 
 
 if __name__ == '__main__':
-    import sys
+    parser = argparse.ArgumentParser(description='Select labels for cluster.')
+    parser.add_argument('--experiment', required=True)
+    parser.add_argument('--articles_to_labels', required=True)
+    parser.add_argument('--label_names', required=True)
 
-    if len(sys.argv) != 2:
-        sys.stderr.write('Usage: %s map_directory project_name number_of_articles' % sys.argv[0])
-        sys.exit(1)
+    args = parser.parse_args()
 
-    map_directory = sys.argv[1]
-    main(map_directory)
+    main(args.experiment, args.articles_to_labels, args.label_names)
