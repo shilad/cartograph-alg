@@ -6,7 +6,7 @@ Author: Lily Irvin, Jonathan Scott
 """
 
 import logging
-
+from smart_open import open
 import pandas as pd
 import time
 
@@ -16,9 +16,10 @@ def read_domain_concepts(path):
 
 
 def read_vectors(vec_path):
+    print(vec_path)
     vectors = {}
     start = time.time()
-    with open(vec_path, encoding="UTF-8", errors='replace') as file:
+    with open(vec_path, encoding='utf-8', errors='replace') as file:
         header = file.readline()
         num_dimensions = int(header.split()[1])
         for line_num, line in enumerate(file):
@@ -59,7 +60,7 @@ def create_domain_vector_csv(orig_vectors, domain_names_to_ids, map_directory):
     for id, name in sorted(id_name_pairs):
         if name in orig_vectors:
             vector = orig_vectors[name]
-            fields = { 'article_id' : id }
+            fields = {'article_id': id}
             for i in range(num_dimensions):
                 fields['vector_' + str(i)] = vector[i]
             rows.append(fields)
