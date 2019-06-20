@@ -5,7 +5,8 @@ Team members: Lily Irvin, Lu Li, Rock Pang, Jonathan Scott, Shilad Sen.
 
 ## Software dependencies
 
-* Python 3 + modules in requirements.txt
+* Python 3
+* Python modules in requirements.txt
 * Git LFS. Instructions on OS-X:
    * brew install git-lfs
    * sudo git lfs install
