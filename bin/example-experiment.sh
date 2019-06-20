@@ -54,3 +54,7 @@ python -m cartograph.json_generator data/food ${exp_dir}
 # Step 7: Run evaluation metrics and generate HTML & SVG
 python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted
 
+# An example of writing to the evaluation json file.
+# python -m cartograph.evaluation.modularity_evaluator ${exp_dir} arg1 arg2 arg3 >>${exp_dir}/evaluation.json
+
+
