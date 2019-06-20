@@ -5,7 +5,7 @@
 #
 # For example: source ~/venv/cartograph-alg/bin/activate
 #
-# Run this script using ./bin/run-experiment.sh
+# Run this script using ./bin/example-experiment.sh
 #
 # Author: Shilad Sen
 
