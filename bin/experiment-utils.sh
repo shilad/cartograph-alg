@@ -24,7 +24,7 @@ get_experiment_id () {
 # Prepares an experiment directory
 # Returns the name of the experiment directory for the map
 #
-prepare_experiment_dir() {
+prepare_experiment_dir () {
     map_name=$1
     exp_id=$2
 
@@ -39,10 +39,18 @@ prepare_experiment_dir() {
     # Link in the vanilla vector file
     ln data/${map_name}/article_vectors.csv ${exp_dir}/vanilla_vectors.csv
 
-    # Copy extra parameters to file
+    # Create empty parameters file
     touch ${exp_dir}/params.json
 
-    shift 2
+    echo ${exp_dir}
+}
+
+
+# Writes configuration parameters for the experiment to the json file.
+#
+write_experiment_params() {
+    exp_dir=$1
+    shift
 
     while [[ $# -gt 0 ]]; do
         param_name="$1"
@@ -51,6 +59,4 @@ prepare_experiment_dir() {
 
         echo "{ \"${param_name}\" : \"${param_value}\" }" >> ${exp_dir}/params.json
     done
-
-    echo ${exp_dir}
 }

@@ -20,14 +20,16 @@ source ./bin/experiment-utils.sh
 exp_id=$(get_experiment_id)
 
 # Step 2: Prepare an experiment directory for a specific map.
-# You MUST pass any configuration parameters important to the experiment as key-value pairs.
-# The example below passes the equivalent of { "spread" : "17", "target_weight" : "0.5" }.
-exp_dir=$(prepare_experiment_dir food ${exp_id} spread 17 target_weight 0.5)
+exp_dir=$(prepare_experiment_dir food ${exp_id})
 
-# Step 3: If you needed to generate augmented vectors,
+# Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
+# The example below passes the equivalent of { "spread" : "17", "target_weight" : "0.5" }.
+write_experiment_params ${exp_dir} spread 17 target_weight 0.5
+
+# Step 4: If you needed to generate augmented vectors,
 # do so now from vanilla_vectors.csv in the experiment directory.
 
-# Step 4: Run algorithmic steps that are necessary.
+# Step 5: Run algorithmic steps that are necessary.
 
 python -m cartograph.cluster_builder \
         --experiment ${exp_dir} \
@@ -45,10 +47,10 @@ python -m cartograph.label_selector \
         --label_names data/food/category_names.csv
 
 
-# Step 5: Generate JSON
+# Step 6: Generate JSON
 python -m cartograph.json_generator data/food ${exp_dir}
 
 
-# Step 6: Run evaluation metrics and generate HTML & SVG
+# Step 7: Run evaluation metrics and generate HTML & SVG
 python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted
 

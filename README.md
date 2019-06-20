@@ -1,7 +1,7 @@
 # Cartograph Algorithms
 Algorithm development repository for Cartograph team.
 
-Team members: Lily Irvin, Lu Li, Rock Pang, Jonathan Scott, Shilad Sen.
+Team members: Lily Irvin, Lu Li, Yuren "Rock" Pang, Jonathan Scott, Shilad Sen.
 
 ## Software dependencies
 
