@@ -23,7 +23,7 @@ def create_article_vec_csv(article_vectors, map_directory, method = "no_svd"):
 
     if method == "svd_pop":
         svd = TruncatedSVD(n_components=10, n_iter=7, random_state=42)
-        art_labels = pd.read_csv(map_directory + '/article_labels.csv')
+        art_labels = pd.read_csv(map_directory + '/article_categories.csv')
         label_wide_matrix = create_label_matrix(art_labels)
         pop_matrix = pd.read_csv(map_directory + '/popularity_score.csv')
 
@@ -43,7 +43,7 @@ def create_article_vec_csv(article_vectors, map_directory, method = "no_svd"):
         combined_matrix.to_csv(map_directory + "/article_vectors_" + method + ".csv", index=False)
 
     elif method == 'no_svd':
-        art_labels = pd.read_csv(map_directory + '/article_labels.csv')
+        art_labels = pd.read_csv(map_directory + '/article_categories.csv')
         label_wide_matrix = create_label_matrix(art_labels)
         #pop_matrix = pd.read_csv(map_directory + '/popularity_score.csv')
 

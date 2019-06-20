@@ -1,6 +1,6 @@
 """
-   Given domain concepts, output label_ids.csv (label id and label string) and
-   article_labels.csv (article id and label id)
+   Given domain concepts, output category_names.csv (label id and label string) and
+   article_categories.csv (article id and label id)
 
    Author: Yuren "Rock" Pang
 """
@@ -98,11 +98,11 @@ def create_labels(domain_concept_csv):
 def create_label_id_str_csv(directory, labels_to_ids):
     id_to_label = [(id, label) for (label, id) in labels_to_ids.items()]
     labels_df = pd.DataFrame(id_to_label, columns=["label_id", "label"])
-    labels_df.to_csv(directory + '/label_ids.csv', index=False)
+    labels_df.to_csv(directory + '/category_names.csv', index=False)
 
 
 def create_article_label_csv(article_label_df, directory):
-    article_label_df.to_csv(directory + "/article_labels.csv", index=False)
+    article_label_df.to_csv(directory + "/article_categories.csv", index=False)
 
 #
 # map_directory = "../data/food"
