@@ -28,12 +28,17 @@ pop_list = []
 def create_popularity_score(path):
 
     domain_concepts = pd.read_csv(path + '/domain_concept.csv')
+    x = 0
     for index, row in domain_concepts.iterrows():
+        if x % 1000 == 0:
+            print(str(x) + " articles completed")
         try:
             popularity_score = get_popularity_score(row['article_name'])
             pop_list.append(popularity_score)
+            x += 1
         except:
             pop_list.append('na')
+            x += 1
     domain_concepts["popularity_score"] = pop_list
     domain_concepts = domain_concepts[domain_concepts['popularity_score'] != 'na']
     return domain_concepts.drop('article_name', axis=1).iloc[:, 1:]

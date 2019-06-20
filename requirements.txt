@@ -12,3 +12,4 @@ s_dbw
 igraph
 hdbscan
 smart_open
+nltk
