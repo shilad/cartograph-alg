@@ -110,4 +110,5 @@ venv.bak/
 .DS_Store
 
 # Ignore experiment folder
-cartograph_pop_svd_experiment/
+experiments/
+
