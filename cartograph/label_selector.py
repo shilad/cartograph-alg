@@ -11,14 +11,6 @@ import math
 import operator
 
 
-def get_country_dictionary(country_clusters_csv):
-    """Appends a new column with country assignments to the article_labels dataframe."""
-
-    country_clusters = pd.read_csv(country_clusters_csv)
-    country_clusters.set_index('article_id')
-    return country_clusters.iloc[:, 1:].to_dict()
-
-
 def add_countries(article_labels_csv, country_clusters_csv):
     """Appends a new column with country assignments to the article_labels dataframe."""
 
@@ -57,8 +49,8 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countrie
                in that country"""
     tfidf_scores = [defaultdict(int) for x in range(num_countries)]
     for index, row in labels_df.iterrows():
-        tfidf_scores[row['country']][row['label_id']] = math.log(country_label_counts[row['country']][row['label_id']] + 1.0) / \
-                                                    math.log(total_counts['row_id'] + 10.0)
+        tfidf_scores[row['country']][row['label_id']] = math.log(country_label_counts[row['country']][row['label_id']]
+                                                                 + 1.0) / math.log(total_counts[row['label_id']] + 10.0)
     return tfidf_scores
 
 
@@ -66,8 +58,12 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
     """Output: Dictionary --> key = country, value = label"""
     country_labels = {}
     for i in range(num_countries):
+        print('---')
         label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
         country_labels[i] = label_names_df.iloc[label_id].loc['label']
+        top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
+        for i in top_five:
+            print(label_names_df.iloc[i[0]].loc['label'], i[1])
 
     return country_labels
 
