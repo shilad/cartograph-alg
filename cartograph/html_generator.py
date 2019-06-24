@@ -5,7 +5,8 @@ June 21 needs to add more parameters
 
 Author: Yuren 'Rock' Pang
 """
-
+import time
+from collections import OrderedDict
 
 from jinja2 import Template
 from xml.dom import minidom
@@ -20,14 +21,18 @@ def get_params_and_values(file):
         params_evals.update({dic[0]: dic[1]})
     return params_evals
 
-def main(map_directory, evaluation_json, params_json, graph_path):
+def main(experiment_directory, evaluation_json, params_json, graph_path):
+    experiment_directory = experiment_directory.rstrip('/')
     eval_dic = get_params_and_values(evaluation_json)
-    params_dic = get_params_and_values(params_json)
+    params_dic = OrderedDict()
+    params_dic['timestamp'] = time.ctime()
+    params_dic['directory'] = experiment_directory
+    params_dic.update(get_params_and_values(params_json))
 
     with open('./template/index.html') as file:
         template = Template(file.read())
 
-        names = map_directory.split('/')
+        names = experiment_directory.split('/')
 
         doc = minidom.parse(graph_path)
         svg = doc.toxml()
@@ -43,13 +48,13 @@ if __name__ == '__main__':
         sys.stderr.write('Usage: %s map_directory augmentation_method' % sys.argv[0])
         sys.exit(1)
 
-    map_directory = sys.argv[1]
-    evaluation_json = map_directory + "/evaluation.json"
-    params_json = map_directory + "/params.json"
-    graph_path = map_directory + "/graph.svg"
+    experiment_directory = sys.argv[1]
+    evaluation_json = experiment_directory + "/evaluation.json"
+    params_json = experiment_directory + "/params.json"
+    graph_path = experiment_directory + "/graph.svg"
 
-    file = open(map_directory+"/index.html", "w+")
-    file.write(main(map_directory, evaluation_json, params_json, graph_path))
+    file = open(experiment_directory + "/index.html", "w+")
+    file.write(main(experiment_directory, evaluation_json, params_json, graph_path))
     file.close()
 
 
