@@ -34,9 +34,7 @@ def main(map_directory, evaluation_json, params_json, graph_path):
 
         return template.render(title= 'Graph of ' + names[-2] + " (experiment "+ names[-1] + ")",
                                svg=svg,
-                               modularity_score=eval_dic['modularity'],
-                               trustworthiness_score=eval_dic['Trustworthiness'],
-                               sdb2_score='placeholder',
+                               eval_dic=eval_dic,
                                params_dic=params_dic)
 
 if __name__ == '__main__':

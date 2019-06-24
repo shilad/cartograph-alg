@@ -31,19 +31,12 @@
     <body>
         <div class="container">
             <table class="container">
+                {% for key, value in eval_dic.items() %}
                 <tr>
-                    <th>Modularity</th>
-                    <td>{{modularity_score}}</td>
+                    <th>{{key}}</th>
+                    <td>{{value}}</td>
                 </tr>
-                <tr>
-                    <th>Trustworthiness</th>
-                    <td>{{trustworthiness_score}}</td>
-                </tr>
-                <tr>
-                    <th>SDB2</th>
-                    <td>{{sdb2_score}}</td>
-
-                </tr>
+                {% endfor %}
 
                 {% for key, value in params_dic.items() %}
                 <tr>

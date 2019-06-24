@@ -67,5 +67,8 @@ python -m cartograph.evaluation.modularity_evaluator ${exp_dir} \
 
 python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} vanilla_vectors.csv >>${exp_dir}/evaluation.json
 
+#python -m cartograph.evaluation.cluster_validation_metrics --experiment ${exp_dir} \
+#                                                           --vectors ${exp_dir}/vanilla_vectors.csv \
+#                                                           --groups ${exp_dir}/cluster_groups.csv
 
 python -m cartograph.html_generator ${exp_dir}
