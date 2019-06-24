@@ -7,6 +7,7 @@ The bash input should be map_directory, xy_embeddings_csv, cluster_groups_csv,
 and network construction method 'nn' or 'distance'
 
 To install igraph
+brew install cairo
 brew install pkg-config
 brew install igraph
 sudo pip install python-igraph

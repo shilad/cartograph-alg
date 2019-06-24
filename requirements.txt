@@ -9,6 +9,7 @@ drawSvg
 seaborn
 Wikipedia-API
 s_dbw
-igraph
+python-igraph
 hdbscan
 smart_open
+jinja2
