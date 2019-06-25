@@ -15,4 +15,4 @@ python -m cartograph.data.label_creator_categories data/culture
 python -m cartograph.data.label_creator_keywords data/culture
 python -m cartograph.data.label_creator_hierarchical_cat data/culture
 python -m cartograph.data.vector_creator data/culture data/original_nav_vectors.txt.bz2
-python -m cartograph.datapopularity_creator data/culture
+python -m cartograph.data.popularity_creator data/culture
