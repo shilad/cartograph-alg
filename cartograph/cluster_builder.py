@@ -48,9 +48,7 @@ def get_kmeans(article_vectors, k):
         dist.append(spatial.distance.cosine(a, b))
         # dist.append(np.linalg.norm(a - b))
     df_with_centroids['distance'] = dist
-
     df_with_centroids = df_with_centroids[['country', 'article_id', 'distance']]
-
     return df_with_centroids
 
 
