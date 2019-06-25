@@ -9,7 +9,7 @@ import pandas as pd
 from collections import defaultdict
 import math
 import operator
-
+import numpy as np
 
 def get_country_dictionary(country_clusters_csv):
     """Appends a new column with country assignments to the article_labels dataframe."""
@@ -25,21 +25,27 @@ def add_countries(article_labels_csv, country_clusters_csv):
     article_labels = pd.read_csv(article_labels_csv)
     country_clusters = pd.read_csv(country_clusters_csv)
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
-
     return article_labels
 
 
 def get_num_countries(country_clusters_csv):
-    country_clusters = pd.read_csv(country_clusters_csv)
-    return max(country_clusters['country']) + 1
+
+    return max(country_clusters_csv['country'])+1
+
+
+def get_countries_list(country_clusters_csv):
+
+    return country_clusters_csv['country'].unique()
 
 
 def get_country_label_counts(labels_df, num_countries):
     """Output: List of default dictionaries (one per country) --> key = label id, value = number of times that label
                appears in that country"""
     country_label_counts = [defaultdict(int) for x in range(num_countries)]
-    for index, row in labels_df.iterrows():
-        country_label_counts[row['country']][row['label_id']] += 1
+
+    for row in labels_df.itertuples():
+
+        country_label_counts[row.country][row.label_id] += 1
     return country_label_counts
 
 
@@ -47,44 +53,49 @@ def get_total_counts(labels_df):
     """Output: Default dictionary --> key = label id, value = number of times that label appears in the domain
                concept"""
     total_counts = defaultdict(int)
-    for index, row in labels_df.iterrows():
-        total_counts[row['label_id']] += 1
+    for row in labels_df.itertuples():
+
+        total_counts[row.label_id] += 1
     return total_counts
 
 
-def get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countries):
+def get_tfidf_scores(labels_df, country_label_counts, total_counts):
     """Output: List of default dictionaries (one per country) --> key = label id, value = TF-IDF score for that label
                in that country"""
-    tfidf_scores = [defaultdict(int) for x in range(num_countries)]
-    for index, row in labels_df.iterrows():
-        tfidf_scores[row['country']][row['label_id']] = math.log(country_label_counts[row['country']][row['label_id']] + 1.0) / \
-                                                    math.log(total_counts['row_id'] + 10.0)
+    #tfidf_scores = [defaultdict(int) for x in labels_df['country'].unique()]
+    tfidf_scores = {i: defaultdict(int) for i in labels_df['country'].unique()}
+    for row in labels_df.itertuples():
+        tfidf_scores[row.country][row.label_id] = math.log(country_label_counts[row.country][row.label_id] + 1.0) # / \
+                                                     #math.log(total_counts['row_id'] + 10.0)
     return tfidf_scores
 
 
 def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
     """Output: Dictionary --> key = country, value = label"""
     country_labels = {}
-    for i in range(num_countries):
+    for i in num_countries:
         label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
         country_labels[i] = label_names_df.iloc[label_id].loc['label']
-
     return country_labels
 
 
 def main(experiment_dir, article_to_label_path, label_name_path):
     # Read in labels datasets
     labels_df = add_countries(article_to_label_path, experiment_dir + '/cluster_groups.csv')
+    if labels_df.shape[1] == 4:
+        # pass in different values to .quantile(x) to adjust the amount of data to select label from
+        labels_df = labels_df[labels_df['distance'] < labels_df['distance'].quantile(0.2)]
     label_names_df = pd.read_csv(label_name_path)
 
     # Calculate tf-idf scores
-    num_countries = get_num_countries(experiment_dir + '/cluster_groups.csv')
+    num_countries = get_num_countries(labels_df)
     country_label_counts = get_country_label_counts(labels_df, num_countries)
     total_counts = get_total_counts(labels_df)
-    tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countries)
+    tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts)
 
     # Assign labels
-    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries)
+    unique_countries = get_countries_list(labels_df)
+    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, unique_countries)
 
     # Create results data frame
     df = pd.DataFrame(country_labels,  index=[0]).T
