@@ -20,7 +20,7 @@ for i in 8
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=0020
+    exp_id=0021
 
     # Step 2: Prepare an experiment directory for a specific map.
     exp_dir=$(prepare_experiment_dir food ${exp_id})
@@ -54,6 +54,9 @@ for i in 8
             --label_vectors ${exp_dir}/chocolate_vectors.csv \
             --method cluster \
             --cluster_vectors ${exp_dir}/cluster_groups.csv
+    python -m cartograph.xy_embed.tsne_embed \
+            --experiment ${exp_dir} \
+           --vectors ${exp_dir}/augmented_vectors.csv
 
     # Step 6: Generate JSON
     python -m cartograph.json_generator data/food ${exp_dir}
@@ -73,6 +76,5 @@ for i in 8
             --experiment ${exp_dir} \
             --groups ${exp_dir}/cluster_groups.csv \
             --vectors ${exp_dir}/vanilla_vectors.csv >> ${exp_dir}/params.json
-    python -m cartograph.evaluation.xy_embedding_validation  ${exp_dir} >> ${exp_dir}/params.json
 
     done
