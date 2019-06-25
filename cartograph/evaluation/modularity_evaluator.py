@@ -8,6 +8,8 @@ and network construction method 'nn' or 'distance'
 
 Author: Yuren 'Rock' Pang
 """
+import argparse
+import math
 
 from sklearn.neighbors import NearestNeighbors
 import pandas as pd
@@ -17,13 +19,13 @@ import json
 
 
 def preprocess(x_y_embeddings_csv):
-    df = pd.read_csv(x_y_embeddings_csv)
+    df = x_y_embeddings_csv
     feature_space = []
     indices_to_id = {}
 
     for index, row in df.iterrows():
         feature_space.append([row['x'], row['y']])
-        indices_to_id.update({index:int(row['article_id'])})
+        indices_to_id.update({index: int(row['article_id'])})
 
     return feature_space, indices_to_id
 
@@ -100,7 +102,7 @@ def calc_modularity(Graph, cluster_groups_csv):
     The higher the better the cluster we produce
     Reference: https://yoyoinwanderland.github.io/2017/08/08/Community-Detection-in-Python/
     """
-    cluster_groups = pd.read_csv(cluster_groups_csv)
+    cluster_groups = cluster_groups_csv
     country = cluster_groups['country'].tolist()
 
     #vertex_clustering = Graph.community_multilevel(weights='weight')
@@ -115,8 +117,8 @@ def calc_modularity(Graph, cluster_groups_csv):
 # print("Modularity Score: %.6f", calc_modularity(G, "../data/tech/cluster_groups.csv"))
 
 
-def main(map_directory, xy_embedding_csv, cluster_groups_csv, method='nn'):
-    feature_space, indices_to_id = preprocess(map_directory + xy_embedding_csv)
+def main(xy_embedding_csv, cluster_groups_csv, method='nn'):
+    feature_space, indices_to_id = preprocess(xy_embedding_csv)
 
     if method == 'nn':
         distance_lst, indices_lst = find_k_near_neighbors(feature_space)
@@ -124,21 +126,20 @@ def main(map_directory, xy_embedding_csv, cluster_groups_csv, method='nn'):
         distance_lst, indices_lst = find_neighbors_within_d_distance(feature_space)
 
     G = build_network(distance_lst, indices_lst, indices_to_id)
-    mod_score = calc_modularity(G, map_directory + cluster_groups_csv)
-    print(str(json.dumps({'modularity':mod_score})))
+    cluster_groups_csv = cluster_groups_csv[cluster_groups_csv['country'] != -1]
+    mod_score = calc_modularity(G, cluster_groups_csv)
+    print(str(json.dumps({'modularity': mod_score})))
     # logging.warning("Modularity Score: %.6f", mod_score)
 
 
 if __name__ == '__main__':
-    import sys
-
-    if len(sys.argv) != 5:
-        sys.stderr.write('Usage: %s map_directory xy_embeddings.csv cluster_group_csv method (nn)' % sys.argv[0])
-        sys.exit(1)
-
-    map_directory = sys.argv[1]
-    xy_embeddings_csv = sys.argv[2]
-    cluster_groups_csv = sys.argv[3]
-    method = sys.argv[4]
-    main(map_directory, xy_embeddings_csv, cluster_groups_csv, method=method)
-
+    parser = argparse.ArgumentParser(description='Augment the original article vectors with label matrix or '
+                                                 'cluster matrix.')
+    parser.add_argument('--experiment', required=True)
+    parser.add_argument('--xy_embeddings_csv', required=True)
+    parser.add_argument('--method', required=True)
+    parser.add_argument('--cluster_groups_csv', required=True)
+    args = parser.parse_args()
+    xy_embeddings_csv = pd.read_csv(args.xy_embeddings_csv)
+    cluster_vectors = pd.read_csv(args.cluster_groups_csv)
+    main(xy_embeddings_csv, cluster_vectors, args.method)
