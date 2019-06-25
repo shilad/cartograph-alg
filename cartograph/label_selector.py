@@ -49,8 +49,8 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countrie
                in that country"""
     tfidf_scores = [defaultdict(int) for x in range(num_countries)]
     for index, row in labels_df.iterrows():
-        tfidf_scores[row['country']][row['label_id']] = math.log((country_label_counts[row['country']][row['label_id']]
-                                                                 + 1.0) / (total_counts[row['label_id']] + 100.0))
+        tfidf_scores[row['country']][row['label_id']] = math.log(country_label_counts[row['country']][row['label_id']])
+
     return tfidf_scores
 
 

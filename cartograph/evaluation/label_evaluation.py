@@ -79,4 +79,4 @@ def main(gold_standard_csv, alg_json):
 
 
 if __name__ == '__main__':
-    main('/Users/research/Documents/Projects/cartograph-alg/data/culture/gold_standard_labels.csv', '/Users/research/Documents/Projects/cartograph-alg/experiments/culture/0002/domain.json')
+    main('/Users/research/Documents/Projects/cartograph-alg/data/culture/gold_standard_labels.csv', '/Users/research/Documents/Projects/cartograph-alg/experiments/culture/0015/domain.json')
