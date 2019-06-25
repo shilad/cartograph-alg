@@ -55,14 +55,8 @@ for i in 8
             --method cluster \
             --cluster_vectors ${exp_dir}/cluster_groups.csv
 
-
-    python -m cartograph.xy_embed.tsne_embed \
-            --experiment ${exp_dir} \
-           --vectors ${exp_dir}/augmented_vectors.csv
-
-
     # Step 6: Generate JSON
-    python -m cartograph.json_generator data/food ${exp_dir} kkk
+    python -m cartograph.json_generator data/food ${exp_dir}
 
 
 
