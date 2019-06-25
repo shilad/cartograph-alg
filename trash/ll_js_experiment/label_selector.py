@@ -69,7 +69,7 @@ def assign_country_label_ids(tfidf_scores, num_countries):
 
 
 def get_label(label_id, map_directory):
-    label_ids = pd.read_csv(map_directory + '/label_ids.csv')
+    label_ids = pd.read_csv(map_directory + '/category_names.csv')
     return label_ids.iloc[label_id].loc['label']
 
 
@@ -80,7 +80,7 @@ def create_csv(country_labels, directory):
 
 
 def main(map_directory):
-    labels_df = add_countries(map_directory + '/article_labels.csv',
+    labels_df = add_countries(map_directory + '/article_categories.csv',
                               map_directory + '/cluster_groups.csv')
     num_countries = get_num_countries(map_directory + '/cluster_groups.csv')
     country_label_counts = get_country_label_counts(labels_df, num_countries)

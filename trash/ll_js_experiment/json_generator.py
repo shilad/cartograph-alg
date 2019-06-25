@@ -24,7 +24,7 @@ def get_vectors(map_directory):
 
 
 def get_labels(map_directory):
-    return pd.read_csv(map_directory + 'article_labels.csv')
+    return pd.read_csv(map_directory + 'article_categories.csv')
 
 
 def get_countries(map_directory):

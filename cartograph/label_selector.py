@@ -9,6 +9,7 @@ import pandas as pd
 from collections import defaultdict
 import math
 import operator
+from nltk.stem import PorterStemmer
 import numpy as np
 
 def get_country_dictionary(country_clusters_csv):
@@ -62,6 +63,11 @@ def get_total_counts(labels_df):
 def get_tfidf_scores(labels_df, country_label_counts, total_counts):
     """Output: List of default dictionaries (one per country) --> key = label id, value = TF-IDF score for that label
                in that country"""
+    tfidf_scores = [defaultdict(int) for x in range(num_countries)]
+    for index, row in labels_df.iterrows():
+        tfidf_scores[row['country']][row['label_id']] = country_label_counts[row['country']][row['label_id']] / \
+                                                        math.log(total_counts[row['label_id']] + 10.0)
+
     #tfidf_scores = [defaultdict(int) for x in labels_df['country'].unique()]
     tfidf_scores = {i: defaultdict(int) for i in labels_df['country'].unique()}
     for row in labels_df.itertuples():
@@ -72,7 +78,28 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts):
 
 def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
     """Output: Dictionary --> key = country, value = label"""
+    ps = PorterStemmer()
     country_labels = {}
+    for i in range(num_countries):
+        # print('---')
+
+        # Fix this to choose the higher TFIDF score, not just the first one to be entered:
+        while i not in country_labels:
+            label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
+            label = label_names_df.iloc[label_id].loc['label']
+            duplicates = False
+            for value in country_labels.values():
+                if ps.stem(label) == ps.stem(value):
+                    duplicates = True
+            if duplicates:
+                del tfidf_scores[i][label_id]
+            else:
+                country_labels[i] = label
+
+        # top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
+        # for i in top_five:
+        #     print(label_names_df.iloc[i[0]].loc['label'], i[1])
+
     for i in num_countries:
         label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
         country_labels[i] = label_names_df.iloc[label_id].loc['label']

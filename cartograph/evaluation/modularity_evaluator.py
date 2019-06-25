@@ -6,6 +6,12 @@ High modularity corresponds to good community structure
 The bash input should be map_directory, xy_embeddings_csv, cluster_groups_csv,
 and network construction method 'nn' or 'distance'
 
+To install igraph
+brew install cairo
+brew install pkg-config
+brew install igraph
+sudo pip install python-igraph
+
 Author: Yuren 'Rock' Pang
 """
 import argparse
@@ -126,9 +132,8 @@ def main(xy_embedding_csv, cluster_groups_csv, method='nn'):
         distance_lst, indices_lst = find_neighbors_within_d_distance(feature_space)
 
     G = build_network(distance_lst, indices_lst, indices_to_id)
-    cluster_groups_csv = cluster_groups_csv[cluster_groups_csv['country'] != -1]
     mod_score = calc_modularity(G, cluster_groups_csv)
-    print(str(json.dumps({'modularity': mod_score})))
+    print(str(json.dumps({'modularity':mod_score})))
     # logging.warning("Modularity Score: %.6f", mod_score)
 
 

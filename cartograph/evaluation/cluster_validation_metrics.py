@@ -1,8 +1,6 @@
 """
 Internal evaluation metrics on validating clustering algorithms.
-
 import sdbw by entering pip install --upgrade s-dbw in terminal.
-
 """
 import argparse
 import pandas as pd
@@ -52,7 +50,9 @@ def main():
     silhouette_score = get_silhouette_score(article_vectors, cluster_groups)
     # sdb_w_score = get_sdbw_score(article_vectors, cluster_groups)
     ch_score = get_ch_score(article_vectors, cluster_groups)
-    print(str(json.dumps({'silhouette score': silhouette_score, 'ch score:': ch_score})))
+    print(str(json.dumps({'silhouette score': silhouette_score})))
+    print(str(json.dumps({'ch score:': ch_score})))
+
     # logging.warning("Modularity Score: %.6f", mod_score)
 
 

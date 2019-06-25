@@ -15,6 +15,7 @@ Author: Jonathan Scott
 
 import pandas as pd
 from sklearn.manifold.t_sne import trustworthiness
+import json
 
 
 def evaluate_xy_embed(x, x_embed):
@@ -26,14 +27,14 @@ def main(map_directory):
     X_embed = pd.read_csv(map_directory+"/xy_embeddings.csv").iloc[:, 1:].to_numpy()
     tw = evaluate_xy_embed(X, X_embed)
     #print("\n Trustworthiness: " + str(tw))
-    print("{0: {'Trustworthiness': %f}}" % tw)
+    print(str(json.dumps({'trustworthiness': tw})))
 
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 2:
-        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
+    if len(sys.argv) != 3:
+        sys.stderr.write('Usage: %s map_directory vector_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory = sys.argv[1]
-    main(map_directory)
+    map_directory, vec_path = sys.argv[1:]
+    main(map_directory, map_directory + "/" + vec_path)

@@ -74,7 +74,7 @@ def create_article_vec_csv(article_vectors_df_ready, domain_concept_df, dom_con_
     article_w_vectors.sort_values(by=['article_id']).to_csv(map_directory + "/article_vectors_original.csv", index=False)
     # need to specify method in the shell script
     if method == "combined":
-        art_labels = pd.read_csv(map_directory + '/article_labels.csv')
+        art_labels = pd.read_csv(map_directory + '/article_categories.csv')
         label_wide_matrix = create_label_matrix(art_labels)
         pop_matrix = pd.read_csv(map_directory + '/popularity_score.csv')
         df_list = [art_labels, label_wide_matrix, pop_matrix]
