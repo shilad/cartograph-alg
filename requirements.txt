@@ -12,4 +12,5 @@ s_dbw
 python-igraph
 hdbscan
 smart_open
+nltk
 jinja2
