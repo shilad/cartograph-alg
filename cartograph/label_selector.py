@@ -66,8 +66,8 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts):
     tfidf_scores = {i: defaultdict(int) for i in labels_df['country'].unique()}
 
     for row in labels_df.itertuples():
-        tfidf_scores[row.country][row.label_id] = math.log(country_label_counts[row.country][row.label_id] + 1.0) / \
-                                                     math.log(total_counts['row_id'] + 10.0)
+        tfidf_scores[row.country][row.label_id] = math.log(country_label_counts[row.country][row.label_id] + 1.0) #/ \
+                                                     # math.log(total_counts['row_id'] + 10.0)
     return tfidf_scores
 
 
@@ -75,7 +75,7 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
     """Output: Dictionary --> key = country, value = label"""
     ps = PorterStemmer()
     country_labels = {}
-    for i in range(len(num_countries)):
+    for i in range(num_countries):
         # print('---')
 
         # Fix this to choose the higher TFIDF score, not just the first one to be entered:
@@ -95,7 +95,7 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
         # for i in top_five:
         #     print(label_names_df.iloc[i[0]].loc['label'], i[1])
 
-    for i in num_countries:
+    for i in range(num_countries):
         label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
         country_labels[i] = label_names_df.iloc[label_id].loc['label']
     return country_labels
@@ -116,8 +116,7 @@ def main(experiment_dir, article_to_label_path, label_name_path):
     tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts)
 
     # Assign labels
-    unique_countries = get_countries_list(labels_df)
-    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, unique_countries)
+    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries)
 
     # Create results data frame
     df = pd.DataFrame(country_labels,  index=[0]).T
