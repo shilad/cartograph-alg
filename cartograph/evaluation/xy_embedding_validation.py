@@ -22,11 +22,11 @@ def evaluate_xy_embed(x, x_embed):
 
 
 def main(map_directory):
-    X = pd.read_csv(map_directory+"/article_vectors.csv").iloc[:, 1:].to_numpy()
+    X = pd.read_csv(map_directory+"/vanilla_vectors.csv").iloc[:, 1:].to_numpy()
     X_embed = pd.read_csv(map_directory+"/xy_embeddings.csv").iloc[:, 1:].to_numpy()
     tw = evaluate_xy_embed(X, X_embed)
     #print("\n Trustworthiness: " + str(tw))
-    print("{0: {'Trustworthiness': %d}}" % tw)
+    print("{0: {'Trustworthiness': %f}}" % tw)
 
 
 if __name__ == '__main__':
