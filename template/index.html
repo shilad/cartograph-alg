@@ -22,33 +22,48 @@
                 height: 1000px;
                 width: 100%;
             }
+            h2 {
+                margin-top: 20px;
+                font-size: x-large;
+                font-weight: normal;
+            }
 
             .graph{
                 border:solid 1px #cccccc;
-                border-top: 0;
             }
         </style>
     </head>
 
     <body>
         <div class="container">
-            <h1 style="text-align: center">{{title}}</h1>
-            <table class="container">
-                {% for key, value in eval_dic.items() %}
-                <tr>
-                    <th>{{key}}</th>
-                    <td>{{value}}</td>
-                </tr>
-                {% endfor %}
+            <h1>{{title}}</h1>
+            <div class="row">
+                <div class="col-6">
+                    <h2> Experiment parameters:</h2>
+                    <table>
+                        {% for key, value in params_dic.items() %}
+                        <tr>
+                            <th>{{key}}</th>
+                            <td>{{value}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
 
-                {% for key, value in params_dic.items() %}
-                <tr>
-                    <th>{{key}}</th>
-                    <td>{{value}}</td>
-                </tr>
-                {% endfor %}
-            </table>
+                <div class="col-6">
+                    <h2> Experiment results:</h2>
+                    <table>
+                        {% for key, value in eval_dic.items() %}
+                        <tr>
+                            <th>{{key}}</th>
+                            <td>{{"%.3f" | format(value)}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
 
+            <h2> Visualization:</h2>
             <div class="container graph">
                 {{svg}}
             </div>
