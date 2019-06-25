@@ -38,6 +38,7 @@ prepare_experiment_dir () {
 
     # Link in the vanilla vector file
     ln data/${map_name}/article_vectors.csv ${exp_dir}/vanilla_vectors.csv
+    ln data/${map_name}/article_labels.csv ${exp_dir}/chocolate_vectors.csv
 
     # Create empty parameters file
     touch ${exp_dir}/params.json
