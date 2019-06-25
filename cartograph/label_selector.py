@@ -61,7 +61,7 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
     ps = PorterStemmer()
     country_labels = {}
     for i in range(num_countries):
-        print('---')
+        # print('---')
 
         # Fix this to choose the higher TFIDF score, not just the first one to be entered:
         while i not in country_labels:
@@ -76,9 +76,9 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
             else:
                 country_labels[i] = label
 
-        top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
-        for i in top_five:
-            print(label_names_df.iloc[i[0]].loc['label'], i[1])
+        # top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
+        # for i in top_five:
+        #     print(label_names_df.iloc[i[0]].loc['label'], i[1])
 
     return country_labels
 

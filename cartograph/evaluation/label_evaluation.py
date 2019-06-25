@@ -11,6 +11,7 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import word_tokenize
 import pandas as pd
 import json
+import argparse
 
 
 def find_matches(gold_standard, alg):
@@ -79,4 +80,11 @@ def main(gold_standard_csv, alg_json):
 
 
 if __name__ == '__main__':
-    main('/Users/research/Documents/Projects/cartograph-alg/data/culture/gold_standard_labels.csv', '/Users/research/Documents/Projects/cartograph-alg/experiments/culture/0015/domain.json')
+    parser = argparse.ArgumentParser(description='Evaluate algorithm-produced labels against gold standard labels '
+                                                 'from the WikiProject Directory.')
+    parser.add_argument('--gold_standard_csv', required=True)
+    parser.add_argument('--alg_json', required=True)
+
+    args = parser.parse_args()
+
+    main(args.gold_standard_csv, args.alg_json)
