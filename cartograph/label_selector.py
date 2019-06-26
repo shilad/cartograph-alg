@@ -34,6 +34,11 @@ def get_num_countries(country_clusters_csv):
     return max(country_clusters_csv['country'])+1
 
 
+def get_countries_list(country_clusters_csv):
+
+    return country_clusters_csv['country'].unique()
+
+
 def get_country_label_counts(labels_df, num_countries):
     """Output: List of default dictionaries (one per country) --> key = label id, value = number of times that label
                appears in that country"""
@@ -63,19 +68,15 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts):
     for row in labels_df.itertuples():
         tfidf_scores[row.country][row.label_id] = math.log(country_label_counts[row.country][row.label_id] + 1.0) / \
                                                           math.log(total_counts['row_id'] + 10.0)
-    tfidf_scores = [defaultdict(int) for x in range(num_countries)]
-    for index, row in labels_df.iterrows():
-        tfidf_scores[row['country']][row['label_id']] = (country_label_counts[row['country']][row['label_id']] / 500) * \
-                                                        math.log(4097 / (total_counts[row['label_id']] + 1))
     return tfidf_scores
 
 
-def assign_country_label_ids(label_names_df, tfidf_scores, num_countries, country_label_counts, total_counts, labels_df):
+def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
     """Output: Dictionary --> key = country, value = label"""
     ps = PorterStemmer()
     country_labels = {}
     for i in range(num_countries):
-        print('---')
+        # print('---')
 
         # Fix this to choose the higher TFIDF score, not just the first one to be entered:
         while i not in country_labels:
@@ -90,11 +91,13 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries, countr
             else:
                 country_labels[i] = label
 
-        top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
-        for i in top_five:
-            print(label_names_df.iloc[i[0]].loc['label'], 'score ' + str(i[1]), 'tf '
-                  + str(country_label_counts[labels_df.iloc[i[0]].loc['country']][i[0]]), "idf: "
-                  + str(total_counts[i[0]]))
+        # top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
+        # for i in top_five:
+        #     print(label_names_df.iloc[i[0]].loc['label'], i[1])
+
+    # for i in range(num_countries):
+    #     label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
+    #     country_labels[i] = label_names_df.iloc[label_id].loc['label']
 
     return country_labels
 
@@ -114,7 +117,7 @@ def main(experiment_dir, article_to_label_path, label_name_path, percentile):
     tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts)
 
     # Assign labels
-    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries, country_label_counts, total_counts, labels_df)
+    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries)
 
     # Create results data frame
     df = pd.DataFrame(country_labels,  index=[0]).T
