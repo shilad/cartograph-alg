@@ -66,8 +66,8 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts):
     tfidf_scores = {i: defaultdict(int) for i in labels_df['country'].unique()}
 
     for row in labels_df.itertuples():
-        tfidf_scores[row.country][row.label_id] = math.log(country_label_counts[row.country][row.label_id] + 1.0) #/ \
-                                                     # math.log(total_counts['row_id'] + 10.0)
+        tfidf_scores[row.country][row.label_id] = math.log(country_label_counts[row.country][row.label_id] + 1.0) / \
+                                                          math.log(total_counts['row_id'] + 10.0)
     return tfidf_scores
 
 
@@ -95,18 +95,19 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
         # for i in top_five:
         #     print(label_names_df.iloc[i[0]].loc['label'], i[1])
 
-    for i in range(num_countries):
-        label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
-        country_labels[i] = label_names_df.iloc[label_id].loc['label']
+    # for i in range(num_countries):
+    #     label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
+    #     country_labels[i] = label_names_df.iloc[label_id].loc['label']
+
     return country_labels
 
 
-def main(experiment_dir, article_to_label_path, label_name_path):
+def main(experiment_dir, article_to_label_path, label_name_path, percentile):
     # Read in labels datasets
     labels_df = add_countries(article_to_label_path, experiment_dir + '/cluster_groups.csv')
     if labels_df.shape[1] == 4:
         # pass in different values to .quantile(x) to adjust the amount of data to select label from
-        labels_df = labels_df[labels_df['distance'] < labels_df['distance'].quantile(0.2)]
+        labels_df = labels_df[labels_df['distance'] < labels_df['distance'].quantile(float(percentile))]
     label_names_df = pd.read_csv(label_name_path)
 
     # Calculate tf-idf scores
@@ -129,7 +130,9 @@ if __name__ == '__main__':
     parser.add_argument('--experiment', required=True)
     parser.add_argument('--articles_to_labels', required=True)
     parser.add_argument('--label_names', required=True)
+    parser.add_argument('--percentile', required=True)
+
 
     args = parser.parse_args()
 
-    main(args.experiment, args.articles_to_labels, args.label_names)
+    main(args.experiment, args.articles_to_labels, args.label_names, args.percentile)
