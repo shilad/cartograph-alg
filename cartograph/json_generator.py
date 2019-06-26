@@ -26,7 +26,7 @@ def create_merged_df(map_directory, experiment_directory):
     return df
 
 
-def create_list_article_data(merged_df):
+def create_list_article_data(merged_df, method):
     article_data = {}
     for i, row in merged_df.iterrows():
         article_data[row['article_id']] = {'Article': row['article_name'], # Should clean this up maybe get rid of one of the columns my fault
@@ -34,6 +34,9 @@ def create_list_article_data(merged_df):
                                           'Country': row['country'],
                                           'x': row['x'],
                                           'y': row['y']}
+        if method == 'noise':
+            article_data[row['article_id']]['relevance'] = row['distance']
+
     return article_data
 
 
@@ -43,18 +46,17 @@ def generate_json(experiment_directory, article_data):
     return
 
 
-def main(map_directory, experiment_directory):
+def main(map_directory, experiment_directory, method):
     merged_article_df = create_merged_df(map_directory, experiment_directory)
-    article_data = create_list_article_data(merged_article_df)
+    article_data = create_list_article_data(merged_article_df, method)
     generate_json(experiment_directory, article_data)
 
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         sys.stderr.write('Usage: %s map_directory experiment_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory = sys.argv[1]
-    experiment_directory = sys.argv[2]
-    main(map_directory, experiment_directory)
+    map_directory, experiment_directory, method = sys.argv[1:]
+    main(map_directory, experiment_directory, method)
