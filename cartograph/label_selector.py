@@ -57,8 +57,9 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts):
     return tfidf_scores
 
 
-def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
+def assign_country_label_ids(label_names_df, tfidf_scores, num_countries, country_label_counts, total_counts, labels_df):
     """Output: Dictionary --> key = country, value = label"""
+
     ps = PorterStemmer()
     country_labels = {}
     for i in range(num_countries):
@@ -79,7 +80,9 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
 
         top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
         for i in top_five:
-            print(label_names_df.iloc[i[0]].loc['label'], i[1])
+            print(label_names_df.iloc[i[0]].loc['label'], i[1], 'tf '
+                  + str(country_label_counts[labels_df['country'].iloc[i[0]]][i[0]]), "idf: "
+                  + str(total_counts[i[0]]))
     return country_labels
 
 
@@ -98,7 +101,7 @@ def main(experiment_dir, article_to_label_path, label_name_path, percentile):
     tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts)
 
     # Assign labels
-    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries)
+    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries, country_label_counts, total_counts, labels_df)
 
     # Create results data frame
     df = pd.DataFrame(country_labels,  index=[0]).T
