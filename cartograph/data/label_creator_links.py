@@ -85,30 +85,30 @@ def create_article_link_csv(article_link_df, directory):
     article_link_df.to_csv(directory + "/article_links.csv", index=False)
 
 
-# def main(map_directory):
-#     if not os.path.exists(map_directory):
-#         os.makedirs(map_directory)
-#
-#     start = time.time()
-#     links_to_id, link_df = create_links(map_directory + "/domain_concept.csv")
-#     logging.warning("Time Spent: %.3f", time.time() - start)
-#     create_article_link_csv(link_df, map_directory)
-#     create_link_id_str_csv(map_directory, links_to_id)
-#
-#
-# if __name__ == '__main__':
-#     import sys
-#
-#     if len(sys.argv) != 2:
-#         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-#         sys.exit(1)
-#
-#     map_directory = sys.argv[1]
-#     main(map_directory)
+def main(map_directory):
+    if not os.path.exists(map_directory):
+        os.makedirs(map_directory)
 
-map_directory = "../../data/food"
-start = time.time()
-links_to_id, link_df = create_links(map_directory + "/domain_concept.csv")
-logging.warning("Time Spent: %.3f", time.time() - start)
-create_article_link_csv(link_df, map_directory)
-create_link_id_str_csv(map_directory, links_to_id)
+    start = time.time()
+    links_to_id, link_df = create_links(map_directory + "/domain_concept.csv")
+    logging.warning("Time Spent: %.3f", time.time() - start)
+    create_article_link_csv(link_df, map_directory)
+    create_link_id_str_csv(map_directory, links_to_id)
+
+
+if __name__ == '__main__':
+    import sys
+
+    if len(sys.argv) != 2:
+        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
+        sys.exit(1)
+
+    map_directory = sys.argv[1]
+    main(map_directory)
+
+# map_directory = "../../data/food"
+# start = time.time()
+# links_to_id, link_df = create_links(map_directory + "/domain_concept.csv")
+# logging.warning("Time Spent: %.3f", time.time() - start)
+# create_article_link_csv(link_df, map_directory)
+# create_link_id_str_csv(map_directory, links_to_id)
