@@ -16,7 +16,6 @@ Author: Yuren 'Rock' Pang
 """
 import argparse
 import math
-
 from sklearn.neighbors import NearestNeighbors
 import pandas as pd
 from igraph import *
@@ -31,7 +30,7 @@ def preprocess(x_y_embeddings_csv):
 
     for index, row in df.iterrows():
         feature_space.append([row['x'], row['y']])
-        indices_to_id.update({index: int(row['article_id'])})
+        indices_to_id[index] = int(row['article_id'])
 
     return feature_space, indices_to_id
 
@@ -89,7 +88,6 @@ def build_network(distances_lst, neighbors_lst, indices_to_id):
             else:
                 edges.append(tuple((node_list[0], node_list[neighbor])))
                 weights.append(distances_lst[node][neighbor])
-
     G = Graph()
     G.add_vertices(len(neighbors_lst))
 
@@ -113,14 +111,6 @@ def calc_modularity(Graph, cluster_groups_csv):
 
     #vertex_clustering = Graph.community_multilevel(weights='weight')
     return Graph.modularity(country)
-
-
-# feature_space, indices_to_id = preprocess("../data/tech/xy_embeddings.csv")
-# distance_lst, indices_lst = find_k_near_neighbors(feature_space)
-# G = build_network(distance_lst, indices_lst, indices_to_id)
-# mod_score = calc_modularity(G, "../data/tech/cluster_groups.csv")
-# print(str(json.dumps({'modularity':mod_score})))
-# print("Modularity Score: %.6f", calc_modularity(G, "../data/tech/cluster_groups.csv"))
 
 
 def main(xy_embedding_csv, cluster_groups_csv, method='nn'):
