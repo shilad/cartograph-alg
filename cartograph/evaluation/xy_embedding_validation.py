@@ -22,8 +22,8 @@ def evaluate_xy_embed(x, x_embed):
     return trustworthiness(x, x_embed)
 
 
-def main(map_directory, vec_path):
-    X = pd.read_csv(vec_path).iloc[:, 1:].to_numpy()
+def main(map_directory):
+    X = pd.read_csv(map_directory+"/vanilla_vectors.csv").iloc[:, 1:].to_numpy()
     X_embed = pd.read_csv(map_directory+"/xy_embeddings.csv").iloc[:, 1:].to_numpy()
     tw = evaluate_xy_embed(X, X_embed)
     #print("\n Trustworthiness: " + str(tw))
