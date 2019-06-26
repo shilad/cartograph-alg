@@ -9,6 +9,8 @@ import pandas as pd
 from collections import defaultdict
 import math
 import operator
+
+
 from nltk.stem import PorterStemmer
 import numpy as np
 
@@ -63,8 +65,8 @@ def get_total_counts(labels_df):
 def get_tfidf_scores(labels_df, country_label_counts, total_counts):
     """Output: List of default dictionaries (one per country) --> key = label id, value = TF-IDF score for that label
                in that country"""
-    tfidf_scores = {i: defaultdict(int) for i in labels_df['country'].unique()}
-
+    # tfidf_scores = {i: defaultdict(int) for i in labels_df['country'].unique()}
+    tfidf_scores = [defaultdict(int) for i in labels_df['country'].unique()]
     for row in labels_df.itertuples():
         tfidf_scores[row.country][row.label_id] = math.log(country_label_counts[row.country][row.label_id] + 1.0) / \
                                                           math.log(total_counts['row_id'] + 10.0)
@@ -91,14 +93,9 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
             else:
                 country_labels[i] = label
 
-        # top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
-        # for i in top_five:
-        #     print(label_names_df.iloc[i[0]].loc['label'], i[1])
-
-    # for i in range(num_countries):
-    #     label_id = max(tfidf_scores[i].items(), key=operator.itemgetter(1))[0]
-    #     country_labels[i] = label_names_df.iloc[label_id].loc['label']
-
+        top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
+        for i in top_five:
+            print(label_names_df.iloc[i[0]].loc['label'], i[1])
     return country_labels
 
 
