@@ -33,10 +33,17 @@ source ./bin/experiment-utils.sh
 
 
     # Step 5: Run algorithmic steps that are necessary.
+    python -m cartograph.vector_augmenter \
+            --experiment ${exp_dir} \
+            --vectors ${exp_dir}/vanilla_vectors.csv \
+            --label_vectors data/food/article_labels.csv \
+            --method cluster \
+            --cluster_vectors ${exp_dir}/cluster_groups.csv \
+            --output_file cluster_augmented_vectors.csv
 
      python -m cartograph.cluster_builder \
             --experiment ${exp_dir} \
-            --vectors ${exp_dir}/vanilla_vectors.csv \
+            --vectors ${exp_dir}/cluster_augmented_vectors.csv \
             --clustering kmeans \
             --k 8 # \
            # --min_size 2
@@ -45,25 +52,20 @@ source ./bin/experiment-utils.sh
      python -m cartograph.label_selector \
             --experiment ${exp_dir} \
             --articles_to_labels data/food/article_categories.csv \
-            --label_names data/food/category_names.csv
+            --label_names data/food/category_names.csv \
+            --percentile 0.2
 
     # Step 4: If you needed to generate augmented vectors,
     # do so now from vanilla_vectors.csv in the experiment directory.
 
-    python -m cartograph.vector_augmenter \
-            --experiment ${exp_dir} \
-            --vectors ${exp_dir}/vanilla_vectors.csv \
-            --label_vectors data/food/article_labels.csv \
-            --method cluster \
-            --cluster_vectors ${exp_dir}/cluster_groups.csv
+
+
     python -m cartograph.xy_embed.tsne_embed \
             --experiment ${exp_dir} \
-           --vectors ${exp_dir}/augmented_vectors.csv
+           --vectors ${exp_dir}/cluster_augmented_vectors.csv
 
     # Step 6: Generate JSON
     python -m cartograph.json_generator data/food ${exp_dir} noise
-
-
 
     python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted
 
@@ -74,8 +76,5 @@ source ./bin/experiment-utils.sh
             --xy_embeddings_csv ${exp_dir}/xy_embeddings.csv \
             --method nn \
             --cluster_groups_csv ${exp_dir}/cluster_groups.csv >> ${exp_dir}/params.json
-    python -m cartograph.evaluation.cluster_validation_metrics \
-            --experiment ${exp_dir} \
-            --groups ${exp_dir}/cluster_groups.csv \
-            --vectors ${exp_dir}/vanilla_vectors.csv >> ${exp_dir}/params.json
+
    # done
