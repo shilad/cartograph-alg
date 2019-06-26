@@ -22,7 +22,7 @@ source ./bin/experiment-utils.sh
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=0022
+    exp_id=$(get_experiment_id)
 
     # Step 2: Prepare an experiment directory for a specific map.
     exp_dir=$(prepare_experiment_dir food ${exp_id})
@@ -33,17 +33,11 @@ source ./bin/experiment-utils.sh
 
 
     # Step 5: Run algorithmic steps that are necessary.
-    python -m cartograph.vector_augmenter \
-            --experiment ${exp_dir} \
-            --vectors ${exp_dir}/vanilla_vectors.csv \
-            --label_vectors data/food/article_labels.csv \
-            --method cluster \
-            --cluster_vectors ${exp_dir}/cluster_groups.csv \
-            --output_file cluster_augmented_vectors.csv
+
 
      python -m cartograph.cluster_builder \
             --experiment ${exp_dir} \
-            --vectors ${exp_dir}/cluster_augmented_vectors.csv \
+            --vectors ${exp_dir}/vanilla_vectors.csv \
             --clustering kmeans \
             --k 8 # \
            # --min_size 2
@@ -58,7 +52,13 @@ source ./bin/experiment-utils.sh
     # Step 4: If you needed to generate augmented vectors,
     # do so now from vanilla_vectors.csv in the experiment directory.
 
-
+    python -m cartograph.vector_augmenter \
+            --experiment ${exp_dir} \
+            --vectors ${exp_dir}/vanilla_vectors.csv \
+            --label_vectors data/food/article_labels.csv \
+            --method cluster \
+            --cluster_vectors ${exp_dir}/cluster_groups.csv \
+            --output_file cluster_augmented_vectors.csv
 
     python -m cartograph.xy_embed.tsne_embed \
             --experiment ${exp_dir} \
