@@ -15,7 +15,11 @@ Team members: Lily Irvin, Lu Li, Yuren "Rock" Pang, Jonathan Scott, Shilad Sen.
     * pip install -U nltk
     * sudo mkdir -p /usr/local/share/nltk_data
     * sudo python -m nltk.downloader -d usr/local/share/nltk_data all
-   
+* iGraph. Instructions on OS-X:
+    * brew install cairo
+    * brew install pkg-config
+    * brew install igraph
+    * sudo pip install python-igraph
    
 ## Creating and updating maps
 
