@@ -50,18 +50,17 @@ def get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countrie
                in that country"""
     tfidf_scores = [defaultdict(int) for x in range(num_countries)]
     for index, row in labels_df.iterrows():
-        tfidf_scores[row['country']][row['label_id']] = country_label_counts[row['country']][row['label_id']] / \
-                                                        math.log(total_counts[row['label_id']] + 10.0)
-
+        tfidf_scores[row['country']][row['label_id']] = (country_label_counts[row['country']][row['label_id']] / 500) * \
+                                                        math.log(4097 / (total_counts[row['label_id']] + 1))
     return tfidf_scores
 
 
-def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
+def assign_country_label_ids(label_names_df, tfidf_scores, num_countries, country_label_counts, total_counts, labels_df):
     """Output: Dictionary --> key = country, value = label"""
     ps = PorterStemmer()
     country_labels = {}
     for i in range(num_countries):
-        # print('---')
+        print('---')
 
         # Fix this to choose the higher TFIDF score, not just the first one to be entered:
         while i not in country_labels:
@@ -76,9 +75,11 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
             else:
                 country_labels[i] = label
 
-        # top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
-        # for i in top_five:
-        #     print(label_names_df.iloc[i[0]].loc['label'], i[1])
+        top_five = sorted(tfidf_scores[i].items(), key=operator.itemgetter(1), reverse=True)[:5]
+        for i in top_five:
+            print(label_names_df.iloc[i[0]].loc['label'], 'score ' + str(i[1]), 'tf '
+                  + str(country_label_counts[labels_df.iloc[i[0]].loc['country']][i[0]]), "idf: "
+                  + str(total_counts[i[0]]))
 
     return country_labels
 
@@ -95,7 +96,7 @@ def main(experiment_dir, article_to_label_path, label_name_path):
     tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countries)
 
     # Assign labels
-    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries)
+    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries, country_label_counts, total_counts, labels_df)
 
     # Create results data frame
     df = pd.DataFrame(country_labels,  index=[0]).T
