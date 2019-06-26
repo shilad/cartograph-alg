@@ -9,17 +9,7 @@ import pandas as pd
 from collections import defaultdict
 import math
 import operator
-
-
 from nltk.stem import PorterStemmer
-import numpy as np
-
-def get_country_dictionary(country_clusters_csv):
-    """Appends a new column with country assignments to the article_labels dataframe."""
-
-    country_clusters = pd.read_csv(country_clusters_csv)
-    country_clusters.set_index('article_id')
-    return country_clusters.iloc[:, 1:].to_dict()
 
 
 def add_countries(article_labels_csv, country_clusters_csv):
@@ -28,17 +18,13 @@ def add_countries(article_labels_csv, country_clusters_csv):
     article_labels = pd.read_csv(article_labels_csv)
     country_clusters = pd.read_csv(country_clusters_csv)
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
+
     return article_labels
 
 
 def get_num_countries(country_clusters_csv):
-
-    return max(country_clusters_csv['country'])+1
-
-
-def get_countries_list(country_clusters_csv):
-
-    return country_clusters_csv['country'].unique()
+    country_clusters = pd.read_csv(country_clusters_csv)
+    return max(country_clusters['country']) + 1
 
 
 def get_country_label_counts(labels_df, num_countries):
@@ -65,11 +51,10 @@ def get_total_counts(labels_df):
 def get_tfidf_scores(labels_df, country_label_counts, total_counts):
     """Output: List of default dictionaries (one per country) --> key = label id, value = TF-IDF score for that label
                in that country"""
-    # tfidf_scores = {i: defaultdict(int) for i in labels_df['country'].unique()}
     tfidf_scores = [defaultdict(int) for i in labels_df['country'].unique()]
     for row in labels_df.itertuples():
-        tfidf_scores[row.country][row.label_id] = math.log(country_label_counts[row.country][row.label_id] + 1.0) / \
-                                                          math.log(total_counts['row_id'] + 10.0)
+        tfidf_scores[row.country][row.label_id] = (country_label_counts[row.country][row.label_id] / 500) * \
+                                                        math.log(4097 / (total_counts[row.label_id] + 1))
     return tfidf_scores
 
 
@@ -78,7 +63,7 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries):
     ps = PorterStemmer()
     country_labels = {}
     for i in range(num_countries):
-        # print('---')
+        print('---')
 
         # Fix this to choose the higher TFIDF score, not just the first one to be entered:
         while i not in country_labels:
