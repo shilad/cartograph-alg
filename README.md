@@ -11,6 +11,10 @@ Team members: Lily Irvin, Lu Li, Yuren "Rock" Pang, Jonathan Scott, Shilad Sen.
    * brew install git-lfs
    * sudo git lfs install
    * sudo git lfs install --system
+* NLTK. Instructions on OS-X:
+    * pip install -U nltk
+    * sudo mkdir -p /usr/local/share/nltk_data
+    * sudo python -m nltk.downloader -d usr/local/share/nltk_data all
    
    
 ## Creating and updating maps
