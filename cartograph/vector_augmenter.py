@@ -66,6 +66,8 @@ if __name__ == '__main__':
     parser.add_argument('--label_vectors', required=True)
     parser.add_argument('--method', required=True)
     parser.add_argument('--cluster_vectors', required=True)
+    parser.add_argument('--output_file', required=True)
+
     args = parser.parse_args()
 
     article_vectors = pd.read_csv(args.vectors)
@@ -85,7 +87,7 @@ if __name__ == '__main__':
     else:
         sys.stderr.write("Unkonwn clustering method: %s\n" + args.clustering)
         sys.exit(1)
-    cluster_df.to_csv('%s/augmented_vectors.csv' % (args.experiment, ), index=False)
+    cluster_df.to_csv('%s/%s' % (args.experiment, args.output_file), index=False)
 
 
 
