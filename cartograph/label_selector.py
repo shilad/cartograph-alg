@@ -61,7 +61,7 @@ def assign_country_label_ids(country_scores, label_score):
     """Output: Dictionary --> key = country, value = label"""
 
     ps = PorterStemmer()
-    country_scores['stem'] = ps.stem_documents(country_scores['label'])
+    country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
     country_scores = country_scores.sort_values(by=label_score, ascending=False)
     final_labels = {}
     used_stems = set()
