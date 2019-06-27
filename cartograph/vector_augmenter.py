@@ -65,23 +65,24 @@ if __name__ == '__main__':
     parser.add_argument('--vectors', required=True)
     parser.add_argument('--label_vectors', required=True)
     parser.add_argument('--method', required=True)
-    parser.add_argument('--cluster_vectors', required=True)
+    parser.add_argument('--cluster_vectors', required=False)
     parser.add_argument('--output_file', required=True)
 
     args = parser.parse_args()
 
     article_vectors = pd.read_csv(args.vectors)
     label_csv = pd.read_csv(args.label_vectors)
-    cluster_csv = pd.read_csv(args.cluster_vectors)
-
     label_vectors = get_label_svd(article_vectors, label_csv)
-    cluster_vectors = get_cluster_matrix(cluster_csv)
 
     if args.method == 'label':
         cluster_df = pd.merge(article_vectors, label_vectors, on='article_id')
     elif args.method == 'cluster':
+        cluster_csv = pd.read_csv(args.cluster_vectors)
+        cluster_vectors = get_cluster_matrix(cluster_csv)
         cluster_df = pd.merge(cluster_vectors, article_vectors, on='article_id')
     elif args.method == 'all':
+        cluster_csv = pd.read_csv(args.cluster_vectors)
+        cluster_vectors = get_cluster_matrix(cluster_csv)
         cluster_df_with_cluster = pd.merge(cluster_vectors, article_vectors, on='article_id')
         cluster_df = pd.merge(cluster_df_with_cluster, label_vectors, on='article_id')
     else:
