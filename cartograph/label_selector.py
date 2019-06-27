@@ -5,56 +5,60 @@ Author: Lily Irvin
 """
 import argparse
 
+import numpy as np
 import pandas as pd
-from collections import defaultdict
-import math
 import operator
 from nltk.stem import PorterStemmer
 
 
-def add_countries(article_labels_csv, country_clusters_csv):
-    """Appends a new column with country assignments to the article_labels dataframe."""
 
-    article_labels = pd.read_csv(article_labels_csv)
-    country_clusters = pd.read_csv(country_clusters_csv)
-    article_labels = pd.merge(article_labels, country_clusters, on='article_id')
-
-    return article_labels
+def add_country_label_counts(labels_df):
+    """Add counts per label, country pair to the data frame as "country_label_count" ."""
+    counts = labels_df.groupby(["country", "label_id"]).size().reset_index(name="country_label_count")
+    return pd.merge(labels_df, counts, on=('country', 'label_id'))
 
 
-def get_num_countries(country_clusters_csv):
-    return max(country_clusters_csv['country']) + 1
+def add_label_counts(labels_df):
+    """Add counts per label to the data frame as "label_count" ."""
+    counts = labels_df.groupby(["label_id"]).size().reset_index(name="label_count")
+    return pd.merge(labels_df, counts, on='label_id')
 
 
-def get_country_label_counts(labels_df, num_countries):
-    """Output: List of default dictionaries (one per country) --> key = label id, value = number of times that label
-               appears in that country"""
-    country_label_counts = [defaultdict(int) for x in range(num_countries)]
+def add_country_counts(labels_df):
+    """Add number of total labels and articles per country to the data frame as "country_count" ."""
+    counts = labels_df.groupby(["country"]).size().reset_index(name="num_country_labels")
+    labels_df = pd.merge(labels_df, counts, on='country')
+    counts = labels_df.groupby(["country"])['article_id'].nunique().reset_index(name="num_country_articles")
+    return pd.merge(labels_df, counts, on='country')
 
-    for row in labels_df.itertuples():
-
-        country_label_counts[row.country][row.label_id] += 1
-    return country_label_counts
-
-
-def get_total_counts(labels_df):
-    """Output: Default dictionary --> key = label id, value = number of times that label appears in the domain
-               concept"""
-    total_counts = defaultdict(int)
-    for row in labels_df.itertuples():
-
-        total_counts[row.label_id] += 1
-    return total_counts
+def add_totals(labels_df):
+    labels_df['num_countries'] = labels_df['country'].nunique()
+    labels_df['num_articles'] = labels_df['article_id'].nunique()
+    return labels_df
 
 
-def get_tfidf_scores(labels_df, country_label_counts, total_counts):
-    """Output: List of default dictionaries (one per country) --> key = label id, value = TF-IDF score for that label
-               in that country"""
-    tfidf_scores = [defaultdict(int) for i in labels_df['country'].unique()]
-    for row in labels_df.itertuples():
-        tfidf_scores[row.country][row.label_id] = (country_label_counts[row.country][row.label_id] / 500) * \
-                                                        math.log(4097 / (total_counts[row.label_id] + 1))
-    return tfidf_scores
+def add_pmi(labels_df):
+    """Creates a pmi column for the data frame"""
+    tf = (labels_df['country_label_count'] / (labels_df['num_country_labels'] + 1))
+    idf = (labels_df['num_articles'] / (labels_df['label_count'] + 0.25 * labels_df['num_country_articles']))
+
+    labels_df['tf'] = tf
+    labels_df['idf'] = idf
+    labels_df['tfidf'] = tf * idf
+
+    return labels_df
+
+
+def add_tfidf_scores(labels_df):
+    """Creates a tf-idf column for the data frame"""
+    tf = (labels_df['country_label_count'] / (labels_df['num_country_labels'] + 1))
+    idf = np.log(labels_df['num_articles'] / (labels_df['label_count'] + 10))
+
+    labels_df['tf'] = tf
+    labels_df['idf'] = idf
+    labels_df['tfidf'] = tf * idf
+
+    return labels_df
 
 
 def assign_country_label_ids(label_names_df, tfidf_scores, num_countries, country_label_counts, total_counts, labels_df):
@@ -86,27 +90,31 @@ def assign_country_label_ids(label_names_df, tfidf_scores, num_countries, countr
     return country_labels
 
 
-def main(experiment_dir, article_to_label_path, label_name_path, percentile):
-    # Read in labels datasets
-    labels_df = add_countries(article_to_label_path, experiment_dir + '/cluster_groups.csv')
-    if labels_df.shape[1] == 4:
-        # pass in different values to .quantile(x) to adjust the amount of data to select label from
-        labels_df = labels_df[labels_df['distance'] < labels_df['distance'].quantile(float(percentile))]
-    label_names_df = pd.read_csv(label_name_path)
+def main(experiment_dir, article_labels, percentile):
+    # choose the best percentile labels
+    if 'distance' in article_labels.columns:
+        mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
+        article_labels = article_labels[mask]
 
     # Calculate tf-idf scores
-    num_countries = get_num_countries(labels_df)
-    country_label_counts = get_country_label_counts(labels_df, num_countries)
-    total_counts = get_total_counts(labels_df)
-    tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts)
+    article_labels = add_country_label_counts(article_labels)
+    article_labels = add_label_counts(article_labels)
+    article_labels = add_country_counts(article_labels)
+    article_labels = add_totals(article_labels)
+    tfidf_scores = add_tfidf_scores(article_labels)
+
+    country_tf_idf = tfidf_scores.drop(columns=['article_id', 'distance']).drop_duplicates()
+
+    print(country_tf_idf.groupby('country').apply(lambda x: x.nlargest(5, 'tfidf')).reset_index(drop=True))
+
 
     # Assign labels
-    country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries, country_label_counts, total_counts, labels_df)
-
-    # Create results data frame
-    df = pd.DataFrame(country_labels,  index=[0]).T
-    df['country'] = df.index
-    df.to_csv(experiment_dir + '/country_labels.csv', index=True)
+    # country_labels = assign_country_label_ids(label_names_df, tfidf_scores, num_countries, country_label_counts, total_counts, labels_df)
+    #
+    # # Create results data frame
+    # df = pd.DataFrame(country_labels,  index=[0]).T
+    # df['country'] = df.index
+    # df.to_csv(experiment_dir + '/country_labels.csv', index=True)
 
 
 if __name__ == '__main__':
@@ -119,4 +127,10 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    main(args.experiment, args.articles_to_labels, args.label_names, args.percentile)
+    article_labels = pd.read_csv(args.articles_to_labels)
+    country_clusters = pd.read_csv(args.experiment + '/cluster_groups.csv')
+    label_names = pd.read_csv(args.label_names)
+    article_labels = pd.merge(article_labels, country_clusters, on='article_id')
+    article_labels = pd.merge(article_labels, label_names, on='label_id')
+
+    main(args.experiment, article_labels, args.percentile)
