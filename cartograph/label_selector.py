@@ -23,8 +23,7 @@ def add_countries(article_labels_csv, country_clusters_csv):
 
 
 def get_num_countries(country_clusters_csv):
-    country_clusters = pd.read_csv(country_clusters_csv)
-    return max(country_clusters['country']) + 1
+    return max(country_clusters_csv['country']) + 1
 
 
 def get_country_label_counts(labels_df, num_countries):
