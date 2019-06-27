@@ -33,11 +33,16 @@ source ./bin/experiment-utils.sh
 
 
     # Step 5: Run algorithmic steps that are necessary.
-
+    python -m cartograph.vector_augmenter \
+            --experiment ${exp_dir} \
+            --vectors ${exp_dir}/vanilla_vectors.csv \
+            --label_vectors data/food/article_labels.csv \
+            --method label \
+            --output_file label_augmented_vectors.csv
 
      python -m cartograph.cluster_builder \
             --experiment ${exp_dir} \
-            --vectors ${exp_dir}/vanilla_vectors.csv \
+            --vectors ${exp_dir}/label_augmented_vectors.csv \
             --clustering kmeans \
             --k 8 # \
            # --min_size 2
@@ -60,6 +65,7 @@ source ./bin/experiment-utils.sh
             --cluster_vectors ${exp_dir}/cluster_groups.csv \
             --output_file cluster_augmented_vectors.csv
 
+
     python -m cartograph.xy_embed.tsne_embed \
             --experiment ${exp_dir} \
            --vectors ${exp_dir}/cluster_augmented_vectors.csv
@@ -76,5 +82,11 @@ source ./bin/experiment-utils.sh
             --xy_embeddings_csv ${exp_dir}/xy_embeddings.csv \
             --method nn \
             --cluster_groups_csv ${exp_dir}/cluster_groups.csv >> ${exp_dir}/params.json
+
+    python -m cartograph.evaluation.cluster_validation_metrics \
+            --experiment ${exp_dir} \
+            --vectors ${exp_dir}/vanilla_vectors.csv \
+            --groups ${exp_dir}/cluster_groups.csv >> ${exp_dir}/params.json
+
 
    # done
