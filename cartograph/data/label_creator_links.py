@@ -106,7 +106,7 @@ if __name__ == '__main__':
     map_directory = sys.argv[1]
     main(map_directory)
 
-# map_directory = "../../data/food"
+# map_directory = "../../data/culture"
 # start = time.time()
 # links_to_id, link_df = create_links(map_directory + "/domain_concept.csv")
 # logging.warning("Time Spent: %.3f", time.time() - start)
