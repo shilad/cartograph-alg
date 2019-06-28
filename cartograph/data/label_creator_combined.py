@@ -44,6 +44,7 @@ def label_combiner(article_categories, article_keywords, article_links,
             # find the corresponding str in each label candidate dictionary
             label_strs = [label_candidates_dic[df_index][label_id] for label_id in label_ids_lst]
 
+
             for label in label_strs:
                 if label not in label_to_id:
                     label_to_id[label] = len(label_to_id)
@@ -71,11 +72,11 @@ def main(map_directory):
 
     domain_concept_df = pd.read_csv(map_directory + '/domain_concept.csv')
     article_categories_df = pd.read_csv(map_directory + '/article_hierarchical_categories.csv')
-    article_keywords_df = pd.read_csv(map_directory + '/article_keywords.csv')
+    article_keywords_df = pd.read_csv(map_directory + '/article_keywords_summary.csv')
     article_links_df = pd.read_csv(map_directory + '/article_links.csv')
 
-    category_names_df = pd.read_csv(map_directory + '/category_names.csv')
-    keyword_names_df = pd.read_csv(map_directory + '/keyword_names.csv')
+    category_names_df = pd.read_csv(map_directory + '/hierarchical_category_names.csv')
+    keyword_names_df = pd.read_csv(map_directory + '/keyword_summary_names.csv')
     link_names_df = pd.read_csv(map_directory + '/link_names.csv')
 
     links_to_id, link_df = label_combiner(article_categories_df, article_keywords_df, article_links_df,
