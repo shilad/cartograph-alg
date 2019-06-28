@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import time
+import logging
 
 # article_id --> label_id (category, links, keyword)
 # set of labels assign new id
@@ -12,29 +13,29 @@ import time
 # output the id file
 # output article file
 
-def create_sublabel_dic(label_candidate_csv):
-    df = pd.read_csv(label_candidate_csv)
-    return df.set_index('label_id')['label'].to_dict()
+# def create_sublabel_dic(label_candidate_csv):
+#     df = pd.read_csv(label_candidate_csv)
+#     return df.set_index('label_id')['label'].to_dict()
 
 def label_combiner(article_categories, article_keywords, article_links,
                    categories_names, keyword_names, links_names,
-                   domain_concept_csv):
+                   domain_concept):
     # dictionary correpondings to id : string of original label candidate
-    cat_dic = create_sublabel_dic(categories_names)
-    keyword_dic = create_sublabel_dic(keyword_names)
-    links_dic = create_sublabel_dic(links_names)
+    cat_dic = categories_names.set_index('label_id')['label'].to_dict()
+    keyword_dic = keyword_names.set_index('label_id')['label'].to_dict()
+    links_dic = links_names.set_index('label_id')['label'].to_dict()
 
     label_candidates_list = [article_categories, article_keywords, article_links]
     label_candidates_dic = [cat_dic, keyword_dic, links_dic]
 
     # create complete label candidates
-    total_label_str = list(set(cat_dic.values()) | set(keyword_dic.values()) | set(links_dic.values()))
-    total_label_to_id = dict(map(lambda t: (t[1], t[0]), enumerate(total_label_str)))
+    # total_label_str = list(set(cat_dic.values()) | set(keyword_dic.values()) | set(links_dic.values()))
+    # total_label_to_id = dict(map(lambda t: (t[1], t[0]), enumerate(total_label_str)))
 
     rows_list = []
     label_to_id = {}
 
-    for index, row in pd.read_csv(domain_concept_csv).head().iterrows():
+    for index, row in domain_concept.iterrows():
         article_id = row[0]
 
         for df_index, label_candidate_df in enumerate(label_candidates_list):
@@ -55,11 +56,11 @@ def label_combiner(article_categories, article_keywords, article_links,
 def create_link_id_str_csv(directory, links_to_ids):
     id_to_link = [(id, link) for (link, id) in links_to_ids.items()]
     links_df = pd.DataFrame(id_to_link, columns=["label_id", "label"])
-    links_df.to_csv(directory + '/link_names.csv', index=False)
+    links_df.to_csv(directory + '/label_names_complete.csv', index=False)
 
 
 def create_article_link_csv(article_link_df, directory):
-    article_link_df.to_csv(directory + "/article_links.csv", index=False)
+    article_link_df.to_csv(directory + "/article_labels_complete.csv", index=False)
 
 
 def main(map_directory):
@@ -67,30 +68,37 @@ def main(map_directory):
         os.makedirs(map_directory)
 
     start = time.time()
-    links_to_id, link_df = create_links(map_directory + "/domain_concept.csv")
+
+    domain_concept_df = pd.read_csv(map_directory + '/domain_concept.csv')
+    article_categories_df = pd.read_csv(map_directory + '/article_hierarchical_categories.csv')
+    article_keywords_df = pd.read_csv(map_directory + '/article_keywords.csv')
+    article_links_df = pd.read_csv(map_directory + '/article_links.csv')
+
+    category_names_df = pd.read_csv(map_directory + '/category_names.csv')
+    keyword_names_df = pd.read_csv(map_directory + '/keyword_names.csv')
+    link_names_df = pd.read_csv(map_directory + '/link_names.csv')
+
+    links_to_id, link_df = label_combiner(article_categories_df, article_keywords_df, article_links_df,
+                                          category_names_df, keyword_names_df, link_names_df, domain_concept_df)
+
     logging.warning("Time Spent: %.3f", time.time() - start)
     create_article_link_csv(link_df, map_directory)
     create_link_id_str_csv(map_directory, links_to_id)
 
 
-if __name__ == '__main__':
-    import sys
-
-    if len(sys.argv) != 2:
-        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-        sys.exit(1)
-
-    map_directory = sys.argv[1]
-    main(map_directory)
-
-article_categories = pd.read_csv("../../data/food/article_categories.csv")
-article_keywords = pd.read_csv("../../data/food/article_keywords_summary.csv")
-article_links = pd.read_csv("../../data/food/article_links.csv")
-
-print(label_combiner(article_categories, article_keywords, article_links, '../../data/food/category_names.csv', '../../data/food/keyword_summary_names.csv',
-                     '../../data/food/link_names.csv', '../../data/food/domain_concept.csv'))
+# if __name__ == '__main__':
+#     import sys
+#
+#     if len(sys.argv) != 2:
+#         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
+#         sys.exit(1)
+#
+#     map_directory = sys.argv[1]
+#     main(map_directory)
 
 
+
+main('../../data/food')
 
 
 
