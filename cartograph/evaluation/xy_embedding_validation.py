@@ -32,9 +32,9 @@ def main(map_directory):
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 2:
         sys.stderr.write('Usage: %s map_directory vector_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory, vec_path = sys.argv[1:]
-    main(map_directory, map_directory + "/" + vec_path)
+    map_directory = sys.argv[1]
+    main(map_directory)
