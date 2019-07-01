@@ -52,7 +52,7 @@ source ./bin/experiment-utils.sh
             --experiment ${exp_dir} \
             --articles_to_labels data/food/article_hierarchical_categories.csv \
             --label_names data/food/hierarchical_category_names.csv \
-            --percentile 0.1 \
+            --percentile 0.2 \
             --label_score tfidf
 
     # Step 4: If you needed to generate augmented vectors,
@@ -65,7 +65,6 @@ source ./bin/experiment-utils.sh
             --method cluster \
             --cluster_vectors ${exp_dir}/cluster_groups.csv \
             --output_file cluster_augmented_vectors.csv
-
 
     python -m cartograph.xy_embed.tsne_embed \
             --experiment ${exp_dir} \
