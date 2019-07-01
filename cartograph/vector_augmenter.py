@@ -17,10 +17,9 @@ Author: Lily Irvin, Jonathan Scott, Lu, Li
 import pandas as pd
 import argparse
 import numpy as np
-from sklearn.decomposition import TruncatedSVD
 import sys
 from scipy.sparse import csc_matrix
-from scipy.sparse.linalg import svds, eigs, LinearOperator
+from scipy.sparse.linalg import svds
 
 
 def create_label_matrix(label_matrix):
