@@ -5,7 +5,7 @@
 #
 # Run this script using ./bin/augmentation-experiment.sh
 #
-# Author: Yuren "Rock" Pang
+# Author: Yuren "Rock" Pang, Shilad Sen
 
 set -e
 set -x
@@ -35,7 +35,7 @@ do
     write_experiment_params ${exp_dir} num_clusters 8 labels links xy_embedding tsne
 
     if (($i == 1)); then
-        write_experiment_params vectors augmented
+        write_experiment_params ${exp_dir} vectors augmented
         # Step 4: Run algorithmic steps that are necessary.
         python -m cartograph.vector_augmenter \
                 --experiment ${exp_dir} \
@@ -44,7 +44,7 @@ do
                 --method label \
                 --output_file ${initial_vector_for_clustering[$i]}
     else
-        write_experiment_params vectors vanilla
+        write_experiment_params ${exp_dir} vectors vanilla
     fi
 
     python -m cartograph.cluster_builder \
