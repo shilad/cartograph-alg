@@ -11,8 +11,16 @@ Team members: Lily Irvin, Lu Li, Yuren "Rock" Pang, Jonathan Scott, Shilad Sen.
    * brew install git-lfs
    * sudo git lfs install
    * sudo git lfs install --system
-   
-   
+* NLTK. Instructions on OS-X:
+    * pip install -U nltk
+    * sudo mkdir -p /usr/local/share/nltk_data
+    * sudo python -m nltk.downloader -d usr/local/share/nltk_data all
+* iGraph. Instructions on OS-X:
+    * brew install cairo
+    * brew install pkg-config
+    * brew install igraph
+    * sudo pip install python-igraph
+
 ## Creating and updating maps
 
 1. Add a new shell script for creating map input data. 
