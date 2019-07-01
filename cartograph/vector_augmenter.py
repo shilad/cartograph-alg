@@ -19,6 +19,8 @@ import argparse
 import numpy as np
 from sklearn.decomposition import TruncatedSVD
 import sys
+from scipy.sparse import csc_matrix
+from scipy.sparse.linalg import svds, eigs, LinearOperator
 
 
 def create_label_matrix(label_matrix):
@@ -32,11 +34,9 @@ def create_label_matrix(label_matrix):
     return output_matrix
 
 
-
 def get_label_svd(article_vectors, art_labels):
-    svd = TruncatedSVD(n_components=10, n_iter=7, random_state=42)
-    label_wide_matrix = create_label_matrix(art_labels)
-    lp_mat_reduced = svd.fit_transform(X=label_wide_matrix.iloc[:, 1:].to_numpy())
+    label_wide_matrix = csc_matrix(create_label_matrix(art_labels).values, dtype=float)
+    lp_mat_reduced, s, vt = svds(label_wide_matrix, k=10)
     reduce_vec_labels = ['svd_'+str(i) for i in range(lp_mat_reduced.shape[1])]
     label_svd = pd.DataFrame({}, columns=['article_id']+reduce_vec_labels)
     for i in range(len(article_vectors)):
