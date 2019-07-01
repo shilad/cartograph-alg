@@ -3,9 +3,9 @@
 # Augment label, pass to k-means algorithm (clustering algorithm is aware of labels)
 # Augment countries (cluster), pass to tsne (xy embedding is aware of clustering)
 #
-# Run this script using ./bin/example-experiment.sh
+# Run this script using ./bin/augmentation-experiment.sh
 #
-# Author: Shilad Sen
+# Author: Yuren "Rock" Pang
 
 set -e
 set -x
@@ -35,6 +35,7 @@ do
     write_experiment_params ${exp_dir} num_clusters 8 labels links xy_embedding tsne
 
     if (($i == 1)); then
+        write_experiment_params vectors augmented
         # Step 4: Run algorithmic steps that are necessary.
         python -m cartograph.vector_augmenter \
                 --experiment ${exp_dir} \
@@ -42,6 +43,8 @@ do
                 --label_vectors data/food/${article_label_csv} \
                 --method label \
                 --output_file ${initial_vector_for_clustering[$i]}
+    else
+        write_experiment_params vectors vanilla
     fi
 
     python -m cartograph.cluster_builder \
@@ -53,6 +56,7 @@ do
         --experiment ${exp_dir} \
         --articles_to_labels data/food/${article_label_csv} \
         --label_names data/food/${label_name_csv} \
+        --label_score tfidf \
         --percentile 0.3
 
 
