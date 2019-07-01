@@ -25,8 +25,8 @@ def label_combiner(article_categories, article_keywords, article_links,
     keyword_dic = keyword_names.set_index('label_id')['label'].to_dict()
     links_dic = links_names.set_index('label_id')['label'].to_dict()
 
-    label_candidates_list = [article_categories, article_keywords, article_links]
-    label_candidates_dic = [cat_dic, keyword_dic, links_dic]
+    label_candidates_list = [article_keywords, article_links]
+    label_candidates_dic = [keyword_dic, links_dic]
 
     # create complete label candidates
     # total_label_str = list(set(cat_dic.values()) | set(keyword_dic.values()) | set(links_dic.values()))
