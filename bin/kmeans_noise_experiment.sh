@@ -36,7 +36,7 @@ source ./bin/experiment-utils.sh
     python -m cartograph.vector_augmenter \
             --experiment ${exp_dir} \
             --vectors ${exp_dir}/vanilla_vectors.csv \
-            --label_vectors data/food/article_labels.csv \
+            --label_vectors data/food/article_hierarchical_categories.csv \
             --method label \
             --output_file label_augmented_vectors.csv
 
@@ -52,7 +52,8 @@ source ./bin/experiment-utils.sh
             --experiment ${exp_dir} \
             --articles_to_labels data/food/article_hierarchical_categories.csv \
             --label_names data/food/hierarchical_category_names.csv \
-            --percentile 0.1
+            --percentile 0.1 \
+            --label_score tfidf
 
     # Step 4: If you needed to generate augmented vectors,
     # do so now from vanilla_vectors.csv in the experiment directory.
@@ -60,7 +61,7 @@ source ./bin/experiment-utils.sh
     python -m cartograph.vector_augmenter \
             --experiment ${exp_dir} \
             --vectors ${exp_dir}/vanilla_vectors.csv \
-            --label_vectors data/food/article_labels.csv \
+            --label_vectors data/food/article_hierarchical_categories.csv \
             --method cluster \
             --cluster_vectors ${exp_dir}/cluster_groups.csv \
             --output_file cluster_augmented_vectors.csv
@@ -81,12 +82,13 @@ source ./bin/experiment-utils.sh
             --experiment ${exp_dir} \
             --xy_embeddings_csv ${exp_dir}/xy_embeddings.csv \
             --method nn \
-            --cluster_groups_csv ${exp_dir}/cluster_groups.csv >> ${exp_dir}/params.json
+            --cluster_groups_csv ${exp_dir}/cluster_groups.csv >> ${exp_dir}/evaluation.json
 
     python -m cartograph.evaluation.cluster_validation_metrics \
             --experiment ${exp_dir} \
             --vectors ${exp_dir}/vanilla_vectors.csv \
-            --groups ${exp_dir}/cluster_groups.csv >> ${exp_dir}/params.json
+            --groups ${exp_dir}/cluster_groups.csv >> ${exp_dir}/evaluation.json
 
+    python -m cartograph.html_generator ${exp_dir}
 
    # done
