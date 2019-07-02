@@ -38,8 +38,6 @@ def get_label_svd(article_vectors, art_labels):
     lp_mat_reduced, s, vt = svds(label_wide_matrix, k=10)
     reduce_vec_labels = ['svd_'+str(i) for i in range(lp_mat_reduced.shape[1])]
     label_svd = pd.DataFrame({}, columns=['article_id']+reduce_vec_labels)
-    print(label_svd)
-    print("a")
     for i in range(len(article_vectors)):
         label_svd.loc[i, 'article_id'] = article_vectors.loc[i, 'article_id']
         label_svd.iloc[i, 1:] = lp_mat_reduced[i, :]
