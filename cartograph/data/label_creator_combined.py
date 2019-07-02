@@ -1,25 +1,24 @@
+"""
+Combine all label candidates (categories, links, keywords)
+
+Author: Yuren 'Rock' Pang
+"""
+
 import pandas as pd
 import os
 import time
 import logging
 
-# article_id --> label_id (category, links, keyword)
-# set of labels assign new id
-# for i -- > all article_id
-#     id = get_id from one
-#     for file --> 3, go find all labels in each class
-#         find corresponding id for that row <-- from dictionary to get string
-#         find the id based on this string
-# output the id file
-# output article file
-
-# def create_sublabel_dic(label_candidate_csv):
-#     df = pd.read_csv(label_candidate_csv)
-#     return df.set_index('label_id')['label'].to_dict()
 
 def label_combiner(article_categories, article_keywords, article_links,
                    categories_names, keyword_names, links_names,
                    domain_concept):
+    """
+    loop through all the articles in the domain_comcept.csv
+    Use the id to find corresponding label_id in article_categories, article_keywords, article_links
+    Use individual dictionary to get the string of the labels
+    Create new row_list and label_to_id in the complete data frame
+    """
     # dictionary correpondings to id : string of original label candidate
     cat_dic = categories_names.set_index('label_id')['label'].to_dict()
     keyword_dic = keyword_names.set_index('label_id')['label'].to_dict()
@@ -39,7 +38,6 @@ def label_combiner(article_categories, article_keywords, article_links,
             label_ids_lst = list(label_candidate_df.loc[(label_candidate_df.article_id == article_id), 'label_id'])
             # find the corresponding str in each label candidate dictionary
             label_strs = [label_candidates_dic[df_index][label_id] for label_id in label_ids_lst]
-
 
             for label in label_strs:
                 if label not in label_to_id:
@@ -83,19 +81,12 @@ def main(map_directory):
     create_link_id_str_csv(map_directory, links_to_id)
 
 
-# if __name__ == '__main__':
-#     import sys
-#
-#     if len(sys.argv) != 2:
-#         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-#         sys.exit(1)
-#
-#     map_directory = sys.argv[1]
-#     main(map_directory)
+if __name__ == '__main__':
+    import sys
 
+    if len(sys.argv) != 2:
+        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
+        sys.exit(1)
 
-
-main('../../data/food')
-
-
-
+    map_directory = sys.argv[1]
+    main(map_directory)
