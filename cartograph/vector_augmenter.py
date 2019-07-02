@@ -17,26 +17,25 @@ Author: Lily Irvin, Jonathan Scott, Lu, Li
 import pandas as pd
 import argparse
 import numpy as np
-from sklearn.decomposition import TruncatedSVD
 import sys
+from scipy.sparse import csc_matrix, csr_matrix
+from scipy.sparse.linalg import svds
 
 
 def create_label_matrix(label_matrix):
     """Creates a matrix that contains a article ids and label ids."""
-    output_matrix = np.zeros((max(label_matrix['article_id'])+1, max(label_matrix['label_id'])+1))
-    for i in range(len(label_matrix['article_id'])):
-        current_article = label_matrix.iloc[i].iloc[0]
-        output_matrix[current_article][label_matrix.iloc[i][1]] = 1
+    output_matrix = csr_matrix((max(label_matrix['article_id'])+1, max(label_matrix['label_id'])+1), dtype=np.int8).toarray()
+    for row in label_matrix.itertuples():
+        current_article = row.article_id
+        output_matrix[current_article][row.label_id] = 1
     output_matrix = pd.DataFrame(output_matrix)
     output_matrix.index.name = 'article_id'
     return output_matrix
 
 
-
 def get_label_svd(article_vectors, art_labels):
-    svd = TruncatedSVD(n_components=10, n_iter=7, random_state=42)
-    label_wide_matrix = create_label_matrix(art_labels)
-    lp_mat_reduced = svd.fit_transform(X=label_wide_matrix.iloc[:, 1:].to_numpy())
+    label_wide_matrix = csc_matrix(create_label_matrix(art_labels).values, dtype=float)
+    lp_mat_reduced, s, vt = svds(label_wide_matrix, k=10)
     reduce_vec_labels = ['svd_'+str(i) for i in range(lp_mat_reduced.shape[1])]
     label_svd = pd.DataFrame({}, columns=['article_id']+reduce_vec_labels)
     for i in range(len(article_vectors)):

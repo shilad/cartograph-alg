@@ -28,7 +28,6 @@ def add_country_counts(labels_df):
     counts = labels_df.groupby(["country"])['article_id'].nunique().reset_index(name="num_country_articles")
     return pd.merge(labels_df, counts, on='country')
 
-
 def add_totals(labels_df):
     labels_df['num_countries'] = labels_df['country'].nunique()
     labels_df['num_articles'] = labels_df['article_id'].nunique()

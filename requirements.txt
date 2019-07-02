@@ -14,3 +14,4 @@ hdbscan
 smart_open
 nltk
 jinja2
+gensim
