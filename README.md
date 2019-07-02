@@ -20,7 +20,7 @@ Team members: Lily Irvin, Lu Li, Yuren "Rock" Pang, Jonathan Scott, Shilad Sen.
     * brew install pkg-config
     * brew install igraph
     * sudo pip install python-igraph
-   
+
 ## Creating and updating maps
 
 1. Add a new shell script for creating map input data. 
