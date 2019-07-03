@@ -1,6 +1,5 @@
 """
 Given the domain concept csv file, return the summary of each domain concept
-
 Author: Yuren "Rock" Pang
 """
 
