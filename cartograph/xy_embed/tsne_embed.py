@@ -6,12 +6,14 @@ Authors: Lily Irvin, Jonathan Scott
 
 import pandas as pd
 from sklearn.manifold import TSNE
+from sklearn.metrics.pairwise import cosine_distances
 import argparse
 
 
 def create_embeddings(vector_file):
     df = pd.read_csv(vector_file)
-    points = TSNE().fit_transform(df.iloc[:, 1:])
+    distance_matrix = cosine_distances(df.iloc[:, 1:])
+    points = TSNE(metric="precomputed").fit_transform(distance_matrix)
     xy_embedding = pd.DataFrame({'article_id': df['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
     return xy_embedding
 
