@@ -11,10 +11,10 @@ set -e
 set -x
 
 
-projects=(Politics Technology Internet)
+projects=(Media Politics Technology Internet)
 
 
-for i in {0..2}
+for i in {0..3}
 do
     echo ${projects[$i]}
     python -m cartograph.data.domain_concept_creator data/${projects[$i]} ${projects[$i]} 5000
