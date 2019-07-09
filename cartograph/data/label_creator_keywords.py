@@ -4,19 +4,34 @@
     Author: Yuren "Rock" Pang and Lily Irvin
 """
 
-import wikipediaapi
 from gensim.summarization import keywords
 import pandas as pd
 import os
+import spacy
 
 
-def fetch_keywords(domain_concept):
-    wiki_wiki = wikipediaapi.Wikipedia(language='en', extract_format=wikipediaapi.ExtractFormat.WIKI)
-    page = wiki_wiki.page(domain_concept).text
-    return keywords(page, lemmatize=True).split('\n')
+nlp = spacy.load("en_core_web_sm")
 
 
-def create_labels(domain_concept_csv):
+def fetch_keywords(article_name, text):
+    key_phrases = set()
+
+    my_stop_words = ['say', '\'s', 'be', 'says', 'including', 'said', 'named', '\t', 'know', '\n\n', 'Des', ' ']
+    for stopword in my_stop_words:
+        lexeme = nlp.vocab[stopword]
+        lexeme.is_stop = True
+
+        cleaned_summary = ''
+        for w in nlp(text):
+            if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
+                    cleaned_summary += ' ' + w.text
+        for word in keywords(cleaned_summary, lemmatize=True).split('\n'):
+            key_phrases.add(word)
+
+    return key_phrases
+
+
+def create_labels(article_summaries, bigram, trigram):
     """
     Find the text of each domain concept and creates a data frame with articles and keyword labels
     :return: a dataframe with article id and label id
@@ -24,26 +39,23 @@ def create_labels(domain_concept_csv):
 
     # mapping from ids to labels
     labels_to_id = {}
-    df = pd.read_csv(domain_concept_csv)
     rows_list = []
     x = 0
-    # Loop through the domain concepts
-    for index, row in df.iterrows():  # test df.head(10).iterrows()
+
+    for row in article_summaries.itertuples():
         if x % 1000 == 0:
             print(str(x) + ' articles completed')
-        article_id = row[0]
-        domain_concept = row[1]
-        for keyword in fetch_keywords(domain_concept):
+        for keyword in fetch_keywords(row.article_name, row.text):
             if keyword not in labels_to_id:
                 labels_to_id[keyword] = len(labels_to_id)
             id = labels_to_id.get(keyword, len(labels_to_id))
-            rows_list.append({"article_id": article_id, "label_id": id})
+            rows_list.append({"article_id": row.article_id, "label_id": id})
         x += 1
     return labels_to_id, pd.DataFrame(rows_list)
 
 
 def create_label_id_str_csv(directory, labels_to_ids):
-    id_to_label = [ (id, label) for (label, id) in labels_to_ids.items() ]
+    id_to_label = [(id, label) for (label, id) in labels_to_ids.items()]
     labels_df = pd.DataFrame(id_to_label, columns=["label_id", "label"])
     labels_df.to_csv(directory + '/keyword_names.csv', index=False)
 

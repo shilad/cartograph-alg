@@ -11,7 +11,7 @@ set -e
 set -x
 
 
-projects=(Media Politics Technology Internet)
+projects=(Media Technology Internet)
 
 
 for i in {0..3}
@@ -19,9 +19,11 @@ do
     echo ${projects[$i]}
     python -m cartograph.data.domain_concept_creator data/${projects[$i]} ${projects[$i]} 5000
     python -m cartograph.data.label_creator_categories data/${projects[$i]}
-    python -m cartograph.data.label_creator_keywords data/${projects[$i]}
     python -m cartograph.data.label_creator_hierarchical_cat data/${projects[$i]}
     python -m cartograph.data.label_creator_links data/${projects[$i]}
+    python -m cartograph.data.text_getter data/${projects[$i]}
+    python -m cartograph.data.label_creator_keywords data/${projects[$i]}
+    python -m cartograph.data.label_creator_key-phrases data/${projects[$i]}
     python -m cartograph.data.vector_creator data/${projects[$i]} data/original_nav_vectors.txt.bz2
     python -m cartograph.data.popularity_creator data/${projects[$i]}
 done

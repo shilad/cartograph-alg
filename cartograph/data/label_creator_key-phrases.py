@@ -52,9 +52,9 @@ def train_model(article_summaries):
     corpus = []
 
     for row in article_summaries.itertuples():
-        sentences = tokenize_sentences(row.article_name, row.extract)
+        sentences = tokenize_sentences(row.article_name, row.text)
         if sentences != []:
-            corpus.extend(tokenize_sentences(row.article_name, row.extract))
+            corpus.extend(tokenize_sentences(row.article_name, row.text))
 
     bigram = gensim.models.Phrases(corpus, min_count=30)
     trigram = gensim.models.Phrases(bigram[corpus], min_count=10)
@@ -102,7 +102,7 @@ def create_labels(article_summaries, bigram, trigram):
     for row in article_summaries.itertuples():
         if x % 1000 == 0:
             print(str(x) + ' articles completed')
-        for keyword in fetch_key_phrases(row.article_name, row.extract, bigram, trigram):
+        for keyword in fetch_key_phrases(row.article_name, row.text, bigram, trigram):
             if keyword not in labels_to_id:
                 labels_to_id[keyword] = len(labels_to_id)
             id = labels_to_id.get(keyword, len(labels_to_id))
