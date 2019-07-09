@@ -20,20 +20,21 @@ def fetch_keywords(text):
     :param text of a given domain concept
     :return: List of keywords for that article
     """
-    key_words = set()
+    key_words = []
 
     my_stop_words = ['say', '\'s', 'be', 'says', 'including', 'said', 'named', '\t', 'know', '\n\n', 'Des', ' ']
     for stop_word in my_stop_words:
         lexeme = nlp.vocab[stop_word]
         lexeme.is_stop = True
 
+    if not isinstance(text, float):
         cleaned_text = ''
         for w in nlp(text):
             if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
                 cleaned_text += ' ' + w.text
 
-        for word in keywords(cleaned_text, lemmatize=True).split('\n'):
-            key_words.add(word)
+        for word, score in keywords(cleaned_text, scores=True):
+            key_words.append((word, score))
 
     return key_words
 
@@ -52,11 +53,11 @@ def create_labels(article_text):
     for row in article_text.itertuples():
         if x % 1000 == 0:
             print(str(x) + ' articles completed')
-        for keyword in fetch_keywords(row.text):
+        for keyword, score in fetch_keywords(row.text):
             if keyword not in labels_to_id:
                 labels_to_id[keyword] = len(labels_to_id)
             id = labels_to_id.get(keyword, len(labels_to_id))
-            rows_list.append({"article_id": row.article_id, "label_id": id})
+            rows_list.append({"article_id": row.article_id, "label_id": id, "score": score})
         x += 1
     return labels_to_id, pd.DataFrame(rows_list)
 
