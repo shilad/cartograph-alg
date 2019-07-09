@@ -23,7 +23,7 @@ def create_df(domain_concept_df):
     rows_list = []
     count = 0
 
-    for index, row in domain_concept_df.itertuples():
+    for row in domain_concept_df.itertuples():
         if count % 1000 == 0:
             print(str(count) + " articles completed")
 
