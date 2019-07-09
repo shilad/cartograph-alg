@@ -6,29 +6,58 @@ from scipy.spatial import Delaunay
 import matplotlib.pyplot as plt
 
 
-df = np.array([[1,1],[1,2],[1,3],[2,1],[2,3],[3,2]])
+# df = np.array([[1,1],[1,2],[1,3],[2,1],[2,3],[3,2]])
 
-class Graph():
-    def __init__(self, points=np.array([])):
-        if len(points) == 0:
-            print("Points need to be passed in.")
-            return
 
-        self.vor_centers = points
-        self.voronoi = Voronoi(points)
-        self.delaunay = Delaunay(points)
-        self.filtered_regions = self.filter_regions(self.voronoi)
-        self.graph = self.create_graph(self.voronoi, self.delaunay)
 
-    def filter_regions(self, voronoi):
-        filtered_regions = []
-        for region in voronoi.regions:
-            if -1 not in region and len(region) != 0:
-                filtered_regions.append(region)
-        return self.filtered_regions
+# class Vertex:
+#     def __init__(self, index, point, isOnCoast):
+#         self.index = index  # Index of point, it is a vertex in the Vornoi region
+#         self.x = point[0]
+#         self.y = point[1]
+#         self.isOnCoast = isOnCoast
+#         self.regionPoints = set()
+#
+#     def addRegionPoints(self, points):
+#         self.regionPoints.update(points)
+#
+#
+# class Graph:
+#     def __init__(self, points=np.array([])):
+#         if len(points) == 0:
+#             print("Points need to be passed in.")
+#             return
+#
+#         self.vor_centers = points
+#         self.voronoi = Voronoi(points)
+#         self.delaunay = Delaunay(points)
+#         self.filtered_regions = self.filter_regions(self.voronoi)
+#         self.graph = self.create_graph(self.voronoi, self.delaunay)
+#
+#     def filter_regions(self, voronoi):
+#         filtered_regions = []
+#         for region in voronoi.regions:
+#             if -1 not in region and len(region) != 0:
+#                 filtered_regions.append(region)
+#         return self.filtered_regions
+#
+#     def create_graph(self, voronoi, delaunay):
+#         edges = {}
+#         for triangle in delaunay.slices:
+#             for i in range(-1, 2):
+#                 edges.update({[triangle[i], triangle[i+1]]: triangle[i]})
+#             edge_1 = [triangle[0], triangle[1]]
+#             edge_2 = [triangle[1], triangle[2]]
+#             edge_3 = [triangle[2], triangle[0]]
+#
+#
+#         points_dic = {index: points for index, points in enumerate(delaunay.points)}
 
-    def create_graph(self, voronoi, delaunay):
-        print("hi")
+
+
+#def create_cluster(cluster_groups_csv):
+
+
 
 
 # points = np.zeros(shape=(df.shape[0], 2))
@@ -185,26 +214,138 @@ class Graph():
 #
 # plt.show()
 
+def build_vor(xy_embedding_csv):
+    df = pd.read_csv(xy_embedding_csv)
+    points = np.zeros(shape=(df.shape[0], 2))
+    for index, row in df.iterrows():
+        points[index] = [row['x'], row['y']]
 
-points = np.array([[1,1],[1,2],[1,3],[2,1],[2,3],[3,2], [2.5,2]])
-vor = Voronoi(points)
-tri = Delaunay(points)
-
-print(vor.ridge_points)
-print("##simplices")
-print(tri.simplices)
-
-print("----------")
-print(points[tri.simplices])
+    return Voronoi(points), points.tolist()
 
 
-print("##neighbors")
-print(tri.neighbors)
+def build_boundary_dic(vor):
+    """
+    point index : True (in the boundary) / False (out of the boundary)
+    :param vor:
+    :return:
+    """
+    in_out_dic = {i: False for i in range(len(vor.points))}
+    point_region = vor.point_region.tolist()
 
-print("###vertex_to_simplex")
-print(tri.vertex_to_simplex)
-print(tri.vertex_neighbor_vertices)
+    for i, vor_vertices in enumerate(vor.regions):
+        if len(vor_vertices) != 0 and -1 not in vor_vertices:
+            point_index = point_region.index(i)
+            in_out_dic.update({point_index: True})
 
+    return in_out_dic
+
+
+def build_cluster_dic(cluster_groups_csv, xy_embedding_csv, points):
+    """
+    point index : cluster id
+    :param cluster_groups_csv:
+    :param xy_embedding_csv:
+    :param points:
+    :return:
+    """
+    cluster_groups_df = pd.read_csv(cluster_groups_csv)
+    xy_embedding_df = pd.read_csv(xy_embedding_csv)
+    id_in_points_to_cluster_dic = {}
+
+    for index, xy in enumerate(points):
+        article_id = xy_embedding_df.loc[[index]].iloc[0, :].to_list()[0]
+
+        cluster = cluster_groups_df.loc[cluster_groups_df['article_id'] == article_id, ['country']].iloc[0, :].to_list()[0]
+        id_in_points_to_cluster_dic.update({index: cluster})
+
+    # cluster_groups_df = pd.read_csv(cluster_groups_csv)
+    # xy_embedding_df = pd.read_csv(xy_embedding_csv)
+    # cluster_dic = {}
+    #
+    # for row in cluster_groups_df.itertuples():
+    #     country = row.country
+    #     xy_row = xy_embedding_df.loc[xy_embedding_df['article_id'] == row.article_id, ['x', 'y']].iloc[0,:].to_list()
+    #     cluster_dic.setdefault(country, []).append([xy_row[0], xy_row[1]])
+    #
+    # id_in_points_to_cluster_dic = {}
+    # for k, v in cluster_dic.items():
+    #     for xy in v:
+    #         id_in_points_to_cluster_dic.update({points.index(xy): k})
+    print(type(id_in_points_to_cluster_dic))
+    return id_in_points_to_cluster_dic
+
+
+def draw_border(id_in_points_to_cluster_dic, in_out_dic, vor):
+    """
+    If in different territory (cluster & boundary), draw different colors
+    :param id_in_points_to_cluster_dic:
+    :param in_out_dic:
+    :param vor:
+    :return:
+    """
+    vertices_in_vor = vor.vertices
+    ridges_in_vor_by_vertices = vor.ridge_vertices
+
+    for vertex_index, ridge_points in enumerate(vor.ridge_points):
+        one_end = ridge_points[0]
+        other_end = ridge_points[1]
+
+        if in_out_dic[one_end] ^ in_out_dic[other_end] or \
+                id_in_points_to_cluster_dic[one_end] ^ id_in_points_to_cluster_dic[other_end]: ## Completed: This needs an or to include clusters
+            line = ridges_in_vor_by_vertices[vertex_index]
+            a, b = vertices_in_vor[line[0]], vertices_in_vor[line[1]]
+
+            plt.plot([a[0], b[0]], [a[1], b[1]], 'ro-', marker='o', markersize=1
+                     , linewidth=0.5)
+    # voronoi_plot_2d(vor)
+    plt.xlim(-100, 100)
+    plt.ylim(-100, 100)
+
+    plt.show()
+
+#
+# plt.plot([1,1], [2,3])
+# plt.show()
+points = np.array([[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2],
+                   [2, 0], [2, 1], [2, 2]])
+# vor = Voronoi(points)
+vor, points = build_vor('../experiments/food/0009/xy_embeddings.csv')
+in_out_dic = build_boundary_dic(vor)
+id_in_points_to_cluster_dic = build_cluster_dic('../experiments/food/0009/cluster_groups.csv', '../experiments/food/0009/xy_embeddings.csv', points)
+
+color_scheme = ['blue', 'green', 'yellow', 'black', 'pink', 'red', 'cyan', 'orange']
+for index, point in enumerate(points):
+    region_index = vor.point_region[index]
+    region_with_vertices = vor.regions[region_index]
+    color = color_scheme[id_in_points_to_cluster_dic[index]]
+
+    polygon = [vor.vertices[i] for i in region_with_vertices]
+    plt.fill(*zip(*polygon), color=color)
+
+plt.xlim(-100, 100)
+plt.ylim(-100, 100)
+plt.show()
+
+draw_border(id_in_points_to_cluster_dic, in_out_dic, vor)
+
+#
+# tri = Delaunay(points)
+#
+# print(vor.ridge_points)
+# print("##simplices")
+# print(tri.simplices)
+#
+# print("----------")
+# print(points[tri.simplices])
+#
+#
+# print("##neighbors")
+# print(tri.neighbors)
+#
+# print("###vertex_to_simplex")
+# print(tri.vertex_to_simplex)
+# print(tri.vertex_neighbor_vertices)
+#
 voronoi_plot_2d(vor)
-plt.triplot(points[:,0], points[:,1], tri.simplices.copy())
+# plt.triplot(points[:,0], points[:,1], tri.simplices.copy())
 plt.show()
