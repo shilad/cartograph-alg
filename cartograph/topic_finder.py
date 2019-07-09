@@ -135,7 +135,7 @@ def create_article_df(model, corpus, id_to_article_id):
 
 
 def main(directory):
-    corpus, dictionary, id_to_article_id = create_text_corpus_by_csv(directory + "/../article_summary.csv")
+    corpus, dictionary, id_to_article_id = create_text_corpus_by_csv(directory + "/../article_text.csv")
     num_topics = 8
     model = run_model(corpus, dictionary, method='LDA', num_topics=num_topics)
     topic_label_distribution_df = create_topic_df(model)

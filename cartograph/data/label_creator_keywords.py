@@ -1,6 +1,6 @@
 """
-    Given domain concepts, output category_names.csv (label id and label string) and
-    article_categories.csv (article id and label id)
+    Given the text of a given set of domain concepts, output keyword_names.csv (label id and label string) and
+    article_keywords.csv (article id and label id)
     Author: Yuren "Rock" Pang and Lily Irvin
 """
 
@@ -10,28 +10,35 @@ import os
 import spacy
 
 
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("en_core_web_sm", disable=['ner', 'tagger'])
 
 
-def fetch_keywords(article_name, text):
-    key_phrases = set()
+def fetch_keywords(text):
+    """
+    Given the text of a domain concept, cleans the text (gets rid of stopwords/punctuation/numbers/etc.) and outputs
+    the keywords from that text according to gensim's summarization algorithm.
+    :param text of a given domain concept
+    :return: List of keywords for that article
+    """
+    key_words = set()
 
     my_stop_words = ['say', '\'s', 'be', 'says', 'including', 'said', 'named', '\t', 'know', '\n\n', 'Des', ' ']
-    for stopword in my_stop_words:
-        lexeme = nlp.vocab[stopword]
+    for stop_word in my_stop_words:
+        lexeme = nlp.vocab[stop_word]
         lexeme.is_stop = True
 
-        cleaned_summary = ''
+        cleaned_text = ''
         for w in nlp(text):
             if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
-                    cleaned_summary += ' ' + w.text
-        for word in keywords(cleaned_summary, lemmatize=True).split('\n'):
-            key_phrases.add(word)
+                cleaned_text += ' ' + w.text
 
-    return key_phrases
+        for word in keywords(cleaned_text, lemmatize=True).split('\n'):
+            key_words.add(word)
+
+    return key_words
 
 
-def create_labels(article_summaries, bigram, trigram):
+def create_labels(article_text):
     """
     Find the text of each domain concept and creates a data frame with articles and keyword labels
     :return: a dataframe with article id and label id
@@ -42,10 +49,10 @@ def create_labels(article_summaries, bigram, trigram):
     rows_list = []
     x = 0
 
-    for row in article_summaries.itertuples():
+    for row in article_text.itertuples():
         if x % 1000 == 0:
             print(str(x) + ' articles completed')
-        for keyword in fetch_keywords(row.article_name, row.text):
+        for keyword in fetch_keywords(row.text):
             if keyword not in labels_to_id:
                 labels_to_id[keyword] = len(labels_to_id)
             id = labels_to_id.get(keyword, len(labels_to_id))
@@ -54,21 +61,22 @@ def create_labels(article_summaries, bigram, trigram):
     return labels_to_id, pd.DataFrame(rows_list)
 
 
+def create_article_label_csv(article_label_df, directory):
+    article_label_df.to_csv(directory + "/article_keywords.csv", index=False)
+
+
 def create_label_id_str_csv(directory, labels_to_ids):
     id_to_label = [(id, label) for (label, id) in labels_to_ids.items()]
     labels_df = pd.DataFrame(id_to_label, columns=["label_id", "label"])
     labels_df.to_csv(directory + '/keyword_names.csv', index=False)
 
 
-def create_article_label_csv(article_label_df, directory):
-    article_label_df.to_csv(directory + "/article_keywords.csv", index=False)
-
-
 def main(map_directory):
     if not os.path.exists(map_directory):
         os.makedirs(map_directory)
 
-    labels_to_id, label_df = create_labels(map_directory + "/domain_concept.csv")
+    article_text = pd.read_csv(map_directory + '/article_text.csv')
+    labels_to_id, label_df = create_labels(article_text)
     create_article_label_csv(label_df, map_directory)
     create_label_id_str_csv(map_directory, labels_to_id)
 

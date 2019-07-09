@@ -125,7 +125,7 @@ def main(map_directory):
     if not os.path.exists(map_directory):
         os.makedirs(map_directory)
 
-    article_summaries = pd.read_csv(map_directory + '/article_summary.csv')
+    article_summaries = pd.read_csv(map_directory + '/article_text.csv')
     bigram, trigram = train_model(article_summaries)
     labels_to_id, label_df = create_labels(article_summaries, bigram, trigram)
     create_article_label_csv(label_df, map_directory)

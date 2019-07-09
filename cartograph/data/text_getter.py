@@ -14,8 +14,8 @@ import time
 wiki_wiki = wikipediaapi.Wikipedia(language='en', extract_format=wikipediaapi.ExtractFormat.WIKI)
 
 
-def fetch_text(domain_concept):
-    page = wiki_wiki.page(domain_concept).text
+def fetch_text(article_name):
+    page = wiki_wiki.page(article_name).text
     return page
 
 
@@ -23,15 +23,15 @@ def create_df(domain_concept_df):
     rows_list = []
     count = 0
 
-    for index, row in domain_concept_df.iterrows():
+    for index, row in domain_concept_df.itertuples():
         if count % 1000 == 0:
             print(str(count) + " articles completed")
 
-        article_id = row[0]
-        domain_concept = row[1]
+        article_id = row.article_id
+        article_name = row.article_name
         rows_list.append({"article_id": article_id,
-                          "article_name": domain_concept,
-                          "text": fetch_text(domain_concept)})
+                          "article_name": article_name,
+                          "text": fetch_text(article_name)})
         count += 1
     return pd.DataFrame(rows_list)
 
@@ -42,10 +42,10 @@ def main(directory):
 
     start = time.time()
     df = pd.read_csv(directory + "/domain_concept.csv")
-    summary_df = create_df(df)
+    text_df = create_df(df)
     logging.warning("Time Spent: %.3f", time.time() - start)
 
-    summary_df.to_csv(directory + "/article_summary.csv", index=False)
+    text_df.to_csv(directory + "/article_text.csv", index=False)
 
 
 if __name__ == '__main__':
