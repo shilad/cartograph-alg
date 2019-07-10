@@ -7,7 +7,6 @@ import argparse
 import numpy as np
 import pandas as pd
 from gensim.parsing.porter import PorterStemmer
-from collections import defaultdict
 
 
 def add_country_label_counts(labels_df):
@@ -28,6 +27,7 @@ def add_country_counts(labels_df):
     labels_df = pd.merge(labels_df, counts, on='country')
     counts = labels_df.groupby(["country"])['article_id'].nunique().reset_index(name="num_country_articles")
     return pd.merge(labels_df, counts, on='country')
+
 
 def add_totals(labels_df):
     labels_df['num_countries'] = labels_df['country'].nunique()
@@ -127,6 +127,7 @@ def main(experiment_dir, article_labels, percentile, label_score):
     top_df['country'] = top_df.index
     top_df = top_df.set_index('country')
     top_df.to_csv(experiment_dir + '/top_labels.csv')
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Select labels for cluster.')
