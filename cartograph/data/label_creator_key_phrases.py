@@ -2,9 +2,12 @@
     Given domain concepts, output keyword_names.csv (label id and label string) and
     article_keywords.csv (article id and label id)
     Author: Yuren "Rock" Pang and Lily Irvin
+
+    To run spacy, do: python -m spacy download en_core_web_sm
 """
+from collections import defaultdict
 
-
+from gensim import models
 from gensim.summarization import keywords, textcleaner
 import pandas as pd
 import os
@@ -13,7 +16,10 @@ import gensim
 import logging
 
 
-nlp = spacy.load("en_core_web_sm")
+
+MAX_PHRASES_PER_ARTICLE = 100 # max phrases retained per article
+
+nlp = spacy.load("en_core_web_sm", disable=['ner', 'tagger'])
 
 
 def tokenize_sentences(domain_concept, summary):
@@ -35,7 +41,7 @@ def tokenize_sentences(domain_concept, summary):
             sent = []
             for w in sentence:
                 if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
-                    sent.append(w.lemma_.strip())
+                    sent.append(w.text.strip())
             sentences.append(sent)
     else:
         logging.warning(domain_concept + ": does not have summary")
@@ -44,22 +50,29 @@ def tokenize_sentences(domain_concept, summary):
     return sentences
 
 
-def train_model(article_summaries):
+def phrasify(article_summaries):
     """
     Given the summary of each domain concept, remove stop words, punctuations, numbers, and newline,
-    create a bag of words (called corpus) from the texts and then trains a gensim model with it.
+    Use gensim to identify phrases within the text. Returns a list of documents, where each document
+    is a list of phrases in the document.
     """
     corpus = []
 
     for row in article_summaries.itertuples():
         sentences = tokenize_sentences(row.article_name, row.text)
-        if sentences != []:
-            corpus.extend(tokenize_sentences(row.article_name, row.text))
+        corpus.extend([(row.article_id, row.article_name, s) for s in sentences])
+    sentences = [doc[-1] for doc in corpus]
 
-    bigram = gensim.models.Phrases(corpus, min_count=30)
-    trigram = gensim.models.Phrases(bigram[corpus], min_count=10)
+    bigram = gensim.models.Phrases(sentences, min_count=30)
+    phrases1 = list(bigram[sentences])
+    trigram = gensim.models.Phrases(phrases1, min_count=10)
+    phrases2 = list(trigram[phrases1])
 
-    return bigram, trigram
+    assert len(phrases2) == len(phrases1) == len(corpus)
+
+    phrase_corpus = [(doc[0], doc[1], sentence) for (doc, sentence) in zip(corpus, phrases2)]
+
+    return phrase_corpus
 
 
 def fetch_key_phrases(domain_concept, summary, bigram, trigram):
@@ -88,37 +101,54 @@ def fetch_key_phrases(domain_concept, summary, bigram, trigram):
     return key_phrases
 
 
-def create_labels(article_summaries, bigram, trigram):
+def create_labels(phrase_corpus):
     """
     Find the text of each domain concept and creates a data frame with articles and keyword labels
     :return: a dataframe with article id and label id
     """
 
-    # mapping from ids to labels
-    labels_to_id = {}
-    rows_list = []
-    x = 0
+    article_id_to_name = {}
+    article_word_freq = defaultdict(lambda: defaultdict(float))  # article id -> word id -> freq
+    vocab = {}  # word -> word id
+    for article_id, article_name, article_text in phrase_corpus:
+        article_id_to_name[article_id] = article_name
+        for word in article_text:
+            if word not in vocab:
+                vocab[word] = len(vocab)
+            word_id = vocab[word]
+            article_word_freq[article_id][word_id] += 1
 
-    for row in article_summaries.itertuples():
-        if x % 1000 == 0:
-            print(str(x) + ' articles completed')
-        for keyword in fetch_key_phrases(row.article_name, row.text, bigram, trigram):
-            if keyword not in labels_to_id:
-                labels_to_id[keyword] = len(labels_to_id)
-            id = labels_to_id.get(keyword, len(labels_to_id))
-            rows_list.append({"article_id": row.article_id, "label_id": id})
-        x += 1
-    return labels_to_id, pd.DataFrame(rows_list)
+    sparse_matrix = []
+    for article_id in sorted(article_word_freq.keys()):
+        sparse_row = []
+        for word_id in sorted(article_word_freq[article_id].keys()):
+            sparse_row.append((word_id, article_word_freq[article_id][word_id]))
+        sparse_matrix.append((article_id, article_id_to_name[article_id], sparse_row))
+
+    index2word = {i : w for (w, i) in vocab.items()}
+    tfidf = models.TfidfModel([row for (id, name, row) in sparse_matrix])
+    results = []
+    for id, name, row in sparse_matrix:
+        tfidf_row = tfidf[row]
+        tfidf_row.sort(key=lambda x: x[1], reverse=True)
+        results.append((id, name, tfidf_row[:MAX_PHRASES_PER_ARTICLE]))
+
+    return index2word, results
 
 
-def create_label_id_str_csv(directory, labels_to_ids):
-    id_to_label = [ (id, label) for (label, id) in labels_to_ids.items() ]
+def create_label_id_str_csv(directory, index2word):
+    id_to_label = list(index2word.items())
     labels_df = pd.DataFrame(id_to_label, columns=["label_id", "label"])
-    labels_df.to_csv(directory + '/key-phrases_names.csv', index=False)
+    labels_df.to_csv(directory + '/keyphrases_names.csv', index=False)
 
 
-def create_article_label_csv(article_label_df, directory):
-    article_label_df.to_csv(directory + "/article_key-phrases.csv", index=False)
+def create_article_label_csv(tf_idf_results, directory):
+    rows = []
+    for (article_id, article_name, tfidf) in tf_idf_results:
+        for (word_id, score) in tfidf:
+            rows.append({'article_id' : article_id, 'label_id' : word_id, 'score' : score})
+    df = pd.DataFrame(rows)
+    df.to_csv(directory + "/article_keyphrases.csv", index=False)
 
 
 def main(map_directory):
@@ -126,10 +156,10 @@ def main(map_directory):
         os.makedirs(map_directory)
 
     article_summaries = pd.read_csv(map_directory + '/article_text.csv')
-    bigram, trigram = train_model(article_summaries)
-    labels_to_id, label_df = create_labels(article_summaries, bigram, trigram)
-    create_article_label_csv(label_df, map_directory)
-    create_label_id_str_csv(map_directory, labels_to_id)
+    phrase_corpus = phrasify(article_summaries)
+    index2word, tf_idf_results = create_labels(phrase_corpus)
+    create_article_label_csv(tf_idf_results, map_directory)
+    create_label_id_str_csv(map_directory, index2word)
 
 
 if __name__ == '__main__':
