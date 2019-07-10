@@ -150,20 +150,20 @@ def create_svg_file(directory, d):
     d.saveSvg(directory + '/graph.svg')
 
 
-def main(map_directory, width, height, color_palette):
-    articles = get_articles_json(map_directory + "/domain.json")
-    colors = set_colors(map_directory + "/country_labels.csv", color_palette)
+def main(map_directory, width, height, color_palette, label_path):
+    articles = get_articles_json(label_path + "/domain.json")
+    colors = set_colors(label_path + "/final_labels.csv", color_palette)
     sizes = get_sizes(articles)
     drawing = draw_svg(articles, float(width), float(height), colors, sizes)
-    create_svg_file(map_directory, drawing)
+    create_svg_file(label_path, drawing)
 
 
 if __name__ == '__main__':
     import sys
 
-    if len(sys.argv) != 5:
+    if len(sys.argv) != 6:
         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory, width, height, color_palette = sys.argv[1:]
-    main(map_directory, width, height, color_palette)
+    map_directory, width, height, color_palette, label_path = sys.argv[1:]
+    main(map_directory, width, height, color_palette, label_path)

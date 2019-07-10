@@ -25,6 +25,7 @@ do
     python -m cartograph.data.text_getter data/${directories[$i]}
     python -m cartograph.data.label_creator_keywords data/${directories[$i]}
     python -m cartograph.data.label_creator_key_phrases data/${directories[$i]}
+    python -m cartograph.data.label_creator_combined data/${directories[$i]}
     python -m cartograph.data.vector_creator data/${directories[$i]} data/original_nav_vectors.txt.bz2
     python -m cartograph.data.popularity_creator data/${directories[$i]}
 done

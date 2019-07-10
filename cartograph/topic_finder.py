@@ -22,10 +22,11 @@ import logging
 
 from gensim.models import LdaModel, LsiModel, HdpModel
 from gensim.corpora import Dictionary
+from gensim.summarization import textcleaner
 from collections import OrderedDict
 
 
-def create_text_corpus_by_csv(article_summary_csv):
+def create_text_corpus_by_csv(article_text_csv):
     """
     Given the summary of each domain concept, remove stop words, punctuations, numbers, and newline,
     create a bag of words (called corpus) from the texts.
@@ -35,42 +36,47 @@ def create_text_corpus_by_csv(article_summary_csv):
     bigram[texts[0]]  # display the word (bigram) in the first article text
     Reference: https://radimrehurek.com/gensim/models/phrases.html
 
-    :param article_summary_csv:
+    :param article_text_csv:
     :return:
     """
-    df = pd.read_csv(article_summary_csv, encoding='UTF-8')
-    nlp = spacy.load('en')
+    df = pd.read_csv(article_text_csv, encoding='UTF-8')
+    nlp = spacy.load("en_core_web_sm", disable=['ner', 'tagger'])
 
     my_stop_words = ['say', '\'s', 'be', 'says', 'including', 'said', 'named', '\t', 'know', '\n\n', 'Des', ' ']
     for stopword in my_stop_words:
         lexeme = nlp.vocab[stopword]
         lexeme.is_stop = True
 
-    texts, article = [], []
+    sentences = []
     id_to_article_id = {}
 
     for row in df.itertuples():
-        if not isinstance(row.extract, float):
-            id_to_article_id.update({len(id_to_article_id):int(row.article_id)}) # assign id
-            summary = nlp(row.extract.lower())
-            for w in summary:
-                if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
-                    article.append(w.lemma_.strip())
-            texts.append(article)
-            article = []
+        if not isinstance(row.text, float):
+            text_sentences = textcleaner.split_sentences(row.text)
+            cleaned_sentences = []
+
+            for sent in text_sentences:
+                cleaned_sentences.append(nlp(sent.lower()))
+
+            id_to_article_id.update({len(id_to_article_id): int(row.article_id)})  # assign id
+            for sentence in cleaned_sentences:
+                sent = []
+                for w in sentence:
+                    if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
+                        sent.append(w.text.strip())
+                sentences.append(sent)
         else:
             logging.warning("(%d, %s): does not have summary", row.article_id, row.article_name)
             pass
 
-    bigram = gensim.models.Phrases(texts, threshold=8)
-    texts = [bigram[line] for line in texts]
+    bigram = gensim.models.Phrases(sentences, min_count=30)
+    phrases1 = list(bigram[sentences])
+    trigram = gensim.models.Phrases(phrases1, min_count=10)
+    phrases2 = list(trigram[phrases1])
 
-    trigram = gensim.models.Phrases(texts)
-    texts = [trigram[line] for line in texts]
-
-    dictionary = Dictionary(texts)
+    dictionary = Dictionary(phrases2)
     dictionary.filter_extremes(no_below=5, no_above=0.7)
-    corpus = [dictionary.doc2bow(text) for text in texts]
+    corpus = [dictionary.doc2bow(phrase) for phrase in phrases2]
 
     return corpus, dictionary, id_to_article_id
 
@@ -134,9 +140,9 @@ def create_article_df(model, corpus, id_to_article_id):
     return pd.DataFrame(row_list)
 
 
-def main(directory):
-    corpus, dictionary, id_to_article_id = create_text_corpus_by_csv(directory + "/../article_text.csv")
-    num_topics = 8
+def main(directory, data):
+    corpus, dictionary, id_to_article_id = create_text_corpus_by_csv(data + "/article_text.csv")
+    num_topics = 7
     model = run_model(corpus, dictionary, method='LDA', num_topics=num_topics)
     topic_label_distribution_df = create_topic_df(model)
     article_topic_distribution_df = create_article_df(model, corpus, id_to_article_id)
@@ -152,7 +158,7 @@ def main(directory):
     model.save(directory + '/topic_model')
 
 
-main("../data/food/topic")
+main("../study/food/LDA", "../data/food")
 
 # if __name__ == '__main__':
 #     import sys

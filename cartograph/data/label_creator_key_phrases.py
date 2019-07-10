@@ -19,7 +19,7 @@ MAX_PHRASES_PER_ARTICLE = 100  # max phrases retained per article
 nlp = spacy.load("en_core_web_sm", disable=['ner', 'tagger'])
 
 
-def tokenize_sentences(domain_concept, summary):
+def tokenize_sentences(domain_concept, text):
     my_stop_words = ['say', '\'s', 'be', 'says', 'including', 'said', 'named', '\t', 'know', '\n\n', 'Des', ' ', '']
     for stop_word in my_stop_words:
         lexeme = nlp.vocab[stop_word]
@@ -27,11 +27,11 @@ def tokenize_sentences(domain_concept, summary):
 
     sentences = []
 
-    if not isinstance(summary, float):
-        summary_sentences = textcleaner.split_sentences(summary)
+    if not isinstance(text, float):
+        text_sentences = textcleaner.split_sentences(text)
         cleaned_sentences = []
 
-        for sent in summary_sentences:
+        for sent in text_sentences:
             cleaned_sentences.append(nlp(sent.lower()))
 
         for sentence in cleaned_sentences:
@@ -47,7 +47,7 @@ def tokenize_sentences(domain_concept, summary):
     return sentences
 
 
-def phrasify(article_summaries):
+def phrasify(article_text):
     """
     Given the summary of each domain concept, remove stop words, punctuations, numbers, and newline,
     Use gensim to identify phrases within the text. Returns a list of documents, where each document
@@ -55,7 +55,7 @@ def phrasify(article_summaries):
     """
     corpus = []
 
-    for row in article_summaries.itertuples():
+    for row in article_text.itertuples():
         sentences = tokenize_sentences(row.article_name, row.text)
         corpus.extend([(row.article_id, row.article_name, s) for s in sentences])
     sentences = [doc[-1] for doc in corpus]
@@ -72,9 +72,9 @@ def phrasify(article_summaries):
     return phrase_corpus
 
 
-def fetch_key_phrases(domain_concept, summary, bigram, trigram):
+def fetch_key_phrases(domain_concept, text, bigram, trigram):
     key_phrases = set()
-    sentences = tokenize_sentences(domain_concept, summary)
+    sentences = tokenize_sentences(domain_concept, text)
 
     for sentence in sentences:
         bigrams = bigram[sentence]
@@ -86,8 +86,8 @@ def fetch_key_phrases(domain_concept, summary, bigram, trigram):
         lexeme = nlp.vocab[stopword]
         lexeme.is_stop = True
 
-    if not isinstance(summary, float):
-        sum = nlp(summary)
+    if not isinstance(text, float):
+        sum = nlp(text)
         cleaned_summary = ''
         for w in sum:
             if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
@@ -152,8 +152,8 @@ def main(map_directory):
     if not os.path.exists(map_directory):
         os.makedirs(map_directory)
 
-    article_summaries = pd.read_csv(map_directory + '/article_text.csv')
-    phrase_corpus = phrasify(article_summaries)
+    article_text = pd.read_csv(map_directory + '/article_text.csv')
+    phrase_corpus = phrasify(article_text)
     index2word, tf_idf_results = create_labels(phrase_corpus)
     create_article_label_csv(tf_idf_results, map_directory)
     create_label_id_str_csv(map_directory, index2word)

@@ -44,17 +44,18 @@ def main(experiment_directory, evaluation_json, params_json, graph_path):
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         sys.stderr.write('Usage: %s map_directory augmentation_method' % sys.argv[0])
         sys.exit(1)
 
     experiment_directory = sys.argv[1]
-    evaluation_json = experiment_directory + "/evaluation.json"
+    label_path = sys.argv[2]
+    evaluation_json = label_path + "/evaluation.json"
     params_json = experiment_directory + "/params.json"
-    graph_path = experiment_directory + "/graph.svg"
+    graph_path = label_path + "/graph.svg"
 
-    file = open(experiment_directory + "/index.html", "w+")
-    file.write(main(experiment_directory, evaluation_json, params_json, graph_path))
+    file = open(label_path + "/index.html", "w+")
+    file.write(main(label_path, evaluation_json, params_json, graph_path))
     file.close()
 
 

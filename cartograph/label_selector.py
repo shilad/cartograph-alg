@@ -7,6 +7,7 @@ import argparse
 import numpy as np
 import pandas as pd
 from gensim.parsing.porter import PorterStemmer
+import os
 
 
 def add_country_label_counts(labels_df):
@@ -92,7 +93,10 @@ def get_top_labels(country_scores, label_score):
     return top_labels
 
 
-def main(experiment_dir, article_labels, percentile, label_score):
+def main(experiment_dir, article_labels, percentile, label_score, label_path):
+    if not os.path.exists(label_path):
+        os.makedirs(label_path)
+
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
         mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
@@ -114,7 +118,7 @@ def main(experiment_dir, article_labels, percentile, label_score):
     df = pd.DataFrame(final_labels,  index=[0]).T
     df['country'] = df.index
     df = df.set_index('country')
-    df.to_csv(experiment_dir + '/country_labels.csv', index=True)
+    df.to_csv(label_path + '/final_labels.csv', index=True)
 
     # # Get top label candidates
     top = get_top_labels(country_labels, label_score)
@@ -126,7 +130,7 @@ def main(experiment_dir, article_labels, percentile, label_score):
     top_df = pd.DataFrame.from_records(top, columns=column_names)
     top_df['country'] = top_df.index
     top_df = top_df.set_index('country')
-    top_df.to_csv(experiment_dir + '/top_labels.csv')
+    top_df.to_csv(label_path + '/top_labels.csv')
 
 
 if __name__ == '__main__':
@@ -136,6 +140,7 @@ if __name__ == '__main__':
     parser.add_argument('--label_names', required=True)
     parser.add_argument('--percentile', required=True)
     parser.add_argument('--label_score', required=True)
+    parser.add_argument('--label_path', required=True)
 
     args = parser.parse_args()
 
@@ -145,4 +150,4 @@ if __name__ == '__main__':
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
 
-    main(args.experiment, article_labels, args.percentile, args.label_score)
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.label_path)

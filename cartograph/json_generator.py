@@ -11,12 +11,12 @@ import pandas as pd
 from functools import reduce
 
 
-def create_merged_df(map_directory, experiment_directory):
+def create_merged_df(map_directory, experiment_directory, label_path):
     domain_concepts_df = pd.read_csv(map_directory+'/domain_concept.csv')
     pop_scores_df = pd.read_csv(map_directory + '/popularity_score.csv')
     xy_df = pd.read_csv(experiment_directory + '/xy_embeddings.csv')
 
-    country_label_df = pd.read_csv(experiment_directory + '/country_labels.csv')
+    country_label_df = pd.read_csv(label_path + '/final_labels.csv')
     cluster_groups_df = pd.read_csv(experiment_directory + '/cluster_groups.csv')
     countries_df = pd.merge(cluster_groups_df, country_label_df, on='country')\
         .drop(['country'], axis=1).rename({'0': 'country'}, axis=1)
@@ -40,23 +40,23 @@ def create_list_article_data(merged_df, method):
     return article_data
 
 
-def generate_json(experiment_directory, article_data):
-    with open(experiment_directory + '/domain.json', 'w') as outfile:
+def generate_json(label_path, article_data):
+    with open(label_path + '/domain.json', 'w') as outfile:
         json.dump(article_data, outfile)
     return
 
 
-def main(map_directory, experiment_directory, method):
-    merged_article_df = create_merged_df(map_directory, experiment_directory)
+def main(map_directory, experiment_directory, method, label_path):
+    merged_article_df = create_merged_df(map_directory, experiment_directory, label_path)
     article_data = create_list_article_data(merged_article_df, method)
-    generate_json(experiment_directory, article_data)
+    generate_json(label_path, article_data)
 
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 5:
         sys.stderr.write('Usage: %s map_directory experiment_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory, experiment_directory, method = sys.argv[1:]
-    main(map_directory, experiment_directory, method)
+    map_directory, experiment_directory, method, label_path = sys.argv[1:]
+    main(map_directory, experiment_directory, method, label_path)
