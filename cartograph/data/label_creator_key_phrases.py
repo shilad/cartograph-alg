@@ -2,11 +2,9 @@
     Given domain concepts, output keyword_names.csv (label id and label string) and
     article_keywords.csv (article id and label id)
     Author: Yuren "Rock" Pang and Lily Irvin
-
     To run spacy, do: python -m spacy download en_core_web_sm
 """
 from collections import defaultdict
-
 from gensim import models
 from gensim.summarization import keywords, textcleaner
 import pandas as pd
@@ -16,8 +14,7 @@ import gensim
 import logging
 
 
-
-MAX_PHRASES_PER_ARTICLE = 100 # max phrases retained per article
+MAX_PHRASES_PER_ARTICLE = 100  # max phrases retained per article
 
 nlp = spacy.load("en_core_web_sm", disable=['ner', 'tagger'])
 

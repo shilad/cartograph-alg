@@ -11,14 +11,14 @@ set -e
 set -x
 
 
-projects=(Technology Internet)
-directories=(technology internet)
+projects=(Food Internet Media Science Technology)
+directories=(food internet media science technology)
 
 
-for i in {0..1}
+for i in {0..4}
 do
     echo ${projects[$i]}
-    python -m cartograph.data.domain_concept_creator data/${directories[$i]} ${projects[$i]} 5000
+    python -m cartograph.data.domain_concept_creator data/${directories[$i]} ${projects[$i]} 5000 # won't work for science
     python -m cartograph.data.label_creator_categories data/${directories[$i]}
     python -m cartograph.data.label_creator_hierarchical_cat data/${directories[$i]}
     python -m cartograph.data.label_creator_links data/${directories[$i]}
