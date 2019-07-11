@@ -105,7 +105,7 @@ def create_topic_df(model):
     row_list = []
 
     for topic in topics:
-        row_dic.update({'topic': topic[0]})
+        row_dic.update({'country': topic[0]})
         topic_with_prob_str = topic[1].split(' + ')
         for index, label in enumerate(topic_with_prob_str):
             prob_label = label.split('*')
@@ -130,7 +130,7 @@ def create_article_df(model, corpus, id_to_article_id):
         document_topics = model.get_document_topics(article)
         for prob_tuple in document_topics:
             row_list.append({'article_id': id_to_article_id[index],
-                             'topic_id': prob_tuple[0],
+                             'country': prob_tuple[0],
                              'prob': prob_tuple[1]})
     return pd.DataFrame(row_list)
 
