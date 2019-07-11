@@ -24,6 +24,7 @@ from gensim.models import LdaModel, LsiModel, HdpModel
 from gensim.corpora import Dictionary
 from gensim.summarization import textcleaner
 from collections import OrderedDict
+import os
 
 
 def create_text_corpus_by_csv(article_text_csv):
@@ -58,15 +59,15 @@ def create_text_corpus_by_csv(article_text_csv):
             for sent in text_sentences:
                 cleaned_sentences.append(nlp(sent.lower()))
 
-            id_to_article_id.update({len(id_to_article_id): int(row.article_id)})  # assign id
             for sentence in cleaned_sentences:
                 sent = []
+                id_to_article_id.update({len(id_to_article_id): int(row.article_id)})  # assign id
                 for w in sentence:
                     if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
                         sent.append(w.text.strip())
                 sentences.append(sent)
         else:
-            logging.warning("(%d, %s): does not have summary", row.article_id, row.article_name)
+            logging.warning("(%d, %s): does not have text available", row.article_id, row.article_name)
             pass
 
     bigram = gensim.models.Phrases(sentences, min_count=30)
@@ -141,6 +142,9 @@ def create_article_df(model, corpus, id_to_article_id):
 
 
 def main(directory, data):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
     corpus, dictionary, id_to_article_id = create_text_corpus_by_csv(data + "/article_text.csv")
     num_topics = 7
     model = run_model(corpus, dictionary, method='LDA', num_topics=num_topics)
@@ -158,14 +162,14 @@ def main(directory, data):
     model.save(directory + '/topic_model')
 
 
-main("../study/food/LDA", "../data/food")
+# main("../study/food/LDA", "../data/food")
 
-# if __name__ == '__main__':
-#     import sys
-#
-#     if len(sys.argv) != 2:
-#         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-#         sys.exit(1)
-#
-#     directory = sys.argv[1]
-#     main(directory)
+if __name__ == '__main__':
+    import sys
+
+    if len(sys.argv) != 3:
+        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
+        sys.exit(1)
+
+    directory, data = sys.argv[1:]
+    main(directory, data)

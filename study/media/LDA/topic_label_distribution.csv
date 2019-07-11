@@ -1,0 +1,8 @@
+topic,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
+0,external_links,0.014,isbn,0.01,john,0.009,new_york,0.009,service,0.009,american,0.009,journalism,0.008,chicago,0.007,david,0.007,english,0.006
+1,film,0.009,company,0.009,group,0.008,owned,0.007,political,0.007,new,0.007,business,0.006,communication,0.006,cbs,0.005,based,0.005
+2,music,0.016,newspapers,0.014,history,0.011,women,0.01,paper,0.009,journal,0.009,published,0.009,books,0.006,magazine,0.006,book,0.005
+3,media,0.047,network,0.014,newspaper,0.013,bbc_sport,0.011,press,0.011,companies,0.009,government,0.009,state,0.008,county,0.007,united_states,0.007
+4,television,0.018,radio,0.017,tv,0.016,video,0.014,media,0.012,stations,0.008,broadcasting,0.008,available,0.007,digital,0.006,image,0.006
+5,channel,0.019,references,0.017,list,0.017,information,0.011,time,0.009,fm,0.008,national,0.008,news,0.007,local,0.007,sports,0.007
+6,news,0.028,daily,0.009,category,0.009,september,0.009,reporting,0.009,year,0.008,january,0.007,times,0.007,april,0.007,october,0.007

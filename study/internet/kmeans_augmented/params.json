@@ -1,0 +1,5 @@
+{ "vectors" : "augmented" }
+{ "num_clusters" : "7" }
+{ "xy_embedding" : "tsne" }
+{ "percentile" : "1" }
+{ "labeling" : "tfidf" }
