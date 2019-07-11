@@ -22,62 +22,57 @@ import logging
 
 from gensim.models import LdaModel, LsiModel, HdpModel
 from gensim.corpora import Dictionary
-from gensim.summarization import textcleaner
 from collections import OrderedDict
 import os
 
 
+nlp = spacy.load('en_core_web_sm')
+
+
 def create_text_corpus_by_csv(article_text_csv):
+
     """
     Given the summary of each domain concept, remove stop words, punctuations, numbers, and newline,
     create a bag of words (called corpus) from the texts.
-
     To get bigram, gensim.models.Phrases() is performed. To get trigram, perform Phrases() on the bigram again
     bigram = gensim.models.Phrases(texts) # text is a list of list
     bigram[texts[0]]  # display the word (bigram) in the first article text
     Reference: https://radimrehurek.com/gensim/models/phrases.html
-
-    :param article_text_csv:
+    :param article_summary_csv:
     :return:
     """
     df = pd.read_csv(article_text_csv, encoding='UTF-8')
-    nlp = spacy.load("en_core_web_sm", disable=['ner', 'tagger'])
 
     my_stop_words = ['say', '\'s', 'be', 'says', 'including', 'said', 'named', '\t', 'know', '\n\n', 'Des', ' ']
     for stopword in my_stop_words:
         lexeme = nlp.vocab[stopword]
         lexeme.is_stop = True
 
-    sentences = []
+    texts, article = [], []
     id_to_article_id = {}
 
     for row in df.itertuples():
         if not isinstance(row.text, float):
-            text_sentences = textcleaner.split_sentences(row.text)
-            cleaned_sentences = []
-
-            for sent in text_sentences:
-                cleaned_sentences.append(nlp(sent.lower()))
-
-            for sentence in cleaned_sentences:
-                sent = []
-                id_to_article_id.update({len(id_to_article_id): int(row.article_id)})  # assign id
-                for w in sentence:
-                    if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
-                        sent.append(w.text.strip())
-                sentences.append(sent)
+            id_to_article_id.update({len(id_to_article_id):int(row.article_id)})  # assign id
+            summary = nlp(row.text.lower())
+            for w in summary:
+                if w.text != '\n' and not w.is_stop and not w.is_punct and not w.like_num and len(w.text) > 1:
+                    article.append(w.lemma_.strip())
+            texts.append(article)
+            article = []
         else:
-            logging.warning("(%d, %s): does not have text available", row.article_id, row.article_name)
+            logging.warning("(%d, %s): does not have summary", row.article_id, row.article_name)
             pass
 
-    bigram = gensim.models.Phrases(sentences, min_count=30)
-    phrases1 = list(bigram[sentences])
-    trigram = gensim.models.Phrases(phrases1, min_count=10)
-    phrases2 = list(trigram[phrases1])
+    bigram = gensim.models.Phrases(texts, threshold=8)
+    texts = [bigram[line] for line in texts]
 
-    dictionary = Dictionary(phrases2)
+    trigram = gensim.models.Phrases(texts)
+    texts = [trigram[line] for line in texts]
+
+    dictionary = Dictionary(texts)
     dictionary.filter_extremes(no_below=5, no_above=0.7)
-    corpus = [dictionary.doc2bow(phrase) for phrase in phrases2]
+    corpus = [dictionary.doc2bow(text) for text in texts]
 
     return corpus, dictionary, id_to_article_id
 
@@ -101,7 +96,6 @@ def create_topic_df(model):
     """
     The output format is: topic, word1, prob1, word2, prob2 ...
     :param model:
-    :param corpus:
     :return:
     """
     # the topic format [(0, '0.337*"food" + ...'), (1, '0.123*"product"...')
@@ -161,8 +155,6 @@ def main(directory, data):
     # Save the model
     model.save(directory + '/topic_model')
 
-
-# main("../study/food/LDA", "../data/food")
 
 if __name__ == '__main__':
     import sys
