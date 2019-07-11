@@ -1,8 +1,8 @@
-topic,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
-0,external_links,0.014,isbn,0.01,john,0.009,new_york,0.009,service,0.009,american,0.009,journalism,0.008,chicago,0.007,david,0.007,english,0.006
-1,film,0.009,company,0.009,group,0.008,owned,0.007,political,0.007,new,0.007,business,0.006,communication,0.006,cbs,0.005,based,0.005
-2,music,0.016,newspapers,0.014,history,0.011,women,0.01,paper,0.009,journal,0.009,published,0.009,books,0.006,magazine,0.006,book,0.005
-3,media,0.047,network,0.014,newspaper,0.013,bbc_sport,0.011,press,0.011,companies,0.009,government,0.009,state,0.008,county,0.007,united_states,0.007
-4,television,0.018,radio,0.017,tv,0.016,video,0.014,media,0.012,stations,0.008,broadcasting,0.008,available,0.007,digital,0.006,image,0.006
-5,channel,0.019,references,0.017,list,0.017,information,0.011,time,0.009,fm,0.008,national,0.008,news,0.007,local,0.007,sports,0.007
-6,news,0.028,daily,0.009,category,0.009,september,0.009,reporting,0.009,year,0.008,january,0.007,times,0.007,april,0.007,october,0.007
+country,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
+0,medium,0.018,newspaper,0.016,news,0.012,company,0.009,radio,0.006,group,0.006,publish,0.006,paper,0.006,country,0.005,government,0.005
+1,report,0.006,state,0.005,time,0.005,news,0.005,american,0.004,write,0.004,story,0.004,claim,0.003,journalist,0.003,new_york_time,0.003
+2,medium,0.01,use,0.007,information,0.005,advertising,0.004,example,0.004,create,0.004,work,0.004,form,0.004,new,0.004,communication,0.003
+3,film,0.011,year,0.005,series,0.005,time,0.005,magazine,0.004,work,0.004,award,0.004,feature,0.004,company,0.004,new,0.003
+4,medium,0.014,woman,0.01,social_medium,0.005,people,0.005,communication,0.004,online,0.004,study,0.004,website,0.004,site,0.004,work,0.004
+5,network,0.012,channel,0.01,broadcast,0.008,television,0.007,station,0.006,company,0.006,tv,0.006,video,0.006,service,0.006,program,0.005
+6,music,0.028,song,0.008,record,0.006,play,0.006,sound,0.006,artist,0.006,jazz,0.006,band,0.005,blue,0.005,man,0.004

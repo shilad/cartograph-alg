@@ -14,13 +14,13 @@ set -x
 
 
 # Assign wikiproject for data directory
-projects=(food internet media science technology)
+projects=(media science technology)
 
 
 # Step 0: Import the experiment utilities functions
 source ./bin/experiment-utils.sh
 
-for i in {0..4}
+for i in {0..2}
 do
     echo ${projects[$i]}
     # Step 1: Get the experiment id. This is *not* map specific.
