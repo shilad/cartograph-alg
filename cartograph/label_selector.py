@@ -110,7 +110,10 @@ def main(experiment_dir, article_labels, percentile, label_score, label_path):
     article_labels = add_tfidf_scores(article_labels)
     article_labels = add_pmi(article_labels)
 
-    country_labels = article_labels.drop(columns=['article_id', 'distance']).drop_duplicates()
+    if 'distance' in article_labels.columns:
+        country_labels = article_labels.drop(columns=['article_id', 'distance']).drop_duplicates()
+    else:
+        country_labels = article_labels.drop(columns=['article_id']).drop_duplicates()
 
     final_labels = assign_country_label_ids(country_labels, label_score)
 

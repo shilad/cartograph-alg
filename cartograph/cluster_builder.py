@@ -119,5 +119,5 @@ if __name__ == '__main__':
         sys.stderr.write("Unkonwn clustering method: %s\n" + args.clustering)
         sys.exit(1)
 
-    cluster_df.to_csv('%s/cluster_groups.csv' % (args.experiment, ), index=False)
+    cluster_df.to_csv('%s/article_topic_distribution.csv' % (args.experiment, ), index=False)
 

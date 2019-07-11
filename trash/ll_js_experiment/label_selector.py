@@ -81,8 +81,8 @@ def create_csv(country_labels, directory):
 
 def main(map_directory):
     labels_df = add_countries(map_directory + '/article_categories.csv',
-                              map_directory + '/cluster_groups.csv')
-    num_countries = get_num_countries(map_directory + '/cluster_groups.csv')
+                              map_directory + '/article_topic_distribution.csv')
+    num_countries = get_num_countries(map_directory + '/article_topic_distribution.csv')
     country_label_counts = get_country_label_counts(labels_df, num_countries)
     total_counts = get_total_counts(labels_df)
     tfidf_scores = get_tfidf_scores(labels_df, country_label_counts, total_counts, num_countries)

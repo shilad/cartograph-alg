@@ -135,9 +135,34 @@ def create_article_df(model, corpus, id_to_article_id):
     return pd.DataFrame(row_list)
 
 
+def create_cluster_df(article_topic_distribution_df):
+    article_id = 0
+    cluster_groups = {}
+    country_scores = []
+
+    for row in article_topic_distribution_df.itertuples():
+        if article_id == row.article_id:
+            country_scores.append((row.country, row.prob))
+        else:
+            country_scores.sort(key=lambda tup: tup[1], reverse=True)
+            cluster_groups[row.article_id - 1] = country_scores[0][0]
+            article_id += 1
+            country_scores.clear()
+            country_scores.append((row.country, row.prob))
+
+    cluster_groups_df = pd.DataFrame.from_dict(cluster_groups, orient='index', columns=['country'])
+    cluster_groups_df['article_id'] = cluster_groups_df.index
+    cluster_groups_df = cluster_groups_df.set_index('article_id')
+    return cluster_groups_df
+
+
 def main(directory, data):
     if not os.path.exists(directory):
         os.makedirs(directory)
+
+    label_directory = directory + '/labels/LDA_labels'
+    if not os.path.exists(label_directory):
+        os.makedirs(label_directory)
 
     corpus, dictionary, id_to_article_id = create_text_corpus_by_csv(data + "/article_text.csv")
     num_topics = 7
@@ -145,8 +170,11 @@ def main(directory, data):
     topic_label_distribution_df = create_topic_df(model)
     article_topic_distribution_df = create_article_df(model, corpus, id_to_article_id)
 
-    topic_label_distribution_df.to_csv(directory + '/topic_label_distribution.csv', index=False)
+    topic_label_distribution_df.to_csv(label_directory + '/LDA_labels.csv', index=False)
     article_topic_distribution_df.to_csv(directory + "/article_topic_distribution.csv", index=False)
+
+    country_clusters = create_cluster_df(article_topic_distribution_df)
+    country_clusters.to_csv(directory + 'cluster_groups.csv', index=False)
 
     # Average topic coherence is the sum of topic coherences of all topics, divided by the number of topics.
     avg_topic_coherence = sum([t[1] for t in model.top_topics(corpus)]) / num_topics

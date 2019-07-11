@@ -10,7 +10,7 @@ import umap
 # how to find a spread? and min_dist? figure out parameters for UMAP
 def create_embeddings(csv, dr_method='tsne'):
     df = pd.read_csv(csv)
-    clusters = pd.read_csv('data/food/cluster_groups.csv')
+    clusters = pd.read_csv('data/food/article_topic_distribution.csv')
     df = pd.merge(df, clusters, on='article_id')
     points = TSNE().fit_transform(df.iloc[:, 2:-1]) if dr_method == 'tsne' else umap.UMAP(metric='cosine',
                                                                                         spread=10.0).fit_transform(df.iloc[:, 2:-1], y=df.iloc[:, -1])

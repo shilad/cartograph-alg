@@ -100,7 +100,7 @@ python -m cartograph.label_selector \
 #    --vectors ${exp_dir}/vanilla_vectors.csv \
 #    --label_vectors data/${project}/article_labels_combined.csv \
 #    --method cluster \
-#    --cluster_vectors ${exp_dir}/cluster_groups.csv \
+#    --cluster_vectors ${exp_dir}/article_topic_distribution.csv \
 #    --output_file ${vector_format_for_embedding}
 
 

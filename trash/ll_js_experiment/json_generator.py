@@ -28,7 +28,7 @@ def get_labels(map_directory):
 
 
 def get_countries(map_directory):
-    return pd.read_csv(map_directory + 'cluster_groups.csv')
+    return pd.read_csv(map_directory + 'article_topic_distribution.csv')
 
 
 def get_xy(map_directory):

@@ -14,13 +14,20 @@ set -x
 
 
 # Assign wikiproject for data directory
-projects=(media science technology)
+projects=(food internet media science technology)
+
+
+# Assign variable name for label candidate we want (categories, links, keyword, etc)
+label_type=(h_cat links key_phrases key_words)
+article_label_csv=(article_hierarchical_categories.csv article_links.csv article_keyphrases.csv article_keywords.csv)
+label_name_csv=(hierarchical_category_names.csv link_names.csv keyphrases_names.csv keyword_names.csv)
+label_score=tfidf
 
 
 # Step 0: Import the experiment utilities functions
 source ./bin/experiment-utils.sh
 
-for i in {0..2}
+for i in {0..4}
 do
     echo ${projects[$i]}
     # Step 1: Get the experiment id. This is *not* map specific.
@@ -51,7 +58,21 @@ do
     exp_dir=$(prepare_experiment_dir ${exp_id})
 
 
-    # Step 3: Run LDA:
-    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]}
+#    # Step 3: Run LDA:
+#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]}
+
+    for x in {0..3}
+    do
+        label_path=${exp_dir}/labels/${label_type[$x]}
+
+        # Step 4: Run other labeling schemes:
+        python -m cartograph.label_selector \
+        --experiment ${exp_dir} \
+        --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
+        --label_names data/${projects[$i]}/${label_name_csv[$x]} \
+        --label_score ${label_score} \
+        --percentile 1 \
+        --label_path ${label_path}
+    done
 done
 #!/usr/bin/env bash
