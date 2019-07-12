@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,restaurant,new,work,opened,award,time,years,york,book,chef
-1,studies,effects,research,increase,use,cause,acid,high,humans,contain
-2,prohibition,government,beverage,state,drinking,allow,liquor,law,alcohol laws,alcohol
-3,company,brands,operations,market,sales,products,united,sold,advertising,business
-4,wines,grapes,producers,vineyards,vines,region,century,bottle,french,winemaking
-5,dishes,cooked,references,preparation,traditional,leaves,common,served,eaten,varieties
-6,beers,brew,brewery,ale,sea,waters,fisheries,fishing,brewers,north
+0,company,brands,products,market,united,sold,sales,advertising,states,operations
+1,dish,cooked,prepared,served,traditional,ingredients,popular,cuisine,references,sauce
+2,effect,studies,increase,levels,research,reduce,results,health,contain,acids
+3,leaves,species,plants,grow,flowers,cultivation,uses,seeds,north,fruits
+4,vineyards,wines,grapes,producers,vines,region,winery,winemaking,france,varieties
+5,beers,century,brewing,brewery,ale,drink,book,history,english,england
+6,restaurants,opened,new,location,business,year,city,award,time,featured

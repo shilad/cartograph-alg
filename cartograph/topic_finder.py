@@ -92,14 +92,14 @@ def run_model(corpus, dictionary, method='LDA', num_topics=8):
     # pyLDAvis.save_html(vis, 'lda_vis_text.html')
 
 
-def create_topic_df(model):
+def create_topic_df(model, num_words):
     """
     The output format is: topic, word1, prob1, word2, prob2 ...
     :param model:
     :return:
     """
     # the topic format [(0, '0.337*"food" + ...'), (1, '0.123*"product"...')
-    topics = model.show_topics(num_words=10)
+    topics = model.show_topics(num_words=int(num_words))
 
     row_dic = OrderedDict()
     row_list = []
@@ -135,28 +135,7 @@ def create_article_df(model, corpus, id_to_article_id):
     return pd.DataFrame(row_list)
 
 
-def create_cluster_df(article_topic_distribution_df):
-    article_id = 0
-    cluster_groups = {}
-    country_scores = []
-
-    for row in article_topic_distribution_df.itertuples():
-        if article_id == row.article_id:
-            country_scores.append((row.country, row.prob))
-        else:
-            country_scores.sort(key=lambda tup: tup[1], reverse=True)
-            cluster_groups[row.article_id - 1] = country_scores[0][0]
-            article_id += 1
-            country_scores.clear()
-            country_scores.append((row.country, row.prob))
-
-    cluster_groups_df = pd.DataFrame.from_dict(cluster_groups, orient='index', columns=['country'])
-    cluster_groups_df['article_id'] = cluster_groups_df.index
-    cluster_groups_df = cluster_groups_df.set_index('article_id')
-    return cluster_groups_df
-
-
-def main(directory, data):
+def main(directory, data, num_words, label_file, article_file):
     if not os.path.exists(directory):
         os.makedirs(directory)
 
@@ -167,14 +146,11 @@ def main(directory, data):
     corpus, dictionary, id_to_article_id = create_text_corpus_by_csv(data + "/article_text.csv")
     num_topics = 7
     model = run_model(corpus, dictionary, method='LDA', num_topics=num_topics)
-    topic_label_distribution_df = create_topic_df(model)
+    topic_label_distribution_df = create_topic_df(model, num_words)
     article_topic_distribution_df = create_article_df(model, corpus, id_to_article_id)
 
-    topic_label_distribution_df.to_csv(label_directory + '/LDA_labels.csv', index=False)
-    article_topic_distribution_df.to_csv(directory + "/article_topic_distribution.csv", index=False)
-
-    country_clusters = create_cluster_df(article_topic_distribution_df)
-    country_clusters.to_csv(directory + 'cluster_groups.csv', index=False)
+    topic_label_distribution_df.to_csv(label_directory + label_file, index=False)
+    article_topic_distribution_df.to_csv(directory + article_file, index=False)
 
     # Average topic coherence is the sum of topic coherences of all topics, divided by the number of topics.
     avg_topic_coherence = sum([t[1] for t in model.top_topics(corpus)]) / num_topics
@@ -187,9 +163,9 @@ def main(directory, data):
 if __name__ == '__main__':
     import sys
 
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 6:
         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
         sys.exit(1)
 
-    directory, data = sys.argv[1:]
-    main(directory, data)
+    directory, data, num_words, label_file, article_file = sys.argv[1:]
+    main(directory, data, num_words, label_file, article_file)

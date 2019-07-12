@@ -14,7 +14,7 @@ set -x
 
 
 # Assign wikiproject for data directory
-projects=(food internet media science technology)
+projects=(internet media science technology)
 
 
 # Assign variable name for label candidate we want (categories, links, keyword, etc)
@@ -27,7 +27,7 @@ label_score=tfidf
 # Step 0: Import the experiment utilities functions
 source ./bin/experiment-utils.sh
 
-for i in {0..4}
+for i in {0..3}
 do
     echo ${projects[$i]}
     # Step 1: Get the experiment id. This is *not* map specific.
@@ -58,21 +58,27 @@ do
     exp_dir=$(prepare_experiment_dir ${exp_id})
 
 
-#    # Step 3: Run LDA:
-#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]}
+    # Step 3: Run LDA:
+#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 10 /LDA_labels.csv /article_topic_distribution.csv
+    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 50 /LDA_labels_50.csv /article_topic_distribution_50.csv
 
-    for x in {0..3}
-    do
-        label_path=${exp_dir}/labels/${label_type[$x]}
 
-        # Step 4: Run other labeling schemes:
-        python -m cartograph.label_selector \
-        --experiment ${exp_dir} \
-        --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
-        --label_names data/${projects[$i]}/${label_name_csv[$x]} \
-        --label_score ${label_score} \
-        --percentile 1 \
-        --label_path ${label_path}
-    done
+    # Step 4: create cluster csv for label_selector:
+#    python -m cartograph.LDA_cluster_builder ${exp_dir}
+
+
+#    for x in {0..3}
+#    do
+#        label_path=${exp_dir}/labels/${label_type[$x]}
+#
+#        # Step 4: Run other labeling schemes:
+#        python -m cartograph.label_selector \
+#        --experiment ${exp_dir} \
+#        --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
+#        --label_names data/${projects[$i]}/${label_name_csv[$x]} \
+#        --label_score ${label_score} \
+#        --percentile 1 \
+#        --label_path ${label_path}
+#    done
 done
 #!/usr/bin/env bash

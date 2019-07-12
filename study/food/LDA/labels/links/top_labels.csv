@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,restaurant,New York City,chef,The New York Times,Food Network,Michelin star,restaurateur,Manhattan,celebrity chef,cookbook
-1,food,protein,carbohydrate,organic compound,fat,maize,glucose,dietary supplement,agriculture,wheat
-2,alcoholic beverage,coffee,espresso,Coffea arabica,alcohol ,coffee bean,Australia,Turkey,Alcohol and health,Robusta coffee
-3,soft drink,United States,The Coca-Cola Company,United Kingdom,Canada,fast food,supermarket,restaurant chain,PepsiCo,chocolate
-4,wine,cocktail,grape,France,Italy,grape variety,French wine,Cabernet Sauvignon,Chardonnay,ethanol
-5,fruit,flowering plant,genus,India,pork,bread,vegetable,cultivar,rice,sugar
-6,beer,species,brewery,Atlantic Ocean,mollusc,fish,common name,family ,Black Sea,Mediterranean Sea
+0,soft drink,The Coca-Cola Company,United Kingdom,chocolate,PepsiCo,brand,Coca-Cola,Nestlé,Canada,coffee
+1,pork,beef,rice,cheese,onion,sugar,tomato,bread,garlic,meat
+2,carbohydrate,protein,food,organic compound,World Health Organization,wheat,ethanol,fat,glucose,agriculture
+3,species,genus,flowering plant,fruit,family ,cultivar,Carl Linnaeus,tree,common name,North America
+4,wine,France,grape,grape variety,French wine,Cabernet Sauvignon,Chardonnay,Jancis Robinson,Merlot,body 
+5,beer,cocktail,brewery,brewing,gin,alcoholic beverage,England,Scotland,vodka,Germany
+6,United States,restaurant,New York City,fast food,chef,restaurant chain,The New York Times,Food Network,hamburger,Michelin star
