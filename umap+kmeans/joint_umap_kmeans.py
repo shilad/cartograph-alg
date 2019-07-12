@@ -68,9 +68,9 @@ class K_Means:
             high_dim_dist = cosine_distances(data, centroids)  # get cosine distance betw each point and the cenroids, N x k
             assert high_dim_dist.shape == (N, K)
             neighbor_score = kmeans_modified(embeddings, article_and_group.country.values, self.k)  # get the homogeneity vector, 4097 *
-            print(neighbor_score)
+            # print(neighbor_score)
 
-            dis_mat = high_dim_dist + neighbor_score  # get the distance matrix, 4097 * 8
+            dis_mat = high_dim_dist * 10 + neighbor_score * 2 # get the distance matrix, 4097 * 8
             best_group = np.argmin(dis_mat, axis=1)
             assert best_group.shape == (N,)
 
@@ -114,6 +114,8 @@ class K_Means:
             assert high_dim_dist.shape == (N, K)
 
             # Calculate normalized euclidean distance
+            neighbor_score = kmeans_modified(embeddings, article_and_group.country.values, self.k)  # get the homogeneity vector, 4097 *
+
             low_dim_dist = euclidean_distances(embeddings, centroids2)
             xy_range = (np.max(embeddings) - np.min(embeddings))
             max_dist = np.sqrt(xy_range * xy_range + xy_range * xy_range)
@@ -154,9 +156,8 @@ class K_Means:
         return best_group
 
 
-def kmeans_modified(embedding, groups, k):
+def kmeans_modified(embedding, groups, k, n_neighbors=20):
     n = embedding.shape[0]
-    n_neighbors = 20
 
     # Get nearest neighbors and distances
     nbrs = NearestNeighbors(n_neighbors=n_neighbors+1, algorithm='kd_tree').fit(embedding)
@@ -199,7 +200,7 @@ if __name__ == '__main__':
     init_y.to_csv('%s/original_xy_embeddings.csv' % (args.experiment, ), index=False)
     init_groups.to_csv('%s/original_cluster_groups.csv' % (args.experiment, ), index=False)
 
-    joint_fit_groups = km.fit_with_y2(X, init_y, init_groups)
+    joint_fit_groups = km.fit_with_y(X, init_y, init_groups)
     joint_fit_groups = pd.DataFrame(joint_fit_groups)
     joint_fit_groups = ids.join(joint_fit_groups)
     joint_fit_groups.columns = ['article_id', 'country']
