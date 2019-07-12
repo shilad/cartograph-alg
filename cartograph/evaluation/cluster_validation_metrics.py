@@ -7,6 +7,8 @@ import pandas as pd
 import sklearn.metrics as metrics
 from pandas._libs import json
 from s_dbw import S_Dbw
+from sklearn.metrics.cluster import adjusted_rand_score
+from sklearn.metrics.cluster import adjusted_mutual_info_score
 
 
 def get_sdbw_score(xy_list, labels):
@@ -43,15 +45,26 @@ def get_ch_score(xy_list, labels):
 
 
 def main():
+
     article_vectors = pd.read_csv(args.vectors)
     cluster_groups = pd.read_csv(args.groups).drop(columns=['article_id'])
     if 'distance' in cluster_groups.columns:
         cluster_groups = pd.read_csv(args.groups).drop(columns=['distance', 'article_id'])
-    silhouette_score = get_silhouette_score(article_vectors, cluster_groups.values.ravel())
+    # silhouette_score = get_silhouette_score(article_vectors, cluster_groups.values.ravel())
     # sdb_w_score = get_sdbw_score(article_vectors, cluster_groups)
-    ch_score = get_ch_score(article_vectors, cluster_groups.values.ravel())
-    print(str(json.dumps({'silhouette score': silhouette_score})))
-    print(str(json.dumps({'ch score:': ch_score})))
+    # ch_score = get_ch_score(article_vectors, cluster_groups.values.ravel())
+
+    cluster_a = pd.read_csv(args.experiment + '/original_cluster_groups.csv')
+    cluster_b = pd.read_csv(args.experiment + '/cluster_groups.csv')
+
+    rand_index = adjusted_rand_score(cluster_a['country'], cluster_b['country'])
+    mutual_info = adjusted_mutual_info_score(cluster_a['country'], cluster_b['country'])
+
+    print(str(json.dumps({'rand_index score': rand_index})))
+    print(str(json.dumps({'mutual_info score': mutual_info})))
+
+    # print(str(json.dumps({'silhouette score': silhouette_score})))
+    # print(str(json.dumps({'ch score:': ch_score})))
 
     # logging.warning("Modularity Score: %.6f", mod_score)
 
