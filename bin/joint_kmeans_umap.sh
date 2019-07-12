@@ -20,7 +20,7 @@ source ./bin/experiment-utils.sh
 
 # Step 1: Get the experiment id. This is *not* map specific.
 # An experiment id can be used for multiple maps.
-exp_id=0035
+exp_id=0036
 
 # $(get_experiment_id)
 
@@ -52,13 +52,13 @@ python -m cartograph.label_selector \
 
 
 # Step 6: Generate JSON
-python -m cartograph.json_generator data/food ${exp_dir} kk /cluster_groups.csv /original_xy_embeddings.csv /original_domain.json
-# python -m cartograph.json_generator data/food ${exp_dir} kk /cluster_groups.csv /xy_embeddings.csv /new_domain.json
+python -m cartograph.json_generator data/food ${exp_dir} kk /original_cluster_groups.csv /original_xy_embeddings.csv /original_domain.json
+python -m cartograph.json_generator data/food ${exp_dir} kk /cluster_groups.csv /original_xy_embeddings.csv /new_domain.json
 
 
 # Step 7: Run evaluation metrics and generate HTML & SVG
 python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted /original_domain.json /original_graph.svg
-# python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted /new_domain.json /new_graph.svg
+python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted /new_domain.json /new_graph.svg
 
 
 # Step 8: Write evaluation metrics
