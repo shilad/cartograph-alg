@@ -285,6 +285,7 @@ def draw_border(id_in_points_to_cluster_dic, in_out_dic, vor):
     """
     vertices_in_vor = vor.vertices
     ridges_in_vor_by_vertices = vor.ridge_vertices
+    row_list = []
 
     for vertex_index, ridge_points in enumerate(vor.ridge_points):
         one_end = ridge_points[0]
@@ -292,23 +293,33 @@ def draw_border(id_in_points_to_cluster_dic, in_out_dic, vor):
 
         if in_out_dic[one_end] ^ in_out_dic[other_end] or \
                 id_in_points_to_cluster_dic[one_end] ^ id_in_points_to_cluster_dic[other_end]: ## Completed: This needs an or to include clusters
+            print(vor.points[ridge_points[0]], vor.points[ridge_points[1]])
             line = ridges_in_vor_by_vertices[vertex_index]
             a, b = vertices_in_vor[line[0]], vertices_in_vor[line[1]]
 
+            row_list.append({'x1': a[0], 'y1': a[1], 'x2': b[0], 'y2':b[1]})
             plt.plot([a[0], b[0]], [a[1], b[1]], 'ro-', marker='o', markersize=1
                      , linewidth=0.5)
-    # voronoi_plot_2d(vor)
-    plt.xlim(-100, 100)
-    plt.ylim(-100, 100)
 
+    # pd.DataFrame(row_list).to_csv()
+    # voronoi_plot_2d(vor)
+    plt.xlim(-300, 300)
+    plt.ylim(-300, 300)
+    #
     plt.show()
 
+
+# import drawSvg as draw
+# d = draw.Drawing(200, 100, origin='center')
 #
-# plt.plot([1,1], [2,3])
-# plt.show()
-points = np.array([[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2],
-                   [2, 0], [2, 1], [2, 2]])
-# vor = Voronoi(points)
+# d.append(draw.Line(-80, -45, 70, -49, stroke='black', stroke_dasharray='2,1'))
+# d.append(draw.Line(95, 49, -90, 40, stroke='black'))
+# d.saveSvg('example.svg')
+# # plt.plot([1,1], [2,3])
+# # plt.show()
+# points = np.array([[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2],
+#                    [2, 0], [2, 1], [2, 2]])
+# # vor = Voronoi(points)
 vor, points = build_vor('../experiments/food/0009/xy_embeddings.csv')
 in_out_dic = build_boundary_dic(vor)
 id_in_points_to_cluster_dic = build_cluster_dic('../experiments/food/0009/cluster_groups.csv', '../experiments/food/0009/xy_embeddings.csv', points)
@@ -322,30 +333,30 @@ for index, point in enumerate(points):
     polygon = [vor.vertices[i] for i in region_with_vertices]
     plt.fill(*zip(*polygon), color=color)
 
-plt.xlim(-100, 100)
-plt.ylim(-100, 100)
-plt.show()
-
+# plt.xlim(-100, 100)
+# plt.ylim(-100, 100)
+# plt.show()
+#
 draw_border(id_in_points_to_cluster_dic, in_out_dic, vor)
-
 #
-# tri = Delaunay(points)
-#
-# print(vor.ridge_points)
-# print("##simplices")
-# print(tri.simplices)
-#
-# print("----------")
-# print(points[tri.simplices])
-#
-#
-# print("##neighbors")
-# print(tri.neighbors)
-#
-# print("###vertex_to_simplex")
-# print(tri.vertex_to_simplex)
-# print(tri.vertex_neighbor_vertices)
-#
-voronoi_plot_2d(vor)
-# plt.triplot(points[:,0], points[:,1], tri.simplices.copy())
-plt.show()
+# #
+# # tri = Delaunay(points)
+# #
+# # print(vor.ridge_points)
+# # print("##simplices")
+# # print(tri.simplices)
+# #
+# # print("----------")
+# # print(points[tri.simplices])
+# #
+# #
+# # print("##neighbors")
+# # print(tri.neighbors)
+# #
+# # print("###vertex_to_simplex")
+# # print(tri.vertex_to_simplex)
+# # print(tri.vertex_neighbor_vertices)
+# #
+# voronoi_plot_2d(vor)
+# # plt.triplot(points[:,0], points[:,1], tri.simplices.copy())
+# plt.show()

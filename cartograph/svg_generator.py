@@ -10,8 +10,10 @@ import json
 import pandas as pd
 import statistics
 import seaborn as sns
-from collections import defaultdict
+import numpy as np
 import operator
+from collections import defaultdict
+from scipy.spatial import Voronoi
 
 
 XY_RATIO = 7
@@ -78,6 +80,13 @@ def set_colors(countries_csv, color_palette):
     return colors
 
 
+def draw_dash_boundary(boundary_csv, drawing):
+    df = pd.read_csv(boundary_csv)
+    for line in df.itertuples():
+        x1, y1, x2, y2 = line.x1*XY_RATIO, line.y1*XY_RATIO, line.x2*XY_RATIO, line.y2*XY_RATIO
+        drawing.append(draw.Line(x1, y1, x2, y2, stroke='black', stroke_dasharray='2,1'))
+
+
 def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30):
     """
     Given a json of cleaned articles (popularity score scaled), calculate the country label positions and draw the entire svg
@@ -95,6 +104,7 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30):
         if size > .5:
             drawing.append(draw.Text(title, int(size), x, y))
 
+    draw_dash_boundary('./boundary/boundary.csv', drawing)
     # Draw country labels
     country_labels_xy = get_country_labels_xy(json_articles)
     draw_country_labels(drawing, country_labels_xy, country_font_size, colors)
