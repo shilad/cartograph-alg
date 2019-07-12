@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,restaurant,chef,book,building,street,kitchen,london,hotel,bar,opened
-1,protein,food,diet,plant,animals,humans,intake,oil,crop,acid
-2,alcohol,law,alcoholic_beverages,government,liquor,state,coffee,drinking,prohibition,alcohol_laws
-3,company,brand,chain,locations,products,stores,business,acquired,announced,inc
-4,wine,grapes,vineyards,vines,winemaking,grape_varieties,region,produced,viticulture,wine_regions
-5,dish,fruit,meat,cuisine,cooked,leaves,served,rice,bread,sauce
-6,beer,brewery,brewing,species,lager,fish,ale,fisheries,brewers,hops
+0,company,brand,products,flavors,chocolate,acquired,business,coca_cola,sales,factory
+1,dish,meat,cooked,cuisine,served,rice,sauce,bread,ingredients,prepared
+2,protein,diet,food,intake,health,oil,glucose,energy,dietary,study
+3,species,fruit,plant,leaves,tree,seeds,cultivars,flowers,genus,cm
+4,wine,grapes,vineyards,region,vines,grape_varieties,winemaking,alcohol,wine_regions,appellation
+5,beer,brewery,brewing,drink,ale,lager,brewers,abv,cocktail,book
+6,restaurant,opened,chain,locations,menu,chef,street,building,kitchen,bar

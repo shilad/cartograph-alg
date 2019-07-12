@@ -14,7 +14,7 @@ set -x
 
 
 # Assign wikiproject for data directory
-projects=(food internet media science technology)
+projects=(food)
 
 
 # Assign variable name for label candidate we want (categories, links, keyword, etc)
@@ -27,7 +27,7 @@ label_score=tfidf
 # Step 0: Import the experiment utilities functions
 source ./bin/experiment-utils.sh
 
-for i in {0..4}
+for i in {0..0}
 do
     echo ${projects[$i]}
     # Step 1: Get the experiment id. This is *not* map specific.
@@ -58,8 +58,14 @@ do
     exp_dir=$(prepare_experiment_dir ${exp_id})
 
 
-#    # Step 3: Run LDA:
-#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]}
+    # Step 3: Run LDA:
+#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 10 /LDA_labels.csv /article_topic_distribution.csv
+#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 50 /LDA_labels_50.csv /article_topic_distribution_50.csv
+
+
+    # Step 4: create cluster csv for label_selector:
+    python -m cartograph.LDA_cluster_builder ${exp_dir}
+
 
     for x in {0..3}
     do
