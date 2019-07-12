@@ -1,6 +1,8 @@
 import logging
+import sys
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 from scipy.spatial import Voronoi
 
 
@@ -59,7 +61,10 @@ class Graph:
         self.centers_dic = {}
         self.edge_dic = {}
         self.corners_dic = {}
+        self.vor = None
+        self.bounding_box = []
         self.build_graph()
+        self.draw_graph()
 
     def initiate_center(self, p1, p2, vor_points, centers_dic):
         center_1, center_2 = None, None
@@ -87,14 +92,61 @@ class Graph:
             corner_2 = Corner(v2, vor_vertices[v2])
         return corner_1, corner_2
 
+    def in_box(self, points):
+        max_coord = np.amax(points, axis=0)
+        min_coord = np.amin(points, axis=0)
+        bounding_box = np.array(
+            [min_coord[0], max_coord[0], min_coord[1], max_coord[1]])  # [x_min, x_max, y_min, y_max]
+        self.bounding_box = bounding_box
+
+        return np.logical_and(np.logical_and(bounding_box[0] <= points[:, 0],
+                                             points[:, 0] <= bounding_box[1]),
+                              np.logical_and(bounding_box[2] <= points[:, 1],
+                                             points[:, 1] <= bounding_box[3]))
+
+    def build_voronoi(self, points):
+        inside = self.in_box(points)
+
+        # Mirror points
+        points_center = points[inside, :]
+        points_left = np.copy(points_center)
+        points_left[:, 0] = self.bounding_box[0] - (points_left[:, 0] - self.bounding_box[0])
+        points_right = np.copy(points_center)
+        points_right[:, 0] = self.bounding_box[1] + (self.bounding_box[1] - points_right[:, 0])
+        points_down = np.copy(points_center)
+        points_down[:, 1] = self.bounding_box[2] - (points_down[:, 1] - self.bounding_box[2])
+        points_up = np.copy(points_center)
+        points_up[:, 1] = self.bounding_box[3] + (self.bounding_box[3] - points_up[:, 1])
+
+        points = np.append(points_center,
+                           np.append(np.append(points_left,
+                                               points_right,
+                                               axis=0),
+                                     np.append(points_down,
+                                               points_up,
+                                               axis=0),
+                                     axis=0),
+                           axis=0)
+        vor = Voronoi(points)
+        self.vor = vor
+        return vor
 
     def build_graph(self):
-        vor = Voronoi(self.points)
+        eps = sys.float_info.epsilon
+        vor = self.build_voronoi(self.points)
         if vor.points.shape[1] != 2:
             logging.warning('Required 2D input')
             return
 
         for (p1, p2), (v1, v2) in zip(vor.ridge_points, vor.ridge_vertices):
+            v1_coord, v2_coord = vor.vertices[v1], vor.vertices[v2]
+
+            if self.bounding_box[0] - eps > v1_coord[0] or v1_coord[0] < self.bounding_box[1] + eps or \
+               self.bounding_box[2] - eps > v1_coord[1] or v1_coord[1] > self.bounding_box[3] + eps or \
+               self.bounding_box[0] - eps > v2_coord[0] or v2_coord[0] < self.bounding_box[1] + eps or \
+               self.bounding_box[2] - eps > v2_coord[1] or v2_coord[1] > self.bounding_box[3] + eps:
+                continue
+
             center_1, center_2 = self.initiate_center(p1, p2, vor.points, self.centers_dic)
             # add neighboring voronoi polygon
             center_1.add_neighbor(center_2)
@@ -136,17 +188,29 @@ class Graph:
             self.corners_dic.update({v2: corner_2})
             self.edge_dic.update({edge_id: edge})
 
+    def draw_graph(self):
+        for id, edge in self.edge_dic.items():
+            a, b = self.vor.vertices[edge.v0], self.vor.vertices[edge.v1]
+            plt.plot([a[0], b[0]], [a[1], b[1]], 'ro-', marker='o')
+        plt.show()
 
-points = np.array([[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]])
 
+
+
+
+
+df = pd.read_csv("../../experiments/food/0009/xy_embeddings.csv")
+points = np.zeros(shape=(df.shape[0], 2))
+for index, row in df.iterrows():
+    points[index] = [row['x'], row['y']]
 g = Graph(points)
 
-for k, v in g.centers_dic.items():
-    print(k)
-    center = v
-    for n in center.neighbors:
-        print(n.id)
-    print("-------------")
+# for k, v in g.centers_dic.items():
+#     print(k)
+#     center = v
+#     for n in center.neighbors:
+#         print(n.id)
+#     print("-------------")
 
 #
 # points = np.array([[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]])
