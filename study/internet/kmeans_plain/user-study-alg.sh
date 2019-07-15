@@ -18,9 +18,9 @@ project=internet
 
 
 # Assign variable name for label candidate we want (categories, links, keyword, etc)
-label_type=key_words
-article_label_csv=article_keywords.csv
-label_name_csv=keyword_names.csv
+label_type=lda
+article_label_csv=article_lda_labels.csv
+label_name_csv=lda_label_names.csv
 label_score=tfidf
 
 
@@ -69,8 +69,8 @@ label_path=${exp_dir}/labels/${label_type}
 
 ## Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
 #write_experiment_params ${exp_dir} vectors vanilla num_clusters 7 xy_embedding tsne percentile 1 labeling ${label_score}
-
-
+#
+#
 #python -m cartograph.cluster_builder \
 #    --experiment ${exp_dir} \
 #    --vectors ${exp_dir}/${initial_vector_for_clustering} \

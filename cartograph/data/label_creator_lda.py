@@ -53,7 +53,7 @@ def main(directory, article_topic_distribution_csv, topic_label_distribution_csv
     article_id_word_dic = {}
 
     for row in article_topic_df.itertuples():
-        words = topic_label_dic[row.topic_id]
+        words = topic_label_dic[row.country]
         article_id_word_dic.setdefault(row.article_id, {})  # in case the word dic is empty
 
         for word, prob in words.items():
@@ -68,18 +68,12 @@ def main(directory, article_topic_distribution_csv, topic_label_distribution_csv
     create_label_id_str_csv(directory, labels_to_id)
 
 
-directory = '../../data/food'
-article_topic_distribution_csv = directory + '/topic/article_topic_distribution.csv'
-topic_label_distribution_csv = directory + '/topic/topic_label_distribution.csv'
-main(directory, article_topic_distribution_csv, topic_label_distribution_csv)
-# if __name__ == '__main__':
-#     import sys
-#
-#     if len(sys.argv) != 2:
-#         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-#         sys.exit(1)
-#
-#     directory = sys.argv[1]
-#     article_topic_distribution_csv = directory + '/topic/article_topic_distribution.csv'
-#     topic_label_distribution_csv = directory + '/topic/topic_label_distribution.csv'
-#     main(directory, article_topic_distribution_csv, topic_label_distribution_csv)
+if __name__ == '__main__':
+    import sys
+
+    if len(sys.argv) != 4:
+        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
+        sys.exit(1)
+
+    directory, article_topic_distribution_csv, topic_label_distribution_csv = sys.argv[1:]
+    main(directory, article_topic_distribution_csv, topic_label_distribution_csv)

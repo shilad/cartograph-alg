@@ -18,9 +18,9 @@ project=science
 
 
 # Assign variable name for label candidate we want (categories, links, keyword, etc)
-label_type=key_words
-article_label_csv=article_keywords.csv
-label_name_csv=keyword_names.csv
+label_type=lda
+article_label_csv=article_lda_labels.csv
+label_name_csv=lda_label_names.csv
 label_score=tfidf
 
 
@@ -102,8 +102,8 @@ python -m cartograph.label_selector \
 #    --method cluster \
 #    --cluster_vectors ${exp_dir}/article_topic_distribution.csv \
 #    --output_file ${vector_format_for_embedding}
-#
-#
+
+
 ### Step 5
 #python -m cartograph.xy_embed.tsne_embed \
 #        --experiment ${exp_dir} \

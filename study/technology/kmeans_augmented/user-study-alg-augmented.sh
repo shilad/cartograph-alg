@@ -18,9 +18,9 @@ project=technology
 
 
 # Assign variable name for label candidate we want (categories, links, keyword, etc)
-label_type=key_words
-article_label_csv=article_keywords.csv
-label_name_csv=keyword_names.csv
+label_type=lda
+article_label_csv=article_lda_labels.csv
+label_name_csv=lda_label_names.csv
 label_score=tfidf
 
 

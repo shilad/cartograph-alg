@@ -17,7 +17,7 @@ def create_merged_df(map_directory, experiment_directory, label_path):
     xy_df = pd.read_csv(experiment_directory + '/xy_embeddings.csv')
 
     country_label_df = pd.read_csv(label_path + '/final_labels.csv')
-    cluster_groups_df = pd.read_csv(experiment_directory + '/article_topic_distribution.csv')
+    cluster_groups_df = pd.read_csv(experiment_directory + '/cluster_groups.csv')
     countries_df = pd.merge(cluster_groups_df, country_label_df, on='country')\
         .drop(['country'], axis=1).rename({'0': 'country'}, axis=1)
 
