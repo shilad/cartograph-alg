@@ -5,7 +5,57 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.spatial import Voronoi
 from pygsp import graphs, filters
-from boundary.graph import Center, Corner, Edge
+
+class Center:
+    def __init__(self, id, position, cluster, article_id):
+        self.id = id
+        self.position = position
+        self.coast = False
+        self.cluster = cluster
+        self.article_id = article_id
+
+        self.neighbors = set()  # neighboring Voronoi centers
+        self.border = set()    # voronoi bordering edges
+        self.corners = set()   # voronoi polygon corners
+
+    def add_neighbor(self, center):
+        self.neighbors.add(center)
+
+    def add_border(self, edge):
+        self.border.add(edge)
+
+    def add_corner(self, corner):
+        self.corners.add(corner)
+
+
+class Corner:
+    def __init__(self, id, position):
+        self.id = id
+        self.position = position
+        self.coast = False
+
+        self.touches = set()    # set of Center(polygon) touching this corner
+        self.protrudes = set()  # a set of edges touching the corner
+        self.adjacent = set()   # a set of corners connected to this one
+
+    def add_touches(self, center):
+        self.touches.add(center)
+
+    def add_protrudes(self, edge):
+        self.protrudes.add(edge)
+
+    def add_adjacent(self, corner):
+        self.adjacent.add(corner)
+
+
+class Edge:
+    def __init__(self, id, center1, center2, vertex1, vertex2, is_border):
+        self.id = id
+        self.d0 = center1
+        self.d1 = center2
+        self.v0 = vertex1
+        self.v1 = vertex2
+        self.is_border = is_border
 
 
 class Graph:
@@ -207,7 +257,7 @@ class Graph:
             self.corners_dic.update({v2: corner_2})
             self.edge_dic.update({edge_id: edge})
 
-    def export_clusters(self, path=''):
+    def export_clusters(self, path):
         row_list = []
         for id, center in self.centers_dic.items():
             if center.article_id != -1:
@@ -243,17 +293,17 @@ class Graph:
 
 
 
-# df = pd.read_csv("../../experiments/food/0009/xy_embeddings.csv")
-# df.x = df.x.round(6)
-# df.y = df.y.round(6)
-# points = np.zeros(shape=(df.shape[0], 2))
-# for index, row in df.iterrows():
-#     points[index] = [row['x'], row['y']]
-# print(points[1426][0])
-#
-# clusters = pd.read_csv("../../experiments/food/0009/cluster_groups.csv")
-#
-# g = Graph(points, clusters)
-# g.export_boundaries('')
-# g.export_clusters('')
+df = pd.read_csv("../../experiments/food/0009/xy_embeddings.csv")
+df.x = df.x.round(6)
+df.y = df.y.round(6)
+points = np.zeros(shape=(df.shape[0], 2))
+for index, row in df.iterrows():
+    points[index] = [row['x'], row['y']]
+print(points[1426][0])
+
+clusters = pd.read_csv("../../experiments/food/0009/cluster_groups.csv")
+
+g = Graph(points, clusters)
+g.export_boundaries('')
+g.export_clusters('')
 
