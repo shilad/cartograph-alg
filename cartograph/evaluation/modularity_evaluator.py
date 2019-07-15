@@ -114,7 +114,8 @@ def calc_modularity(Graph, cluster_groups_csv):
 
 
 def main(xy_embedding_csv, cluster_groups_csv, method='nn'):
-    feature_space, indices_to_id = preprocess(xy_embedding_csv)
+    xy_embeddings_csv = pd.read_csv(args.xy_embeddings_csv)
+    feature_space, indices_to_id = preprocess(xy_embeddings_csv)
 
     if method == 'nn':
         distance_lst, indices_lst = find_k_near_neighbors(feature_space)
@@ -123,7 +124,7 @@ def main(xy_embedding_csv, cluster_groups_csv, method='nn'):
 
     G = build_network(distance_lst, indices_lst, indices_to_id)
     mod_score = calc_modularity(G, cluster_groups_csv)
-    print(str(json.dumps({'modularity':mod_score})))
+    print(str(json.dumps({'modularity':  mod_score, 'embeddings': xy_embedding_csv})))
     # logging.warning("Modularity Score: %.6f", mod_score)
 
 
@@ -135,6 +136,5 @@ if __name__ == '__main__':
     parser.add_argument('--method', required=True)
     parser.add_argument('--cluster_groups_csv', required=True)
     args = parser.parse_args()
-    xy_embeddings_csv = pd.read_csv(args.xy_embeddings_csv)
     cluster_vectors = pd.read_csv(args.cluster_groups_csv)
-    main(xy_embeddings_csv, cluster_vectors, args.method)
+    main(args.xy_embeddings_csv, cluster_vectors, args.method)
