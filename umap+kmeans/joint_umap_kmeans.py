@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from pandas._libs import json
 from scipy import spatial
 from sklearn.neighbors import NearestNeighbors
 from cartograph.xy_embed.umap_embed import create_embeddings
@@ -54,8 +55,10 @@ class K_Means:
             classes.append(classification)
         return classes
 
-    def fit_with_y(self, data, embeddings, article_and_group):
-        print(article_and_group.article_id)
+    def fit_with_y(self, data, embeddings, article_and_group, weight_high, weight_low, n_neighbors):
+        # print(article_and_group.article_id)
+        print("\n----using local neighbor scores")
+
         N, D = data.shape
         K = self.k
 
@@ -67,10 +70,10 @@ class K_Means:
         for i in range(self.max_iterations):
             high_dim_dist = cosine_distances(data, centroids)  # get cosine distance betw each point and the cenroids, N x k
             assert high_dim_dist.shape == (N, K)
-            neighbor_score = kmeans_modified(embeddings, article_and_group.country.values, self.k)  # get the homogeneity vector, 4097 *
+            neighbor_score = kmeans_modified(embeddings, article_and_group.country.values, self.k, n_neighbors)  # get the homogeneity vector, 4097 *
             # print(neighbor_score)
 
-            dis_mat = high_dim_dist * 10 + neighbor_score * 2 # get the distance matrix, 4097 * 8
+            dis_mat = high_dim_dist * float(weight_high) + neighbor_score * float(weight_low) # get the distance matrix, 4097 * 8
             best_group = np.argmin(dis_mat, axis=1)
             assert best_group.shape == (N,)
 
@@ -86,7 +89,7 @@ class K_Means:
             centroid_changes = np.sum(np.abs(new_centroids - centroids), axis=1)
             assert centroid_changes.shape == (K, )
             max_centroid_change = np.max(centroid_changes)
-            print('change is', max_centroid_change)
+            # print('change is', max_centroid_change)
 
             centroids = new_centroids
 
@@ -97,9 +100,10 @@ class K_Means:
 
         return best_group
 
-    def fit_with_y2(self, data, embeddings, article_and_group):
+    def fit_with_y2(self, data, embeddings, article_and_group, weight_high, weight_low):
+        print("\n----using low dimensional distances")
         embeddings = embeddings.iloc[:, 1:].values
-        print(article_and_group.article_id)
+        # print(article_and_group.article_id)
         N, D = data.shape
         K = self.k
 
@@ -114,16 +118,15 @@ class K_Means:
             assert high_dim_dist.shape == (N, K)
 
             # Calculate normalized euclidean distance
-            neighbor_score = kmeans_modified(embeddings, article_and_group.country.values, self.k)  # get the homogeneity vector, 4097 *
 
             low_dim_dist = euclidean_distances(embeddings, centroids2)
             xy_range = (np.max(embeddings) - np.min(embeddings))
             max_dist = np.sqrt(xy_range * xy_range + xy_range * xy_range)
             low_dim_dist /= max_dist
 
-            print(high_dim_dist.mean(), low_dim_dist.mean())
+            # print(high_dim_dist.mean(), low_dim_dist.mean())
 
-            dis_mat = high_dim_dist + low_dim_dist  # get the distance matrix, 4097 * 8
+            dis_mat = high_dim_dist * float(weight_high) + low_dim_dist * float(weight_low) # get the distance matrix, 4097 * 8
             best_group = np.argmin(dis_mat, axis=1)
             assert best_group.shape == (N,)
 
@@ -139,7 +142,66 @@ class K_Means:
             centroid_changes = np.sum(np.abs(new_centroids - centroids), axis=1)
             assert centroid_changes.shape == (K, )
             max_centroid_change = np.max(centroid_changes)
-            print('change is', max_centroid_change)
+            # print('change is', max_centroid_change)
+
+            new_centroids2 = np.zeros((K, 2))
+            np.add.at(new_centroids2, best_group, embeddings)
+            new_centroids2 /= points_per_group.repeat(2).reshape(K, 2)
+
+            centroids = new_centroids
+            centroids2 = new_centroids2
+
+            # break out of the main loop if the results are optimal, ie. the centroids don't change their positions
+            # much(more than our tolerance)
+            if max_centroid_change < self.tolerance:
+                break
+
+        return best_group
+
+    def fit_with_y3(self, data, embeddings, article_and_group, weight_high, weight_low, n_neighbors):
+        print("\n----using combined distances")
+        embeddings = embeddings.iloc[:, 1:].values
+        # print(article_and_group.article_id)
+        N, D = data.shape
+        K = self.k
+
+        # initialize the centroids, the first 'k' elements in the dataset will be our initial centroids
+        centroids = np.stack(data[:K])
+        assert centroids.shape == (K, D)
+        centroids2 = np.stack(embeddings[:K])   # low dimensional clustering
+
+        # begin iterations
+        for i in range(self.max_iterations):
+            high_dim_dist = cosine_distances(data, centroids)  # get cosine distance betw each point and the cenroids, N x k
+            assert high_dim_dist.shape == (N, K)
+
+            # Calculate normalized euclidean distance
+
+            low_dim_dist = euclidean_distances(embeddings, centroids2)
+            xy_range = (np.max(embeddings) - np.min(embeddings))
+            max_dist = np.sqrt(xy_range * xy_range + xy_range * xy_range)
+            low_dim_dist /= max_dist
+
+            # print(high_dim_dist.mean(), low_dim_dist.mean())
+            neighbor_score = kmeans_modified(embeddings, article_and_group.country.values, self.k, n_neighbors)  # get the homogeneity vector, 4097 *
+
+            dis_mat = high_dim_dist * float(weight_high) + (neighbor_score + low_dim_dist) * float(weight_low) # get the distance matrix, 4097 * 8
+            best_group = np.argmin(dis_mat, axis=1)
+            assert best_group.shape == (N,)
+
+            points_per_group = np.zeros(K) + 1e-6
+            np.add.at(points_per_group, best_group, 1)
+            # print(points_per_group)
+
+            new_centroids = np.zeros((K, D))
+            np.add.at(new_centroids, best_group, data)
+            new_centroids /= points_per_group.repeat(D).reshape(K, D)
+            # print(new_centroids)
+
+            centroid_changes = np.sum(np.abs(new_centroids - centroids), axis=1)
+            assert centroid_changes.shape == (K, )
+            max_centroid_change = np.max(centroid_changes)
+            # print('change is', max_centroid_change)
 
             new_centroids2 = np.zeros((K, 2))
             np.add.at(new_centroids2, best_group, embeddings)
@@ -183,6 +245,9 @@ if __name__ == '__main__':
     parser.add_argument('--experiment', required=True)
     parser.add_argument('--vectors', required=True)
     parser.add_argument('--k', default=8)
+    parser.add_argument('--weight_high', default=10)
+    parser.add_argument('--weight_low', default=1)
+    parser.add_argument('--num_neighbors', default=20)
 
     args = parser.parse_args()
 
@@ -195,22 +260,40 @@ if __name__ == '__main__':
     ids = pd.DataFrame(article_vectors['article_id'])
     init_groups = ids.join(pd.DataFrame(init_groups))
     init_groups.columns = ['article_id', 'country']
+    # init_y = create_embeddings(args.vectors)
     init_y = create_embeddings(args.vectors)
 
     init_y.to_csv('%s/original_xy_embeddings.csv' % (args.experiment, ), index=False)
     init_groups.to_csv('%s/original_cluster_groups.csv' % (args.experiment, ), index=False)
 
-    joint_fit_groups = km.fit_with_y(X, init_y, init_groups)
+    # joint_fit_groups = km.fit(X)
+    # joint_fit_groups = km.fit_with_y3(X, init_y, init_groups, args.weight_high, args.weight_low, int(args.num_neighbors))
+
+    joint_fit_groups = km.fit_with_y2(X, init_y, init_groups, args.weight_high, args.weight_low)
     joint_fit_groups = pd.DataFrame(joint_fit_groups)
     joint_fit_groups = ids.join(joint_fit_groups)
     joint_fit_groups.columns = ['article_id', 'country']
 
-    joint_embeddings = create_embeddings(args.vectors)
+    tw = float(float(args.weight_low)/float(args.weight_high))
+    # tw = 0.05
+    joint_embeddings = create_embeddings(args.vectors, clusters=joint_fit_groups, tw=tw)
 
+    # joint_embeddings.to_csv('%s/xy_embeddings.csv' % (args.experiment, ), index=False)
+    # joint_fit_groups.to_csv('%s/cluster_groups.csv' % (args.experiment, ), index=False)
+
+    print(str(json.dumps({'high_dim_weight': args.weight_high, 'low_weight': args.weight_low, 'tw': tw})))
+
+    for i in range(5):
+        joint_fit_groups = km.fit_with_y(X, joint_embeddings, joint_fit_groups, args.weight_high, args.weight_low, int(args.num_neighbors))
+        # joint_fit_groups = km.fit_with_y2(X, joint_embeddings, joint_fit_groups, args.weight_high, args.weight_low)
+        joint_fit_groups = pd.DataFrame(joint_fit_groups)
+        joint_fit_groups = ids.join(joint_fit_groups)
+        joint_fit_groups.columns = ['article_id', 'country']
+        joint_embeddings = create_embeddings(args.vectors, clusters=joint_fit_groups, tw=tw)
+    print("\nWith iterative steps")
     joint_embeddings.to_csv('%s/xy_embeddings.csv' % (args.experiment, ), index=False)
     joint_fit_groups.to_csv('%s/cluster_groups.csv' % (args.experiment, ), index=False)
-
-
+    #
 
 
 
