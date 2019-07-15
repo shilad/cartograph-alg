@@ -73,7 +73,7 @@ def assign_country_label_ids(country_scores, label_score):
     return final_labels
 
 
-def main(experiment_dir, article_labels, percentile, label_score):
+def main(experiment_dir, article_labels, percentile, label_score, output_file):
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
         mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
@@ -97,7 +97,7 @@ def main(experiment_dir, article_labels, percentile, label_score):
     # # Create results data frame
     df = pd.DataFrame(final_labels,  index=[0]).T
     df['country'] = df.index
-    df.to_csv(experiment_dir + '/country_labels.csv', index=True)
+    df.to_csv(experiment_dir + output_file, index=True)
 
 
 if __name__ == '__main__':
@@ -107,13 +107,15 @@ if __name__ == '__main__':
     parser.add_argument('--label_names', required=True)
     parser.add_argument('--percentile', required=True)
     parser.add_argument('--label_score', required=True)
+    parser.add_argument('--cluster_groups', required=True)
+    parser.add_argument('--output_file', required=True)
 
     args = parser.parse_args()
 
     article_labels = pd.read_csv(args.articles_to_labels)
-    country_clusters = pd.read_csv(args.experiment + '/cluster_groups.csv')
+    country_clusters = pd.read_csv(args.experiment + args.cluster_groups)
     label_names = pd.read_csv(args.label_names)
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
 
-    main(args.experiment, article_labels, args.percentile, args.label_score)
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file)
