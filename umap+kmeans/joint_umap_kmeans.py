@@ -55,9 +55,9 @@ class K_Means:
             classes.append(classification)
         return classes
 
-    def fit_with_y(self, data, embeddings, article_and_group, weight_high, weight_low, n_neighbors):
+    def fit_with_y(self, data, embeddings, article_and_group, weight, n_neighbors):
         # print(article_and_group.article_id)
-        print("\n----using local neighbor scores")
+        # print("\n----using local neighbor scores")
 
         N, D = data.shape
         K = self.k
@@ -73,7 +73,7 @@ class K_Means:
             neighbor_score = kmeans_modified(embeddings, article_and_group.country.values, self.k, n_neighbors)  # get the homogeneity vector, 4097 *
             # print(neighbor_score)
 
-            dis_mat = high_dim_dist * float(weight_high) + neighbor_score * float(weight_low) # get the distance matrix, 4097 * 8
+            dis_mat = high_dim_dist + neighbor_score * float(weight) # get the distance matrix, 4097 * 8
             best_group = np.argmin(dis_mat, axis=1)
             assert best_group.shape == (N,)
 
@@ -100,8 +100,8 @@ class K_Means:
 
         return best_group
 
-    def fit_with_y2(self, data, embeddings, article_and_group, weight_high, weight_low):
-        print("\n----using low dimensional distances")
+    def fit_with_y2(self, data, embeddings, weight):
+        # print("\n----using low dimensional distances")
         embeddings = embeddings.iloc[:, 1:].values
         # print(article_and_group.article_id)
         N, D = data.shape
@@ -126,7 +126,7 @@ class K_Means:
 
             # print(high_dim_dist.mean(), low_dim_dist.mean())
 
-            dis_mat = high_dim_dist * float(weight_high) + low_dim_dist * float(weight_low) # get the distance matrix, 4097 * 8
+            dis_mat = high_dim_dist + low_dim_dist * float(weight)  # get the distance matrix, 4097 * 8
             best_group = np.argmin(dis_mat, axis=1)
             assert best_group.shape == (N,)
 
@@ -223,7 +223,7 @@ def kmeans_modified(embedding, groups, k, n_neighbors=20):
 
     # Get nearest neighbors and distances
     nbrs = NearestNeighbors(n_neighbors=n_neighbors+1, algorithm='kd_tree').fit(embedding)
-    indices = nbrs.kneighbors(embedding, return_distance=False)[:, 1:] # drop nearest neighbor, which is the point itself
+    indices = nbrs.kneighbors(embedding, return_distance=False)[:, 1:]  # drop nearest neighbor, which is the point itself
     assert indices.shape == (n, n_neighbors)
 
     groups = np.array(groups)
@@ -238,15 +238,13 @@ def kmeans_modified(embedding, groups, k, n_neighbors=20):
     return 1.0 - counts
 
 
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Cluster articles in the high dimensional space using K-means or '
                                                  'hdbscan.')
     parser.add_argument('--experiment', required=True)
     parser.add_argument('--vectors', required=True)
     parser.add_argument('--k', default=8)
-    parser.add_argument('--weight_high', default=10)
-    parser.add_argument('--weight_low', default=1)
+    parser.add_argument('--weight', default=0.1)
     parser.add_argument('--num_neighbors', default=20)
 
     args = parser.parse_args()
@@ -261,7 +259,7 @@ if __name__ == '__main__':
     init_groups = ids.join(pd.DataFrame(init_groups))
     init_groups.columns = ['article_id', 'country']
     # init_y = create_embeddings(args.vectors)
-    init_y = create_embeddings(args.vectors)
+    init_y = create_embeddings(args.vectors, clusters=init_groups, tw=float(args.weight))
 
     init_y.to_csv('%s/original_xy_embeddings.csv' % (args.experiment, ), index=False)
     init_groups.to_csv('%s/original_cluster_groups.csv' % (args.experiment, ), index=False)
@@ -269,31 +267,41 @@ if __name__ == '__main__':
     # joint_fit_groups = km.fit(X)
     # joint_fit_groups = km.fit_with_y3(X, init_y, init_groups, args.weight_high, args.weight_low, int(args.num_neighbors))
 
-    joint_fit_groups = km.fit_with_y2(X, init_y, init_groups, args.weight_high, args.weight_low)
+    joint_fit_groups = km.fit_with_y2(X, init_y, args.weight)
     joint_fit_groups = pd.DataFrame(joint_fit_groups)
     joint_fit_groups = ids.join(joint_fit_groups)
     joint_fit_groups.columns = ['article_id', 'country']
 
-    tw = float(float(args.weight_low)/float(args.weight_high))
+    # tw = float(float(args.weight_low)/float(args.weight_high))
     # tw = 0.05
-    joint_embeddings = create_embeddings(args.vectors, clusters=joint_fit_groups, tw=tw)
+    joint_embeddings = create_embeddings(args.vectors, clusters=joint_fit_groups, tw=float(args.weight))
 
     # joint_embeddings.to_csv('%s/xy_embeddings.csv' % (args.experiment, ), index=False)
     # joint_fit_groups.to_csv('%s/cluster_groups.csv' % (args.experiment, ), index=False)
+    print(str(json.dumps({'weight': args.weight})))
 
-    print(str(json.dumps({'high_dim_weight': args.weight_high, 'low_weight': args.weight_low, 'tw': tw})))
+    joint_fit_groups_y = km.fit_with_y(X, joint_embeddings, joint_fit_groups, args.weight, int(args.num_neighbors))
+    joint_fit_groups_y = pd.DataFrame(joint_fit_groups_y)
+    joint_fit_groups_y = ids.join(joint_fit_groups_y)
+    joint_fit_groups_y.columns = ['article_id', 'country']
+    joint_embeddings_y = create_embeddings(args.vectors, clusters=joint_fit_groups_y, tw=float(args.weight))
 
-    for i in range(5):
-        joint_fit_groups = km.fit_with_y(X, joint_embeddings, joint_fit_groups, args.weight_high, args.weight_low, int(args.num_neighbors))
-        # joint_fit_groups = km.fit_with_y2(X, joint_embeddings, joint_fit_groups, args.weight_high, args.weight_low)
-        joint_fit_groups = pd.DataFrame(joint_fit_groups)
-        joint_fit_groups = ids.join(joint_fit_groups)
-        joint_fit_groups.columns = ['article_id', 'country']
-        joint_embeddings = create_embeddings(args.vectors, clusters=joint_fit_groups, tw=tw)
-    print("\nWith iterative steps")
-    joint_embeddings.to_csv('%s/xy_embeddings.csv' % (args.experiment, ), index=False)
-    joint_fit_groups.to_csv('%s/cluster_groups.csv' % (args.experiment, ), index=False)
-    #
+
+    # for i in range(5):
+    #     joint_fit_groups = km.fit_with_y2(X, joint_embeddings, args.weight)
+    #     joint_fit_groups = pd.DataFrame(joint_fit_groups)
+    #     joint_fit_groups = ids.join(joint_fit_groups)
+    #     joint_fit_groups.columns = ['article_id', 'country']
+    #     joint_embeddings = create_embeddings(args.vectors, clusters=joint_fit_groups, tw=float(args.weight))
+    # print("\nWith iterative steps")
+
+
+    joint_embeddings.to_csv('%s/y_2_xy_embeddings.csv' % (args.experiment, ), index=False)
+    joint_embeddings_y.to_csv('%s/y_xy_embeddings.csv' % (args.experiment, ), index=False)
+    joint_fit_groups.to_csv('%s/y_2_cluster_groups.csv' % (args.experiment, ), index=False)
+    joint_fit_groups_y.to_csv('%s/y_cluster_groups.csv' % (args.experiment, ), index=False)
+
+
 
 
 
