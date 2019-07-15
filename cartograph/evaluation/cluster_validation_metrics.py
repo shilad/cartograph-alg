@@ -55,13 +55,13 @@ def main():
     # ch_score = get_ch_score(article_vectors, cluster_groups.values.ravel())
 
     cluster_a = pd.read_csv(args.experiment + '/original_cluster_groups.csv')
-    cluster_b = pd.read_csv(args.experiment + '/cluster_groups.csv')
+    cluster_b = pd.read_csv(args.groups)
 
     rand_index = adjusted_rand_score(cluster_a['country'], cluster_b['country'])
     mutual_info = adjusted_mutual_info_score(cluster_a['country'], cluster_b['country'])
 
-    print(str(json.dumps({'rand_index score': rand_index})))
-    print(str(json.dumps({'mutual_info score': mutual_info})))
+    # print(str(json.dumps({'rand_index score': rand_index})))
+    print(str(json.dumps(mutual_info)))
 
     # print(str(json.dumps({'silhouette score': silhouette_score})))
     # print(str(json.dumps({'ch score:': ch_score})))
