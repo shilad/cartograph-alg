@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.spatial import Voronoi
-
+from pygsp import graphs, filters
 
 class Center:
     def __init__(self, id, position, cluster):
@@ -56,85 +56,156 @@ class Edge:
         self.v1 = vertex2
         self.is_border = is_border
 
-
 class Graph:
-    def __init__(self, points, xy_embedding_df, cluster_df):
+    def __init__(self, points, xy_embedding_df, cluster_group_df):
         self.points = points
-        self.xy_embedding_df = xy_embedding_df
-        self.cluster_df = cluster_df
-
+        self.num_points = len(points)
+        self.augmented_points = self.add_water_points(points)
+        print("points augmented")
+        self.cluster_list = self.create_cluster(len(self.augmented_points), cluster_group_df)
+        print("cluster_list done")
+        self.is_cluster_preserved = self.denoise_cluster(self.augmented_points, len(set(self.cluster_list)))
+        print('is_cluster_preserved done')
+        self.cutting_index = 0 # the new index divides the original points and waterpoints
+        print('start voronoi')
+        self.vor = self.build_voronoi(self.augmented_points, self.is_cluster_preserved, self.cluster_list)
+        print('voronoi end')
         self.centers_dic = {}
         self.edge_dic = {}
         self.corners_dic = {}
-        self.vor = None
-        self.bounding_box = []
 
+        print('start building graph')
         self.build_graph()
-
         self.draw_graph()
 
-    def initiate_center(self, p, vor_points, centers_dic, is_original):
+    def add_water_points(self, points):
+        """
+        Augment the original graph by adding waterpoints as boundaries and inner ponds
+        :param points:
+        :return:
+        """
+        water_level = 5
+        max_abs_value = np.max(np.abs(points))
+
+        def f(n):
+            return (np.random.beta(0.8, 0.8, n) - 0.5) * 2 * (max_abs_value + 5)
+
+        water_x_cor, water_y_cor = f(int(self.num_points * water_level)), f(int(self.num_points * water_level))
+        num_squares = 5
+        square_dot_sep = 2.0 * max_abs_value / (self.num_points * water_level)
+
+        # Create nested squares around outside to prevent land masses from touching borders.
+        for i in range(num_squares):
+            n = np.arange(-max_abs_value, max_abs_value, square_dot_sep).shape[0]
+            # coordinates for points on top, right, bottom, left of square
+            square_x = np.concatenate([
+                np.arange(-max_abs_value, max_abs_value, square_dot_sep),
+                np.repeat(max_abs_value, n),
+                np.arange(-max_abs_value, max_abs_value, square_dot_sep),
+                np.repeat(-max_abs_value, n)])
+            square_y = np.concatenate([
+                np.repeat(max_abs_value, n),
+                np.arange(-max_abs_value, max_abs_value, square_dot_sep),
+                np.repeat(max_abs_value, n),
+                np.arange(-max_abs_value, max_abs_value, square_dot_sep)])
+            water_x_cor = np.concatenate([water_x_cor, square_x])
+            water_y_cor = np.concatenate([water_y_cor, square_y])
+
+        water_points = np.array(list(zip(water_x_cor, water_y_cor)))
+        print(len(water_points))
+        return np.concatenate([points, water_points])  # points after lengths are all waterpoints, [[x1, y1], [x2, y2] formats
+
+    def create_cluster(self, length, cluster_groups_df):
+        """
+        Since the order in xy_embeddings.csv and cluster_groups.csv is the same, assign cluster to points taking advantage of the order
+        :param length:
+        :return:
+        """
+        cluster_list = []
+        water_point_id = len(cluster_groups_df['country'].unique())
+        for index in range(length):
+            if index < self.num_points:
+                cluster_list.append(int(cluster_groups_df.loc[index].iloc[0]))
+            else:
+                cluster_list.append(water_point_id)
+        return cluster_list
+
+    def denoise_cluster(self, points, num_cluster, tau=10):
+        """
+        Determine if the cluster after denoising is the same as the original
+        :param points:
+        :return: [boolean], false means cluster_id varies, true means cluster_id is preserved
+        """
+        length = len(points)
+        graph = graphs.NNGraph(points, k=num_cluster)
+        print("end creating")
+        graph.estimate_lmax()
+        filter = filters.Heat(graph, tau=tau)
+
+        signal = np.empty(num_cluster * length).reshape(num_cluster, length)
+        vectors = np.zeros(length * num_cluster).reshape(length, num_cluster)
+
+        for i, vec in enumerate(vectors):
+            vec[self.cluster_list[i]] = 1
+        vectors = vectors.T
+        for cluster_num, vec in enumerate(vectors):
+            signal[cluster_num] = filter.analysis(vec)
+
+        dominant_cluster = np.argmax(signal, axis=0)
+        is_cluster_preserved = []
+        print('start denoising')
+        for i in range(length):
+            if dominant_cluster[i] == int(self.cluster_df.iloc[i].loc[0]):
+                is_cluster_preserved.append(True)
+            else:
+                is_cluster_preserved.append(False)
+        print('end denoising')
+        return is_cluster_preserved
+
+    def build_voronoi(self, augmented_points, is_cluster_preserved, cluster_list):
+        vor_points, vor_clusters = [], []
+        cutting_index = 0
+        for index, coord in enumerate(augmented_points):
+            if is_cluster_preserved[index]:
+                vor_points.append(coord)
+                vor_clusters.append(cluster_list[index])
+            if index < self.num_points:
+                cutting_index = cutting_index + 1
+        self.cluster_list = vor_clusters  # since order might have changed, the indexing in cluster_list must be updated
+        self.cutting_index = cutting_index
+        return Voronoi(vor_points)
+
+    def initiate_center(self, p, vor_points, centers_dic):
         center = None
         if p in centers_dic:
             center = centers_dic[p]
         if center is None:
-            if is_original:
-                center = Center(p, vor_points[p], self.find_cluster(points[p][0], points[p][1]))
-            else:
-                center = Center(p, vor_points[p], -1)
+            center = Center(p, vor_points[p], self.cluster_list[p])  # since every point has an index now
+            # if is_original:
+            #     center = Center(p, vor_points[p], self.cluster_list[p])
+            # else:
+            #     center = Center(p, vor_points[p], -1)
         return center
 
-    def initiate_corner(self, v1, v2, vor_vertices, corners_dic):
-        corner_1, corner_2 = None, None
-        # Check if corners are added to the graph
-        if v1 in corners_dic:
-            corner_1 = corners_dic[v1]
-        if v2 in corners_dic:
-            corner_2 = corners_dic[v2]
-        if corner_1 is None:
-            corner_1 = Corner(v1, vor_vertices[v1])
-        if corner_2 is None:
-            corner_2 = Corner(v2, vor_vertices[v2])
-        return corner_1, corner_2
-
-    def find_cluster(self, x, y):
-        article_id = self.xy_embedding_df.loc[(self.xy_embedding_df['x'] == x) & (self.xy_embedding_df['y'] == y), ['article_id']].iloc[0,:].to_list()[0]
-        return self.cluster_df.loc[self.cluster_df['article_id'] == article_id, ['country']].iloc[0, :].to_list()[0]
-
-    def in_box(self, points):
-        max_coord = np.amax(points, axis=0)
-        min_coord = np.amin(points, axis=0)
-        # bounding_box = np.array(
-        #     [min_coord[0], max_coord[0], min_coord[1], max_coord[1]])  # [x_min, x_max, y_min, y_max]
-        bounding_box = np.array(
-            [-100, 100, -100, 100])
-        self.bounding_box = bounding_box
-
-        return np.logical_and(np.logical_and(bounding_box[0] <= points[:, 0],
-                                             points[:, 0] <= bounding_box[1]),
-                              np.logical_and(bounding_box[2] <= points[:, 1],
-                                             points[:, 1] <= bounding_box[3]))
-
-    def build_voronoi(self, points):
-        inside = self.in_box(points)
-
-        # Mirror points
-        points_center = points
-        points_left = np.copy(points_center)
-        points_left[:, 0] = self.bounding_box[0] - (points_left[:, 0] - self.bounding_box[0])
-        points_right = np.copy(points_center)
-        points_right[:, 0] = self.bounding_box[1] + (self.bounding_box[1] - points_right[:, 0])
-        points_down = np.copy(points_center)
-        points_down[:, 1] = self.bounding_box[2] - (points_down[:, 1] - self.bounding_box[2])
-        points_up = np.copy(points_center)
-        points_up[:, 1] = self.bounding_box[3] + (self.bounding_box[3] - points_up[:, 1])
-
-        points = np.append(points_center, np.append(np.append(points_left, points_right, axis=0),
-                                        np.append(points_down, points_up, axis=0),
-                                        axis=0), axis=0)
-        vor = Voronoi(points)
-        self.vor = vor
-        return vor
+    def initiate_corner(self, v, vor_vertices, corners_dic):
+        corner = None
+        if v in corners_dic:
+            corner = corners_dic[v]
+        if corner is None:
+            corner = Corner(v, vor_vertices[v])
+        return corner
+    # def initiate_corner(self, v1, v2, vor_vertices, corners_dic):
+    #     corner_1, corner_2 = None, None
+    #     # Check if corners are added to the graph
+    #     if v1 in corners_dic:
+    #         corner_1 = corners_dic[v1]
+    #     if v2 in corners_dic:
+    #         corner_2 = corners_dic[v2]
+    #     if corner_1 is None:
+    #         corner_1 = Corner(v1, vor_vertices[v1])
+    #     if corner_2 is None:
+    #         corner_2 = Corner(v2, vor_vertices[v2])
+    #     return corner_1, corner_2
 
     def build_graph(self):
         eps = sys.float_info.epsilon
@@ -145,24 +216,20 @@ class Graph:
             return
 
         for (p1, p2), (v1, v2) in zip(vor.ridge_points, vor.ridge_vertices):
-            v1_coord, v2_coord = vor.vertices[v1], vor.vertices[v2]
-
-            if self.bounding_box[0] - eps > v1_coord[0] or v1_coord[0] > self.bounding_box[1] + eps or \
-                    self.bounding_box[2] - eps > v1_coord[1] or v1_coord[1] > self.bounding_box[3] + eps or \
-                    self.bounding_box[0] - eps > v2_coord[0] or v2_coord[0] > self.bounding_box[1] + eps or \
-                    self.bounding_box[2] - eps > v2_coord[1] or v2_coord[1] > self.bounding_box[3] + eps:
-                continue
-
-            is_original_1 = False if p1 > 4099 else True
-            is_original_2 = False if p2 > 4099 else True
-            center_1 = self.initiate_center(p1, vor.points, self.centers_dic, is_original_1)
-            center_2 = self.initiate_center(p2, vor.points, self.centers_dic, is_original_2)
+            # v1_coord, v2_coord = vor.vertices[v1], vor.vertices[v2]
+            #
+            # is_original_1 = False if p1 >= self.cutting_index else True
+            # is_original_2 = False if p2 >= self.cutting_index else True
+            center_1 = self.initiate_center(p1, vor.points, self.centers_dic)
+            center_2 = self.initiate_center(p2, vor.points, self.centers_dic)
 
             # add neighboring voronoi polygon
             center_1.add_neighbor(center_2)
             center_2.add_neighbor(center_1)
 
-            corner_1, corner_2 = self.initiate_corner(v1, v2, vor.vertices, self.corners_dic)
+            corner_1 = self.initiate_corner(v1, vor.vertices, self.corners_dic)
+            corner_2 = self.initiate_corner(v2, vor.vertices, self.corners_dic)
+            # corner_1, corner_2 = self.initiate_corner(v1, v2, vor.vertices, self.corners_dic)
 
             # add touches of a corner
             # the polygon centers p1, p2 touching the polygon corners v1, v2
@@ -174,8 +241,10 @@ class Graph:
             # add edges 2 points and 2 vertices
             # since scipy voronoi give one edge once, matters do not matter
             edge_id = len(self.edge_dic)
-            if is_original_1 ^ is_original_2:
+            if center_1.cluster != center_2.cluster:
                 edge = Edge(len(self.edge_dic), center_1, center_2, corner_1, corner_2, True)
+            # if is_original_1 ^ is_original_2:
+            #     edge = Edge(len(self.edge_dic), center_1, center_2, corner_1, corner_2, True)
             else:
                 edge = Edge(len(self.edge_dic), center_1, center_2, corner_1, corner_2, False)
 
@@ -202,13 +271,78 @@ class Graph:
             self.corners_dic.update({v2: corner_2})
             self.edge_dic.update({edge_id: edge})
 
+
+
+    # def in_box(self, points):
+    #     max_coord = np.amax(points, axis=0)
+    #     min_coord = np.amin(points, axis=0)
+    #     bounding_box = np.array(
+    #         [min_coord[0], max_coord[0], min_coord[1], max_coord[1]])  # [x_min, x_max, y_min, y_max]
+    #     # bounding_box = np.array(
+    #     #     [-100, 100, -100, 100])
+    #     self.bounding_box = bounding_box
+    #
+    #     return np.logical_and(np.logical_and(bounding_box[0] <= points[:, 0],
+    #                                          points[:, 0] <= bounding_box[1]),
+    #                           np.logical_and(bounding_box[2] <= points[:, 1],
+    #                                          points[:, 1] <= bounding_box[3]))
+
+    # def build_voronoi(self, points):
+    #     water_level = 5
+    #     max_coord = np.amax(points, axis=0)
+    #     min_coord = np.amin(points, axis=0)
+    #     length = len(points)
+    #     bounding_box = np.array(
+    #         [min_coord[0], max_coord[0], min_coord[1], max_coord[1]])
+    #     self.bounding_box = bounding_box
+    #
+    #     max_abs_value = np.max(np.abs(points))
+    #
+    #     def f(n):
+    #         return (np.random.beta(0.8, 0.8, n) - 0.5) * 2 * (max_abs_value + 5)
+    #
+    #     water_x_cor, water_y_cor = f(int(length * water_level)), f(int(length * water_level))
+    #     num_squares = 5
+    #     square_dot_sep = 2.0 * max_abs_value / (length * water_level)
+    #
+    #     # Create nested squares around outside to prevent land masses from touching borders.
+    #     for i in range(num_squares):
+    #         n = np.arange(-max_abs_value, max_abs_value, square_dot_sep).shape[0]
+    #         # coordinates for points on top, right, bottom, left of square
+    #         square_x = np.concatenate([
+    #             np.arange(-max_abs_value, max_abs_value, square_dot_sep),
+    #             np.repeat(max_abs_value, n),
+    #             np.arange(-max_abs_value, max_abs_value, square_dot_sep),
+    #             np.repeat(-max_abs_value, n)])
+    #         square_y = np.concatenate([
+    #             np.repeat(max_abs_value, n),
+    #             np.arange(-max_abs_value, max_abs_value, square_dot_sep),
+    #             np.repeat(max_abs_value, n),
+    #             np.arange(-max_abs_value, max_abs_value, square_dot_sep)])
+    #         water_x_cor = np.concatenate([water_x_cor, square_x])
+    #         water_y_cor = np.concatenate([water_y_cor, square_y])
+    #
+    #     water_points = np.array(list(zip(water_x_cor, water_y_cor)))
+    #     points = np.concatenate([points, water_points])           # points after lengths are all waterpoints
+    #
+    #     vor = Voronoi(points)
+    #     self.vor = vor
+    #     return vor
+
+
+
+
+
+
+
+
     def draw_graph(self):
         # for id, center in self.centers_dic.items():
         #     print(center.)
         for id, edge in self.edge_dic.items():
             if edge.is_border:
                 a, b = edge.v0.position, edge.v1.position
-                plt.plot([a[0], b[0]], [a[1], b[1]], 'ro-', marker='o')
+                plt.plot([a[0], b[0]], [a[1], b[1]], 'ro-', marker='o', markersize=0.01)
         plt.show()
 
 
