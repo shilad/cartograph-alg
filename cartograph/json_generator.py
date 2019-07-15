@@ -11,12 +11,12 @@ import pandas as pd
 from functools import reduce
 
 
-def create_merged_df(map_directory, experiment_directory, cluster_groups, embeddings):
+def create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings):
     domain_concepts_df = pd.read_csv(map_directory+'/domain_concept.csv')
     pop_scores_df = pd.read_csv(map_directory + '/popularity_score.csv')
     xy_df = pd.read_csv(experiment_directory + embeddings)
 
-    country_label_df = pd.read_csv(experiment_directory + '/country_labels.csv')
+    country_label_df = pd.read_csv(experiment_directory + country_labels)
     cluster_groups_df = pd.read_csv(experiment_directory + cluster_groups)
     countries_df = pd.merge(cluster_groups_df, country_label_df, on='country')\
         .drop(['country'], axis=1).rename({'0': 'country'}, axis=1)
@@ -46,17 +46,17 @@ def generate_json(experiment_directory, article_data, output_name):
     return
 
 
-def main(map_directory, experiment_directory, method, cluster_groups, embeddings, output_name):
-    merged_article_df = create_merged_df(map_directory, experiment_directory, cluster_groups, embeddings)
+def main(map_directory, experiment_directory, method, country_labels, cluster_groups, embeddings, output_name):
+    merged_article_df = create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings)
     article_data = create_list_article_data(merged_article_df, method)
     generate_json(experiment_directory, article_data, output_name)
 
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 7:
+    if len(sys.argv) != 8:
         sys.stderr.write('Usage: %s map_directory experiment_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory, experiment_directory, method, cluster_groups, embeddings, output_name = sys.argv[1:]
-    main(map_directory, experiment_directory, method, cluster_groups, embeddings, output_name)
+    map_directory, experiment_directory, method, country_labels, cluster_groups, embeddings, output_name = sys.argv[1:]
+    main(map_directory, experiment_directory, method, country_labels, cluster_groups, embeddings, output_name)
