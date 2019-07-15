@@ -2,8 +2,6 @@
 #
 # Creates maps for all of the wikiprojects used in the Mechanical Turk user study
 #
-# Notes: Food was also used in this study, but the data for that wikiproject has already been collected.
-#
 # source ~/venv/cartograph-alg/bin/activate
 #
 
@@ -11,7 +9,7 @@ set -e
 set -x
 
 
-projects=(Food Internet Media Technology)
+projects=(Food_and_drink Internet Media Technology)
 directories=(food internet media technology)
 
 
