@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,dish,meat,bread,cooked,cuisine,served,cheese,sauce,recipe,rice
-1,company,chain,locations,brand,stores,products,business,announced,franchise,advertising
-2,plant,leaves,fruit,seeds,cultivars,tree,flowers,cultivated,crop,cm
-3,wine,beer,brewery,alcohol,grapes,brewing,drink,vineyards,abv,liquor
-4,species,fish,fisheries,females,sea,spawning,males,caught,waters,freshwater
-5,food,protein,diet,acid,intake,process,reaction,glucose,safety,fda
-6,restaurant,chef,london,kitchen,hotel,building,street,new_york_city,new_york,opened
+0,food,locations,coffee,drink,chain,street,varieties,stores,uk,grown
+1,meat,cooked,cuisine,served,water,chinese,bread,beef,children,advertising
+2,milk,india,grapes,sweet,prepared,region,oil,beverage,popular,italy
+3,restaurant,references,fruit,opened,isbn,alcohol,chocolate,sauce,chicken,flavors
+4,company,beer,business,brewery,cheese,french,recipe,yeast,ingredients,australia
+5,species,plant,dish,products,rice,leaves,seeds,external_links,china,green
+6,sugar,fish,brands,wine,bar,menu,u.s,national,london,dough

@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,phone,android,smartphone,screen,device,released,update,features,camera,hardware
-1,data,company,software,computer,services,network,users,business,acquired,video
-2,aircraft,flight,weapon,ship,military,navy,air,wing,war,british
-3,research,science,technology,human,management,society,analysis,information,social,knowledge
-4,light,voltage,optical,image,signal,circuit,energy,frequency,cells,\displaystyle
-5,water,material,process,plastic,paper,machine,surface,metal,heat,wood
-6,engine,car,vehicle,cylinder,piston,crankshaft,torque,fuel,power,speed
+0,user,service,university,signal,\displaystyle,image,metal,fluid,storage,government
+1,data,software,vehicle,field,aircraft,paper,test,plant,voltage,flow
+2,technology,isbn,machine,load,’s,equipment,current,oil,digital,measurement
+3,company,air,fuel,management,models,built,sensors,patent,electric,object
+4,system,references,power,information,temperature,engine,pressure,research,analysis,video
+5,material,process,control,device,business,heat,hardware,product,network,cooling
+6,water,surface,design,gas,iron,ground,energy,computer,industry,light

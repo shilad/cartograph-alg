@@ -116,8 +116,8 @@ if __name__ == '__main__':
         hdbscan = hdbscan.drop(columns=['country'])
         cluster_df = pd.merge(hdbscan, kmeans, on='article_id')
     else:
-        sys.stderr.write("Unkonwn clustering method: %s\n" + args.clustering)
+        sys.stderr.write("Unknown clustering method: %s\n" + args.clustering)
         sys.exit(1)
 
-    cluster_df.to_csv('%s/article_topic_distribution.csv' % (args.experiment, ), index=False)
+    cluster_df.to_csv('%s/cluster_groups.csv' % (args.experiment, ), index=False)
 

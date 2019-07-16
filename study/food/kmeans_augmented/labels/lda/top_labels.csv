@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,air,surface,factory,material,remove,make,cup,machine,ice_cream,yeast
-1,release,rum,abalone,ale,hop,malt,abv,soft_drink,brewing,whisky
-2,green,long,root,banana,cultivate,harvest,cultivar,crop,flower,coffee
-3,producer,cider,liquor,award,series,run,chef,change,list,day
-4,mushroom,bean,genus,stem,garden,india,wild,white,native,soil
-5,cake,preparation,bacon,dessert,potato,chinese,chicken,cooking,fry,sweet
-6,research,lead,occur,body,system,low,source,consume,provide,feed
+0,effect,study,sugar,contain,diet,acid,nutrient,consumption,vitamin,level
+1,report,provide,people,farm,farmer,world,consumer,government,industry,program
+2,design,system,require,liquor,beverage,change,acquire,film,award,original
+3,preparation,dessert,potato,bacon,cooking,chinese,sauce,traditional,cuisine,bread
+4,spice,similar,vegetable,soup,cake,meal,chicken,fry,de,early
+5,location,open,business,feature,begin,good,oil,cause,high,protein
+6,garden,native,harvest,vine,crop,white,cultivation,banana,apple,root

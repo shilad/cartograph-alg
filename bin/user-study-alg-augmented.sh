@@ -43,7 +43,7 @@ do
     # Returns the name of the experiment directory for the map
     #
     prepare_experiment_dir () {
-        map_name=${project}
+        map_name=${projects[$i]}
         exp_id=$1
 
         exp_dir=study/${map_name}/${exp_id}
@@ -66,7 +66,6 @@ do
 
     # Step 2: Prepare an experiment directory for a specific map.
     exp_dir=$(prepare_experiment_dir ${exp_id})
-    label_path=${exp_dir}/labels/${label_type}
 
 
     # Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
@@ -77,7 +76,7 @@ do
     python -m cartograph.vector_augmenter \
         --experiment ${exp_dir} \
         --vectors ${exp_dir}/vanilla_vectors.csv \
-        --label_vectors data/${project}/article_labels_combined.csv \
+        --label_vectors data/${projects[$i]}/article_labels_combined.csv \
         --method label \
         --output_file ${initial_vector_for_clustering}
 
@@ -92,9 +91,9 @@ do
     python -m cartograph.vector_augmenter \
         --experiment ${exp_dir} \
         --vectors ${exp_dir}/vanilla_vectors.csv \
-        --label_vectors data/${project}/article_labels_combined.csv \
+        --label_vectors data/${projects[$i]}/article_labels_combined.csv \
         --method cluster \
-        --cluster_vectors ${exp_dir}/article_topic_distribution.csv \
+        --cluster_vectors ${exp_dir}/cluster_groups.csv \
         --output_file ${vector_format_for_embedding}
 
 
@@ -104,20 +103,22 @@ do
            --vectors ${exp_dir}/${vector_format_for_embedding}
 
 
-    for i in {0..4}
+    for x in {0..4}
     do
+        label_path=${exp_dir}/labels/${label_types[$x]}
+
         # Step 6 label selection
         python -m cartograph.label_selector \
             --experiment ${exp_dir} \
-            --articles_to_labels data/${project}/${article_label_csv} \
-            --label_names data/${project}/${label_name_csv} \
+            --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
+            --label_names data/${projects[$i]}/${label_name_csv[$x]} \
             --label_score ${label_score} \
             --percentile 1 \
             --label_path ${label_path}
 
 
         # Step 7: Generate JSON, noise refers to using noise filtering algorithm (k means distance)
-        python -m cartograph.json_generator data/${project} ${exp_dir} noise ${label_path}
+        python -m cartograph.json_generator data/${projects[$i]} ${exp_dir} noise ${label_path}
 
 
         # Step 8: Run evaluation metrics and generate HTML & SVG

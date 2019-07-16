@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,Cuisine by country,European cuisine by country,American cuisine,Cuisine by region,Cooking,American culture,Mediterranean cuisine,North American cuisine,European cuisine,Desserts
-1,Food product brands,Establishments in the United States by state,Years,Brands,Restaurants,Fast food,Restaurants by type,Eating behaviors of humans,Introductions by year,Drinks
-2,Foods,Food and drink,Edible plants,Types of food,Food industry,Ethnobotany,Food ingredients,Categories by continent,Vegan cuisine,Plants and humans
-3,Culture by country,Food and drink by country,Asian cuisine,Companies by year of establishment,Food and drink in the United States by state,Fermented drinks,Food and drink in the United States,Alcohol,Asian culture by country,Food and drink companies by country
-4,Cuisine,Fishing,Cuisine by continent,Meat,Establishments in the United States by year,Western cuisine,Animal-based seafood,Livestock,Prepared foods by main ingredient,Animal products
-5,Categories by type,Food politics,Main topic classifications,Food science,Agriculture,Health,Agronomy,Nutrition,Plant products,Crops
-6,Companies by industry and year of establishment,Restaurants by century of establishment,Restaurants by year of establishment,Restaurants by time,Food and drink companies by year of establishment,20th-century establishments,Restaurants in the United States,Companies established in the 20th century,Restaurants established in the 2nd millennium,Births by decade
+0,Categories by type,Nutrition,Eating behaviors of humans,Asian culture,Asian culture by country,Restaurants by type,Restaurants by century of establishment,Restaurants by time,Restaurants by year of establishment,Health
+1,Cuisine,Culture by country,Food and drink by country,Cuisine by region,Asian cuisine,European cuisine by country,Meat,European cuisine,Prepared foods by main ingredient,Years
+2,Food ingredients,European culture by country,Mediterranean cuisine,Food and drink in Europe by country,Edible fruits,Plant products,Categories by continent,Births by decade,Foods by cooking technique,Vegetables
+3,Companies by industry and year of establishment,Cooking,Desserts,Main topic classifications,Restaurants,North American cuisine,Baked goods,Food and drink in the United States,People by nationality and occupation,Life
+4,American cuisine,Establishments in the United States by year,Food and drink companies by year of establishment,Establishments in the United States by state,American culture,Companies established in the 20th century,Food and drink companies established in the 20th century,Categories by company,Brands,Western cuisine
+5,Foods,Cuisine by country,Types of food,Edible plants,Cuisine by continent,Plants and humans,Vegan cuisine,Companies by year of establishment,Ethnobotany,Flora by continent
+6,Food industry,Food and drink,Food product brands,Establishments by year and country,Establishments by country and year,Brands by product type,Introductions by year,Food products,Fast food,Convenience foods

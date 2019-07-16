@@ -1,8 +1,8 @@
 country,0
-0,mill
-6,modern
+5,mill
+4,modern
 3,voltage
-1,fuel
-2,property
-4,gear
-5,flow
+2,fuel
+6,property
+1,gear
+0,flow

@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,wikimedia_foundation,yahoo_messenger,february,foundation,bing,chinese,china,wiki,article,account
+0,specific,contain,spam,receive,response,different,resource,advertising,form,type
 1,price,partner,inc,found,app,pay,acquire,announce,amazon,purchase
-2,internet_explorer,image,mozilla,document,javascript,html,build,extension,code,developer
-3,specific,contain,spam,receive,response,different,resource,advertising,form,type
-4,study,digital,social,block,research,act,case,order,organization,public
-5,email,require,method,send,message,result,sale,brand,consumer,market
-6,issue,individual,community,law,government,infrastructure,isp,device,broadband,ietf
+2,issue,individual,community,law,infrastructure,isp,government,device,broadband,ietf
+3,wikimedia_foundation,yahoo_messenger,february,foundation,bing,chinese,china,wiki,article,account
+4,internet_explorer,image,mozilla,document,javascript,html,build,extension,code,developer
+5,email,require,send,method,sale,brand,message,consumer,market,result
+6,study,digital,social,block,research,act,case,order,organization,public

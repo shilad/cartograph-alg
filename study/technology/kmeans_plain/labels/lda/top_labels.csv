@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,voltage,point,range,cell,cause,measurement,component,battery,current,sensor
-1,property,color,remove,print,apply,technique,liquid,manufacture,tool,size
-2,mill,carry,china,war,british,site,flight,city,military,operation
-3,fuel,fire,construction,united_state,weapon,plant,building,ship,aircraft,begin
-4,gas,motor,pump,wheel,drive,speed,glass,plastic,metal,heat
-5,gear,flow,diver,reduce,lock,fit,mount,load,force,end
-6,modern,describe,art,society,know,culture,invent,idea,find,theory
+0,gear,flow,diver,reduce,lock,fit,mount,force,load,end
+1,gas,motor,pump,wheel,glass,plastic,metal,drive,heat,surface
+2,fuel,fire,construction,united_state,weapon,plant,building,ship,aircraft,begin
+3,modern,describe,culture,art,know,society,invent,theory,like,idea
+4,property,color,remove,print,apply,technique,liquid,manufacture,tool,size
+5,voltage,point,range,cell,cause,measurement,component,battery,current,sensor
+6,mill,carry,china,war,british,site,flight,city,military,operation

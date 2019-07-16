@@ -86,14 +86,14 @@ do
            --vectors ${exp_dir}/${vector_format_for_embedding}
 
 
-    for i in {0..4}
+    for x in {0..4}
     do
-        label_path=${exp_dir}/labels/${label_types[$i]}
+        label_path=${exp_dir}/labels/${label_types[$x]}
 
         python -m cartograph.label_selector \
             --experiment ${exp_dir} \
-            --articles_to_labels data/${projects[$i]}/${article_label_csv} \
-            --label_names data/${projects[$i]}/${label_name_csv} \
+            --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
+            --label_names data/${projects[$i]}/${label_name_csv[$x]} \
             --label_score ${label_score} \
             --percentile 1 \
             --label_path ${label_path}
