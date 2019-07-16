@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,aircraft,valve,World War II,fluid,pressure,submarine,air,ship,pump,propeller
-1,United States,England,inventor,Industrial Revolution,Kent,Thor-Agena,RM-81 Agena,Vandenberg Air Force Base,Vandenberg AFB Launch Complex 75,apsis
-2,technology,engineering,information technology,artificial intelligence,innovation,scientific journal,nanotechnology,computer science,physics,biotechnology
-3,paper,polymer,plastic,metal,light,composite material,glass,hydrogen,corrosion,thermoplastic
-4,internal combustion engine,Volkswagen Group,crankshaft,cylinder ,diesel engine,Audi,automobile,reciprocating engine,automatic transmission,steam engine
-5,Android ,smartphone,Wi-Fi,Apple Inc.,Samsung Electronics,Qualcomm,Bluetooth,GLONASS,Google,Adreno
-6,voltage,alternating current,radar,computer,magnetic field,machine,fastener,signal processing,technical drawing,frequency
+0,magnetic field,Intel,voltage,alternating current,light,Samsung Electronics,integrated circuit,electron,frequency,transistor
+1,technology,engineering,information technology,artificial intelligence,scientific journal,innovation,biotechnology,nanotechnology,physics,computer science
+2,plastic,paper,metal,polymer,glass,composite material,heat,corrosion,water,adhesive
+3,internal combustion engine,valve,torque,aircraft,crankshaft,wheel,cylinder ,mechanical advantage,piston,clutch
+4,World War II,submarine,radar,missile,land mine,torpedo,laser,lens ,World War I,machine gun
+5,smartphone,Android ,Wi-Fi,Apple Inc.,Google,Microsoft,United States,iOS,operating system,Bluetooth
+6,steam engine,Volkswagen Group,England,inventor,diesel engine,Kent,automobile,Industrial Revolution,Germany,Canada

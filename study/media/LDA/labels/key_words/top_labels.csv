@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,newspapers,media,news,published,broadcasting,radio,group,company,station,press
-1,reporting,pulitzer,editorial,times,war,states,public,post,drama,american
-2,uses,example,references,create,information,form,different,effect,way,development
-3,award,life,years,film,series,produced,featured,productions,world,john
-4,university,studies,communication,social,culture,society,education,research,work,isbn
-5,networks,channel,video,programming,launched,services,announced,united,based,digital
-6,artist,performances,album,songs,musical,records,singer,musicians,bands,sounds
+0,information,communication,people,studies,references,research,example,public,social,form
+1,films,awards,featured,released,produced,production,best,episode,played,series
+2,newspapers,news,company,media,business,launched,times,publisher,group,acquired
+3,state,university,war,books,isbn,john,president,journal,work,york
+4,services,networks,market,united,providers,year,content,advertising,digital,available
+5,broadcasting,channel,station,government,radio,country,russian,english,agency,television
+6,standard,uses,formats,systems,developed,video,technology,allow,required,different

@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,newspaper,CTV Television Network,India,United Kingdom,Canada,Reporters Without Borders,CFCN-DT,English language,Quebec,CFRN-DT
-1,Pulitzer Prize,The New York Times,propaganda,The Guardian,Donald Trump,The Washington Post,Fox News,BBC News,CNN,News of the World
-2,advertising,marketing,communication,mass media,Internet,information,film,public relations,magazine,screenplay
-3,Gold ,New York City,Variety ,CBS,American Broadcasting Company,podcast,Sports Illustrated,Time Inc.,radio,Los Angeles
-4,social media,Sage Publications,Facebook,Twitter,YouTube,academic journal,LGBT,censorship,UNESCO,"Sexualization, Media, and Society"
-5,United States,pay television,cable television,television,television network,television station,NBC,broadcasting,High Efficiency Video Coding,Sony
-6,jazz,rhythm and blues,popular music,gospel music,blues,rock music,music genre,music industry,Universal Music Group,music
+0,mass media,social media,communication,public relations,propaganda,Twitter,Internet,information,marketing,magazine
+1,Gold ,YouTube,film,jazz,screenplay,Variety ,music,CNN,Sports Illustrated,Netflix
+2,newspaper,Canada,New York City,Ontario,Australia,Toronto,pay television,broadsheet,Quebec,English language
+3,The New York Times,The Guardian,Pulitzer Prize,Sage Publications,Donald Trump,ABC News,author,journalism,World War II,London
+4,United States,advertising,cable television,television,Comcast,Viacom,video on demand,NBC,National Amusements,CBS Corporation
+5,Reporters Without Borders,news agency,Freedom House,BBC,public broadcasting,India,United Kingdom,free-to-air,Arabic language,television channel
+6,Sony,High Efficiency Video Coding,DVD,Moving Picture Experts Group,video,International Telecommunication Union,Blu-ray Disc,Philips,analog signal,optical disc

@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,states,people,references,united,law,online,time,according,post,public
-1,domains,internet,level domain,registration,icann,names,registry,university,tld,information
-2,version,browsers,support,user,use,html,web,server,page,applications
-3,website,site,december,reported,yahoo,blocked,january,media,april,march
-4,network,connected,communications,technology,providers,points,telecom,isp,exchange,government
-5,youtube,new,awards,series,video,featured,music,film,episodes,released
-6,company,business,launched,service,marketing,product,acquired,customers,platform,ceo
+0,protocol,rfc,secure,servers,implementations,address,message,uses,packets,tcp
+1,university,network,research,technology,development,information,project,communications,world,national
+2,domains,level domain,registration,icann,registry,names,cctld,firefox,tld,internet
+3,user,web,page,browser,version,html,google,support,links,applications
+4,states,law,united,reported,act,according,government,case,times,people
+5,yahoo,verizon,aol,july,messenger,yang,introduced,closed,april,december
+6,company,new,launched,awards,announced,website,business,service,official,year

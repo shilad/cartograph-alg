@@ -1,8 +1,8 @@
 country,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
-0,user,0.007,information,0.006,use,0.005,people,0.005,online,0.004,internet,0.004,state,0.003,individual,0.003,work,0.003,content,0.003
-1,internet,0.018,network,0.014,domain,0.009,library,0.006,use,0.006,web,0.006,system,0.005,rfc,0.005,protocol,0.004,work,0.004
-2,user,0.011,support,0.009,use,0.008,server,0.008,browser,0.007,web,0.006,version,0.006,page,0.006,datum,0.005,client,0.005
-3,yahoo,0.022,site,0.019,website,0.019,service,0.011,user,0.01,internet,0.007,content,0.007,company,0.007,block,0.006,google,0.006
-4,internet,0.019,service,0.012,network,0.012,access,0.009,technology,0.008,provide,0.007,government,0.006,use,0.006,system,0.005,country,0.005
-5,video,0.012,music,0.007,game,0.006,release,0.006,film,0.005,feature,0.005,youtube,0.005,create,0.005,series,0.004,time,0.004
-6,company,0.025,service,0.014,online,0.011,business,0.01,product,0.009,customer,0.008,user,0.007,platform,0.007,launch,0.006,consumer,0.006
+0,network,0.015,protocol,0.012,server,0.01,use,0.01,system,0.007,security,0.007,message,0.006,service,0.006,datum,0.006,address,0.005
+1,internet,0.019,network,0.01,technology,0.007,use,0.006,system,0.005,provide,0.005,service,0.005,information,0.005,access,0.005,community,0.004
+2,support,0.012,release,0.01,firefox,0.009,domain,0.008,new,0.007,version,0.006,wikipedia,0.006,commerce,0.005,user,0.005,browser,0.005
+3,user,0.015,web,0.009,website,0.009,use,0.008,content,0.007,page,0.007,datum,0.007,information,0.006,site,0.006,software,0.006
+4,user,0.007,internet,0.007,website,0.006,state,0.005,online,0.005,information,0.005,site,0.004,report,0.004,government,0.004,content,0.004
+5,yahoo,0.062,service,0.018,user,0.01,company,0.009,site,0.007,website,0.006,provide,0.006,search,0.005,launch,0.005,april,0.005
+6,company,0.014,service,0.008,website,0.007,launch,0.006,site,0.005,video,0.004,online,0.004,user,0.004,business,0.004,new,0.004

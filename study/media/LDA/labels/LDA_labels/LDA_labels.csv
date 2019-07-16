@@ -1,8 +1,8 @@
 country,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
-0,medium,0.018,newspaper,0.016,news,0.012,company,0.009,radio,0.006,group,0.006,publish,0.006,paper,0.006,country,0.005,government,0.005
-1,report,0.006,state,0.005,time,0.005,news,0.005,american,0.004,write,0.004,story,0.004,claim,0.003,journalist,0.003,new_york_time,0.003
-2,medium,0.01,use,0.007,information,0.005,advertising,0.004,example,0.004,create,0.004,work,0.004,form,0.004,new,0.004,communication,0.003
-3,film,0.011,year,0.005,series,0.005,time,0.005,magazine,0.004,work,0.004,award,0.004,feature,0.004,company,0.004,new,0.003
-4,medium,0.014,woman,0.01,social_medium,0.005,people,0.005,communication,0.004,online,0.004,study,0.004,website,0.004,site,0.004,work,0.004
-5,network,0.012,channel,0.01,broadcast,0.008,television,0.007,station,0.006,company,0.006,tv,0.006,video,0.006,service,0.006,program,0.005
-6,music,0.028,song,0.008,record,0.006,play,0.006,sound,0.006,artist,0.006,jazz,0.006,band,0.005,blue,0.005,man,0.004
+0,medium,0.016,information,0.005,people,0.005,communication,0.005,use,0.005,new,0.004,study,0.003,public,0.003,individual,0.003,news,0.003
+1,film,0.015,music,0.009,series,0.004,work,0.004,play,0.004,show,0.004,time,0.004,woman,0.003,include,0.003,feature,0.003
+2,news,0.012,newspaper,0.01,company,0.009,network,0.006,time,0.006,magazine,0.006,medium,0.005,station,0.005,paper,0.004,launch,0.004
+3,book,0.007,work,0.006,woman,0.005,write,0.005,american,0.005,report,0.005,publish,0.005,time,0.004,state,0.004,new_york_time,0.004
+4,company,0.014,network,0.012,medium,0.011,service,0.009,advertising,0.008,content,0.007,television,0.007,tv,0.006,channel,0.005,market,0.005
+5,channel,0.013,broadcast,0.012,medium,0.011,radio,0.011,government,0.006,tv,0.006,country,0.006,television,0.006,news,0.005,bbc,0.005
+6,use,0.009,camera,0.008,system,0.008,image,0.007,video,0.007,format,0.005,digital,0.005,standard,0.005,color,0.005,signal,0.004

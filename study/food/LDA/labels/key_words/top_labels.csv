@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,company,brands,products,market,united,sold,sales,advertising,states,operations
-1,dish,cooked,prepared,served,traditional,ingredients,popular,cuisine,references,sauce
-2,effect,studies,increase,levels,research,reduce,results,health,contain,acids
-3,leaves,species,plants,grow,flowers,cultivation,uses,seeds,north,fruits
-4,vineyards,wines,grapes,producers,vines,region,winery,winemaking,france,varieties
-5,beers,century,brewing,brewery,ale,drink,book,history,english,england
-6,restaurants,opened,new,location,business,year,city,award,time,featured
+0,restaurant,new,opened,work,time,award,house,year,city,book
+1,beers,brewery,brewing,ale,bottle,company,brand,produced,brewers,product
+2,growing,leaves,cultivation,species,plants,north,flowers,seeds,varieties,regions
+3,operations,sales,united,business,market,states,announced,location,chains,store
+4,recipe,references,sugar,popular,flavor,baked,sweet,filling,shape,called
+5,effects,studies,uses,process,acids,research,contain,reduced,increase,cause
+6,dishes,cooked,preparation,served,cuisine,ingredients,sauce,onions,traditional,meat

@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,Kickstarter,Twitter,social media,Indiegogo,The Guardian,Wired ,Tor ,Wikipedia,National Security Agency,blog
-1,top-level domain,Internet,ccTLD,country code,ICANN,Domain Name System,country code top-level domain,Internet Assigned Numbers Authority,IPv6,Internet Engineering Task Force
-2,web browser,World Wide Web,JavaScript,World Wide Web Consortium,web page,HTML,Microsoft,Microsoft Windows,Firefox,Internet Explorer
-3,website,Yahoo!,Super Luchas,Reporters Without Borders,Internet censorship,OpenNet Initiative,Alexa Internet,Google,web portal,search engine
-4,Internet service provider,Internet Exchange Point,Internet access,United States,Wi-Fi,broadband,telecommunications,New York Times,peering,International Telecommunication Union
-5,YouTube,web series,Netflix,Streaming media,The New York Times,web television,Instagram,BBC,Billboard ,Twitch.tv
-6,e-commerce,New York City,Facebook,online advertising,London,eBay,San Francisco,Android ,Amazon.com,India
+0,Transmission Control Protocol,Internet Engineering Task Force,Transport Layer Security,IPv6,Internet Protocol,IETF,IPv4,IP address,User Datagram Protocol,domain name
+1,Internet service provider,Internet exchange point,Internet Society,ARPANET,peering,Internet access,digital divide,email,computer science,Canada
+2,top-level domain,country code,ccTLD,Internet,ICANN,country code top-level domain,Domain Name System,Firefox,generic top-level domain,Internet Assigned Numbers Authority
+3,web browser,World Wide Web,HTML,JavaScript,web page,website,Google,World Wide Web Consortium,search engine,web application
+4,Facebook,Twitter,The Guardian,The New York Times,social media,Internet censorship,online advertising,Tor ,Reporters Without Borders,Federal Bureau of Investigation
+5,Yahoo!,Verizon Communications,Tencent Weibo,Altaba,Yahoo! News,Sina Weibo,MSN,Yahoo! Search,Yahoo,"Mountain View, California"
+6,YouTube,New York City,United States,London,e-commerce,San Francisco,Android ,Forbes,iOS,United Kingdom

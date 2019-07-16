@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,soft drink,The Coca-Cola Company,United Kingdom,chocolate,PepsiCo,brand,Coca-Cola,Nestlé,Canada,coffee
-1,pork,beef,rice,cheese,onion,sugar,tomato,bread,garlic,meat
-2,carbohydrate,protein,food,organic compound,World Health Organization,wheat,ethanol,fat,glucose,agriculture
-3,species,genus,flowering plant,fruit,family ,cultivar,Carl Linnaeus,tree,common name,North America
-4,wine,France,grape,grape variety,French wine,Cabernet Sauvignon,Chardonnay,Jancis Robinson,Merlot,body 
-5,beer,cocktail,brewery,brewing,gin,alcoholic beverage,England,Scotland,vodka,Germany
-6,United States,restaurant,New York City,fast food,chef,restaurant chain,The New York Times,Food Network,hamburger,Michelin star
+0,restaurant,New York City,chef,The New York Times,Michelin star,Food Network,celebrity chef,restaurateur,Manhattan,cookbook
+1,beer,brewery,soft drink,The Coca-Cola Company,Diageo,Scotch whisky,SABMiller,Anheuser-Busch InBev,Pernod Ricard,Coca-Cola
+2,species,genus,flowering plant,fruit,cultivar,family ,wine,tree,Carl Linnaeus,North America
+3,United States,Canada,United Kingdom,supermarket,fast food,hamburger,McDonald's,Burger King,restaurant chain,franchising
+4,sugar,chocolate,bread,cocktail,dessert,milk,flour,cake,tea,pastry
+5,organic compound,protein,food,ethanol,carbohydrate,fat,E number,glucose,sucrose,chemical formula
+6,pork,rice,beef,onion,tomato,garlic,meat,potato,Indian subcontinent,Italian cuisine
