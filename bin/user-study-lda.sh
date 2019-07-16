@@ -65,7 +65,7 @@ do
 
 
     # Step 4: create cluster csv for label_selector:
-    python -m cartograph.LDA_cluster_builder ${exp_dir}
+    python -m study.data.LDA_cluster_builder ${exp_dir}
 
 
     for x in {0..3}
