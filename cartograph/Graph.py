@@ -14,6 +14,9 @@ from pygsp import graphs, filters
 
 
 class Center:
+    """
+    Actual data points, center in a voronoi polygon
+    """
     def __init__(self, id, position, cluster, article_id):
         self.id = id
         self.position = position
@@ -36,6 +39,9 @@ class Center:
 
 
 class Corner:
+    """
+    Vertices of a Voronoi polygon
+    """
     def __init__(self, id, position):
         self.id = id
         self.position = position
@@ -56,6 +62,9 @@ class Corner:
 
 
 class Edge:
+    """
+    An edge which records two centers and two adjacent corners
+    """
     def __init__(self, id, center1, center2, vertex1, vertex2, is_border):
         self.id = id
         self.d0 = center1
@@ -67,19 +76,16 @@ class Edge:
 
 class Graph:
     def __init__(self, xy_embedding_csv, cluster_group_csv):
-        self.points, self.cluster_group_df = self.preprocess_file(xy_embedding_csv, cluster_group_csv)
-        if self.points.shape[1] != 2:
-            logging.warning('Required 2D input')
-            return
-        self.num_points = len(self.points)
-        self.augmented_points = self.add_water_points(self.points)
+        self.points = np.empty([0, 2])
         self.cluster_list = []
         self.article_id_list = []
-        self.create_cluster_and_article_id(len(self.augmented_points), self.cluster_group_df)
 
-        self.is_cluster_preserved = self.denoise_cluster(self.augmented_points, len(set(self.cluster_list)))
-        self.cutting_index = 0  # the new index divides the original points and waterpoints
-        self.vor = self.build_voronoi(self.augmented_points, self.is_cluster_preserved, self.cluster_list)
+        self.preprocess_file(xy_embedding_csv, cluster_group_csv)
+        self.num_points = len(self.points)
+        self.add_water_points(self.points)
+
+        self.denoise_cluster(self.points, len(set(self.cluster_list)))
+        self.vor = Voronoi(self.points)
 
         self.centers_dic = {}
         self.edge_dic = {}
@@ -89,14 +95,36 @@ class Graph:
 
     def preprocess_file(self, xy_embedding_csv, cluster_group_csv):
         xy_embedding_df = pd.read_csv(xy_embedding_csv)
-        cluster_groups_def = pd.read_csv(cluster_group_csv)
-        xy_embedding_df.x.round(6)
-        xy_embedding_df.y.round(6)
+        cluster_groups_df = pd.read_csv(cluster_group_csv)
+
+        # check article_ids match on both files
+        xy_embedding_id = xy_embedding_df['article_id'].values
+        cluster_id = cluster_groups_df['article_id'].values
+        is_match = True
+        for i, j in zip(xy_embedding_id, cluster_id):
+            if int(i) != int(j):
+                is_match = False
+                break
+        if is_match:
+            self.cluster_list = cluster_groups_df['country'].values.tolist()
+            self.article_id_list = cluster_groups_df['article_id'].values.tolist()
+        else:
+            # construct the cluster_list
+            logging.warning("Embedding and clustering ids don't match, matching takes extra time")
+            for row in xy_embedding_df.itertuples():
+                article_id = int(row.article_id)
+                cluster = cluster_groups_df.loc[cluster_groups_df['article_id'] == row.article_id, ['country']].iloc[0].tolist()[0]
+                self.cluster_list.append(cluster)
+                self.article_id_list.append(article_id)
+
         points = np.zeros(shape=(xy_embedding_df.shape[0], 2))
 
         for index, row in xy_embedding_df.iterrows():
             points[index] = [row['x'], row['y']]
-        return points, cluster_groups_def
+
+        assert points.shape[1] == 2, 'Required 2D input'
+
+        self.points = points
 
     def add_water_points(self, points):
         """
@@ -122,38 +150,33 @@ class Graph:
 
         # Construct the boundaries dots
         for i in range(num_squares):
-            num_of_points_x = np.arange(bounding_box[0], bounding_box[1], square_dot_sep).shape[0]
+            num_of_points_y = np.arange(bounding_box[2], bounding_box[3], square_dot_sep).shape[0]
+
             # coordinates for points on top, right, bottom, left of square
             square_x = np.concatenate([
                 np.arange(bounding_box[0], bounding_box[1], square_dot_sep),
-                np.repeat(bounding_box[1], num_of_points_x),
+                np.repeat(bounding_box[1], num_of_points_y),
                 np.arange(bounding_box[0], bounding_box[1], square_dot_sep),
-                np.repeat(bounding_box[0], num_of_points_x)])
-            num_of_points_y = np.arange(bounding_box[2], bounding_box[3], square_dot_sep).shape[0]
+                np.repeat(bounding_box[0], num_of_points_y)])
+            num_of_points_x = np.arange(bounding_box[0], bounding_box[1], square_dot_sep).shape[0]
+
             square_y = np.concatenate([
-                np.repeat(bounding_box[2], num_of_points_y),
+                np.repeat(bounding_box[2], num_of_points_x),
                 np.arange(bounding_box[2], bounding_box[3], square_dot_sep),
-                np.repeat(bounding_box[3], num_of_points_y),
+                np.repeat(bounding_box[3], num_of_points_x),
                 np.arange(bounding_box[2], bounding_box[3], square_dot_sep)])
             water_x_cor = np.concatenate([water_x_cor, square_x])
             water_y_cor = np.concatenate([water_y_cor, square_y])
         water_points = np.array(list(zip(water_x_cor, water_y_cor)))
 
-        return np.concatenate([points, water_points])
+        # add cluster and article_id to water points
+        self.points = np.concatenate([self.points, water_points])
 
-    def create_cluster_and_article_id(self, length, cluster_groups_df):
-        """
-        Since the order in xy_embeddings.csv and cluster_groups.csv is the same, assign cluster to points taking advantage of the order
-        Mutate the cluster and article_id look-up lists
-        """
-        water_point_id = len(cluster_groups_df['country'].unique())
-        for index in range(length):
-            if index < self.num_points:
-                self.cluster_list.append(int(cluster_groups_df.loc[index].iloc[0]))
-                self.article_id_list.append(int(cluster_groups_df.loc[index].iloc[1]))
-            else:
-                self.cluster_list.append(water_point_id)
-                self.article_id_list.append(-1)
+        length = len(self.points)
+        water_point_id = len(set(self.cluster_list))
+        for index in range(self.num_points, length):
+            self.cluster_list.append(water_point_id)
+            self.article_id_list.append(-1)
 
     def denoise_cluster(self, points, num_cluster, tau=10):
         """
@@ -172,6 +195,7 @@ class Graph:
         # fill the vectors sparse matrix
         for i, vec in enumerate(vectors):
             vec[self.cluster_list[i]] = 1
+
         vectors = vectors.T
 
         # fill the denoising matrix, find the dominant cluster of each points
@@ -180,34 +204,15 @@ class Graph:
 
         # see if the dominant cluster after denoising is the same as the original cluster
         dominant_cluster = np.argmax(signal, axis=0)
-        is_cluster_preserved = []
-        for i in range(length):
-            if dominant_cluster[i] == int(self.cluster_list[i]):
-                is_cluster_preserved.append(True)
-            else:
-                is_cluster_preserved.append(False)
-        return is_cluster_preserved
-
-    def build_voronoi(self, augmented_points, is_cluster_preserved, cluster_list):
-        """
-        Draw Voronoi diagram of the points whose clusters didn't change after denoising function
-        Update the cutting points before which are the points in the original graph and their cluster didn't change
-        :param augmented_points:
-        :param is_cluster_preserved:
-        :param cluster_list:
-        :return:
-        """
         vor_points, vor_clusters = [], []
-        cutting_index = 0
-        for index, coord in enumerate(augmented_points):
-            if is_cluster_preserved[index]:
-                vor_points.append(coord)
-                vor_clusters.append(cluster_list[index])
-            if index < self.num_points:
-                cutting_index = cutting_index + 1
-        self.cluster_list = vor_clusters  # since order might have changed, the indexing in cluster_list must be updated
-        self.cutting_index = cutting_index
-        return Voronoi(vor_points)
+
+        for index, coor in enumerate(self.points):
+            if dominant_cluster[index] == int(self.cluster_list[index]):
+                vor_points.append(coor)
+                vor_clusters.append(self.cluster_list[index])
+
+        self.points = vor_points
+        self.cluster_list = vor_clusters
 
     def initiate_center(self, p, vor_points, centers_dic):
         if p in centers_dic:
@@ -265,18 +270,11 @@ class Graph:
             center_2.add_corner(corner_1)
             center_2.add_corner(corner_2)
 
-            self.centers_dic.update({p1: center_1})
-            self.centers_dic.update({p2: center_2})
-            self.corners_dic.update({v1: corner_1})
-            self.corners_dic.update({v2: corner_2})
-            self.edge_dic.update({edge_id: edge})
-
-    def export_clusters(self, directory):
-        row_list = []
-        for id, center in self.centers_dic.items():
-            if center.article_id != -1:
-                row_list.append({'country': center.cluster, 'article_id': center.article_id})
-        pd.DataFrame(row_list).to_csv(directory + "/cluster_groups.csv", index=False)
+            self.centers_dic[p1] = center_1
+            self.centers_dic[p2] = center_2
+            self.corners_dic[v1] = corner_1
+            self.corners_dic[v2] = corner_2
+            self.edge_dic[edge_id] = edge
 
     def export_boundaries(self, directory):
         row_list = []
@@ -306,6 +304,6 @@ if __name__ == '__main__':
         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory = sys.argv[1]
-    g = Graph(map_directory + '/xy_embeddings.csv', map_directory + '/cluster_groups.csv')
-    g.export_boundaries(map_directory)
+    experiment_directory = sys.argv[1]
+    g = Graph(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
+    g.export_boundaries(experiment_directory)
