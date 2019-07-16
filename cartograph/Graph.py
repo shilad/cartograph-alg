@@ -222,7 +222,6 @@ class Graph:
     def build_graph(self):
         vor = self.vor
 
-
         for (p1, p2), (v1, v2) in zip(vor.ridge_points, vor.ridge_vertices):
             center_1 = self.initiate_center(p1, vor.points, self.centers_dic)
             center_2 = self.initiate_center(p2, vor.points, self.centers_dic)
@@ -300,34 +299,6 @@ class Graph:
 
         plt.show()
 
-    def create_svg(self, domain_concept_csv, popularity_score_csv):
-        # Create dictionary to find article labels before merging
-        domain_concept_df = pd.read_csv(domain_concept_csv)
-        article_id_domain_concept_dic = domain_concept_df.set_index('article_id')['article_name'].to_dict()
-
-        # Create dictionary to find sizes
-        # popularity_score = pd.read_csv(popularity_score_csv)
-        # article_id_popularity_dic = popularity_score.set_index('article_id')['popularity_score'].to_dict()
-
-        drawing = draw.Drawing(1000, 1000, origin="center")
-        XY_RATIO = 7
-        colors = ['pink', 'yellow', 'green', 'red', 'orange', 'grey', 'purple', 'brown', 'blue']
-        for id, center in self.centers_dic.items():
-            if center.article_id != -1:
-                title = article_id_domain_concept_dic[int(center.article_id)]
-                x, y = center.position[0]*XY_RATIO, center.position[1]*XY_RATIO
-                country = center.cluster
-                drawing.append(draw.Circle(x, y, 5, fill=colors[country]))
-
-        for id, edge in self.edge_dic.items():
-            if edge.is_border:
-                a, b = edge.v0.position*XY_RATIO, edge.v1.position*XY_RATIO
-                drawing.append(draw.Line(a[0], a[1], b[0], b[1], stroke='black', stroke_dasharray='2,1'))
-
-        drawing.setPixelScale(2)  # Set number of pixels per geometry unit
-        drawing.saveSvg('./graph.svg')
-
-
 
 if __name__ == '__main__':
     import sys
@@ -338,25 +309,3 @@ if __name__ == '__main__':
     map_directory = sys.argv[1]
     g = Graph(map_directory + '/xy_embeddings.csv', map_directory + '/cluster_groups.csv')
     g.export_boundaries(map_directory)
-
-
-
-
-
-#
-#
-# df = pd.read_csv("../../experiments/food/0001/xy_embeddings.csv")
-# df.x = df.x.round(6)
-# df.y = df.y.round(6)
-# points = np.zeros(shape=(df.shape[0], 2))
-# for index, row in df.iterrows():
-#     points[index] = [row['x'], row['y']]
-# print(points[1426][0])
-#
-# clusters = pd.read_csv("../../experiments/food/0001/cluster_groups.csv")
-#
-# g = Graph(points, clusters)
-# g.export_boundaries('')
-# g.export_clusters('')
-# g.create_svg('../../data/food/domain_concept.csv', '')
-#
