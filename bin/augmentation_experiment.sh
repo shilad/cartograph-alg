@@ -77,7 +77,7 @@ do
            --vectors ${exp_dir}/${vector_format_for_embedding[$i]}
 
     # draw boundary
-    python -m cartograph.Graph ${exp_dir}
+    python -m cartograph.border_creator ${exp_dir}
 
     # Step 6: Generate JSON, noise refers to using noise filtering algorithm (k means distance)
     python -m cartograph.json_generator data/food ${exp_dir} noise
