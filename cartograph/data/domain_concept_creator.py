@@ -47,8 +47,6 @@ def create_domain_concept(urls, num_articles):
             if not re.match(".*[0-9]{4} .*", title) and not re.match(".*[0-9]+$", article[1].a.text.strip()) and \
             words_unique.intersection(STOP_WORDS) == set():
                 articles.append(article[1].a.text.strip())
-            else:
-                print(article[1].a.text.strip())
             article_count += 1
     return articles
 
