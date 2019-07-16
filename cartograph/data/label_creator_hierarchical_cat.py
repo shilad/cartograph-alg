@@ -98,17 +98,11 @@ def create_labels(domain_concept_csv):
 def create_label_id_str_csv(directory, labels_to_ids):
     id_to_label = [(id, label) for (label, id) in labels_to_ids.items()]
     labels_df = pd.DataFrame(id_to_label, columns=["label_id", "label"])
-    labels_df.to_csv(directory + '/category_names.csv', index=False)
+    labels_df.to_csv(directory + '/hierarchical_category_names.csv', index=False)
 
 
 def create_article_label_csv(article_label_df, directory):
-    article_label_df.to_csv(directory + "/article_categories.csv", index=False)
-
-#
-# map_directory = "../data/food"
-# labels_to_id, label_df = create_labels(map_directory + "/domain_concept.csv")
-# create_article_label_csv(label_df, map_directory)
-# create_label_id_str_csv(map_directory, labels_to_id)
+    article_label_df.to_csv(directory + "/article_hierarchical_categories.csv", index=False)
 
 
 def main(map_directory):

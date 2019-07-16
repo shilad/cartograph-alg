@@ -7,6 +7,7 @@ import argparse
 import numpy as np
 import pandas as pd
 from gensim.parsing.porter import PorterStemmer
+from collections import defaultdict
 
 
 def add_country_label_counts(labels_df):
@@ -67,10 +68,28 @@ def assign_country_label_ids(country_scores, label_score):
 
     for row in country_scores.itertuples():
         if row.country not in final_labels and row.stem not in used_stems:
-            final_labels[row.country] = row.label
+            final_labels[row.country] = row.label.replace('_', ' ')
             used_stems.add(row.stem)
 
     return final_labels
+
+
+def get_top_labels(country_scores, label_score):
+    """Output: Dictionary --> key = country, value = list of top labels"""
+
+    ps = PorterStemmer()
+    country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
+    country_scores = country_scores.sort_values(by=label_score, ascending=False)
+    top_labels = [defaultdict(str) for x in range(country_scores['num_countries'][0])]
+    used_stems = set()
+
+    for row in country_scores.itertuples():
+        if row.stem not in used_stems:
+            if len(top_labels[row.country]) < 10:
+                top_labels[row.country][row.label_id] = row.label.replace('_', ' ')
+                used_stems.add(row.stem)
+
+    return top_labels
 
 
 def main(experiment_dir, article_labels, percentile, label_score):
@@ -95,6 +114,14 @@ def main(experiment_dir, article_labels, percentile, label_score):
     df = pd.DataFrame(final_labels,  index=[0]).T
     df['country'] = df.index
     df.to_csv(experiment_dir + '/country_labels.csv', index=True)
+
+    # # Get top label candidates
+    top = get_top_labels(country_labels, label_score)
+    print(top)
+
+    # top_df = pd.DataFrame.from_dict(top, orient='index')
+    # top_df['country'] = top_df.set_index
+    # top_df.to_csv(experiment_dir + '/top_label_candidates.csv', index=True)
 
 
 if __name__ == '__main__':
