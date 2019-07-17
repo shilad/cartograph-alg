@@ -30,7 +30,7 @@ def create_domain_concept(urls, num_articles):
     articles = []
     article_count = 0
     STOP_WORDS = {'list', 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september',
-                  'october', 'november', 'december', 'category'}
+                  'october', 'november', 'december', 'category', 'category:'}
     for url in urls:
         response = get(url)
         soup = BeautifulSoup(response.text, 'html.parser')

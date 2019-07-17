@@ -13,11 +13,10 @@ projects=(Food_and_drink Internet Media Technology)
 directories=(food internet media technology)
 
 
-for i in {0..0}
+for i in {2..2}
 do
     echo ${projects[$i]}
     python -m cartograph.data.domain_concept_creator data/${directories[$i]} ${projects[$i]} 5000
-#    python -m cartograph.data.label_creator_categories data/${directories[$i]}
     python -m cartograph.data.label_creator_hierarchical_cat data/${directories[$i]}
     python -m cartograph.data.label_creator_links data/${directories[$i]}
     python -m cartograph.data.text_getter data/${directories[$i]}
