@@ -5,12 +5,13 @@ Author: Yuren 'Rock' Pang
 Reference:  For denoising function: https://github.com/shilad/cartograph/blob/develop/cartograph/Denoiser.py
 """
 import logging
-import queue
 import random
+import queue
 
 import sys
 import numpy as np
 import pandas as pd
+import seaborn as sns
 import matplotlib
 import matplotlib.pyplot as plt
 from scipy.spatial import Voronoi
@@ -18,6 +19,7 @@ from pygsp import graphs, filters
 from matplotlib.patches import Polygon
 from matplotlib.collections import PatchCollection
 import math
+from colour import Color
 
 
 class Center:
@@ -99,6 +101,7 @@ class Edge:
 
 class Graph:
     def __init__(self, xy_embedding_csv, cluster_group_csv):
+        plt.figure()
         self.points = np.empty([0, 2])
         self.cluster_list = []
         self.article_id_list = []
@@ -117,6 +120,7 @@ class Graph:
 
         self.build_graph()
         self.assign_elevation()
+        self.draw_graph()
 
     def preprocess_file(self, xy_embedding_csv, cluster_group_csv):
         xy_embedding_df = pd.read_csv(xy_embedding_csv)
@@ -158,7 +162,7 @@ class Graph:
         :return: [[x1, y1], [x2, y2], ...] all points on the map including waterpoints and original points
         """
         # Drop waterpoints inside the original dots
-        water_level = 0.05
+        water_level = 0.2
         max_abs_value = np.max(np.abs(points))
         def f(n):
             return (np.random.beta(0.8, 0.8, n) - 0.5) * 2 * (max_abs_value + 5)
@@ -244,7 +248,7 @@ class Graph:
     def initiate_center(self, p, vor_points, centers_dic):
         if p in centers_dic:
             return centers_dic[p]
-        is_water = True if self.cluster_list[p] == len(set(self.cluster_list)) else False
+        is_water = True if self.cluster_list[p] == len(set(self.cluster_list))-1 else False
         return Center(p, vor_points[p], self.cluster_list[p], self.article_id_list[p], is_water)
 
     def initiate_corner(self, v, vor_vertices, corners_dic):
@@ -312,7 +316,6 @@ class Graph:
     def assign_elevation(self):
         q = queue.Queue(maxsize=len(self.corners_dic))
 
-
         # assign is_coast for corner
         # this is the borders between sea and continent and border between clusters
         for corner in self.corners_dic.values():
@@ -322,9 +325,9 @@ class Graph:
                     corner.elevation = 0.0
                     q.put(corner)
                 break
-
         while q.qsize() > 0:
             corner = q.get()
+
             for adjacent_corner in corner.adjacent:
                 new_elevation = 0.01 + corner.elevation
                 if not corner.is_water and not adjacent_corner.is_water:
@@ -339,10 +342,6 @@ class Graph:
                 sum += corner.elevation
             center.update_elevation(sum / len(center.corners))
 
-        # for center in self.centers_dic.values():
-        #     print(center.elevation)
-
-
     def export_boundaries(self, directory):
         row_list = []
         for id, edge in self.edge_dic.items():
@@ -350,19 +349,6 @@ class Graph:
                 a, b = edge.v0.position, edge.v1.position
                 row_list.append({'x1': a[0], 'y1': a[1], 'x2': b[0], 'y2': b[1]})
         pd.DataFrame(row_list).to_csv(directory + "/boundary.csv", index=False)
-
-    def sort_clockwise(self, vertices):
-        def angle_with_start(coord, start):
-            vec = coord - start
-            return np.angle(np.complex(vec[0], vec[1]))
-
-        vertices = sorted(vertices, key=lambda coord: np.linalg.norm(coord))
-        start = vertices[0]
-        rest = vertices[1:]
-
-        rest = sorted(rest, key=lambda coord: angle_with_start(coord, start), reverse=True)
-        rest.insert(0, start)
-        return
 
     def draw_graph(self):
 
@@ -378,11 +364,21 @@ class Graph:
             y = y[order]
             return np.vstack([x, y]).transpose()
 
-        fig, ax = plt.subplots()
-        patches, colors = [], []
+        def create_color(color_palette):
+            dic = {}
+            j = [0.01, 0.45, 0.9, 1.35, 1.8, 2.25, 2.6, ]
+            for i in range(len(set(self.cluster_list))):
+                dic[i] = sns.cubehelix_palette(8, start=i/3, rot=.01, reverse=True)
+
+            print(dic)
+            return dic
+
+
+        ax = plt.subplot()
+        patches = []
+        colors = create_color('dark')
 
         for center in self.centers_dic.values():
-            # plt.plot(center.position[0], center.position[1], 'o', color='black', markersize=0.1)
             b = True
             polygon = []
             for vertex in center.corners:
@@ -393,11 +389,22 @@ class Graph:
                 polygon.append(vertex.position)
 
             if b:
-                patches.append(Polygon(sort_clockwise(polygon)))
-                colors.append(center.elevation*100)
+                if center.is_water:
+                    patches.append(Polygon(sort_clockwise(polygon), color='#000080'))
+                else:
+                    # base_color = colors[center.cluster].hsl
+                    color = colors[center.cluster][int(center.elevation/5)]
+                    # if base_color[2]+center.elevation/100 > 1.0:
+                    #     luminance = 1.0
+                    # else:
+                    #     luminance = base_color[2]+center.elevation/100
+                    # # luminance = 1.0 if base_color[2]+center.elevation/30 > 1 else base_color[2]+center.elevation/37.80923659885262
+                    # color = Color(hue=base_color[0], saturation=base_color[1], luminance=luminance)
+                    # print(color.hex)
+                    patches.append(Polygon(sort_clockwise(polygon), color=color))
 
-        p = PatchCollection(patches, alpha=0.6)
-        p.set_array(np.array(colors))
+        p = PatchCollection(patches, alpha=0.8, match_original=True)
+        # p.set_array(np.array(colors))
 
         ax.add_collection(p)
         plt.xlim(-80, 80)
@@ -407,7 +414,7 @@ class Graph:
 
 experiment_directory = '/Users/research/Documents/Projects/cartograph-alg/experiments/food/0009'
 g = Graph(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
-g.draw_graph()
+# g.draw_graph()
 #
 # if __name__ == '__main__':
 #     import sys
