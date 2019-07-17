@@ -29,7 +29,8 @@ def create_urls(wikiproject, num_articles):
 def create_domain_concept(urls, num_articles):
     articles = []
     article_count = 0
-    STOP_WORDS = {'list', 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'}
+    STOP_WORDS = {'list', 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september',
+                  'october', 'november', 'december', 'category'}
     for url in urls:
         response = get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -47,6 +48,8 @@ def create_domain_concept(urls, num_articles):
             if not re.match(".*[0-9]{4} .*", title) and not re.match(".*[0-9]+$", article[1].a.text.strip()) and \
             words_unique.intersection(STOP_WORDS) == set():
                 articles.append(article[1].a.text.strip())
+            else:
+                print(article[1].a.text.strip())
             article_count += 1
     return articles
 

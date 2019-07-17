@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,communication,information,media,social,social_media,research,people,study,theory,political
-1,film,music,series,production,awards,episode,artists,songs,musicians,album
-2,newspaper,news,company,references,external_links,paper,owned,published,daily,weekly
-3,isbn,book,editor,journalism,university,war,new_york_times,reporting,media_companies_established,women
-4,advertising,content,service,network,marketing,digital,customers,users,ads,access
-5,channel,government,broadcasting,radio,tv,television,russian,news_agency,russia,journalists
-6,standard,video,audio,format,systems,camera,software,signal,data,image
+0,editor,paper,published,magazine,circulation,news,issue,journalism,university,editor_chief
+1,film,music,artists,production,album,musicians,awards,song,series,actors
+2,channel,launched,programming,network,tv,broadcast,service,television,india,available
+3,standard,audio,video,format,camera,systems,signal,data,image,use
+4,company,stations,newspaper,canada,sold,owned,radio,acquired,references,local
+5,advertising,information,internet,users,communication,marketing,social_media,content,social,people
+6,government,media,journalists,news_agency,press,state,censorship,propaganda,law,russian

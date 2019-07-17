@@ -1,8 +1,8 @@
 country,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
-0,network,0.015,protocol,0.012,server,0.01,use,0.01,system,0.007,security,0.007,message,0.006,service,0.006,datum,0.006,address,0.005
-1,internet,0.019,network,0.01,technology,0.007,use,0.006,system,0.005,provide,0.005,service,0.005,information,0.005,access,0.005,community,0.004
-2,support,0.012,release,0.01,firefox,0.009,domain,0.008,new,0.007,version,0.006,wikipedia,0.006,commerce,0.005,user,0.005,browser,0.005
-3,user,0.015,web,0.009,website,0.009,use,0.008,content,0.007,page,0.007,datum,0.007,information,0.006,site,0.006,software,0.006
-4,user,0.007,internet,0.007,website,0.006,state,0.005,online,0.005,information,0.005,site,0.004,report,0.004,government,0.004,content,0.004
-5,yahoo,0.062,service,0.018,user,0.01,company,0.009,site,0.007,website,0.006,provide,0.006,search,0.005,launch,0.005,april,0.005
-6,company,0.014,service,0.008,website,0.007,launch,0.006,site,0.005,video,0.004,online,0.004,user,0.004,business,0.004,new,0.004
+0,website,0.009,company,0.008,site,0.007,video,0.006,music,0.004,game,0.004,release,0.004,launch,0.004,amazon,0.004,youtube,0.004
+1,internet,0.018,network,0.017,service,0.009,use,0.008,domain,0.006,system,0.006,provide,0.005,protocol,0.005,server,0.004,communication,0.004
+2,yahoo,0.036,service,0.021,company,0.019,user,0.011,google,0.01,search,0.007,website,0.007,launch,0.006,site,0.006,provide,0.006
+3,facebook,0.01,user,0.01,social_medium,0.008,people,0.008,post,0.007,work,0.007,social,0.006,create,0.006,project,0.005,twitter,0.005
+4,support,0.018,release,0.018,firefox,0.016,wikipedia,0.011,version,0.01,project,0.009,new,0.008,foundation,0.008,mozilla,0.008,browser,0.007
+5,internet,0.01,online,0.007,information,0.006,use,0.005,user,0.005,government,0.004,company,0.004,website,0.004,access,0.004,people,0.004
+6,user,0.014,web,0.01,use,0.009,website,0.008,page,0.007,content,0.007,datum,0.007,application,0.006,information,0.005,software,0.005

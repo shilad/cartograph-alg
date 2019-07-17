@@ -1,8 +1,8 @@
 country,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
-0,medium,0.016,information,0.005,people,0.005,communication,0.005,use,0.005,new,0.004,study,0.003,public,0.003,individual,0.003,news,0.003
-1,film,0.015,music,0.009,series,0.004,work,0.004,play,0.004,show,0.004,time,0.004,woman,0.003,include,0.003,feature,0.003
-2,news,0.012,newspaper,0.01,company,0.009,network,0.006,time,0.006,magazine,0.006,medium,0.005,station,0.005,paper,0.004,launch,0.004
-3,book,0.007,work,0.006,woman,0.005,write,0.005,american,0.005,report,0.005,publish,0.005,time,0.004,state,0.004,new_york_time,0.004
-4,company,0.014,network,0.012,medium,0.011,service,0.009,advertising,0.008,content,0.007,television,0.007,tv,0.006,channel,0.005,market,0.005
-5,channel,0.013,broadcast,0.012,medium,0.011,radio,0.011,government,0.006,tv,0.006,country,0.006,television,0.006,news,0.005,bbc,0.005
-6,use,0.009,camera,0.008,system,0.008,image,0.007,video,0.007,format,0.005,digital,0.005,standard,0.005,color,0.005,signal,0.004
+0,newspaper,0.006,time,0.005,publish,0.005,magazine,0.005,news,0.004,report,0.004,year,0.004,paper,0.004,work,0.004,story,0.004
+1,film,0.016,music,0.01,woman,0.006,work,0.005,include,0.004,play,0.004,artist,0.004,song,0.003,award,0.003,production,0.003
+2,channel,0.015,broadcast,0.01,network,0.01,company,0.008,service,0.008,tv,0.008,television,0.007,launch,0.007,program,0.006,radio,0.005
+3,use,0.008,image,0.007,camera,0.006,system,0.006,medium,0.006,film,0.004,color,0.004,video,0.004,time,0.004,standard,0.003
+4,company,0.014,station,0.011,network,0.01,medium,0.008,newspaper,0.008,news,0.008,television,0.006,radio,0.006,canada,0.005,own,0.005
+5,medium,0.013,information,0.006,advertising,0.006,use,0.006,people,0.005,content,0.005,internet,0.005,online,0.004,new,0.004,communication,0.004
+6,medium,0.023,government,0.008,news,0.007,newspaper,0.006,country,0.006,journalist,0.006,state,0.005,report,0.005,radio,0.005,russian,0.004

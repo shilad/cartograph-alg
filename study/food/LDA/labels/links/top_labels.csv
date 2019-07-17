@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,restaurant,New York City,chef,The New York Times,Michelin star,Food Network,celebrity chef,restaurateur,Manhattan,cookbook
-1,beer,brewery,soft drink,The Coca-Cola Company,Diageo,Scotch whisky,SABMiller,Anheuser-Busch InBev,Pernod Ricard,Coca-Cola
-2,species,genus,flowering plant,fruit,cultivar,family ,wine,tree,Carl Linnaeus,North America
-3,United States,Canada,United Kingdom,supermarket,fast food,hamburger,McDonald's,Burger King,restaurant chain,franchising
-4,sugar,chocolate,bread,cocktail,dessert,milk,flour,cake,tea,pastry
-5,organic compound,protein,food,ethanol,carbohydrate,fat,E number,glucose,sucrose,chemical formula
-6,pork,rice,beef,onion,tomato,garlic,meat,potato,Indian subcontinent,Italian cuisine
+0,brewery,alcoholic beverage,London,Anheuser-Busch InBev,Germany,National Register of Historic Places,Anheuser-Busch,SABMiller,Scotland,England
+1,chef,restaurant,Michelin star,Food Network,celebrity chef,New York City,The New York Times,restaurateur,cookbook,Manhattan
+2,United States,The Coca-Cola Company,restaurant chain,fast food,Canada,United Kingdom,supermarket,PepsiCo,hamburger,Coca-Cola
+3,cheese,bread,chocolate,pork,sugar,sandwich,onion,flour,butter,sauce
+4,cocktail,beer,tea,alcohol by volume,soft drink,gin,liquor,hops,malt,Camellia sinensis
+5,wine,organic compound,protein,food,ethanol,grape,carbohydrate,fat,fermentation ,glucose
+6,fruit,genus,flowering plant,cultivar,India,species,rice,tree,Southeast Asia,vegetable

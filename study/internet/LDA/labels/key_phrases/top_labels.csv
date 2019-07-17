@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,protocol,rfc,packet,server,authentication,network,tcp,security,client,encryption
-1,internet,research,information,access,university,internet_exchange,national,communication,internet_access,international
-2,domain,iana,level_domain,whois_information,icann,registration,internet_country_code,level_domain_cctld,cctld,second_level_domains
-3,web,page,browser,html,software,content,version,google,search_engine,files
-4,government,law,act,people,political,facebook,websites,court,censorship,campaign
-5,yahoo,service,announced,verizon,messenger,geocities,search,users,altaba,oath_inc
-6,company,references,launched,founded,music,acquired,platform,online,external_links,site
+0,music,site,video,founded,website,series,youtube,film,awards,artists
+1,network,domain,internet,protocol,iana,icann,level_domain,external_links,registration,references
+2,company,acquired,service,search,launched,yahoo,announced,inc,google,advertising
+3,book,facebook,social_media,career,work,students,social,twitter,born,friends
+4,mozilla,firefox,support,releases,gecko,mozilla_foundation,browser,project,version,web_browser
+5,government,information,online,people,law,digital,access,consumers,research,political
+6,web,user,page,html,content,server,data,software,javascript,web_page

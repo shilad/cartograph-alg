@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,magnetic field,Intel,voltage,alternating current,light,Samsung Electronics,integrated circuit,electron,frequency,transistor
-1,technology,engineering,information technology,artificial intelligence,scientific journal,innovation,biotechnology,nanotechnology,physics,computer science
-2,plastic,paper,metal,polymer,glass,composite material,heat,corrosion,water,adhesive
-3,internal combustion engine,valve,torque,aircraft,crankshaft,wheel,cylinder ,mechanical advantage,piston,clutch
-4,World War II,submarine,radar,missile,land mine,torpedo,laser,lens ,World War I,machine gun
-5,smartphone,Android ,Wi-Fi,Apple Inc.,Google,Microsoft,United States,iOS,operating system,Bluetooth
-6,steam engine,Volkswagen Group,England,inventor,diesel engine,Kent,automobile,Industrial Revolution,Germany,Canada
+0,engineering,computer,software,artificial intelligence,computer science,machine,electrical engineering,mechanical engineering,system,robotics
+1,United States,technology,information technology,The New York Times,Silicon Valley,San Francisco,multinational corporation,NASA,Microsoft,Europe
+2,Android ,smartphone,Wi-Fi,Apple Inc.,Samsung Electronics,Google,Bluetooth,Intel,Qualcomm,operating system
+3,valve,metal,plastic,pressure,fluid,paper,magnetic field,steel,pump,alternating current
+4,World War II,England,Industrial Revolution,submarine,Kent,World War I,inventor,radar,Listed building,Middle Ages
+5,internal combustion engine,steam engine,crankshaft,automobile,electric motor,cylinder ,Volkswagen Group,diesel engine,turbine,electricity
+6,polymer,electron,light,wavelength,composite material,electromagnetic radiation,nanotechnology,infrared,silicon,laser

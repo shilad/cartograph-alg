@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,restaurant,chef,building,street,bar,book,kitchen,opened,london,hotel
-1,beer,brewery,brewing,ale,abv,lager,distillery,brewers,malt,hops
-2,species,plant,fruit,leaves,seeds,tree,cultivars,wines,cultivation,flowers
-3,company,products,stores,chain,locations,brand,business,announced,sales,franchise
-4,chocolate,cake,sugar,recipe,dough,baking,flour,dessert,drink,filling
-5,water,protein,acid,diet,process,foods,oil,intake,temperature,heat
-6,dish,meat,cuisine,cooked,rice,served,sauce,soup,pork,vegetables
+0,brewery,building,built,street,london,john,ale,lager,brewer,pub
+1,restaurant,chef,book,cookbook,recipes,kitchen,cooking,episode,series,television
+2,company,locations,chain,brand,stores,products,business,inc,announced,franchise
+3,dish,cheese,meat,bread,fish,served,sauce,dough,prepared,cake
+4,drink,cocktail,beer,alcohol,abv,malt,distilled,glass,brewing,spirit
+5,wines,grapes,water,protein,food,process,acid,diet,animals,vineyards
+6,fruit,species,leaves,plant,seeds,cultivars,tree,rice,flowers,cuisine
