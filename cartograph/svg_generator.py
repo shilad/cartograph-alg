@@ -12,6 +12,7 @@ import statistics
 import seaborn as sns
 import numpy as np
 import operator
+import sys
 from collections import defaultdict
 from scipy.spatial import Voronoi
 
@@ -85,6 +86,21 @@ def draw_dash_boundary(boundary_csv, drawing):
     for line in df.itertuples():
         x1, y1, x2, y2 = line.x1*XY_RATIO, line.y1*XY_RATIO, line.x2*XY_RATIO, line.y2*XY_RATIO
         drawing.append(draw.Line(x1, y1, x2, y2, stroke='black', stroke_dasharray='2,1'))
+    return drawing
+
+
+def draw_elevation(elevation_csv, drawing):
+    df = pd.read_csv(elevation_csv).dropna(how='all')
+    for index, row in df.iterrows():
+        temp = np.array(df.iloc[index].values.flatten().tolist())
+        temp = temp[temp!='nan']
+        polygon = draw.Path(stroke_width=0.001, stroke_opacity=0.7, fill=temp[-1], fill_opacity=0.5)
+        polygon.M(float(temp[0])*XY_RATIO, float(temp[1])*XY_RATIO)   # start path at initial point
+        for i in range(2, len(temp)-2, 2):
+            polygon.L(float(temp[i])*XY_RATIO, float(temp[i+1])*XY_RATIO)
+        polygon.Z()   # close line to start
+        drawing.append(polygon)
+    return drawing
 
 
 def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, directory=None):
@@ -92,6 +108,8 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, 
     Given a json of cleaned articles (popularity score scaled), calculate the country label positions and draw the entire svg
     """
     drawing = draw.Drawing(width, height, origin="center")
+    draw_dash_boundary(directory + '/boundary.csv', drawing)
+    draw_elevation(directory + '/elevation.csv', drawing)
 
     for v in json_articles.values():
         # Draw each article
@@ -103,8 +121,6 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, 
         drawing.append(draw.Circle(x, y, size, fill=colors[country]))
         if size > .5:
             drawing.append(draw.Text(title, int(size), x, y))
-
-    draw_dash_boundary(directory + '/boundary.csv', drawing)
     # Draw country labels
     country_labels_xy = get_country_labels_xy(json_articles)
     draw_country_labels(drawing, country_labels_xy, country_font_size, colors)
