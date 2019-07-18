@@ -1,8 +1,8 @@
 country,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
-0,newspaper,0.006,time,0.005,publish,0.005,magazine,0.005,news,0.004,report,0.004,year,0.004,paper,0.004,work,0.004,story,0.004
-1,film,0.016,music,0.01,woman,0.006,work,0.005,include,0.004,play,0.004,artist,0.004,song,0.003,award,0.003,production,0.003
-2,channel,0.015,broadcast,0.01,network,0.01,company,0.008,service,0.008,tv,0.008,television,0.007,launch,0.007,program,0.006,radio,0.005
-3,use,0.008,image,0.007,camera,0.006,system,0.006,medium,0.006,film,0.004,color,0.004,video,0.004,time,0.004,standard,0.003
-4,company,0.014,station,0.011,network,0.01,medium,0.008,newspaper,0.008,news,0.008,television,0.006,radio,0.006,canada,0.005,own,0.005
-5,medium,0.013,information,0.006,advertising,0.006,use,0.006,people,0.005,content,0.005,internet,0.005,online,0.004,new,0.004,communication,0.004
-6,medium,0.023,government,0.008,news,0.007,newspaper,0.006,country,0.006,journalist,0.006,state,0.005,report,0.005,radio,0.005,russian,0.004
+0,newspaper,0.025,magazine,0.013,publish,0.013,paper,0.012,news,0.01,publication,0.008,book,0.007,time,0.007,editor,0.006,issue,0.006
+1,medium,0.028,woman,0.009,journalist,0.007,government,0.007,country,0.006,radio,0.006,news,0.005,russian,0.005,company,0.005,newspaper,0.005
+2,medium,0.012,people,0.005,information,0.005,use,0.005,communication,0.004,new,0.004,work,0.004,example,0.003,advertising,0.003,study,0.003
+3,film,0.007,work,0.005,award,0.005,year,0.005,series,0.004,american,0.004,time,0.004,report,0.003,story,0.003,life,0.003
+4,camera,0.015,film,0.012,image,0.011,light,0.006,use,0.006,canada,0.006,canadian,0.006,lens,0.005,station,0.005,focus,0.004
+5,music,0.011,video,0.009,system,0.007,use,0.007,record,0.005,standard,0.005,signal,0.005,format,0.004,release,0.004,play,0.004
+6,network,0.012,channel,0.01,company,0.009,broadcast,0.008,news,0.006,service,0.006,station,0.006,television,0.006,tv,0.006,radio,0.005

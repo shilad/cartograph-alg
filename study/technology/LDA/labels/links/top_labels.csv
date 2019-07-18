@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,engineering,computer,software,artificial intelligence,computer science,machine,electrical engineering,mechanical engineering,system,robotics
-1,United States,technology,information technology,The New York Times,Silicon Valley,San Francisco,multinational corporation,NASA,Microsoft,Europe
-2,Android ,smartphone,Wi-Fi,Apple Inc.,Samsung Electronics,Google,Bluetooth,Intel,Qualcomm,operating system
-3,valve,metal,plastic,pressure,fluid,paper,magnetic field,steel,pump,alternating current
-4,World War II,England,Industrial Revolution,submarine,Kent,World War I,inventor,radar,Listed building,Middle Ages
-5,internal combustion engine,steam engine,crankshaft,automobile,electric motor,cylinder ,Volkswagen Group,diesel engine,turbine,electricity
-6,polymer,electron,light,wavelength,composite material,electromagnetic radiation,nanotechnology,infrared,silicon,laser
+0,Android ,smartphone,United States,Wi-Fi,Apple Inc.,Google,Microsoft,Intel,Samsung Electronics,Internet
+1,plastic,paper,metal,polymer,glass,composite material,adhesive,corrosion,thermoplastic,heat
+2,alternating current,voltage,magnetic field,electronics,transistor,frequency,electric current,cathode ray tube,direct current,light
+3,engineering,technology,system,design,information technology,software,electrical engineering,computer science,artificial intelligence,industrial engineering
+4,internal combustion engine,automobile,cylinder ,valve,crankshaft,Volkswagen Group,diesel engine,steam engine,piston,clutch
+5,World War II,aircraft,radar,submarine,laser,missile,electromagnetic spectrum,gyroscope,infrared,wavelength
+6,England,Industrial Revolution,Kent,machine,steel,tractor,inventor,tool,wood,fastener

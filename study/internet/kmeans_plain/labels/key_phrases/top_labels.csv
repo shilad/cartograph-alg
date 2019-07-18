@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,access,technology,features,china,research,uk,october,members,articles,released
-1,software,project,server,system,page,digital,mobile,global,group,announced
-2,content,web,network,traffic,community,world,use,news,search_engine,development
-3,site,browser,acquired,version,government,file,business,support,code,microsoft
-4,users,information,google,search,platform,computer,launched,media,product,advertising
-5,online,data,based,official_website,founded,people,history,inc,free,security
-6,references,external_links,domain,internet,company,service,website,icann,registry,level_domain_cctld
+0,network,protocol,rfc,packet,internet,connection,tcp,ip,server,ietf
+1,browser,version,web_browser,support,javascript,html,internet_explorer,firefox,web,features
+2,youtube,series,site,video,book,episodes,television,references,twitter,film
+3,company,service,launched,inc,acquired,announced,platform,app,users,music
+4,information,online,content,people,social,marketing,advertising,page,search,google
+5,law,government,security,tor,attack,act,software,privacy,websites,legal
+6,domain,iana,level_domain,whois_information,registration,internet_country_code,level_domain_cctld,domain_names,icann,second_level_domains

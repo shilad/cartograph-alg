@@ -1,0 +1,1245 @@
+,article_name,country,treatment
+0,Clotted cream,0,LDA
+1,Pasty,0,LDA
+2,Bovril,0,LDA
+3,Chicken Kiev,0,LDA
+4,Dog meat,0,LDA
+5,Green tea,0,LDA
+6,Pu'er tea,0,LDA
+7,Soul food,0,LDA
+8,Spam (food),0,LDA
+9,Tea,0,LDA
+10,Bento,0,LDA
+11,Black tea,0,LDA
+12,Bubble tea,0,LDA
+13,Darjeeling tea,0,LDA
+14,Hardtack,0,LDA
+15,History of tea,0,LDA
+16,Japanese tea ceremony,0,LDA
+17,Macaron,0,LDA
+18,Marmalade,0,LDA
+19,Matcha,0,LDA
+20,Mince pie,0,LDA
+21,Paddy field,0,LDA
+22,Pemmican,0,LDA
+23,Samovar,0,LDA
+24,Tea (meal),0,LDA
+25,Tea in the United Kingdom,0,LDA
+26,Treacle,0,LDA
+27,Wedding cake,0,LDA
+28,Assam tea,0,LDA
+29,Betty Crocker,0,LDA
+30,Boletus edulis,1,LDA
+31,Cabbage,1,LDA
+32,Cucurbita,1,LDA
+33,Durian,1,LDA
+34,Grasshopper,1,LDA
+35,Lettuce,1,LDA
+36,Rainbow trout,1,LDA
+37,Blackcurrant,1,LDA
+38,Carnauba wax,1,LDA
+39,Carrot,1,LDA
+40,Cicada,1,LDA
+41,Coconut crab,1,LDA
+42,Cowpea,1,LDA
+43,Dromedary,1,LDA
+44,Fish,1,LDA
+45,Juniper berry,1,LDA
+46,Onion,1,LDA
+47,Parsnip,1,LDA
+48,Radish,1,LDA
+49,Silkie,1,LDA
+50,Squid,1,LDA
+51,Sturgeon,1,LDA
+52,Watermelon,1,LDA
+53,Agaricus bisporus,1,LDA
+54,Alfalfa,1,LDA
+55,Alum,1,LDA
+56,Anglerfish,1,LDA
+57,Anthocyanin,1,LDA
+58,Aronia,1,LDA
+59,Atlantic cod,1,LDA
+60,Atlantic salmon,1,LDA
+61,Avocado,1,LDA
+62,Barley,1,LDA
+63,Basil,1,LDA
+64,Benzaldehyde,1,LDA
+65,Berry,1,LDA
+66,Black pepper,1,LDA
+67,Blood orange,1,LDA
+68,Bombyx mori,1,LDA
+69,Broccoli,1,LDA
+70,Camphor,1,LDA
+71,Capsaicin,1,LDA
+72,Catfish,1,LDA
+73,Celery,1,LDA
+74,Cherry,1,LDA
+75,Chives,1,LDA
+76,Cochineal,1,LDA
+77,Cod,1,LDA
+78,Coffea,1,LDA
+79,Coffee,1,LDA
+80,Coffee bean,1,LDA
+81,Coriander,1,LDA
+82,Crab,1,LDA
+83,Cumin,1,LDA
+84,Fennel,1,LDA
+85,Fishing,1,LDA
+86,Fruit,1,LDA
+87,Garlic,1,LDA
+88,Geoduck,1,LDA
+89,Ginkgo biloba,1,LDA
+90,Grapefruit,1,LDA
+91,Herring,1,LDA
+92,Japanese spider crab,1,LDA
+93,Kiwifruit,1,LDA
+94,Kudzu,1,LDA
+95,Limonene,1,LDA
+96,Lingzhi mushroom,1,LDA
+97,Liquorice,1,LDA
+98,Lobster,1,LDA
+99,Maize,1,LDA
+100,Mantis shrimp,1,LDA
+101,Moringa oleifera,1,LDA
+102,Mussel,1,LDA
+103,Okra,1,LDA
+104,Olive,1,LDA
+105,Orange (fruit),1,LDA
+106,Peach,1,LDA
+107,Phytophthora infestans,1,LDA
+108,Pitaya,1,LDA
+109,Rice,1,LDA
+110,Saffron,1,LDA
+111,Salmon,1,LDA
+112,Scallop,1,LDA
+113,Sesame,1,LDA
+114,Shrimp,1,LDA
+115,Spinach,1,LDA
+116,Strawberry,1,LDA
+117,Sugarcane,1,LDA
+118,Tamarind,1,LDA
+119,Theobromine,1,LDA
+120,Truffle,1,LDA
+121,Typha,1,LDA
+122,Vanilla,1,LDA
+123,Vanillin,1,LDA
+124,Walnut,1,LDA
+125,Wild boar,1,LDA
+126,Abalone,1,LDA
+127,Achillea millefolium,1,LDA
+128,Ackee,1,LDA
+129,Acorn,1,LDA
+130,Adansonia,1,LDA
+131,Adzuki bean,1,LDA
+132,Aegle marmelos,1,LDA
+133,Agave,1,LDA
+134,Ajwain,1,LDA
+135,Algae,1,LDA
+136,Almond,1,LDA
+137,Alphonso (mango),1,LDA
+138,Amaranth,1,LDA
+139,Ambergris,1,LDA
+140,Anise,1,LDA
+141,Apricot,1,LDA
+142,Arctic char,1,LDA
+143,Artemisia absinthium,1,LDA
+144,Asafoetida,1,LDA
+145,Asparagus,1,LDA
+146,Açaí palm,1,LDA
+147,Bamboo,1,LDA
+148,Banana,1,LDA
+149,Bay leaf,1,LDA
+150,Bean,1,LDA
+151,Bergamot orange,1,LDA
+152,Bitter orange,1,LDA
+153,Blackberry,1,LDA
+154,Blue Java banana,1,LDA
+155,Blueberry,1,LDA
+156,Borage,1,LDA
+157,Brassica,1,LDA
+158,Brassica oleracea,1,LDA
+159,Brassicaceae,1,LDA
+160,Brazil nut,1,LDA
+161,Butterfly pea flower tea,1,LDA
+162,Camellia sinensis,1,LDA
+163,Cannabis,1,LDA
+164,Cannabis edible,1,LDA
+165,Caper,1,LDA
+166,Carambola,1,LDA
+167,Carp,1,LDA
+168,Cashew,1,LDA
+169,Cassava,1,LDA
+170,Caviar,1,LDA
+171,Cherimoya,1,LDA
+172,Cherry blossom,1,LDA
+173,Chestnut,1,LDA
+174,Chicory,1,LDA
+175,Chrysanthemum,1,LDA
+176,Cinnamon,1,LDA
+177,Citron,1,LDA
+178,Citrus,1,LDA
+179,Clam,1,LDA
+180,Cocoa bean,1,LDA
+181,Coconut,1,LDA
+182,Common fig,1,LDA
+183,Common pheasant,1,LDA
+184,Cranberry,1,LDA
+185,Crataegus,1,LDA
+186,Cruciferous vegetables,1,LDA
+187,Cucumber,1,LDA
+188,Curry tree,1,LDA
+189,Cuttlefish,1,LDA
+190,Cymbopogon,1,LDA
+191,Drupe,1,LDA
+192,Echinacea,1,LDA
+193,Edible mushroom,1,LDA
+194,Ficus,1,LDA
+195,Flax,1,LDA
+196,Flowering plant,1,LDA
+197,Gooseberry,1,LDA
+198,Green bean,1,LDA
+199,Gros Michel banana,1,LDA
+200,Grouper,1,LDA
+201,Guarana,1,LDA
+202,Guava,1,LDA
+203,Gum arabic,1,LDA
+204,Habanero,1,LDA
+205,Haddock,1,LDA
+206,Hagfish,1,LDA
+207,Hazelnut,1,LDA
+208,Helianthus annuus,1,LDA
+209,Hemp,1,LDA
+210,Hemp oil,1,LDA
+211,Herb,1,LDA
+212,History of the potato,1,LDA
+213,Jackfruit,1,LDA
+214,Juniper,1,LDA
+215,Kale,1,LDA
+216,Key lime,1,LDA
+217,Kopi luwak,1,LDA
+218,Krill,1,LDA
+219,Kumquat,1,LDA
+220,Lavandula,1,LDA
+221,Legume,1,LDA
+222,Lemon,1,LDA
+223,Lentil,1,LDA
+224,Lepidium meyenii,1,LDA
+225,Lilium,1,LDA
+226,Lima bean,1,LDA
+227,Lime (fruit),1,LDA
+228,Lychee,1,LDA
+229,Macadamia,1,LDA
+230,Mandarin orange,1,LDA
+231,Mango,1,LDA
+232,Mangosteen,1,LDA
+233,Melon,1,LDA
+234,Methyl salicylate,1,LDA
+235,Meyer lemon,1,LDA
+236,Monstera deliciosa,1,LDA
+237,Morchella,1,LDA
+238,Muskmelon,1,LDA
+239,Nelumbo nucifera,1,LDA
+240,New Mexico chile,1,LDA
+241,Northern pike,1,LDA
+242,Nut (fruit),1,LDA
+243,Opuntia,1,LDA
+244,Orchidaceae,1,LDA
+245,Oryza sativa,1,LDA
+246,Oyster,1,LDA
+247,Papaya,1,LDA
+248,Paraffin wax,1,LDA
+249,Passiflora edulis,1,LDA
+250,Pea,1,LDA
+251,Peanut,1,LDA
+252,Pear,1,LDA
+253,Pecan,1,LDA
+254,Persimmon,1,LDA
+255,Phaseolus vulgaris,1,LDA
+256,Phyllanthus emblica,1,LDA
+257,Phytolacca americana,1,LDA
+258,Pineapple,1,LDA
+259,Plant,1,LDA
+260,Plum,1,LDA
+261,Pomegranate,1,LDA
+262,Pomelo,1,LDA
+263,Portulaca oleracea,1,LDA
+264,Prawn,1,LDA
+265,Quince,1,LDA
+266,Quinoa,1,LDA
+267,Rabbit,1,LDA
+268,Raspberry,1,LDA
+269,Rhubarb,1,LDA
+270,Rosemary,1,LDA
+271,Salvia officinalis,1,LDA
+272,Sassafras,1,LDA
+273,Sea cucumber,1,LDA
+274,Seaweed,1,LDA
+275,Shellac,1,LDA
+276,Shiitake,1,LDA
+277,Shiso,1,LDA
+278,Snail,1,LDA
+279,Snakehead (fish),1,LDA
+280,Soursop,1,LDA
+281,Sugar-apple,1,LDA
+282,Sugar beet,1,LDA
+283,Sumac,1,LDA
+284,Sunflower oil,1,LDA
+285,Synsepalum dulcificum,1,LDA
+286,Taraxacum,1,LDA
+287,Tarragon,1,LDA
+288,Tetraodontidae,1,LDA
+289,Theobroma cacao,1,LDA
+290,Thyme,1,LDA
+291,Tilapia,1,LDA
+292,Tomato,1,LDA
+293,Tuna,1,LDA
+294,Turnip,1,LDA
+295,Urtica dioica,1,LDA
+296,Vaccinium vitis-idaea,1,LDA
+297,Wasabi,1,LDA
+298,Yam (vegetable),1,LDA
+299,Yellowfin tuna,1,LDA
+300,Yolk,1,LDA
+301,Amaranth grain,1,LDA
+302,Anchovy,1,LDA
+303,Basa (fish),1,LDA
+304,Bass (fish),1,LDA
+305,Beluga (sturgeon),1,LDA
+306,Benzyl alcohol,1,LDA
+307,Borscht,2,LDA
+308,Gumbo,2,LDA
+309,Medieval cuisine,2,LDA
+310,Apple,2,LDA
+311,Caesar (cocktail),2,LDA
+312,Deep frying,2,LDA
+313,Falafel,2,LDA
+314,French cuisine,2,LDA
+315,French fries,2,LDA
+316,Fried chicken,2,LDA
+317,Israeli cuisine,2,LDA
+318,Mediterranean cuisine,2,LDA
+319,Steak,2,LDA
+320,Bacon,2,LDA
+321,Bagel,2,LDA
+322,Barbecue,2,LDA
+323,Beef,2,LDA
+324,Beetroot,2,LDA
+325,Black-eyed pea,2,LDA
+326,Buckwheat,2,LDA
+327,Butter,2,LDA
+328,Béarnaise sauce,2,LDA
+329,Capsicum,2,LDA
+330,Chopsticks,2,LDA
+331,Conch,2,LDA
+332,Couscous,2,LDA
+333,Crème fraîche,2,LDA
+334,Eggplant,2,LDA
+335,Fish and chips,2,LDA
+336,Fruit preserves,2,LDA
+337,Glutinous rice,2,LDA
+338,Gratin,2,LDA
+339,Hollandaise sauce,2,LDA
+340,Horseradish,2,LDA
+341,Hot dog,2,LDA
+342,Ice cream,2,LDA
+343,Indian cuisine,2,LDA
+344,Japanese cuisine,2,LDA
+345,Ketchup,2,LDA
+346,Korean cuisine,2,LDA
+347,Mayonnaise,2,LDA
+348,Paella,2,LDA
+349,Parmigiano-Reggiano,2,LDA
+350,Parsley,2,LDA
+351,Pasta,2,LDA
+352,Peanut butter,2,LDA
+353,Peking duck,2,LDA
+354,Pho,2,LDA
+355,Polish cuisine,2,LDA
+356,Poppy seed,2,LDA
+357,Potato,2,LDA
+358,Potato chip,2,LDA
+359,Pumpkin,2,LDA
+360,Russian cuisine,2,LDA
+361,Stir frying,2,LDA
+362,Tabasco sauce,2,LDA
+363,Tempeh,2,LDA
+364,Tempura,2,LDA
+365,Turducken,2,LDA
+366,Vicia faba,2,LDA
+367,Waffle,2,LDA
+368,White Russian (cocktail),2,LDA
+369,Yogurt,2,LDA
+370,Zongzi,2,LDA
+371,Zucchini,2,LDA
+372,Allspice,2,LDA
+373,American Chinese cuisine,2,LDA
+374,American cuisine,2,LDA
+375,Annatto,2,LDA
+376,Arab cuisine,2,LDA
+377,Arrowroot,2,LDA
+378,Artichoke,2,LDA
+379,Aspic,2,LDA
+380,Australian cuisine,2,LDA
+381,Bain-marie,2,LDA
+382,Baking,2,LDA
+383,Baklava,2,LDA
+384,Basmati,2,LDA
+385,Bhut jolokia,2,LDA
+386,Bird's eye chili,2,LDA
+387,Biscuit,2,LDA
+388,Black garlic,2,LDA
+389,Boiled egg,2,LDA
+390,Bread,2,LDA
+391,Breakfast,2,LDA
+392,Brioche,2,LDA
+393,Brunch,2,LDA
+394,Burrito,2,LDA
+395,Butter chicken,2,LDA
+396,Buttermilk,2,LDA
+397,Caesar salad,2,LDA
+398,Cake,2,LDA
+399,Capocollo,2,LDA
+400,Caraway,2,LDA
+401,Carbonara,2,LDA
+402,Cast-iron cookware,2,LDA
+403,Casu marzu,2,LDA
+404,Cayenne pepper,2,LDA
+405,Century egg,2,LDA
+406,Challah,2,LDA
+407,Charcuterie,2,LDA
+408,Chateaubriand steak,2,LDA
+409,Chayote,2,LDA
+410,Cheese,2,LDA
+411,Cheesecake,2,LDA
+412,Chicago-style pizza,2,LDA
+413,Chicken as food,2,LDA
+414,Chickpea,2,LDA
+415,Chili con carne,2,LDA
+416,Chili pepper,2,LDA
+417,Chinese cuisine,2,LDA
+418,Chorizo,2,LDA
+419,Chowder,2,LDA
+420,Christmas dinner,2,LDA
+421,Chutney,2,LDA
+422,Comfort food,2,LDA
+423,Confectionery,2,LDA
+424,Congee,2,LDA
+425,Cookie,2,LDA
+426,Coq au vin,2,LDA
+427,Corn dog,2,LDA
+428,Cornmeal,2,LDA
+429,Crêpe,2,LDA
+430,Cupcake,2,LDA
+431,Curry,2,LDA
+432,Danish cuisine,2,LDA
+433,Delicatessen,2,LDA
+434,Dessert,2,LDA
+435,Dill,2,LDA
+436,Dim sum,2,LDA
+437,Dolma,2,LDA
+438,Doneness,2,LDA
+439,Dosa,2,LDA
+440,Doughnut,2,LDA
+441,Easter egg,2,LDA
+442,Egg foo young,2,LDA
+443,Eggs Benedict,2,LDA
+444,Ethiopian cuisine,2,LDA
+445,Fenugreek,2,LDA
+446,Fettuccine Alfredo,2,LDA
+447,Fiddlehead fern,2,LDA
+448,Fish sauce,2,LDA
+449,Flour,2,LDA
+450,Fondue,2,LDA
+451,French toast,2,LDA
+452,Fudge,2,LDA
+453,Fugu,2,LDA
+454,Ganache,2,LDA
+455,Gelato,2,LDA
+456,Ginger,2,LDA
+457,Gnocchi,2,LDA
+458,Goat meat,2,LDA
+459,Graham cracker,2,LDA
+460,Greek cuisine,2,LDA
+461,Grilling,2,LDA
+462,Grits,2,LDA
+463,Gyro (food),2,LDA
+464,Haggis,2,LDA
+465,Halva,2,LDA
+466,Ham,2,LDA
+467,Head cheese,2,LDA
+468,Herbes de Provence,2,LDA
+469,Hors d'oeuvre,2,LDA
+470,Horse meat,2,LDA
+471,Hummus,2,LDA
+472,Idli,2,LDA
+473,Illicium verum,2,LDA
+474,Injera,2,LDA
+475,Instant noodle,2,LDA
+476,Ipomoea aquatica,2,LDA
+477,Iranian cuisine,2,LDA
+478,Irish cuisine,2,LDA
+479,Italian cuisine,2,LDA
+480,Izakaya,2,LDA
+481,Jalapeño,2,LDA
+482,Japanese curry,2,LDA
+483,Jerky,2,LDA
+484,Kebab,2,LDA
+485,Kimchi,2,LDA
+486,Kofta,2,LDA
+487,Lamb and mutton,2,LDA
+488,Lard,2,LDA
+489,Lasagne,2,LDA
+490,Lassi,2,LDA
+491,Lo mein,2,LDA
+492,Lunch,2,LDA
+493,Lutefisk,2,LDA
+494,Manchego,2,LDA
+495,Marinara sauce,2,LDA
+496,Marzipan,2,LDA
+497,Matzo,2,LDA
+498,Meatloaf,2,LDA
+499,Meringue,2,LDA
+500,Momordica charantia,2,LDA
+501,Mooncake,2,LDA
+502,Mozzarella,2,LDA
+503,Mulled wine,2,LDA
+504,Mung bean,2,LDA
+505,Mustard (condiment),2,LDA
+506,Nachos,2,LDA
+507,Noodle,2,LDA
+508,Nutmeg,2,LDA
+509,Oatmeal,2,LDA
+510,Offal,2,LDA
+511,Oven,2,LDA
+512,Pancake,2,LDA
+513,Panini (sandwich),2,LDA
+514,Papadum,2,LDA
+515,Paprika,2,LDA
+516,Paratha,2,LDA
+517,Pastel de nata,2,LDA
+518,Peanut butter and jelly sandwich,2,LDA
+519,Peruvian cuisine,2,LDA
+520,Pickled cucumber,2,LDA
+521,Pico de gallo,2,LDA
+522,Pizza,2,LDA
+523,Poached egg,2,LDA
+524,Poblano,2,LDA
+525,Poi (food),2,LDA
+526,Polenta,2,LDA
+527,Pork,2,LDA
+528,Pork roll,2,LDA
+529,Porridge,2,LDA
+530,Portuguese cuisine,2,LDA
+531,Potato pancake,2,LDA
+532,Pressure cooking,2,LDA
+533,Pudding,2,LDA
+534,Pumpernickel,2,LDA
+535,Ramen,2,LDA
+536,Roti,2,LDA
+537,Rutabaga,2,LDA
+538,Rye bread,2,LDA
+539,Salad,2,LDA
+540,Salami,2,LDA
+541,Samosa,2,LDA
+542,Sandwich,2,LDA
+543,Sashimi,2,LDA
+544,Sauerkraut,2,LDA
+545,Sausage,2,LDA
+546,Scrapple,2,LDA
+547,Sesame oil,2,LDA
+548,Sichuan pepper,2,LDA
+549,Sloppy joe,2,LDA
+550,Smoking (cooking),2,LDA
+551,Smörgåsbord,2,LDA
+552,Soy sauce,2,LDA
+553,Spaghetti,2,LDA
+554,Spaghetti alla puttanesca,2,LDA
+555,Spanish cuisine,2,LDA
+556,Spice,2,LDA
+557,Squid as food,2,LDA
+558,Surimi,2,LDA
+559,Sushi,2,LDA
+560,Sweet corn,2,LDA
+561,Taco,2,LDA
+562,Tajine,2,LDA
+563,Tandoori chicken,2,LDA
+564,Tapas,2,LDA
+565,Thousand Island dressing,2,LDA
+566,Tofu,2,LDA
+567,Tonkotsu ramen,2,LDA
+568,Turkish cuisine,2,LDA
+569,Turkish delight,2,LDA
+570,Turmeric,2,LDA
+571,Types of cheese,2,LDA
+572,Vinegar,2,LDA
+573,Welsh rarebit,2,LDA
+574,Wheat gluten (food),2,LDA
+575,Wiener schnitzel,2,LDA
+576,Worcestershire sauce,2,LDA
+577,Yuzu,2,LDA
+578,Aioli,2,LDA
+579,Air fryer,2,LDA
+580,Al dente,2,LDA
+581,Al pastor,2,LDA
+582,Andouille,2,LDA
+583,Apple pie,2,LDA
+584,Arepa,2,LDA
+585,Baba ghanoush,2,LDA
+586,Babka (cake),2,LDA
+587,Baguette,2,LDA
+588,Baked Alaska,2,LDA
+589,Baked beans,2,LDA
+590,Baked potato,2,LDA
+591,Balut (food),2,LDA
+592,Bangers and mash,2,LDA
+593,Baozi,2,LDA
+594,Barbecue sauce,2,LDA
+595,Beef Stroganoff,2,LDA
+596,Beef Wellington,2,LDA
+597,Beef aging,2,LDA
+598,Beef bourguignon,2,LDA
+599,Beignet,2,LDA
+600,Bell pepper,2,LDA
+601,Cracker Barrel,3,LDA
+602,Black Dahlia,3,LDA
+603,Burger King,3,LDA
+604,Chipotle Mexican Grill,3,LDA
+605,Chuck E. Cheese's,3,LDA
+606,History of KFC,3,LDA
+607,KFC,3,LDA
+608,Marcus Wareing,3,LDA
+609,Nigella Lawson,3,LDA
+610,Poutine,3,LDA
+611,The Fat Duck,3,LDA
+612,Whopper,3,LDA
+613,A Charlie Brown Christmas,3,LDA
+614,Adolf Hitler and vegetarianism,3,LDA
+615,Alton Brown,3,LDA
+616,Anne Burrell,3,LDA
+617,Big Mac,3,LDA
+618,Colonel Sanders,3,LDA
+619,Consumption of Tide Pods,3,LDA
+620,Cuban sandwich,3,LDA
+621,Dairy Queen,3,LDA
+622,Gordon Ramsay,3,LDA
+623,Hamburger,3,LDA
+624,History of the hamburger,3,LDA
+625,Hooters,3,LDA
+626,Hungry Jack's,3,LDA
+627,Ina Garten,3,LDA
+628,Julia Child,3,LDA
+629,Kitchen,3,LDA
+630,Knott's Berry Farm,3,LDA
+631,Mary Berry,3,LDA
+632,McDonald's,3,LDA
+633,Michelin Guide,3,LDA
+634,Oktoberfest,3,LDA
+635,Rachael Ray,3,LDA
+636,Sonic Drive-In,3,LDA
+637,Space Needle,3,LDA
+638,Taco Bell,3,LDA
+639,Tim Hortons,3,LDA
+640,Wawa (company),3,LDA
+641,A&W Restaurants,3,LDA
+642,Amuse-bouche,3,LDA
+643,Andrew Zimmern,3,LDA
+644,Anthony Bourdain,3,LDA
+645,Applebee's,3,LDA
+646,Arby's,3,LDA
+647,Aunt Jemima,3,LDA
+648,Bar,3,LDA
+649,Billy Mitchell (video game player),3,LDA
+650,Bouncer (doorman),3,LDA
+651,Buc-ee's,3,LDA
+652,Buffalo wing,3,LDA
+653,Buffet,3,LDA
+654,Burns supper,3,LDA
+655,BuzzFeed Unsolved,3,LDA
+656,Cafeteria,3,LDA
+657,California roll,3,LDA
+658,Carl's Jr.,3,LDA
+659,Cheers,3,LDA
+660,Cheesesteak,3,LDA
+661,Chef,3,LDA
+662,Chez Panisse,3,LDA
+663,Chick-fil-A,3,LDA
+664,Christina Tosi,3,LDA
+665,Cosmopolitan (cocktail),3,LDA
+666,Coyote Ugly (film),3,LDA
+667,Denny's,3,LDA
+668,Dom DeLuise,3,LDA
+669,Domino's Pizza,3,LDA
+670,Duff Goldman,3,LDA
+671,EFL Championship,3,LDA
+672,EFL League Two,3,LDA
+673,Fast food,3,LDA
+674,Fast food restaurant,3,LDA
+675,Five Guys,3,LDA
+676,Food Wars!: Shokugeki no Soma,3,LDA
+677,Gary Vaynerchuk,3,LDA
+678,Gentlemen's club,3,LDA
+679,George Washington Carver,3,LDA
+680,Giada De Laurentiis,3,LDA
+681,Gregg Wallace,3,LDA
+682,Guy Fieri,3,LDA
+683,Hairy Bikers,3,LDA
+684,Hard Rock Cafe,3,LDA
+685,Hardee's,3,LDA
+686,Heart Attack Grill,3,LDA
+687,Heston Blumenthal,3,LDA
+688,History of McDonald's,3,LDA
+689,Home economics,3,LDA
+690,Howard Graham Buffett,3,LDA
+691,Howard Johnson's,3,LDA
+692,Howard Schultz,3,LDA
+693,IHOP,3,LDA
+694,In-N-Out Burger,3,LDA
+695,Iron Chef,3,LDA
+696,Jack in the Box,3,LDA
+697,Jamie Oliver,3,LDA
+698,Jared Fogle,3,LDA
+699,Jessica Seinfeld,3,LDA
+700,John Hickenlooper,3,LDA
+701,John Torode,3,LDA
+702,Jollibee,3,LDA
+703,Jumbo slice,3,LDA
+704,Keith Floyd,3,LDA
+705,Kimbal Musk,3,LDA
+706,Kitchen Nightmares,3,LDA
+707,Last meal,3,LDA
+708,Leah Chase,3,LDA
+709,Lidia Bastianich,3,LDA
+710,Liebeck v. McDonald's Restaurants,3,LDA
+711,Martha Stewart,3,LDA
+712,MasterChef Australia,3,LDA
+713,Max Headroom (character),3,LDA
+714,Milkshake,3,LDA
+715,Minute Maid Park,3,LDA
+716,Moët & Chandon,3,LDA
+717,My Kitchen Rules,3,LDA
+718,Nathan's Hot Dog Eating Contest,3,LDA
+719,Nolan Bushnell,3,LDA
+720,Olive Garden,3,LDA
+721,Online food ordering,3,LDA
+722,Outback Steakhouse,3,LDA
+723,Padma Lakshmi,3,LDA
+724,Panda Express,3,LDA
+725,Party,3,LDA
+726,Paula Deen,3,LDA
+727,Pizza Hut,3,LDA
+728,Ramsay's Kitchen Nightmares,3,LDA
+729,Ranch,3,LDA
+730,Restaurant,3,LDA
+731,Rick Stein,3,LDA
+732,Robert Irvine,3,LDA
+733,Ronald McDonald,3,LDA
+734,Samin Nosrat,3,LDA
+735,Sideways,3,LDA
+736,Sommelier,3,LDA
+737,Sophie Dahl,3,LDA
+738,Steak and Blowjob Day,3,LDA
+739,Submarine sandwich,3,LDA
+740,Subway (restaurant),3,LDA
+741,Super Size Me,3,LDA
+742,Takeru Kobayashi,3,LDA
+743,Thanksgiving,3,LDA
+744,The Gods Must Be Crazy,3,LDA
+745,The Great British Bake Off,3,LDA
+746,Thomas Keller,3,LDA
+747,Tim Horton,3,LDA
+748,Toast sandwich,3,LDA
+749,Tootsie Roll,3,LDA
+750,TripAdvisor,3,LDA
+751,Waffle House,3,LDA
+752,Wendy's,3,LDA
+753,White Castle (restaurant),3,LDA
+754,Yotam Ottolenghi,3,LDA
+755,Yum! Brands,3,LDA
+756,86 (term),3,LDA
+757,Aarón Sanchez,3,LDA
+758,Alice (TV series),3,LDA
+759,Alinea (restaurant),3,LDA
+760,Anthony Bourdain: No Reservations,3,LDA
+761,Anthony Bourdain: Parts Unknown,3,LDA
+762,Archie Bunker's Place,3,LDA
+763,Auguste Escoffier,3,LDA
+764,B. Smith,3,LDA
+765,Barney Rubble,3,LDA
+766,Bed and breakfast,3,LDA
+767,Benihana,3,LDA
+768,Pisco sour,4,LDA
+769,Beer,4,LDA
+770,Absinthe,4,LDA
+771,Brandy,4,LDA
+772,Ceres (mythology),4,LDA
+773,Champagne,4,LDA
+774,Draught beer,4,LDA
+775,Eucharist,4,LDA
+776,Gin,4,LDA
+777,Guinness,4,LDA
+778,History of beer,4,LDA
+779,History of coffee,4,LDA
+780,Jameson Irish Whiskey,4,LDA
+781,Jägermeister,4,LDA
+782,Lambic,4,LDA
+783,Latte,4,LDA
+784,Moxie,4,LDA
+785,Prohibition,4,LDA
+786,Pub,4,LDA
+787,Pulque,4,LDA
+788,Rum,4,LDA
+789,Single malt whisky,4,LDA
+790,Spice trade,4,LDA
+791,Tequila Sunrise (cocktail),4,LDA
+792,Turkish coffee,4,LDA
+793,Akvavit,4,LDA
+794,Alcoholic drink,4,LDA
+795,Ale,4,LDA
+796,Amaretto,4,LDA
+797,Barrel (unit),4,LDA
+798,Bellini (cocktail),4,LDA
+799,Bitters,4,LDA
+800,Buckfast Tonic Wine,4,LDA
+801,Budweiser,4,LDA
+802,Cappuccino,4,LDA
+803,Cider,4,LDA
+804,Cocktail,4,LDA
+805,Coffeehouse,4,LDA
+806,Cognac,4,LDA
+807,Demeter,4,LDA
+808,Dionysus,4,LDA
+809,Drambuie,4,LDA
+810,Drink,4,LDA
+811,Eggnog,4,LDA
+812,Espresso,4,LDA
+813,Fireball Cinnamon Whisky,4,LDA
+814,Flat white,4,LDA
+815,Gallon,4,LDA
+816,Ginger ale,4,LDA
+817,History of chocolate,4,LDA
+818,Hops,4,LDA
+819,Irish coffee,4,LDA
+820,Jack Daniel's,4,LDA
+821,Jim Beam,4,LDA
+822,Johnnie Walker,4,LDA
+823,Kool-Aid,4,LDA
+824,Kvass,4,LDA
+825,Lager,4,LDA
+826,Last Supper,4,LDA
+827,Mai Tai,4,LDA
+828,Malt liquor,4,LDA
+829,Margarita,4,LDA
+830,Martini (cocktail),4,LDA
+831,Mead,4,LDA
+832,Mezcal,4,LDA
+833,Microbrewery,4,LDA
+834,Moonshine,4,LDA
+835,Negroni,4,LDA
+836,Pale ale,4,LDA
+837,Pilsner,4,LDA
+838,Pint glass,4,LDA
+839,Prohibition in the United States,4,LDA
+840,Prosecco,4,LDA
+841,Rakı,4,LDA
+842,Reinheitsgebot,4,LDA
+843,S.Pellegrino,4,LDA
+844,Sake,4,LDA
+845,Scotch whisky,4,LDA
+846,Shot glass,4,LDA
+847,Silphium,4,LDA
+848,Slivovitz,4,LDA
+849,Soju,4,LDA
+850,Stout,4,LDA
+851,Tanqueray,4,LDA
+852,Temperance movement,4,LDA
+853,Tom Collins,4,LDA
+854,Vermouth,4,LDA
+855,Vodka,4,LDA
+856,Wassail,4,LDA
+857,Wheat beer,4,LDA
+858,Whisky,4,LDA
+859,Absolut Vodka,4,LDA
+860,Aguardiente,4,LDA
+861,Alcohol by volume,4,LDA
+862,Alcohol proof,4,LDA
+863,Amaro (liqueur),4,LDA
+864,Ambrosia,4,LDA
+865,Angostura bitters,4,LDA
+866,Aperol,4,LDA
+867,Aperol Spritz,4,LDA
+868,Apple cider,4,LDA
+869,Apéritif and digestif,4,LDA
+870,Arak (drink),4,LDA
+871,Asahi Breweries,4,LDA
+872,B-52 (cocktail),4,LDA
+873,Balsamic vinegar,4,LDA
+874,Barrel,4,LDA
+875,Bartending terminology,4,LDA
+876,Maple syrup,5,LDA
+877,Agriculture,5,LDA
+878,Hershey Creamery Company,5,LDA
+879,Asda,5,LDA
+880,Cadbury Creme Egg,5,LDA
+881,Cheddar cheese,5,LDA
+882,Chocolate,5,LDA
+883,Coca-Cola,5,LDA
+884,Frito-Lay,5,LDA
+885,Gatorade,5,LDA
+886,"Meal, Ready-to-Eat",5,LDA
+887,Nestlé,5,LDA
+888,Oreo,5,LDA
+889,PepsiCo,5,LDA
+890,Popcorn,5,LDA
+891,Publix,5,LDA
+892,Starbucks,5,LDA
+893,The Coca-Cola Company,5,LDA
+894,The Great Atlantic & Pacific Tea Company,5,LDA
+895,The Hershey Company,5,LDA
+896,Vegemite,5,LDA
+897,Wegmans,5,LDA
+898,Whole Foods Market,5,LDA
+899,7-Eleven,5,LDA
+900,Ajinomoto,5,LDA
+901,Aldi,5,LDA
+902,Amul,5,LDA
+903,Archer Daniels Midland,5,LDA
+904,Arnold Palmer (drink),5,LDA
+905,Ben & Jerry's,5,LDA
+906,Beyond Meat,5,LDA
+907,Big Mac Index,5,LDA
+908,Breakfast cereal,5,LDA
+909,"Bureau of Alcohol, Tobacco, Firearms and Explosives",5,LDA
+910,Cadbury,5,LDA
+911,Cadbury Dairy Milk,5,LDA
+912,Campbell Soup Company,5,LDA
+913,Canada Dry,5,LDA
+914,Candy,5,LDA
+915,Cargill,5,LDA
+916,Chiquita Brands International,5,LDA
+917,Coca-Cola Enterprises,5,LDA
+918,Coca-Cola formula,5,LDA
+919,Coffee percolator,5,LDA
+920,Cola,5,LDA
+921,Compass Group,5,LDA
+922,Condensed milk,5,LDA
+923,Convenience store,5,LDA
+924,Coors Brewing Company,5,LDA
+925,Corn flakes,5,LDA
+926,Crown Royal,5,LDA
+927,Crystal Pepsi,5,LDA
+928,Dairy,5,LDA
+929,Darden Restaurants,5,LDA
+930,Diageo,5,LDA
+931,Diet Coke,5,LDA
+932,Dole Food Company,5,LDA
+933,Doritos,5,LDA
+934,Dr Pepper,5,LDA
+935,Drink can,5,LDA
+936,Drinking straw,5,LDA
+937,Dunkin' Donuts,5,LDA
+938,Energy drink,5,LDA
+939,Evaporated milk,5,LDA
+940,Fanta,5,LDA
+941,Foodpanda,5,LDA
+942,Frappuccino,5,LDA
+943,General Mills,5,LDA
+944,Girl Scout Cookies,5,LDA
+945,Granola,5,LDA
+946,Grocery store,5,LDA
+947,Gummy bear,5,LDA
+948,H-E-B,5,LDA
+949,HP Sauce,5,LDA
+950,Heinz,5,LDA
+951,Herbalife Nutrition,5,LDA
+952,Horlicks,5,LDA
+953,Irn-Bru,5,LDA
+954,Jaffa Cakes,5,LDA
+955,Jell-O,5,LDA
+956,Jimmy John's,5,LDA
+957,Kellogg's,5,LDA
+958,Keurig Dr Pepper,5,LDA
+959,Kit Kat,5,LDA
+960,Kraft Foods,5,LDA
+961,Kraft Foods Inc.,5,LDA
+962,Krispy Kreme,5,LDA
+963,Lemonade,5,LDA
+964,Lipton,5,LDA
+965,M&M's,5,LDA
+966,Maggi,5,LDA
+967,Marmite,5,LDA
+968,"Mars, Incorporated",5,LDA
+969,Mars (chocolate bar),5,LDA
+970,Meijer,5,LDA
+971,Mondelez International,5,LDA
+972,Monster Energy,5,LDA
+973,Morrisons,5,LDA
+974,Mountain Dew,5,LDA
+975,Nabisco,5,LDA
+976,Nespresso,5,LDA
+977,New Coke,5,LDA
+978,Ovaltine,5,LDA
+979,Panera Bread,5,LDA
+980,Pepsi,5,LDA
+981,Plastic bag,5,LDA
+982,Quaker Oats Company,5,LDA
+983,Quality Street (confectionery),5,LDA
+984,Reckitt Benckiser,5,LDA
+985,Red Bull,5,LDA
+986,Refrigerator,5,LDA
+987,Restaurant Brands International,5,LDA
+988,Safeway Inc.,5,LDA
+989,Sainsbury's,5,LDA
+990,San Miguel Corporation,5,LDA
+991,Schweppes,5,LDA
+992,Smarties,5,LDA
+993,Snickers,5,LDA
+994,Sodexo,5,LDA
+995,Starburst (confectionery),5,LDA
+996,Stop & Shop,5,LDA
+997,SunTrust Banks,5,LDA
+998,Supermarket,5,LDA
+999,Swedish Fish,5,LDA
+1000,Tab (drink),5,LDA
+1001,Thums Up,5,LDA
+1002,Trader Joe's,5,LDA
+1003,Tyson Foods,5,LDA
+1004,Unilever,5,LDA
+1005,United Spirits,5,LDA
+1006,Vending machine,5,LDA
+1007,Woolworths Supermarkets,5,LDA
+1008,Yakult,5,LDA
+1009,3 Musketeers (chocolate bar),5,LDA
+1010,7 Up,5,LDA
+1011,A2 milk,5,LDA
+1012,AGA cooker,5,LDA
+1013,Albertsons,5,LDA
+1014,American cheese,5,LDA
+1015,Anheuser-Busch InBev,5,LDA
+1016,Baileys Irish Cream,5,LDA
+1017,Baskin-Robbins,5,LDA
+1018,Acetic acid,6,LDA
+1019,Guinea pig,6,LDA
+1020,Ketogenic diet,6,LDA
+1021,Cabernet Sauvignon,6,LDA
+1022,Genetic engineering,6,LDA
+1023,Kashrut,6,LDA
+1024,Poultry,6,LDA
+1025,Riesling,6,LDA
+1026,Salt,6,LDA
+1027,Sauvignon blanc,6,LDA
+1028,Sugar,6,LDA
+1029,Vegetable,6,LDA
+1030,Vitamin,6,LDA
+1031,Vitamin C,6,LDA
+1032,Zinfandel,6,LDA
+1033,Acetaldehyde,6,LDA
+1034,Agar,6,LDA
+1035,Angus cattle,6,LDA
+1036,Aspartame,6,LDA
+1037,Borax,6,LDA
+1038,Bordeaux wine,6,LDA
+1039,Botulism,6,LDA
+1040,Burgundy wine,6,LDA
+1041,Caffeine,6,LDA
+1042,Chardonnay,6,LDA
+1043,Colostrum,6,LDA
+1044,Cooking oil,6,LDA
+1045,Curcumin,6,LDA
+1046,Dietary supplement,6,LDA
+1047,Drinking water,6,LDA
+1048,Egg as food,6,LDA
+1049,Ethyl acetate,6,LDA
+1050,Farmer,6,LDA
+1051,Fish farming,6,LDA
+1052,Foie gras,6,LDA
+1053,Food security,6,LDA
+1054,Foodborne illness,6,LDA
+1055,Fructose,6,LDA
+1056,Gelatin,6,LDA
+1057,Genetically modified crops,6,LDA
+1058,Genetically modified food,6,LDA
+1059,Glycine,6,LDA
+1060,Golden rice,6,LDA
+1061,Grape,6,LDA
+1062,Hand washing,6,LDA
+1063,Hazard analysis and critical control points,6,LDA
+1064,Honey,6,LDA
+1065,Infant formula,6,LDA
+1066,Lactic acid,6,LDA
+1067,Lutein,6,LDA
+1068,Lycopene,6,LDA
+1069,Malbec,6,LDA
+1070,Meat,6,LDA
+1071,Menthol,6,LDA
+1072,Merlot,6,LDA
+1073,Microwave oven,6,LDA
+1074,Milk,6,LDA
+1075,Monosodium glutamate,6,LDA
+1076,Nutrition,6,LDA
+1077,Paleolithic diet,6,LDA
+1078,Pasteurization,6,LDA
+1079,Pectin,6,LDA
+1080,Phosphoric acid,6,LDA
+1081,Pinot gris,6,LDA
+1082,Pinot noir,6,LDA
+1083,Potassium iodide,6,LDA
+1084,Potassium nitrate,6,LDA
+1085,Refrigeration,6,LDA
+1086,Rioja (wine),6,LDA
+1087,Saccharin,6,LDA
+1088,Sangiovese,6,LDA
+1089,Scoville scale,6,LDA
+1090,Seafood,6,LDA
+1091,Sodium chloride,6,LDA
+1092,Soft drink,6,LDA
+1093,Soy milk,6,LDA
+1094,Soybean,6,LDA
+1095,Sparkling wine,6,LDA
+1096,Sucralose,6,LDA
+1097,Sucrose,6,LDA
+1098,Syrah,6,LDA
+1099,Taste,6,LDA
+1100,Theophylline,6,LDA
+1101,Titanium dioxide,6,LDA
+1102,Tocopherol,6,LDA
+1103,Trans fat,6,LDA
+1104,Veganism,6,LDA
+1105,Vegetable oil,6,LDA
+1106,Vegetarianism,6,LDA
+1107,Wheat,6,LDA
+1108,Wine,6,LDA
+1109,Acesulfame potassium,6,LDA
+1110,Alcohol intoxication,6,LDA
+1111,Amarone,6,LDA
+1112,Atkins diet,6,LDA
+1113,Baking powder,6,LDA
+1114,Brix,6,LDA
+1115,Buffalo mozzarella,6,LDA
+1116,Bushmeat,6,LDA
+1117,Camel,6,LDA
+1118,Carrageenan,6,LDA
+1119,Casein,6,LDA
+1120,Cereal,6,LDA
+1121,Chewing gum,6,LDA
+1122,Chlorella,6,LDA
+1123,Citric acid,6,LDA
+1124,Coconut oil,6,LDA
+1125,Coconut water,6,LDA
+1126,Cooking,6,LDA
+1127,Cultured meat,6,LDA
+1128,Curing (food preservation),6,LDA
+1129,Decaffeination,6,LDA
+1130,Decomposition,6,LDA
+1131,Diet Coke and Mentos eruption,6,LDA
+1132,Dietary fiber,6,LDA
+1133,Domestic pig,6,LDA
+1134,Dry ice,6,LDA
+1135,Environmental impact of meat production,6,LDA
+1136,Ethylenediaminetetraacetic acid,6,LDA
+1137,FODMAP,6,LDA
+1138,Fermentation,6,LDA
+1139,Food,6,LDA
+1140,Food and Drug Administration,6,LDA
+1141,Food irradiation,6,LDA
+1142,Food preservation,6,LDA
+1143,Food pyramid (nutrition),6,LDA
+1144,Food safety,6,LDA
+1145,Freeze-drying,6,LDA
+1146,Fruitarianism,6,LDA
+1147,Galactose,6,LDA
+1148,Genetically modified food controversies,6,LDA
+1149,Glucose,6,LDA
+1150,Glutamic acid,6,LDA
+1151,Gluten,6,LDA
+1152,Gluten-free diet,6,LDA
+1153,Glycemic index,6,LDA
+1154,Goat,6,LDA
+1155,Golden syrup,6,LDA
+1156,Grapefruit–drug interactions,6,LDA
+1157,Halite,6,LDA
+1158,Healthy diet,6,LDA
+1159,Himalayan salt,6,LDA
+1160,Human nutrition,6,LDA
+1161,Induction cooking,6,LDA
+1162,Inedia,6,LDA
+1163,Juice,6,LDA
+1164,Junk food,6,LDA
+1165,Kala namak,6,LDA
+1166,Kombucha,6,LDA
+1167,Lactose,6,LDA
+1168,Lactose intolerance,6,LDA
+1169,Liquid–liquid extraction,6,LDA
+1170,Liver,6,LDA
+1171,Livestock,6,LDA
+1172,Low-carbohydrate diet,6,LDA
+1173,Macrobiotic diet,6,LDA
+1174,Magnesium,6,LDA
+1175,Maillard reaction,6,LDA
+1176,Malic acid,6,LDA
+1177,Maltose,6,LDA
+1178,Mannitol,6,LDA
+1179,Margarine,6,LDA
+1180,Mineral (nutrient),6,LDA
+1181,Molasses,6,LDA
+1182,Nutrient,6,LDA
+1183,Nutrition facts label,6,LDA
+1184,Oat,6,LDA
+1185,Oil,6,LDA
+1186,Oligosaccharide,6,LDA
+1187,Olive oil,6,LDA
+1188,Orange juice,6,LDA
+1189,Organic farming,6,LDA
+1190,Organic food,6,LDA
+1191,Palm oil,6,LDA
+1192,Paraben,6,LDA
+1193,Plant nutrition,6,LDA
+1194,Potassium chloride,6,LDA
+1195,Protease,6,LDA
+1196,Quinine,6,LDA
+1197,Quorn,6,LDA
+1198,Red meat,6,LDA
+1199,Roquefort,6,LDA
+1200,Saccharomyces cerevisiae,6,LDA
+1201,Sea salt,6,LDA
+1202,Smoke point,6,LDA
+1203,Sodium acetate,6,LDA
+1204,Sodium bicarbonate,6,LDA
+1205,Sorbitol,6,LDA
+1206,Sourdough,6,LDA
+1207,Sous-vide,6,LDA
+1208,Soylent (meal replacement),6,LDA
+1209,Spelt,6,LDA
+1210,Spirulina (dietary supplement),6,LDA
+1211,Starch,6,LDA
+1212,Stevia,6,LDA
+1213,Sugar alcohol,6,LDA
+1214,Sugar substitute,6,LDA
+1215,Sulfur dioxide,6,LDA
+1216,Tannin,6,LDA
+1217,The China Study,6,LDA
+1218,Ultra-high-temperature processing,6,LDA
+1219,Unsaturated fat,6,LDA
+1220,Vegetarianism by country,6,LDA
+1221,Vitamin E,6,LDA
+1222,Wagyu,6,LDA
+1223,Water,6,LDA
+1224,Water supply,6,LDA
+1225,Weight loss,6,LDA
+1226,Winemaking,6,LDA
+1227,World Food Programme,6,LDA
+1228,Xanthan gum,6,LDA
+1229,Xylitol,6,LDA
+1230,Yeast,6,LDA
+1231,Acetone,6,LDA
+1232,Almond milk,6,LDA
+1233,Ammonium chloride,6,LDA
+1234,Amylase,6,LDA
+1235,Animal slaughter,6,LDA
+1236,Apple cider vinegar,6,LDA
+1237,Aquaculture,6,LDA
+1238,Argan oil,6,LDA
+1239,Aspartic acid,6,LDA
+1240,Astaxanthin,6,LDA
+1241,Baker's yeast,6,LDA
+1242,Beefalo,6,LDA
+1243,Beta-Carotene,6,LDA

@@ -6,7 +6,15 @@ def get_top_labels_kmeans(labels):
     for label_type in labels:
         for row in label_type.itertuples():
             for i in range(1, 6):
-                top_labels[row.country].add(label_type[str(i)].iloc[row.country])
+                top_labels[row.country].add((label_type[str(i)].iloc[row.country]).replace('_', ' '))
+
+    for i in range(len(top_labels)):
+        if len(top_labels[i]) < 25:
+            l = list(top_labels[i])
+            del top_labels[i]
+            top_labels.insert(i, l)
+            while len(top_labels[i]) < 25:
+                top_labels[i].append('')
 
     return top_labels
 
@@ -19,7 +27,15 @@ def get_top_labels_LDA(labels, lda_labels):
                 top_labels[row.country].add(label_type[str(i)].iloc[row.country])
     for row in lda_labels.itertuples():
         for i in range(5):
-            top_labels[row.country].add(lda_labels['label' + str(i)].iloc[row.country])
+            top_labels[row.country].add((lda_labels['label' + str(i)].iloc[row.country]).replace('_', ' '))
+
+    for i in range(len(top_labels)):
+        if len(top_labels[i]) < 25:
+            l = list(top_labels[i])
+            del top_labels[i]
+            top_labels.insert(i, l)
+            while len(top_labels[i]) < 25:
+                top_labels[i].append('')
 
     return top_labels
 

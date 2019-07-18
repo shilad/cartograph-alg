@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,Websites by topic,Entertainment websites,Internet properties by year of establishment,Media companies by year of establishment,Technology companies by year of establishment,Computer companies by year of establishment,Telecommunications companies by year of establishment,History of the Internet,Establishments by year,Online content distribution
-1,Domain name system,Domain names,Internet architecture,Internet Assigned Numbers Authority,Top-level domains,Internet,IT infrastructure,Internet Standards,1 (number),Telecommunications
-2,Economics by year,Online services,Internet companies of the United States,Information technology companies of the United States,Internet search engines,Internet companies by country,Internet companies,Websites,Companies by year of establishment,Companies by industry and year of establishment
-3,Years,Births by decade,20th-century births,People by status,Life,People,Living people,Victims,Survivors,Nature
-4,Mozilla,Free software projects,Software by library used,Free web software,Free software,Gecko-based software,Free web browsers,Open-source movement,Cross-platform software,Mac OS web browsers
-5,Computing and society,Information,Information technology,Cyberspace,Society,Technology in society,Internet culture,Law by issue,Computer law,Politics and technology
-6,Web development,Web software,World Wide Web,Web technology,Software engineering,Software,Software development,Hypertext,Information economy,Internet Protocol based network software
+0,Software,Web development,Web software,Application layer protocols,Communications protocols,Software engineering,Internet protocols,Internet Protocol based network software,Software development,Web technology
+1,Main topic classifications,Computing and society,Technology in society,Society,Information,Web 2.0,Categories by type,Information society,Social sciences,Culture
+2,Websites by topic,Online services,Entertainment websites,E-commerce,Internet companies,Websites,Companies by industry and year of establishment,Internet properties by year of establishment,Media companies by year of establishment,Online content distribution
+3,Computer law,Internet culture,Cybercrime,Crimes,Internet ethics,Cyberspace,Cyberwarfare,Law by issue,Cyberpunk themes,Crime by type
+4,Life,Living people,Survivors,Victims,People by status,Nature,People,Births by decade,20th-century births,Years
+5,Telecommunications by country,Internet by country,Information technology by country,IT infrastructure,Domain name system,Domain names,Media by country and type,Internet Assigned Numbers Authority,Communications by country,Top-level domains
+6,Digital marketing,Internet search engines,Advertising by medium,Online advertising,Search engine software,Aggregation websites,Indexes,Web scraping,Internet search,Online databases

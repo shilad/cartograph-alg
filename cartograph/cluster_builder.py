@@ -106,6 +106,8 @@ if __name__ == '__main__':
     # article_vectors = normalize_vectors(pd.read_csv(args.vectors))
 
     article_vectors = pd.read_csv(args.vectors)
+    print('max article id is ', article_vectors['article_id'].max())
+
     if args.clustering == 'kmeans':
         cluster_df = get_kmeans(article_vectors, args.k)
     elif args.clustering == 'hdbscan':
@@ -118,6 +120,8 @@ if __name__ == '__main__':
     else:
         sys.stderr.write("Unknown clustering method: %s\n" + args.clustering)
         sys.exit(1)
+
+    print('max article id is ', cluster_df['article_id'].max())
 
     cluster_df.to_csv('%s/cluster_groups.csv' % (args.experiment, ), index=False)
 

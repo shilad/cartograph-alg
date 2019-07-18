@@ -2,80 +2,60 @@ import pandas as pd
 import random
 
 
-def assign_groups(concat_country, num_per_user):
-    group = []
-    cluster_groups = []
+def lengthen_project_groups(project_groups):
+    num_rows = 0
+    for project in project_groups:
+        if project.shape[0] > num_rows:
+            num_rows = project.shape[0]
 
-    remainder = len(concat_country) % 30
+    result = []
+    for project in project_groups:
+        while project.shape[0] < num_rows:
+            sampled_row = project.sample(n=1)
+            project = project.append(sampled_row)
+        result.append(project)
 
-    for i in range(len(concat_country) - remainder):
-        if len(group) >= 30:
-            cluster_groups.append(group)
-            group = []
-        else:
-            group.append(concat_country[i])
-
-    if remainder > 0:
-        for i in range(len(concat_country) - remainder, len(concat_country)):
-            group.append(concat_country[i])
-        sample = concat_country[0:len(concat_country) - remainder]
-        while len(group) < num_per_user:
-            article = random.choice(sample)
-            group.append(article)
-            sample.remove(article)
-        cluster_groups.append(group)
-
-    return cluster_groups
+    return result
 
 
-def concatenate_articles(country, num_concatenations):
-    initial = country.copy()
-    country_articles = []
-    random.shuffle(country)
-    country_articles.extend(country)
-    for i in range(num_concatenations - 1):
-        random.shuffle(initial)
-        country_articles.extend(initial)
-
-    cluster_groups = (assign_groups(country_articles, 30))
-    return cluster_groups
+NUM_PROJECTS = 4
+NUM_ARTICLES = 31
+NUM_LABELS = 25
 
 
-def get_groups(articles):
-    groups = {}
+def main(directory, project_groups):
+    lengthened_groups = lengthen_project_groups(project_groups)
+    colnames = []
+    for i in (range(NUM_PROJECTS)):
+       colnames.append('group_id_' + str(i))
+       colnames.append('country_' + str(i))
+       colnames.append('project_' + str(i))
+       colnames.extend(['article_%d_%d' % (i, j) for j in range(NUM_ARTICLES)])
+       colnames.extend(['label_%d_%d' % (i, j) for j in range(NUM_LABELS)])
 
-    treatments = {'plain': [[] for x in range(7)], 'augmented': [[] for x in range(7)], 'LDA': [[] for x in range(7)]}
+    rows = []
+    for i in range(lengthened_groups[0].shape[0]):
+        projects = list(range(NUM_PROJECTS))
+        print([lengthened_groups[p].shape for p in range(4)])
+        random.shuffle(projects)
+        row = []
+        for p in projects:
+            row.extend(lengthened_groups[p].iloc[i,:].values.tolist())
+        rows.append(row)
 
-    for row in articles.itertuples():
-        treatments[row.treatment][row.country].append(row.article_name)
-
-    for treatment, countries in treatments.items():
-        for i in range(len(countries)):
-            country_groups = concatenate_articles(countries[i], 5)
-            treatments[treatment][i] = country_groups
-
-    for treatment_type, treatment in treatments.items():
-        for country in range(len(treatment)):
-            for group in range(len(treatment[country])):
-                groups[treatment_type + '_c' + str(country) + '_g' + str(group)] = treatment[country][group]
-
-    return groups
-
-
-def create_articles_df(plain_articles, augmented_articles, LDA_articles):
-    plain_augmented = pd.concat([plain_articles, augmented_articles], ignore_index=True)
-    articles_df = pd.concat([plain_augmented, LDA_articles], ignore_index=True)
-    return articles_df
+    merged = pd.DataFrame(rows, columns=colnames)
+    merged.to_csv(directory + '/mturk.csv', index=False)
 
 
-def main(plain_articles_csv, augmented_articles_csv, LDA_articles_csv):
-    plain_articles = pd.read_csv(plain_articles_csv)
-    augmented_articles = pd.read_csv(augmented_articles_csv)
-    LDA_articles = pd.read_csv(LDA_articles_csv)
+if __name__ == '__main__':
+    import sys
 
-    articles_df = create_articles_df(plain_articles, augmented_articles, LDA_articles)
-    groups = get_groups(articles_df)
-    print(groups)
+    directory = sys.argv[1]
+    projects = sys.argv[2:]
 
+    project_groups = []
+    for project in projects:
+        project_groups.append(pd.read_csv(directory + '/' + project + '/groups.csv'))
 
-main('study/food/kmeans_plain/final_articles.csv', 'study/food/kmeans_augmented/final_articles.csv', 'study/food/LDA/final_articles.csv')
+    main(directory, project_groups)
+

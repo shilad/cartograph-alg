@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,YouTube,United States,San Francisco,Streaming media,Netflix,London,e-commerce,eBay,web series,United Kingdom
-1,Internet,top-level domain,ccTLD,country code,Internet service provider,ICANN,Domain Name System,country code top-level domain,IPv6,Internet Engineering Task Force
-2,Google,Yahoo!,Android ,New York City,web portal,TechCrunch,web search engine,Microsoft,online advertising,search engine
-3,Facebook,Twitter,social media,Reddit,social network,Instagram,Robert Cailliau,Silicon Valley,blog,LinkedIn
-4,Firefox,web browser,Mozilla,Gecko ,Mozilla Foundation,macOS,Mozilla Public License,Linux,user interface,Pale Moon 
-5,The Guardian,The New York Times,Internet censorship,Reporters Without Borders,New York Times,Freedom House,marketing,European Union,human rights,OpenNet Initiative
-6,World Wide Web,HTML,website,JavaScript,web page,World Wide Web Consortium,XML,web application,web server,Google Chrome
+0,web browser,World Wide Web,World Wide Web Consortium,JavaScript,HTML,web page,Microsoft Windows,web server,web application,Linux
+1,social media,crowdsourcing,The New York Times,blog,Internet Archive,Massachusetts Institute of Technology,portmanteau,cyberspace,smartphone,computer science
+2,YouTube,United States,e-commerce,eBay,San Francisco,iOS,Netflix,London,Streaming media,Android 
+3,Facebook,Twitter,website,The Guardian,malware,Internet censorship,National Security Agency,Reporters Without Borders,Tor ,Electronic Frontier Foundation
+4,Wikimedia Foundation,Wikipedia,Jimmy Wales,English Wikipedia,Wikipedia community,wiki,Russian interference in the 2016 United States elections,MediaWiki,trademark,Spanish language
+5,Internet,top-level domain,ccTLD,country code,ICANN,Internet service provider,country code top-level domain,Internet Exchange Point,Domain Name System,Internet Assigned Numbers Authority
+6,Google,web search engine,search engine,online advertising,Yahoo!,New York City,Microsoft,search engine optimization,web portal,TechCrunch

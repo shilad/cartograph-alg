@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,brewery,alcoholic beverage,London,Anheuser-Busch InBev,Germany,National Register of Historic Places,Anheuser-Busch,SABMiller,Scotland,England
-1,chef,restaurant,Michelin star,Food Network,celebrity chef,New York City,The New York Times,restaurateur,cookbook,Manhattan
-2,United States,The Coca-Cola Company,restaurant chain,fast food,Canada,United Kingdom,supermarket,PepsiCo,hamburger,Coca-Cola
-3,cheese,bread,chocolate,pork,sugar,sandwich,onion,flour,butter,sauce
-4,cocktail,beer,tea,alcohol by volume,soft drink,gin,liquor,hops,malt,Camellia sinensis
-5,wine,organic compound,protein,food,ethanol,grape,carbohydrate,fat,fermentation ,glucose
-6,fruit,genus,flowering plant,cultivar,India,species,rice,tree,Southeast Asia,vegetable
+0,tea,cookbook,cookery book,Elizabeth David,Camellia sinensis,British cuisine,Victorian era,Devon,China,English cuisine
+1,species,genus,flowering plant,fruit,family ,cultivar,Carl Linnaeus,tree,common name,seed
+2,pork,cheese,bread,rice,beef,sugar,tomato,onion,garlic,sauce
+3,restaurant,United States,New York City,restaurant chain,fast food,chef,The New York Times,hamburger,Food Network,Michelin star
+4,beer,brewery,cocktail,alcoholic beverage,alcohol by volume,Anheuser-Busch InBev,gin,Scotch whisky,coffee,Diageo
+5,soft drink,The Coca-Cola Company,United Kingdom,supermarket,Coca-Cola,chocolate,PepsiCo,brand,Canada,Nestlé
+6,wine,protein,food,organic compound,carbohydrate,grape,ethanol,fat,glucose,World Health Organization

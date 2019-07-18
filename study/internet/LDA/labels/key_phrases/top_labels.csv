@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,music,site,video,founded,website,series,youtube,film,awards,artists
-1,network,domain,internet,protocol,iana,icann,level_domain,external_links,registration,references
-2,company,acquired,service,search,launched,yahoo,announced,inc,google,advertising
-3,book,facebook,social_media,career,work,students,social,twitter,born,friends
-4,mozilla,firefox,support,releases,gecko,mozilla_foundation,browser,project,version,web_browser
-5,government,information,online,people,law,digital,access,consumers,research,political
-6,web,user,page,html,content,server,data,software,javascript,web_page
+0,browser,server,version,web,client,protocol,support,user,html,web_browser
+1,research,book,social,people,online,university,digital,science,work,isbn
+2,music,launched,video,announced,app,platform,series,awards,television,youtube
+3,information,government,law,privacy,content,sites,websites,security,spam,attack
+4,references,wikimedia_foundation,board,articles,wikimedia,wikipedia,born,founded,foundation,uk
+5,internet,network,domain,iana,external_links,internet_exchange,icann,level_domain,services,registration
+6,company,search,search_engine,advertising,google,acquired,yahoo,marketing,ad,search_results

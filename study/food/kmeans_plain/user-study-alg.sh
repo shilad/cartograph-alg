@@ -37,36 +37,35 @@ source ./bin/experiment-utils.sh
 # An experiment id can be used for multiple maps.
 exp_id=kmeans_plain
 
+# Prepares an experiment directory
+# Returns the name of the experiment directory for the map
+#
+prepare_experiment_dir () {
+    map_name=$1
+
+    exp_dir=study/${map_name}/${exp_id}
+
+    echo "using directory $exp_dir" >&2
+    mkdir -p ${exp_dir}
+
+    # Copy in the script used to run the experiment
+    cp -p $0 ${exp_dir}
+
+    # Link in the vanilla vector file
+    rm ${exp_dir}/vanilla_vectors.csv >& /dev/null
+    ln data/${map_name}/article_vectors.csv ${exp_dir}/vanilla_vectors.csv
+
+    # Create empty parameters file
+    touch ${exp_dir}/params.json
+
+    echo ${exp_dir}
+}
 
 for i in {0..3}
 do
-    # Prepares an experiment directory
-    # Returns the name of the experiment directory for the map
-    #
-    prepare_experiment_dir () {
-        map_name=${projects[$i]}
-        exp_id=$1
-
-        exp_dir=study/${map_name}/${exp_id}
-
-        echo "using directory $exp_dir" >&2
-        mkdir -p ${exp_dir}
-
-        # Copy in the script used to run the experiment
-        cp -p $0 ${exp_dir}
-
-        # Link in the vanilla vector file
-        ln data/${map_name}/article_vectors.csv ${exp_dir}/vanilla_vectors.csv
-
-        # Create empty parameters file
-        touch ${exp_dir}/params.json
-
-        echo ${exp_dir}
-    }
-
 
     # Step 2: Prepare an experiment directory for a specific map.
-    exp_dir=$(prepare_experiment_dir ${exp_id})
+    exp_dir=$(prepare_experiment_dir ${projects[$i]})
 
 
     ## Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
@@ -79,7 +78,6 @@ do
         --vectors ${exp_dir}/${initial_vector_for_clustering} \
         --clustering kmeans \
         --k 7
-
 
     python -m cartograph.xy_embed.tsne_embed \
             --experiment ${exp_dir} \

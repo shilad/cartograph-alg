@@ -11,22 +11,24 @@ set -x
 
 
 # Assign wikiproject for data directory
-#projects=(food internet media technology)
-projects=(food internet media technology)
+projects="food internet media technology"
+project=(food internet media technology)
 
 exp_ids=(kmeans_augmented kmeans_plain LDA)
-treatments=(augmented plain LDA)
-thresholds=(120000 50000 10000 120000)
+thresholds=(150000 50000 20000 120000)
 
 
-for i in {1..3}
+for i in {0..3}
 do
-    echo ${projects[$i]}
+    echo ${project[$i]}
 
     for x in {0..2}
     do
-#        python -m study.data.top_cluster_labels study/${projects[$i]}/${exp_ids[$x]} ${exp_ids[$x]}
-        python -m study.data.get_final_articles study/${projects[$i]}/${exp_ids[$x]} data/${projects[$i]} ${treatments[$x]} ${thresholds[$i]}
+        python -m study.data.top_cluster_labels study/${project[$i]}/${exp_ids[$x]} ${exp_ids[$x]}
+        python -m study.data.get_final_articles study/${project[$i]}/${exp_ids[$x]} data/${project[$i]} ${exp_ids[$x]} ${thresholds[$i]}
     done
 
+    python -m study.data.get_project_groups study/${project[$i]} ${project[$i]}
 done
+
+python -m study.data.get_mturk_csv study ${projects}

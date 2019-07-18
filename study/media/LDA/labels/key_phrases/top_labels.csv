@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,editor,paper,published,magazine,circulation,news,issue,journalism,university,editor_chief
-1,film,music,artists,production,album,musicians,awards,song,series,actors
-2,channel,launched,programming,network,tv,broadcast,service,television,india,available
-3,standard,audio,video,format,camera,systems,signal,data,image,use
-4,company,stations,newspaper,canada,sold,owned,radio,acquired,references,local
-5,advertising,information,internet,users,communication,marketing,social_media,content,social,people
-6,government,media,journalists,news_agency,press,state,censorship,propaganda,law,russian
+0,newspaper,paper,published,circulation,publication,references,weekly,daily,external_links,editor
+1,media,government,russian,news_agency,journalists,press,radio,state,national,law
+2,communication,information,social,research,social_media,people,study,advertising,theory,example
+3,award,career,series,new_york,producer,american,university,director,born,married
+4,camera,lens,film,ctv,dt,lenses,image,ontario,local,assistant
+5,standard,video,audio,systems,software,music,format,signal,data,cd
+6,channel,network,programming,company,tv,broadcast,launched,service,television,news

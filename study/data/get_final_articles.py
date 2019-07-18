@@ -19,7 +19,7 @@ def get_popular_articles(article_info, threshold):
                     break
                 else:
                     if article not in pop_articles[i]:
-                        pop_articles[i].append(article)
+                        pop_articles[i].append(article[0])
 
     return pop_articles
 
@@ -48,6 +48,7 @@ def main(article_names, article_pop, article_clusters, treatment, directory, thr
     #     total_articles += len(item)
     #     print(len(item))
     #
+    # print(pop_articles[6])
     # print('total: ' + str(total_articles))
 
 
@@ -66,3 +67,8 @@ if __name__ == '__main__':
 
     main(article_names, article_pop, article_clusters, treatment, directory, threshold)
 
+# article_names = pd.read_csv('data/media/domain_concept.csv')
+# article_pop = pd.read_csv('data/media/popularity_score.csv')
+# article_clusters = pd.read_csv('study/media/kmeans_plain/cluster_groups.csv')
+#
+# main(article_names, article_pop, article_clusters, 'kmeans_plain', 'study/media/kmeans_plain', 20000)

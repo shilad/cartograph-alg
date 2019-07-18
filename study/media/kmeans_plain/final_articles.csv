@@ -1,0 +1,862 @@
+,article_name,country,treatment
+0,Geo TV,0,kmeans_plain
+1,Newspaper,0,kmeans_plain
+2,All India Radio,0,kmeans_plain
+3,Media of India,0,kmeans_plain
+4,The Times of India,0,kmeans_plain
+5,ABP Group,0,kmeans_plain
+6,Anandabazar Patrika,0,kmeans_plain
+7,D B Corp Ltd.,0,kmeans_plain
+8,Dainik Bhaskar,0,kmeans_plain
+9,Dainik Jagran,0,kmeans_plain
+10,Ei Samay Sangbadpatra,0,kmeans_plain
+11,Eros Now,0,kmeans_plain
+12,HT Media,0,kmeans_plain
+13,Hindustan (newspaper),0,kmeans_plain
+14,Hindustan Times,0,kmeans_plain
+15,History of newspaper publishing,0,kmeans_plain
+16,Jalsha Movies,0,kmeans_plain
+17,Maharashtra Times,0,kmeans_plain
+18,NDTV,0,kmeans_plain
+19,Navbharat Times,0,kmeans_plain
+20,Pandit,0,kmeans_plain
+21,Prothom Alo,0,kmeans_plain
+22,Punjab Kesari,0,kmeans_plain
+23,Radia tapes controversy,0,kmeans_plain
+24,Rajasthan Patrika,0,kmeans_plain
+25,Sahara India Pariwar,0,kmeans_plain
+26,Star Jalsha,0,kmeans_plain
+27,Subhash Chandra,0,kmeans_plain
+28,Sun TV Network,0,kmeans_plain
+29,TEN Cricket,0,kmeans_plain
+30,The Hindu,0,kmeans_plain
+31,The Times Group,0,kmeans_plain
+32,Zee Entertainment Enterprises,0,kmeans_plain
+33,ABP Ananda,0,kmeans_plain
+34,ABP News,0,kmeans_plain
+35,Aaj Tak,0,kmeans_plain
+36,Bartaman,0,kmeans_plain
+37,CNBC Awaaz,0,kmeans_plain
+38,Gujarat Samachar,0,kmeans_plain
+39,India News,0,kmeans_plain
+40,India TV,0,kmeans_plain
+41,India Today (TV channel),0,kmeans_plain
+42,Mahaka Media,0,kmeans_plain
+43,Mazhavil Manorama,0,kmeans_plain
+44,NDTV India,0,kmeans_plain
+45,News Nation,0,kmeans_plain
+46,Pakistan Electronic Media Regulatory Authority,0,kmeans_plain
+47,Pakistan Remote Sensing Satellite,0,kmeans_plain
+48,Sony Aath,0,kmeans_plain
+49,Times Now,0,kmeans_plain
+50,Zee Bangla,0,kmeans_plain
+51,Zee Business,0,kmeans_plain
+52,Zee TV,0,kmeans_plain
+53,Newspaper circulation,0,kmeans_plain
+54,MediaCityUK,1,kmeans_plain
+55,ABS-CBN,1,kmeans_plain
+56,Al Jazeera,1,kmeans_plain
+57,Al Jazeera English,1,kmeans_plain
+58,Daily Mirror,1,kmeans_plain
+59,Euronews,1,kmeans_plain
+60,Rupert Murdoch,1,kmeans_plain
+61,Sky News,1,kmeans_plain
+62,TNT (Russian TV channel),1,kmeans_plain
+63,Virgin Media,1,kmeans_plain
+64,Virgin TV,1,kmeans_plain
+65,ABS-CBN News Channel,1,kmeans_plain
+66,Agence France-Presse,1,kmeans_plain
+67,Al Arabiya,1,kmeans_plain
+68,Al Mayadeen,1,kmeans_plain
+69,Alexander Lebedev,1,kmeans_plain
+70,Asia-Pacific Broadcasting Union,1,kmeans_plain
+71,BBC,1,kmeans_plain
+72,BBC Cymru Wales,1,kmeans_plain
+73,BBC News (TV channel),1,kmeans_plain
+74,BBC Sport,1,kmeans_plain
+75,Bell Pottinger,1,kmeans_plain
+76,Bertelsmann,1,kmeans_plain
+77,Bloomberg L.P.,1,kmeans_plain
+78,CNN International,1,kmeans_plain
+79,Chinese Wikipedia,1,kmeans_plain
+80,Concentration of media ownership,1,kmeans_plain
+81,Country code top-level domain,1,kmeans_plain
+82,Deutsche Welle,1,kmeans_plain
+83,El País,1,kmeans_plain
+84,European Broadcasting Union,1,kmeans_plain
+85,Fairfax Media,1,kmeans_plain
+86,GMA Network (company),1,kmeans_plain
+87,Media freedom in Russia,1,kmeans_plain
+88,Media of Turkey,1,kmeans_plain
+89,Mediaset,1,kmeans_plain
+90,Middle East Broadcasting Center,1,kmeans_plain
+91,Ofcom,1,kmeans_plain
+92,Satellite television,1,kmeans_plain
+93,Television in Russia,1,kmeans_plain
+94,WPP plc,1,kmeans_plain
+95,Yle,1,kmeans_plain
+96,Yomiuri Shimbun,1,kmeans_plain
+97,Al-Arab News Channel,1,kmeans_plain
+98,Al Jazeera Media Network,1,kmeans_plain
+99,Algemeen Dagblad,1,kmeans_plain
+100,All-Russia State Television and Radio Broadcasting Company,1,kmeans_plain
+101,Anadolu Agency,1,kmeans_plain
+102,Antena 3 (Spain),1,kmeans_plain
+103,Axel Springer SE,1,kmeans_plain
+104,Bauer Media Group,1,kmeans_plain
+105,BeIN Channels Network,1,kmeans_plain
+106,Berliner (format),1,kmeans_plain
+107,Bonnier Group,1,kmeans_plain
+108,Bouygues,1,kmeans_plain
+109,Censorship in Saudi Arabia,1,kmeans_plain
+110,Commercial broadcasting,1,kmeans_plain
+111,Corriere della Sera,1,kmeans_plain
+112,De Telegraaf,1,kmeans_plain
+113,Dentsu Aegis Network,1,kmeans_plain
+114,Die Welt,1,kmeans_plain
+115,Dubai Media City,1,kmeans_plain
+116,ERTU,1,kmeans_plain
+117,Economist Group,1,kmeans_plain
+118,Eurosport,1,kmeans_plain
+119,Gazette,1,kmeans_plain
+120,Gazprom-Media,1,kmeans_plain
+121,Government gazette,1,kmeans_plain
+122,Grupo Globo,1,kmeans_plain
+123,Guardian Media Group,1,kmeans_plain
+124,Haymarket Media Group,1,kmeans_plain
+125,Hellenic Broadcasting Corporation,1,kmeans_plain
+126,Hibu,1,kmeans_plain
+127,IHS Markit,1,kmeans_plain
+128,I (newspaper),1,kmeans_plain
+129,Independent Press Standards Organisation,1,kmeans_plain
+130,Interfax,1,kmeans_plain
+131,John Singleton (Australian entrepreneur),1,kmeans_plain
+132,La Repubblica,1,kmeans_plain
+133,Lagardère Group,1,kmeans_plain
+134,Le Monde,1,kmeans_plain
+135,Media of Russia,1,kmeans_plain
+136,Media of the United Kingdom,1,kmeans_plain
+137,Mega Channel,1,kmeans_plain
+138,Mondo TV,1,kmeans_plain
+139,NOS (Portuguese media company),1,kmeans_plain
+140,NRC Handelsblad,1,kmeans_plain
+141,News Corp Australia,1,kmeans_plain
+142,News agency,1,kmeans_plain
+143,Public inquiry,1,kmeans_plain
+144,RIA Novosti,1,kmeans_plain
+145,RTL Group,1,kmeans_plain
+146,Radiotelevizija Slovenija,1,kmeans_plain
+147,Rediffusion,1,kmeans_plain
+148,Reuters Group,1,kmeans_plain
+149,Rossiya Segodnya,1,kmeans_plain
+150,Roy Greenslade,1,kmeans_plain
+151,STS (TV channel),1,kmeans_plain
+152,Singapore Press Holdings,1,kmeans_plain
+153,Skai TV,1,kmeans_plain
+154,State media,1,kmeans_plain
+155,Sunday Mirror,1,kmeans_plain
+156,TalkTalk TV,1,kmeans_plain
+157,Televisión Española,1,kmeans_plain
+158,Telewizja Polska,1,kmeans_plain
+159,Tiscali,1,kmeans_plain
+160,"Tony Hall, Baron Hall of Birkenhead",1,kmeans_plain
+161,UBM plc,1,kmeans_plain
+162,Voice of Russia,1,kmeans_plain
+163,BBC Store,1,kmeans_plain
+164,BeIN Media Group,1,kmeans_plain
+165,Middle-market newspaper,1,kmeans_plain
+166,Pier Silvio Berlusconi,1,kmeans_plain
+167,Press Holdings,1,kmeans_plain
+168,Telegraph Media Group,1,kmeans_plain
+169,Lists of newspapers,1,kmeans_plain
+170,From The Doctor to my son Thomas,2,kmeans_plain
+171,Fuck (film),2,kmeans_plain
+172,Galaxy Science Fiction,2,kmeans_plain
+173,Panavision,2,kmeans_plain
+174,Zoo TV Tour,2,kmeans_plain
+175,Demi's Birthday Suit,2,kmeans_plain
+176,Entertainment,2,kmeans_plain
+177,Fucking Machines,2,kmeans_plain
+178,More Demi Moore,2,kmeans_plain
+179,Willie Gillis,2,kmeans_plain
+180,Andy Warhol,2,kmeans_plain
+181,Blues,2,kmeans_plain
+182,Dannielynn Birkhead paternity case,2,kmeans_plain
+183,Elijah Daniel,2,kmeans_plain
+184,Howard Hughes,2,kmeans_plain
+185,Jazz,2,kmeans_plain
+186,Jean Grey in other media,2,kmeans_plain
+187,Max Clifford,2,kmeans_plain
+188,Media portrayal of lesbianism,2,kmeans_plain
+189,Nelvana,2,kmeans_plain
+190,Reggae,2,kmeans_plain
+191,Soul music,2,kmeans_plain
+192,Thomas Edison,2,kmeans_plain
+193,Video game,2,kmeans_plain
+194,Vision (Marvel Comics),2,kmeans_plain
+195,Web television,2,kmeans_plain
+196,Wolverine in other media,2,kmeans_plain
+197,YouTube,2,kmeans_plain
+198,Celebrity,2,kmeans_plain
+199,Chris Crocker,2,kmeans_plain
+200,Cinematography,2,kmeans_plain
+201,Doctor Doom in other media,2,kmeans_plain
+202,Documentary film,2,kmeans_plain
+203,EMI,2,kmeans_plain
+204,Film,2,kmeans_plain
+205,Film festival,2,kmeans_plain
+206,History of music,2,kmeans_plain
+207,Hotel Transylvania (franchise),2,kmeans_plain
+208,Ingmar Bergman,2,kmeans_plain
+209,Kirsty Gallacher,2,kmeans_plain
+210,Magneto in other media,2,kmeans_plain
+211,Media portrayal of LGBT people,2,kmeans_plain
+212,Mixtape,2,kmeans_plain
+213,Music,2,kmeans_plain
+214,Napster,2,kmeans_plain
+215,Personality rights,2,kmeans_plain
+216,Popular music,2,kmeans_plain
+217,Product placement,2,kmeans_plain
+218,Rock and roll,2,kmeans_plain
+219,Scandal,2,kmeans_plain
+220,Sexuality in music videos,2,kmeans_plain
+221,Silence,2,kmeans_plain
+222,Street performance,2,kmeans_plain
+223,Suspension of disbelief,2,kmeans_plain
+224,Television advertisement,2,kmeans_plain
+225,Toronto International Film Festival,2,kmeans_plain
+226,University of the Arts London,2,kmeans_plain
+227,Video on demand,2,kmeans_plain
+228,Viral video,2,kmeans_plain
+229,Watershed (broadcasting),2,kmeans_plain
+230,Women in music,2,kmeans_plain
+231,YouTube Rewind,2,kmeans_plain
+232,Assistant director,2,kmeans_plain
+233,BDSM in culture and media,2,kmeans_plain
+234,Best boy,2,kmeans_plain
+235,Bumper (broadcasting),2,kmeans_plain
+236,Camera operator,2,kmeans_plain
+237,Captain Future,2,kmeans_plain
+238,Celebrity culture,2,kmeans_plain
+239,Channel Awesome,2,kmeans_plain
+240,Cinematographer,2,kmeans_plain
+241,Commercial art,2,kmeans_plain
+242,Creative director,2,kmeans_plain
+243,David Lean,2,kmeans_plain
+244,Defy Media,2,kmeans_plain
+245,Directors Guild of America,2,kmeans_plain
+246,Dolly grip,2,kmeans_plain
+247,EMI Music Publishing,2,kmeans_plain
+248,Emma Freud,2,kmeans_plain
+249,Executive producer,2,kmeans_plain
+250,Fangoria,2,kmeans_plain
+251,Film director,2,kmeans_plain
+252,Film producer,2,kmeans_plain
+253,Fleischer Studios,2,kmeans_plain
+254,Focus puller,2,kmeans_plain
+255,Fox Searchlight Pictures,2,kmeans_plain
+256,Future Shock,2,kmeans_plain
+257,Future plc,2,kmeans_plain
+258,GLAAD,2,kmeans_plain
+259,Gaffer (filmmaking),2,kmeans_plain
+260,Gimmick,2,kmeans_plain
+261,Graphic violence,2,kmeans_plain
+262,Grip (job),2,kmeans_plain
+263,Groucho Club,2,kmeans_plain
+264,Heart (symbol),2,kmeans_plain
+265,Home video,2,kmeans_plain
+266,Human voice,2,kmeans_plain
+267,Jawed Karim,2,kmeans_plain
+268,Jayne Mansfield-Sophia Loren photo,2,kmeans_plain
+269,La Academia,2,kmeans_plain
+270,Lead vocalist,2,kmeans_plain
+271,Leo Burnett,2,kmeans_plain
+272,Lighting technician,2,kmeans_plain
+273,Like button,2,kmeans_plain
+274,Lip sync,2,kmeans_plain
+275,Location manager,2,kmeans_plain
+276,Mainstream,2,kmeans_plain
+277,Mashup (video),2,kmeans_plain
+278,Monte Lipman,2,kmeans_plain
+279,Movie star,2,kmeans_plain
+280,Musical ensemble,2,kmeans_plain
+281,Northern soul,2,kmeans_plain
+282,Production assistant,2,kmeans_plain
+283,Production coordinator,2,kmeans_plain
+284,Production designer,2,kmeans_plain
+285,Publicist,2,kmeans_plain
+286,Publicity stunt,2,kmeans_plain
+287,Rough Trade Records,2,kmeans_plain
+288,Sampling (music),2,kmeans_plain
+289,Scenic design,2,kmeans_plain
+290,Screen International,2,kmeans_plain
+291,Script supervisor,2,kmeans_plain
+292,Stock sound effect,2,kmeans_plain
+293,The Factory,2,kmeans_plain
+294,Travel documentary,2,kmeans_plain
+295,Tyler Brûlé,2,kmeans_plain
+296,Uproxx,2,kmeans_plain
+297,Vevo,2,kmeans_plain
+298,VidCon,2,kmeans_plain
+299,Video art,2,kmeans_plain
+300,Vimeo,2,kmeans_plain
+301,Virgin EMI Records,2,kmeans_plain
+302,Web series,2,kmeans_plain
+303,Wilhelm scream,2,kmeans_plain
+304,"Wizard People, Dear Reader",2,kmeans_plain
+305,All Songs Considered,2,kmeans_plain
+306,Cross-genre,2,kmeans_plain
+307,Key grip,2,kmeans_plain
+308,Terminal 5 (venue),2,kmeans_plain
+309,The Entertainment Capital of the World,2,kmeans_plain
+310,Vessel (website),2,kmeans_plain
+311,Lists of celebrities,2,kmeans_plain
+312,Lists of singers,2,kmeans_plain
+313,Primetime Emmy Award for Outstanding Animated Program,2,kmeans_plain
+314,Blog,3,kmeans_plain
+315,Elsevier,3,kmeans_plain
+316,History of printing,3,kmeans_plain
+317,Jean Baudrillard,3,kmeans_plain
+318,Marshall McLuhan,3,kmeans_plain
+319,Media management,3,kmeans_plain
+320,New media,3,kmeans_plain
+321,Photography,3,kmeans_plain
+322,Publishing,3,kmeans_plain
+323,Advertising,3,kmeans_plain
+324,Color theory,3,kmeans_plain
+325,Communication,3,kmeans_plain
+326,Culture industry,3,kmeans_plain
+327,Development communication,3,kmeans_plain
+328,Digital media,3,kmeans_plain
+329,Europeana,3,kmeans_plain
+330,Gatekeeping (communication),3,kmeans_plain
+331,History of advertising,3,kmeans_plain
+332,Information Age,3,kmeans_plain
+333,Information overload,3,kmeans_plain
+334,Infotainment,3,kmeans_plain
+335,Inoculation theory,3,kmeans_plain
+336,Internet,3,kmeans_plain
+337,Journalism,3,kmeans_plain
+338,Journalism ethics and standards,3,kmeans_plain
+339,Lifestreaming,3,kmeans_plain
+340,Marketing,3,kmeans_plain
+341,Mass media,3,kmeans_plain
+342,Media literacy,3,kmeans_plain
+343,Media richness theory,3,kmeans_plain
+344,Narrative paradigm,3,kmeans_plain
+345,News,3,kmeans_plain
+346,Organization for Transformative Works,3,kmeans_plain
+347,Priming (media),3,kmeans_plain
+348,Public relations,3,kmeans_plain
+349,Social media,3,kmeans_plain
+350,Social media in education,3,kmeans_plain
+351,Social peer-to-peer processes,3,kmeans_plain
+352,Study of global communication,3,kmeans_plain
+353,Typewriter,3,kmeans_plain
+354,User-generated content,3,kmeans_plain
+355,Advertising campaign,3,kmeans_plain
+356,Advertising media selection,3,kmeans_plain
+357,Advertising slogan,3,kmeans_plain
+358,Advertising to children,3,kmeans_plain
+359,Article marketing,3,kmeans_plain
+360,Audience,3,kmeans_plain
+361,Audience measurement,3,kmeans_plain
+362,Audiovisual,3,kmeans_plain
+363,Children's Online Privacy Protection Act,3,kmeans_plain
+364,Churnalism,3,kmeans_plain
+365,Citizen media,3,kmeans_plain
+366,Classified advertising,3,kmeans_plain
+367,Communication design,3,kmeans_plain
+368,Communication ethics,3,kmeans_plain
+369,Communication studies,3,kmeans_plain
+370,Communications management,3,kmeans_plain
+371,Concept testing,3,kmeans_plain
+372,Content (media),3,kmeans_plain
+373,Content analysis,3,kmeans_plain
+374,Content creation,3,kmeans_plain
+375,Conversation,3,kmeans_plain
+376,Copywriting,3,kmeans_plain
+377,Corporate media,3,kmeans_plain
+378,Cost per mille,3,kmeans_plain
+379,Crisis communication,3,kmeans_plain
+380,Data journalism,3,kmeans_plain
+381,Demographic profile,3,kmeans_plain
+382,Digital content,3,kmeans_plain
+383,Electronic media,3,kmeans_plain
+384,Environmental communication,3,kmeans_plain
+385,Exhibition,3,kmeans_plain
+386,Exploitation of women in mass media,3,kmeans_plain
+387,Facebook like button,3,kmeans_plain
+388,Graphic communication,3,kmeans_plain
+389,Health communication,3,kmeans_plain
+390,Ideogram,3,kmeans_plain
+391,Individuation,3,kmeans_plain
+392,Influence of mass media,3,kmeans_plain
+393,Information design,3,kmeans_plain
+394,Information explosion,3,kmeans_plain
+395,International communication,3,kmeans_plain
+396,Magazine,3,kmeans_plain
+397,Manuel Castells,3,kmeans_plain
+398,Mass communication,3,kmeans_plain
+399,Media (communication),3,kmeans_plain
+400,Media activism,3,kmeans_plain
+401,Media and gender,3,kmeans_plain
+402,Media buying,3,kmeans_plain
+403,Media culture,3,kmeans_plain
+404,Media event,3,kmeans_plain
+405,Media manipulation,3,kmeans_plain
+406,Media planning,3,kmeans_plain
+407,Media psychology,3,kmeans_plain
+408,Media studies,3,kmeans_plain
+409,Message,3,kmeans_plain
+410,Models of communication,3,kmeans_plain
+411,Multichannel marketing,3,kmeans_plain
+412,Multimedia,3,kmeans_plain
+413,Narcotizing dysfunction,3,kmeans_plain
+414,Narrowcasting,3,kmeans_plain
+415,New World Information and Communication Order,3,kmeans_plain
+416,Niche blogging,3,kmeans_plain
+417,Non-linear media,3,kmeans_plain
+418,Old media,3,kmeans_plain
+419,Out-of-home advertising,3,kmeans_plain
+420,Overchoice,3,kmeans_plain
+421,Page layout,3,kmeans_plain
+422,Panel discussion,3,kmeans_plain
+423,Parasocial interaction,3,kmeans_plain
+424,Performance-based advertising,3,kmeans_plain
+425,Political campaign,3,kmeans_plain
+426,Political communication,3,kmeans_plain
+427,Press release,3,kmeans_plain
+428,Prosumer,3,kmeans_plain
+429,Publication,3,kmeans_plain
+430,Radio advertisement,3,kmeans_plain
+431,Self-publishing,3,kmeans_plain
+432,Slogan,3,kmeans_plain
+433,Smoke signal,3,kmeans_plain
+434,Social media and political communication in the United States,3,kmeans_plain
+435,Social media and suicide,3,kmeans_plain
+436,Social media mining,3,kmeans_plain
+437,Sponsor (commercial),3,kmeans_plain
+438,Subliminal stimuli,3,kmeans_plain
+439,Target audience,3,kmeans_plain
+440,Technical writing,3,kmeans_plain
+441,Typing,3,kmeans_plain
+442,USC Annenberg School for Communication and Journalism,3,kmeans_plain
+443,Visual communication,3,kmeans_plain
+444,Wattpad,3,kmeans_plain
+445,Web content,3,kmeans_plain
+446,World news,3,kmeans_plain
+447,Cross-promotion,3,kmeans_plain
+448,Media consumption,3,kmeans_plain
+449,Media relations,3,kmeans_plain
+450,Motion graphic design,3,kmeans_plain
+451,Print design,3,kmeans_plain
+452,Social media analytics,3,kmeans_plain
+453,Propaganda techniques,3,kmeans_plain
+454,PlayStation,4,kmeans_plain
+455,Color television,4,kmeans_plain
+456,DVD,4,kmeans_plain
+457,Light,4,kmeans_plain
+458,Satellite,4,kmeans_plain
+459,Smart TV,4,kmeans_plain
+460,Sound,4,kmeans_plain
+461,Video CD,4,kmeans_plain
+462,Acoustics,4,kmeans_plain
+463,Alliance for Open Media,4,kmeans_plain
+464,Blu-ray Disc recordable,4,kmeans_plain
+465,CD-ROM,4,kmeans_plain
+466,Camera,4,kmeans_plain
+467,Canon Inc.,4,kmeans_plain
+468,Chroma subsampling,4,kmeans_plain
+469,Composite video,4,kmeans_plain
+470,Copy protection,4,kmeans_plain
+471,DTS (sound system),4,kmeans_plain
+472,DVD recordable,4,kmeans_plain
+473,Digital Audio Tape,4,kmeans_plain
+474,Digital Signature Algorithm,4,kmeans_plain
+475,Digital audio,4,kmeans_plain
+476,Digital distribution,4,kmeans_plain
+477,Digital photography,4,kmeans_plain
+478,Digital radio,4,kmeans_plain
+479,Digital signal,4,kmeans_plain
+480,Digital signal processing,4,kmeans_plain
+481,Digital television,4,kmeans_plain
+482,Digital video recorder,4,kmeans_plain
+483,GNU Health,4,kmeans_plain
+484,High Efficiency Video Coding,4,kmeans_plain
+485,Holography,4,kmeans_plain
+486,ISDB,4,kmeans_plain
+487,Kodi (software),4,kmeans_plain
+488,Magnetic tape,4,kmeans_plain
+489,Module file,4,kmeans_plain
+490,NTSC,4,kmeans_plain
+491,Nikon,4,kmeans_plain
+492,OpenELEC,4,kmeans_plain
+493,PAL,4,kmeans_plain
+494,RCA,4,kmeans_plain
+495,Radio,4,kmeans_plain
+496,Spread spectrum,4,kmeans_plain
+497,Standard (warez),4,kmeans_plain
+498,Submarine communications cable,4,kmeans_plain
+499,Surround sound,4,kmeans_plain
+500,Television,4,kmeans_plain
+501,TiVo,4,kmeans_plain
+502,Topsite (warez),4,kmeans_plain
+503,Ultra-high-definition television,4,kmeans_plain
+504,Video,4,kmeans_plain
+505,360-degree video,4,kmeans_plain
+506,8-track tape,4,kmeans_plain
+507,Ambarella Inc.,4,kmeans_plain
+508,Avid Technology,4,kmeans_plain
+509,Broadband,4,kmeans_plain
+510,Cassette tape adaptor,4,kmeans_plain
+511,Chrominance,4,kmeans_plain
+512,Digital audio workstation,4,kmeans_plain
+513,Digital signage,4,kmeans_plain
+514,Digital signal processor,4,kmeans_plain
+515,Digital video,4,kmeans_plain
+516,Electronic news-gathering,4,kmeans_plain
+517,Film scanner,4,kmeans_plain
+518,High dynamic range,4,kmeans_plain
+519,Hybrid Log-Gamma,4,kmeans_plain
+520,MPEG-H,4,kmeans_plain
+521,Mamiya,4,kmeans_plain
+522,MiniDVD,4,kmeans_plain
+523,Mini CD,4,kmeans_plain
+524,Niconico,4,kmeans_plain
+525,Pentax,4,kmeans_plain
+526,Second screen,4,kmeans_plain
+527,Timecode,4,kmeans_plain
+528,Video camera,4,kmeans_plain
+529,WiDi,4,kmeans_plain
+530,XAVC,4,kmeans_plain
+531,17 (app),4,kmeans_plain
+532,Google Videos,4,kmeans_plain
+533,Rainbow Books,4,kmeans_plain
+534,Sony α7S II,4,kmeans_plain
+535,Still camera,4,kmeans_plain
+536,Telesync,4,kmeans_plain
+537,Comparison of MIDI editors and sequencers,4,kmeans_plain
+538,DuMont Television Network,5,kmeans_plain
+539,American Broadcasting Company,5,kmeans_plain
+540,CNBC,5,kmeans_plain
+541,CNN,5,kmeans_plain
+542,Canadian Broadcasting Corporation,5,kmeans_plain
+543,Canadian Radio-television and Telecommunications Commission,5,kmeans_plain
+544,Comcast,5,kmeans_plain
+545,ESPN,5,kmeans_plain
+546,Federal Communications Commission,5,kmeans_plain
+547,MSNBC,5,kmeans_plain
+548,Media of Canada,5,kmeans_plain
+549,NBC,5,kmeans_plain
+550,NBCUniversal,5,kmeans_plain
+551,Sling TV,5,kmeans_plain
+552,Sports Illustrated,5,kmeans_plain
+553,Sumner Redstone,5,kmeans_plain
+554,Telemundo,5,kmeans_plain
+555,Toronto Star,5,kmeans_plain
+556,Viacom,5,kmeans_plain
+557,YTV (TV channel),5,kmeans_plain
+558,21st Century Fox,5,kmeans_plain
+559,A&E Networks,5,kmeans_plain
+560,ABC News,5,kmeans_plain
+561,CBS,5,kmeans_plain
+562,CBS Corporation,5,kmeans_plain
+563,Cable television,5,kmeans_plain
+564,Canwest,5,kmeans_plain
+565,Corus Entertainment,5,kmeans_plain
+566,Criticism of The Walt Disney Company,5,kmeans_plain
+567,David Sarnoff,5,kmeans_plain
+568,Discovery Channel,5,kmeans_plain
+569,Dow Jones & Company,5,kmeans_plain
+570,E. W. Scripps Company,5,kmeans_plain
+571,FXX,5,kmeans_plain
+572,FX (TV channel),5,kmeans_plain
+573,Fox Broadcasting Company,5,kmeans_plain
+574,Fox Business Network,5,kmeans_plain
+575,IAC (company),5,kmeans_plain
+576,Low-power broadcasting,5,kmeans_plain
+577,Mario Impemba,5,kmeans_plain
+578,NBC chimes,5,kmeans_plain
+579,Peter Chernin,5,kmeans_plain
+580,Postmedia Network,5,kmeans_plain
+581,Rod Allen,5,kmeans_plain
+582,Rogers Communications,5,kmeans_plain
+583,Shaw Communications,5,kmeans_plain
+584,Taft Broadcasting,5,kmeans_plain
+585,Ted Turner,5,kmeans_plain
+586,Television network,5,kmeans_plain
+587,The Walt Disney Company,5,kmeans_plain
+588,Thomson Reuters,5,kmeans_plain
+589,Tribune Media,5,kmeans_plain
+590,Turner Broadcasting System,5,kmeans_plain
+591,Univision Communications,5,kmeans_plain
+592,Vivendi,5,kmeans_plain
+593,Ziff Davis,5,kmeans_plain
+594,Advance Publications,5,kmeans_plain
+595,Bell Media,5,kmeans_plain
+596,Ben Sherwood,5,kmeans_plain
+597,Bill Weir,5,kmeans_plain
+598,Bloomberg Radio,5,kmeans_plain
+599,Broadcast network,5,kmeans_plain
+600,Business Wire,5,kmeans_plain
+601,Byron Pitts,5,kmeans_plain
+602,CNN en Español,5,kmeans_plain
+603,Call sign,5,kmeans_plain
+604,Charissa Thompson,5,kmeans_plain
+605,Christian Broadcasting Network,5,kmeans_plain
+606,Communications in the United States,5,kmeans_plain
+607,Cox Media Group,5,kmeans_plain
+608,Crain Communications,5,kmeans_plain
+609,"David Thomson, 3rd Baron Thomson of Fleet",5,kmeans_plain
+610,Dick Clark Productions,5,kmeans_plain
+611,E!,5,kmeans_plain
+612,ESPN Inc.,5,kmeans_plain
+613,El Rey Network,5,kmeans_plain
+614,Free Speech TV,5,kmeans_plain
+615,HBO Now,5,kmeans_plain
+616,Hubbard Broadcasting,5,kmeans_plain
+617,Inés Sainz,5,kmeans_plain
+618,John Kluge,5,kmeans_plain
+619,Julie Chen,5,kmeans_plain
+620,"Kenneth Thomson, 2nd Baron Thomson of Fleet",5,kmeans_plain
+621,Liberty Media,5,kmeans_plain
+622,Logo of NBC,5,kmeans_plain
+623,Lynn Smith,5,kmeans_plain
+624,Martha Stewart Living Omnimedia,5,kmeans_plain
+625,Matt Shepard (sportscaster),5,kmeans_plain
+626,Media conglomerate,5,kmeans_plain
+627,Media market,5,kmeans_plain
+628,Media proprietor,5,kmeans_plain
+629,Meredith Corporation,5,kmeans_plain
+630,Naming rights,5,kmeans_plain
+631,News ticker,5,kmeans_plain
+632,Nielsen Corporation,5,kmeans_plain
+633,Nielsen Media Research,5,kmeans_plain
+634,Numeris,5,kmeans_plain
+635,PR Newswire,5,kmeans_plain
+636,Pluto TV,5,kmeans_plain
+637,Program and System Information Protocol,5,kmeans_plain
+638,Prometheus Global Media,5,kmeans_plain
+639,Religious broadcasting,5,kmeans_plain
+640,Revolt (TV network),5,kmeans_plain
+641,"Roy Thomson, 1st Baron Thomson of Fleet",5,kmeans_plain
+642,Salem Media Group,5,kmeans_plain
+643,Shari Redstone,5,kmeans_plain
+644,Simulcast,5,kmeans_plain
+645,StarMaker Interactive,5,kmeans_plain
+646,Station identification,5,kmeans_plain
+647,Telepictures,5,kmeans_plain
+648,Televisa,5,kmeans_plain
+649,The Globe and Mail,5,kmeans_plain
+650,Thomson Corporation,5,kmeans_plain
+651,Time Inc.,5,kmeans_plain
+652,Travel Channel,5,kmeans_plain
+653,Univision Deportes Network,5,kmeans_plain
+654,Vulcan Inc.,5,kmeans_plain
+655,Brent Redstone,5,kmeans_plain
+656,Cision,5,kmeans_plain
+657,Michael Redstone,5,kmeans_plain
+658,Xfinity Streampix,5,kmeans_plain
+659,Media in Toronto,5,kmeans_plain
+660,Muhammad al-Durrah incident,6,kmeans_plain
+661,George Orwell bibliography,6,kmeans_plain
+662,Al Franken,6,kmeans_plain
+663,Anonymous (group),6,kmeans_plain
+664,Ars Technica,6,kmeans_plain
+665,Beck v. Eiland-Hall,6,kmeans_plain
+666,Bomis,6,kmeans_plain
+667,C-SPAN,6,kmeans_plain
+668,Freedom of Speech (painting),6,kmeans_plain
+669,Jessica Feshbach,6,kmeans_plain
+670,John Stossel,6,kmeans_plain
+671,Nat Hentoff,6,kmeans_plain
+672,Neal Boortz,6,kmeans_plain
+673,Project Chanology,6,kmeans_plain
+674,The Daily Stormer,6,kmeans_plain
+675,View of the World from 9th Avenue,6,kmeans_plain
+676,Al Jazeera controversies and criticism,6,kmeans_plain
+677,Amy Goodman,6,kmeans_plain
+678,Barack Obama on social media,6,kmeans_plain
+679,Bernie Ward,6,kmeans_plain
+680,Bill Moyers,6,kmeans_plain
+681,Bloody Saturday (photograph),6,kmeans_plain
+682,Bob Woodruff,6,kmeans_plain
+683,Buckminster Fuller,6,kmeans_plain
+684,CNN controversies,6,kmeans_plain
+685,Censorship,6,kmeans_plain
+686,Christopher Hitchens,6,kmeans_plain
+687,Conrad Black,6,kmeans_plain
+688,Ed Schultz,6,kmeans_plain
+689,Edward R. Murrow,6,kmeans_plain
+690,Firing of Shirley Sherrod,6,kmeans_plain
+691,George Orwell,6,kmeans_plain
+692,Grub Street,6,kmeans_plain
+693,LGBT in Islam,6,kmeans_plain
+694,Life (magazine),6,kmeans_plain
+695,Maricopa County Sheriff's Office controversies,6,kmeans_plain
+696,Media Research Center,6,kmeans_plain
+697,Michael Bloomberg,6,kmeans_plain
+698,Newsweek,6,kmeans_plain
+699,Pat Robertson,6,kmeans_plain
+700,Plame affair,6,kmeans_plain
+701,RT (TV network),6,kmeans_plain
+702,Radio Télévision Libre des Mille Collines,6,kmeans_plain
+703,Robert Novak,6,kmeans_plain
+704,Sean Hannity,6,kmeans_plain
+705,Serial (podcast),6,kmeans_plain
+706,Seymour Hersh,6,kmeans_plain
+707,The Guardian,6,kmeans_plain
+708,The Washington Post,6,kmeans_plain
+709,Time (magazine),6,kmeans_plain
+710,USA Today,6,kmeans_plain
+711,Adbusters,6,kmeans_plain
+712,Afghan War documents leak,6,kmeans_plain
+713,Air America (radio network),6,kmeans_plain
+714,Alternative media,6,kmeans_plain
+715,Balloon boy hoax,6,kmeans_plain
+716,Bernie Bro,6,kmeans_plain
+717,Black propaganda,6,kmeans_plain
+718,Censorship in China,6,kmeans_plain
+719,Cindy Sheehan,6,kmeans_plain
+720,Conflict-of-interest editing on Wikipedia,6,kmeans_plain
+721,Disinformation,6,kmeans_plain
+722,Foreign Affairs,6,kmeans_plain
+723,Gavin McInnes,6,kmeans_plain
+724,Godey's Lady's Book,6,kmeans_plain
+725,Henry Luce,6,kmeans_plain
+726,History of propaganda,6,kmeans_plain
+727,Incipit,6,kmeans_plain
+728,Iraq War documents leak,6,kmeans_plain
+729,LGBT rights in Pakistan,6,kmeans_plain
+730,Leveson Inquiry,6,kmeans_plain
+731,Lying press,6,kmeans_plain
+732,Matt Drudge,6,kmeans_plain
+733,Media Matters for America,6,kmeans_plain
+734,Media bias,6,kmeans_plain
+735,Media bias in the United States,6,kmeans_plain
+736,Michael Moore,6,kmeans_plain
+737,National Post,6,kmeans_plain
+738,Newsmax Media,6,kmeans_plain
+739,Polandball,6,kmeans_plain
+740,ProPublica,6,kmeans_plain
+741,Propaganda,6,kmeans_plain
+742,Pulitzer Prize,6,kmeans_plain
+743,Rachel Maddow,6,kmeans_plain
+744,Racial bias in criminal news in the United States,6,kmeans_plain
+745,Reuters,6,kmeans_plain
+746,Roone Arledge,6,kmeans_plain
+747,Rush Limbaugh,6,kmeans_plain
+748,Rush Limbaugh–Sandra Fluke controversy,6,kmeans_plain
+749,Satanic panic (South Africa),6,kmeans_plain
+750,Sensationalism,6,kmeans_plain
+751,Spiral of silence,6,kmeans_plain
+752,The Daily Telegraph,6,kmeans_plain
+753,The Independent,6,kmeans_plain
+754,The Jerusalem Post,6,kmeans_plain
+755,The New York Times,6,kmeans_plain
+756,The New Yorker,6,kmeans_plain
+757,The Young Turks,6,kmeans_plain
+758,Tucker Carlson,6,kmeans_plain
+759,Vice News,6,kmeans_plain
+760,Weekly World News,6,kmeans_plain
+761,Whataboutism,6,kmeans_plain
+762,Whistleblower,6,kmeans_plain
+763,Yellow journalism,6,kmeans_plain
+764,Zine,6,kmeans_plain
+765,24-hour news cycle,6,kmeans_plain
+766,Alfred Eisenstaedt,6,kmeans_plain
+767,Allen & Company,6,kmeans_plain
+768,Army Times,6,kmeans_plain
+769,Atrocity propaganda,6,kmeans_plain
+770,Attack ad,6,kmeans_plain
+771,Barbie Liberation Organization,6,kmeans_plain
+772,Big Think,6,kmeans_plain
+773,Black Legend,6,kmeans_plain
+774,Body worn video,6,kmeans_plain
+775,CBS News Sunday Morning,6,kmeans_plain
+776,CNN effect,6,kmeans_plain
+777,Caesar's Messiah,6,kmeans_plain
+778,Caitlin Moran,6,kmeans_plain
+779,Cal Thomas,6,kmeans_plain
+780,Cause célèbre,6,kmeans_plain
+781,Censorship in the Soviet Union,6,kmeans_plain
+782,Charlie Rose,6,kmeans_plain
+783,Cohen v. California,6,kmeans_plain
+784,Common Dreams,6,kmeans_plain
+785,Communist propaganda,6,kmeans_plain
+786,Controversy,6,kmeans_plain
+787,Cult of personality,6,kmeans_plain
+788,Culture jamming,6,kmeans_plain
+789,Culture of fear,6,kmeans_plain
+790,Cynthia McFadden,6,kmeans_plain
+791,Dan Abrams,6,kmeans_plain
+792,Dan Harris (journalist),6,kmeans_plain
+793,Disconnection,6,kmeans_plain
+794,Donny Deutsch,6,kmeans_plain
+795,Dumbing down,6,kmeans_plain
+796,Echo chamber (media),6,kmeans_plain
+797,Embedded journalism,6,kmeans_plain
+798,Factoid,6,kmeans_plain
+799,Fairness and Accuracy in Reporting,6,kmeans_plain
+800,Frank Reynolds,6,kmeans_plain
+801,Fresh Air,6,kmeans_plain
+802,Gonzo journalism,6,kmeans_plain
+803,History of Fox News,6,kmeans_plain
+804,Hustler Magazine v. Falwell,6,kmeans_plain
+805,Inquisitr,6,kmeans_plain
+806,Instapundit,6,kmeans_plain
+807,Intelligence Squared,6,kmeans_plain
+808,J. Walter Thompson,6,kmeans_plain
+809,Jeff Rense,6,kmeans_plain
+810,Jessica McClure,6,kmeans_plain
+811,Jet (magazine),6,kmeans_plain
+812,Katie Nolan,6,kmeans_plain
+813,Ladies' Home Journal,6,kmeans_plain
+814,LiveLeak,6,kmeans_plain
+815,Mainstream media,6,kmeans_plain
+816,Martin Bashir,6,kmeans_plain
+817,McClatchy,6,kmeans_plain
+818,Media circus,6,kmeans_plain
+819,Media of the United States,6,kmeans_plain
+820,Media portrayal of the Ukrainian crisis,6,kmeans_plain
+821,Mediaite,6,kmeans_plain
+822,Misinformation,6,kmeans_plain
+823,Mistakes were made,6,kmeans_plain
+824,Mortimer Zuckerman,6,kmeans_plain
+825,Ms. (magazine),6,kmeans_plain
+826,Muckraker,6,kmeans_plain
+827,New Journalism,6,kmeans_plain
+828,Non-apology apology,6,kmeans_plain
+829,Non-denial denial,6,kmeans_plain
+830,Obfuscation,6,kmeans_plain
+831,RYOT,6,kmeans_plain
+832,Russia Insider,6,kmeans_plain
+833,Sarah Koenig,6,kmeans_plain
+834,Sound bite,6,kmeans_plain
+835,Spin (propaganda),6,kmeans_plain
+836,Tabloid journalism,6,kmeans_plain
+837,Ted Koppel,6,kmeans_plain
+838,Terry Moran,6,kmeans_plain
+839,The Japan Times,6,kmeans_plain
+840,The Jewish Chronicle,6,kmeans_plain
+841,The Real News,6,kmeans_plain
+842,The Times of Israel,6,kmeans_plain
+843,The Village Voice,6,kmeans_plain
+844,Tokenism,6,kmeans_plain
+845,VDARE,6,kmeans_plain
+846,Walter Lippmann,6,kmeans_plain
+847,Ynetnews,6,kmeans_plain
+848,Gio Benitez,6,kmeans_plain
+849,Killing Jesus,6,kmeans_plain
+850,The Post and Courier,6,kmeans_plain
+851,Tom Wheeler,6,kmeans_plain
+852,Trial balloon,6,kmeans_plain
+853,White propaganda,6,kmeans_plain
+854,Pulitzer Prize for Breaking News Photography,6,kmeans_plain
+855,Pulitzer Prize for Criticism,6,kmeans_plain
+856,Pulitzer Prize for Feature Photography,6,kmeans_plain
+857,Pulitzer Prize for Investigative Reporting,6,kmeans_plain
+858,Pulitzer Prize for Public Service,6,kmeans_plain
+859,Videos and audio recordings of Osama bin Laden,6,kmeans_plain
+860,Women in journalism,6,kmeans_plain

@@ -1,8 +1,8 @@
 country,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
-0,wine,0.007,brewery,0.005,beer,0.005,year,0.004,time,0.003,large,0.003,history,0.003,city,0.003,know,0.003,new,0.002
-1,restaurant,0.017,food,0.009,work,0.006,book,0.005,recipe,0.005,chef,0.005,time,0.004,good,0.004,cook,0.004,year,0.004
-2,company,0.021,product,0.01,sell,0.008,brand,0.007,store,0.006,food,0.006,market,0.006,new,0.005,business,0.005,year,0.004
-3,meat,0.008,fish,0.007,food,0.007,serve,0.006,dish,0.006,cheese,0.005,bread,0.005,include,0.004,recipe,0.004,call,0.004
-4,beer,0.022,drink,0.02,tea,0.017,produce,0.011,coffee,0.01,bottle,0.01,beverage,0.007,flavor,0.007,brand,0.007,alcohol,0.006
-5,food,0.01,produce,0.006,use,0.006,wine,0.005,water,0.005,product,0.005,production,0.004,process,0.004,form,0.003,plant,0.003
-6,fruit,0.008,plant,0.007,dish,0.006,call,0.005,variety,0.005,rice,0.005,know,0.005,specie,0.004,eat,0.004,leave,0.004
+0,tea,0.016,food,0.012,recipe,0.01,book,0.008,chinese,0.007,cook,0.004,write,0.004,work,0.004,china,0.004,cooking,0.004
+1,plant,0.012,specie,0.009,fruit,0.008,grow,0.006,seed,0.006,leave,0.005,fish,0.005,tree,0.004,find,0.004,produce,0.004
+2,dish,0.011,food,0.007,serve,0.007,meat,0.006,call,0.006,cook,0.005,eat,0.005,include,0.005,popular,0.005,know,0.004
+3,restaurant,0.012,year,0.004,time,0.004,work,0.004,food,0.004,open,0.004,new,0.004,location,0.003,serve,0.003,feature,0.003
+4,beer,0.018,wine,0.012,drink,0.01,brewery,0.008,produce,0.007,alcohol,0.006,bottle,0.005,production,0.003,know,0.003,call,0.003
+5,company,0.022,product,0.015,brand,0.01,sell,0.009,market,0.007,store,0.007,food,0.006,sale,0.004,new,0.004,produce,0.004
+6,food,0.012,wine,0.006,produce,0.006,use,0.005,water,0.004,process,0.004,production,0.004,product,0.004,animal,0.003,increase,0.003

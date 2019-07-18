@@ -1,8 +1,8 @@
 country,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
-0,website,0.009,company,0.008,site,0.007,video,0.006,music,0.004,game,0.004,release,0.004,launch,0.004,amazon,0.004,youtube,0.004
-1,internet,0.018,network,0.017,service,0.009,use,0.008,domain,0.006,system,0.006,provide,0.005,protocol,0.005,server,0.004,communication,0.004
-2,yahoo,0.036,service,0.021,company,0.019,user,0.011,google,0.01,search,0.007,website,0.007,launch,0.006,site,0.006,provide,0.006
-3,facebook,0.01,user,0.01,social_medium,0.008,people,0.008,post,0.007,work,0.007,social,0.006,create,0.006,project,0.005,twitter,0.005
-4,support,0.018,release,0.018,firefox,0.016,wikipedia,0.011,version,0.01,project,0.009,new,0.008,foundation,0.008,mozilla,0.008,browser,0.007
-5,internet,0.01,online,0.007,information,0.006,use,0.005,user,0.005,government,0.004,company,0.004,website,0.004,access,0.004,people,0.004
-6,user,0.014,web,0.01,use,0.009,website,0.008,page,0.007,content,0.007,datum,0.007,application,0.006,information,0.005,software,0.005
+0,support,0.01,use,0.009,web,0.008,user,0.008,server,0.007,browser,0.006,datum,0.006,application,0.006,version,0.006,release,0.005
+1,work,0.006,community,0.006,people,0.006,online,0.005,book,0.005,library,0.005,information,0.004,technology,0.004,world,0.004,internet,0.004
+2,company,0.011,website,0.007,service,0.006,online,0.006,video,0.006,launch,0.005,user,0.005,customer,0.005,site,0.004,product,0.004
+3,user,0.012,website,0.008,internet,0.007,information,0.007,use,0.006,site,0.006,content,0.006,online,0.004,report,0.004,block,0.004
+4,wikipedia,0.009,project,0.008,foundation,0.008,article,0.006,march,0.006,fund,0.005,january,0.005,wiki,0.005,support,0.005,russian,0.005
+5,internet,0.029,network,0.021,service,0.013,access,0.007,provide,0.007,technology,0.006,use,0.006,domain,0.006,system,0.005,country,0.005
+6,yahoo,0.033,service,0.016,company,0.015,user,0.011,google,0.011,website,0.01,search,0.009,site,0.009,search_engine,0.007,ad,0.006

@@ -1,8 +1,8 @@
 country,1,2,3,4,5,6,7,8,9,10
-0,United States,Electronic Frontier Foundation,web server,New York City,e-mail,software,Internet exchange point,Amazon.com,online advertising,United Kingdom
-1,Google,Facebook,Internet service provider,web application,HTML,The New York Times,search engine optimization,Vox Media,Web 2.0,instant messaging
-2,World Wide Web,website,Microsoft,The Wall Street Journal,web page,email,open-source software,Yahoo!,Google Chrome,Forbes
-3,social media,Twitter,New York Times,Microsoft Windows,computer network,cloud computing,London,Internet censorship,Alexa Internet,IPv6
-4,Super Luchas,search engine,Internet forum,Internet Protocol,JavaScript,Time ,Transmission Control Protocol,BBC,Wikipedia,Wired 
-5,top-level domain,Internet,country code,ccTLD,World Wide Web Consortium,Android ,ICANN,country code top-level domain,Internet Engineering Task Force,Linux
-6,web browser,YouTube,Domain Name System,IP address,The Washington Post,iOS,The Guardian,privacy,Wi-Fi,San Francisco
+0,Internet Engineering Task Force,Internet service provider,Transmission Control Protocol,IPv6,Internet Protocol,IP address,Transport Layer Security,IPv4,IETF,computer network
+1,YouTube,Twitter,The New York Times,Alexa Internet,web series,blog,Netflix,viral video,The Wall Street Journal,Wikipedia
+2,Facebook,New York City,Android ,e-commerce,United States,San Francisco,Yahoo!,iOS,eBay,Forbes
+3,Tor ,BitTorrent ,The Guardian,malware,Electronic Frontier Foundation,peer-to-peer,New York Times,National Security Agency,copyright,Wired 
+4,web browser,World Wide Web Consortium,JavaScript,Microsoft,HTML,Internet Explorer,Google Chrome,Firefox,XML,web page
+5,website,World Wide Web,Google,search engine optimization,search engine,online advertising,social media,marketing,Web 2.0,email
+6,top-level domain,country code,ccTLD,Internet,country code top-level domain,ICANN,Domain Name System,generic top-level domain,Internet Assigned Numbers Authority,.com

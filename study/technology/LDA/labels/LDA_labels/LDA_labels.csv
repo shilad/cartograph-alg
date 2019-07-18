@@ -1,8 +1,8 @@
 country,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
-0,system,0.015,design,0.007,process,0.006,example,0.006,technology,0.005,information,0.005,time,0.004,datum,0.004,model,0.004,test,0.004
-1,technology,0.012,company,0.01,new,0.005,research,0.004,year,0.004,work,0.004,product,0.004,service,0.004,business,0.004,development,0.003
-2,device,0.009,system,0.007,user,0.005,feature,0.005,support,0.004,allow,0.004,application,0.004,release,0.004,display,0.004,computer,0.004
-3,type,0.006,material,0.005,design,0.005,water,0.005,system,0.004,usually,0.004,pressure,0.004,require,0.004,surface,0.004,air,0.004
-4,early,0.004,work,0.004,design,0.003,time,0.003,build,0.003,large,0.003,know,0.003,ship,0.003,history,0.003,later,0.003
-5,engine,0.014,power,0.01,system,0.01,design,0.007,vehicle,0.007,produce,0.005,energy,0.005,car,0.004,water,0.004,large,0.004
-6,material,0.011,image,0.007,process,0.007,produce,0.005,surface,0.005,application,0.005,light,0.004,form,0.004,method,0.004,base,0.003
+0,technology,0.009,company,0.007,new,0.005,service,0.004,system,0.004,base,0.003,include,0.003,user,0.003,support,0.003,device,0.003
+1,material,0.012,process,0.008,water,0.006,produce,0.005,surface,0.005,form,0.005,heat,0.004,product,0.004,temperature,0.004,application,0.004
+2,system,0.01,device,0.008,power,0.006,design,0.006,signal,0.005,light,0.005,control,0.004,type,0.004,require,0.004,current,0.004
+3,system,0.015,process,0.008,design,0.008,example,0.006,technology,0.005,information,0.005,test,0.005,product,0.005,model,0.005,work,0.004
+4,engine,0.017,system,0.009,power,0.009,vehicle,0.009,design,0.008,car,0.006,valve,0.005,cylinder,0.005,control,0.004,pressure,0.004
+5,image,0.006,aircraft,0.006,system,0.005,design,0.004,sensor,0.004,\displaystyle,0.003,time,0.003,develop,0.003,target,0.003,object,0.003
+6,machine,0.006,work,0.005,design,0.003,large,0.003,early,0.003,build,0.003,tool,0.003,form,0.003,time,0.003,history,0.003
