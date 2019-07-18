@@ -13,15 +13,28 @@
 
 set -e
 set -x
+listVar1="0 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.1 0.3 0.5 0.6 0.7 1"
 
-listVar="0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.05 0.05 0.05 0.05 0.05
+listVar2="0.01 0.01 0.01 0.01 0.01 0.02 0.02 0.02 0.02 0.02
+       0.03 0.03 0.03 0.03 0.03 0.03 0.04 0.04 0.04 0.04
+       0.1 0.1 0.1 0.1 0.1 0.2 0.2 0.2 0.2 0.2 0.3 0.3 0.3 0.3 0.3
+       0.4 0.4 0.4 0.4 0.4 0.5 0.5 0.5
+       0.5 0.5 0.6 0.6 0.6 0.6 0.6 0.7 0.7 0.7 0.7
+       0.7 0.8 0.8 0.8 0.8 0.8
+       0.9 0.9 0.9 0.9 0.9 1 1 1 1 1"
+listVar3="0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.05 0.05 0.05 0.05 0.05
        0.05 0.05 0.05 0.05 0.05 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1
        0.1 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.3 0.3 0.3 0.3 0.3 0.3 0.3
        0.3 0.3 0.3 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.5 0.5 0.5
        0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.7 0.7 0.7 0.7
        0.7 0.7 0.7 0.7 0.7 0.7 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8
        0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 1 1 1 1 1 1 1 1 1 1"
-for i in $listVar
+
+listVar4="0.5 0.05 1 5 10 15 20 100"
+
+listVar5="0 0 0 0 0 0.01 0.01 0.01 0.01 0.01 0.02 0.02 0.02 0.02 0.02 0.03 0.03 0.03 0.03 0.03 0.04 0.04 0.04 0.04 0.04 0.05 0.05 0.05 0.05 0.05 0.06 0.06 0.06 0.06 0.06 0.07 0.07 0.07 0.07 0.07 0.08 0.08 0.08 0.08 0.08 0.09 0.09 0.09 0.09 0.09 0.1 0.1 0.1 0.1 0.1 0.2 0.2 0.2 0.2 0.2 0.3 0.3 0.3 0.3 0.3 0.4 0.4 0.4 0.4 0.4 0.5 0.5 0.5 0.5 0.5 0.6 0.6 0.6 0.6 0.6 0.7 0.7 0.7 0.7 0.7 0.8 0.8 0.8 0.8 0.8 0.9 0.9 0.9 0.9 0.9 1 1 1 1 1"
+listVar6="0 0 0 0 0 0 0 0 0 0 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.01 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.02 0.03 0.03 0.03 0.03 0.03 0.03 0.03 0.03 0.03 0.03 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.05 0.06 0.06 0.06 0.06 0.06 0.06 0.06 0.06 0.06 0.06 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.07 0.08 0.08 0.08 0.08 0.08 0.08 0.08 0.08 0.08 0.08 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.09 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.3 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.4 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.6 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.7 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.8 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 1 1 1 1 1 1 1 1 1 1"
+for i in $listVar6
 do
 
     # Step 0: Import the experiment utilities functions
@@ -30,7 +43,7 @@ do
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=0077
+    exp_id=0101
 
     # $(get_experiment_id)
 
@@ -50,12 +63,12 @@ do
             --vectors ${exp_dir}/vanilla_vectors.csv \
             --k 8 \
             --weight $i \
-            --num_neighbors 20
+            --num_neighbors 20 >>${exp_dir}/centroid_evaluation.json
 
     # Step 6: Generate JSON
     #python -m cartograph.json_generator data/food ${exp_dir} kk  /original_country_labels.csv /original_cluster_groups.csv /original_xy_embeddings.csv /original_domain.json
-    #python -m cartograph.json_generator data/food ${exp_dir} kk /country_labels.csv /y_cluster_groups.csv /y_xy_embeddings.csv /y_domain.json
-    #python -m cartograph.json_generator data/food ${exp_dir} kk /country_labels.csv /y_2_cluster_groups.csv /y_2_xy_embeddings.csv /y_2_domain.json
+    #python -m cartograph.json_generator data/food ${exp_dir} kk /country_labels.csv /local_cluster_groups.csv /y_xy_embeddings.csv /y_domain.json
+    #python -m cartograph.json_generator data/food ${exp_dir} kk /country_labels.csv /low_cluster_groups.csv /y_2_xy_embeddings.csv /y_2_domain.json
 
 
     # Step 7: Run evaluation metrics and generate HTML & SVG
@@ -67,17 +80,21 @@ do
 
     # echo "{'id' : }"
     python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /original_xy_embeddings.csv >>${exp_dir}/trustworthiness_evaluation.json
-    python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /y_xy_embeddings.csv >>${exp_dir}/trustworthiness_evaluation.json
-    python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /y_2_xy_embeddings.csv >>${exp_dir}/trustworthiness_evaluation.json
+    python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /local_xy_embeddings.csv >>${exp_dir}/trustworthiness_evaluation.json
+    python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /low_xy_embeddings.csv >>${exp_dir}/trustworthiness_evaluation.json
 
 
     python -m cartograph.evaluation.cluster_validation_metrics --experiment ${exp_dir} \
                                                                --vectors ${exp_dir}/vanilla_vectors.csv \
-                                                               --groups ${exp_dir}/y_cluster_groups.csv >>${exp_dir}/cluster_evaluation.json
+                                                               --groups ${exp_dir}/original_cluster_groups.csv >>${exp_dir}/cluster_evaluation.json
 
     python -m cartograph.evaluation.cluster_validation_metrics --experiment ${exp_dir} \
                                                                --vectors ${exp_dir}/vanilla_vectors.csv \
-                                                               --groups ${exp_dir}/y_2_cluster_groups.csv >>${exp_dir}/cluster_evaluation.json
+                                                               --groups ${exp_dir}/local_cluster_groups.csv >>${exp_dir}/cluster_evaluation.json
+
+    python -m cartograph.evaluation.cluster_validation_metrics --experiment ${exp_dir} \
+                                                               --vectors ${exp_dir}/vanilla_vectors.csv \
+                                                               --groups ${exp_dir}/low_cluster_groups.csv >>${exp_dir}/cluster_evaluation.json
 
     python -m cartograph.evaluation.modularity_evaluator --experiment ${exp_dir} \
                                                          --xy_embeddings_csv ${exp_dir}/original_xy_embeddings.csv \
@@ -85,14 +102,14 @@ do
                                                          --cluster_groups_csv ${exp_dir}/original_cluster_groups.csv >>${exp_dir}/mod_evaluation.json
 
     python -m cartograph.evaluation.modularity_evaluator --experiment ${exp_dir} \
-                                                         --xy_embeddings_csv ${exp_dir}/y_xy_embeddings.csv \
+                                                         --xy_embeddings_csv ${exp_dir}/local_xy_embeddings.csv \
                                                          --method nn \
-                                                         --cluster_groups_csv ${exp_dir}/y_cluster_groups.csv >>${exp_dir}/mod_evaluation.json
+                                                         --cluster_groups_csv ${exp_dir}/local_cluster_groups.csv >>${exp_dir}/mod_evaluation.json
 
     python -m cartograph.evaluation.modularity_evaluator --experiment ${exp_dir} \
-                                                         --xy_embeddings_csv ${exp_dir}/y_2_xy_embeddings.csv \
+                                                         --xy_embeddings_csv ${exp_dir}/low_xy_embeddings.csv \
                                                          --method nn \
-                                                         --cluster_groups_csv ${exp_dir}/y_2_cluster_groups.csv >>${exp_dir}/mod_evaluation.json
+                                                         --cluster_groups_csv ${exp_dir}/low_cluster_groups.csv >>${exp_dir}/mod_evaluation.json
 
 
     # python -m cartograph.html_generator ${exp_dir}
