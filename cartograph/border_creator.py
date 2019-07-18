@@ -342,6 +342,7 @@ class Graph:
                 sum += corner.elevation
             center.update_elevation(sum / len(center.corners))
 
+
     def export_boundaries(self, directory):
         row_list = []
         for id, edge in self.edge_dic.items():
@@ -351,7 +352,6 @@ class Graph:
         pd.DataFrame(row_list).to_csv(directory + "/boundary.csv", index=False)
 
     def draw_graph(self):
-
         def sort_clockwise(vertices):
             points = np.array(vertices).transpose()
             x = points[0, :]
@@ -365,13 +365,16 @@ class Graph:
             return np.vstack([x, y]).transpose()
 
         def create_color(color_palette):
-            dic = {}
-            j = [0.01, 0.45, 0.9, 1.35, 1.8, 2.25, 2.6, ]
-            for i in range(len(set(self.cluster_list))):
-                dic[i] = sns.cubehelix_palette(8, start=i/3, rot=.01, reverse=True)
+            # dic = {}
+            # j = [0.01, 0.45, 0.9, 1.35, 1.8, 2.25, 2.6, ]
+            # for i in range(len(set(self.cluster_list))):
+            #     dic[i] = sns.cubehelix_palette(8, start=i/3, rot=-.01, reverse=True)
+            ls = sns.color_palette(color_palette, 8).as_hex()
+            ret = []
+            for i in range(8):
+                ret.append(Color(ls[i]))
 
-            print(dic)
-            return dic
+            return ret
 
 
         ax = plt.subplot()
@@ -392,16 +395,17 @@ class Graph:
                 if center.is_water:
                     patches.append(Polygon(sort_clockwise(polygon), color='#000080'))
                 else:
-                    # base_color = colors[center.cluster].hsl
-                    color = colors[center.cluster][int(center.elevation/5)]
-                    # if base_color[2]+center.elevation/100 > 1.0:
-                    #     luminance = 1.0
-                    # else:
-                    #     luminance = base_color[2]+center.elevation/100
-                    # # luminance = 1.0 if base_color[2]+center.elevation/30 > 1 else base_color[2]+center.elevation/37.80923659885262
-                    # color = Color(hue=base_color[0], saturation=base_color[1], luminance=luminance)
+                    base_color = colors[center.cluster].hsl
+                    color = colors[center.cluster]
+                    # [int(center.elevation/5)]
+                    if base_color[2]+center.elevation/100 > 1.0:
+                        luminance = 1.0
+                    else:
+                        luminance = base_color[2]+center.elevation/100
+                    # luminance = 1.0 if base_color[2]+center.elevation/30 > 1 else base_color[2]+center.elevation/37.80923659885262
+                    color = Color(hue=base_color[0], saturation=base_color[1], luminance=luminance)
                     # print(color.hex)
-                    patches.append(Polygon(sort_clockwise(polygon), color=color))
+                    patches.append(Polygon(sort_clockwise(polygon), color=color.hex_l))
 
         p = PatchCollection(patches, alpha=0.8, match_original=True)
         # p.set_array(np.array(colors))
