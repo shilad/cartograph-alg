@@ -344,18 +344,3 @@ class Graph:
         plt.xlim(-80, 80)
         plt.ylim(-80, 80)
         plt.show()
-
-
-# experiment_directory = '/Users/research/Documents/Projects/cartograph-alg/experiments/food/0009'
-# g = Graph(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
-# g.draw_graph()
-#
-# if __name__ == '__main__':
-#     import sys
-#     if len(sys.argv) != 2:
-#         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-#         sys.exit(1)
-#
-#     experiment_directory = sys.argv[1]
-#     g = Graph(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
-#     g.export_boundaries(experiment_directory)
