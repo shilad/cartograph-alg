@@ -16,3 +16,4 @@ nltk
 jinja2
 gensim
 spacy
+pygsp
