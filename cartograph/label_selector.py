@@ -63,14 +63,17 @@ def assign_country_label_ids(country_scores, label_score):
     country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
     country_scores = country_scores.sort_values(by=label_score, ascending=False)
     final_labels = {}
+    final_ids = {}
     used_stems = set()
 
     for row in country_scores.itertuples():
         if row.country not in final_labels and row.stem not in used_stems:
             final_labels[row.country] = row.label
+            final_ids[row.country] = row.label_id
+
             used_stems.add(row.stem)
 
-    return final_labels
+    return final_labels , final_ids
 
 
 def main(experiment_dir, article_labels, percentile, label_score, output_file):
@@ -92,11 +95,12 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file):
     else:
         country_labels = article_labels.drop(columns=['article_id']).drop_duplicates()
 
-    final_labels = assign_country_label_ids(country_labels, label_score)
+    final_labels, final_scores = assign_country_label_ids(country_labels, label_score)
 
     # # Create results data frame
     df = pd.DataFrame(final_labels,  index=[0]).T
     df['country'] = df.index
+    df['label_id'] = np.array(list(final_scores.values())).T
     df.to_csv(experiment_dir + output_file, index=True)
 
 
