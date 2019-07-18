@@ -7,9 +7,13 @@ import pandas as pd
 import sklearn.metrics as metrics
 from pandas._libs import json
 from s_dbw import S_Dbw
+from scipy import spatial
 from sklearn.metrics.cluster import adjusted_rand_score
 from sklearn.metrics.cluster import adjusted_mutual_info_score
-
+import numpy as np
+from sklearn.metrics.pairwise import cosine_distances
+from sklearn.utils import check_X_y
+from sklearn.preprocessing import LabelEncoder
 
 def get_sdbw_score(xy_list, labels):
     # return S Dbw validity index, the smaller the better a cluster is.
@@ -41,7 +45,35 @@ def get_ch_score(xy_list, labels):
     :param labels:
     :return: A float where a higher value indicates better quality of clusters.
     """
-    return metrics.cluster.calinski_harabasz_score(xy_list, labels)
+    X, labels = check_X_y(xy_list, labels)
+    le = LabelEncoder()
+    labels = le.fit_transform(labels)
+
+    n_samples, _ = X.shape
+    n_labels = len(le.classes_)
+
+    # check_number_of_labels(n_labels, n_samples)
+
+    extra_disp, intra_disp = 0., 0.
+    mean = np.mean(X, axis=0).reshape(1, -1)
+    for k in range(n_labels):
+        cluster_k = X[labels == k]
+        mean_k = np.mean(cluster_k, axis=0).reshape(1, 101)
+
+        # extra_disp += len(cluster_k) * np.sum((mean_k - mean) ** 2)
+        # intra_disp += np.sum((cluster_k - mean_k) ** 2)
+        hh = len(cluster_k) * cosine_distances(mean_k, mean)
+        extra_disp += np.sum(hh)
+        h = cosine_distances(cluster_k, mean_k)
+        intra_disp += np.sum(h)
+    # print(str(json.dumps("extra  " + str(extra_disp * (n_samples - n_labels)))))
+    # print(str(json.dumps("intra   " + str(intra_disp * (n_labels - 1.)))))
+
+    return (1. if intra_disp == 0. else
+            extra_disp * (n_samples - n_labels) /
+            (intra_disp * (n_labels - 1.)))
+
+    # return metrics.cluster.calinski_harabasz_score(xy_list, labels)
 
 
 def main():
@@ -50,9 +82,9 @@ def main():
     cluster_groups = pd.read_csv(args.groups).drop(columns=['article_id'])
     if 'distance' in cluster_groups.columns:
         cluster_groups = pd.read_csv(args.groups).drop(columns=['distance', 'article_id'])
-    # silhouette_score = get_silhouette_score(article_vectors, cluster_groups.values.ravel())
-    # sdb_w_score = get_sdbw_score(article_vectors, cluster_groups)
-    # ch_score = get_ch_score(article_vectors, cluster_groups.values.ravel())
+    silhouette_score = get_silhouette_score(article_vectors, cluster_groups.values.ravel())
+    # sdb_w_score = get_sdbw_score(article_vectors, cluster_groups.values.ravel())
+    ch_score = get_ch_score(article_vectors, cluster_groups.values.ravel())
 
     cluster_a = pd.read_csv(args.experiment + '/original_cluster_groups.csv')
     cluster_b = pd.read_csv(args.groups)
@@ -61,9 +93,12 @@ def main():
     mutual_info = adjusted_mutual_info_score(cluster_a['country'], cluster_b['country'])
 
     # print(str(json.dumps({'rand_index score': rand_index})))
-    print(str(json.dumps(mutual_info)))
+    # print(str(json.dumps(mutual_info)))
 
-    # print(str(json.dumps({'silhouette score': silhouette_score})))
+    print(str(json.dumps(silhouette_score)))
+    print(str(json.dumps(ch_score)))
+    # print(str(json.dumps(sdb_w_score)))
+
     # print(str(json.dumps({'ch score:': ch_score})))
 
     # logging.warning("Modularity Score: %.6f", mod_score)
