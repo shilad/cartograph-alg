@@ -114,6 +114,7 @@ class K_Means:
         print('points per group AFTER fit with y', points_per_group)
         return best_group
 
+
 def create_label_matrix(label_matrix):
     """Creates a matrix that contains a article ids and label ids."""
     nrow = max(label_matrix['article_id'])+1
