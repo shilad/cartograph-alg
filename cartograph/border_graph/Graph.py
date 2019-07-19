@@ -17,9 +17,9 @@ from scipy.spatial import Voronoi
 from pygsp import graphs, filters
 from matplotlib.patches import Polygon
 from matplotlib.collections import PatchCollection
-from cartograph.graph.Center import Center
-from cartograph.graph.Corner import Corner
-from cartograph.graph.Edge import Edge
+from cartograph.border_graph.Center import Center
+from cartograph.border_graph.Corner import Corner
+from cartograph.border_graph.Edge import Edge
 
 
 class Graph:
@@ -40,6 +40,7 @@ class Graph:
         self.edge_dic = {}
         self.corners_dic = {}
 
+        self.max_elevation = 0
         self.build_graph()
         self.assign_elevation()
 
@@ -106,8 +107,8 @@ class Graph:
 
         water_point_id = len(set(self.cluster_list))
         for index in range(num_points, len(self.points)):
-            self.cluster_list.append(water_point_id)
-            self.article_id_list.append(-1)
+            self.cluster_list = np.append(self.cluster_list, water_point_id)
+            self.article_id_list = np.append(self.article_id_list, -1)
 
     def denoise_cluster(self, points, num_cluster, tau=10):
         """
@@ -228,13 +229,19 @@ class Graph:
                     q.put(adjacent_corner)
 
         # Assign center elevations taking the average of corners' elevation
+        max_elevation = 0
         for center in self.centers_dic.values():
             sum = 0.0
             for corner in center.corners:
                 sum += corner.elevation
-            center.update_elevation(sum / len(center.corners))
+            elevation = sum / len(center.corners)
+            if max_elevation < elevation:
+                max_elevation = elevation
 
-    def sort_clockwise(self, vertices):
+            center.update_elevation(elevation)
+        self.max_elevation = max_elevation
+
+    def _sort_clockwise(self, vertices):
 
         points = np.array(vertices).transpose()
         x = points[0, :]
@@ -247,13 +254,12 @@ class Graph:
         y = y[order]
         return np.vstack([x, y]).transpose()
 
-    def create_color(self):
+    def _create_color(self):
         num_cluster = len(set(self.cluster_list))
         start_val = np.arange(0, 3, 3 / num_cluster)
         colors = {}
-
         for i in range(num_cluster):
-            colors[i] = sns.cubehelix_palette(40, start=start_val[i], rot=-.001, reverse=True).as_hex()
+            colors[i] = sns.cubehelix_palette(int(self.max_elevation)+1, start=start_val[i], rot=-.001, reverse=True).as_hex()
         return colors
 
     def export_boundaries(self, directory):
@@ -266,23 +272,23 @@ class Graph:
 
     def export_polygons(self, directory):
         row_list = []
-        colors = self.create_color()
+        colors = self._create_color()
 
         for center in self.centers_dic.values():
             b = True
             polygon = []
             for vertex in center.corners:
-                if vertex.position[0] < self.bounding_box[0] - 0.1 or vertex.position[0] > self.bounding_box[1] + 0.1 or \
-                   vertex.position[1] < self.bounding_box[2] - 0.1 or vertex.position[1] > self.bounding_box[3] + 0.1:
+                if vertex.position[0] < self.bounding_box[0] - 20 or vertex.position[0] > self.bounding_box[1] + 20 or \
+                   vertex.position[1] < self.bounding_box[2] - 20 or vertex.position[1] > self.bounding_box[3] + 20:
                     if vertex.is_water:
                         b = False
                         break
                 polygon.append(vertex.position)
 
             if b:
-                color = '#0936B8' if center.is_water else colors[center.cluster][int(center.elevation)]
+                color = '#AADAFF' if center.is_water else colors[center.cluster][int(center.elevation)]
                 temp = []
-                for vertex in self.sort_clockwise(polygon):
+                for vertex in self._sort_clockwise(polygon):
                     # vertices coordinates clockwise
                     temp.append(vertex[0])
                     temp.append(vertex[1])
@@ -294,50 +300,24 @@ class Graph:
 
 
     def draw_graph(self):
-        def sort_clockwise(vertices):
-
-            points = np.array(vertices).transpose()
-            x = points[0, :]
-            y = points[1, :]
-            cx = np.mean(x)
-            cy = np.mean(y)
-            a = np.arctan2(y - cy, x - cx)
-            order = a.ravel().argsort()[::-1]
-            x = x[order]
-            y = y[order]
-            return np.vstack([x, y]).transpose()
-
-        def create_color():
-            num_cluster = len(set(self.cluster_list))
-            start_val = np.arange(0, 3, 3/num_cluster)
-            colors = {}
-
-            for i in range(num_cluster):
-                colors[i] = sns.cubehelix_palette(40, start=start_val[i], rot=-.001, reverse=True).as_hex()
-            return colors
-
-
         ax = plt.subplot()
         patches = []
-        colors = create_color()
+        colors = self._create_color()
 
         for center in self.centers_dic.values():
             b = True
             polygon = []
             for vertex in center.corners:
-                if vertex.position[0] < self.bounding_box[0] - 0.1 or vertex.position[0] > self.bounding_box[1] + 0.1 or \
-                   vertex.position[1] < self.bounding_box[2] - 0.1 or vertex.position[1] > self.bounding_box[3] + 0.1:
+                if vertex.position[0] < self.bounding_box[0] - 10 or vertex.position[0] > self.bounding_box[1] + 10 or \
+                   vertex.position[1] < self.bounding_box[2] - 10 or vertex.position[1] > self.bounding_box[3] + 10:
                     if vertex.is_water:
                         b = False
                         break
                 polygon.append(vertex.position)
 
             if b:
-                if center.is_water:
-                    patches.append(Polygon(sort_clockwise(polygon), color='#0936B8'))
-                else:
-                    color = colors[center.cluster][int(center.elevation)]
-                    patches.append(Polygon(sort_clockwise(polygon), color=color))
+                color = '#AADAFF' if center.is_water else colors[center.cluster][int(center.elevation)]
+                patches.append(Polygon(self._sort_clockwise(polygon), color=color))
 
         p = PatchCollection(patches, alpha=0.8, match_original=True)
         ax.add_collection(p)
