@@ -68,7 +68,7 @@ class Graph:
         :param points:
         :return: [[x1, y1], [x2, y2], ...] all points on the map including waterpoints and original points
         """
-        water_level = 0.1
+        water_level = 0.2
         water_point_dis = 1
         num_boundary = 5
         acc = 0     # extend the outside boundary again and again
@@ -242,7 +242,6 @@ class Graph:
         self.max_elevation = max_elevation
 
     def _sort_clockwise(self, vertices):
-
         points = np.array(vertices).transpose()
         x = points[0, :]
         y = points[1, :]
@@ -297,7 +296,6 @@ class Graph:
                 row_list.append(temp)
 
         pd.DataFrame.from_records(row_list).to_csv(directory + '/elevation.csv', index=False)
-
 
     def draw_graph(self):
         ax = plt.subplot()
