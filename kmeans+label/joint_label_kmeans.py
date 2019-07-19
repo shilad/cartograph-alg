@@ -146,13 +146,23 @@ def label_affinity(keyword_scores, country_names, article_ids, k):
     return score_dist_mat
 
 
+
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Cluster & Label articles in the high dimensional space using K-means')
     parser.add_argument('--experiment_directory', required=True)
     parser.add_argument('--vectors', required=True)
     parser.add_argument('--k', default=8, type=int)
     parser.add_argument('--weight', default=0.1)
-
+    # arguments for label_selector
+    parser.add_argument('--articles_to_labels', required=True)
+    parser.add_argument('--label_names', required=True)
+    parser.add_argument('--percentile', required=True)
+    parser.add_argument('--label_score', required=True)
+    parser.add_argument('--cluster_groups', required=True)
+    parser.add_argument('--output_file', required=True)
+    # arguments for Label Scoring
     parser.add_argument('--article_keywords', required=True)
     parser.add_argument('--country_names', required=True)
     args = parser.parse_args()
@@ -167,12 +177,26 @@ if __name__ == '__main__':
     init_groups.columns = ['article_id', 'country']
     init_groups.to_csv('%s/original_cluster_groups.csv' % (args.experiment_directory, ), index=False)
 
+    # Initial Labeling
+    article_labels = pd.read_csv(args.articles_to_labels)
+    country_clusters = pd.read_csv(args.experiment_directory + args.cluster_groups)
+    label_names = pd.read_csv(args.label_names)
+    article_labels_orig = pd.merge(article_labels, country_clusters, on='article_id')
+    article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.output_file, soft_labeling=True)
+
+
     # Combined Clustering & Labeling
     joint_fit_groups = km.fit_with_y(X, args.article_keywords, args.country_names, ids, args.k, args.weight)
     joint_fit_groups = pd.DataFrame(joint_fit_groups)
     joint_fit_groups = ids.join(joint_fit_groups)
     joint_fit_groups.columns = ['article_id', 'country']
+
     joint_fit_groups.to_csv('%s/cluster_groups.csv' % (args.experiment_directory, ), index=False)
+    article_labels_new = pd.merge(article_labels, joint_fit_groups, on='article_id')
+    article_labels_new = pd.merge(article_labels_new, label_names, on='label_id')
+    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv', soft_labeling=False)
+    # print(str(json.dumps({'weight': args.weight})))
 
 
 
