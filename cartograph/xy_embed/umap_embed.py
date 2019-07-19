@@ -22,7 +22,7 @@ def create_embeddings(vector_directory, spread=20.0, tw=0.5, clusters=None):
 
 def create_csv(xy_embeddings, map_directory):
     df = pd.DataFrame(xy_embeddings, columns=['article_id', 'x', 'y'])
-    df.to_csv(map_directory + '/original_xy_embeddings.csv', index=False)
+    df.to_csv(map_directory + '/xy_embeddings.csv', index=False)
 
 
 def main(map_directory, vector_directory, spread, tw, clusters):
