@@ -24,7 +24,7 @@ label_name_csv=keyword_names.csv
 
 # Step 1: Get the experiment id. This is *not* map specific.
 # An experiment id can be used for multiple maps.
-exp_id=0001 #$(get_experiment_id)
+exp_id=0004 #$(get_experiment_id)
 
 # $(get_experiment_id)
 
@@ -42,21 +42,33 @@ python -m cartograph.xy_embed.umap_embed \
         --map_directory ${exp_dir} \
         --vectors ${exp_dir}/vanilla_vectors.csv
 
-
- python -m kmeans+label.joint_label_kmeans \
+python -m cartograph.label_selector \
         --experiment ${exp_dir} \
-        --vectors ${exp_dir}/vanilla_vectors.csv \
-        --k 10 \
-        --weight 5 \
         --articles_to_labels data/food/${article_label_csv} \
         --label_names data/food/${label_name_csv} \
-        --label_score tfidf \
         --percentile 0.3 \
+        --label_score tfidf \
         --cluster_groups /original_cluster_groups.csv \
-        --output_file /country_labels.csv \
-        --article_keywords /Users/research/Documents/Projects/cartograph-alg/data/label_food_test/article_keywords.csv \
-        --country_names ${exp_dir}/country_labels.csv
+        --output_file /country_labels.csv
 
+
+python -m kmeans+label.joint_label_kmeans \
+    --experiment ${exp_dir} \
+    --vectors ${exp_dir}/vanilla_vectors.csv \
+    --k 10 \
+    --weight 5 \
+    --article_keywords /Users/research/Documents/Projects/cartograph-alg/data/food/article_keywords.csv \
+    --country_names ${exp_dir}/country_labels.csv
+
+
+python -m cartograph.label_selector \
+        --experiment ${exp_dir} \
+        --articles_to_labels data/food/${article_label_csv} \
+        --label_names data/food/${label_name_csv} \
+        --percentile 0.3 \
+        --label_score tfidf \
+        --cluster_groups /cluster_groups.csv \
+        --output_file /new_country_labels.csv
 
 
 # Step 6: Generate JSON
@@ -68,39 +80,4 @@ python -m cartograph.json_generator data/food ${exp_dir} kk /new_country_labels.
 # Step 7: Run evaluation metrics and generate HTML & SVG
 python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted /original_domain.json /original_graph.svg /country_labels.csv
 python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted /new_domain.json /new_graph.svg /new_country_labels.csv
-
-
-# Step 8: Write evaluation metrics
-
-# echo "{'id' : }"
-#python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /original_xy_embeddings.csv >>${exp_dir}/trustworthiness_evaluation.json
-#python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /y_xy_embeddings.csv >>${exp_dir}/trustworthiness_evaluation.json
-#python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /y_2_xy_embeddings.csv >>${exp_dir}/trustworthiness_evaluation.json
-#
-#
-#python -m cartograph.evaluation.cluster_validation_metrics --experiment ${exp_dir} \
-#                                                           --vectors ${exp_dir}/vanilla_vectors.csv \
-#                                                           --groups ${exp_dir}/y_cluster_groups.csv >>${exp_dir}/cluster_evaluation.json
-#
-#python -m cartograph.evaluation.cluster_validation_metrics --experiment ${exp_dir} \
-#                                                           --vectors ${exp_dir}/vanilla_vectors.csv \
-#                                                           --groups ${exp_dir}/y_2_cluster_groups.csv >>${exp_dir}/cluster_evaluation.json
-#
-#python -m cartograph.evaluation.modularity_evaluator --experiment ${exp_dir} \
-#                                                     --xy_embeddings_csv ${exp_dir}/original_xy_embeddings.csv \
-#                                                     --method nn \
-#                                                     --cluster_groups_csv ${exp_dir}/original_cluster_groups.csv >>${exp_dir}/mod_evaluation.json
-#
-#python -m cartograph.evaluation.modularity_evaluator --experiment ${exp_dir} \
-#                                                     --xy_embeddings_csv ${exp_dir}/y_xy_embeddings.csv \
-#                                                     --method nn \
-#                                                     --cluster_groups_csv ${exp_dir}/y_cluster_groups.csv >>${exp_dir}/mod_evaluation.json
-#
-#python -m cartograph.evaluation.modularity_evaluator --experiment ${exp_dir} \
-#                                                     --xy_embeddings_csv ${exp_dir}/y_2_xy_embeddings.csv \
-#                                                     --method nn \
-#                                                     --cluster_groups_csv ${exp_dir}/y_2_cluster_groups.csv >>${exp_dir}/mod_evaluation.json
-
-
-# python -m cartograph.html_generator ${exp_dir}
 
