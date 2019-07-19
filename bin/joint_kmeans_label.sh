@@ -24,7 +24,7 @@ label_name_csv=keyword_names.csv
 
 # Step 1: Get the experiment id. This is *not* map specific.
 # An experiment id can be used for multiple maps.
-exp_id=0004 #$(get_experiment_id)
+exp_id=0008 #$(get_experiment_id)
 
 # $(get_experiment_id)
 
@@ -42,24 +42,21 @@ python -m cartograph.xy_embed.umap_embed \
         --map_directory ${exp_dir} \
         --vectors ${exp_dir}/vanilla_vectors.csv
 
-python -m cartograph.label_selector \
-        --experiment ${exp_dir} \
-        --articles_to_labels data/food/${article_label_csv} \
-        --label_names data/food/${label_name_csv} \
-        --percentile 0.3 \
-        --label_score tfidf \
-        --cluster_groups /original_cluster_groups.csv \
-        --output_file /country_labels.csv
 
 
 python -m kmeans+label.joint_label_kmeans \
     --experiment ${exp_dir} \
     --vectors ${exp_dir}/vanilla_vectors.csv \
-    --k 10 \
-    --weight 5 \
+    --k 8 \
+    --weight 3 \
     --article_keywords /Users/research/Documents/Projects/cartograph-alg/data/food/article_keywords.csv \
-    --country_names ${exp_dir}/country_labels.csv
-
+    --country_names ${exp_dir}/country_labels.csv\
+    --articles_to_labels data/food/${article_label_csv} \
+    --label_names data/food/${label_name_csv} \
+    --percentile 0.4 \
+    --label_score tfidf \
+    --cluster_groups /original_cluster_groups.csv \
+    --output_file /country_labels.csv
 
 python -m cartograph.label_selector \
         --experiment ${exp_dir} \
@@ -76,6 +73,8 @@ python -m cartograph.json_generator data/food ${exp_dir} kk  /country_labels.csv
 python -m cartograph.json_generator data/food ${exp_dir} kk /new_country_labels.csv /cluster_groups.csv /xy_embeddings.csv /new_domain.json
 
 
+# draw boundary
+python -m cartograph.border_creator ${exp_dir}
 
 # Step 7: Run evaluation metrics and generate HTML & SVG
 python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted /original_domain.json /original_graph.svg /country_labels.csv
