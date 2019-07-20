@@ -12,7 +12,6 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from colour import Color
 from scipy.spatial import Voronoi
 from pygsp import graphs, filters
 from matplotlib.patches import Polygon
@@ -254,11 +253,11 @@ class Graph:
         return np.vstack([x, y]).transpose()
 
     def _create_color(self):
-        num_cluster = len(set(self.cluster_list))
-        start_val = np.arange(0, 3, 3 / num_cluster)
         colors = {}
+        num_cluster = len(set(self.cluster_list))-1
+        palette = sns.color_palette('hls', num_cluster).as_hex()
         for i in range(num_cluster):
-            colors[i] = sns.cubehelix_palette(int(self.max_elevation)+1, start=start_val[i], rot=-.001, reverse=True).as_hex()
+            colors[i] = sns.light_palette(palette[i], n_colors=int(self.max_elevation)+1).as_hex()
         return colors
 
     def export_boundaries(self, directory):

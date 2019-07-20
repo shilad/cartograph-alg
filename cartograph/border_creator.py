@@ -17,20 +17,17 @@ def preprocess_file(xy_embedding_csv, cluster_group_csv):
     article_id_list = combined_df['article_id'].values.astype(int)
 
     return points, cluster_list, article_id_list
-experiment_directory = "/Users/research/Documents/Projects/cartograph-alg/experiments/food/0009"
-points, cluster_list, article_id_list = preprocess_file(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
-g = Graph(points, cluster_list, article_id_list)
-g.draw_graph()
-#
-# if __name__ == '__main__':
-#     import sys
-#     if len(sys.argv) != 2:
-#         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-#         sys.exit(1)
-#
-#     experiment_directory = sys.argv[1]
-#
-#     points, cluster_list, article_id_list = preprocess_file(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
-#     g = Graph(points, cluster_list, article_id_list)
-#     # g.export_boundaries(experiment_directory)
-#     # g.export_polygons(experiment_directory)
+
+
+if __name__ == '__main__':
+    import sys
+    if len(sys.argv) != 2:
+        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
+        sys.exit(1)
+
+    experiment_directory = sys.argv[1]
+
+    points, cluster_list, article_id_list = preprocess_file(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
+    g = Graph(points, cluster_list, article_id_list)
+    g.export_boundaries(experiment_directory)
+    g.export_polygons(experiment_directory)
