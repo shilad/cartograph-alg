@@ -21,13 +21,13 @@ def preprocess_file(xy_embedding_csv, cluster_group_csv):
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 4:
         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
         sys.exit(1)
 
-    experiment_directory = sys.argv[1]
+    experiment_directory, xy_embeddings, cluster_groups = sys.argv[1:]
 
-    points, cluster_list, article_id_list = preprocess_file(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
+    points, cluster_list, article_id_list = preprocess_file(experiment_directory + xy_embeddings, experiment_directory + cluster_groups)
     g = Graph(points, cluster_list, article_id_list)
     g.export_boundaries(experiment_directory)
     g.export_polygons(experiment_directory)
