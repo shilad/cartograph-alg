@@ -36,7 +36,7 @@ def get_sizes(articles):
         elif x <= 45:
             sizes[key] = 8
             x += 1
-        elif x <= 135:
+        elif x <= 250:
             sizes[key] = 2
             x += 1
     return sizes
