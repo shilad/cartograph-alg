@@ -24,7 +24,7 @@ label_name_csv=keyword_names.csv
 
 # Step 1: Get the experiment id. This is *not* map specific.
 # An experiment id can be used for multiple maps.
-exp_id=0012 #$(get_experiment_id)
+exp_id=0013 #$(get_experiment_id)
 
 # $(get_experiment_id)
 
@@ -53,7 +53,7 @@ python -m kmeans+label.joint_label_kmeans \
     --country_names ${exp_dir}/country_labels.csv\
     --articles_to_labels data/food/${article_label_csv} \
     --label_names data/food/${label_name_csv} \
-    --percentile 0.4 \
+    --percentile 0.2 \
     --label_score tfidf \
     --cluster_groups /original_cluster_groups.csv \
     --output_file /country_labels.csv \
