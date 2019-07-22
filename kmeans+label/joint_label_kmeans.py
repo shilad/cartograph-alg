@@ -1,15 +1,12 @@
 from ast import literal_eval
-
 import numpy as np
 import pandas as pd
-from pandas._libs import json
-from scipy import spatial
-from sklearn.neighbors import NearestNeighbors
-from cartograph.xy_embed.umap_embed import create_embeddings
+import warnings
 import cartograph.label_selector as ls
-from scipy.sparse import csc_matrix, csr_matrix
+from scipy.sparse import csr_matrix
 import argparse
-from sklearn.metrics.pairwise import cosine_distances, euclidean_distances
+from sklearn.metrics.pairwise import cosine_distances
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 class K_Means:
@@ -19,9 +16,9 @@ class K_Means:
         self.max_iterations = max_iterations
         self.centroids = {}
 
+
     def fit(self, data, ids):
         print("original")
-
         N, D = data.shape
         K = self.k
 
@@ -31,18 +28,15 @@ class K_Means:
 
         # begin iterations
         for i in range(self.max_iterations):
-            high_dim_dist = cosine_distances(data, centroids)  # get cosine distance betw each point and the cenroids, N x k
+            high_dim_dist = cosine_distances(data, centroids)
             assert high_dim_dist.shape == (N, K)
 
             dis_mat = high_dim_dist
-            # if(i==1):
-            #     print(dis_mat)
             best_group = np.argmin(dis_mat, axis=1)
             dis_mat_df = pd.DataFrame(dis_mat)
             dis_mat_df = ids.join(dis_mat_df)
-            # dis_mat_df = dis_mat_df.set_index([0])
             # print(dis_mat_df[dis_mat_df['article_id'] == 3103])
-            # print(dis_mat_df[dis_mat_df['article_id'] == 3103].idxmin(axis=1).iloc[0])
+            print(dis_mat_df[dis_mat_df['article_id'] == 1994].idxmin(axis=1).iloc[0])
             assert best_group.shape == (N,)
 
             points_per_group = np.zeros(K) + 1e-6
@@ -88,13 +82,12 @@ class K_Means:
             # print('Label Scores', label_scores[2596])
             # if(i==1):
             #     print(high_dim_dist)
-            dis_mat = high_dim_dist - label_scores * float(weight)  # get the distance matrix, 4097 * 8
+            dis_mat = high_dim_dist * (1 - weight) - label_scores * weight  # get the distance matrix, 4097 * 8
             best_group = np.argmin(dis_mat, axis=1)
             dis_mat_df = pd.DataFrame(dis_mat)
             dis_mat_df = ids.join(dis_mat_df)
 
-
-            print(label_scores[2596])
+            # print(label_scores[2596])
             print(dis_mat_df[dis_mat_df['article_id'] == 1994].idxmin(axis=1).iloc[0])
             assert best_group.shape == (N,)
 
@@ -144,7 +137,7 @@ def label_affinity(keyword_scores, country_names, article_ids, k):
     # print(list(literal_eval(label_ids[0])))
     # print("_________________")
 
-    label_ids = np.vstack(list(literal_eval(label_ids[i])) for i in range(8))
+    label_ids = np.vstack(np.array(list(literal_eval(label_ids[i]))) for i in range(8))
     label_ids = pd.DataFrame(label_ids)
     filtered_sparse = pd.DataFrame()
     for i in range(8):
@@ -172,7 +165,7 @@ if __name__ == '__main__':
     parser.add_argument('--experiment_directory', required=True)
     parser.add_argument('--vectors', required=True)
     parser.add_argument('--k', default=8, type=int)
-    parser.add_argument('--weight', default=0.1)
+    parser.add_argument('--weight', default=0.1, type=float)
     # arguments for label_selector
     parser.add_argument('--articles_to_labels', required=True)
     parser.add_argument('--label_names', required=True)
