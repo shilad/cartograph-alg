@@ -25,6 +25,7 @@ def create_labels(domain_concept_csv):
     # mapping from ids to labels
     labels_to_id = {}
     df = pd.read_csv(domain_concept_csv)
+    df = df.iloc[, :]
     rows_list = []
     x = 0
     # Loop through the domain concepts

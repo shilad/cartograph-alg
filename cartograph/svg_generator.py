@@ -172,25 +172,25 @@ def draw_country_labels(d, country_labels_xy, font_size, colors):
             offset += 30
 
 
-def create_svg_file(directory, d):
+def create_svg_file(directory, d, output_file):
     d.setPixelScale(2)  # Set number of pixels per geometry unit
-    d.saveSvg(directory + '/graph.svg')
+    d.saveSvg(directory + output_file)
 
 
-def main(map_directory, width, height, color_palette):
-    articles = get_articles_json(map_directory + "/domain.json")
-    colors = set_colors(map_directory + "/country_labels.csv", 'hls')
+def main(map_directory, width, height, color_palette, json_file, output_file, country_labels):
+    articles = get_articles_json(map_directory + json_file)
+    colors = set_colors(map_directory + country_labels, color_palette)
     sizes = get_sizes(articles)
     drawing = draw_svg(articles, float(width), float(height), colors, sizes, directory=map_directory)
-    create_svg_file(map_directory, drawing)
+    create_svg_file(map_directory, drawing, output_file)
 
 
 if __name__ == '__main__':
     import sys
 
-    if len(sys.argv) != 5:
+    if len(sys.argv) != 8:
         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory, width, height, color_palette = sys.argv[1:]
-    main(map_directory, width, height, color_palette)
+    map_directory, width, height, color_palette, json_file, output_file, country_labels = sys.argv[1:]
+    main(map_directory, width, height, color_palette, json_file, output_file, country_labels)
