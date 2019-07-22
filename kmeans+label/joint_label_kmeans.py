@@ -1,3 +1,5 @@
+from ast import literal_eval
+
 import numpy as np
 import pandas as pd
 from pandas._libs import json
@@ -40,7 +42,7 @@ class K_Means:
             dis_mat_df = ids.join(dis_mat_df)
             # dis_mat_df = dis_mat_df.set_index([0])
             # print(dis_mat_df[dis_mat_df['article_id'] == 3103])
-            print(dis_mat_df[dis_mat_df['article_id'] == 3103].idxmin(axis=1).iloc[0])
+            # print(dis_mat_df[dis_mat_df['article_id'] == 3103].idxmin(axis=1).iloc[0])
             assert best_group.shape == (N,)
 
             points_per_group = np.zeros(K) + 1e-6
@@ -92,8 +94,8 @@ class K_Means:
             dis_mat_df = ids.join(dis_mat_df)
 
 
-            # print(label_scores[2596])
-            print(dis_mat_df[dis_mat_df['article_id'] == 3103].idxmin(axis=1).iloc[0])
+            print(label_scores[2596])
+            print(dis_mat_df[dis_mat_df['article_id'] == 1994].idxmin(axis=1).iloc[0])
             assert best_group.shape == (N,)
 
             points_per_group = np.zeros(K) + 1e-6
@@ -135,8 +137,24 @@ def label_affinity(keyword_scores, country_names, article_ids, k):
     article_label_scores = pd.read_csv(keyword_scores)
     sparse_article_label_scores = create_label_matrix(article_label_scores)
     labeled_clusters = pd.read_csv(country_names)
-    label_ids = labeled_clusters['label_id'].values
-    filtered_sparse = sparse_article_label_scores[label_ids]
+    # print(labeled_clusters)
+    # label_ids = labeled_clusters['label_id'].values
+    label_ids = labeled_clusters['label_id']
+    # print("_________________")
+    # print(list(literal_eval(label_ids[0])))
+    # print("_________________")
+
+    label_ids = np.vstack(list(literal_eval(label_ids[i])) for i in range(8))
+    label_ids = pd.DataFrame(label_ids)
+    filtered_sparse = pd.DataFrame()
+    for i in range(8):
+        xixi = label_ids.loc[i]
+        hh = sparse_article_label_scores[xixi]
+        filtered_sparse[str(i)] = hh.sum(axis=1)
+
+    # print(filtered_sparse)
+
+    # filtered_sparse = sparse_article_label_scores[label_ids]
     # some article do not have keywords according to article_keywords, therefore we will
     merged_cluster_label_score = pd.merge(ids, filtered_sparse, on='article_id')
     extra_zeros = np.zeros((article_ids.shape[0] - merged_cluster_label_score.shape[0], k))
@@ -165,6 +183,8 @@ if __name__ == '__main__':
     # arguments for Label Scoring
     parser.add_argument('--article_keywords', required=True)
     parser.add_argument('--country_names', required=True)
+    parser.add_argument('--num_candidates', required=True, type=int)
+
     args = parser.parse_args()
 
     # Initial Clustering
@@ -183,7 +203,9 @@ if __name__ == '__main__':
     label_names = pd.read_csv(args.label_names)
     article_labels_orig = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.output_file, soft_labeling=True)
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, "/original_country_labels_no_set.csv", False, args.num_candidates)
+
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.output_file, True, args.num_candidates)
 
 
     # Combined Clustering & Labeling
@@ -195,7 +217,7 @@ if __name__ == '__main__':
     joint_fit_groups.to_csv('%s/cluster_groups.csv' % (args.experiment_directory, ), index=False)
     article_labels_new = pd.merge(article_labels, joint_fit_groups, on='article_id')
     article_labels_new = pd.merge(article_labels_new, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv', soft_labeling=False)
+    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv', False, args.num_candidates)
     # print(str(json.dumps({'weight': args.weight})))
 
 
