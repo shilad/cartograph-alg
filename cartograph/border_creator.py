@@ -17,8 +17,11 @@ def preprocess_file(xy_embedding_csv, cluster_group_csv):
     article_id_list = combined_df['article_id'].values.astype(int)
 
     return points, cluster_list, article_id_list
-
-
+#
+# experiment_directory = '../experiments/culture/0023'
+# points, cluster_list, article_id_list = preprocess_file(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
+# g = Graph(points, cluster_list, article_id_list, color_palette='hls')
+# g.draw_graph()
 if __name__ == '__main__':
     import sys
     if len(sys.argv) != 2:
@@ -28,6 +31,6 @@ if __name__ == '__main__':
     experiment_directory = sys.argv[1]
 
     points, cluster_list, article_id_list = preprocess_file(experiment_directory + '/xy_embeddings.csv', experiment_directory + '/cluster_groups.csv')
-    g = Graph(points, cluster_list, article_id_list)
+    g = Graph(points, cluster_list, article_id_list, color_palette='hls')
     g.export_boundaries(experiment_directory)
     g.export_polygons(experiment_directory)

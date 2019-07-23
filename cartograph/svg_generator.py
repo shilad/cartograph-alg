@@ -122,7 +122,7 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, 
         size = sizes[v['Article']]  # Augment the font_size and circle size correspondingly
         drawing.append(draw.Circle(x, y, size, fill=colors[country]))
         if size > .5:
-            adjusted_x, adjusted_y = x - 0.5*len(title)*size, y - 0.5*size
+            adjusted_x, adjusted_y = x - 0.5*len(title)*int(size), y - 0.5*size
             drawing.append(draw.Text(title, int(size), adjusted_x, adjusted_y))
     # Draw country labels
     country_labels_xy = get_country_labels_xy(json_articles)

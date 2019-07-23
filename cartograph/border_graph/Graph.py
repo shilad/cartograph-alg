@@ -259,7 +259,7 @@ class Graph:
 
     def add_noisy_corners(self, p0, p1, v0, v1, min_length=3):
         """Recursively generate new corners based on an original straight border, ordering from v0 to v1"""
-        def interpolate(self, pt0, pt1, value=0.5):
+        def interpolate(pt0, pt1, value=0.5):
             return pt1 + (np.subtract(pt0, pt1) * value)
 
         points = []
@@ -372,8 +372,8 @@ class Graph:
             b = True
             polygon = []
             for vertex in center.corners:
-                if vertex.position[0] < self.bounding_box[0] - 10 or vertex.position[0] > self.bounding_box[1] + 10 or \
-                   vertex.position[1] < self.bounding_box[2] - 10 or vertex.position[1] > self.bounding_box[3] + 10:
+                if vertex.position[0] < self.bounding_box[0] - 15 or vertex.position[0] > self.bounding_box[1] + 15 or \
+                   vertex.position[1] < self.bounding_box[2] - 15 or vertex.position[1] > self.bounding_box[3] + 15:
                     if vertex.is_water:
                         b = False
                         break

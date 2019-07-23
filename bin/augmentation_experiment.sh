@@ -10,7 +10,7 @@
 # set -e
 # set -x
 
-topic=culture
+topic=internet
 
 # Assign variable name for label candidate we want (categories, links, keywork, etc)
 article_label_csv=article_keywords.csv
