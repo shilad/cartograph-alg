@@ -76,10 +76,7 @@ def set_colors(countries_csv, color_palette):
     palette = sns.color_palette(color_palette, len(countries)).as_hex()
 
     for i in range(len(countries['country'])):
-        if 'label_name' in countries.columns:
-            colors[countries.iloc[i, 2]] = palette[i]
-        else:
-            colors[countries.iloc[i, 1]] = palette[i]
+        colors[countries.iloc[i]['country']] = palette[countries.iloc[i]['country']]
     return colors
 
 
@@ -122,7 +119,8 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, 
         size = sizes[v['Article']]  # Augment the font_size and circle size correspondingly
         drawing.append(draw.Circle(x, y, size, fill=colors[country]))
         if size > .5:
-            drawing.append(draw.Text(title, int(size), x, y))
+            adjusted_x, adjusted_y = x - 0.5*len(title)*XY_RATIO, y - 0.5*size
+            drawing.append(draw.Text(title, int(size), adjusted_x, adjusted_y))
     # Draw country labels
     country_labels_xy = get_country_labels_xy(json_articles)
     draw_country_labels(drawing, country_labels_xy, country_font_size, colors)
