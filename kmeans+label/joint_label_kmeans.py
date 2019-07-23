@@ -1,3 +1,7 @@
+"""Alternating algorithm which combined kmeans ++ clustering and labeling.
+Authors: Jonathan Scott, Lu Li
+
+"""
 from ast import literal_eval
 import numpy as np
 import pandas as pd
@@ -197,7 +201,7 @@ if __name__ == '__main__':
     article_labels_orig = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
     ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, "/original_country_labels_no_set.csv", False, args.num_candidates)
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.laebl_score, args.output_file, True, args.num_candidates)
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.output_file, True, args.num_candidates)
 
     # Combined Clustering & Labeling
     joint_fit_groups, distance_with_y = km.fit_with_y(X, args.article_keywords, args.country_names, ids, args.k, args.weight)
