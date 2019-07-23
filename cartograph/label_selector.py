@@ -4,6 +4,8 @@ outputs a list countries and their labels.
 Author: Lily Irvin
 """
 import argparse
+from collections import defaultdict
+
 import numpy as np
 import pandas as pd
 from gensim.parsing.porter import PorterStemmer
@@ -56,29 +58,39 @@ def add_tfidf_scores(labels_df):
     return labels_df
 
 
-def assign_country_label_ids(country_scores, label_score):
+def assign_country_label_ids(country_scores, label_score, soft_labeling, num_candidates):
     """Output: Dictionary --> key = country, value = label"""
 
     ps = PorterStemmer()
     country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
     country_scores = country_scores.sort_values(by=label_score, ascending=False)
-    final_labels = {}
-    final_ids = {}
     used_stems = set()
 
-    for row in country_scores.itertuples():
-        if row.country not in final_labels and row.stem not in used_stems:
-            final_labels[row.country] = row.label
-            final_ids[row.country] = row.label_id
+    if soft_labeling:
+        final_labels = defaultdict(set)
+        final_ids = defaultdict(set)
 
-            used_stems.add(row.stem)
+        for row in country_scores.itertuples():
+            if len(final_labels[row.country]) <= num_candidates and row.stem not in used_stems:
+                final_labels[row.country].add(row.label)
+                final_ids[row.country].add(int(row.label_id))
+                used_stems.add(row.stem)
+    else:
+        final_labels = {}
+        final_ids = {}
 
-    return final_labels , final_ids
+        for row in country_scores.itertuples():
+            if row.country not in final_labels and row.stem not in used_stems:
+                final_labels[row.country] = row.label
+                final_ids[row.country] = row.label_id
+                used_stems.add(row.stem)
+    return final_labels, final_ids
 
 
-def main(experiment_dir, article_labels, percentile, label_score, output_file):
+def main(experiment_dir, article_labels, percentile, label_score, output_file, soft_labeling, num_candidates):
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
+        print("Selecting labels with noise filtering------------------------------")
         mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
         article_labels = article_labels[mask]
 
@@ -95,7 +107,7 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file):
     else:
         country_labels = article_labels.drop(columns=['article_id']).drop_duplicates()
 
-    final_labels, final_scores = assign_country_label_ids(country_labels, label_score)
+    final_labels, final_scores = assign_country_label_ids(country_labels, label_score, soft_labeling, num_candidates)
 
     # # Create results data frame
     df = pd.DataFrame(final_labels,  index=[0]).T
@@ -113,6 +125,8 @@ if __name__ == '__main__':
     parser.add_argument('--label_score', required=True)
     parser.add_argument('--cluster_groups', required=True)
     parser.add_argument('--output_file', required=True)
+    parser.add_argument('--soft_labeling', required=True)
+    parser.add_argument('--num_candidates', required=True, type=int)
 
     args = parser.parse_args()
 
@@ -122,4 +136,4 @@ if __name__ == '__main__':
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
 
-    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file)
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates)
