@@ -33,8 +33,6 @@ class K_Means:
 
             dis_mat = high_dim_dist
             best_group = np.argmin(dis_mat, axis=1)
-            dis_mat_df = pd.DataFrame(dis_mat)
-            dis_mat_df = ids.join(dis_mat_df)
             assert best_group.shape == (N,)
 
             points_per_group = np.zeros(K) + 1e-6
@@ -55,15 +53,9 @@ class K_Means:
             if max_centroid_change < self.tolerance:
                 break
         distance = evaluate_clusters(data, centroids, best_group)
-
-        # print('points per group before fit with y', points_per_group)
         return best_group, distance
 
     def fit_with_y(self, data, article_keywords, country_names, ids, k, weight):
-        # print(article_and_group.article_id)
-        # print("\n----using local neighbor scores")
-        print("with y ")
-
         N, D = data.shape
         K = self.k
 
@@ -76,31 +68,20 @@ class K_Means:
             high_dim_dist = cosine_distances(data, centroids)  # get cosine distance betw each point and the cenroids, N x k
             assert high_dim_dist.shape == (N, K)
             label_scores = label_affinity(article_keywords, country_names, ids, k)  # get the homogeneity vector, 4097 *
-            # print('Label Scores', label_scores[2596])
-            # if(i==1):
-            #     print(high_dim_dist)
             dis_mat = high_dim_dist * (1 - weight) - label_scores * weight  # get the distance matrix, 4097 * 8
             best_group = np.argmin(dis_mat, axis=1)
-            dis_mat_df = pd.DataFrame(dis_mat)
-            dis_mat_df = ids.join(dis_mat_df)
-
-            # print(label_scores[2596])
-            # print(dis_mat_df[dis_mat_df['article_id'] == 1994].idxmin(axis=1).iloc[0])
             assert best_group.shape == (N,)
 
             points_per_group = np.zeros(K) + 1e-6
             np.add.at(points_per_group, best_group, 1)
-            # print(points_per_group)
 
             new_centroids = np.zeros((K, D))
             np.add.at(new_centroids, best_group, data)
             new_centroids /= points_per_group.repeat(D).reshape(K, D)
-            # print(new_centroids)
 
             centroid_changes = np.sum(np.abs(new_centroids - centroids), axis=1)
             assert centroid_changes.shape == (K, )
             max_centroid_change = np.max(centroid_changes)
-            # print('change is', max_centroid_change)
 
             centroids = new_centroids
 
@@ -108,7 +89,6 @@ class K_Means:
             # much(more than our tolerance)
             if max_centroid_change < self.tolerance:
                 break
-        # print('points per group AFTER fit with y', points_per_group)
         distance = evaluate_clusters(data, centroids, best_group)
         return best_group, distance
 
@@ -128,33 +108,19 @@ def label_affinity(keyword_scores, country_names, article_ids, k):
     article_label_scores = pd.read_csv(keyword_scores)
     sparse_article_label_scores = create_label_matrix(article_label_scores)
     labeled_clusters = pd.read_csv(country_names)
-    # print(labeled_clusters)
-    # label_ids = labeled_clusters['label_id'].values
     label_ids = labeled_clusters['label_id']
-    # print("_________________")
-    # print(list(literal_eval(label_ids[0])))
-    # print("_________________")
-
     label_ids = np.vstack(np.array(list(literal_eval(label_ids[i]))) for i in range(k))
     label_ids = pd.DataFrame(label_ids)
     filtered_sparse = pd.DataFrame()
     for i in range(k):
         label_id = label_ids.loc[i]
-        # print("label_id", label_id)
         label_score_column = sparse_article_label_scores[label_id]
         label_score_sum = label_score_column.sum(axis=1)
-
         filtered_sparse[str(i)] = label_score_sum
-        # print(label_score_column)
-        # print(label_score_sum)
-        # print(label_score_column)
-    # print(filtered_sparse)
 
-    # filtered_sparse = sparse_article_label_scores[label_ids]
-    # some article do not have keywords according to article_keywords, therefore we will
+    # some article do not have keywords according to article_keywords
     merged_cluster_label_score = pd.merge(ids, filtered_sparse, on='article_id')
     extra_zeros = np.zeros((article_ids.shape[0] - merged_cluster_label_score.shape[0], k))
-    # print(merged_cluster_label_score.shape, extra_zeros.shape)
     assert extra_zeros.shape[1] == merged_cluster_label_score.shape[1]-1
     score_dist_mat = np.vstack((merged_cluster_label_score.values[:, 1:], extra_zeros))
 
@@ -172,6 +138,24 @@ def evaluate_clusters(data, centroids, membership):
     return distance
 
 
+def get_final_labels(keyword_scores, final_groups, candiates, k):
+    """Returns the label with the highest score based on the articles within one cluster."""
+    article_label_scores = pd.read_csv(keyword_scores)
+    sparse_article_label_scores = create_label_matrix(article_label_scores)
+    lists = final_groups.groupby('country')['article_id'].apply(list)
+    candidates = pd.read_csv(candiates)
+    label_ids = candidates['label_id']
+    label_ids = np.vstack(np.array(list(literal_eval(label_ids[i]))) for i in range(k))
+    label_ids = pd.DataFrame(label_ids)
+    filtered_sparse = []
+    for i in range(k):
+        label_id = label_ids.loc[i]
+        label_score_column = sparse_article_label_scores[label_id]
+        lists = pd.DataFrame(lists)
+        country_members = lists['article_id'].iloc[i]
+        potential_labels = label_score_column.ix[country_members].sum(axis=0)
+        filtered_sparse.append(potential_labels.argmax())
+    return filtered_sparse
 
 
 
@@ -204,7 +188,6 @@ if __name__ == '__main__':
     init_groups = ids.join(pd.DataFrame(init_groups))
     init_groups.columns = ['article_id', 'country']
     init_groups['distance'] = init_distance
-    # print(init_groups)
     init_groups.to_csv('%s/original_cluster_groups.csv' % (args.experiment_directory, ), index=False)
 
     # Initial Labeling
@@ -213,10 +196,8 @@ if __name__ == '__main__':
     label_names = pd.read_csv(args.label_names)
     article_labels_orig = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, "tfidf", "/original_country_labels_no_set.csv", False, args.num_candidates)
-
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, "tfidf", args.output_file, True, args.num_candidates)
-
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, "/original_country_labels_no_set.csv", False, args.num_candidates)
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.laebl_score, args.output_file, True, args.num_candidates)
 
     # Combined Clustering & Labeling
     joint_fit_groups, distance_with_y = km.fit_with_y(X, args.article_keywords, args.country_names, ids, args.k, args.weight)
@@ -224,37 +205,13 @@ if __name__ == '__main__':
     joint_fit_groups = ids.join(joint_fit_groups)
     joint_fit_groups.columns = ['article_id', 'country']
     joint_fit_groups['distance'] = distance_with_y
-    # print(init_groups)
 
     joint_fit_groups.to_csv('%s/cluster_groups.csv' % (args.experiment_directory, ), index=False)
     article_labels_new = pd.merge(article_labels, joint_fit_groups, on='article_id')
     article_labels_new = pd.merge(article_labels_new, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_new, args.percentile, "tfidf", '/new_country_labels.csv', False, args.num_candidates)
-    # print(str(json.dumps({'weight': args.weight})))
+    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv', False, args.num_candidates)
 
-    def get_final_labels(keyword_scores, final_groups, candiates, k):
-
-        article_label_scores = pd.read_csv(keyword_scores)
-        sparse_article_label_scores = create_label_matrix(article_label_scores)
-
-        lists = final_groups.groupby('country')['article_id'].apply(list)
-        candidates = pd.read_csv(candiates)
-
-        label_ids = candidates['label_id']
-
-        label_ids = np.vstack(np.array(list(literal_eval(label_ids[i]))) for i in range(k))
-        label_ids = pd.DataFrame(label_ids)
-        filtered_sparse = []
-        for i in range(k):
-            label_id = label_ids.loc[i]
-            label_score_column = sparse_article_label_scores[label_id]
-            lists = pd.DataFrame(lists)
-            country_members = lists['article_id'].iloc[i]
-            potential_labels = label_score_column.ix[country_members].sum(axis=0)
-            filtered_sparse.append(potential_labels.argmax())
-
-        return filtered_sparse
-
+    # get labels based on label scores instead of running tfidf again
     new_labels = get_final_labels(args.article_keywords, joint_fit_groups, args.country_names, args.k)
     new_labels_df = pd.DataFrame(new_labels)
     labels = []
@@ -263,8 +220,6 @@ if __name__ == '__main__':
     new_labels_df['label_name'] = labels
     new_labels_df.index.name = 'country'
     new_labels_df.columns = ['label_id', 'label_name']
-
-
     new_labels_df.to_csv(args.experiment_directory + "/score_country_labels.csv", index=True)
 
 
