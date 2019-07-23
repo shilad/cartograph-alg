@@ -65,6 +65,7 @@ def assign_country_label_ids(country_scores, label_score, soft_labeling, num_can
     country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
     country_scores = country_scores.sort_values(by=label_score, ascending=False)
     used_stems = set()
+    used_stems.add('internet')
 
     if soft_labeling:
         final_labels = defaultdict(set)
@@ -90,6 +91,7 @@ def assign_country_label_ids(country_scores, label_score, soft_labeling, num_can
 def main(experiment_dir, article_labels, percentile, label_score, output_file, soft_labeling, num_candidates):
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
+        print("Selecting labels with noise filtering------------------------------")
         mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
         article_labels = article_labels[mask]
 
