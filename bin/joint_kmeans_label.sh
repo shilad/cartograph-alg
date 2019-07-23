@@ -18,7 +18,7 @@ do
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=0004 #$(get_experiment_id)
+    exp_id=0007 #$(get_experiment_id)
 
     # $(get_experiment_id)
 
@@ -52,20 +52,18 @@ do
         --cluster_groups /original_cluster_groups.csv \
         --output_file /country_labels.csv \
         --num_candidates 4
+    options="original new score"
+    for j in $options
+    do
 
+        # Step 6: Generate JSON
+        python -m cartograph.json_generator data/${i} ${exp_dir}/ kk  ${j}_country_labels.csv ${j}_cluster_groups.csv xy_embeddings.csv ${j}_domain.json
 
-    # Step 6: Generate JSON
-    python -m cartograph.json_generator data/${i} ${exp_dir} kk  /original_country_labels_no_set.csv /original_cluster_groups.csv /xy_embeddings.csv /original_domain.json
-    python -m cartograph.json_generator data/${i} ${exp_dir} kk /new_country_labels.csv /cluster_groups.csv /xy_embeddings.csv /new_domain.json
-    python -m cartograph.json_generator data/${i} ${exp_dir} kk /score_country_labels.csv /cluster_groups.csv /xy_embeddings.csv /score_domain.json
+        # draw boundary
+        python -m cartograph.border_creator ${exp_dir}/ xy_embeddings.csv ${j}_cluster_groups.csv
 
+        # Step 7: Run evaluation metrics and generate HTML & SVG
+        python -m cartograph.svg_generator ${exp_dir}/ 1500 1500 muted ${j}_domain.json ${j}_graph.svg ${j}_country_labels.csv
 
-    # draw boundary
-    python -m cartograph.border_creator ${exp_dir}
-
-    # Step 7: Run evaluation metrics and generate HTML & SVG
-    python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted /original_domain.json /original_graph.svg /original_country_labels_no_set.csv
-    python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted /new_domain.json /new_graph.svg /new_country_labels.csv
-
-    python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted /score_domain.json /score_graph.svg /score_country_labels.csv
+    done
 done

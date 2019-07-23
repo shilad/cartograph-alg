@@ -20,7 +20,7 @@ def create_embeddings(vector_file):
 
 def create_csv(xy_embeddings, experiment):
     df = pd.DataFrame(xy_embeddings, columns=['article_id', 'x', 'y'])
-    df.to_csv(experiment + '/original_xy_embeddings.csv', index=False)
+    df.to_csv(experiment + '/xy_embeddings.csv', index=False)
 
 
 def main(experiment, vector_file):

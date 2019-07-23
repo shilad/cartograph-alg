@@ -200,7 +200,7 @@ if __name__ == '__main__':
     label_names = pd.read_csv(args.label_names)
     article_labels_orig = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, "/original_country_labels_no_set.csv", False, args.num_candidates)
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, "/original_country_labels.csv", False, args.num_candidates)
     ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.output_file, True, args.num_candidates)
 
     # Combined Clustering & Labeling
@@ -210,7 +210,9 @@ if __name__ == '__main__':
     joint_fit_groups.columns = ['article_id', 'country']
     joint_fit_groups['distance'] = distance_with_y
 
-    joint_fit_groups.to_csv('%s/cluster_groups.csv' % (args.experiment_directory, ), index=False)
+    joint_fit_groups.to_csv('%s/new_cluster_groups.csv' % (args.experiment_directory, ), index=False)
+    joint_fit_groups.to_csv('%s/score_cluster_groups.csv' % (args.experiment_directory, ), index=False)
+
     article_labels_new = pd.merge(article_labels, joint_fit_groups, on='article_id')
     article_labels_new = pd.merge(article_labels_new, label_names, on='label_id')
     ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv', False, args.num_candidates)
