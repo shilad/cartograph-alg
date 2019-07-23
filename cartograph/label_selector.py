@@ -7,7 +7,6 @@ import argparse
 import numpy as np
 import pandas as pd
 from gensim.parsing.porter import PorterStemmer
-from collections import defaultdict
 
 
 def add_country_label_counts(labels_df):
@@ -64,35 +63,20 @@ def assign_country_label_ids(country_scores, label_score):
     country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
     country_scores = country_scores.sort_values(by=label_score, ascending=False)
     final_labels = {}
+    final_ids = {}
     used_stems = set()
 
     for row in country_scores.itertuples():
         if row.country not in final_labels and row.stem not in used_stems:
-            final_labels[row.country] = row.label.replace('_', ' ')
+            final_labels[row.country] = row.label
+            final_ids[row.country] = row.label_id
+
             used_stems.add(row.stem)
 
-    return final_labels
+    return final_labels , final_ids
 
 
-def get_top_labels(country_scores, label_score):
-    """Output: Dictionary --> key = country, value = list of top labels"""
-
-    ps = PorterStemmer()
-    country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
-    country_scores = country_scores.sort_values(by=label_score, ascending=False)
-    top_labels = [defaultdict(str) for x in range(country_scores['num_countries'][0])]
-    used_stems = set()
-
-    for row in country_scores.itertuples():
-        if row.stem not in used_stems:
-            if len(top_labels[row.country]) < 10:
-                top_labels[row.country][row.label_id] = row.label.replace('_', ' ')
-                used_stems.add(row.stem)
-
-    return top_labels
-
-
-def main(experiment_dir, article_labels, percentile, label_score):
+def main(experiment_dir, article_labels, percentile, label_score, output_file):
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
         mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
@@ -106,22 +90,18 @@ def main(experiment_dir, article_labels, percentile, label_score):
     article_labels = add_tfidf_scores(article_labels)
     article_labels = add_pmi(article_labels)
 
-    country_labels = article_labels.drop(columns=['article_id', 'distance']).drop_duplicates()
+    if 'distance' in article_labels.columns:
+        country_labels = article_labels.drop(columns=['article_id', 'distance']).drop_duplicates()
+    else:
+        country_labels = article_labels.drop(columns=['article_id']).drop_duplicates()
 
-    final_labels = assign_country_label_ids(country_labels, label_score)
+    final_labels, final_scores = assign_country_label_ids(country_labels, label_score)
 
     # # Create results data frame
     df = pd.DataFrame(final_labels,  index=[0]).T
     df['country'] = df.index
-    df.to_csv(experiment_dir + '/country_labels.csv', index=True)
-
-    # # Get top label candidates
-    top = get_top_labels(country_labels, label_score)
-    print(top)
-
-    # top_df = pd.DataFrame.from_dict(top, orient='index')
-    # top_df['country'] = top_df.set_index
-    # top_df.to_csv(experiment_dir + '/top_label_candidates.csv', index=True)
+    df['label_id'] = np.array(list(final_scores.values())).T
+    df.to_csv(experiment_dir + output_file, index=True)
 
 
 if __name__ == '__main__':
@@ -131,13 +111,15 @@ if __name__ == '__main__':
     parser.add_argument('--label_names', required=True)
     parser.add_argument('--percentile', required=True)
     parser.add_argument('--label_score', required=True)
+    parser.add_argument('--cluster_groups', required=True)
+    parser.add_argument('--output_file', required=True)
 
     args = parser.parse_args()
 
     article_labels = pd.read_csv(args.articles_to_labels)
-    country_clusters = pd.read_csv(args.experiment + '/cluster_groups.csv')
+    country_clusters = pd.read_csv(args.experiment + args.cluster_groups)
     label_names = pd.read_csv(args.label_names)
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
 
-    main(args.experiment, article_labels, args.percentile, args.label_score)
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file)
