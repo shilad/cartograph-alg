@@ -22,37 +22,38 @@ from cartograph.border_graph.Edge import Edge
 
 
 class Graph:
-    def __init__(self, points, cluster_list, article_id_list):
-        plt.figure()
+    def __init__(self, points, cluster_list, article_id_list, color_palette='hls'):
         self.points = points
         self.cluster_list = cluster_list
         self.article_id_list = article_id_list
+        self.color_palette = color_palette
         self.bounding_box = self.create_bounding_box(points)
 
-        self.acc = 0
-
+        # add water points to add randomness and inner lakes
+        # build initial Voronoi barring the outlier points
         self.num_points = len(self.points)
         self.add_water_points(self.points)
-
         self.denoise_cluster(self.points, len(set(self.cluster_list)))
         self.vor = Voronoi(self.points)
 
+        # dictionary to store all centers, corners, edges in the graph
         self.centers_dic = {}
         self.edge_dic = {}
         self.corners_dic = {}
 
-        self.max_elevation = 0
         self.build_graph()
+
+        # calculate elevation for color gradient changes and 'naturalize' Voronoi borders
+        self.max_elevation = 0  # track the max elevation for the color gradient
         self.assign_elevation()
-        self._clockwise_all_corners()
+        self.clockwise_all_corners()
         self.noise_border()
 
     def create_bounding_box(self, points):
         max_coord = np.amax(points, axis=0)
         min_coord = np.amin(points, axis=0)
         BUFFER = 30
-        return np.array(
-            [min_coord[0] - BUFFER, max_coord[0] + BUFFER, min_coord[1] - BUFFER, max_coord[1] + BUFFER])
+        return np.array([min_coord[0] - BUFFER, max_coord[0] + BUFFER, min_coord[1] - BUFFER, max_coord[1] + BUFFER])
 
     def initiate_center(self, p, vor_points, centers_dic):
         if p in centers_dic:
@@ -244,7 +245,8 @@ class Graph:
             center.update_elevation(elevation)
         self.max_elevation = max_elevation
 
-    def _clockwise_all_corners(self):
+    def clockwise_all_corners(self):
+        """Clockwise order the corners of a polygon in order to fill color of a bounded polygon"""
         for center in self.centers_dic.values():
             b = True
             for vertex in center.corners:
@@ -255,25 +257,25 @@ class Graph:
             if b:
                 center.sort_clockwise()
 
-    def interpolate(self, pt0, pt1, value=0.5):
-        return pt1 + (np.subtract(pt0, pt1) * value)
-
-    def add_noisy_corners(self, p0, p1, v0, v1, min_length=1):
+    def add_noisy_corners(self, p0, p1, v0, v1, min_length=3):
         """Recursively generate new corners based on an original straight border, ordering from v0 to v1"""
+        def interpolate(self, pt0, pt1, value=0.5):
+            return pt1 + (np.subtract(pt0, pt1) * value)
+
         points = []
         def subdivide(p0, p1, v0, v1):
             """Randomly find central points within a quadrilateral bounded by p0, p1, v0, v1"""
             if np.linalg.norm(np.subtract(p0, p1)) < min_length or np.linalg.norm(np.subtract(v0, v1)) < min_length:
                 return
 
-            rand0, rand1 = np.random.uniform(0.3, 0.7, 2)
+            rand0, rand1 = np.random.uniform(0.2, 0.8, 2)
 
-            E = self.interpolate(p0, v0, rand0)
-            F = self.interpolate(v1, p1, rand0)
-            G = self.interpolate(p0, v1, rand1)
-            I = self.interpolate(v0, p1, rand1)
+            E = interpolate(p0, v0, rand0)
+            F = interpolate(v1, p1, rand0)
+            G = interpolate(p0, v1, rand1)
+            I = interpolate(v0, p1, rand1)
 
-            central_point = self.interpolate(E, F, rand1)
+            central_point = interpolate(E, F, rand1)
 
             subdivide(E, I, v0, central_point)
             points.append(central_point)
@@ -323,7 +325,7 @@ class Graph:
     def _create_color(self):
         colors = {}
         num_cluster = len(set(self.cluster_list))-1
-        palette = sns.color_palette('hls', num_cluster).as_hex()
+        palette = sns.color_palette(self.color_palette, num_cluster).as_hex()
         for i in range(num_cluster):
             colors[i] = sns.light_palette(palette[i], n_colors=int(self.max_elevation)+1).as_hex()
         return colors

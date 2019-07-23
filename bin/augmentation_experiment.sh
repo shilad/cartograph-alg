@@ -7,8 +7,10 @@
 #
 # Author: Yuren "Rock" Pang, Shilad Sen
 
-set -e
-set -x
+# set -e
+# set -x
+
+topic=culture
 
 # Assign variable name for label candidate we want (categories, links, keywork, etc)
 article_label_csv=article_keywords.csv
@@ -28,7 +30,7 @@ do
     exp_id=$(get_experiment_id)
 
     # Step 2: Prepare an experiment directory for a specific map.
-    exp_dir=$(prepare_experiment_dir food ${exp_id})
+    exp_dir=$(prepare_experiment_dir ${topic} ${exp_id})
 
     # Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
     # The example below passes the equivalent of { "spread" : "17", "target_weight" : "0.5" }.
@@ -40,7 +42,7 @@ do
         python -m cartograph.vector_augmenter \
                 --experiment ${exp_dir} \
                 --vectors ${exp_dir}/vanilla_vectors.csv \
-                --label_vectors data/food/${article_label_csv} \
+                --label_vectors data/${topic}/${article_label_csv} \
                 --method label \
                 --output_file ${initial_vector_for_clustering[$i]}
     else
@@ -54,8 +56,8 @@ do
         --k 8
     python -m cartograph.label_selector \
         --experiment ${exp_dir} \
-        --articles_to_labels data/food/${article_label_csv} \
-        --label_names data/food/${label_name_csv} \
+        --articles_to_labels data/${topic}/${article_label_csv} \
+        --label_names data/${topic}/${label_name_csv} \
         --label_score tfidf \
         --percentile 0.3
 
@@ -65,7 +67,7 @@ do
         python -m cartograph.vector_augmenter \
                 --experiment ${exp_dir} \
                 --vectors ${exp_dir}/vanilla_vectors.csv \
-                --label_vectors data/food/article_labels.csv \
+                --label_vectors data/${topic}/${article_label_csv} \
                 --method cluster \
                 --cluster_vectors ${exp_dir}/cluster_groups.csv \
                 --output_file ${vector_format_for_embedding[$i]}
@@ -80,7 +82,7 @@ do
     python -m cartograph.border_creator ${exp_dir}
 
     # Step 6: Generate JSON, noise refers to using noise filtering algorithm (k means distance)
-    python -m cartograph.json_generator data/food ${exp_dir} noise
+    python -m cartograph.json_generator data/${topic} ${exp_dir} noise
 
 
     # Step 7: Run evaluation metrics and generate HTML & SVG

@@ -103,12 +103,14 @@ def draw_elevation(elevation_csv, drawing):
     return drawing
 
 
-def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, directory=None):
+def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, directory=None, draw_boundary=False):
     """
     Given a json of cleaned articles (popularity score scaled), calculate the country label positions and draw the entire svg
     """
     drawing = draw.Drawing(width, height, origin="center")
-    draw_dash_boundary(directory + '/boundary.csv', drawing)
+    if draw_boundary:
+        draw_dash_boundary(directory + '/boundary.csv', drawing)
+
     draw_elevation(directory + '/elevation.csv', drawing)
 
     for v in json_articles.values():
@@ -120,7 +122,8 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, 
         size = sizes[v['Article']]  # Augment the font_size and circle size correspondingly
         drawing.append(draw.Circle(x, y, size, fill=colors[country]))
         if size > .5:
-            drawing.append(draw.Text(title, int(size), x, y))
+            adjusted_x, adjusted_y = x - 0.5*len(title)*size, y - 0.5*size
+            drawing.append(draw.Text(title, int(size), adjusted_x, adjusted_y))
     # Draw country labels
     country_labels_xy = get_country_labels_xy(json_articles)
     draw_country_labels(drawing, country_labels_xy, country_font_size, colors)
@@ -182,6 +185,7 @@ def main(map_directory, width, height, color_palette):
     colors = set_colors(map_directory + "/country_labels.csv", 'hls')
     sizes = get_sizes(articles)
     drawing = draw_svg(articles, float(width), float(height), colors, sizes, directory=map_directory)
+    print(map_directory)
     create_svg_file(map_directory, drawing)
 
 
