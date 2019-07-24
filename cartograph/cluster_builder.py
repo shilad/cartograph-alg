@@ -12,14 +12,10 @@ from scipy import spatial
 from sklearn.cluster import KMeans
 import pandas as pd
 import warnings
+warnings.filterwarnings('ignore')
 import argparse
 import numpy as np
-
-with warnings.catch_warnings():
-    # filter sklearn\externals\joblib\parallel.py:268:
-    # DeprecationWarning: check_pickle is deprecated
-    warnings.simplefilter("ignore", category=DeprecationWarning)
-    from hdbscan import HDBSCAN
+from hdbscan import HDBSCAN
 
 
 def mag(x):
