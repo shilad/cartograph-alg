@@ -21,7 +21,7 @@ class K_Means:
         self.centroids = {}
 
 
-    def fit(self, data, ids):
+    def fit(self, data):
         print("original")
         N, D = data.shape
         K = self.k
