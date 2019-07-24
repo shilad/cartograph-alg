@@ -43,10 +43,6 @@ def validation_articles(worker_responses):
 
 def main(responses):
     cleaned_responses = check_workers(responses)
-
-    # print(cleaned_responses.shape)
-    # print(cleaned_responses)
-
     cleaned_responses.to_csv('study/evaluation/cleaned_mturk_results.csv')
 
 
