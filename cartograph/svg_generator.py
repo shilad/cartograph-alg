@@ -13,7 +13,8 @@ import seaborn as sns
 import numpy as np
 import operator
 from collections import defaultdict
-
+import argparse
+import sys
 
 XY_RATIO = 7
 FONT_RATIO = 10
@@ -76,7 +77,7 @@ def set_colors(countries_csv, color_palette):
     palette = sns.color_palette(color_palette, len(countries)).as_hex()
 
     for i in range(len(countries['country'])):
-        colors[countries.iloc[i]['country']] = palette[countries.iloc[i]['country']]
+        colors[countries.iloc[i]['label_name']] = palette[countries.iloc[i]['country']]
     return colors
 
 
@@ -186,11 +187,20 @@ def main(map_directory, width, height, color_palette, json_file, output_file, co
 
 
 if __name__ == '__main__':
-    import sys
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--map_directory', required=True)
+    parser.add_argument('--width', required=True)
+    parser.add_argument('--height', required=True)
+    parser.add_argument('--color_palette', required=True)
+    parser.add_argument('--json_file', required=True)
+    parser.add_argument('--output_file', required=True)
+    parser.add_argument('--country_labels', required=True)
+    args = parser.parse_args()
 
-    if len(sys.argv) != 8:
-        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-        sys.exit(1)
-
-    map_directory, width, height, color_palette, json_file, output_file, country_labels = sys.argv[1:]
-    main(map_directory, width, height, color_palette, json_file, output_file, country_labels)
+    main(args.map_directory,
+         args.width,
+         args.height,
+         args.color_palette,
+         args.json_file,
+         args.output_file,
+         args.country_labels)
