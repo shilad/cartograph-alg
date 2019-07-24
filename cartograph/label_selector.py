@@ -113,6 +113,7 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     df = pd.DataFrame(final_labels,  index=[0]).T
     df['country'] = df.index
     df['label_id'] = np.array(list(final_scores.values())).T
+    df.columns = ['label_name', 'country', 'label_id']
     df.to_csv(experiment_dir + output_file, index=True)
 
 
