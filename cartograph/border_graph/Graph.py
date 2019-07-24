@@ -22,33 +22,38 @@ from cartograph.border_graph.Edge import Edge
 
 
 class Graph:
-    def __init__(self, points, cluster_list, article_id_list):
-        plt.figure()
+    def __init__(self, points, cluster_list, article_id_list, color_palette='hls'):
         self.points = points
         self.cluster_list = cluster_list
         self.article_id_list = article_id_list
+        self.color_palette = color_palette
         self.bounding_box = self.create_bounding_box(points)
 
+        # add water points to add randomness and inner lakes
+        # build initial Voronoi barring the outlier points
         self.num_points = len(self.points)
         self.add_water_points(self.points)
-
         self.denoise_cluster(self.points, len(set(self.cluster_list)))
         self.vor = Voronoi(self.points)
 
+        # dictionary to store all centers, corners, edges in the graph
         self.centers_dic = {}
         self.edge_dic = {}
         self.corners_dic = {}
 
-        self.max_elevation = 0
         self.build_graph()
+
+        # calculate elevation for color gradient changes and 'naturalize' Voronoi borders
+        self.max_elevation = 0  # track the max elevation for the color gradient
         self.assign_elevation()
+        self.clockwise_all_corners()
+        self.noise_border()
 
     def create_bounding_box(self, points):
         max_coord = np.amax(points, axis=0)
         min_coord = np.amin(points, axis=0)
         BUFFER = 30
-        return np.array(
-            [min_coord[0] - BUFFER, max_coord[0] + BUFFER, min_coord[1] - BUFFER, max_coord[1] + BUFFER])
+        return np.array([min_coord[0] - BUFFER, max_coord[0] + BUFFER, min_coord[1] - BUFFER, max_coord[1] + BUFFER])
 
     def initiate_center(self, p, vor_points, centers_dic):
         if p in centers_dic:
@@ -240,61 +245,90 @@ class Graph:
             center.update_elevation(elevation)
         self.max_elevation = max_elevation
 
-    def _sort_clockwise(self, vertices):
-        points = np.array(vertices).transpose()
-        x = points[0, :]
-        y = points[1, :]
-        cx = np.mean(x)
-        cy = np.mean(y)
-        a = np.arctan2(y - cy, x - cx)
-        order = a.ravel().argsort()[::-1]
-        x = x[order]
-        y = y[order]
-        return np.vstack([x, y]).transpose()
+    def clockwise_all_corners(self):
+        """Clockwise order the corners of a polygon in order to fill color of a bounded polygon"""
+        for center in self.centers_dic.values():
+            b = True
+            for vertex in center.corners:
+                if vertex.position[0] < self.bounding_box[0] - 10 or vertex.position[0] > self.bounding_box[1] + 10 or \
+                   vertex.position[1] < self.bounding_box[2] - 10 or vertex.position[1] > self.bounding_box[3] + 10:
+                    b = False
+                    break
+            if b:
+                center.sort_clockwise()
+
+    def add_noisy_corners(self, p0, p1, v0, v1, min_length=3):
+        """Recursively generate new corners based on an original straight border, ordering from v0 to v1"""
+        def interpolate(pt0, pt1, value=0.5):
+            return pt1 + (np.subtract(pt0, pt1) * value)
+
+        points = []
+        def subdivide(p0, p1, v0, v1):
+            """Randomly find central points within a quadrilateral bounded by p0, p1, v0, v1"""
+            if np.linalg.norm(np.subtract(p0, p1)) < min_length or np.linalg.norm(np.subtract(v0, v1)) < min_length:
+                return
+
+            rand0, rand1 = np.random.uniform(0.2, 0.8, 2)
+
+            E = interpolate(p0, v0, rand0)
+            F = interpolate(v1, p1, rand0)
+            G = interpolate(p0, v1, rand1)
+            I = interpolate(v0, p1, rand1)
+
+            central_point = interpolate(E, F, rand1)
+
+            subdivide(E, I, v0, central_point)
+            points.append(central_point)
+            subdivide(G, F, central_point, v1)
+
+        subdivide(p0, p1, v0, v1)
+        return np.array(points)     # ordered from v0 to v1. p1 needs to reverse the array to preserve clockwise ordering
+
+    def noise_border(self):
+        """
+        Noise the border by randomly generating central points within a quadrilateral, store the points as Corners in a path
+        Insert the list of corners to the center (forward sequence for p0, reverse sequence for p1 to preserve clockwise ordering)
+        """
+        for edge in self.edge_dic.values():
+            if edge.is_border:
+                # the sequence of v0, v1, p0, v1 is important for add the noisy path to the existing polygon
+                # v0 is the corner with higher y, the top vertex between the two
+                if edge.v0.position[1] > edge.v1.position[1]:
+                    v0 = edge.v0
+                    v1 = edge.v1
+                else:
+                    v0 = edge.v1
+                    v1 = edge.v0
+
+                # p0 is the center with the lower x, the left center between the two
+                if edge.d0.position[0] < edge.d1.position[0]:
+                    p0 = edge.d0
+                    p1 = edge.d1
+                else:
+                    p0 = edge.d1
+                    p1 = edge.d0
+
+                # the new border path connected with new 2D points as a np.array
+                path = self.add_noisy_corners(p0.position, p1.position, v0.position, v1.position)
+                if len(path) != 0:
+                    # generate new corners and insert to the corresponding center's corners list
+                    corner_objects = []
+                    for i, position in enumerate(path):
+                        id = len(self.corners_dic)
+                        corner = Corner(id, position)
+                        corner_objects.append(corner)
+                        self.corners_dic[id] = corner
+                    # insert all corners in the border path
+                    p0.insert_corners(v0, corner_objects)
+                    p1.insert_corners(v1, np.flip(corner_objects))
 
     def _create_color(self):
         colors = {}
         num_cluster = len(set(self.cluster_list))-1
-        palette = sns.color_palette('hls', num_cluster).as_hex()
+        palette = sns.color_palette(self.color_palette, num_cluster).as_hex()
         for i in range(num_cluster):
             colors[i] = sns.light_palette(palette[i], n_colors=int(self.max_elevation)+1).as_hex()
         return colors
-
-    def export_boundaries(self, directory):
-        row_list = []
-        for id, edge in self.edge_dic.items():
-            if edge.is_border:
-                a, b = edge.v0.position, edge.v1.position
-                row_list.append({'x1': a[0], 'y1': a[1], 'x2': b[0], 'y2': b[1]})
-        pd.DataFrame(row_list).to_csv(directory + "/boundary.csv", index=False)
-
-    def export_polygons(self, directory):
-        row_list = []
-        colors = self._create_color()
-
-        for center in self.centers_dic.values():
-            b = True
-            polygon = []
-            for vertex in center.corners:
-                if vertex.position[0] < self.bounding_box[0] - 20 or vertex.position[0] > self.bounding_box[1] + 20 or \
-                   vertex.position[1] < self.bounding_box[2] - 20 or vertex.position[1] > self.bounding_box[3] + 20:
-                    if vertex.is_water:
-                        b = False
-                        break
-                polygon.append(vertex.position)
-
-            if b:
-                color = '#AADAFF' if center.is_water else colors[center.cluster][int(center.elevation)]
-                temp = []
-                for vertex in self._sort_clockwise(polygon):
-                    # vertices coordinates clockwise
-                    temp.append(vertex[0])
-                    temp.append(vertex[1])
-
-                temp.append(color) # append color at the end
-                row_list.append(temp)
-
-        pd.DataFrame.from_records(row_list).to_csv(directory + '/elevation.csv', index=False)
 
     def draw_graph(self):
         ax = plt.subplot()
@@ -314,10 +348,46 @@ class Graph:
 
             if b:
                 color = '#AADAFF' if center.is_water else colors[center.cluster][int(center.elevation)]
-                patches.append(Polygon(self._sort_clockwise(polygon), color=color))
+                patches.append(Polygon(polygon, color=color))
 
         p = PatchCollection(patches, alpha=0.8, match_original=True)
         ax.add_collection(p)
         plt.xlim(-80, 80)
         plt.ylim(-80, 80)
         plt.show()
+
+    def export_boundaries(self, directory):
+        row_list = []
+        for id, edge in self.edge_dic.items():
+            if edge.is_border:
+                a, b = edge.v0.position, edge.v1.position
+                row_list.append({'x1': a[0], 'y1': a[1], 'x2': b[0], 'y2': b[1]})
+        pd.DataFrame(row_list).to_csv(directory + "/boundary.csv", index=False)
+
+    def export_polygons(self, directory):
+        row_list = []
+        colors = self._create_color()
+
+        for center in self.centers_dic.values():
+            b = True
+            polygon = []
+            for vertex in center.corners:
+                if vertex.position[0] < self.bounding_box[0] - 15 or vertex.position[0] > self.bounding_box[1] + 15 or \
+                   vertex.position[1] < self.bounding_box[2] - 15 or vertex.position[1] > self.bounding_box[3] + 15:
+                    if vertex.is_water:
+                        b = False
+                        break
+                polygon.append(vertex.position)
+
+            if b:
+                color = '#AADAFF' if center.is_water else colors[center.cluster][int(center.elevation)]
+                temp = []
+                for vertex in polygon:
+                    # vertices coordinates clockwise
+                    temp.append(vertex[0])
+                    temp.append(vertex[1])
+
+                temp.append(color) # append color at the end
+                row_list.append(temp)
+
+        pd.DataFrame.from_records(row_list).to_csv(directory + '/elevation.csv', index=False)
