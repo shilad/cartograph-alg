@@ -5,12 +5,16 @@
 
 set -e
 set -x
+#"technology internet media science"
+listVar1="food"
 
-listVar1="technology internet media science"
+# Step 0: Import the experiment utilities functions
+source ./bin/experiment-utils.sh
+
+
 for i in $listVar1
 do
-    # Step 0: Import the experiment utilities functions
-    source ./bin/experiment-utils.sh
+
 
     # Assign variable name for label candidate we want (categories, links, keywork, etc)
     article_label_csv=article_keywords.csv
@@ -28,6 +32,7 @@ do
     # Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
     # The example below passes the equivalent of { "spread" : "17", "target_weight" : "0.5" }.
     write_experiment_params ${exp_dir} weight 1
+
     # Step 4: If you needed to generate augmented vectors,
     # do so now from vanilla_vectors.csv in the experiment directory.
 
@@ -57,13 +62,29 @@ do
     do
 
         # Step 6: Generate JSON
-        python -m cartograph.json_generator data/${i} ${exp_dir}/ kk  ${j}_country_labels.csv ${j}_cluster_groups.csv xy_embeddings.csv ${j}_domain.json
+        python -m cartograph.json_generator \
+            --map_directory data/${i} \
+            --experiment ${exp_dir}/ \
+            --filter_method kk  \
+            --country_labels ${j}_country_labels.csv \
+            --cluster_groups ${j}_cluster_groups.csv \
+            --embeddings xy_embeddings.csv \
+            --output_name ${j}_domain.json
 
         # draw boundary
-        python -m cartograph.border_creator ${exp_dir}/ xy_embeddings.csv ${j}_cluster_groups.csv
+        python -m cartograph.border_creator \
+                ${exp_dir}/ xy_embeddings.csv \
+                ${j}_cluster_groups.csv
 
         # Step 7: Run evaluation metrics and generate HTML & SVG
-        python -m cartograph.svg_generator ${exp_dir}/ 1500 1500 muted ${j}_domain.json ${j}_graph.svg ${j}_country_labels.csv
+        python -m cartograph.svg_generator \
+        --map_directory ${exp_dir}/ \
+        --width 1500 \
+        --height 1500 \
+        --color_palette muted \
+        --json_file ${j}_domain.json \
+        --output_file ${j}_graph.svg \
+        --country_labels ${j}_country_labels.csv
 
     done
 done

@@ -18,3 +18,4 @@ jinja2
 gensim
 spacy
 pygsp
+umap-learn
