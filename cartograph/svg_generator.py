@@ -74,12 +74,8 @@ def set_colors(countries_csv, color_palette):
     countries = pd.read_csv(countries_csv)
     colors = {}
     palette = sns.color_palette(color_palette, len(countries)).as_hex()
-
     for i in range(len(countries['country'])):
-        if 'label_name' in countries.columns:
-            colors[countries.iloc[i, 2]] = palette[i]
-        else:
-            colors[countries.iloc[i, 1]] = palette[i]
+        colors[countries.iloc[i]['label_name']] = palette[countries.iloc[i][0]]
     return colors
 
 
