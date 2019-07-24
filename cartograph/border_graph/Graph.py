@@ -372,8 +372,8 @@ class Graph:
             b = True
             polygon = []
             for vertex in center.corners:
-                if vertex.position[0] < self.bounding_box[0] - 15 or vertex.position[0] > self.bounding_box[1] + 15 or \
-                   vertex.position[1] < self.bounding_box[2] - 15 or vertex.position[1] > self.bounding_box[3] + 15:
+                if vertex.position[0] < self.bounding_box[0] - 0.1 or vertex.position[0] > self.bounding_box[1] + 0.1 or \
+                   vertex.position[1] < self.bounding_box[2] - 0.1 or vertex.position[1] > self.bounding_box[3] + 0.1:
                     if vertex.is_water:
                         b = False
                         break
