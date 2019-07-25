@@ -62,32 +62,40 @@ if __name__ == '__main__':
                                                  'cluster matrix.')
     parser.add_argument('--experiment', required=True)
     parser.add_argument('--vectors', required=True)
-    parser.add_argument('--label_vectors', required=True)
+    parser.add_argument('--label_vectors', required=False)
     parser.add_argument('--method', required=True)
-    parser.add_argument('--cluster_vectors', required=False)
-    parser.add_argument('--output_file', required=True)
-
     args = parser.parse_args()
 
     article_vectors = pd.read_csv(args.vectors)
-    label_csv = pd.read_csv(args.label_vectors)
-    label_vectors = get_label_svd(article_vectors, label_csv)
 
-    if args.method == 'label':
-        cluster_df = pd.merge(article_vectors, label_vectors, on='article_id')
-    elif args.method == 'cluster':
-        cluster_csv = pd.read_csv(args.cluster_vectors)
-        cluster_vectors = get_cluster_matrix(cluster_csv)
-        cluster_df = pd.merge(cluster_vectors, article_vectors, on='article_id')
-    elif args.method == 'all':
-        cluster_csv = pd.read_csv(args.cluster_vectors)
-        cluster_vectors = get_cluster_matrix(cluster_csv)
-        cluster_df_with_cluster = pd.merge(cluster_vectors, article_vectors, on='article_id')
-        cluster_df = pd.merge(cluster_df_with_cluster, label_vectors, on='article_id')
-    else:
-        sys.stderr.write("Unkonwn clustering method: %s\n" + args.clustering)
+    print(type(args.method))
+    if args.method != 'cluster' and args.method != 'label' and args.method != 'all':
+        sys.stderr.write("Unkonwn augmenting method: " + args.method)
         sys.exit(1)
-    cluster_df.to_csv('%s/%s' % (args.experiment, args.output_file), index=False)
+
+    elif args.method == 'cluster':
+        cluster_csv = pd.read_csv(args.experiment + '/cluster_groups.csv')
+        cluster_groups = get_cluster_matrix(cluster_csv)
+        cluster_df = pd.merge(cluster_groups, article_vectors, on='article_id')
+
+    else:
+        if args.label_vectors is None:
+            sys.stderr.write("Needs label vectors: " + args.method)
+            sys.exit(1)
+        else:
+            label_csv = pd.read_csv(args.label_vectors)
+            label_vectors = get_label_svd(article_vectors, label_csv)
+            if args.method == 'label':
+                cluster_df = pd.merge(article_vectors, label_vectors, on='article_id')
+            else:
+                cluster_csv = pd.read_csv(args.cluster_groups)
+                cluster_groups = get_cluster_matrix(cluster_csv)
+                cluster_df_with_cluster = pd.merge(cluster_groups, article_vectors, on='article_id')
+                cluster_df = pd.merge(cluster_df_with_cluster, label_vectors, on='article_id')
+
+    output_file = args.method + '_augmented_vectors.csv'
+    print(output_file)
+    cluster_df.to_csv('%s/%s' % (args.experiment, output_file), index=False)
 
 
 
