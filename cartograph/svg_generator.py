@@ -173,34 +173,32 @@ def draw_country_labels(d, country_labels_xy, font_size, colors):
             offset += 30
 
 
-def create_svg_file(directory, d, output_file):
+def create_svg_file(directory, d):
     d.setPixelScale(2)  # Set number of pixels per geometry unit
-    d.saveSvg(directory + output_file)
+    d.saveSvg(directory + '/graph.svg')
 
 
-def main(map_directory, width, height, color_palette, json_file, output_file, country_labels):
-    articles = get_articles_json(map_directory + json_file)
-    colors = set_colors(map_directory + country_labels, color_palette)
+def main(experiment, width, height, color_palette, json_file, country_labels):
+    articles = get_articles_json(json_file)
+    colors = set_colors(country_labels, color_palette)
     sizes = get_sizes(articles)
-    drawing = draw_svg(articles, float(width), float(height), colors, sizes, directory=map_directory)
-    create_svg_file(map_directory, drawing, output_file)
+    drawing = draw_svg(articles, float(width), float(height), colors, sizes, directory=experiment)
+    create_svg_file(experiment, drawing)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--map_directory', required=True)
+    parser.add_argument('--experiment', required=True)
     parser.add_argument('--width', required=True)
     parser.add_argument('--height', required=True)
     parser.add_argument('--color_palette', required=True)
-    parser.add_argument('--json_file', required=True)
-    parser.add_argument('--output_file', required=True)
-    parser.add_argument('--country_labels', required=True)
     args = parser.parse_args()
 
-    main(args.map_directory,
+    json_file = args.experiment + '/domain.json'
+    country_labels = args.experiment + '/country_labels.csv'
+    main(args.experiment,
          args.width,
          args.height,
          args.color_palette,
-         args.json_file,
-         args.output_file,
-         args.country_labels)
+         json_file,
+         country_labels)
