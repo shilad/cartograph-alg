@@ -7,7 +7,7 @@ Author: Yuren 'Rock' Pang
 """
 import time
 from collections import OrderedDict
-
+import argparse
 from jinja2 import Template
 from xml.dom import minidom
 import json
@@ -20,6 +20,7 @@ def get_params_and_values(file):
         dic = list(obj.items())[0]
         params_evals.update({dic[0]: dic[1]})
     return params_evals
+
 
 def main(experiment_directory, evaluation_json, params_json, graph_path):
     experiment_directory = experiment_directory.rstrip('/')
@@ -42,28 +43,30 @@ def main(experiment_directory, evaluation_json, params_json, graph_path):
                                eval_dic=eval_dic,
                                params_dic=params_dic)
 
+
 if __name__ == '__main__':
-    import sys
-    if len(sys.argv) != 3:
-        sys.stderr.write('Usage: %s map_directory augmentation_method' % sys.argv[0])
-        sys.exit(1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--experiment', required=True)
+    parser.add_argument('--purpose', required=True)
+    parser.add_argument('--label_path')
+    args = parser.parse_args()
 
-    experiment_directory = sys.argv[1]
-    label_path = sys.argv[2]
-    evaluation_json = label_path + "/evaluation.json"
+    experiment_directory = str(args.experiment)
+    label_path = str(args.label_path)
+
     params_json = experiment_directory + "/params.json"
-    graph_path = label_path + "/graph.svg"
 
-    file = open(label_path + "/index.html", "w+")
-    file.write(main(label_path, evaluation_json, params_json, graph_path))
-    file.close()
+    if args.purpose == 'study':
+        evaluation_json = label_path + "/evaluation.json"
+        graph_path = label_path + "/graph.svg"
 
+        file = open(label_path + "/index.html", "w+")
+        file.write(main(label_path, evaluation_json, params_json, graph_path))
+        file.close()
+    else:
+        evaluation_json = experiment_directory + "/evaluation.json"
+        graph_path = experiment_directory + "/graph.svg"
 
-
-# html = main("../experiments/food/0001", "../experiments/food/0001/evaluation.json", "../experiments/food/0001/params.json")
-# file = open("../experiments/food/0001/index.html", "w+")
-# file.write(html)
-# file.close()
-#
-# # doc = minidom.parse("../experiments/food/0001/graph.svg")
-# # print(doc.toxml())
+        file = open(experiment_directory + "/index.html", "w+")
+        file.write(main(experiment_directory, evaluation_json, params_json, graph_path))
+        file.close()

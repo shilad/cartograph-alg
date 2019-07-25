@@ -4,15 +4,19 @@ Given vectors for domain concepts, produces (x, y) embeddings using UMAP.
 Author: Jonathan Scott
 """
 import pandas as pd
-import umap
+
 import os
 import argparse
+import umap
+import warnings
+warnings.filterwarnings('ignore')
 
 
-def create_embeddings(vector_directory, spread, tw, clusters=None):
+
+def create_embeddings(vector_directory, spread=20.0, tw=0.5, clusters=None):
     df = pd.read_csv(vector_directory)
-    if clusters:
-        cluster_groups = pd.read_csv(clusters)
+    if clusters is not None:
+        cluster_groups = clusters  # pd.read_csv(clusters)
         df = pd.merge(df, cluster_groups, on='article_id')
         points = umap.UMAP(metric='cosine', spread=spread, target_weight=tw).fit_transform(df.iloc[:, 1:-1], y=df.iloc[:, -1])
     else:
@@ -37,8 +41,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Reduce dimensionality of vectors to 2D using UMAP.')
     parser.add_argument('--map_directory', required=True)
     parser.add_argument('--vectors', required=True)
-    parser.add_argument('--spread', default=1.0)
-    parser.add_argument('--clusters', required=True)
+    parser.add_argument('--spread', default=20.0)
+    parser.add_argument('--clusters', default=None)
     parser.add_argument('--tw', default=0.5, )
 
     args = parser.parse_args()
