@@ -53,9 +53,7 @@ do
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=0101
-
-    # $(get_experiment_id)
+    exp_id=$(get_experiment_id)
 
     # Step 2: Prepare an experiment directory for a specific map.
     exp_dir=$(prepare_experiment_dir food ${exp_id})
@@ -82,7 +80,11 @@ do
     --label_score tfidf \
     --percentile 0.3 \
     --cluster_groups /original_cluster_groups.csv\
-    --output_file /original_country_labels.csv
+    --output_file /original_country_labels.csv \
+    --purpose experiment \
+    --label_path na \
+    --soft_labeling False \
+    --num_candidates 0 \
 
     # draw boundary
     python -m cartograph.border_creator ${exp_dir} /original_xy_embeddings.csv /original_cluster_groups.csv
