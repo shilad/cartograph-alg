@@ -5,10 +5,10 @@ Author: Lily Irvin
 """
 import argparse
 from collections import defaultdict
-
 import numpy as np
 import pandas as pd
 from gensim.parsing.porter import PorterStemmer
+import os
 
 
 def add_country_label_counts(labels_df):
@@ -29,6 +29,7 @@ def add_country_counts(labels_df):
     labels_df = pd.merge(labels_df, counts, on='country')
     counts = labels_df.groupby(["country"])['article_id'].nunique().reset_index(name="num_country_articles")
     return pd.merge(labels_df, counts, on='country')
+
 
 def add_totals(labels_df):
     labels_df['num_countries'] = labels_df['country'].nunique()
@@ -72,7 +73,7 @@ def assign_country_label_ids(country_scores, label_score, soft_labeling, num_can
 
         for row in country_scores.itertuples():
             if len(final_labels[row.country]) <= num_candidates and row.stem not in used_stems:
-                final_labels[row.country].add(row.label)
+                final_labels[row.country].add(row.label.replace('_', ' '))
                 final_ids[row.country].add(int(row.label_id))
                 used_stems.add(row.stem)
     else:
@@ -81,13 +82,31 @@ def assign_country_label_ids(country_scores, label_score, soft_labeling, num_can
 
         for row in country_scores.itertuples():
             if row.country not in final_labels and row.stem not in used_stems:
-                final_labels[row.country] = row.label
+                final_labels[row.country] = row.label.replace('_', ' ')
                 final_ids[row.country] = row.label_id
                 used_stems.add(row.stem)
     return final_labels, final_ids
 
 
-def main(experiment_dir, article_labels, percentile, label_score, output_file, soft_labeling, num_candidates):
+def get_top_labels(country_scores, label_score):
+    """Output: Dictionary --> key = country, value = list of top labels"""
+
+    ps = PorterStemmer()
+    country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
+    country_scores = country_scores.sort_values(by=label_score, ascending=False)
+    top_labels = [[] for x in range(country_scores['num_countries'][0])]
+    used_stems = set()
+
+    for row in country_scores.itertuples():
+        if row.stem not in used_stems:
+            if len(top_labels[row.country]) < 10:
+                top_labels[row.country].append(row.label)
+                used_stems.add(row.stem)
+    return top_labels
+
+
+def main(experiment_dir, article_labels, percentile, label_score, output_file, soft_labeling, num_candidates, purpose, label_path):
+
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
         print("Selecting labels with noise filtering------------------------------")
@@ -112,9 +131,31 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     # # Create results data frame
     df = pd.DataFrame(final_labels,  index=[0]).T
     df['country'] = df.index
-    df['label_id'] = np.array(list(final_scores.values())).T
-    df.columns = ['label_name', 'country', 'label_id']
-    df.to_csv(experiment_dir + output_file, index=True)
+
+    if purpose == 'study':
+        df = df.set_index('country')
+        df.columns = ['label_name']
+        df.to_csv(label_path + '/final_labels.csv', index=True)
+    else:
+        df['label_id'] = np.array(list(final_scores.values())).T
+        df.columns = ['label_name', 'country', 'label_id']
+        df.to_csv(experiment_dir + output_file, index=True)
+
+    # # Get top label candidates
+    top = get_top_labels(country_labels, label_score)
+
+    column_names = []
+    for i in range(1, 11):
+        column_names.append(str(i))
+
+    top_df = pd.DataFrame.from_records(top, columns=column_names)
+    top_df['country'] = top_df.index
+    top_df = top_df.set_index('country')
+
+    if purpose == 'study':
+        top_df.to_csv(label_path + '/top_labels.csv')
+    else:
+        top_df.to_csv(experiment_dir + '/top_labels.csv')
 
 
 if __name__ == '__main__':
@@ -128,13 +169,18 @@ if __name__ == '__main__':
     parser.add_argument('--output_file', required=True)
     parser.add_argument('--soft_labeling', required=True)
     parser.add_argument('--num_candidates', required=True, type=int)
+    parser.add_argument('--purpose', required=True)
+    parser.add_argument('--label_path')
 
     args = parser.parse_args()
 
+    label_path = str(args.label_path)
+
     article_labels = pd.read_csv(args.articles_to_labels)
+
     country_clusters = pd.read_csv(args.experiment + args.cluster_groups)
     label_names = pd.read_csv(args.label_names)
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
 
-    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates)
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates, args.purpose, label_path)

@@ -1,0 +1,1217 @@
+,article_name,country,treatment
+0,Acetic acid,0,kmeans_augmented
+1,Guinea pig,0,kmeans_augmented
+2,Ketogenic diet,0,kmeans_augmented
+3,Maple syrup,0,kmeans_augmented
+4,Agriculture,0,kmeans_augmented
+5,Carnauba wax,0,kmeans_augmented
+6,Genetic engineering,0,kmeans_augmented
+7,Salt,0,kmeans_augmented
+8,Sugar,0,kmeans_augmented
+9,Vitamin,0,kmeans_augmented
+10,Vitamin C,0,kmeans_augmented
+11,Acetaldehyde,0,kmeans_augmented
+12,Adolf Hitler and vegetarianism,0,kmeans_augmented
+13,Agar,0,kmeans_augmented
+14,Alum,0,kmeans_augmented
+15,Aspartame,0,kmeans_augmented
+16,Benzaldehyde,0,kmeans_augmented
+17,Borax,0,kmeans_augmented
+18,Botulism,0,kmeans_augmented
+19,Butter,0,kmeans_augmented
+20,Caffeine,0,kmeans_augmented
+21,Camphor,0,kmeans_augmented
+22,Capsaicin,0,kmeans_augmented
+23,Chocolate,0,kmeans_augmented
+24,Coffee,0,kmeans_augmented
+25,Coffee bean,0,kmeans_augmented
+26,Colostrum,0,kmeans_augmented
+27,Cooking oil,0,kmeans_augmented
+28,Curcumin,0,kmeans_augmented
+29,Dietary supplement,0,kmeans_augmented
+30,Drinking water,0,kmeans_augmented
+31,Ethyl acetate,0,kmeans_augmented
+32,Farmer,0,kmeans_augmented
+33,Food security,0,kmeans_augmented
+34,Foodborne illness,0,kmeans_augmented
+35,Fructose,0,kmeans_augmented
+36,Gelatin,0,kmeans_augmented
+37,Genetically modified crops,0,kmeans_augmented
+38,Genetically modified food,0,kmeans_augmented
+39,Glycine,0,kmeans_augmented
+40,Golden rice,0,kmeans_augmented
+41,Green tea,0,kmeans_augmented
+42,Hand washing,0,kmeans_augmented
+43,Hazard analysis and critical control points,0,kmeans_augmented
+44,History of coffee,0,kmeans_augmented
+45,Honey,0,kmeans_augmented
+46,Infant formula,0,kmeans_augmented
+47,Lactic acid,0,kmeans_augmented
+48,Limonene,0,kmeans_augmented
+49,Menthol,0,kmeans_augmented
+50,Microwave oven,0,kmeans_augmented
+51,Milk,0,kmeans_augmented
+52,Monosodium glutamate,0,kmeans_augmented
+53,Nutrition,0,kmeans_augmented
+54,Paleolithic diet,0,kmeans_augmented
+55,Pasteurization,0,kmeans_augmented
+56,Peanut butter,0,kmeans_augmented
+57,Pectin,0,kmeans_augmented
+58,Phosphoric acid,0,kmeans_augmented
+59,Popcorn,0,kmeans_augmented
+60,Potassium iodide,0,kmeans_augmented
+61,Potassium nitrate,0,kmeans_augmented
+62,Refrigeration,0,kmeans_augmented
+63,Saccharin,0,kmeans_augmented
+64,Sodium chloride,0,kmeans_augmented
+65,Soy milk,0,kmeans_augmented
+66,Soybean,0,kmeans_augmented
+67,Sucralose,0,kmeans_augmented
+68,Sucrose,0,kmeans_augmented
+69,Taste,0,kmeans_augmented
+70,Theobromine,0,kmeans_augmented
+71,Theophylline,0,kmeans_augmented
+72,Titanium dioxide,0,kmeans_augmented
+73,Tocopherol,0,kmeans_augmented
+74,Trans fat,0,kmeans_augmented
+75,Vanillin,0,kmeans_augmented
+76,Veganism,0,kmeans_augmented
+77,Vegetable oil,0,kmeans_augmented
+78,Vegetarianism,0,kmeans_augmented
+79,Acesulfame potassium,0,kmeans_augmented
+80,Ajinomoto,0,kmeans_augmented
+81,Atkins diet,0,kmeans_augmented
+82,Baking powder,0,kmeans_augmented
+83,Carrageenan,0,kmeans_augmented
+84,Casein,0,kmeans_augmented
+85,Cereal,0,kmeans_augmented
+86,Chewing gum,0,kmeans_augmented
+87,Chlorella,0,kmeans_augmented
+88,Citric acid,0,kmeans_augmented
+89,Cocoa bean,0,kmeans_augmented
+90,Coconut oil,0,kmeans_augmented
+91,Coconut water,0,kmeans_augmented
+92,Coffee percolator,0,kmeans_augmented
+93,Cultured meat,0,kmeans_augmented
+94,Dairy,0,kmeans_augmented
+95,Decaffeination,0,kmeans_augmented
+96,Decomposition,0,kmeans_augmented
+97,Diet Coke and Mentos eruption,0,kmeans_augmented
+98,Dietary fiber,0,kmeans_augmented
+99,Drinking straw,0,kmeans_augmented
+100,Dry ice,0,kmeans_augmented
+101,Energy drink,0,kmeans_augmented
+102,Environmental impact of meat production,0,kmeans_augmented
+103,Ethylenediaminetetraacetic acid,0,kmeans_augmented
+104,FODMAP,0,kmeans_augmented
+105,Fermentation,0,kmeans_augmented
+106,Food,0,kmeans_augmented
+107,Food and Drug Administration,0,kmeans_augmented
+108,Food irradiation,0,kmeans_augmented
+109,Food preservation,0,kmeans_augmented
+110,Food pyramid (nutrition),0,kmeans_augmented
+111,Food safety,0,kmeans_augmented
+112,Freeze-drying,0,kmeans_augmented
+113,Fruitarianism,0,kmeans_augmented
+114,Galactose,0,kmeans_augmented
+115,Gallon,0,kmeans_augmented
+116,Genetically modified food controversies,0,kmeans_augmented
+117,George Washington Carver,0,kmeans_augmented
+118,Glucose,0,kmeans_augmented
+119,Glutamic acid,0,kmeans_augmented
+120,Gluten,0,kmeans_augmented
+121,Gluten-free diet,0,kmeans_augmented
+122,Glycemic index,0,kmeans_augmented
+123,Gum arabic,0,kmeans_augmented
+124,Halite,0,kmeans_augmented
+125,Healthy diet,0,kmeans_augmented
+126,Hemp,0,kmeans_augmented
+127,Hemp oil,0,kmeans_augmented
+128,Himalayan salt,0,kmeans_augmented
+129,History of chocolate,0,kmeans_augmented
+130,Human nutrition,0,kmeans_augmented
+131,Induction cooking,0,kmeans_augmented
+132,Inedia,0,kmeans_augmented
+133,Juice,0,kmeans_augmented
+134,Junk food,0,kmeans_augmented
+135,Kala namak,0,kmeans_augmented
+136,Kombucha,0,kmeans_augmented
+137,Lactose,0,kmeans_augmented
+138,Lactose intolerance,0,kmeans_augmented
+139,Liquid–liquid extraction,0,kmeans_augmented
+140,Liver,0,kmeans_augmented
+141,Livestock,0,kmeans_augmented
+142,Low-carbohydrate diet,0,kmeans_augmented
+143,Macrobiotic diet,0,kmeans_augmented
+144,Magnesium,0,kmeans_augmented
+145,Maillard reaction,0,kmeans_augmented
+146,Malic acid,0,kmeans_augmented
+147,Maltose,0,kmeans_augmented
+148,Mannitol,0,kmeans_augmented
+149,Margarine,0,kmeans_augmented
+150,Methyl salicylate,0,kmeans_augmented
+151,Mineral (nutrient),0,kmeans_augmented
+152,Molasses,0,kmeans_augmented
+153,Nutrient,0,kmeans_augmented
+154,Nutrition facts label,0,kmeans_augmented
+155,Oil,0,kmeans_augmented
+156,Oligosaccharide,0,kmeans_augmented
+157,Olive oil,0,kmeans_augmented
+158,Orange juice,0,kmeans_augmented
+159,Organic farming,0,kmeans_augmented
+160,Organic food,0,kmeans_augmented
+161,Palm oil,0,kmeans_augmented
+162,Paraben,0,kmeans_augmented
+163,Paraffin wax,0,kmeans_augmented
+164,Plant nutrition,0,kmeans_augmented
+165,Plastic bag,0,kmeans_augmented
+166,Potassium chloride,0,kmeans_augmented
+167,Pressure cooking,0,kmeans_augmented
+168,Protease,0,kmeans_augmented
+169,Quinine,0,kmeans_augmented
+170,Quorn,0,kmeans_augmented
+171,Ranch,0,kmeans_augmented
+172,Red meat,0,kmeans_augmented
+173,Refrigerator,0,kmeans_augmented
+174,Saccharomyces cerevisiae,0,kmeans_augmented
+175,Sea salt,0,kmeans_augmented
+176,Shellac,0,kmeans_augmented
+177,Smoke point,0,kmeans_augmented
+178,Sodium acetate,0,kmeans_augmented
+179,Sodium bicarbonate,0,kmeans_augmented
+180,Sorbitol,0,kmeans_augmented
+181,Spirulina (dietary supplement),0,kmeans_augmented
+182,Starch,0,kmeans_augmented
+183,Stevia,0,kmeans_augmented
+184,Sugar alcohol,0,kmeans_augmented
+185,Sugar beet,0,kmeans_augmented
+186,Sugar substitute,0,kmeans_augmented
+187,Sulfur dioxide,0,kmeans_augmented
+188,Sunflower oil,0,kmeans_augmented
+189,The China Study,0,kmeans_augmented
+190,Ultra-high-temperature processing,0,kmeans_augmented
+191,Unsaturated fat,0,kmeans_augmented
+192,Vinegar,0,kmeans_augmented
+193,Vitamin E,0,kmeans_augmented
+194,Water,0,kmeans_augmented
+195,Water supply,0,kmeans_augmented
+196,Weight loss,0,kmeans_augmented
+197,World Food Programme,0,kmeans_augmented
+198,Xanthan gum,0,kmeans_augmented
+199,Xylitol,0,kmeans_augmented
+200,Yakult,0,kmeans_augmented
+201,Yeast,0,kmeans_augmented
+202,A2 milk,0,kmeans_augmented
+203,Acetone,0,kmeans_augmented
+204,Almond milk,0,kmeans_augmented
+205,Ammonium chloride,0,kmeans_augmented
+206,Amylase,0,kmeans_augmented
+207,Animal slaughter,0,kmeans_augmented
+208,Apple cider vinegar,0,kmeans_augmented
+209,Aspartic acid,0,kmeans_augmented
+210,Astaxanthin,0,kmeans_augmented
+211,Baker's yeast,0,kmeans_augmented
+212,Benzyl alcohol,0,kmeans_augmented
+213,Beta-Carotene,0,kmeans_augmented
+214,Borscht,1,kmeans_augmented
+215,Gumbo,1,kmeans_augmented
+216,Medieval cuisine,1,kmeans_augmented
+217,Clotted cream,1,kmeans_augmented
+218,Deep frying,1,kmeans_augmented
+219,Falafel,1,kmeans_augmented
+220,French cuisine,1,kmeans_augmented
+221,French fries,1,kmeans_augmented
+222,Fried chicken,1,kmeans_augmented
+223,Israeli cuisine,1,kmeans_augmented
+224,Kashrut,1,kmeans_augmented
+225,Mediterranean cuisine,1,kmeans_augmented
+226,Pasty,1,kmeans_augmented
+227,Poultry,1,kmeans_augmented
+228,Poutine,1,kmeans_augmented
+229,Steak,1,kmeans_augmented
+230,Angus cattle,1,kmeans_augmented
+231,Bacon,1,kmeans_augmented
+232,Bagel,1,kmeans_augmented
+233,Barbecue,1,kmeans_augmented
+234,Beef,1,kmeans_augmented
+235,Béarnaise sauce,1,kmeans_augmented
+236,Cheddar cheese,1,kmeans_augmented
+237,Chicken Kiev,1,kmeans_augmented
+238,Chopsticks,1,kmeans_augmented
+239,Couscous,1,kmeans_augmented
+240,Crème fraîche,1,kmeans_augmented
+241,Cuban sandwich,1,kmeans_augmented
+242,Dog meat,1,kmeans_augmented
+243,Egg as food,1,kmeans_augmented
+244,Fish and chips,1,kmeans_augmented
+245,Foie gras,1,kmeans_augmented
+246,Fruit preserves,1,kmeans_augmented
+247,Glutinous rice,1,kmeans_augmented
+248,Gratin,1,kmeans_augmented
+249,Hamburger,1,kmeans_augmented
+250,History of the hamburger,1,kmeans_augmented
+251,Hollandaise sauce,1,kmeans_augmented
+252,Hot dog,1,kmeans_augmented
+253,Ice cream,1,kmeans_augmented
+254,Indian cuisine,1,kmeans_augmented
+255,Japanese cuisine,1,kmeans_augmented
+256,Ketchup,1,kmeans_augmented
+257,Korean cuisine,1,kmeans_augmented
+258,Latte,1,kmeans_augmented
+259,Mayonnaise,1,kmeans_augmented
+260,"Meal, Ready-to-Eat",1,kmeans_augmented
+261,Meat,1,kmeans_augmented
+262,Paella,1,kmeans_augmented
+263,Parmigiano-Reggiano,1,kmeans_augmented
+264,Pasta,1,kmeans_augmented
+265,Peking duck,1,kmeans_augmented
+266,Pho,1,kmeans_augmented
+267,Polish cuisine,1,kmeans_augmented
+268,Potato chip,1,kmeans_augmented
+269,Russian cuisine,1,kmeans_augmented
+270,Soul food,1,kmeans_augmented
+271,Spam (food),1,kmeans_augmented
+272,Stir frying,1,kmeans_augmented
+273,Tabasco sauce,1,kmeans_augmented
+274,Tempeh,1,kmeans_augmented
+275,Tempura,1,kmeans_augmented
+276,Truffle,1,kmeans_augmented
+277,Turducken,1,kmeans_augmented
+278,Turkish coffee,1,kmeans_augmented
+279,Waffle,1,kmeans_augmented
+280,Yogurt,1,kmeans_augmented
+281,Zongzi,1,kmeans_augmented
+282,American Chinese cuisine,1,kmeans_augmented
+283,Amuse-bouche,1,kmeans_augmented
+284,Arab cuisine,1,kmeans_augmented
+285,Aspic,1,kmeans_augmented
+286,Australian cuisine,1,kmeans_augmented
+287,Bain-marie,1,kmeans_augmented
+288,Baking,1,kmeans_augmented
+289,Baklava,1,kmeans_augmented
+290,Bento,1,kmeans_augmented
+291,Biscuit,1,kmeans_augmented
+292,Boiled egg,1,kmeans_augmented
+293,Bread,1,kmeans_augmented
+294,Breakfast,1,kmeans_augmented
+295,Brioche,1,kmeans_augmented
+296,Brunch,1,kmeans_augmented
+297,Bubble tea,1,kmeans_augmented
+298,Buffalo mozzarella,1,kmeans_augmented
+299,Buffalo wing,1,kmeans_augmented
+300,Buffet,1,kmeans_augmented
+301,Burns supper,1,kmeans_augmented
+302,Burrito,1,kmeans_augmented
+303,Butter chicken,1,kmeans_augmented
+304,Buttermilk,1,kmeans_augmented
+305,Caesar salad,1,kmeans_augmented
+306,Cake,1,kmeans_augmented
+307,California roll,1,kmeans_augmented
+308,Capocollo,1,kmeans_augmented
+309,Cappuccino,1,kmeans_augmented
+310,Carbonara,1,kmeans_augmented
+311,Cast-iron cookware,1,kmeans_augmented
+312,Casu marzu,1,kmeans_augmented
+313,Century egg,1,kmeans_augmented
+314,Challah,1,kmeans_augmented
+315,Charcuterie,1,kmeans_augmented
+316,Chateaubriand steak,1,kmeans_augmented
+317,Cheese,1,kmeans_augmented
+318,Cheesecake,1,kmeans_augmented
+319,Cheesesteak,1,kmeans_augmented
+320,Chicago-style pizza,1,kmeans_augmented
+321,Chicken as food,1,kmeans_augmented
+322,Chili con carne,1,kmeans_augmented
+323,Chinese cuisine,1,kmeans_augmented
+324,Chorizo,1,kmeans_augmented
+325,Chowder,1,kmeans_augmented
+326,Christmas dinner,1,kmeans_augmented
+327,Chutney,1,kmeans_augmented
+328,Comfort food,1,kmeans_augmented
+329,Condensed milk,1,kmeans_augmented
+330,Confectionery,1,kmeans_augmented
+331,Congee,1,kmeans_augmented
+332,Cookie,1,kmeans_augmented
+333,Cooking,1,kmeans_augmented
+334,Coq au vin,1,kmeans_augmented
+335,Corn dog,1,kmeans_augmented
+336,Cornmeal,1,kmeans_augmented
+337,Crêpe,1,kmeans_augmented
+338,Cupcake,1,kmeans_augmented
+339,Curing (food preservation),1,kmeans_augmented
+340,Curry,1,kmeans_augmented
+341,Danish cuisine,1,kmeans_augmented
+342,Delicatessen,1,kmeans_augmented
+343,Dessert,1,kmeans_augmented
+344,Dim sum,1,kmeans_augmented
+345,Dolma,1,kmeans_augmented
+346,Domestic pig,1,kmeans_augmented
+347,Doneness,1,kmeans_augmented
+348,Dosa,1,kmeans_augmented
+349,Doughnut,1,kmeans_augmented
+350,Easter egg,1,kmeans_augmented
+351,Egg foo young,1,kmeans_augmented
+352,Eggs Benedict,1,kmeans_augmented
+353,Espresso,1,kmeans_augmented
+354,Ethiopian cuisine,1,kmeans_augmented
+355,Evaporated milk,1,kmeans_augmented
+356,Fettuccine Alfredo,1,kmeans_augmented
+357,Fish sauce,1,kmeans_augmented
+358,Flour,1,kmeans_augmented
+359,Fondue,1,kmeans_augmented
+360,French toast,1,kmeans_augmented
+361,Fudge,1,kmeans_augmented
+362,Ganache,1,kmeans_augmented
+363,Gelato,1,kmeans_augmented
+364,Gnocchi,1,kmeans_augmented
+365,Goat,1,kmeans_augmented
+366,Goat meat,1,kmeans_augmented
+367,Golden syrup,1,kmeans_augmented
+368,Graham cracker,1,kmeans_augmented
+369,Granola,1,kmeans_augmented
+370,Greek cuisine,1,kmeans_augmented
+371,Grilling,1,kmeans_augmented
+372,Grits,1,kmeans_augmented
+373,Gyro (food),1,kmeans_augmented
+374,HP Sauce,1,kmeans_augmented
+375,Haggis,1,kmeans_augmented
+376,Halva,1,kmeans_augmented
+377,Ham,1,kmeans_augmented
+378,Hardtack,1,kmeans_augmented
+379,Head cheese,1,kmeans_augmented
+380,Herbes de Provence,1,kmeans_augmented
+381,Hors d'oeuvre,1,kmeans_augmented
+382,Horse meat,1,kmeans_augmented
+383,Hummus,1,kmeans_augmented
+384,Idli,1,kmeans_augmented
+385,Injera,1,kmeans_augmented
+386,Instant noodle,1,kmeans_augmented
+387,Iranian cuisine,1,kmeans_augmented
+388,Irish cuisine,1,kmeans_augmented
+389,Italian cuisine,1,kmeans_augmented
+390,Izakaya,1,kmeans_augmented
+391,Jaffa Cakes,1,kmeans_augmented
+392,Japanese curry,1,kmeans_augmented
+393,Japanese tea ceremony,1,kmeans_augmented
+394,Jerky,1,kmeans_augmented
+395,Kebab,1,kmeans_augmented
+396,Kimchi,1,kmeans_augmented
+397,Kofta,1,kmeans_augmented
+398,Lamb and mutton,1,kmeans_augmented
+399,Lard,1,kmeans_augmented
+400,Lasagne,1,kmeans_augmented
+401,Lassi,1,kmeans_augmented
+402,Last Supper,1,kmeans_augmented
+403,Lo mein,1,kmeans_augmented
+404,Lunch,1,kmeans_augmented
+405,Lutefisk,1,kmeans_augmented
+406,Macaron,1,kmeans_augmented
+407,Manchego,1,kmeans_augmented
+408,Marinara sauce,1,kmeans_augmented
+409,Marmalade,1,kmeans_augmented
+410,Marmite,1,kmeans_augmented
+411,Marzipan,1,kmeans_augmented
+412,Matcha,1,kmeans_augmented
+413,Matzo,1,kmeans_augmented
+414,Meatloaf,1,kmeans_augmented
+415,Meringue,1,kmeans_augmented
+416,Mince pie,1,kmeans_augmented
+417,Mooncake,1,kmeans_augmented
+418,Mozzarella,1,kmeans_augmented
+419,Mustard (condiment),1,kmeans_augmented
+420,Nachos,1,kmeans_augmented
+421,Nathan's Hot Dog Eating Contest,1,kmeans_augmented
+422,Noodle,1,kmeans_augmented
+423,Oatmeal,1,kmeans_augmented
+424,Offal,1,kmeans_augmented
+425,Oven,1,kmeans_augmented
+426,Pancake,1,kmeans_augmented
+427,Panini (sandwich),1,kmeans_augmented
+428,Papadum,1,kmeans_augmented
+429,Paprika,1,kmeans_augmented
+430,Paratha,1,kmeans_augmented
+431,Pastel de nata,1,kmeans_augmented
+432,Peanut butter and jelly sandwich,1,kmeans_augmented
+433,Pemmican,1,kmeans_augmented
+434,Peruvian cuisine,1,kmeans_augmented
+435,Pickled cucumber,1,kmeans_augmented
+436,Pico de gallo,1,kmeans_augmented
+437,Pizza,1,kmeans_augmented
+438,Poached egg,1,kmeans_augmented
+439,Poblano,1,kmeans_augmented
+440,Poi (food),1,kmeans_augmented
+441,Polenta,1,kmeans_augmented
+442,Pork,1,kmeans_augmented
+443,Pork roll,1,kmeans_augmented
+444,Porridge,1,kmeans_augmented
+445,Portuguese cuisine,1,kmeans_augmented
+446,Potato pancake,1,kmeans_augmented
+447,Pudding,1,kmeans_augmented
+448,Pumpernickel,1,kmeans_augmented
+449,Ramen,1,kmeans_augmented
+450,Roquefort,1,kmeans_augmented
+451,Roti,1,kmeans_augmented
+452,Rutabaga,1,kmeans_augmented
+453,Rye bread,1,kmeans_augmented
+454,Salad,1,kmeans_augmented
+455,Salami,1,kmeans_augmented
+456,Samosa,1,kmeans_augmented
+457,Samovar,1,kmeans_augmented
+458,Sandwich,1,kmeans_augmented
+459,Sauerkraut,1,kmeans_augmented
+460,Sausage,1,kmeans_augmented
+461,Scrapple,1,kmeans_augmented
+462,Sloppy joe,1,kmeans_augmented
+463,Smoking (cooking),1,kmeans_augmented
+464,Smörgåsbord,1,kmeans_augmented
+465,Sourdough,1,kmeans_augmented
+466,Soy sauce,1,kmeans_augmented
+467,Spaghetti,1,kmeans_augmented
+468,Spaghetti alla puttanesca,1,kmeans_augmented
+469,Spanish cuisine,1,kmeans_augmented
+470,Submarine sandwich,1,kmeans_augmented
+471,Sushi,1,kmeans_augmented
+472,Taco,1,kmeans_augmented
+473,Tajine,1,kmeans_augmented
+474,Takeru Kobayashi,1,kmeans_augmented
+475,Tandoori chicken,1,kmeans_augmented
+476,Tapas,1,kmeans_augmented
+477,Tea (meal),1,kmeans_augmented
+478,Tea in the United Kingdom,1,kmeans_augmented
+479,Thanksgiving,1,kmeans_augmented
+480,Thousand Island dressing,1,kmeans_augmented
+481,Toast sandwich,1,kmeans_augmented
+482,Tofu,1,kmeans_augmented
+483,Treacle,1,kmeans_augmented
+484,Turkish cuisine,1,kmeans_augmented
+485,Turkish delight,1,kmeans_augmented
+486,Types of cheese,1,kmeans_augmented
+487,Vegetarianism by country,1,kmeans_augmented
+488,Wagyu,1,kmeans_augmented
+489,Wedding cake,1,kmeans_augmented
+490,Welsh rarebit,1,kmeans_augmented
+491,Wheat gluten (food),1,kmeans_augmented
+492,Worcestershire sauce,1,kmeans_augmented
+493,Yolk,1,kmeans_augmented
+494,Étouffée,1,kmeans_augmented
+495,Aioli,1,kmeans_augmented
+496,Air fryer,1,kmeans_augmented
+497,Al dente,1,kmeans_augmented
+498,Al pastor,1,kmeans_augmented
+499,American cheese,1,kmeans_augmented
+500,Andouille,1,kmeans_augmented
+501,Apple pie,1,kmeans_augmented
+502,Arepa,1,kmeans_augmented
+503,Baba ghanoush,1,kmeans_augmented
+504,Babka (cake),1,kmeans_augmented
+505,Baguette,1,kmeans_augmented
+506,Baked Alaska,1,kmeans_augmented
+507,Baked beans,1,kmeans_augmented
+508,Baked potato,1,kmeans_augmented
+509,Balsamic vinegar,1,kmeans_augmented
+510,Balut (food),1,kmeans_augmented
+511,Bangers and mash,1,kmeans_augmented
+512,Baozi,1,kmeans_augmented
+513,Barbecue sauce,1,kmeans_augmented
+514,Beef Stroganoff,1,kmeans_augmented
+515,Beef Wellington,1,kmeans_augmented
+516,Beef aging,1,kmeans_augmented
+517,Beef bourguignon,1,kmeans_augmented
+518,Beignet,1,kmeans_augmented
+519,Black Dahlia,2,kmeans_augmented
+520,Marcus Wareing,2,kmeans_augmented
+521,Nigella Lawson,2,kmeans_augmented
+522,The Fat Duck,2,kmeans_augmented
+523,Alton Brown,2,kmeans_augmented
+524,Anne Burrell,2,kmeans_augmented
+525,Gordon Ramsay,2,kmeans_augmented
+526,Ina Garten,2,kmeans_augmented
+527,Julia Child,2,kmeans_augmented
+528,Kitchen,2,kmeans_augmented
+529,Mary Berry,2,kmeans_augmented
+530,Michelin Guide,2,kmeans_augmented
+531,Rachael Ray,2,kmeans_augmented
+532,Space Needle,2,kmeans_augmented
+533,Andrew Zimmern,2,kmeans_augmented
+534,Anthony Bourdain,2,kmeans_augmented
+535,Bouncer (doorman),2,kmeans_augmented
+536,Cafeteria,2,kmeans_augmented
+537,Cheers,2,kmeans_augmented
+538,Chef,2,kmeans_augmented
+539,Chez Panisse,2,kmeans_augmented
+540,Christina Tosi,2,kmeans_augmented
+541,Coffeehouse,2,kmeans_augmented
+542,Coyote Ugly (film),2,kmeans_augmented
+543,Dom DeLuise,2,kmeans_augmented
+544,Duff Goldman,2,kmeans_augmented
+545,Flat white,2,kmeans_augmented
+546,Gentlemen's club,2,kmeans_augmented
+547,Giada De Laurentiis,2,kmeans_augmented
+548,Gregg Wallace,2,kmeans_augmented
+549,Guy Fieri,2,kmeans_augmented
+550,Hairy Bikers,2,kmeans_augmented
+551,Heston Blumenthal,2,kmeans_augmented
+552,Home economics,2,kmeans_augmented
+553,Iron Chef,2,kmeans_augmented
+554,Jamie Oliver,2,kmeans_augmented
+555,Jessica Seinfeld,2,kmeans_augmented
+556,John Torode,2,kmeans_augmented
+557,Keith Floyd,2,kmeans_augmented
+558,Kimbal Musk,2,kmeans_augmented
+559,Kitchen Nightmares,2,kmeans_augmented
+560,Leah Chase,2,kmeans_augmented
+561,Lidia Bastianich,2,kmeans_augmented
+562,Martha Stewart,2,kmeans_augmented
+563,MasterChef Australia,2,kmeans_augmented
+564,My Kitchen Rules,2,kmeans_augmented
+565,Padma Lakshmi,2,kmeans_augmented
+566,Party,2,kmeans_augmented
+567,Paula Deen,2,kmeans_augmented
+568,Ramsay's Kitchen Nightmares,2,kmeans_augmented
+569,Restaurant,2,kmeans_augmented
+570,Rick Stein,2,kmeans_augmented
+571,Robert Irvine,2,kmeans_augmented
+572,Sideways,2,kmeans_augmented
+573,Sophie Dahl,2,kmeans_augmented
+574,Sous-vide,2,kmeans_augmented
+575,The Great British Bake Off,2,kmeans_augmented
+576,Thomas Keller,2,kmeans_augmented
+577,Yotam Ottolenghi,2,kmeans_augmented
+578,86 (term),2,kmeans_augmented
+579,AGA cooker,2,kmeans_augmented
+580,Aarón Sanchez,2,kmeans_augmented
+581,Alice (TV series),2,kmeans_augmented
+582,Alinea (restaurant),2,kmeans_augmented
+583,Archie Bunker's Place,2,kmeans_augmented
+584,Auguste Escoffier,2,kmeans_augmented
+585,B. Smith,2,kmeans_augmented
+586,Bed and breakfast,2,kmeans_augmented
+587,Cracker Barrel,3,kmeans_augmented
+588,Burger King,3,kmeans_augmented
+589,Chipotle Mexican Grill,3,kmeans_augmented
+590,Chuck E. Cheese's,3,kmeans_augmented
+591,Hershey Creamery Company,3,kmeans_augmented
+592,History of KFC,3,kmeans_augmented
+593,KFC,3,kmeans_augmented
+594,Whopper,3,kmeans_augmented
+595,A Charlie Brown Christmas,3,kmeans_augmented
+596,Asda,3,kmeans_augmented
+597,Big Mac,3,kmeans_augmented
+598,Bovril,3,kmeans_augmented
+599,Cadbury Creme Egg,3,kmeans_augmented
+600,Coca-Cola,3,kmeans_augmented
+601,Colonel Sanders,3,kmeans_augmented
+602,Dairy Queen,3,kmeans_augmented
+603,Frito-Lay,3,kmeans_augmented
+604,Gatorade,3,kmeans_augmented
+605,Hooters,3,kmeans_augmented
+606,Hungry Jack's,3,kmeans_augmented
+607,Knott's Berry Farm,3,kmeans_augmented
+608,McDonald's,3,kmeans_augmented
+609,Moxie,3,kmeans_augmented
+610,Nestlé,3,kmeans_augmented
+611,Oreo,3,kmeans_augmented
+612,PepsiCo,3,kmeans_augmented
+613,Publix,3,kmeans_augmented
+614,Soft drink,3,kmeans_augmented
+615,Sonic Drive-In,3,kmeans_augmented
+616,Starbucks,3,kmeans_augmented
+617,Taco Bell,3,kmeans_augmented
+618,The Coca-Cola Company,3,kmeans_augmented
+619,The Great Atlantic & Pacific Tea Company,3,kmeans_augmented
+620,The Hershey Company,3,kmeans_augmented
+621,Tim Hortons,3,kmeans_augmented
+622,Vegemite,3,kmeans_augmented
+623,Wegmans,3,kmeans_augmented
+624,Whole Foods Market,3,kmeans_augmented
+625,7-Eleven,3,kmeans_augmented
+626,A&W Restaurants,3,kmeans_augmented
+627,Aldi,3,kmeans_augmented
+628,Amul,3,kmeans_augmented
+629,Applebee's,3,kmeans_augmented
+630,Arby's,3,kmeans_augmented
+631,Archer Daniels Midland,3,kmeans_augmented
+632,Aunt Jemima,3,kmeans_augmented
+633,Ben & Jerry's,3,kmeans_augmented
+634,Beyond Meat,3,kmeans_augmented
+635,Big Mac Index,3,kmeans_augmented
+636,Billy Mitchell (video game player),3,kmeans_augmented
+637,Breakfast cereal,3,kmeans_augmented
+638,Buc-ee's,3,kmeans_augmented
+639,Cadbury,3,kmeans_augmented
+640,Cadbury Dairy Milk,3,kmeans_augmented
+641,Campbell Soup Company,3,kmeans_augmented
+642,Canada Dry,3,kmeans_augmented
+643,Candy,3,kmeans_augmented
+644,Cargill,3,kmeans_augmented
+645,Carl's Jr.,3,kmeans_augmented
+646,Chick-fil-A,3,kmeans_augmented
+647,Chiquita Brands International,3,kmeans_augmented
+648,Coca-Cola Enterprises,3,kmeans_augmented
+649,Coca-Cola formula,3,kmeans_augmented
+650,Cola,3,kmeans_augmented
+651,Compass Group,3,kmeans_augmented
+652,Convenience store,3,kmeans_augmented
+653,Corn flakes,3,kmeans_augmented
+654,Crystal Pepsi,3,kmeans_augmented
+655,Darden Restaurants,3,kmeans_augmented
+656,Denny's,3,kmeans_augmented
+657,Diet Coke,3,kmeans_augmented
+658,Dole Food Company,3,kmeans_augmented
+659,Domino's Pizza,3,kmeans_augmented
+660,Doritos,3,kmeans_augmented
+661,Dr Pepper,3,kmeans_augmented
+662,Dunkin' Donuts,3,kmeans_augmented
+663,Fanta,3,kmeans_augmented
+664,Fast food,3,kmeans_augmented
+665,Fast food restaurant,3,kmeans_augmented
+666,Five Guys,3,kmeans_augmented
+667,Foodpanda,3,kmeans_augmented
+668,Frappuccino,3,kmeans_augmented
+669,Gary Vaynerchuk,3,kmeans_augmented
+670,General Mills,3,kmeans_augmented
+671,Girl Scout Cookies,3,kmeans_augmented
+672,Grocery store,3,kmeans_augmented
+673,Gummy bear,3,kmeans_augmented
+674,H-E-B,3,kmeans_augmented
+675,Hard Rock Cafe,3,kmeans_augmented
+676,Hardee's,3,kmeans_augmented
+677,Heart Attack Grill,3,kmeans_augmented
+678,Heinz,3,kmeans_augmented
+679,History of McDonald's,3,kmeans_augmented
+680,Horlicks,3,kmeans_augmented
+681,Howard Graham Buffett,3,kmeans_augmented
+682,Howard Johnson's,3,kmeans_augmented
+683,Howard Schultz,3,kmeans_augmented
+684,IHOP,3,kmeans_augmented
+685,In-N-Out Burger,3,kmeans_augmented
+686,Irn-Bru,3,kmeans_augmented
+687,Jack in the Box,3,kmeans_augmented
+688,Jared Fogle,3,kmeans_augmented
+689,Jell-O,3,kmeans_augmented
+690,Jimmy John's,3,kmeans_augmented
+691,John Hickenlooper,3,kmeans_augmented
+692,Jollibee,3,kmeans_augmented
+693,Kellogg's,3,kmeans_augmented
+694,Kit Kat,3,kmeans_augmented
+695,Kool-Aid,3,kmeans_augmented
+696,Kraft Foods,3,kmeans_augmented
+697,Krispy Kreme,3,kmeans_augmented
+698,Last meal,3,kmeans_augmented
+699,Liebeck v. McDonald's Restaurants,3,kmeans_augmented
+700,Lipton,3,kmeans_augmented
+701,M&M's,3,kmeans_augmented
+702,Maggi,3,kmeans_augmented
+703,"Mars, Incorporated",3,kmeans_augmented
+704,Mars (chocolate bar),3,kmeans_augmented
+705,Max Headroom (character),3,kmeans_augmented
+706,Meijer,3,kmeans_augmented
+707,Milkshake,3,kmeans_augmented
+708,Minute Maid Park,3,kmeans_augmented
+709,Mondelez International,3,kmeans_augmented
+710,Monster Energy,3,kmeans_augmented
+711,Morrisons,3,kmeans_augmented
+712,Mountain Dew,3,kmeans_augmented
+713,Nabisco,3,kmeans_augmented
+714,Nespresso,3,kmeans_augmented
+715,New Coke,3,kmeans_augmented
+716,Nolan Bushnell,3,kmeans_augmented
+717,Olive Garden,3,kmeans_augmented
+718,Online food ordering,3,kmeans_augmented
+719,Outback Steakhouse,3,kmeans_augmented
+720,Ovaltine,3,kmeans_augmented
+721,Panda Express,3,kmeans_augmented
+722,Panera Bread,3,kmeans_augmented
+723,Pepsi,3,kmeans_augmented
+724,Pizza Hut,3,kmeans_augmented
+725,Quaker Oats Company,3,kmeans_augmented
+726,Quality Street (confectionery),3,kmeans_augmented
+727,Reckitt Benckiser,3,kmeans_augmented
+728,Red Bull,3,kmeans_augmented
+729,Restaurant Brands International,3,kmeans_augmented
+730,Ronald McDonald,3,kmeans_augmented
+731,Safeway Inc.,3,kmeans_augmented
+732,Sainsbury's,3,kmeans_augmented
+733,San Miguel Corporation,3,kmeans_augmented
+734,Schweppes,3,kmeans_augmented
+735,Smarties,3,kmeans_augmented
+736,Snickers,3,kmeans_augmented
+737,Sodexo,3,kmeans_augmented
+738,Starburst (confectionery),3,kmeans_augmented
+739,Stop & Shop,3,kmeans_augmented
+740,Subway (restaurant),3,kmeans_augmented
+741,SunTrust Banks,3,kmeans_augmented
+742,Super Size Me,3,kmeans_augmented
+743,Supermarket,3,kmeans_augmented
+744,Swedish Fish,3,kmeans_augmented
+745,The Gods Must Be Crazy,3,kmeans_augmented
+746,Thums Up,3,kmeans_augmented
+747,Tim Horton,3,kmeans_augmented
+748,Tootsie Roll,3,kmeans_augmented
+749,Trader Joe's,3,kmeans_augmented
+750,TripAdvisor,3,kmeans_augmented
+751,Tyson Foods,3,kmeans_augmented
+752,Unilever,3,kmeans_augmented
+753,Vending machine,3,kmeans_augmented
+754,Waffle House,3,kmeans_augmented
+755,Wendy's,3,kmeans_augmented
+756,White Castle (restaurant),3,kmeans_augmented
+757,Woolworths Supermarkets,3,kmeans_augmented
+758,Yum! Brands,3,kmeans_augmented
+759,3 Musketeers (chocolate bar),3,kmeans_augmented
+760,7 Up,3,kmeans_augmented
+761,Albertsons,3,kmeans_augmented
+762,Barney Rubble,3,kmeans_augmented
+763,Baskin-Robbins,3,kmeans_augmented
+764,Benihana,3,kmeans_augmented
+765,Betty Crocker,3,kmeans_augmented
+766,Pisco sour,4,kmeans_augmented
+767,Beer,4,kmeans_augmented
+768,Cabernet Sauvignon,4,kmeans_augmented
+769,Caesar (cocktail),4,kmeans_augmented
+770,Juniper berry,4,kmeans_augmented
+771,Riesling,4,kmeans_augmented
+772,Sauvignon blanc,4,kmeans_augmented
+773,Zinfandel,4,kmeans_augmented
+774,Absinthe,4,kmeans_augmented
+775,Bordeaux wine,4,kmeans_augmented
+776,Brandy,4,kmeans_augmented
+777,Burgundy wine,4,kmeans_augmented
+778,Ceres (mythology),4,kmeans_augmented
+779,Champagne,4,kmeans_augmented
+780,Chardonnay,4,kmeans_augmented
+781,Draught beer,4,kmeans_augmented
+782,Eucharist,4,kmeans_augmented
+783,Gin,4,kmeans_augmented
+784,Guinness,4,kmeans_augmented
+785,History of beer,4,kmeans_augmented
+786,Jameson Irish Whiskey,4,kmeans_augmented
+787,Jägermeister,4,kmeans_augmented
+788,Lambic,4,kmeans_augmented
+789,Malbec,4,kmeans_augmented
+790,Merlot,4,kmeans_augmented
+791,Oktoberfest,4,kmeans_augmented
+792,Pinot gris,4,kmeans_augmented
+793,Pinot noir,4,kmeans_augmented
+794,Prohibition,4,kmeans_augmented
+795,Pub,4,kmeans_augmented
+796,Pulque,4,kmeans_augmented
+797,Rioja (wine),4,kmeans_augmented
+798,Rum,4,kmeans_augmented
+799,Sangiovese,4,kmeans_augmented
+800,Single malt whisky,4,kmeans_augmented
+801,Sparkling wine,4,kmeans_augmented
+802,Syrah,4,kmeans_augmented
+803,Tequila Sunrise (cocktail),4,kmeans_augmented
+804,White Russian (cocktail),4,kmeans_augmented
+805,Wine,4,kmeans_augmented
+806,Akvavit,4,kmeans_augmented
+807,Alcohol intoxication,4,kmeans_augmented
+808,Alcoholic drink,4,kmeans_augmented
+809,Ale,4,kmeans_augmented
+810,Amaretto,4,kmeans_augmented
+811,Amarone,4,kmeans_augmented
+812,Arnold Palmer (drink),4,kmeans_augmented
+813,Bar,4,kmeans_augmented
+814,Barrel (unit),4,kmeans_augmented
+815,Bellini (cocktail),4,kmeans_augmented
+816,Bitters,4,kmeans_augmented
+817,Brix,4,kmeans_augmented
+818,Buckfast Tonic Wine,4,kmeans_augmented
+819,Budweiser,4,kmeans_augmented
+820,"Bureau of Alcohol, Tobacco, Firearms and Explosives",4,kmeans_augmented
+821,Cider,4,kmeans_augmented
+822,Cocktail,4,kmeans_augmented
+823,Cognac,4,kmeans_augmented
+824,Coors Brewing Company,4,kmeans_augmented
+825,Cosmopolitan (cocktail),4,kmeans_augmented
+826,Crown Royal,4,kmeans_augmented
+827,Demeter,4,kmeans_augmented
+828,Diageo,4,kmeans_augmented
+829,Dionysus,4,kmeans_augmented
+830,Drambuie,4,kmeans_augmented
+831,Drink,4,kmeans_augmented
+832,Eggnog,4,kmeans_augmented
+833,Fireball Cinnamon Whisky,4,kmeans_augmented
+834,Ginger ale,4,kmeans_augmented
+835,Hops,4,kmeans_augmented
+836,Irish coffee,4,kmeans_augmented
+837,Jack Daniel's,4,kmeans_augmented
+838,Jim Beam,4,kmeans_augmented
+839,Johnnie Walker,4,kmeans_augmented
+840,Kvass,4,kmeans_augmented
+841,Lager,4,kmeans_augmented
+842,Lemonade,4,kmeans_augmented
+843,Mai Tai,4,kmeans_augmented
+844,Malt liquor,4,kmeans_augmented
+845,Margarita,4,kmeans_augmented
+846,Martini (cocktail),4,kmeans_augmented
+847,Mead,4,kmeans_augmented
+848,Mezcal,4,kmeans_augmented
+849,Microbrewery,4,kmeans_augmented
+850,Moonshine,4,kmeans_augmented
+851,Moët & Chandon,4,kmeans_augmented
+852,Mulled wine,4,kmeans_augmented
+853,Negroni,4,kmeans_augmented
+854,Pale ale,4,kmeans_augmented
+855,Pilsner,4,kmeans_augmented
+856,Pint glass,4,kmeans_augmented
+857,Prohibition in the United States,4,kmeans_augmented
+858,Prosecco,4,kmeans_augmented
+859,Rakı,4,kmeans_augmented
+860,Reinheitsgebot,4,kmeans_augmented
+861,Sake,4,kmeans_augmented
+862,Scotch whisky,4,kmeans_augmented
+863,Shot glass,4,kmeans_augmented
+864,Slivovitz,4,kmeans_augmented
+865,Soju,4,kmeans_augmented
+866,Sommelier,4,kmeans_augmented
+867,Stout,4,kmeans_augmented
+868,Tanqueray,4,kmeans_augmented
+869,Temperance movement,4,kmeans_augmented
+870,Tom Collins,4,kmeans_augmented
+871,United Spirits,4,kmeans_augmented
+872,Vermouth,4,kmeans_augmented
+873,Vodka,4,kmeans_augmented
+874,Wassail,4,kmeans_augmented
+875,Wheat beer,4,kmeans_augmented
+876,Whisky,4,kmeans_augmented
+877,Winemaking,4,kmeans_augmented
+878,Absolut Vodka,4,kmeans_augmented
+879,Aguardiente,4,kmeans_augmented
+880,Alcohol by volume,4,kmeans_augmented
+881,Alcohol proof,4,kmeans_augmented
+882,Amaro (liqueur),4,kmeans_augmented
+883,Angostura bitters,4,kmeans_augmented
+884,Anheuser-Busch InBev,4,kmeans_augmented
+885,Aperol,4,kmeans_augmented
+886,Aperol Spritz,4,kmeans_augmented
+887,Apple cider,4,kmeans_augmented
+888,Apéritif and digestif,4,kmeans_augmented
+889,Arak (drink),4,kmeans_augmented
+890,Asahi Breweries,4,kmeans_augmented
+891,B-52 (cocktail),4,kmeans_augmented
+892,Baileys Irish Cream,4,kmeans_augmented
+893,Barrel,4,kmeans_augmented
+894,Bartending terminology,4,kmeans_augmented
+895,Grasshopper,5,kmeans_augmented
+896,Rainbow trout,5,kmeans_augmented
+897,Cicada,5,kmeans_augmented
+898,Coconut crab,5,kmeans_augmented
+899,Dromedary,5,kmeans_augmented
+900,Fish,5,kmeans_augmented
+901,Silkie,5,kmeans_augmented
+902,Squid,5,kmeans_augmented
+903,Sturgeon,5,kmeans_augmented
+904,Anglerfish,5,kmeans_augmented
+905,Atlantic cod,5,kmeans_augmented
+906,Atlantic salmon,5,kmeans_augmented
+907,Bombyx mori,5,kmeans_augmented
+908,Catfish,5,kmeans_augmented
+909,Cod,5,kmeans_augmented
+910,Conch,5,kmeans_augmented
+911,Crab,5,kmeans_augmented
+912,Fish farming,5,kmeans_augmented
+913,Fishing,5,kmeans_augmented
+914,Geoduck,5,kmeans_augmented
+915,Herring,5,kmeans_augmented
+916,Japanese spider crab,5,kmeans_augmented
+917,Lobster,5,kmeans_augmented
+918,Mantis shrimp,5,kmeans_augmented
+919,Mussel,5,kmeans_augmented
+920,Salmon,5,kmeans_augmented
+921,Scallop,5,kmeans_augmented
+922,Seafood,5,kmeans_augmented
+923,Shrimp,5,kmeans_augmented
+924,Wild boar,5,kmeans_augmented
+925,Abalone,5,kmeans_augmented
+926,Algae,5,kmeans_augmented
+927,Ambergris,5,kmeans_augmented
+928,Arctic char,5,kmeans_augmented
+929,Bushmeat,5,kmeans_augmented
+930,Camel,5,kmeans_augmented
+931,Carp,5,kmeans_augmented
+932,Caviar,5,kmeans_augmented
+933,Clam,5,kmeans_augmented
+934,Common pheasant,5,kmeans_augmented
+935,Cuttlefish,5,kmeans_augmented
+936,Fugu,5,kmeans_augmented
+937,Grouper,5,kmeans_augmented
+938,Haddock,5,kmeans_augmented
+939,Hagfish,5,kmeans_augmented
+940,Krill,5,kmeans_augmented
+941,Northern pike,5,kmeans_augmented
+942,Oyster,5,kmeans_augmented
+943,Prawn,5,kmeans_augmented
+944,Rabbit,5,kmeans_augmented
+945,Sashimi,5,kmeans_augmented
+946,Sea cucumber,5,kmeans_augmented
+947,Seaweed,5,kmeans_augmented
+948,Snail,5,kmeans_augmented
+949,Snakehead (fish),5,kmeans_augmented
+950,Squid as food,5,kmeans_augmented
+951,Surimi,5,kmeans_augmented
+952,Tetraodontidae,5,kmeans_augmented
+953,Tilapia,5,kmeans_augmented
+954,Tuna,5,kmeans_augmented
+955,Yellowfin tuna,5,kmeans_augmented
+956,Anchovy,5,kmeans_augmented
+957,Aquaculture,5,kmeans_augmented
+958,Bass (fish),5,kmeans_augmented
+959,Beefalo,5,kmeans_augmented
+960,Beluga (sturgeon),5,kmeans_augmented
+961,Boletus edulis,6,kmeans_augmented
+962,Cabbage,6,kmeans_augmented
+963,Cucurbita,6,kmeans_augmented
+964,Durian,6,kmeans_augmented
+965,Lettuce,6,kmeans_augmented
+966,Apple,6,kmeans_augmented
+967,Blackcurrant,6,kmeans_augmented
+968,Carrot,6,kmeans_augmented
+969,Cowpea,6,kmeans_augmented
+970,Onion,6,kmeans_augmented
+971,Parsnip,6,kmeans_augmented
+972,Radish,6,kmeans_augmented
+973,Vegetable,6,kmeans_augmented
+974,Watermelon,6,kmeans_augmented
+975,Agaricus bisporus,6,kmeans_augmented
+976,Alfalfa,6,kmeans_augmented
+977,Anthocyanin,6,kmeans_augmented
+978,Aronia,6,kmeans_augmented
+979,Avocado,6,kmeans_augmented
+980,Barley,6,kmeans_augmented
+981,Basil,6,kmeans_augmented
+982,Beetroot,6,kmeans_augmented
+983,Berry,6,kmeans_augmented
+984,Black-eyed pea,6,kmeans_augmented
+985,Black pepper,6,kmeans_augmented
+986,Blood orange,6,kmeans_augmented
+987,Broccoli,6,kmeans_augmented
+988,Buckwheat,6,kmeans_augmented
+989,Capsicum,6,kmeans_augmented
+990,Celery,6,kmeans_augmented
+991,Cherry,6,kmeans_augmented
+992,Chives,6,kmeans_augmented
+993,Cochineal,6,kmeans_augmented
+994,Coffea,6,kmeans_augmented
+995,Coriander,6,kmeans_augmented
+996,Cumin,6,kmeans_augmented
+997,Eggplant,6,kmeans_augmented
+998,Fennel,6,kmeans_augmented
+999,Fruit,6,kmeans_augmented
+1000,Garlic,6,kmeans_augmented
+1001,Ginkgo biloba,6,kmeans_augmented
+1002,Grape,6,kmeans_augmented
+1003,Grapefruit,6,kmeans_augmented
+1004,Horseradish,6,kmeans_augmented
+1005,Kiwifruit,6,kmeans_augmented
+1006,Kudzu,6,kmeans_augmented
+1007,Lingzhi mushroom,6,kmeans_augmented
+1008,Liquorice,6,kmeans_augmented
+1009,Lutein,6,kmeans_augmented
+1010,Lycopene,6,kmeans_augmented
+1011,Maize,6,kmeans_augmented
+1012,Moringa oleifera,6,kmeans_augmented
+1013,Okra,6,kmeans_augmented
+1014,Olive,6,kmeans_augmented
+1015,Orange (fruit),6,kmeans_augmented
+1016,Parsley,6,kmeans_augmented
+1017,Peach,6,kmeans_augmented
+1018,Phytophthora infestans,6,kmeans_augmented
+1019,Pitaya,6,kmeans_augmented
+1020,Poppy seed,6,kmeans_augmented
+1021,Potato,6,kmeans_augmented
+1022,Pumpkin,6,kmeans_augmented
+1023,Rice,6,kmeans_augmented
+1024,Saffron,6,kmeans_augmented
+1025,Scoville scale,6,kmeans_augmented
+1026,Sesame,6,kmeans_augmented
+1027,Spice trade,6,kmeans_augmented
+1028,Spinach,6,kmeans_augmented
+1029,Strawberry,6,kmeans_augmented
+1030,Sugarcane,6,kmeans_augmented
+1031,Tamarind,6,kmeans_augmented
+1032,Tea,6,kmeans_augmented
+1033,Typha,6,kmeans_augmented
+1034,Vanilla,6,kmeans_augmented
+1035,Vicia faba,6,kmeans_augmented
+1036,Walnut,6,kmeans_augmented
+1037,Wheat,6,kmeans_augmented
+1038,Zucchini,6,kmeans_augmented
+1039,Achillea millefolium,6,kmeans_augmented
+1040,Ackee,6,kmeans_augmented
+1041,Acorn,6,kmeans_augmented
+1042,Adansonia,6,kmeans_augmented
+1043,Adzuki bean,6,kmeans_augmented
+1044,Aegle marmelos,6,kmeans_augmented
+1045,Agave,6,kmeans_augmented
+1046,Ajwain,6,kmeans_augmented
+1047,Allspice,6,kmeans_augmented
+1048,Almond,6,kmeans_augmented
+1049,Alphonso (mango),6,kmeans_augmented
+1050,Amaranth,6,kmeans_augmented
+1051,Anise,6,kmeans_augmented
+1052,Annatto,6,kmeans_augmented
+1053,Apricot,6,kmeans_augmented
+1054,Arrowroot,6,kmeans_augmented
+1055,Artemisia absinthium,6,kmeans_augmented
+1056,Artichoke,6,kmeans_augmented
+1057,Asafoetida,6,kmeans_augmented
+1058,Asparagus,6,kmeans_augmented
+1059,Açaí palm,6,kmeans_augmented
+1060,Bamboo,6,kmeans_augmented
+1061,Banana,6,kmeans_augmented
+1062,Basmati,6,kmeans_augmented
+1063,Bay leaf,6,kmeans_augmented
+1064,Bean,6,kmeans_augmented
+1065,Bergamot orange,6,kmeans_augmented
+1066,Bhut jolokia,6,kmeans_augmented
+1067,Bird's eye chili,6,kmeans_augmented
+1068,Bitter orange,6,kmeans_augmented
+1069,Black tea,6,kmeans_augmented
+1070,Blackberry,6,kmeans_augmented
+1071,Blue Java banana,6,kmeans_augmented
+1072,Blueberry,6,kmeans_augmented
+1073,Borage,6,kmeans_augmented
+1074,Brassica,6,kmeans_augmented
+1075,Brassica oleracea,6,kmeans_augmented
+1076,Brassicaceae,6,kmeans_augmented
+1077,Brazil nut,6,kmeans_augmented
+1078,Camellia sinensis,6,kmeans_augmented
+1079,Cannabis,6,kmeans_augmented
+1080,Caper,6,kmeans_augmented
+1081,Carambola,6,kmeans_augmented
+1082,Caraway,6,kmeans_augmented
+1083,Cashew,6,kmeans_augmented
+1084,Cassava,6,kmeans_augmented
+1085,Cayenne pepper,6,kmeans_augmented
+1086,Chayote,6,kmeans_augmented
+1087,Cherimoya,6,kmeans_augmented
+1088,Cherry blossom,6,kmeans_augmented
+1089,Chestnut,6,kmeans_augmented
+1090,Chickpea,6,kmeans_augmented
+1091,Chicory,6,kmeans_augmented
+1092,Chili pepper,6,kmeans_augmented
+1093,Chrysanthemum,6,kmeans_augmented
+1094,Cinnamon,6,kmeans_augmented
+1095,Citron,6,kmeans_augmented
+1096,Citrus,6,kmeans_augmented
+1097,Coconut,6,kmeans_augmented
+1098,Common fig,6,kmeans_augmented
+1099,Cranberry,6,kmeans_augmented
+1100,Crataegus,6,kmeans_augmented
+1101,Cruciferous vegetables,6,kmeans_augmented
+1102,Cucumber,6,kmeans_augmented
+1103,Curry tree,6,kmeans_augmented
+1104,Cymbopogon,6,kmeans_augmented
+1105,Darjeeling tea,6,kmeans_augmented
+1106,Dill,6,kmeans_augmented
+1107,Drupe,6,kmeans_augmented
+1108,Echinacea,6,kmeans_augmented
+1109,Edible mushroom,6,kmeans_augmented
+1110,Fenugreek,6,kmeans_augmented
+1111,Ficus,6,kmeans_augmented
+1112,Fiddlehead fern,6,kmeans_augmented
+1113,Flax,6,kmeans_augmented
+1114,Flowering plant,6,kmeans_augmented
+1115,Ginger,6,kmeans_augmented
+1116,Gooseberry,6,kmeans_augmented
+1117,Grapefruit–drug interactions,6,kmeans_augmented
+1118,Green bean,6,kmeans_augmented
+1119,Gros Michel banana,6,kmeans_augmented
+1120,Guarana,6,kmeans_augmented
+1121,Guava,6,kmeans_augmented
+1122,Habanero,6,kmeans_augmented
+1123,Hazelnut,6,kmeans_augmented
+1124,Helianthus annuus,6,kmeans_augmented
+1125,Herb,6,kmeans_augmented
+1126,History of tea,6,kmeans_augmented
+1127,History of the potato,6,kmeans_augmented
+1128,Illicium verum,6,kmeans_augmented
+1129,Ipomoea aquatica,6,kmeans_augmented
+1130,Jackfruit,6,kmeans_augmented
+1131,Jalapeño,6,kmeans_augmented
+1132,Juniper,6,kmeans_augmented
+1133,Kale,6,kmeans_augmented
+1134,Key lime,6,kmeans_augmented
+1135,Kumquat,6,kmeans_augmented
+1136,Lavandula,6,kmeans_augmented
+1137,Legume,6,kmeans_augmented
+1138,Lemon,6,kmeans_augmented
+1139,Lentil,6,kmeans_augmented
+1140,Lepidium meyenii,6,kmeans_augmented
+1141,Lilium,6,kmeans_augmented
+1142,Lime (fruit),6,kmeans_augmented
+1143,Lychee,6,kmeans_augmented
+1144,Macadamia,6,kmeans_augmented
+1145,Mandarin orange,6,kmeans_augmented
+1146,Mango,6,kmeans_augmented
+1147,Melon,6,kmeans_augmented
+1148,Meyer lemon,6,kmeans_augmented
+1149,Momordica charantia,6,kmeans_augmented
+1150,Monstera deliciosa,6,kmeans_augmented
+1151,Morchella,6,kmeans_augmented
+1152,Mung bean,6,kmeans_augmented
+1153,Muskmelon,6,kmeans_augmented
+1154,Nelumbo nucifera,6,kmeans_augmented
+1155,New Mexico chile,6,kmeans_augmented
+1156,Nut (fruit),6,kmeans_augmented
+1157,Nutmeg,6,kmeans_augmented
+1158,Oat,6,kmeans_augmented
+1159,Opuntia,6,kmeans_augmented
+1160,Orchidaceae,6,kmeans_augmented
+1161,Oryza sativa,6,kmeans_augmented
+1162,Paddy field,6,kmeans_augmented
+1163,Papaya,6,kmeans_augmented
+1164,Passiflora edulis,6,kmeans_augmented
+1165,Pea,6,kmeans_augmented
+1166,Peanut,6,kmeans_augmented
+1167,Pear,6,kmeans_augmented
+1168,Pecan,6,kmeans_augmented
+1169,Persimmon,6,kmeans_augmented
+1170,Phaseolus vulgaris,6,kmeans_augmented
+1171,Phyllanthus emblica,6,kmeans_augmented
+1172,Phytolacca americana,6,kmeans_augmented
+1173,Pineapple,6,kmeans_augmented
+1174,Plant,6,kmeans_augmented
+1175,Plum,6,kmeans_augmented
+1176,Pomegranate,6,kmeans_augmented
+1177,Pomelo,6,kmeans_augmented
+1178,Portulaca oleracea,6,kmeans_augmented
+1179,Quince,6,kmeans_augmented
+1180,Quinoa,6,kmeans_augmented
+1181,Raspberry,6,kmeans_augmented
+1182,Rhubarb,6,kmeans_augmented
+1183,Rosemary,6,kmeans_augmented
+1184,Salvia officinalis,6,kmeans_augmented
+1185,Sassafras,6,kmeans_augmented
+1186,Sesame oil,6,kmeans_augmented
+1187,Shiitake,6,kmeans_augmented
+1188,Shiso,6,kmeans_augmented
+1189,Sichuan pepper,6,kmeans_augmented
+1190,Silphium,6,kmeans_augmented
+1191,Soursop,6,kmeans_augmented
+1192,Spelt,6,kmeans_augmented
+1193,Spice,6,kmeans_augmented
+1194,Sugar-apple,6,kmeans_augmented
+1195,Sumac,6,kmeans_augmented
+1196,Sweet corn,6,kmeans_augmented
+1197,Synsepalum dulcificum,6,kmeans_augmented
+1198,Tannin,6,kmeans_augmented
+1199,Taraxacum,6,kmeans_augmented
+1200,Tarragon,6,kmeans_augmented
+1201,Theobroma cacao,6,kmeans_augmented
+1202,Thyme,6,kmeans_augmented
+1203,Tomato,6,kmeans_augmented
+1204,Turmeric,6,kmeans_augmented
+1205,Turnip,6,kmeans_augmented
+1206,Urtica dioica,6,kmeans_augmented
+1207,Vaccinium vitis-idaea,6,kmeans_augmented
+1208,Wasabi,6,kmeans_augmented
+1209,Yam (vegetable),6,kmeans_augmented
+1210,Yuzu,6,kmeans_augmented
+1211,Amaranth grain,6,kmeans_augmented
+1212,Ambrosia,6,kmeans_augmented
+1213,Argan oil,6,kmeans_augmented
+1214,Assam tea,6,kmeans_augmented
+1215,Bell pepper,6,kmeans_augmented

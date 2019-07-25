@@ -70,6 +70,6 @@ python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} vanilla_vecto
 
 #python -m cartograph.evaluation.cluster_validation_metrics --experiment ${exp_dir} \
 #                                                           --vectors ${exp_dir}/vanilla_vectors.csv \
-#                                                           --groups ${exp_dir}/cluster_groups.csv
+#                                                           --groups ${exp_dir}/article_topic_distribution.csv
 
 python -m cartograph.html_generator ${exp_dir}

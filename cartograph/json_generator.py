@@ -11,12 +11,16 @@ from functools import reduce
 import argparse
 
 
-def create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings):
+def create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings, purpose, label_path):
     domain_concepts_df = pd.read_csv(map_directory+'/domain_concept.csv')
     pop_scores_df = pd.read_csv(map_directory + '/popularity_score.csv')
     xy_df = pd.read_csv(experiment_directory + embeddings)
 
-    country_label_df = pd.read_csv(experiment_directory + country_labels)
+    if purpose == 'study':
+        country_label_df = pd.read_csv(label_path + country_labels)
+    else:
+        country_label_df = pd.read_csv(experiment_directory + country_labels)
+
     cluster_groups_df = pd.read_csv(experiment_directory + cluster_groups)
     countries_df = pd.merge(cluster_groups_df, country_label_df, on='country')
     countries_df = countries_df.drop(columns=['country'])
@@ -44,16 +48,20 @@ def create_list_article_data(merged_df, method):
     return article_data
 
 
-def generate_json(experiment_directory, article_data, output_name):
-    with open(experiment_directory + output_name, 'w') as outfile:
-        json.dump(article_data, outfile)
+def generate_json(experiment_directory, article_data, output_name, purpose, label_path):
+    if purpose == 'study':
+        with open(label_path + output_name, 'w') as outfile:
+            json.dump(article_data, outfile)
+    else:
+        with open(experiment_directory + output_name, 'w') as outfile:
+            json.dump(article_data, outfile)
     return
 
 
-def main(map_directory, experiment_directory, method, country_labels, cluster_groups, embeddings, output_name):
-    merged_article_df = create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings)
+def main(map_directory, experiment_directory, method, country_labels, cluster_groups, embeddings, output_name, purpose, label_path):
+    merged_article_df = create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings, purpose, label_path)
     article_data = create_list_article_data(merged_article_df, method)
-    generate_json(experiment_directory, article_data, output_name)
+    generate_json(experiment_directory, article_data, output_name, purpose, label_path)
 
 
 if __name__ == '__main__':
@@ -65,12 +73,17 @@ if __name__ == '__main__':
     parser.add_argument('--cluster_groups', required=True)
     parser.add_argument('--embeddings', required=True)
     parser.add_argument('--output_name', required=True)
+    parser.add_argument('--purpose', required=True)
+    parser.add_argument('--label_path')
 
     args = parser.parse_args()
+
     main(args.map_directory,
          args.experiment,
          args.filter_method,
          args.country_labels,
          args.cluster_groups,
          args.embeddings,
-         args.output_name)
+         args.output_name,
+         args.purpose,
+         args.label_path)

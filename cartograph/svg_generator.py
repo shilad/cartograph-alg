@@ -178,12 +178,20 @@ def create_svg_file(directory, d, output_file):
     d.saveSvg(directory + output_file)
 
 
-def main(map_directory, width, height, color_palette, json_file, output_file, country_labels):
-    articles = get_articles_json(map_directory + json_file)
-    colors = set_colors(map_directory + country_labels, color_palette)
+def main(map_directory, width, height, color_palette, json_file, output_file, country_labels, purpose, label_path):
+    if purpose == 'study':
+        articles = get_articles_json(label_path + json_file)
+        colors = set_colors(label_path + country_labels, color_palette)
+    else:
+        articles = get_articles_json(map_directory + json_file)
+        colors = set_colors(map_directory + country_labels, color_palette)
     sizes = get_sizes(articles)
     drawing = draw_svg(articles, float(width), float(height), colors, sizes, directory=map_directory)
-    create_svg_file(map_directory, drawing, output_file)
+
+    if purpose == 'study':
+        create_svg_file(label_path, drawing, output_file)
+    else:
+        create_svg_file(map_directory, drawing, output_file)
 
 
 if __name__ == '__main__':
@@ -195,6 +203,8 @@ if __name__ == '__main__':
     parser.add_argument('--json_file', required=True)
     parser.add_argument('--output_file', required=True)
     parser.add_argument('--country_labels', required=True)
+    parser.add_argument('--purpose', required=True)
+    parser.add_argument('--label_path')
     args = parser.parse_args()
 
     main(args.map_directory,
@@ -203,4 +213,6 @@ if __name__ == '__main__':
          args.color_palette,
          args.json_file,
          args.output_file,
-         args.country_labels)
+         args.country_labels,
+         args.purpose,
+         args.label_path)

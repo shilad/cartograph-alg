@@ -30,7 +30,7 @@ def main(experiment, vector_file):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Reduce dimensionality of vectors to 2D using t-SNE.')
-    parser.add_argument('--map_directory', required=True)
+    parser.add_argument('--experiment', required=True)
     parser.add_argument('--vectors', required=True)
     args = parser.parse_args()
     main(args.experiment, args.vectors)

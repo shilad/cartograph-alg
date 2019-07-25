@@ -1,0 +1,994 @@
+,article_name,country,treatment
+0,Trinity (nuclear test),0,kmeans_plain
+1,Fat Man,0,kmeans_plain
+2,Little Boy,0,kmeans_plain
+3,NASA,0,kmeans_plain
+4,Analog computer,0,kmeans_plain
+5,Gyroscope,0,kmeans_plain
+6,Kevlar,0,kmeans_plain
+7,Norden bombsight,0,kmeans_plain
+8,Nuclear weapon design,0,kmeans_plain
+9,Propeller,0,kmeans_plain
+10,Railgun,0,kmeans_plain
+11,Turbofan,0,kmeans_plain
+12,Aerial refueling,0,kmeans_plain
+13,Airship,0,kmeans_plain
+14,Altimeter,0,kmeans_plain
+15,Ammunition,0,kmeans_plain
+16,Amundsen–Scott South Pole Station,0,kmeans_plain
+17,Anti-aircraft warfare,0,kmeans_plain
+18,Autocannon,0,kmeans_plain
+19,Avionics,0,kmeans_plain
+20,Bazooka,0,kmeans_plain
+21,Breakwater (structure),0,kmeans_plain
+22,Close-in weapon system,0,kmeans_plain
+23,Coilgun,0,kmeans_plain
+24,Concertina wire,0,kmeans_plain
+25,Depth charge,0,kmeans_plain
+26,Directed-energy weapon,0,kmeans_plain
+27,Electric aircraft,0,kmeans_plain
+28,Electronic warfare,0,kmeans_plain
+29,Flamethrower,0,kmeans_plain
+30,Flight instruments,0,kmeans_plain
+31,Generation IV reactor,0,kmeans_plain
+32,Gimbal,0,kmeans_plain
+33,Harrier Jump Jet,0,kmeans_plain
+34,Helicopter,0,kmeans_plain
+35,Inertial navigation system,0,kmeans_plain
+36,Jet engine,0,kmeans_plain
+37,Joint Direct Attack Munition,0,kmeans_plain
+38,Land mine,0,kmeans_plain
+39,Machine pistol,0,kmeans_plain
+40,Mary Babnik Brown,0,kmeans_plain
+41,Maxim gun,0,kmeans_plain
+42,Military,0,kmeans_plain
+43,Mushroom cloud,0,kmeans_plain
+44,Muzzle brake,0,kmeans_plain
+45,Naval mine,0,kmeans_plain
+46,Nuclear electromagnetic pulse,0,kmeans_plain
+47,Nuclear reactor,0,kmeans_plain
+48,Nuclear weapons testing,0,kmeans_plain
+49,Operation Paperclip,0,kmeans_plain
+50,Pitot tube,0,kmeans_plain
+51,Powered exoskeleton,0,kmeans_plain
+52,Project Habakkuk,0,kmeans_plain
+53,Pykrete,0,kmeans_plain
+54,Rebreather,0,kmeans_plain
+55,Recoilless rifle,0,kmeans_plain
+56,Rifling,0,kmeans_plain
+57,Scramjet,0,kmeans_plain
+58,Ship breaking,0,kmeans_plain
+59,Sonar,0,kmeans_plain
+60,Soviet atomic bomb project,0,kmeans_plain
+61,Stealth technology,0,kmeans_plain
+62,Steam turbine,0,kmeans_plain
+63,Technology during World War I,0,kmeans_plain
+64,Technology during World War II,0,kmeans_plain
+65,Thermobaric weapon,0,kmeans_plain
+66,Torpedo,0,kmeans_plain
+67,Unmanned aerial vehicle,0,kmeans_plain
+68,Bomb,0,kmeans_plain
+69,Booby trap,0,kmeans_plain
+70,Chaff (countermeasure),0,kmeans_plain
+71,Heliograph,0,kmeans_plain
+72,Limpet mine,0,kmeans_plain
+73,Pump-jet,0,kmeans_plain
+74,Metrology,1,kmeans_plain
+75,Cavity magnetron,1,kmeans_plain
+76,Chromatography,1,kmeans_plain
+77,Cleanroom,1,kmeans_plain
+78,Magnetic resonance imaging,1,kmeans_plain
+79,Printed circuit board,1,kmeans_plain
+80,Quantum computing,1,kmeans_plain
+81,Scanning electron microscope,1,kmeans_plain
+82,Solar cell,1,kmeans_plain
+83,Spectroscopy,1,kmeans_plain
+84,Tesla coil,1,kmeans_plain
+85,Thermocouple,1,kmeans_plain
+86,Accelerometer,1,kmeans_plain
+87,Actuator,1,kmeans_plain
+88,American wire gauge,1,kmeans_plain
+89,Anechoic chamber,1,kmeans_plain
+90,Angiography,1,kmeans_plain
+91,Arc lamp,1,kmeans_plain
+92,Arithmetic logic unit,1,kmeans_plain
+93,Atomic clock,1,kmeans_plain
+94,Beamforming,1,kmeans_plain
+95,Biosensor,1,kmeans_plain
+96,Button cell,1,kmeans_plain
+97,Calibration,1,kmeans_plain
+98,Compact fluorescent lamp,1,kmeans_plain
+99,Comparator,1,kmeans_plain
+100,Coordinate-measuring machine,1,kmeans_plain
+101,Current source,1,kmeans_plain
+102,Data transmission,1,kmeans_plain
+103,Display device,1,kmeans_plain
+104,Electrochemical cell,1,kmeans_plain
+105,Electronic circuit,1,kmeans_plain
+106,Electronic paper,1,kmeans_plain
+107,Electronics,1,kmeans_plain
+108,Fiber-optic communication,1,kmeans_plain
+109,Filter (signal processing),1,kmeans_plain
+110,Flow cytometry,1,kmeans_plain
+111,Fresnel lens,1,kmeans_plain
+112,Galvanic cell,1,kmeans_plain
+113,Geiger counter,1,kmeans_plain
+114,Hall effect sensor,1,kmeans_plain
+115,Heat sink,1,kmeans_plain
+116,Holography,1,kmeans_plain
+117,Hyperspectral imaging,1,kmeans_plain
+118,Inductive charging,1,kmeans_plain
+119,Inductor,1,kmeans_plain
+120,Inkjet printing,1,kmeans_plain
+121,Instrumentation,1,kmeans_plain
+122,Integrated circuit,1,kmeans_plain
+123,LED lamp,1,kmeans_plain
+124,Laser cutting,1,kmeans_plain
+125,Laser pointer,1,kmeans_plain
+126,Laser printing,1,kmeans_plain
+127,Lidar,1,kmeans_plain
+128,Lithium-ion battery,1,kmeans_plain
+129,Logic gate,1,kmeans_plain
+130,Magnetometer,1,kmeans_plain
+131,Mammography,1,kmeans_plain
+132,Medical imaging,1,kmeans_plain
+133,Mercury-vapor lamp,1,kmeans_plain
+134,Microelectromechanical systems,1,kmeans_plain
+135,Micrometer,1,kmeans_plain
+136,Microprocessor,1,kmeans_plain
+137,Microscope,1,kmeans_plain
+138,Nanomaterials,1,kmeans_plain
+139,National Institute of Standards and Technology,1,kmeans_plain
+140,Nickel–cadmium battery,1,kmeans_plain
+141,Nickel–metal hydride battery,1,kmeans_plain
+142,Night vision,1,kmeans_plain
+143,OLED,1,kmeans_plain
+144,Optical microscope,1,kmeans_plain
+145,Passive infrared sensor,1,kmeans_plain
+146,Photovoltaics,1,kmeans_plain
+147,Plasma display,1,kmeans_plain
+148,Power-line communication,1,kmeans_plain
+149,Power electronics,1,kmeans_plain
+150,Power inverter,1,kmeans_plain
+151,Programmable logic controller,1,kmeans_plain
+152,Pulse oximetry,1,kmeans_plain
+153,Quantum dot display,1,kmeans_plain
+154,Radiography,1,kmeans_plain
+155,Rechargeable battery,1,kmeans_plain
+156,Resistance thermometer,1,kmeans_plain
+157,Rotary encoder,1,kmeans_plain
+158,Scanning tunneling microscope,1,kmeans_plain
+159,Semiconductor,1,kmeans_plain
+160,Sodium-vapor lamp,1,kmeans_plain
+161,Solar cell efficiency,1,kmeans_plain
+162,Solar panel,1,kmeans_plain
+163,Solenoid,1,kmeans_plain
+164,Stereoscopy,1,kmeans_plain
+165,Strain gauge,1,kmeans_plain
+166,Surface-mount technology,1,kmeans_plain
+167,Surge protector,1,kmeans_plain
+168,Telescope,1,kmeans_plain
+169,Temperature measurement,1,kmeans_plain
+170,Thermographic camera,1,kmeans_plain
+171,Thin-layer chromatography,1,kmeans_plain
+172,Three-phase electric power,1,kmeans_plain
+173,Time-of-flight camera,1,kmeans_plain
+174,Tomography,1,kmeans_plain
+175,Transcranial magnetic stimulation,1,kmeans_plain
+176,Wafer (electronics),1,kmeans_plain
+177,Waveguide,1,kmeans_plain
+178,Wavelength-division multiplexing,1,kmeans_plain
+179,Wheatstone bridge,1,kmeans_plain
+180,Yagi–Uda antenna,1,kmeans_plain
+181,10 nanometer,1,kmeans_plain
+182,5 nanometer,1,kmeans_plain
+183,7 nanometer,1,kmeans_plain
+184,Alkaline battery,1,kmeans_plain
+185,Analog signal,1,kmeans_plain
+186,Barcode reader,1,kmeans_plain
+187,Capacitive sensing,1,kmeans_plain
+188,Charge-coupled device,1,kmeans_plain
+189,Counter (digital),1,kmeans_plain
+190,Crystallography,1,kmeans_plain
+191,Datasheet,1,kmeans_plain
+192,Digital image processing,1,kmeans_plain
+193,Electric arc,1,kmeans_plain
+194,Electrode,1,kmeans_plain
+195,Encoder,1,kmeans_plain
+196,Ferrite bead,1,kmeans_plain
+197,Fluorescence microscope,1,kmeans_plain
+198,Image sensor,1,kmeans_plain
+199,Image sensor format,1,kmeans_plain
+200,Measuring instrument,1,kmeans_plain
+201,Photoresistor,1,kmeans_plain
+202,Projector,1,kmeans_plain
+203,Proximity sensor,1,kmeans_plain
+204,Schematic,1,kmeans_plain
+205,Semiconductor industry,1,kmeans_plain
+206,Sensor,1,kmeans_plain
+207,Solar lamp,1,kmeans_plain
+208,Spectrogram,1,kmeans_plain
+209,Stereolithography,1,kmeans_plain
+210,Thermography,1,kmeans_plain
+211,Transducer,1,kmeans_plain
+212,Transmitter,1,kmeans_plain
+213,San Francisco,2,kmeans_plain
+214,Bomis,2,kmeans_plain
+215,FreeBSD,2,kmeans_plain
+216,HDMI,2,kmeans_plain
+217,Hitachi Magic Wand,2,kmeans_plain
+218,PlayStation,2,kmeans_plain
+219,Rebel Heart Tour,2,kmeans_plain
+220,Steam (software),2,kmeans_plain
+221,Barcode,2,kmeans_plain
+222,BlackBerry,2,kmeans_plain
+223,Consumer Electronics Show,2,kmeans_plain
+224,Dell,2,kmeans_plain
+225,Google Play,2,kmeans_plain
+226,IBM,2,kmeans_plain
+227,IPod,2,kmeans_plain
+228,IPod Nano,2,kmeans_plain
+229,IPod Shuffle,2,kmeans_plain
+230,ITunes,2,kmeans_plain
+231,Microsoft,2,kmeans_plain
+232,Microsoft Windows,2,kmeans_plain
+233,Radio-frequency identification,2,kmeans_plain
+234,Sony,2,kmeans_plain
+235,Swift (programming language),2,kmeans_plain
+236,Telephone exchange,2,kmeans_plain
+237,Unix,2,kmeans_plain
+238,Video game,2,kmeans_plain
+239,Zune,2,kmeans_plain
+240,Acer Inc.,2,kmeans_plain
+241,Active Directory,2,kmeans_plain
+242,Altran,2,kmeans_plain
+243,Amlogic,2,kmeans_plain
+244,Apple Watch,2,kmeans_plain
+245,Application programming interface,2,kmeans_plain
+246,Avaya,2,kmeans_plain
+247,BIOS,2,kmeans_plain
+248,BlackBerry Limited,2,kmeans_plain
+249,Bleacher Report,2,kmeans_plain
+250,Brian Krzanich,2,kmeans_plain
+251,CA Technologies,2,kmeans_plain
+252,Citrix Systems,2,kmeans_plain
+253,Computer data storage,2,kmeans_plain
+254,Dell EMC,2,kmeans_plain
+255,Desktop computer,2,kmeans_plain
+256,Display resolution,2,kmeans_plain
+257,Electronic Data Systems,2,kmeans_plain
+258,Ethernet,2,kmeans_plain
+259,Firmware,2,kmeans_plain
+260,Fitbit,2,kmeans_plain
+261,GPS navigation device,2,kmeans_plain
+262,GSM,2,kmeans_plain
+263,GameCube,2,kmeans_plain
+264,General Electric,2,kmeans_plain
+265,Google,2,kmeans_plain
+266,Google Nexus,2,kmeans_plain
+267,Gorilla Glass,2,kmeans_plain
+268,Graphical user interface,2,kmeans_plain
+269,Graphing calculator,2,kmeans_plain
+270,HBO Go,2,kmeans_plain
+271,HP Inc.,2,kmeans_plain
+272,HTTPS,2,kmeans_plain
+273,Haptic technology,2,kmeans_plain
+274,Hard disk drive,2,kmeans_plain
+275,Hewlett-Packard,2,kmeans_plain
+276,History of Google,2,kmeans_plain
+277,History of video games,2,kmeans_plain
+278,Hyper-threading,2,kmeans_plain
+279,IBM Personal Computer,2,kmeans_plain
+280,IBM System i,2,kmeans_plain
+281,ICloud,2,kmeans_plain
+282,IEEE 802.11ax,2,kmeans_plain
+283,IOS,2,kmeans_plain
+284,IPhone,2,kmeans_plain
+285,IPhone 6S,2,kmeans_plain
+286,IPod Classic,2,kmeans_plain
+287,I Am Rich,2,kmeans_plain
+288,Infineon Technologies,2,kmeans_plain
+289,Internet Archive,2,kmeans_plain
+290,Intuit,2,kmeans_plain
+291,John McAfee,2,kmeans_plain
+292,Laptop,2,kmeans_plain
+293,Lenticular printing,2,kmeans_plain
+294,Linux,2,kmeans_plain
+295,MacOS,2,kmeans_plain
+296,Magnetic stripe card,2,kmeans_plain
+297,Miracast,2,kmeans_plain
+298,Mobile operating system,2,kmeans_plain
+299,Mobile payment,2,kmeans_plain
+300,Mobile phone,2,kmeans_plain
+301,Mobile phone tracking,2,kmeans_plain
+302,Modem,2,kmeans_plain
+303,Mojibake,2,kmeans_plain
+304,Motorola Mobility,2,kmeans_plain
+305,Motorola Razr,2,kmeans_plain
+306,Multi-core processor,2,kmeans_plain
+307,Network interface controller,2,kmeans_plain
+308,Nexus 6P,2,kmeans_plain
+309,Novell,2,kmeans_plain
+310,OS X Mavericks,2,kmeans_plain
+311,OS X Yosemite,2,kmeans_plain
+312,OnePlus One,2,kmeans_plain
+313,Open-source hardware,2,kmeans_plain
+314,Optical disc,2,kmeans_plain
+315,Oracle Corporation,2,kmeans_plain
+316,Overclocking,2,kmeans_plain
+317,Pager,2,kmeans_plain
+318,Pixel (smartphone),2,kmeans_plain
+319,Planned obsolescence,2,kmeans_plain
+320,PlayStation Vita,2,kmeans_plain
+321,Plotter,2,kmeans_plain
+322,QR code,2,kmeans_plain
+323,Qualcomm,2,kmeans_plain
+324,Random-access memory,2,kmeans_plain
+325,Samsung Galaxy Note series,2,kmeans_plain
+326,Server (computing),2,kmeans_plain
+327,Silicon Graphics,2,kmeans_plain
+328,Single-page application,2,kmeans_plain
+329,Smart TV,2,kmeans_plain
+330,Smart card,2,kmeans_plain
+331,Smartphone,2,kmeans_plain
+332,Snap Inc.,2,kmeans_plain
+333,Solid-state drive,2,kmeans_plain
+334,Sony Mobile,2,kmeans_plain
+335,Speech recognition,2,kmeans_plain
+336,Stingray phone tracker,2,kmeans_plain
+337,Sun Microsystems,2,kmeans_plain
+338,Supercomputer,2,kmeans_plain
+339,Theranos,2,kmeans_plain
+340,Tim Berners-Lee,2,kmeans_plain
+341,TomTom,2,kmeans_plain
+342,Transport Layer Security,2,kmeans_plain
+343,USB,2,kmeans_plain
+344,VHS,2,kmeans_plain
+345,Verizon Wireless,2,kmeans_plain
+346,Voice over IP,2,kmeans_plain
+347,Walkman,2,kmeans_plain
+348,Web application,2,kmeans_plain
+349,Wi-Fi,2,kmeans_plain
+350,Wi-Fi Direct,2,kmeans_plain
+351,Windows Phone,2,kmeans_plain
+352,Wired (magazine),2,kmeans_plain
+353,World Wide Web,2,kmeans_plain
+354,X (company),2,kmeans_plain
+355,Xiaomi,2,kmeans_plain
+356,YouTube,2,kmeans_plain
+357,3D computer graphics,2,kmeans_plain
+358,Android One,2,kmeans_plain
+359,AngelList,2,kmeans_plain
+360,Apple File System,2,kmeans_plain
+361,Backward compatibility,2,kmeans_plain
+362,Bandwidth (computing),2,kmeans_plain
+363,Biometric passport,2,kmeans_plain
+364,Broadridge Financial Solutions,2,kmeans_plain
+365,Chief technology officer,2,kmeans_plain
+366,Contactless payment,2,kmeans_plain
+367,Digital camera,2,kmeans_plain
+368,Foxconn,2,kmeans_plain
+369,HTTP Live Streaming,2,kmeans_plain
+370,Hewlett Packard Enterprise,2,kmeans_plain
+371,High Efficiency Image File Format,2,kmeans_plain
+372,Hyperledger,2,kmeans_plain
+373,IPhone SE,2,kmeans_plain
+374,Java servlet,2,kmeans_plain
+375,Jawed Karim,2,kmeans_plain
+376,Juul,2,kmeans_plain
+377,Kara Swisher,2,kmeans_plain
+378,M-Pesa,2,kmeans_plain
+379,MQTT,2,kmeans_plain
+380,MacOS Sierra,2,kmeans_plain
+381,Magic Leap,2,kmeans_plain
+382,Memory card,2,kmeans_plain
+383,Michele Romanow,2,kmeans_plain
+384,Motorola,2,kmeans_plain
+385,NetApp,2,kmeans_plain
+386,OS X El Capitan,2,kmeans_plain
+387,Pono (digital music service),2,kmeans_plain
+388,Redmi,2,kmeans_plain
+389,Ringtone,2,kmeans_plain
+390,SAP SE,2,kmeans_plain
+391,SCART,2,kmeans_plain
+392,Skunkworks project,2,kmeans_plain
+393,Television set,2,kmeans_plain
+394,Vevo,2,kmeans_plain
+395,Vimeo,2,kmeans_plain
+396,Wireless LAN,2,kmeans_plain
+397,Xamarin,2,kmeans_plain
+398,Yahoo! Japan,2,kmeans_plain
+399,Ben Thompson (writer),2,kmeans_plain
+400,Centrifugal compressor,3,kmeans_plain
+401,Charging station,3,kmeans_plain
+402,Diesel engine,3,kmeans_plain
+403,Differential (mechanical device),3,kmeans_plain
+404,Direct-shift gearbox,3,kmeans_plain
+405,Electric motor,3,kmeans_plain
+406,Hybrid electric vehicle,3,kmeans_plain
+407,Hydrogen vehicle,3,kmeans_plain
+408,Radial engine,3,kmeans_plain
+409,Scania AB,3,kmeans_plain
+410,Stirling engine,3,kmeans_plain
+411,Turbocharger,3,kmeans_plain
+412,Airbag,3,kmeans_plain
+413,Aircraft engine,3,kmeans_plain
+414,Air–fuel ratio,3,kmeans_plain
+415,Anti-lock braking system,3,kmeans_plain
+416,Audi S and RS models,3,kmeans_plain
+417,Automatic transmission,3,kmeans_plain
+418,Automobile air conditioning,3,kmeans_plain
+419,Automotive battery,3,kmeans_plain
+420,Battery electric vehicle,3,kmeans_plain
+421,Bearing (mechanical),3,kmeans_plain
+422,Bogie,3,kmeans_plain
+423,Camshaft,3,kmeans_plain
+424,Carburetor,3,kmeans_plain
+425,Carnot heat engine,3,kmeans_plain
+426,Clutch,3,kmeans_plain
+427,Crankshaft,3,kmeans_plain
+428,Dual-clutch transmission,3,kmeans_plain
+429,Dynamo,3,kmeans_plain
+430,Electric generator,3,kmeans_plain
+431,Engine,3,kmeans_plain
+432,Exhaust gas recirculation,3,kmeans_plain
+433,Flat engine,3,kmeans_plain
+434,Flywheel energy storage,3,kmeans_plain
+435,Ford Model T,3,kmeans_plain
+436,Forklift,3,kmeans_plain
+437,Formula One car,3,kmeans_plain
+438,Four-stroke engine,3,kmeans_plain
+439,Gas turbine,3,kmeans_plain
+440,Gasoline direct injection,3,kmeans_plain
+441,Governor (device),3,kmeans_plain
+442,Heat engine,3,kmeans_plain
+443,History of the internal combustion engine,3,kmeans_plain
+444,Internal combustion engine,3,kmeans_plain
+445,Limited-slip differential,3,kmeans_plain
+446,MAN SE,3,kmeans_plain
+447,Manual transmission,3,kmeans_plain
+448,Mass flow sensor,3,kmeans_plain
+449,Motor vehicle,3,kmeans_plain
+450,On-board diagnostics,3,kmeans_plain
+451,Oxygen sensor,3,kmeans_plain
+452,Piston,3,kmeans_plain
+453,Power steering,3,kmeans_plain
+454,Radiator (engine cooling),3,kmeans_plain
+455,Shock absorber,3,kmeans_plain
+456,Spark plug,3,kmeans_plain
+457,Start-stop system,3,kmeans_plain
+458,Starter (engine),3,kmeans_plain
+459,Steam engine,3,kmeans_plain
+460,Steering,3,kmeans_plain
+461,Tachometer,3,kmeans_plain
+462,Tesla Powerwall,3,kmeans_plain
+463,Tire-pressure monitoring system,3,kmeans_plain
+464,Torque converter,3,kmeans_plain
+465,Traction control system,3,kmeans_plain
+466,Tractor,3,kmeans_plain
+467,Two-stroke engine,3,kmeans_plain
+468,VR6 engine,3,kmeans_plain
+469,Vehicle,3,kmeans_plain
+470,Volkswagen air-cooled engine,3,kmeans_plain
+471,Wankel engine,3,kmeans_plain
+472,Ackermann steering geometry,3,kmeans_plain
+473,Automotive industry,3,kmeans_plain
+474,Automotive industry in the United Kingdom,3,kmeans_plain
+475,Chassis,3,kmeans_plain
+476,Cubic centimetre,3,kmeans_plain
+477,Cummins B Series engine,3,kmeans_plain
+478,Fuel cell vehicle,3,kmeans_plain
+479,Gear train,3,kmeans_plain
+480,Immobiliser,3,kmeans_plain
+481,Leaf spring,3,kmeans_plain
+482,Petrol engine,3,kmeans_plain
+483,Powertrain,3,kmeans_plain
+484,Reciprocating engine,3,kmeans_plain
+485,V12 engine,3,kmeans_plain
+486,VTEC,3,kmeans_plain
+487,Wheel and axle,3,kmeans_plain
+488,Abacus,4,kmeans_plain
+489,Bridge,4,kmeans_plain
+490,CN Tower,4,kmeans_plain
+491,Composting toilet,4,kmeans_plain
+492,Glass,4,kmeans_plain
+493,Incandescent light bulb,4,kmeans_plain
+494,Industrial Revolution,4,kmeans_plain
+495,Lightning rod,4,kmeans_plain
+496,Microwave oven,4,kmeans_plain
+497,Packaging and labeling,4,kmeans_plain
+498,Papermaking,4,kmeans_plain
+499,Pigment,4,kmeans_plain
+500,Plywood,4,kmeans_plain
+501,Printing,4,kmeans_plain
+502,Seismometer,4,kmeans_plain
+503,Slide rule,4,kmeans_plain
+504,Suspension bridge,4,kmeans_plain
+505,Thomas Edison,4,kmeans_plain
+506,Windmill,4,kmeans_plain
+507,AC power plugs and sockets,4,kmeans_plain
+508,Adhesive,4,kmeans_plain
+509,Agricultural machinery,4,kmeans_plain
+510,Architectural drawing,4,kmeans_plain
+511,Artificial turf,4,kmeans_plain
+512,Assembly line,4,kmeans_plain
+513,Balloon,4,kmeans_plain
+514,Barbed wire,4,kmeans_plain
+515,Beacon,4,kmeans_plain
+516,Bed,4,kmeans_plain
+517,Benjamin Franklin,4,kmeans_plain
+518,Binoculars,4,kmeans_plain
+519,Block and tackle,4,kmeans_plain
+520,Breathalyzer,4,kmeans_plain
+521,Bronze Age,4,kmeans_plain
+522,Bunsen burner,4,kmeans_plain
+523,Calipers,4,kmeans_plain
+524,Camera obscura,4,kmeans_plain
+525,Camping,4,kmeans_plain
+526,Canal,4,kmeans_plain
+527,Candle,4,kmeans_plain
+528,Catapult,4,kmeans_plain
+529,Catheter,4,kmeans_plain
+530,Chronograph,4,kmeans_plain
+531,Cinematography,4,kmeans_plain
+532,Combine harvester,4,kmeans_plain
+533,Concrete mixer,4,kmeans_plain
+534,Construction,4,kmeans_plain
+535,Conveyor belt,4,kmeans_plain
+536,Corrugated fiberboard,4,kmeans_plain
+537,Crane (machine),4,kmeans_plain
+538,Creosote,4,kmeans_plain
+539,Crossbow,4,kmeans_plain
+540,Dental braces,4,kmeans_plain
+541,Do it yourself,4,kmeans_plain
+542,Drill,4,kmeans_plain
+543,Eadweard Muybridge,4,kmeans_plain
+544,Edison screw,4,kmeans_plain
+545,Electronic cigarette,4,kmeans_plain
+546,Elevator,4,kmeans_plain
+547,Escalator,4,kmeans_plain
+548,Factory,4,kmeans_plain
+549,Fiber,4,kmeans_plain
+550,FieldTurf,4,kmeans_plain
+551,Flashlight,4,kmeans_plain
+552,Food preservation,4,kmeans_plain
+553,Fountain pen,4,kmeans_plain
+554,Gas lighting,4,kmeans_plain
+555,Gas mask,4,kmeans_plain
+556,Glow stick,4,kmeans_plain
+557,History of books,4,kmeans_plain
+558,History of printing,4,kmeans_plain
+559,History of the firearm,4,kmeans_plain
+560,Home appliance,4,kmeans_plain
+561,Hot air balloon,4,kmeans_plain
+562,Inclined plane,4,kmeans_plain
+563,Induction cooking,4,kmeans_plain
+564,Invention,4,kmeans_plain
+565,Iron Age,4,kmeans_plain
+566,Knot,4,kmeans_plain
+567,Lawn mower,4,kmeans_plain
+568,Lever,4,kmeans_plain
+569,Love lock,4,kmeans_plain
+570,Machine tool,4,kmeans_plain
+571,Mass production,4,kmeans_plain
+572,Metal detector,4,kmeans_plain
+573,Metallurgy,4,kmeans_plain
+574,Mimeograph,4,kmeans_plain
+575,Mining,4,kmeans_plain
+576,Mortise and tenon,4,kmeans_plain
+577,Offset printing,4,kmeans_plain
+578,Open defecation,4,kmeans_plain
+579,Orthographic projection,4,kmeans_plain
+580,Orthotics,4,kmeans_plain
+581,Overhead line,4,kmeans_plain
+582,Paper,4,kmeans_plain
+583,Paper size,4,kmeans_plain
+584,Paperboard,4,kmeans_plain
+585,Pascal's calculator,4,kmeans_plain
+586,Pencil,4,kmeans_plain
+587,Petronas Towers,4,kmeans_plain
+588,Photocopier,4,kmeans_plain
+589,Photography,4,kmeans_plain
+590,Porcelain,4,kmeans_plain
+591,Prosthesis,4,kmeans_plain
+592,Pulley,4,kmeans_plain
+593,Pulp (paper),4,kmeans_plain
+594,Recumbent bicycle,4,kmeans_plain
+595,Refrigerator,4,kmeans_plain
+596,Samuel Morse,4,kmeans_plain
+597,Scalpel,4,kmeans_plain
+598,Screen printing,4,kmeans_plain
+599,Second Industrial Revolution,4,kmeans_plain
+600,Sewing machine,4,kmeans_plain
+601,Sextant,4,kmeans_plain
+602,Shelf life,4,kmeans_plain
+603,Sieve,4,kmeans_plain
+604,Simple machine,4,kmeans_plain
+605,Siphon,4,kmeans_plain
+606,Slot machine,4,kmeans_plain
+607,Stent,4,kmeans_plain
+608,Stone tool,4,kmeans_plain
+609,Street light,4,kmeans_plain
+610,Technical drawing,4,kmeans_plain
+611,Technical drawing tool,4,kmeans_plain
+612,Textile industry,4,kmeans_plain
+613,Theodolite,4,kmeans_plain
+614,Three-age system,4,kmeans_plain
+615,Timeline of United States inventions (before 1890),4,kmeans_plain
+616,Timeline of historic inventions,4,kmeans_plain
+617,Tire,4,kmeans_plain
+618,Toilet,4,kmeans_plain
+619,Tool,4,kmeans_plain
+620,Traffic light,4,kmeans_plain
+621,Tram,4,kmeans_plain
+622,Trebuchet,4,kmeans_plain
+623,Typewriter,4,kmeans_plain
+624,Vacuum cleaner,4,kmeans_plain
+625,Vending machine,4,kmeans_plain
+626,Vernier scale,4,kmeans_plain
+627,Victoria and Albert Museum,4,kmeans_plain
+628,Washing machine,4,kmeans_plain
+629,Watt steam engine,4,kmeans_plain
+630,Weighing scale,4,kmeans_plain
+631,Wheel,4,kmeans_plain
+632,Wootz steel,4,kmeans_plain
+633,World's fair,4,kmeans_plain
+634,Wrought iron,4,kmeans_plain
+635,Air fryer,4,kmeans_plain
+636,Backhoe,4,kmeans_plain
+637,Ball bearing,4,kmeans_plain
+638,Blueprint,4,kmeans_plain
+639,Castile soap,4,kmeans_plain
+640,Compass (drawing tool),4,kmeans_plain
+641,Daguerreotype,4,kmeans_plain
+642,Fastener,4,kmeans_plain
+643,Flint,4,kmeans_plain
+644,Gun,4,kmeans_plain
+645,Kiln,4,kmeans_plain
+646,Laundry,4,kmeans_plain
+647,Lighter,4,kmeans_plain
+648,Limelight,4,kmeans_plain
+649,Loader (equipment),4,kmeans_plain
+650,Monkey wrench,4,kmeans_plain
+651,Nut (hardware),4,kmeans_plain
+652,Oil lamp,4,kmeans_plain
+653,Paternoster,4,kmeans_plain
+654,Pen,4,kmeans_plain
+655,Robert Fulton,4,kmeans_plain
+656,Ruler,4,kmeans_plain
+657,Sanitary sewer,4,kmeans_plain
+658,Skeleton key,4,kmeans_plain
+659,Spinning jenny,4,kmeans_plain
+660,Sports equipment,4,kmeans_plain
+661,Stenotype,4,kmeans_plain
+662,Stopwatch,4,kmeans_plain
+663,Toilet-related injuries and deaths,4,kmeans_plain
+664,Torch,4,kmeans_plain
+665,Torx,4,kmeans_plain
+666,Vantablack,4,kmeans_plain
+667,Vise,4,kmeans_plain
+668,Wallpaper,4,kmeans_plain
+669,Whale oil,4,kmeans_plain
+670,Wire,4,kmeans_plain
+671,Die casting,5,kmeans_plain
+672,Injection moulding,5,kmeans_plain
+673,Arc welding,5,kmeans_plain
+674,Biodiesel,5,kmeans_plain
+675,Carbon dioxide removal,5,kmeans_plain
+676,Distillation,5,kmeans_plain
+677,Evaporative cooler,5,kmeans_plain
+678,Fuel cell,5,kmeans_plain
+679,Geotechnical engineering,5,kmeans_plain
+680,Glass production,5,kmeans_plain
+681,Heat exchanger,5,kmeans_plain
+682,Heat pump,5,kmeans_plain
+683,Oil refinery,5,kmeans_plain
+684,Recycling,5,kmeans_plain
+685,Refrigeration,5,kmeans_plain
+686,Reinforced concrete,5,kmeans_plain
+687,Rolling (metalworking),5,kmeans_plain
+688,Solar thermal energy,5,kmeans_plain
+689,Vapor-compression refrigeration,5,kmeans_plain
+690,Abrasive blasting,5,kmeans_plain
+691,Absorption refrigerator,5,kmeans_plain
+692,Algae fuel,5,kmeans_plain
+693,Anemometer,5,kmeans_plain
+694,Anodizing,5,kmeans_plain
+695,Biodegradable plastic,5,kmeans_plain
+696,Bioplastic,5,kmeans_plain
+697,Bioreactor,5,kmeans_plain
+698,Boiling water reactor,5,kmeans_plain
+699,Calorimeter,5,kmeans_plain
+700,Carbon fiber reinforced polymer,5,kmeans_plain
+701,Carbon sequestration,5,kmeans_plain
+702,Cavitation,5,kmeans_plain
+703,Centrifugal fan,5,kmeans_plain
+704,Centrifugal pump,5,kmeans_plain
+705,Composite material,5,kmeans_plain
+706,Compressive strength,5,kmeans_plain
+707,Concentrated solar power,5,kmeans_plain
+708,Coolant,5,kmeans_plain
+709,Cylinder stress,5,kmeans_plain
+710,Dangerous goods,5,kmeans_plain
+711,Dye penetrant inspection,5,kmeans_plain
+712,Electric arc furnace,5,kmeans_plain
+713,Electric heating,5,kmeans_plain
+714,Electrical discharge machining,5,kmeans_plain
+715,Electrostatic precipitator,5,kmeans_plain
+716,Energy storage,5,kmeans_plain
+717,Engineered wood,5,kmeans_plain
+718,Engineering drawing,5,kmeans_plain
+719,Engineering tolerance,5,kmeans_plain
+720,Expansion joint,5,kmeans_plain
+721,Fatigue (material),5,kmeans_plain
+722,Fertilizer,5,kmeans_plain
+723,Fiberglass,5,kmeans_plain
+724,Fibre-reinforced plastic,5,kmeans_plain
+725,Flow measurement,5,kmeans_plain
+726,Foam,5,kmeans_plain
+727,Food irradiation,5,kmeans_plain
+728,Francis turbine,5,kmeans_plain
+729,Freeze-drying,5,kmeans_plain
+730,Galvanization,5,kmeans_plain
+731,Gas cylinder,5,kmeans_plain
+732,Geothermal power,5,kmeans_plain
+733,Hot-melt adhesive,5,kmeans_plain
+734,Hydraulic head,5,kmeans_plain
+735,Hydraulic pump,5,kmeans_plain
+736,Inconel,5,kmeans_plain
+737,Induction heating,5,kmeans_plain
+738,Insecticide,5,kmeans_plain
+739,Lead–acid battery,5,kmeans_plain
+740,Load cell,5,kmeans_plain
+741,Lubricant,5,kmeans_plain
+742,Machining,5,kmeans_plain
+743,Milling (machining),5,kmeans_plain
+744,Nebulizer,5,kmeans_plain
+745,Nondestructive testing,5,kmeans_plain
+746,Nonwoven fabric,5,kmeans_plain
+747,Numerical control,5,kmeans_plain
+748,O-ring,5,kmeans_plain
+749,Oil well,5,kmeans_plain
+750,Oxy-fuel welding and cutting,5,kmeans_plain
+751,Passivation (chemistry),5,kmeans_plain
+752,Personal protective equipment,5,kmeans_plain
+753,Petroleum industry,5,kmeans_plain
+754,Photovoltaic system,5,kmeans_plain
+755,Piping and plumbing fitting,5,kmeans_plain
+756,Plastic bag,5,kmeans_plain
+757,Plasticizer,5,kmeans_plain
+758,Polylactic acid,5,kmeans_plain
+759,Power station,5,kmeans_plain
+760,Pressure vessel,5,kmeans_plain
+761,Pyrolysis,5,kmeans_plain
+762,Rebar,5,kmeans_plain
+763,Sand casting,5,kmeans_plain
+764,Shell and tube heat exchanger,5,kmeans_plain
+765,Sintering,5,kmeans_plain
+766,Smelting,5,kmeans_plain
+767,Solar water heating,5,kmeans_plain
+768,Spot welding,5,kmeans_plain
+769,Syngas,5,kmeans_plain
+770,Tensile testing,5,kmeans_plain
+771,Thermal insulation,5,kmeans_plain
+772,Thermoelectric generator,5,kmeans_plain
+773,Ultimate tensile strength,5,kmeans_plain
+774,Ventricular assist device,5,kmeans_plain
+775,Vickers hardness test,5,kmeans_plain
+776,Volatile organic compound,5,kmeans_plain
+777,Wastewater treatment,5,kmeans_plain
+778,Water treatment,5,kmeans_plain
+779,Water turbine,5,kmeans_plain
+780,Wind turbine,5,kmeans_plain
+781,Air filter,5,kmeans_plain
+782,Autoclave,5,kmeans_plain
+783,Cast iron,5,kmeans_plain
+784,Check valve,5,kmeans_plain
+785,Chemical industry,5,kmeans_plain
+786,Condenser (heat transfer),5,kmeans_plain
+787,Drain-waste-vent system,5,kmeans_plain
+788,Drilling rig,5,kmeans_plain
+789,Elastomer,5,kmeans_plain
+790,Engineering fit,5,kmeans_plain
+791,Exhaust gas,5,kmeans_plain
+792,Hydraulic press,5,kmeans_plain
+793,Ice pack,5,kmeans_plain
+794,Mineral wool,5,kmeans_plain
+795,Oriented strand board,5,kmeans_plain
+796,Particle board,5,kmeans_plain
+797,Pneumatics,5,kmeans_plain
+798,Pressure regulator,5,kmeans_plain
+799,Self-contained breathing apparatus,5,kmeans_plain
+800,Shape-memory alloy,5,kmeans_plain
+801,Solenoid valve,5,kmeans_plain
+802,Submersible pump,5,kmeans_plain
+803,Sump pump,5,kmeans_plain
+804,Thermal expansion valve,5,kmeans_plain
+805,Thermoplastic,5,kmeans_plain
+806,Thermoplastic elastomer,5,kmeans_plain
+807,Thermosetting polymer,5,kmeans_plain
+808,Vacuum pump,5,kmeans_plain
+809,Waste-to-energy,5,kmeans_plain
+810,Waterproofing,5,kmeans_plain
+811,3D printing,6,kmeans_plain
+812,Artificial intelligence,6,kmeans_plain
+813,Biotechnology,6,kmeans_plain
+814,Electrical engineering,6,kmeans_plain
+815,Engineering,6,kmeans_plain
+816,Industrial robot,6,kmeans_plain
+817,Innovation,6,kmeans_plain
+818,Kardashev scale,6,kmeans_plain
+819,Nanotechnology,6,kmeans_plain
+820,Nootropic,6,kmeans_plain
+821,Robot,6,kmeans_plain
+822,Scientific method,6,kmeans_plain
+823,Smart grid,6,kmeans_plain
+824,Systems engineering,6,kmeans_plain
+825,Technological singularity,6,kmeans_plain
+826,Technology,6,kmeans_plain
+827,Transhumanism,6,kmeans_plain
+828,Aerospace,6,kmeans_plain
+829,Aerospace engineering,6,kmeans_plain
+830,Applications of artificial intelligence,6,kmeans_plain
+831,Automation,6,kmeans_plain
+832,Autonomous car,6,kmeans_plain
+833,Bioinformatics,6,kmeans_plain
+834,Biological engineering,6,kmeans_plain
+835,Biomechanics,6,kmeans_plain
+836,Biomedical engineering,6,kmeans_plain
+837,Biometrics,6,kmeans_plain
+838,Blended learning,6,kmeans_plain
+839,Chemical engineering,6,kmeans_plain
+840,Civil engineering,6,kmeans_plain
+841,Code,6,kmeans_plain
+842,Communication,6,kmeans_plain
+843,Computer,6,kmeans_plain
+844,Computer engineering,6,kmeans_plain
+845,Computer network,6,kmeans_plain
+846,Computer programming,6,kmeans_plain
+847,Computer simulation,6,kmeans_plain
+848,Computer vision,6,kmeans_plain
+849,Computing,6,kmeans_plain
+850,Cyber-physical system,6,kmeans_plain
+851,Decentralization,6,kmeans_plain
+852,Diffusion of innovations,6,kmeans_plain
+853,Disruptive innovation,6,kmeans_plain
+854,Document management system,6,kmeans_plain
+855,Drake equation,6,kmeans_plain
+856,Educational technology,6,kmeans_plain
+857,Electrical grid,6,kmeans_plain
+858,Electronic engineering,6,kmeans_plain
+859,Electronic health record,6,kmeans_plain
+860,Elon Musk,6,kmeans_plain
+861,Emerging technologies,6,kmeans_plain
+862,Environmental engineering,6,kmeans_plain
+863,Environmental science,6,kmeans_plain
+864,Failure mode and effects analysis,6,kmeans_plain
+865,Fault tree analysis,6,kmeans_plain
+866,Forensic science,6,kmeans_plain
+867,Health,6,kmeans_plain
+868,History of technology,6,kmeans_plain
+869,Human factors and ergonomics,6,kmeans_plain
+870,Hyperloop,6,kmeans_plain
+871,ITIL,6,kmeans_plain
+872,Industrial design,6,kmeans_plain
+873,Information,6,kmeans_plain
+874,Information Age,6,kmeans_plain
+875,Information and communication technologies for development,6,kmeans_plain
+876,Information and communications technology,6,kmeans_plain
+877,Information management,6,kmeans_plain
+878,Information system,6,kmeans_plain
+879,Information technology,6,kmeans_plain
+880,Institute of Electrical and Electronics Engineers,6,kmeans_plain
+881,Intellectual property,6,kmeans_plain
+882,Just-in-time manufacturing,6,kmeans_plain
+883,Kaizen,6,kmeans_plain
+884,Laboratory,6,kmeans_plain
+885,Laboratory information management system,6,kmeans_plain
+886,Luddite,6,kmeans_plain
+887,Machine,6,kmeans_plain
+888,Manufacturing,6,kmeans_plain
+889,Mars Orbiter Mission,6,kmeans_plain
+890,Materials science,6,kmeans_plain
+891,Mechanical engineering,6,kmeans_plain
+892,Media (communication),6,kmeans_plain
+893,Medical device,6,kmeans_plain
+894,Medical laboratory,6,kmeans_plain
+895,Multimedia,6,kmeans_plain
+896,Muslim world,6,kmeans_plain
+897,Neolithic Revolution,6,kmeans_plain
+898,OCLC,6,kmeans_plain
+899,Online advertising,6,kmeans_plain
+900,Pharmacology,6,kmeans_plain
+901,Productivity,6,kmeans_plain
+902,Program evaluation and review technique,6,kmeans_plain
+903,Programmer,6,kmeans_plain
+904,Prototype,6,kmeans_plain
+905,Public relations,6,kmeans_plain
+906,Quality management,6,kmeans_plain
+907,Recommender system,6,kmeans_plain
+908,Recreation,6,kmeans_plain
+909,Reliability engineering,6,kmeans_plain
+910,Research,6,kmeans_plain
+911,Reverse engineering,6,kmeans_plain
+912,Risk,6,kmeans_plain
+913,Risk assessment,6,kmeans_plain
+914,Risk management,6,kmeans_plain
+915,Robotics,6,kmeans_plain
+916,SCADA,6,kmeans_plain
+917,"Science, technology, engineering, and mathematics",6,kmeans_plain
+918,Science and technology in the Philippines,6,kmeans_plain
+919,Six Sigma,6,kmeans_plain
+920,Slow movement (culture),6,kmeans_plain
+921,Smart meter,6,kmeans_plain
+922,Societal collapse,6,kmeans_plain
+923,Software development process,6,kmeans_plain
+924,Software engineer,6,kmeans_plain
+925,Software engineering,6,kmeans_plain
+926,Software testing,6,kmeans_plain
+927,Specification (technical standard),6,kmeans_plain
+928,Standardization,6,kmeans_plain
+929,Structural engineering,6,kmeans_plain
+930,Surveillance,6,kmeans_plain
+931,System administrator,6,kmeans_plain
+932,TED (conference),6,kmeans_plain
+933,Technological and industrial history of the United States,6,kmeans_plain
+934,Technological convergence,6,kmeans_plain
+935,Technological unemployment,6,kmeans_plain
+936,Technology readiness level,6,kmeans_plain
+937,Theory of constraints,6,kmeans_plain
+938,Traffic collision,6,kmeans_plain
+939,Transport,6,kmeans_plain
+940,École Polytechnique,6,kmeans_plain
+941,Agricultural engineering,6,kmeans_plain
+942,Analysis paralysis,6,kmeans_plain
+943,Analytics,6,kmeans_plain
+944,Applied science,6,kmeans_plain
+945,Architectural engineering,6,kmeans_plain
+946,Arcology,6,kmeans_plain
+947,Business analytics,6,kmeans_plain
+948,Clarke's three laws,6,kmeans_plain
+949,Control engineering,6,kmeans_plain
+950,Control system,6,kmeans_plain
+951,Digital Revolution,6,kmeans_plain
+952,Distributed ledger,6,kmeans_plain
+953,E-procurement,6,kmeans_plain
+954,Engineering design process,6,kmeans_plain
+955,Financial technology,6,kmeans_plain
+956,Fourth-generation programming language,6,kmeans_plain
+957,Gadget,6,kmeans_plain
+958,Geek,6,kmeans_plain
+959,Global issue,6,kmeans_plain
+960,Graphics,6,kmeans_plain
+961,Growth hacking,6,kmeans_plain
+962,Hype cycle,6,kmeans_plain
+963,IT service management,6,kmeans_plain
+964,Image,6,kmeans_plain
+965,Industrial engineering,6,kmeans_plain
+966,Industry,6,kmeans_plain
+967,Information technology in India,6,kmeans_plain
+968,Knowledge representation and reasoning,6,kmeans_plain
+969,Load testing,6,kmeans_plain
+970,Mass communication,6,kmeans_plain
+971,Microchip implant (human),6,kmeans_plain
+972,Necessity is the mother of invention,6,kmeans_plain
+973,New product development,6,kmeans_plain
+974,Petroleum engineering,6,kmeans_plain
+975,Product design,6,kmeans_plain
+976,Product lifecycle,6,kmeans_plain
+977,Project,6,kmeans_plain
+978,Proof of concept,6,kmeans_plain
+979,Quality management system,6,kmeans_plain
+980,Requirement,6,kmeans_plain
+981,Research and development,6,kmeans_plain
+982,Safety,6,kmeans_plain
+983,Science and technology in India,6,kmeans_plain
+984,Service-level agreement,6,kmeans_plain
+985,Software design,6,kmeans_plain
+986,Software maintenance,6,kmeans_plain
+987,State of the art,6,kmeans_plain
+988,Subject-matter expert,6,kmeans_plain
+989,Technical support,6,kmeans_plain
+990,Technical writing,6,kmeans_plain
+991,Technology acceptance model,6,kmeans_plain
+992,Troubleshooting,6,kmeans_plain

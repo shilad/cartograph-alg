@@ -36,5 +36,5 @@ if __name__ == '__main__':
         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory, embedding= sys.argv[1:]
+    map_directory, embedding = sys.argv[1:]
     main(map_directory, embedding)
