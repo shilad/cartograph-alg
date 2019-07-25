@@ -17,7 +17,7 @@ def create_merged_df(map_directory, experiment_directory, country_labels, cluste
     xy_df = pd.read_csv(experiment_directory + embeddings)
 
     if purpose == 'study':
-        country_label_df = pd.read_csv(label_path + '/final_labels.csv')
+        country_label_df = pd.read_csv(label_path + country_labels)
     else:
         country_label_df = pd.read_csv(experiment_directory + country_labels)
 
@@ -77,6 +77,7 @@ if __name__ == '__main__':
     parser.add_argument('--label_path')
 
     args = parser.parse_args()
+
     main(args.map_directory,
          args.experiment,
          args.filter_method,

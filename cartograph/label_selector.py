@@ -136,12 +136,12 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
 
     if purpose == 'study':
         df = df.set_index('country')
+        df.columns = ['label_name']
         df.to_csv(label_path + '/final_labels.csv', index=True)
     else:
         df['label_id'] = np.array(list(final_scores.values())).T
         df.columns = ['label_name', 'country', 'label_id']
-
-    df.to_csv(experiment_dir + output_file, index=True)
+        df.to_csv(experiment_dir + output_file, index=True)
 
     # # Get top label candidates
     top = get_top_labels(country_labels, label_score)
@@ -176,10 +176,13 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
+    label_path = str(args.label_path)
+
     article_labels = pd.read_csv(args.articles_to_labels)
+
     country_clusters = pd.read_csv(args.experiment + args.cluster_groups)
     label_names = pd.read_csv(args.label_names)
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
 
-    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates, args.purpose, args.label_path)
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates, args.purpose, label_path)

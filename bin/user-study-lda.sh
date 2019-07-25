@@ -74,12 +74,17 @@ do
 
         # Step 4: Run other labeling schemes:
         python -m cartograph.label_selector \
-        --experiment ${exp_dir} \
-        --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
-        --label_names data/${projects[$i]}/${label_name_csv[$x]} \
-        --label_score ${label_score} \
-        --percentile 1 \
-        --label_path ${label_path}
+            --experiment ${exp_dir} \
+            --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
+            --label_names data/${projects[$i]}/${label_name_csv[$x]} \
+            --label_score ${label_score} \
+            --percentile 1 \
+            --purpose study \
+            --label_path ${label_path} \
+            --cluster_groups /cluster_groups.csv \
+            --output_file /final_labels.csv \
+            --soft_labeling false \
+            --num_candidates 0
     done
 
 

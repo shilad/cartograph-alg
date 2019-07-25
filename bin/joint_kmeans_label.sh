@@ -69,7 +69,10 @@ do
             --country_labels ${j}_country_labels.csv \
             --cluster_groups ${j}_cluster_groups.csv \
             --embeddings xy_embeddings.csv \
-            --output_name ${j}_domain.json
+            --output_name ${j}_domain.json \
+            --purpose experiment \
+            --label_path na
+
 
         # draw boundary
         python -m cartograph.border_creator \
@@ -84,7 +87,9 @@ do
         --color_palette muted \
         --json_file ${j}_domain.json \
         --output_file ${j}_graph.svg \
-        --country_labels ${j}_country_labels.csv
+        --country_labels ${j}_country_labels.csv \
+        --purpose experiment \
+        --label_path na
 
     done
 done

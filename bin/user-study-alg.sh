@@ -81,12 +81,12 @@ do
 
     python -m cartograph.xy_embed.tsne_embed \
             --experiment ${exp_dir} \
-           --vectors ${exp_dir}/${vector_format_for_embedding}
+            --vectors ${exp_dir}/${vector_format_for_embedding} \
 
 
     for x in {0..4}
     do
-        label_path=${exp_dir}/labels/${label_types[$x]}
+        label_path=${exp_dir}labels/${label_types[$x]}
 
         python -m cartograph.label_selector \
             --experiment ${exp_dir} \
@@ -94,16 +94,44 @@ do
             --label_names data/${projects[$i]}/${label_name_csv[$x]} \
             --label_score ${label_score} \
             --percentile 1 \
-            --label_path ${label_path}
+            --purpose study \
+            --label_path ${label_path} \
+            --cluster_groups /cluster_groups.csv \
+            --output_file /final_labels.csv \
+            --soft_labeling false \
+            --num_candidates 0
 
         # Step 6: Generate JSON, noise refers to using noise filtering algorithm (k means distance)
-        python -m cartograph.json_generator data/${projects[$i]} ${exp_dir} noise ${label_path}
+        python -m cartograph.json_generator \
+            --map_directory data/${projects[$i]} \
+            --experiment ${exp_dir} \
+            --filter_method kk  \
+            --country_labels /final_labels.csv \
+            --cluster_groups /cluster_groups.csv \
+            --embeddings /xy_embeddings.csv \
+            --output_name /domain.json \
+            --purpose study \
+            --label_path ${label_path}
+
+        # draw boundary
+        python -m cartograph.border_creator \
+                ${exp_dir} /xy_embeddings.csv \
+                /cluster_groups.csv
 
 
         # Step 7: Run evaluation metrics and generate HTML & SVG
-        python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted ${label_path}
+        python -m cartograph.svg_generator \
+            --map_directory ${exp_dir} \
+            --width 1500 \
+            --height 1500 \
+            --color_palette muted \
+            --json_file /domain.json \
+            --output_file /graph.svg \
+            --country_labels /final_labels.csv \
+            --purpose study \
+            --label_path ${label_path}
 
-        python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} >>${label_path}/evaluation.json
+        python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /xy_embeddings.csv >>${label_path}/evaluation.json
 
         python -m cartograph.evaluation.modularity_evaluator \
                 --experiment ${exp_dir} \
@@ -111,13 +139,9 @@ do
                 --method nn \
                 --cluster_groups_csv ${exp_dir}/cluster_groups.csv >> ${label_path}/evaluation.json
 
-        python -m cartograph.evaluation.cluster_validation_metrics \
-                --experiment ${exp_dir} \
-                --vectors ${exp_dir}/vanilla_vectors.csv \
-                --groups ${exp_dir}/cluster_groups.csv >> ${label_path}/evaluation.json
-
-
-        # Step 8: Output the html for visualization
-        python -m cartograph.html_generator ${exp_dir} ${label_path}
+#        python -m cartograph.evaluation.cluster_validation_metrics \
+#                --experiment ${exp_dir} \
+#                --vectors ${exp_dir}vanilla_vectors.csv \
+#                --groups ${exp_dir}cluster_groups.csv >> ${label_path}evaluation.json
     done
 done
