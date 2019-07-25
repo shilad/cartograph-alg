@@ -106,8 +106,6 @@ def get_top_labels(country_scores, label_score):
 
 
 def main(experiment_dir, article_labels, percentile, label_score, output_file, soft_labeling, num_candidates, purpose, label_path):
-    if not os.path.exists(label_path):
-        os.makedirs(label_path)
 
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
