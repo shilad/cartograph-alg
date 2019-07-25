@@ -10,9 +10,11 @@ import json
 import pandas as pd
 import statistics
 import seaborn as sns
-from collections import defaultdict
+import numpy as np
 import operator
-
+from collections import defaultdict
+import argparse
+import sys
 
 XY_RATIO = 7
 FONT_RATIO = 10
@@ -73,16 +75,41 @@ def set_colors(countries_csv, color_palette):
     countries = pd.read_csv(countries_csv)
     colors = {}
     palette = sns.color_palette(color_palette, len(countries)).as_hex()
+
     for i in range(len(countries['country'])):
-        colors[countries.iloc[i, 1]] = palette[i]
+        colors[countries.iloc[i]['label_name']] = palette[countries.iloc[i]['country']]
     return colors
 
 
-def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30):
+def draw_dash_boundary(boundary_csv, drawing):
+    df = pd.read_csv(boundary_csv)
+    for line in df.itertuples():
+        x1, y1, x2, y2 = line.x1*XY_RATIO, line.y1*XY_RATIO, line.x2*XY_RATIO, line.y2*XY_RATIO
+        drawing.append(draw.Line(x1, y1, x2, y2, stroke='black', stroke_dasharray='2,1'))
+    return drawing
+
+
+def draw_elevation(elevation_csv, drawing):
+    df = pd.read_csv(elevation_csv).dropna(how='all')
+    for index, row in df.iterrows():
+        temp = np.array(df.iloc[index].values.flatten().tolist())
+        temp = temp[temp!='nan']
+        polygon = draw.Path(stroke_width=0.001, stroke_opacity=0.7, fill=temp[-1])
+        polygon.M(float(temp[0])*XY_RATIO, float(temp[1])*XY_RATIO)   # start path at initial point
+        for i in range(2, len(temp)-2, 2):
+            polygon.L(float(temp[i])*XY_RATIO, float(temp[i+1])*XY_RATIO)
+        polygon.Z()   # close line to start
+        drawing.append(polygon)
+    return drawing
+
+
+def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, directory=None):
     """
     Given a json of cleaned articles (popularity score scaled), calculate the country label positions and draw the entire svg
     """
     drawing = draw.Drawing(width, height, origin="center")
+    draw_dash_boundary(directory + '/boundary.csv', drawing)
+    draw_elevation(directory + '/elevation.csv', drawing)
 
     for v in json_articles.values():
         # Draw each article
@@ -93,8 +120,8 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30):
         size = sizes[v['Article']]  # Augment the font_size and circle size correspondingly
         drawing.append(draw.Circle(x, y, size, fill=colors[country]))
         if size > .5:
-            drawing.append(draw.Text(title, int(size), x, y))
-
+            adjusted_x, adjusted_y = x - 0.5*len(title)*XY_RATIO, y - 0.5*size
+            drawing.append(draw.Text(title, int(size), adjusted_x, adjusted_y))
     # Draw country labels
     country_labels_xy = get_country_labels_xy(json_articles)
     draw_country_labels(drawing, country_labels_xy, country_font_size, colors)
@@ -135,35 +162,45 @@ def draw_country_labels(d, country_labels_xy, font_size, colors):
         x, y = position[0] * XY_RATIO, position[1] * XY_RATIO
         words = country.split()
         offset = 0
+        grey = "#707070"
         for i in range(0, len(words), 2):
             if i + 1 == len(words):
-                d.append(draw.Text(words[i].upper(), font_size, x, y - offset, fill=colors[country], center=True,
-                                   stroke='black', stroke_width=0.4))
+                d.append(draw.Text(words[i].upper(), font_size, x, y - offset, fill=grey, center=True,
+                                   stroke='white', stroke_width=0.5))
             else:
                 d.append(draw.Text(words[i].upper() + ' ' + words[i+1].upper(), font_size, x, y - offset,
-                                   fill=colors[country], center=True, stroke='black', stroke_width=0.4))
+                                   fill=grey, center=True, stroke='white', stroke_width=0.5))
             offset += 30
 
 
-def create_svg_file(directory, d):
+def create_svg_file(directory, d, output_file):
     d.setPixelScale(2)  # Set number of pixels per geometry unit
-    d.saveSvg(directory + '/graph.svg')
+    d.saveSvg(directory + output_file)
 
 
-def main(map_directory, width, height, color_palette):
-    articles = get_articles_json(map_directory + "/domain.json")
-    colors = set_colors(map_directory + "/country_labels.csv", color_palette)
+def main(map_directory, width, height, color_palette, json_file, output_file, country_labels):
+    articles = get_articles_json(map_directory + json_file)
+    colors = set_colors(map_directory + country_labels, color_palette)
     sizes = get_sizes(articles)
-    drawing = draw_svg(articles, float(width), float(height), colors, sizes)
-    create_svg_file(map_directory, drawing)
+    drawing = draw_svg(articles, float(width), float(height), colors, sizes, directory=map_directory)
+    create_svg_file(map_directory, drawing, output_file)
 
 
 if __name__ == '__main__':
-    import sys
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--map_directory', required=True)
+    parser.add_argument('--width', required=True)
+    parser.add_argument('--height', required=True)
+    parser.add_argument('--color_palette', required=True)
+    parser.add_argument('--json_file', required=True)
+    parser.add_argument('--output_file', required=True)
+    parser.add_argument('--country_labels', required=True)
+    args = parser.parse_args()
 
-    if len(sys.argv) != 5:
-        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-        sys.exit(1)
-
-    map_directory, width, height, color_palette = sys.argv[1:]
-    main(map_directory, width, height, color_palette)
+    main(args.map_directory,
+         args.width,
+         args.height,
+         args.color_palette,
+         args.json_file,
+         args.output_file,
+         args.country_labels)

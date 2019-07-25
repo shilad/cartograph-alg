@@ -7,7 +7,7 @@ Author: Yuren 'Rock' Pang
 """
 import time
 from collections import OrderedDict
-
+import argparse
 from jinja2 import Template
 from xml.dom import minidom
 import json
@@ -20,6 +20,7 @@ def get_params_and_values(file):
         dic = list(obj.items())[0]
         params_evals.update({dic[0]: dic[1]})
     return params_evals
+
 
 def main(experiment_directory, evaluation_json, params_json, graph_path):
     experiment_directory = experiment_directory.rstrip('/')
@@ -42,13 +43,13 @@ def main(experiment_directory, evaluation_json, params_json, graph_path):
                                eval_dic=eval_dic,
                                params_dic=params_dic)
 
-if __name__ == '__main__':
-    import sys
-    if len(sys.argv) != 2:
-        sys.stderr.write('Usage: %s map_directory augmentation_method' % sys.argv[0])
-        sys.exit(1)
 
-    experiment_directory = sys.argv[1]
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--experiment', required=True)
+    args = parser.parse_args()
+
+    experiment_directory = str(args.experiment)
     evaluation_json = experiment_directory + "/evaluation.json"
     params_json = experiment_directory + "/params.json"
     graph_path = experiment_directory + "/graph.svg"

@@ -1,3 +1,4 @@
+scipy
 pandas
 numpy
 sklearn
@@ -16,3 +17,5 @@ nltk
 jinja2
 gensim
 spacy
+pygsp
+umap-learn

@@ -12,14 +12,10 @@ from scipy import spatial
 from sklearn.cluster import KMeans
 import pandas as pd
 import warnings
+warnings.filterwarnings('ignore')
 import argparse
 import numpy as np
-
-with warnings.catch_warnings():
-    # filter sklearn\externals\joblib\parallel.py:268:
-    # DeprecationWarning: check_pickle is deprecated
-    warnings.simplefilter("ignore", category=DeprecationWarning)
-    from hdbscan import HDBSCAN
+from hdbscan import HDBSCAN
 
 
 def mag(x):
@@ -70,7 +66,8 @@ def get_kmeans(article_vectors, k):
         # dist.append(np.linalg.norm(a - b))
     df_with_centroids['distance'] = dist
     df_with_centroids = df_with_centroids[['country', 'article_id', 'distance']]
-    return df_with_centroids
+    df_with_centroids = df_with_centroids.sort_values(by=['article_id'])
+    return df_with_centroids.reset_index(drop=True)
 
 
 def get_hdbscan(article_vectors, min_size, noise=False):
