@@ -101,7 +101,7 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     # article_vectors = normalize_vectors(pd.read_csv(args.vectors))
-
+    print(args.experiment, args.vectors)
     article_vectors = pd.read_csv(args.vectors)
     if args.clustering == 'kmeans':
         cluster_df = get_kmeans(article_vectors, args.k)
