@@ -6,7 +6,10 @@ from collections import defaultdict
 PROJECTS = ['food', 'internet', 'media', 'technology']
 LABEL_TYPES = ['h_cat', 'key_phrases', 'key_words', 'lda', 'links']
 CLUSTER_TYPES = ['kmeans_plain', 'kmeans_augmented', 'LDA']
-BLACK_LIST = ['food', 'food and drink', 'media', 'technology']
+BLACK_LIST = ['food', 'foods', 'food and drink', 'media', 'medias', 'technology', 'no', 'none', 'nope']
+USER_LABEL_BLACK_LIST = ['i can', 'i can\'t', 'i cannot', 'i could', 'i think', 'no ', 'none ', 'nope ', 'not really',
+                         'notable figures', 'random things', 'strange and unfamiliar', 'i can think of',
+                         'chosen are suitable', 'some better name', 'a good name', 'yes']
 
 
 def get_most_popular_label(responses):
@@ -92,17 +95,78 @@ def get_top_cluster_labels(cluster_labels):
     return top_cluster_labels
 
 
+def get_most_popular_cluster(responses):
+    cluster_scores = defaultdict(int)
+    for index, row in responses.iterrows():
+        for column in responses.columns:
+            if 'Answer.cluster_coherency' in column:
+                project_num = re.findall('.$', column)[0]
+                if 'LDA' in row['Input.group_id_' + project_num]:
+                    cluster_type = re.findall("^[^_]+(?=_)", row['Input.group_id_' + project_num])[0]
+                else:
+                    cluster_type = re.findall("^[^_]*_[^_]*", row['Input.group_id_' + project_num])[0]
+                score = row[column]
+                cluster_scores[cluster_type] += score
+    return cluster_scores
+
+
+def clean_user_labels(responses):
+    user_labels, cleaned_labels = {}, {}
+    for proj in PROJECTS:
+        user_labels[proj], cleaned_labels[proj] = {}, {}
+        for cluster in CLUSTER_TYPES:
+            user_labels[proj][cluster], cleaned_labels[proj][cluster] = {}, {}
+            for i in range(7):
+                user_labels[proj][cluster][i], cleaned_labels[proj][cluster][i] = [], set()
+    for index, row in responses.iterrows():
+        for column in responses.columns:
+            if 'Answer.other_label' in column:
+                project_num = re.findall(".$", column)[0]
+                project = row['Input.project_' + project_num]
+                if 'LDA' in row['Input.group_id_' + project_num]:
+                    cluster_type = re.findall("^[^_]+(?=_)", row['Input.group_id_' + project_num])[0]
+                else:
+                    cluster_type = re.findall("^[^_]*_[^_]*", row['Input.group_id_' + project_num])[0]
+                cluster_num = re.findall("(?<=_c)(.*)(?=_)", row['Input.group_id_' + project_num])[0]
+                user_labels[project][cluster_type][int(cluster_num)].append(row[column])
+    for project in PROJECTS:
+        for cluster_type in CLUSTER_TYPES:
+            for i in range(7):
+                    for label in user_labels[project][cluster_type][i]:
+                        if not type(label) == float:
+                            label = label.lower().replace('.', '')
+                            if label not in BLACK_LIST:
+                                not_in = True
+                                for phrase in USER_LABEL_BLACK_LIST:
+                                    if phrase in label:
+                                        not_in = False
+                                if not_in:
+                                    cleaned_labels[project][cluster_type][i].add(label)
+    return cleaned_labels
+
+
 def main(responses):
     # label_scores = get_most_popular_label(responses)
     # print(label_scores)
 
-    cluster_labels = get_cluster_labels(responses)
-    top_cluster_labels = get_top_cluster_labels(cluster_labels)
+    # cluster_labels = get_cluster_labels(responses)
+    # top_cluster_labels = get_top_cluster_labels(cluster_labels)
+    #
+    # for project in top_cluster_labels:
+    #     for cluster_type in top_cluster_labels[project]:
+    #         df = pd.DataFrame.from_dict(top_cluster_labels[project][cluster_type], orient='index')
+    #         df.to_csv('study/' + project + '/' + cluster_type + '/gold_standard_labels.csv')
 
-    for project in top_cluster_labels:
-        for cluster_type in top_cluster_labels[project]:
-            df = pd.DataFrame.from_dict(top_cluster_labels[project][cluster_type], orient='index')
-            df.to_csv('study/' + project + '/' + cluster_type + '/gold_standard_labels.csv')
+    # cluster_scores = get_most_popular_cluster(responses)
+    # print(cluster_scores)
+
+    cleaned_user_labels = clean_user_labels(responses)
+    print(cleaned_user_labels)
+
+    for project in cleaned_user_labels:
+        for cluster_type in cleaned_user_labels[project]:
+            df = pd.DataFrame.from_dict(cleaned_user_labels[project][cluster_type], orient='index')
+            df.to_csv('study/' + project + '/' + cluster_type + '/user_chosen_labels.csv')
 
 
 mturk_responses = pd.read_csv('study/evaluation/cleaned_mturk_results.csv')
