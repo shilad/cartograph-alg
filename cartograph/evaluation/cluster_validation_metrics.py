@@ -63,37 +63,35 @@ def get_ch_score(xy_list, labels):
             (intra_disp * (n_labels - 1.)))
 
 
-def main():
+def main(experiment, vectors, clusterA, clusterB=None):
+    article_vectors = pd.read_csv(vectors)
+    cluster_a = pd.read_csv(clusterA).drop(columns=['article_id'])
+    if 'distance' in cluster_a.columns:
+        cluster_a = pd.read_csv(clusterA).drop(columns=['distance', 'article_id'])
 
-    article_vectors = pd.read_csv(args.vectors)
-    cluster_groups = pd.read_csv(args.groups).drop(columns=['article_id'])
-    if 'distance' in cluster_groups.columns:
-        cluster_groups = pd.read_csv(args.groups).drop(columns=['distance', 'article_id'])
-    silhouette_score = get_silhouette_score(article_vectors, cluster_groups.values.ravel())
-    # sdb_w_score = get_sdbw_score(article_vectors, cluster_groups.values.ravel())
-    ch_score = get_ch_score(article_vectors, cluster_groups.values.ravel())
+    if not clusterB:
+        ch_score = get_ch_score(article_vectors,
+                                cluster_a.values.ravel())
+        silhouette_score = get_silhouette_score(article_vectors,
+                                                cluster_a.values.ravel())
+        print(str(json.dumps({'ch score:': ch_score})))
+        print(str(json.dumps({'silhouette_score': silhouette_score})))
 
-    cluster_a = pd.read_csv(args.experiment + '/original_cluster_groups.csv')
-    cluster_b = pd.read_csv(args.groups)
-
-    rand_index = adjusted_rand_score(cluster_a['country'], cluster_b['country'])
-    mutual_info = adjusted_mutual_info_score(cluster_a['country'], cluster_b['country'])
-
-    # print(str(json.dumps({'rand_index score': rand_index})))
-    # print(str(json.dumps(mutual_info)))
-
-    print(str(json.dumps(silhouette_score)))
-    print(str(json.dumps(ch_score)))
-    # print(str(json.dumps(sdb_w_score)))
-    # print(str(json.dumps({'ch score:': ch_score})))
-    # logging.warning("Modularity Score: %.6f", mod_score)
+    elif clusterB:
+        cluster_a = pd.read_csv(experiment + '/original_cluster_groups.csv')
+        cluster_b = pd.read_csv(clusterB)
+        rand_index = adjusted_rand_score(cluster_a['country'], cluster_b['country'])
+        mutual_info = adjusted_mutual_info_score(cluster_a['country'], cluster_b['country'])
+        print(str(json.dumps({'rand_index score': rand_index})))
+        print(str(json.dumps({'mutal_info': mutual_info})))
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Augment the original article vectors with label matrix or '
-                                                 'cluster matrix.')
+    parser = argparse.ArgumentParser(description='Measure a cluster\'s '
+                                                 'quality or compare clusterings.')
     parser.add_argument('--experiment', required=True)
     parser.add_argument('--vectors', required=True)
-    parser.add_argument('--groups', required=True)
+    parser.add_argument('--cluster_A', required=True)
+    parser.add_argument('--cluster_B', required=False)
     args = parser.parse_args()
-    main()
+    main(args.experiment, args.vectors, args.cluster_A, args.cluster_B)
