@@ -12,11 +12,10 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-
-def create_embeddings(vector_directory, spread=20.0, tw=0.5, clusters=None):
+def create_embeddings(vector_directory, spread, tw, clusters):
     df = pd.read_csv(vector_directory)
     if clusters is not None:
-        cluster_groups = clusters  # pd.read_csv(clusters)
+        cluster_groups = pd.read_csv(clusters)
         df = pd.merge(df, cluster_groups, on='article_id')
         points = umap.UMAP(metric='cosine', spread=spread, target_weight=tw).fit_transform(df.iloc[:, 1:-1], y=df.iloc[:, -1])
     else:
@@ -39,13 +38,13 @@ def main(map_directory, vector_directory, spread, tw, clusters):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Reduce dimensionality of vectors to 2D using UMAP.')
-    parser.add_argument('--map_directory', required=True)
+    parser.add_argument('--experiment', required=True)
     parser.add_argument('--vectors', required=True)
     parser.add_argument('--spread', default=20.0)
     parser.add_argument('--clusters', default=None)
-    parser.add_argument('--tw', default=0.5, )
+    parser.add_argument('--tw', default=0.5)
 
     args = parser.parse_args()
-    main(args.map_directory, args.vectors, float(args.spread), float(args.tw), args.clusters)
+    main(args.experiment, args.vectors, float(args.spread), float(args.tw), args.clusters)
 
 
