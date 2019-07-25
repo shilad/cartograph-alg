@@ -22,7 +22,7 @@ do
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=0007 #$(get_experiment_id)
+    exp_id=$(get_experiment_id)
 
     # $(get_experiment_id)
 
