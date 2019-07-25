@@ -1,11 +1,10 @@
-import logging
 import pandas as pd
 import numpy as np
+import argparse
 
 from cartograph.border_graph.Graph import Graph
 
 def preprocess_file(xy_embedding_csv, cluster_group_csv):
-
     xy_embedding_df = pd.read_csv(xy_embedding_csv)
     cluster_groups_df = pd.read_csv(cluster_group_csv)
 
@@ -20,14 +19,16 @@ def preprocess_file(xy_embedding_csv, cluster_group_csv):
 
 
 if __name__ == '__main__':
-    import sys
-    if len(sys.argv) != 4:
-        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-        sys.exit(1)
+    parser = argparse.ArgumentParser(description='Select labels for cluster.')
+    parser.add_argument('--experiment', required=True)
+    parser.add_argument('--xy_embeddings', required=True)
+    parser.add_argument('--cluster_groups',required=True)
+    args = parser.parse_args()
 
-    experiment_directory, xy_embeddings, cluster_groups = sys.argv[1:]
+    xy_embeddings_file = args.experiment + '/' + args.xy_embeddings
+    cluster_groups_file = args.experiment + '/' + args.cluster_groups
 
-    points, cluster_list, article_id_list = preprocess_file(experiment_directory + xy_embeddings, experiment_directory + cluster_groups)
+    points, cluster_list, article_id_list = preprocess_file(xy_embeddings_file, cluster_groups_file)
     g = Graph(points, cluster_list, article_id_list)
-    g.export_boundaries(experiment_directory)
-    g.export_polygons(experiment_directory)
+    g.export_boundaries(args.experiment)
+    g.export_polygons(args.experiment)
