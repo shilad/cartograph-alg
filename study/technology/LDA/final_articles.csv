@@ -1,0 +1,1028 @@
+,article_name,country,treatment
+0,Bomis,0,LDA
+1,FreeBSD,0,LDA
+2,Hitachi Magic Wand,0,LDA
+3,PlayStation,0,LDA
+4,Rebel Heart Tour,0,LDA
+5,Steam (software),0,LDA
+6,Barcode,0,LDA
+7,BlackBerry,0,LDA
+8,Consumer Electronics Show,0,LDA
+9,Dell,0,LDA
+10,Google Play,0,LDA
+11,IBM,0,LDA
+12,IPod,0,LDA
+13,IPod Nano,0,LDA
+14,IPod Shuffle,0,LDA
+15,ITunes,0,LDA
+16,Microsoft,0,LDA
+17,Microsoft Windows,0,LDA
+18,Radio-frequency identification,0,LDA
+19,Smart grid,0,LDA
+20,Sony,0,LDA
+21,Technological singularity,0,LDA
+22,Unix,0,LDA
+23,Video game,0,LDA
+24,Zune,0,LDA
+25,Acer Inc.,0,LDA
+26,Active Directory,0,LDA
+27,Altran,0,LDA
+28,Amlogic,0,LDA
+29,Apple Watch,0,LDA
+30,Applications of artificial intelligence,0,LDA
+31,Autonomous car,0,LDA
+32,Avaya,0,LDA
+33,BIOS,0,LDA
+34,Bing (search engine),0,LDA
+35,Biometrics,0,LDA
+36,BlackBerry Limited,0,LDA
+37,Bleacher Report,0,LDA
+38,Blended learning,0,LDA
+39,Blockchain,0,LDA
+40,Brian Krzanich,0,LDA
+41,CA Technologies,0,LDA
+42,Citrix Systems,0,LDA
+43,Computer,0,LDA
+44,Computer data storage,0,LDA
+45,Computer network,0,LDA
+46,Decentralization,0,LDA
+47,Dell EMC,0,LDA
+48,Dell Technologies,0,LDA
+49,Desktop computer,0,LDA
+50,Disruptive innovation,0,LDA
+51,Do it yourself,0,LDA
+52,Educational technology,0,LDA
+53,Electronic Data Systems,0,LDA
+54,Electronic cigarette,0,LDA
+55,Elon Musk,0,LDA
+56,Emerging technologies,0,LDA
+57,FieldTurf,0,LDA
+58,Firmware,0,LDA
+59,Fitbit,0,LDA
+60,GPS navigation device,0,LDA
+61,GSM,0,LDA
+62,GameCube,0,LDA
+63,General Electric,0,LDA
+64,Google,0,LDA
+65,Google Nexus,0,LDA
+66,Graphical user interface,0,LDA
+67,Graphing calculator,0,LDA
+68,HBO Go,0,LDA
+69,HP Inc.,0,LDA
+70,HTTPS,0,LDA
+71,Haptic technology,0,LDA
+72,Hewlett-Packard,0,LDA
+73,History of Google,0,LDA
+74,History of video games,0,LDA
+75,Huawei EMUI,0,LDA
+76,Hyper-threading,0,LDA
+77,Hyperloop,0,LDA
+78,IBM Personal Computer,0,LDA
+79,IBM System i,0,LDA
+80,ICloud,0,LDA
+81,IEEE 802.11ax,0,LDA
+82,IOS,0,LDA
+83,IPhone,0,LDA
+84,IPhone 6S,0,LDA
+85,IPod Classic,0,LDA
+86,I Am Rich,0,LDA
+87,Infineon Technologies,0,LDA
+88,Information Age,0,LDA
+89,Information and communication technologies for development,0,LDA
+90,Information and communications technology,0,LDA
+91,Information technology,0,LDA
+92,Institute of Electrical and Electronics Engineers,0,LDA
+93,Intellectual property,0,LDA
+94,Internet Archive,0,LDA
+95,Intuit,0,LDA
+96,John McAfee,0,LDA
+97,Just-in-time manufacturing,0,LDA
+98,Laptop,0,LDA
+99,Linux,0,LDA
+100,Loon (company),0,LDA
+101,MAN SE,0,LDA
+102,MacOS,0,LDA
+103,Magnetic stripe card,0,LDA
+104,Media (communication),0,LDA
+105,Microprocessor,0,LDA
+106,Miracast,0,LDA
+107,Mobile operating system,0,LDA
+108,Mobile payment,0,LDA
+109,Mobile phone,0,LDA
+110,Mobile phone tracking,0,LDA
+111,Mojibake,0,LDA
+112,Motorola Mobility,0,LDA
+113,Motorola Razr,0,LDA
+114,Multi-core processor,0,LDA
+115,Multimedia,0,LDA
+116,National Institute of Standards and Technology,0,LDA
+117,Network interface controller,0,LDA
+118,Nexus 6P,0,LDA
+119,Novell,0,LDA
+120,OCLC,0,LDA
+121,OS X Mavericks,0,LDA
+122,OS X Yosemite,0,LDA
+123,OnePlus One,0,LDA
+124,Online advertising,0,LDA
+125,Open-source hardware,0,LDA
+126,Open defecation,0,LDA
+127,Optical disc,0,LDA
+128,Oracle Corporation,0,LDA
+129,Pager,0,LDA
+130,Pixel (smartphone),0,LDA
+131,Planned obsolescence,0,LDA
+132,PlayStation Vita,0,LDA
+133,Post-it Note,0,LDA
+134,Programmer,0,LDA
+135,Public relations,0,LDA
+136,QR code,0,LDA
+137,Qualcomm,0,LDA
+138,Rooting (Android),0,LDA
+139,SCADA,0,LDA
+140,Samsung Galaxy Note series,0,LDA
+141,"Science, technology, engineering, and mathematics",0,LDA
+142,Science and technology in the Philippines,0,LDA
+143,Server (computing),0,LDA
+144,Silicon Graphics,0,LDA
+145,Single-page application,0,LDA
+146,Slot machine,0,LDA
+147,Slow movement (culture),0,LDA
+148,Smart TV,0,LDA
+149,Smart card,0,LDA
+150,Smart meter,0,LDA
+151,Smartphone,0,LDA
+152,Snap Inc.,0,LDA
+153,Software engineer,0,LDA
+154,Solid-state drive,0,LDA
+155,Sony Crackle,0,LDA
+156,Sony Mobile,0,LDA
+157,Speech recognition,0,LDA
+158,Stingray phone tracker,0,LDA
+159,Sun Microsystems,0,LDA
+160,Supercomputer,0,LDA
+161,Surveillance,0,LDA
+162,System administrator,0,LDA
+163,TED (conference),0,LDA
+164,Technological convergence,0,LDA
+165,Technological unemployment,0,LDA
+166,Tesla Powerwall,0,LDA
+167,Theranos,0,LDA
+168,Tim Berners-Lee,0,LDA
+169,TomTom,0,LDA
+170,Transport Layer Security,0,LDA
+171,Vending machine,0,LDA
+172,Verizon Wireless,0,LDA
+173,Voice over IP,0,LDA
+174,Walkman,0,LDA
+175,Web application,0,LDA
+176,Whitney Wolfe Herd,0,LDA
+177,Wi-Fi,0,LDA
+178,Wi-Fi Direct,0,LDA
+179,Windows Phone,0,LDA
+180,Wired (magazine),0,LDA
+181,World Wide Web,0,LDA
+182,X (company),0,LDA
+183,Xiaomi,0,LDA
+184,YouTube,0,LDA
+185,YouTube Premium,0,LDA
+186,YouTube TV,0,LDA
+187,École Polytechnique,0,LDA
+188,5 nanometer,0,LDA
+189,7 nanometer,0,LDA
+190,Android One,0,LDA
+191,AngelList,0,LDA
+192,Apple File System,0,LDA
+193,Backward compatibility,0,LDA
+194,Barcode reader,0,LDA
+195,Biometric passport,0,LDA
+196,Broadridge Financial Solutions,0,LDA
+197,Chief technology officer,0,LDA
+198,Clarke's three laws,0,LDA
+199,Contactless payment,0,LDA
+200,DXC Technology,0,LDA
+201,Digital Revolution,0,LDA
+202,E-procurement,0,LDA
+203,Electric smoking system,0,LDA
+204,Essential Phone,0,LDA
+205,Financial technology,0,LDA
+206,Fourth Industrial Revolution,0,LDA
+207,Foxconn,0,LDA
+208,Gadget,0,LDA
+209,Geek,0,LDA
+210,Global issue,0,LDA
+211,Google Stadia,0,LDA
+212,Graphics,0,LDA
+213,Growth hacking,0,LDA
+214,HTTP Live Streaming,0,LDA
+215,Hewlett Packard Enterprise,0,LDA
+216,High Efficiency Image File Format,0,LDA
+217,Honor (brand),0,LDA
+218,Hyperledger,0,LDA
+219,IPhone SE,0,LDA
+220,IPhone X,0,LDA
+221,IPhone XR,0,LDA
+222,IPhone XS,0,LDA
+223,Information technology in India,0,LDA
+224,Java servlet,0,LDA
+225,Jawed Karim,0,LDA
+226,Juul,0,LDA
+227,Kara Swisher,0,LDA
+228,M-Pesa,0,LDA
+229,MQTT,0,LDA
+230,MacOS High Sierra,0,LDA
+231,MacOS Sierra,0,LDA
+232,Magic Leap,0,LDA
+233,Mass communication,0,LDA
+234,Memory card,0,LDA
+235,Michele Romanow,0,LDA
+236,Microchip implant (human),0,LDA
+237,Mirai (malware),0,LDA
+238,Motorola,0,LDA
+239,NASA spinoff technologies,0,LDA
+240,NetApp,0,LDA
+241,OS X El Capitan,0,LDA
+242,Pono (digital music service),0,LDA
+243,Redmi,0,LDA
+244,Research and development,0,LDA
+245,Ringtone,0,LDA
+246,SAP SE,0,LDA
+247,Samsung Galaxy J series,0,LDA
+248,Science and technology in India,0,LDA
+249,Semiconductor industry,0,LDA
+250,Skunkworks project,0,LDA
+251,Vevo,0,LDA
+252,Vimeo,0,LDA
+253,Wireless LAN,0,LDA
+254,Xamarin,0,LDA
+255,Y Combinator,0,LDA
+256,Yahoo! Japan,0,LDA
+257,Anker (electronics),0,LDA
+258,Ben Thompson (writer),0,LDA
+259,Die casting,1,LDA
+260,Injection moulding,1,LDA
+261,3D printing,1,LDA
+262,Arc welding,1,LDA
+263,Biodiesel,1,LDA
+264,Biotechnology,1,LDA
+265,Carbon dioxide removal,1,LDA
+266,Chromatography,1,LDA
+267,Cleanroom,1,LDA
+268,Composting toilet,1,LDA
+269,Distillation,1,LDA
+270,Electric battery,1,LDA
+271,Evaporative cooler,1,LDA
+272,Geotechnical engineering,1,LDA
+273,Glass,1,LDA
+274,Glass production,1,LDA
+275,Heat exchanger,1,LDA
+276,Heat pump,1,LDA
+277,Kevlar,1,LDA
+278,Microwave oven,1,LDA
+279,Nanotechnology,1,LDA
+280,Oil refinery,1,LDA
+281,Pigment,1,LDA
+282,Plywood,1,LDA
+283,Printed circuit board,1,LDA
+284,Recycling,1,LDA
+285,Refrigeration,1,LDA
+286,Reinforced concrete,1,LDA
+287,Solar cell,1,LDA
+288,Sol–gel process,1,LDA
+289,Vapor-compression refrigeration,1,LDA
+290,Abrasive blasting,1,LDA
+291,Absorption refrigerator,1,LDA
+292,Adhesive,1,LDA
+293,Algae fuel,1,LDA
+294,Angiography,1,LDA
+295,Anodizing,1,LDA
+296,Balloon,1,LDA
+297,Biodegradable plastic,1,LDA
+298,Bioplastic,1,LDA
+299,Bioreactor,1,LDA
+300,Biosensor,1,LDA
+301,Bunsen burner,1,LDA
+302,Calorimeter,1,LDA
+303,Candle,1,LDA
+304,Carbon fiber reinforced polymer,1,LDA
+305,Carbon sequestration,1,LDA
+306,Carnot heat engine,1,LDA
+307,Catheter,1,LDA
+308,Cavitation,1,LDA
+309,Composite material,1,LDA
+310,Compressive strength,1,LDA
+311,Concrete mixer,1,LDA
+312,Coolant,1,LDA
+313,Corrugated fiberboard,1,LDA
+314,Creosote,1,LDA
+315,Cylinder stress,1,LDA
+316,Dye penetrant inspection,1,LDA
+317,Electric arc furnace,1,LDA
+318,Electric heating,1,LDA
+319,Electrical discharge machining,1,LDA
+320,Electrochemical cell,1,LDA
+321,Electronic paper,1,LDA
+322,Electrostatic precipitator,1,LDA
+323,Energy storage,1,LDA
+324,Engineered wood,1,LDA
+325,Environmental engineering,1,LDA
+326,Expansion joint,1,LDA
+327,Fatigue (material),1,LDA
+328,Fertilizer,1,LDA
+329,Fiber,1,LDA
+330,Fiberglass,1,LDA
+331,Fibre-reinforced plastic,1,LDA
+332,Foam,1,LDA
+333,Food irradiation,1,LDA
+334,Food preservation,1,LDA
+335,Freeze-drying,1,LDA
+336,Galvanic cell,1,LDA
+337,Galvanization,1,LDA
+338,Gas mask,1,LDA
+339,Glow stick,1,LDA
+340,Gorilla Glass,1,LDA
+341,Heat engine,1,LDA
+342,Heat sink,1,LDA
+343,"Heating, ventilation, and air conditioning",1,LDA
+344,Home appliance,1,LDA
+345,Hot-melt adhesive,1,LDA
+346,Inconel,1,LDA
+347,Induction cooking,1,LDA
+348,Induction heating,1,LDA
+349,Inkjet printing,1,LDA
+350,Insecticide,1,LDA
+351,Laser cutting,1,LDA
+352,Laser printing,1,LDA
+353,Lead–acid battery,1,LDA
+354,Lithium-ion battery,1,LDA
+355,Lubricant,1,LDA
+356,Materials science,1,LDA
+357,Metallurgy,1,LDA
+358,Microelectromechanical systems,1,LDA
+359,Mushroom cloud,1,LDA
+360,Nanomaterials,1,LDA
+361,Nebulizer,1,LDA
+362,Nickel–cadmium battery,1,LDA
+363,Nickel–metal hydride battery,1,LDA
+364,Nonwoven fabric,1,LDA
+365,O-ring,1,LDA
+366,OLED,1,LDA
+367,Offset printing,1,LDA
+368,Oil well,1,LDA
+369,Oxy-fuel welding and cutting,1,LDA
+370,Paper,1,LDA
+371,Paperboard,1,LDA
+372,Passivation (chemistry),1,LDA
+373,Petroleum industry,1,LDA
+374,Photocopier,1,LDA
+375,Plastic bag,1,LDA
+376,Plasticizer,1,LDA
+377,Polylactic acid,1,LDA
+378,Pressure vessel,1,LDA
+379,Pulp (paper),1,LDA
+380,Pyrolysis,1,LDA
+381,Quantum dot display,1,LDA
+382,Rebar,1,LDA
+383,Refrigerator,1,LDA
+384,Sand casting,1,LDA
+385,Screen printing,1,LDA
+386,Semiconductor,1,LDA
+387,Shelf life,1,LDA
+388,Shell and tube heat exchanger,1,LDA
+389,Sieve,1,LDA
+390,Sintering,1,LDA
+391,Siphon,1,LDA
+392,Solar water heating,1,LDA
+393,Spot welding,1,LDA
+394,Stent,1,LDA
+395,Syngas,1,LDA
+396,Temperature measurement,1,LDA
+397,Tensile testing,1,LDA
+398,Thermal insulation,1,LDA
+399,Thermoelectric generator,1,LDA
+400,Thin-layer chromatography,1,LDA
+401,Ultimate tensile strength,1,LDA
+402,Vickers hardness test,1,LDA
+403,Volatile organic compound,1,LDA
+404,Wafer (electronics),1,LDA
+405,Wastewater treatment,1,LDA
+406,Water treatment,1,LDA
+407,10 nanometer,1,LDA
+408,Air filter,1,LDA
+409,Air fryer,1,LDA
+410,Alkaline battery,1,LDA
+411,Autoclave,1,LDA
+412,Blueprint,1,LDA
+413,Cast iron,1,LDA
+414,Chemical industry,1,LDA
+415,Condenser (heat transfer),1,LDA
+416,Crystallography,1,LDA
+417,Drain-waste-vent system,1,LDA
+418,Drilling rig,1,LDA
+419,Elastomer,1,LDA
+420,Electrode,1,LDA
+421,Ice pack,1,LDA
+422,Lighter,1,LDA
+423,Measuring instrument,1,LDA
+424,Mineral wool,1,LDA
+425,Oriented strand board,1,LDA
+426,Particle board,1,LDA
+427,Sanitary sewer,1,LDA
+428,Shape-memory alloy,1,LDA
+429,Stereolithography,1,LDA
+430,Submersible pump,1,LDA
+431,Thermal expansion valve,1,LDA
+432,Thermoplastic,1,LDA
+433,Thermoplastic elastomer,1,LDA
+434,Thermosetting polymer,1,LDA
+435,Vacuum pump,1,LDA
+436,Vantablack,1,LDA
+437,Waste-to-energy,1,LDA
+438,Waterproofing,1,LDA
+439,Whale oil,1,LDA
+440,HDMI,2,LDA
+441,Analog computer,2,LDA
+442,Cavity magnetron,2,LDA
+443,Electric motor,2,LDA
+444,Electrical engineering,2,LDA
+445,Incandescent light bulb,2,LDA
+446,Lightning rod,2,LDA
+447,Seismometer,2,LDA
+448,Solar thermal energy,2,LDA
+449,Telephone exchange,2,LDA
+450,Tesla coil,2,LDA
+451,Thermocouple,2,LDA
+452,AC power plugs and sockets,2,LDA
+453,American wire gauge,2,LDA
+454,Anechoic chamber,2,LDA
+455,Anemometer,2,LDA
+456,Arc lamp,2,LDA
+457,Arithmetic logic unit,2,LDA
+458,Beamforming,2,LDA
+459,Button cell,2,LDA
+460,Calipers,2,LDA
+461,Chronograph,2,LDA
+462,Coilgun,2,LDA
+463,Compact fluorescent lamp,2,LDA
+464,Comparator,2,LDA
+465,Concentrated solar power,2,LDA
+466,Current source,2,LDA
+467,Data transmission,2,LDA
+468,Display device,2,LDA
+469,Display resolution,2,LDA
+470,Dynamo,2,LDA
+471,Edison screw,2,LDA
+472,Electric generator,2,LDA
+473,Electrical grid,2,LDA
+474,Electronic circuit,2,LDA
+475,Electronic engineering,2,LDA
+476,Electronics,2,LDA
+477,Ethernet,2,LDA
+478,Fiber-optic communication,2,LDA
+479,Filter (signal processing),2,LDA
+480,Flashlight,2,LDA
+481,Fresnel lens,2,LDA
+482,Hall effect sensor,2,LDA
+483,Hard disk drive,2,LDA
+484,Holography,2,LDA
+485,Inductive charging,2,LDA
+486,Inductor,2,LDA
+487,Instrumentation,2,LDA
+488,Integrated circuit,2,LDA
+489,LED lamp,2,LDA
+490,Load cell,2,LDA
+491,Logic gate,2,LDA
+492,Mass flow sensor,2,LDA
+493,Mercury-vapor lamp,2,LDA
+494,Micrometer,2,LDA
+495,Modem,2,LDA
+496,Overclocking,2,LDA
+497,Overhead line,2,LDA
+498,Passive infrared sensor,2,LDA
+499,Photovoltaic system,2,LDA
+500,Photovoltaics,2,LDA
+501,Plasma display,2,LDA
+502,Power-line communication,2,LDA
+503,Power electronics,2,LDA
+504,Power inverter,2,LDA
+505,Powered exoskeleton,2,LDA
+506,Programmable logic controller,2,LDA
+507,Random-access memory,2,LDA
+508,Rechargeable battery,2,LDA
+509,Resistance thermometer,2,LDA
+510,Rotary encoder,2,LDA
+511,Sodium-vapor lamp,2,LDA
+512,Solar cell efficiency,2,LDA
+513,Solar panel,2,LDA
+514,Solenoid,2,LDA
+515,Strain gauge,2,LDA
+516,Street light,2,LDA
+517,Surface-mount technology,2,LDA
+518,Surge protector,2,LDA
+519,Three-phase electric power,2,LDA
+520,Traffic light,2,LDA
+521,USB,2,LDA
+522,USB-C,2,LDA
+523,VHS,2,LDA
+524,Vernier scale,2,LDA
+525,Waveguide,2,LDA
+526,Wavelength-division multiplexing,2,LDA
+527,Weighing scale,2,LDA
+528,Wheatstone bridge,2,LDA
+529,Yagi–Uda antenna,2,LDA
+530,Analog signal,2,LDA
+531,Bandwidth (computing),2,LDA
+532,Capacitive sensing,2,LDA
+533,Charge-coupled device,2,LDA
+534,Control system,2,LDA
+535,Counter (digital),2,LDA
+536,Electric arc,2,LDA
+537,Encoder,2,LDA
+538,Ferrite bead,2,LDA
+539,Heliograph,2,LDA
+540,Photoresistor,2,LDA
+541,Quick Charge,2,LDA
+542,SCART,2,LDA
+543,Sensor,2,LDA
+544,Solar lamp,2,LDA
+545,Spectrogram,2,LDA
+546,Stopwatch,2,LDA
+547,Television set,2,LDA
+548,Transducer,2,LDA
+549,Transmitter,2,LDA
+550,Wire,2,LDA
+551,Metrology,3,LDA
+552,Artificial intelligence,3,LDA
+553,Engineering,3,LDA
+554,Industrial robot,3,LDA
+555,Innovation,3,LDA
+556,Nootropic,3,LDA
+557,Packaging and labeling,3,LDA
+558,Scientific method,3,LDA
+559,Slide rule,3,LDA
+560,Swift (programming language),3,LDA
+561,Systems engineering,3,LDA
+562,Transhumanism,3,LDA
+563,Application programming interface,3,LDA
+564,Architectural drawing,3,LDA
+565,Automation,3,LDA
+566,Bioinformatics,3,LDA
+567,Biological engineering,3,LDA
+568,Biomechanics,3,LDA
+569,Biomedical engineering,3,LDA
+570,Breathalyzer,3,LDA
+571,Calibration,3,LDA
+572,Chemical engineering,3,LDA
+573,Civil engineering,3,LDA
+574,Code,3,LDA
+575,Communication,3,LDA
+576,Computer engineering,3,LDA
+577,Computer programming,3,LDA
+578,Computer simulation,3,LDA
+579,Computer vision,3,LDA
+580,Computing,3,LDA
+581,Construction,3,LDA
+582,Cyber-physical system,3,LDA
+583,Dangerous goods,3,LDA
+584,Diffusion of innovations,3,LDA
+585,Document management system,3,LDA
+586,Electronic health record,3,LDA
+587,Engineering drawing,3,LDA
+588,Engineering tolerance,3,LDA
+589,Environmental science,3,LDA
+590,Failure mode and effects analysis,3,LDA
+591,Fault tree analysis,3,LDA
+592,Forensic science,3,LDA
+593,Health,3,LDA
+594,Human factors and ergonomics,3,LDA
+595,ITIL,3,LDA
+596,Industrial design,3,LDA
+597,Information,3,LDA
+598,Information management,3,LDA
+599,Information system,3,LDA
+600,Kaizen,3,LDA
+601,Laboratory,3,LDA
+602,Laboratory information management system,3,LDA
+603,Mammography,3,LDA
+604,Manufacturing,3,LDA
+605,Mechanical engineering,3,LDA
+606,Medical device,3,LDA
+607,Medical imaging,3,LDA
+608,Medical laboratory,3,LDA
+609,Nondestructive testing,3,LDA
+610,Personal protective equipment,3,LDA
+611,Pharmacology,3,LDA
+612,Productivity,3,LDA
+613,Program evaluation and review technique,3,LDA
+614,Prototype,3,LDA
+615,Pulse oximetry,3,LDA
+616,Quality management,3,LDA
+617,Rebreather,3,LDA
+618,Recommender system,3,LDA
+619,Recreation,3,LDA
+620,Reliability engineering,3,LDA
+621,Research,3,LDA
+622,Reverse engineering,3,LDA
+623,Risk,3,LDA
+624,Risk assessment,3,LDA
+625,Risk management,3,LDA
+626,Six Sigma,3,LDA
+627,Software development process,3,LDA
+628,Software engineering,3,LDA
+629,Software testing,3,LDA
+630,Specification (technical standard),3,LDA
+631,Standardization,3,LDA
+632,Technical drawing,3,LDA
+633,Technology readiness level,3,LDA
+634,Theory of constraints,3,LDA
+635,Transcranial magnetic stimulation,3,LDA
+636,Ventricular assist device,3,LDA
+637,3D computer graphics,3,LDA
+638,Analysis paralysis,3,LDA
+639,Analytics,3,LDA
+640,Applied science,3,LDA
+641,Architectural engineering,3,LDA
+642,Business analytics,3,LDA
+643,Control engineering,3,LDA
+644,Datasheet,3,LDA
+645,Distributed ledger,3,LDA
+646,Engineering design process,3,LDA
+647,Fourth-generation programming language,3,LDA
+648,Hype cycle,3,LDA
+649,IT service management,3,LDA
+650,Industrial engineering,3,LDA
+651,Knowledge representation and reasoning,3,LDA
+652,Load testing,3,LDA
+653,New product development,3,LDA
+654,Petroleum engineering,3,LDA
+655,Product design,3,LDA
+656,Product lifecycle,3,LDA
+657,Project,3,LDA
+658,Proof of concept,3,LDA
+659,Quality management system,3,LDA
+660,Requirement,3,LDA
+661,Safety,3,LDA
+662,Schematic,3,LDA
+663,Self-contained breathing apparatus,3,LDA
+664,Service-level agreement,3,LDA
+665,Software design,3,LDA
+666,Software maintenance,3,LDA
+667,State of the art,3,LDA
+668,Subject-matter expert,3,LDA
+669,Technical support,3,LDA
+670,Technical writing,3,LDA
+671,Technology acceptance model,3,LDA
+672,Troubleshooting,3,LDA
+673,Centrifugal compressor,4,LDA
+674,Charging station,4,LDA
+675,Diesel engine,4,LDA
+676,Differential (mechanical device),4,LDA
+677,Direct-shift gearbox,4,LDA
+678,Fuel cell,4,LDA
+679,Hybrid electric vehicle,4,LDA
+680,Hydrogen vehicle,4,LDA
+681,Propeller,4,LDA
+682,Radial engine,4,LDA
+683,Scania AB,4,LDA
+684,Stirling engine,4,LDA
+685,Turbocharger,4,LDA
+686,Turbofan,4,LDA
+687,Actuator,4,LDA
+688,Airbag,4,LDA
+689,Aircraft engine,4,LDA
+690,Air–fuel ratio,4,LDA
+691,Anti-lock braking system,4,LDA
+692,Audi S and RS models,4,LDA
+693,Automatic transmission,4,LDA
+694,Automobile air conditioning,4,LDA
+695,Automotive battery,4,LDA
+696,Battery electric vehicle,4,LDA
+697,Bearing (mechanical),4,LDA
+698,Block and tackle,4,LDA
+699,Bogie,4,LDA
+700,Camshaft,4,LDA
+701,Carburetor,4,LDA
+702,Centrifugal fan,4,LDA
+703,Centrifugal pump,4,LDA
+704,Clutch,4,LDA
+705,Crankshaft,4,LDA
+706,Dual-clutch transmission,4,LDA
+707,Engine,4,LDA
+708,Exhaust gas recirculation,4,LDA
+709,Flat engine,4,LDA
+710,Flywheel energy storage,4,LDA
+711,Ford Model T,4,LDA
+712,Forklift,4,LDA
+713,Formula One car,4,LDA
+714,Four-stroke engine,4,LDA
+715,Francis turbine,4,LDA
+716,Gas cylinder,4,LDA
+717,Gas turbine,4,LDA
+718,Gasoline direct injection,4,LDA
+719,Geothermal power,4,LDA
+720,Governor (device),4,LDA
+721,History of the internal combustion engine,4,LDA
+722,Hydraulic pump,4,LDA
+723,Inclined plane,4,LDA
+724,Internal combustion engine,4,LDA
+725,Jet engine,4,LDA
+726,Lawn mower,4,LDA
+727,Lever,4,LDA
+728,Limited-slip differential,4,LDA
+729,Machine,4,LDA
+730,Manual transmission,4,LDA
+731,Motor vehicle,4,LDA
+732,On-board diagnostics,4,LDA
+733,Oxygen sensor,4,LDA
+734,Piping and plumbing fitting,4,LDA
+735,Piston,4,LDA
+736,Power station,4,LDA
+737,Power steering,4,LDA
+738,Pulley,4,LDA
+739,Radiator (engine cooling),4,LDA
+740,Recumbent bicycle,4,LDA
+741,Shock absorber,4,LDA
+742,Simple machine,4,LDA
+743,Spark plug,4,LDA
+744,Start-stop system,4,LDA
+745,Starter (engine),4,LDA
+746,Steam engine,4,LDA
+747,Steam turbine,4,LDA
+748,Steering,4,LDA
+749,Tachometer,4,LDA
+750,Tire,4,LDA
+751,Tire-pressure monitoring system,4,LDA
+752,Torque converter,4,LDA
+753,Traction control system,4,LDA
+754,Tractor,4,LDA
+755,Traffic collision,4,LDA
+756,Tram,4,LDA
+757,Transport,4,LDA
+758,Two-stroke engine,4,LDA
+759,VR6 engine,4,LDA
+760,Vacuum cleaner,4,LDA
+761,Vehicle,4,LDA
+762,Volkswagen air-cooled engine,4,LDA
+763,Wankel engine,4,LDA
+764,Washing machine,4,LDA
+765,Water turbine,4,LDA
+766,Watt steam engine,4,LDA
+767,Wind turbine,4,LDA
+768,Ackermann steering geometry,4,LDA
+769,Automotive industry,4,LDA
+770,Automotive industry in the United Kingdom,4,LDA
+771,Ball bearing,4,LDA
+772,Chassis,4,LDA
+773,Check valve,4,LDA
+774,Cubic centimetre,4,LDA
+775,Cummins B Series engine,4,LDA
+776,Engineering fit,4,LDA
+777,Exhaust gas,4,LDA
+778,Fuel cell vehicle,4,LDA
+779,Gear train,4,LDA
+780,Immobiliser,4,LDA
+781,Leaf spring,4,LDA
+782,Petrol engine,4,LDA
+783,Pneumatics,4,LDA
+784,Powertrain,4,LDA
+785,Pressure regulator,4,LDA
+786,Pump-jet,4,LDA
+787,Reciprocating engine,4,LDA
+788,Solenoid valve,4,LDA
+789,Sump pump,4,LDA
+790,Torx,4,LDA
+791,V12 engine,4,LDA
+792,VTEC,4,LDA
+793,Wheel and axle,4,LDA
+794,Trinity (nuclear test),5,LDA
+795,Fat Man,5,LDA
+796,Little Boy,5,LDA
+797,NASA,5,LDA
+798,Gyroscope,5,LDA
+799,Kardashev scale,5,LDA
+800,Magnetic resonance imaging,5,LDA
+801,Norden bombsight,5,LDA
+802,Nuclear weapon design,5,LDA
+803,Quantum computing,5,LDA
+804,Railgun,5,LDA
+805,Scanning electron microscope,5,LDA
+806,Spectroscopy,5,LDA
+807,Accelerometer,5,LDA
+808,Aerial refueling,5,LDA
+809,Aerospace,5,LDA
+810,Aerospace engineering,5,LDA
+811,Airship,5,LDA
+812,Altimeter,5,LDA
+813,Ammunition,5,LDA
+814,Anti-aircraft warfare,5,LDA
+815,Atomic clock,5,LDA
+816,Autocannon,5,LDA
+817,Avionics,5,LDA
+818,Bazooka,5,LDA
+819,Beacon,5,LDA
+820,Binoculars,5,LDA
+821,Boiling water reactor,5,LDA
+822,Breakwater (structure),5,LDA
+823,Cinematography,5,LDA
+824,Close-in weapon system,5,LDA
+825,Coordinate-measuring machine,5,LDA
+826,Depth charge,5,LDA
+827,Directed-energy weapon,5,LDA
+828,Drake equation,5,LDA
+829,Electric aircraft,5,LDA
+830,Electronic warfare,5,LDA
+831,Flamethrower,5,LDA
+832,Flight instruments,5,LDA
+833,Flow cytometry,5,LDA
+834,Flow measurement,5,LDA
+835,Geiger counter,5,LDA
+836,Generation IV reactor,5,LDA
+837,Gimbal,5,LDA
+838,Harrier Jump Jet,5,LDA
+839,Helicopter,5,LDA
+840,Hot air balloon,5,LDA
+841,Hydraulic head,5,LDA
+842,Hyperspectral imaging,5,LDA
+843,Inertial navigation system,5,LDA
+844,Joint Direct Attack Munition,5,LDA
+845,Land mine,5,LDA
+846,Laser pointer,5,LDA
+847,Lidar,5,LDA
+848,Machine pistol,5,LDA
+849,Magnetometer,5,LDA
+850,Mars Orbiter Mission,5,LDA
+851,Maxim gun,5,LDA
+852,Microscope,5,LDA
+853,Military,5,LDA
+854,Muzzle brake,5,LDA
+855,Naval mine,5,LDA
+856,Night vision,5,LDA
+857,Nuclear electromagnetic pulse,5,LDA
+858,Nuclear reactor,5,LDA
+859,Nuclear weapons testing,5,LDA
+860,Operation Paperclip,5,LDA
+861,Optical microscope,5,LDA
+862,Orthographic projection,5,LDA
+863,Pitot tube,5,LDA
+864,Project Habakkuk,5,LDA
+865,Radiography,5,LDA
+866,Recoilless rifle,5,LDA
+867,Rifling,5,LDA
+868,Robotics,5,LDA
+869,Roland Garros (aviator),5,LDA
+870,Scanning tunneling microscope,5,LDA
+871,Scramjet,5,LDA
+872,Sextant,5,LDA
+873,Sonar,5,LDA
+874,Soviet atomic bomb project,5,LDA
+875,Stealth technology,5,LDA
+876,Stereoscopy,5,LDA
+877,Technology during World War I,5,LDA
+878,Technology during World War II,5,LDA
+879,Telescope,5,LDA
+880,Theodolite,5,LDA
+881,Thermobaric weapon,5,LDA
+882,Thermographic camera,5,LDA
+883,Time-of-flight camera,5,LDA
+884,Tomography,5,LDA
+885,Torpedo,5,LDA
+886,Unmanned aerial vehicle,5,LDA
+887,Bomb,5,LDA
+888,Booby trap,5,LDA
+889,Chaff (countermeasure),5,LDA
+890,Digital camera,5,LDA
+891,Digital image processing,5,LDA
+892,Fluorescence microscope,5,LDA
+893,Gun,5,LDA
+894,Image,5,LDA
+895,Image sensor,5,LDA
+896,Image sensor format,5,LDA
+897,Limpet mine,5,LDA
+898,Proximity sensor,5,LDA
+899,Quantum logic gate,5,LDA
+900,Thermography,5,LDA
+901,San Francisco,6,LDA
+902,Abacus,6,LDA
+903,Bridge,6,LDA
+904,CN Tower,6,LDA
+905,Industrial Revolution,6,LDA
+906,Papermaking,6,LDA
+907,Printing,6,LDA
+908,Robot,6,LDA
+909,Rolling (metalworking),6,LDA
+910,Suspension bridge,6,LDA
+911,Technology,6,LDA
+912,Thomas Edison,6,LDA
+913,Windmill,6,LDA
+914,Agricultural machinery,6,LDA
+915,Amundsen–Scott South Pole Station,6,LDA
+916,Artificial turf,6,LDA
+917,Assembly line,6,LDA
+918,Barbed wire,6,LDA
+919,Bed,6,LDA
+920,Benjamin Franklin,6,LDA
+921,Bronze Age,6,LDA
+922,Camera obscura,6,LDA
+923,Camping,6,LDA
+924,Canal,6,LDA
+925,Catapult,6,LDA
+926,Combine harvester,6,LDA
+927,Concertina wire,6,LDA
+928,Conveyor belt,6,LDA
+929,Crane (machine),6,LDA
+930,Crossbow,6,LDA
+931,Dental braces,6,LDA
+932,Drill,6,LDA
+933,Eadweard Muybridge,6,LDA
+934,Elevator,6,LDA
+935,Escalator,6,LDA
+936,Factory,6,LDA
+937,Fountain pen,6,LDA
+938,Gas lighting,6,LDA
+939,History of books,6,LDA
+940,History of printing,6,LDA
+941,History of technology,6,LDA
+942,History of the firearm,6,LDA
+943,Hook-and-loop fastener,6,LDA
+944,Invention,6,LDA
+945,Iron Age,6,LDA
+946,Knot,6,LDA
+947,Lenticular printing,6,LDA
+948,Love lock,6,LDA
+949,Luddite,6,LDA
+950,Machine tool,6,LDA
+951,Machining,6,LDA
+952,Mary Babnik Brown,6,LDA
+953,Mass production,6,LDA
+954,Metal detector,6,LDA
+955,Milling (machining),6,LDA
+956,Mimeograph,6,LDA
+957,Mining,6,LDA
+958,Mortise and tenon,6,LDA
+959,Muslim world,6,LDA
+960,Neolithic Revolution,6,LDA
+961,Numerical control,6,LDA
+962,Orthotics,6,LDA
+963,Paper size,6,LDA
+964,Pascal's calculator,6,LDA
+965,Pencil,6,LDA
+966,Petronas Towers,6,LDA
+967,Photography,6,LDA
+968,Plotter,6,LDA
+969,Porcelain,6,LDA
+970,Prosthesis,6,LDA
+971,Pykrete,6,LDA
+972,Samuel Morse,6,LDA
+973,Scalpel,6,LDA
+974,Second Industrial Revolution,6,LDA
+975,Sewing machine,6,LDA
+976,Ship breaking,6,LDA
+977,Smelting,6,LDA
+978,Societal collapse,6,LDA
+979,Stone tool,6,LDA
+980,Structural engineering,6,LDA
+981,Technical drawing tool,6,LDA
+982,Technological and industrial history of the United States,6,LDA
+983,Textile industry,6,LDA
+984,Three-age system,6,LDA
+985,Timeline of United States inventions (before 1890),6,LDA
+986,Timeline of historic inventions,6,LDA
+987,Toilet,6,LDA
+988,Tool,6,LDA
+989,Trebuchet,6,LDA
+990,Typewriter,6,LDA
+991,Victoria and Albert Museum,6,LDA
+992,Wheel,6,LDA
+993,Wootz steel,6,LDA
+994,World's fair,6,LDA
+995,Wrought iron,6,LDA
+996,Agricultural engineering,6,LDA
+997,Arcology,6,LDA
+998,Backhoe,6,LDA
+999,Castile soap,6,LDA
+1000,Compass (drawing tool),6,LDA
+1001,Daguerreotype,6,LDA
+1002,Fastener,6,LDA
+1003,Flint,6,LDA
+1004,Hydraulic press,6,LDA
+1005,Industry,6,LDA
+1006,Kiln,6,LDA
+1007,Laundry,6,LDA
+1008,Limelight,6,LDA
+1009,Loader (equipment),6,LDA
+1010,Monkey wrench,6,LDA
+1011,Necessity is the mother of invention,6,LDA
+1012,Nut (hardware),6,LDA
+1013,Oil lamp,6,LDA
+1014,Paternoster,6,LDA
+1015,Pen,6,LDA
+1016,Projector,6,LDA
+1017,Robert Fulton,6,LDA
+1018,Ruler,6,LDA
+1019,Skeleton key,6,LDA
+1020,Spinning jenny,6,LDA
+1021,Sports equipment,6,LDA
+1022,Stenotype,6,LDA
+1023,Toilet-related injuries and deaths,6,LDA
+1024,Torch,6,LDA
+1025,Vise,6,LDA
+1026,Wallpaper,6,LDA

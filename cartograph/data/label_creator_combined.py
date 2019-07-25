@@ -10,11 +10,11 @@ import time
 import logging
 
 
-def label_combiner(article_categories, article_keywords, article_links,
-                   categories_names, keyword_names, links_names,
+def label_combiner(article_categories, article_keywords, article_links, article_keyphrases,
+                   categories_names, keyword_names, links_names, keyphrases_names,
                    domain_concept):
     """
-    loop through all the articles in the domain_comcept.csv
+    loop through all the articles in the domain_concept.csv
     Use the id to find corresponding label_id in article_categories, article_keywords, article_links
     Use individual dictionary to get the string of the labels
     Create new row_list and label_to_id in the complete data frame
@@ -23,9 +23,10 @@ def label_combiner(article_categories, article_keywords, article_links,
     cat_dic = categories_names.set_index('label_id')['label'].to_dict()
     keyword_dic = keyword_names.set_index('label_id')['label'].to_dict()
     links_dic = links_names.set_index('label_id')['label'].to_dict()
+    keyphrases_dic = keyphrases_names.set_index('label_id')['label'].to_dict()
 
-    label_candidates_list = [article_categories, article_keywords, article_links]
-    label_candidates_dic = [cat_dic, keyword_dic, links_dic]
+    label_candidates_list = [article_categories, article_keywords, article_links, article_keyphrases]
+    label_candidates_dic = [cat_dic, keyword_dic, links_dic, keyphrases_dic]
 
     rows_list = []
     label_to_id = {}
@@ -51,11 +52,11 @@ def label_combiner(article_categories, article_keywords, article_links,
 def create_link_id_str_csv(directory, links_to_ids):
     id_to_link = [(id, link) for (link, id) in links_to_ids.items()]
     links_df = pd.DataFrame(id_to_link, columns=["label_id", "label"])
-    links_df.to_csv(directory + '/label_names_complete.csv', index=False)
+    links_df.to_csv(directory + '/combined_label_names.csv', index=False)
 
 
 def create_article_link_csv(article_link_df, directory):
-    article_link_df.to_csv(directory + "/article_labels_complete.csv", index=False)
+    article_link_df.to_csv(directory + "/article_labels_combined.csv", index=False)
 
 
 def main(map_directory):
@@ -65,16 +66,18 @@ def main(map_directory):
     start = time.time()
 
     domain_concept_df = pd.read_csv(map_directory + '/domain_concept.csv')
-    article_categories_df = pd.read_csv(map_directory + '/article_hierarchical_categories.csv')
-    article_keywords_df = pd.read_csv(map_directory + '/article_keywords_summary.csv')
+    article_h_categories_df = pd.read_csv(map_directory + '/article_hierarchical_categories.csv')
+    article_keywords_df = pd.read_csv(map_directory + '/article_keywords.csv')
     article_links_df = pd.read_csv(map_directory + '/article_links.csv')
+    article_keyphrases_df = pd.read_csv(map_directory + '/article_keyphrases.csv')
 
-    category_names_df = pd.read_csv(map_directory + '/hierarchical_category_names.csv')
-    keyword_names_df = pd.read_csv(map_directory + '/keyword_summary_names.csv')
+    h_category_names_df = pd.read_csv(map_directory + '/hierarchical_category_names.csv')
+    keyword_names_df = pd.read_csv(map_directory + '/keyword_names.csv')
     link_names_df = pd.read_csv(map_directory + '/link_names.csv')
+    keyphrases_names_df = pd.read_csv(map_directory + '/keyphrases_names.csv')
 
-    links_to_id, link_df = label_combiner(article_categories_df, article_keywords_df, article_links_df,
-                                          category_names_df, keyword_names_df, link_names_df, domain_concept_df)
+    links_to_id, link_df = label_combiner(article_h_categories_df, article_keywords_df, article_links_df, article_keyphrases_df,
+                                          h_category_names_df, keyword_names_df, link_names_df, keyphrases_names_df, domain_concept_df)
 
     logging.warning("Time Spent: %.3f", time.time() - start)
     create_article_link_csv(link_df, map_directory)

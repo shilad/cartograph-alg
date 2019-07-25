@@ -82,7 +82,9 @@ do
     --label_score tfidf \
     --percentile 0.3 \
     --cluster_groups /original_cluster_groups.csv\
-    --output_file /original_country_labels.csv
+    --output_file /original_country_labels.csv \
+    --purpose experiment \
+    --label_path na
 
     # draw boundary
     python -m cartograph.border_creator ${exp_dir} /original_xy_embeddings.csv /original_cluster_groups.csv

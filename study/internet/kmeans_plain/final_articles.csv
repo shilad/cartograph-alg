@@ -1,0 +1,899 @@
+,article_name,country,treatment
+0,Uniform Resource Identifier,0,kmeans_plain
+1,Distributed hash table,0,kmeans_plain
+2,Domain Name System,0,kmeans_plain
+3,Internet protocol suite,0,kmeans_plain
+4,Internet service provider,0,kmeans_plain
+5,Let's Encrypt,0,kmeans_plain
+6,Real-time Transport Protocol,0,kmeans_plain
+7,Telecommunications in India,0,kmeans_plain
+8,Transport Layer Security,0,kmeans_plain
+9,5G,0,kmeans_plain
+10,ARPANET,0,kmeans_plain
+11,Border Gateway Protocol,0,kmeans_plain
+12,Classless Inter-Domain Routing,0,kmeans_plain
+13,Computer network,0,kmeans_plain
+14,Cross-site request forgery,0,kmeans_plain
+15,DMARC,0,kmeans_plain
+16,Deep packet inspection,0,kmeans_plain
+17,Dial-up Internet access,0,kmeans_plain
+18,Dynamic DNS,0,kmeans_plain
+19,Dynamic Host Configuration Protocol,0,kmeans_plain
+20,Ethernet,0,kmeans_plain
+21,Extended Validation Certificate,0,kmeans_plain
+22,Firewall (computing),0,kmeans_plain
+23,G.fast,0,kmeans_plain
+24,General Data Protection Regulation,0,kmeans_plain
+25,Global Crossing,0,kmeans_plain
+26,HTTPS,0,kmeans_plain
+27,HTTP Strict Transport Security,0,kmeans_plain
+28,History of the Internet,0,kmeans_plain
+29,History of the World Wide Web,0,kmeans_plain
+30,Hypertext Transfer Protocol,0,kmeans_plain
+31,IP address,0,kmeans_plain
+32,IP camera,0,kmeans_plain
+33,IPv4 address exhaustion,0,kmeans_plain
+34,Internet Assigned Numbers Authority,0,kmeans_plain
+35,Internet Engineering Task Force,0,kmeans_plain
+36,Internet Message Access Protocol,0,kmeans_plain
+37,Internet Protocol,0,kmeans_plain
+38,Internet access,0,kmeans_plain
+39,Internet backbone,0,kmeans_plain
+40,Internet governance,0,kmeans_plain
+41,Jon Postel,0,kmeans_plain
+42,MX record,0,kmeans_plain
+43,Maximum transmission unit,0,kmeans_plain
+44,Mobile broadband,0,kmeans_plain
+45,OpenDNS,0,kmeans_plain
+46,Port (computer networking),0,kmeans_plain
+47,Post Office Protocol,0,kmeans_plain
+48,Proxy server,0,kmeans_plain
+49,QUIC,0,kmeans_plain
+50,Request for Comments,0,kmeans_plain
+51,Root name server,0,kmeans_plain
+52,SOCKS,0,kmeans_plain
+53,Secure Shell,0,kmeans_plain
+54,Single sign-on,0,kmeans_plain
+55,Submarine communications cable,0,kmeans_plain
+56,Tier 1 network,0,kmeans_plain
+57,Tim Berners-Lee,0,kmeans_plain
+58,Transmission Control Protocol,0,kmeans_plain
+59,User Datagram Protocol,0,kmeans_plain
+60,Voice over IP,0,kmeans_plain
+61,X-Forwarded-For,0,kmeans_plain
+62,Access Point Name,0,kmeans_plain
+63,Autonomous system (Internet),0,kmeans_plain
+64,BBN Technologies,0,kmeans_plain
+65,Bandwidth (computing),0,kmeans_plain
+66,Bob Kahn,0,kmeans_plain
+67,CNAME record,0,kmeans_plain
+68,Cable Internet access,0,kmeans_plain
+69,Captive portal,0,kmeans_plain
+70,Cipher suite,0,kmeans_plain
+71,DDoS mitigation,0,kmeans_plain
+72,DNSBL,0,kmeans_plain
+73,DNS zone,0,kmeans_plain
+74,Datagram Transport Layer Security,0,kmeans_plain
+75,Device fingerprint,0,kmeans_plain
+76,Email attachment,0,kmeans_plain
+77,Federated identity,0,kmeans_plain
+78,File server,0,kmeans_plain
+79,Forward secrecy,0,kmeans_plain
+80,HTTP Public Key Pinning,0,kmeans_plain
+81,Hyper Text Coffee Pot Control Protocol,0,kmeans_plain
+82,IP fragmentation,0,kmeans_plain
+83,Internet Society,0,kmeans_plain
+84,Internet in China,0,kmeans_plain
+85,K-anonymity,0,kmeans_plain
+86,Level 3 Communications,0,kmeans_plain
+87,Localhost,0,kmeans_plain
+88,Maximum segment size,0,kmeans_plain
+89,Nagle's algorithm,0,kmeans_plain
+90,Name server,0,kmeans_plain
+91,OpenVPN,0,kmeans_plain
+92,Open mail relay,0,kmeans_plain
+93,POODLE,0,kmeans_plain
+94,Packet analyzer,0,kmeans_plain
+95,Path MTU Discovery,0,kmeans_plain
+96,Regional Internet registry,0,kmeans_plain
+97,SYN flood,0,kmeans_plain
+98,Satellite Internet access,0,kmeans_plain
+99,Secure Real-time Transport Protocol,0,kmeans_plain
+100,Session Description Protocol,0,kmeans_plain
+101,Shell account,0,kmeans_plain
+102,Sigfox,0,kmeans_plain
+103,TCP delayed acknowledgment,0,kmeans_plain
+104,TCP window scale option,0,kmeans_plain
+105,Teredo tunneling,0,kmeans_plain
+106,Traceroute,0,kmeans_plain
+107,Unique local address,0,kmeans_plain
+108,Vint Cerf,0,kmeans_plain
+109,Wildcard DNS record,0,kmeans_plain
+110,Wireless Internet service provider,0,kmeans_plain
+111,Downgrade attack,0,kmeans_plain
+112,Email encryption,0,kmeans_plain
+113,Message-ID,0,kmeans_plain
+114,RealNames,0,kmeans_plain
+115,TXT record,0,kmeans_plain
+116,Comparison of TLS implementations,0,kmeans_plain
+117,Arena (web browser),1,kmeans_plain
+118,PHP,1,kmeans_plain
+119,Apache Wave,1,kmeans_plain
+120,Chromium (web browser),1,kmeans_plain
+121,Cross-site scripting,1,kmeans_plain
+122,Dillo,1,kmeans_plain
+123,Drupal,1,kmeans_plain
+124,Dynamic Adaptive Streaming over HTTP,1,kmeans_plain
+125,Firefox,1,kmeans_plain
+126,GitHub,1,kmeans_plain
+127,Google Chrome,1,kmeans_plain
+128,HTML5 video,1,kmeans_plain
+129,Image map,1,kmeans_plain
+130,Internet Explorer,1,kmeans_plain
+131,JavaScript,1,kmeans_plain
+132,Microsoft Edge,1,kmeans_plain
+133,Mosaic (web browser),1,kmeans_plain
+134,Mozilla,1,kmeans_plain
+135,OpenID,1,kmeans_plain
+136,Opera (web browser),1,kmeans_plain
+137,Representational state transfer,1,kmeans_plain
+138,Scalable Vector Graphics,1,kmeans_plain
+139,SeaMonkey,1,kmeans_plain
+140,Usage share of web browsers,1,kmeans_plain
+141,XML,1,kmeans_plain
+142,ActionScript,1,kmeans_plain
+143,Adobe AIR,1,kmeans_plain
+144,Adobe Dreamweaver,1,kmeans_plain
+145,Apache Cordova,1,kmeans_plain
+146,Brave (web browser),1,kmeans_plain
+147,Brendan Eich,1,kmeans_plain
+148,Browser extension,1,kmeans_plain
+149,Browser wars,1,kmeans_plain
+150,Cascading Style Sheets,1,kmeans_plain
+151,Comparison of web browsers,1,kmeans_plain
+152,Content Security Policy,1,kmeans_plain
+153,Do Not Track,1,kmeans_plain
+154,Document type definition,1,kmeans_plain
+155,Dojo Toolkit,1,kmeans_plain
+156,Dynamic web page,1,kmeans_plain
+157,ECMAScript,1,kmeans_plain
+158,Epic (web browser),1,kmeans_plain
+159,Exchange ActiveSync,1,kmeans_plain
+160,Favicon,1,kmeans_plain
+161,Firefox for Android,1,kmeans_plain
+162,Flash Video,1,kmeans_plain
+163,Gecko (software),1,kmeans_plain
+164,Gopher (protocol),1,kmeans_plain
+165,HTML,1,kmeans_plain
+166,HTTP cookie,1,kmeans_plain
+167,Handle System,1,kmeans_plain
+168,History of the web browser,1,kmeans_plain
+169,JavaScript engine,1,kmeans_plain
+170,Link rot,1,kmeans_plain
+171,Local shared object,1,kmeans_plain
+172,Microsoft Azure,1,kmeans_plain
+173,Mozilla Application Suite,1,kmeans_plain
+174,Mozilla Thunderbird,1,kmeans_plain
+175,Nagios,1,kmeans_plain
+176,NetSurf,1,kmeans_plain
+177,Netscape,1,kmeans_plain
+178,Netscape Navigator,1,kmeans_plain
+179,Nextcloud,1,kmeans_plain
+180,Node.js,1,kmeans_plain
+181,O'Reilly Media,1,kmeans_plain
+182,Open-source software,1,kmeans_plain
+183,Pale Moon (web browser),1,kmeans_plain
+184,SPDY,1,kmeans_plain
+185,Safari (web browser),1,kmeans_plain
+186,Sass (stylesheet language),1,kmeans_plain
+187,Single-page application,1,kmeans_plain
+188,SourceForge,1,kmeans_plain
+189,Three.js,1,kmeans_plain
+190,URL redirection,1,kmeans_plain
+191,Vector Markup Language,1,kmeans_plain
+192,Vivaldi (web browser),1,kmeans_plain
+193,WebDAV,1,kmeans_plain
+194,WebGL,1,kmeans_plain
+195,WebM,1,kmeans_plain
+196,Web application,1,kmeans_plain
+197,Web colors,1,kmeans_plain
+198,Web scraping,1,kmeans_plain
+199,Web storage,1,kmeans_plain
+200,Wiki software,1,kmeans_plain
+201,Windows Update,1,kmeans_plain
+202,WorldWideWeb,1,kmeans_plain
+203,World Wide Web Consortium,1,kmeans_plain
+204,XML Schema (W3C),1,kmeans_plain
+205,Zombie cookie,1,kmeans_plain
+206,Address bar,1,kmeans_plain
+207,Ajax (programming),1,kmeans_plain
+208,Apache HTTP Server,1,kmeans_plain
+209,Canvas element,1,kmeans_plain
+210,Canvas fingerprinting,1,kmeans_plain
+211,Chromium OS,1,kmeans_plain
+212,Common Gateway Interface,1,kmeans_plain
+213,Comparison of web search engines,1,kmeans_plain
+214,Download manager,1,kmeans_plain
+215,FastCGI,1,kmeans_plain
+216,Feedly,1,kmeans_plain
+217,Flock (web browser),1,kmeans_plain
+218,Google APIs,1,kmeans_plain
+219,Greasemonkey,1,kmeans_plain
+220,HTML editor,1,kmeans_plain
+221,HTTP ETag,1,kmeans_plain
+222,HTTP Live Streaming,1,kmeans_plain
+223,HTTP location,1,kmeans_plain
+224,JDownloader,1,kmeans_plain
+225,JSON Web Token,1,kmeans_plain
+226,Java servlet,1,kmeans_plain
+227,Joyent,1,kmeans_plain
+228,Konqueror,1,kmeans_plain
+229,Less (stylesheet language),1,kmeans_plain
+230,Line Mode Browser,1,kmeans_plain
+231,Linked data,1,kmeans_plain
+232,Lossy compression,1,kmeans_plain
+233,Lynx (web browser),1,kmeans_plain
+234,Maxthon,1,kmeans_plain
+235,Media type,1,kmeans_plain
+236,Meta refresh,1,kmeans_plain
+237,Microdata (HTML),1,kmeans_plain
+238,Microservices,1,kmeans_plain
+239,Netscape (web browser),1,kmeans_plain
+240,Opera Software,1,kmeans_plain
+241,POST (HTTP),1,kmeans_plain
+242,Project Zero,1,kmeans_plain
+243,Qwant,1,kmeans_plain
+244,RDF Schema,1,kmeans_plain
+245,Same-origin policy,1,kmeans_plain
+246,Standard Generalized Markup Language,1,kmeans_plain
+247,Static web page,1,kmeans_plain
+248,WHATWG,1,kmeans_plain
+249,Web Components,1,kmeans_plain
+250,Web Map Service,1,kmeans_plain
+251,Web Server Gateway Interface,1,kmeans_plain
+252,Web beacon,1,kmeans_plain
+253,Web browser,1,kmeans_plain
+254,Web browsing history,1,kmeans_plain
+255,Web framework,1,kmeans_plain
+256,Web resource,1,kmeans_plain
+257,Wizard (software),1,kmeans_plain
+258,Wolfram Alpha,1,kmeans_plain
+259,Yandex Search,1,kmeans_plain
+260,Amaya (web editor),1,kmeans_plain
+261,CURIE,1,kmeans_plain
+262,Comodo Dragon,1,kmeans_plain
+263,Google Tag Manager,1,kmeans_plain
+264,Torch (browser),1,kmeans_plain
+265,Webhook,1,kmeans_plain
+266,Comparison of feed aggregators,1,kmeans_plain
+267,Firefox version history,1,kmeans_plain
+268,Programming languages used in most popular websites,1,kmeans_plain
+269,Timeline of web browsers,1,kmeans_plain
+270,The Million Dollar Homepage,2,kmeans_plain
+271,Bomis,2,kmeans_plain
+272,Fucking Machines,2,kmeans_plain
+273,"On the Internet, nobody knows you're a dog",2,kmeans_plain
+274,SCP Foundation,2,kmeans_plain
+275,Twitter,2,kmeans_plain
+276,Censorship of YouTube,2,kmeans_plain
+277,Common Sense Media,2,kmeans_plain
+278,Death of Michael Jackson,2,kmeans_plain
+279,Elijah Daniel,2,kmeans_plain
+280,Everybody Draw Mohammed Day,2,kmeans_plain
+281,GIF,2,kmeans_plain
+282,Gawker Media,2,kmeans_plain
+283,Goodreads,2,kmeans_plain
+284,Hillary Clinton email controversy,2,kmeans_plain
+285,RWBY,2,kmeans_plain
+286,Reddit,2,kmeans_plain
+287,Shay Carl,2,kmeans_plain
+288,Shiva Ayyadurai,2,kmeans_plain
+289,Steve Jobs,2,kmeans_plain
+290,The Social Network,2,kmeans_plain
+291,Wayback Machine,2,kmeans_plain
+292,Web television,2,kmeans_plain
+293,Wiki,2,kmeans_plain
+294,Wikipedia,2,kmeans_plain
+295,YouTube,2,kmeans_plain
+296,Adam Curry,2,kmeans_plain
+297,Alan Rusbridger,2,kmeans_plain
+298,Astroturfing,2,kmeans_plain
+299,Belle Gibson,2,kmeans_plain
+300,Bethany Mota,2,kmeans_plain
+301,Black Twitter,2,kmeans_plain
+302,Bluelight (web forum),2,kmeans_plain
+303,Cambridge Analytica,2,kmeans_plain
+304,Change.org,2,kmeans_plain
+305,Citizen journalism,2,kmeans_plain
+306,Conflict-of-interest editing on Wikipedia,2,kmeans_plain
+307,Crazy Eyes (character),2,kmeans_plain
+308,Crowdfunding,2,kmeans_plain
+309,Cuevana,2,kmeans_plain
+310,Cyberbullying,2,kmeans_plain
+311,Darwin Awards,2,kmeans_plain
+312,David Gelernter,2,kmeans_plain
+313,Do-it-yourself biology,2,kmeans_plain
+314,Doxing,2,kmeans_plain
+315,English Wikipedia,2,kmeans_plain
+316,Facebook Safety Check,2,kmeans_plain
+317,Filter bubble,2,kmeans_plain
+318,GOG.com,2,kmeans_plain
+319,Google Translate,2,kmeans_plain
+320,Grantland,2,kmeans_plain
+321,Hashtag,2,kmeans_plain
+322,Internet Archive,2,kmeans_plain
+323,Internet meme,2,kmeans_plain
+324,Make Money Fast,2,kmeans_plain
+325,Me at the zoo,2,kmeans_plain
+326,Mp3skull,2,kmeans_plain
+327,Net neutrality,2,kmeans_plain
+328,Nikki Catsouras photographs controversy,2,kmeans_plain
+329,Nostalgia Critic,2,kmeans_plain
+330,Orange Is the New Black,2,kmeans_plain
+331,Poe's law,2,kmeans_plain
+332,Pottermore,2,kmeans_plain
+333,Red vs. Blue,2,kmeans_plain
+334,Scunthorpe problem,2,kmeans_plain
+335,Selfie (song),2,kmeans_plain
+336,Series of tubes,2,kmeans_plain
+337,Sextortion,2,kmeans_plain
+338,So You've Been Publicly Shamed,2,kmeans_plain
+339,Sockpuppet (Internet),2,kmeans_plain
+340,Streisand effect,2,kmeans_plain
+341,Tendency of the rate of profit to fall,2,kmeans_plain
+342,The Wisdom of Crowds,2,kmeans_plain
+343,Video Game High School,2,kmeans_plain
+344,Webcam model,2,kmeans_plain
+345,Wisdom of the crowd,2,kmeans_plain
+346,Zero Hedge,2,kmeans_plain
+347,50 Cent Party,2,kmeans_plain
+348,Advertising to children,2,kmeans_plain
+349,Austin Mahone,2,kmeans_plain
+350,Between Two Ferns with Zach Galifianakis,2,kmeans_plain
+351,Bill Ottman,2,kmeans_plain
+352,BonziBuddy,2,kmeans_plain
+353,Candle Cove,2,kmeans_plain
+354,Charlie the Unicorn,2,kmeans_plain
+355,Chewbacca Mask Lady,2,kmeans_plain
+356,Click farm,2,kmeans_plain
+357,Clickbait,2,kmeans_plain
+358,Coverage of Google Street View,2,kmeans_plain
+359,Dark Net (TV series),2,kmeans_plain
+360,Demonoid,2,kmeans_plain
+361,Discogs,2,kmeans_plain
+362,Facebook real-name policy controversy,2,kmeans_plain
+363,GLAAD,2,kmeans_plain
+364,Googlewhack,2,kmeans_plain
+365,Internet celebrity,2,kmeans_plain
+366,Internet leak,2,kmeans_plain
+367,Ivan Sutherland,2,kmeans_plain
+368,Jaron Lanier,2,kmeans_plain
+369,Jess Greenberg,2,kmeans_plain
+370,Keenan Cahill,2,kmeans_plain
+371,KickassTorrents,2,kmeans_plain
+372,Klout,2,kmeans_plain
+373,Like button,2,kmeans_plain
+374,Maggie Lindemann,2,kmeans_plain
+375,Marques Brownlee,2,kmeans_plain
+376,Medium (website),2,kmeans_plain
+377,Multi-channel network,2,kmeans_plain
+378,Naked News,2,kmeans_plain
+379,Nash Grier,2,kmeans_plain
+380,Netizen,2,kmeans_plain
+381,Online encyclopedia,2,kmeans_plain
+382,Online magazine,2,kmeans_plain
+383,Piper Chapman,2,kmeans_plain
+384,Ray Tomlinson,2,kmeans_plain
+385,Real life,2,kmeans_plain
+386,RedTube,2,kmeans_plain
+387,Review aggregator,2,kmeans_plain
+388,Rule 34 (Internet meme),2,kmeans_plain
+389,SB Nation,2,kmeans_plain
+390,SCL Group,2,kmeans_plain
+391,SMS language,2,kmeans_plain
+392,Sarah Koenig,2,kmeans_plain
+393,Sense8 (season 1),2,kmeans_plain
+394,Shill,2,kmeans_plain
+395,Shipping (fandom),2,kmeans_plain
+396,Sputnik (news agency),2,kmeans_plain
+397,Stuff You Should Know,2,kmeans_plain
+398,Tay (bot),2,kmeans_plain
+399,Techno Viking,2,kmeans_plain
+400,The Wealdstone Raider,2,kmeans_plain
+401,Trojan Room coffee pot,2,kmeans_plain
+402,Vevo,2,kmeans_plain
+403,Vine (service),2,kmeans_plain
+404,WTF with Marc Maron,2,kmeans_plain
+405,Wattpad,2,kmeans_plain
+406,Web series,2,kmeans_plain
+407,WorldNetDaily,2,kmeans_plain
+408,Yuya (YouTuber),2,kmeans_plain
+409,Andrea Russett,2,kmeans_plain
+410,KidRex,2,kmeans_plain
+411,Nick Jenkins,2,kmeans_plain
+412,Original net animation,2,kmeans_plain
+413,Service mark,2,kmeans_plain
+414,Super Deluxe,2,kmeans_plain
+415,Google Earth,3,kmeans_plain
+416,Jeff Bezos,3,kmeans_plain
+417,AOL,3,kmeans_plain
+418,Alibaba Group,3,kmeans_plain
+419,Amazon Echo,3,kmeans_plain
+420,Amazon Web Services,3,kmeans_plain
+421,Craigslist,3,kmeans_plain
+422,Deezer,3,kmeans_plain
+423,Dot-com bubble,3,kmeans_plain
+424,Dropbox (service),3,kmeans_plain
+425,EBay,3,kmeans_plain
+426,Google Drive,3,kmeans_plain
+427,Google Maps,3,kmeans_plain
+428,Groupon,3,kmeans_plain
+429,Mark Zuckerberg,3,kmeans_plain
+430,OneDrive,3,kmeans_plain
+431,Overstock.com,3,kmeans_plain
+432,PayPal,3,kmeans_plain
+433,Rakuten,3,kmeans_plain
+434,Skype Technologies,3,kmeans_plain
+435,Sling TV,3,kmeans_plain
+436,SoundCloud,3,kmeans_plain
+437,Spotify,3,kmeans_plain
+438,StubHub,3,kmeans_plain
+439,Tagged,3,kmeans_plain
+440,Travis Kalanick,3,kmeans_plain
+441,Yahoo! GeoCities,3,kmeans_plain
+442,Akamai Technologies,3,kmeans_plain
+443,Alexa Internet,3,kmeans_plain
+444,Apple Music,3,kmeans_plain
+445,Baidu,3,kmeans_plain
+446,Bleacher Report,3,kmeans_plain
+447,ConnectU,3,kmeans_plain
+448,Criticism of Google,3,kmeans_plain
+449,Delicious (website),3,kmeans_plain
+450,Digital distribution,3,kmeans_plain
+451,Facebook,3,kmeans_plain
+452,Facebook Graph Search,3,kmeans_plain
+453,Google,3,kmeans_plain
+454,Google+,3,kmeans_plain
+455,Google Fiber,3,kmeans_plain
+456,Google Groups,3,kmeans_plain
+457,Google Play Music,3,kmeans_plain
+458,Google Search,3,kmeans_plain
+459,History of Google,3,kmeans_plain
+460,Hootsuite,3,kmeans_plain
+461,Houzz,3,kmeans_plain
+462,IAC (company),3,kmeans_plain
+463,Internet.org,3,kmeans_plain
+464,Jack Dorsey,3,kmeans_plain
+465,James H. Clark,3,kmeans_plain
+466,Justin.tv,3,kmeans_plain
+467,Kiva (organization),3,kmeans_plain
+468,Lazada Group,3,kmeans_plain
+469,LexisNexis,3,kmeans_plain
+470,Lycos,3,kmeans_plain
+471,MSN TV,3,kmeans_plain
+472,MapQuest,3,kmeans_plain
+473,Marc Andreessen,3,kmeans_plain
+474,MobileMe,3,kmeans_plain
+475,News aggregator,3,kmeans_plain
+476,O2 (UK),3,kmeans_plain
+477,Outlook.com,3,kmeans_plain
+478,PayPal Mafia,3,kmeans_plain
+479,Prodigy (online service),3,kmeans_plain
+480,Sean Parker,3,kmeans_plain
+481,Shopify,3,kmeans_plain
+482,Sky UK,3,kmeans_plain
+483,Skype,3,kmeans_plain
+484,Slack (software),3,kmeans_plain
+485,Snapchat,3,kmeans_plain
+486,Squarespace,3,kmeans_plain
+487,Streaming media,3,kmeans_plain
+488,TPG Telecom,3,kmeans_plain
+489,TaskRabbit,3,kmeans_plain
+490,Tencent,3,kmeans_plain
+491,Tidal (service),3,kmeans_plain
+492,Twitch.tv,3,kmeans_plain
+493,WeChat,3,kmeans_plain
+494,Web portal,3,kmeans_plain
+495,Webmail,3,kmeans_plain
+496,WhatsApp,3,kmeans_plain
+497,Windows Live,3,kmeans_plain
+498,Yahoo!,3,kmeans_plain
+499,Yahoo! Mail,3,kmeans_plain
+500,Yahoo! Search,3,kmeans_plain
+501,Amazon Dash,3,kmeans_plain
+502,Aspiro,3,kmeans_plain
+503,Beats Music,3,kmeans_plain
+504,Betway,3,kmeans_plain
+505,Biz Stone,3,kmeans_plain
+506,Caterina Fake,3,kmeans_plain
+507,Censorship of Facebook,3,kmeans_plain
+508,Cloud gaming,3,kmeans_plain
+509,CouchSurfing,3,kmeans_plain
+510,Criteo,3,kmeans_plain
+511,Dot-com company,3,kmeans_plain
+512,DoubleClick,3,kmeans_plain
+513,Download.com,3,kmeans_plain
+514,Drugs.com,3,kmeans_plain
+515,E-commerce in India,3,kmeans_plain
+516,EarthLink,3,kmeans_plain
+517,Ecosia,3,kmeans_plain
+518,Endurance International Group,3,kmeans_plain
+519,Equinix,3,kmeans_plain
+520,Equity crowdfunding,3,kmeans_plain
+521,Facebook Zero,3,kmeans_plain
+522,Facebook like button,3,kmeans_plain
+523,File hosting service,3,kmeans_plain
+524,GMX Mail,3,kmeans_plain
+525,Garrett Camp,3,kmeans_plain
+526,Google (verb),3,kmeans_plain
+527,Google Santa Tracker,3,kmeans_plain
+528,Groove Music,3,kmeans_plain
+529,Honestbee,3,kmeans_plain
+530,IHeartRadio,3,kmeans_plain
+531,Jawed Karim,3,kmeans_plain
+532,Jumia,3,kmeans_plain
+533,LiveChat,3,kmeans_plain
+534,Locanto,3,kmeans_plain
+535,Mail.Ru,3,kmeans_plain
+536,MakeMyTrip,3,kmeans_plain
+537,Mary Meeker,3,kmeans_plain
+538,NetEase,3,kmeans_plain
+539,New Relic,3,kmeans_plain
+540,Ocado,3,kmeans_plain
+541,Ola Cabs,3,kmeans_plain
+542,Omniture,3,kmeans_plain
+543,Paytm,3,kmeans_plain
+544,Penske Media Corporation,3,kmeans_plain
+545,Pierre Omidyar,3,kmeans_plain
+546,Rivals.com,3,kmeans_plain
+547,Robin Li,3,kmeans_plain
+548,Rocket Internet,3,kmeans_plain
+549,Shawn Fanning,3,kmeans_plain
+550,Sina Weibo,3,kmeans_plain
+551,Snapdeal,3,kmeans_plain
+552,Souq.com,3,kmeans_plain
+553,SuccessFactors,3,kmeans_plain
+554,SurveyMonkey,3,kmeans_plain
+555,Taboola,3,kmeans_plain
+556,The Accidental Billionaires,3,kmeans_plain
+557,Tony Hsieh,3,kmeans_plain
+558,TuneIn,3,kmeans_plain
+559,Universo Online,3,kmeans_plain
+560,Video hosting service,3,kmeans_plain
+561,Vudu,3,kmeans_plain
+562,Webvan,3,kmeans_plain
+563,Wikimedia movement,3,kmeans_plain
+564,Wikipedia Zero,3,kmeans_plain
+565,Yahoo! Groups,3,kmeans_plain
+566,Yahoo! Japan,3,kmeans_plain
+567,Zoho Office Suite,3,kmeans_plain
+568,Amazon Music,3,kmeans_plain
+569,Amazon Prime Pantry,3,kmeans_plain
+570,Gaana.com,3,kmeans_plain
+571,GroupMe,3,kmeans_plain
+572,HotBot,3,kmeans_plain
+573,IQiyi,3,kmeans_plain
+574,Line Corporation,3,kmeans_plain
+575,MarketWatch,3,kmeans_plain
+576,Naukri.com,3,kmeans_plain
+577,Pixelon,3,kmeans_plain
+578,Ryan Graves,3,kmeans_plain
+579,Slack Technologies,3,kmeans_plain
+580,We Heart It,3,kmeans_plain
+581,Comparison of file hosting services,3,kmeans_plain
+582,Comparison of instant messaging clients,3,kmeans_plain
+583,Timeline of Amazon.com,3,kmeans_plain
+584,Affiliate marketing,4,kmeans_plain
+585,Form (HTML),4,kmeans_plain
+586,Google Analytics,4,kmeans_plain
+587,Hyperlink,4,kmeans_plain
+588,Internet forum,4,kmeans_plain
+589,Internet of things,4,kmeans_plain
+590,Meta element,4,kmeans_plain
+591,PageRank,4,kmeans_plain
+592,Social networking service,4,kmeans_plain
+593,Spamdexing,4,kmeans_plain
+594,Trademark,4,kmeans_plain
+595,Web crawler,4,kmeans_plain
+596,Web traffic,4,kmeans_plain
+597,Yahoo! Answers,4,kmeans_plain
+598,Amazon Mechanical Turk,4,kmeans_plain
+599,Comparison of Internet forum software,4,kmeans_plain
+600,Crowdsourcing,4,kmeans_plain
+601,Data Protection Directive,4,kmeans_plain
+602,Decentralization,4,kmeans_plain
+603,Digital journalism,4,kmeans_plain
+604,E-commerce,4,kmeans_plain
+605,Email,4,kmeans_plain
+606,Evaluation measures (information retrieval),4,kmeans_plain
+607,Global Internet usage,4,kmeans_plain
+608,Home page,4,kmeans_plain
+609,Information and communication technologies for development,4,kmeans_plain
+610,Information privacy,4,kmeans_plain
+611,Internet,4,kmeans_plain
+612,Internet bot,4,kmeans_plain
+613,Internet café,4,kmeans_plain
+614,Internet security,4,kmeans_plain
+615,Knowledge Graph,4,kmeans_plain
+616,Knowledge worker,4,kmeans_plain
+617,Location-based service,4,kmeans_plain
+618,Microblogging,4,kmeans_plain
+619,Mobile payment,4,kmeans_plain
+620,Nofollow,4,kmeans_plain
+621,Online advertising,4,kmeans_plain
+622,Online and offline,4,kmeans_plain
+623,Online identity,4,kmeans_plain
+624,Online shopping,4,kmeans_plain
+625,Open-source model,4,kmeans_plain
+626,Personal web page,4,kmeans_plain
+627,PhpBB,4,kmeans_plain
+628,Privacy concerns with social networking services,4,kmeans_plain
+629,RSS,4,kmeans_plain
+630,Recommender system,4,kmeans_plain
+631,Responsive web design,4,kmeans_plain
+632,Search engine optimization,4,kmeans_plain
+633,Semantic Web,4,kmeans_plain
+634,Sharing economy,4,kmeans_plain
+635,Social media,4,kmeans_plain
+636,Turnitin,4,kmeans_plain
+637,URL shortening,4,kmeans_plain
+638,Virtual community,4,kmeans_plain
+639,Web Content Accessibility Guidelines,4,kmeans_plain
+640,Web analytics,4,kmeans_plain
+641,Web engineering,4,kmeans_plain
+642,Web page,4,kmeans_plain
+643,Web search engine,4,kmeans_plain
+644,Webmaster,4,kmeans_plain
+645,Website,4,kmeans_plain
+646,World Wide Web,4,kmeans_plain
+647,Ad blocking,4,kmeans_plain
+648,Advertising network,4,kmeans_plain
+649,Anti-spam techniques,4,kmeans_plain
+650,Application service provider,4,kmeans_plain
+651,Attention economy,4,kmeans_plain
+652,Backlink,4,kmeans_plain
+653,Bounce rate,4,kmeans_plain
+654,Bricks and clicks,4,kmeans_plain
+655,Business-to-business,4,kmeans_plain
+656,CiteSeerX,4,kmeans_plain
+657,Click-through rate,4,kmeans_plain
+658,Collaborative software,4,kmeans_plain
+659,Cost per action,4,kmeans_plain
+660,Cost per impression,4,kmeans_plain
+661,Data anonymization,4,kmeans_plain
+662,Dedicated hosting service,4,kmeans_plain
+663,Digital Revolution,4,kmeans_plain
+664,Digital citizen,4,kmeans_plain
+665,Digital economy,4,kmeans_plain
+666,Digital footprint,4,kmeans_plain
+667,Digital marketing,4,kmeans_plain
+668,Digital native,4,kmeans_plain
+669,Digital preservation,4,kmeans_plain
+670,Digital transformation,4,kmeans_plain
+671,Display advertising,4,kmeans_plain
+672,Electronic business,4,kmeans_plain
+673,Electronic portfolio,4,kmeans_plain
+674,Electronic ticket,4,kmeans_plain
+675,Email marketing,4,kmeans_plain
+676,Forum spam,4,kmeans_plain
+677,Google Hummingbird,4,kmeans_plain
+678,Google Panda,4,kmeans_plain
+679,Google Penguin,4,kmeans_plain
+680,Green Monday,4,kmeans_plain
+681,Hero image,4,kmeans_plain
+682,Internet fraud,4,kmeans_plain
+683,Internet hosting service,4,kmeans_plain
+684,Internet research,4,kmeans_plain
+685,Keyword research,4,kmeans_plain
+686,Mashup (web application hybrid),4,kmeans_plain
+687,Native advertising,4,kmeans_plain
+688,Online chat,4,kmeans_plain
+689,Online community,4,kmeans_plain
+690,Online marketplace,4,kmeans_plain
+691,Online pharmacy,4,kmeans_plain
+692,Online video platform,4,kmeans_plain
+693,Organic search,4,kmeans_plain
+694,Plagiarism detection,4,kmeans_plain
+695,Pop-up ad,4,kmeans_plain
+696,Prosumer,4,kmeans_plain
+697,RankBrain,4,kmeans_plain
+698,Remote sensing,4,kmeans_plain
+699,Reputation management,4,kmeans_plain
+700,Reverse image search,4,kmeans_plain
+701,Schoology,4,kmeans_plain
+702,Search engine marketing,4,kmeans_plain
+703,Search engine results page,4,kmeans_plain
+704,Semantic search,4,kmeans_plain
+705,Social commerce,4,kmeans_plain
+706,Social login,4,kmeans_plain
+707,Social marketing,4,kmeans_plain
+708,Tag (metadata),4,kmeans_plain
+709,Tag cloud,4,kmeans_plain
+710,Targeted advertising,4,kmeans_plain
+711,UTM parameters,4,kmeans_plain
+712,Web banner,4,kmeans_plain
+713,Web content management system,4,kmeans_plain
+714,Web design,4,kmeans_plain
+715,Web developer,4,kmeans_plain
+716,Web feed,4,kmeans_plain
+717,Web hosting service,4,kmeans_plain
+718,Web mining,4,kmeans_plain
+719,Web widget,4,kmeans_plain
+720,Consumer-to-business,4,kmeans_plain
+721,Omnichannel,4,kmeans_plain
+722,Open API,4,kmeans_plain
+723,Smart speaker,4,kmeans_plain
+724,Web development,4,kmeans_plain
+725,Web navigation,4,kmeans_plain
+726,Lists of websites,4,kmeans_plain
+727,Aaron Swartz,5,kmeans_plain
+728,Bitcoin,5,kmeans_plain
+729,CAPTCHA,5,kmeans_plain
+730,Conficker,5,kmeans_plain
+731,Darknet market,5,kmeans_plain
+732,Digital rights management,5,kmeans_plain
+733,Internet Relay Chat,5,kmeans_plain
+734,Internet censorship in China,5,kmeans_plain
+735,Internet privacy,5,kmeans_plain
+736,Kademlia,5,kmeans_plain
+737,Psiphon,5,kmeans_plain
+738,Reporters Without Borders,5,kmeans_plain
+739,The Pirate Bay trial,5,kmeans_plain
+740,Tor (anonymity network),5,kmeans_plain
+741,Usenet,5,kmeans_plain
+742,Warez,5,kmeans_plain
+743,WikiLeaks,5,kmeans_plain
+744,ΜTorrent,5,kmeans_plain
+745,.onion,5,kmeans_plain
+746,BTDigg,5,kmeans_plain
+747,BitTorrent,5,kmeans_plain
+748,Botnet,5,kmeans_plain
+749,Bug bounty program,5,kmeans_plain
+750,Censorship by Google,5,kmeans_plain
+751,Censorship of Wikipedia,5,kmeans_plain
+752,Citizenfour,5,kmeans_plain
+753,Cloudflare,5,kmeans_plain
+754,Computer and network surveillance,5,kmeans_plain
+755,Computer security,5,kmeans_plain
+756,Cult of the Dead Cow,5,kmeans_plain
+757,Dark web,5,kmeans_plain
+758,Deep web,5,kmeans_plain
+759,Defense Distributed,5,kmeans_plain
+760,Dogecoin,5,kmeans_plain
+761,E-democracy,5,kmeans_plain
+762,EDonkey network,5,kmeans_plain
+763,Electronic voting by country,5,kmeans_plain
+764,Email spam,5,kmeans_plain
+765,FBI–Apple encryption dispute,5,kmeans_plain
+766,Fancy Bear,5,kmeans_plain
+767,File sharing,5,kmeans_plain
+768,Geo-blocking,5,kmeans_plain
+769,Golden Shield Project,5,kmeans_plain
+770,Hacktivism,5,kmeans_plain
+771,Heartbleed,5,kmeans_plain
+772,History of bitcoin,5,kmeans_plain
+773,Human flesh search engine,5,kmeans_plain
+774,I2P,5,kmeans_plain
+775,Internet activism,5,kmeans_plain
+776,Internet censorship,5,kmeans_plain
+777,Internet censorship and surveillance by country,5,kmeans_plain
+778,Internet censorship circumvention,5,kmeans_plain
+779,Internet censorship in Australia,5,kmeans_plain
+780,Internet censorship in Russia,5,kmeans_plain
+781,Internet censorship in the United Kingdom,5,kmeans_plain
+782,Internet censorship in the United States,5,kmeans_plain
+783,LimeWire,5,kmeans_plain
+784,Malware,5,kmeans_plain
+785,Megaupload,5,kmeans_plain
+786,Mt. Gox,5,kmeans_plain
+787,Net neutrality in the United States,5,kmeans_plain
+788,Net neutrality law,5,kmeans_plain
+789,Online gambling,5,kmeans_plain
+790,PRISM (surveillance program),5,kmeans_plain
+791,Paywall,5,kmeans_plain
+792,Philip Gale,5,kmeans_plain
+793,Popcorn Time,5,kmeans_plain
+794,Pwn2Own,5,kmeans_plain
+795,Qubes OS,5,kmeans_plain
+796,Right to be forgotten,5,kmeans_plain
+797,Robots exclusion standard,5,kmeans_plain
+798,Ross Ulbricht,5,kmeans_plain
+799,Silk Road (marketplace),5,kmeans_plain
+800,Stop Online Piracy Act,5,kmeans_plain
+801,The Shadow Brokers,5,kmeans_plain
+802,Timeline of file sharing,5,kmeans_plain
+803,Wickr,5,kmeans_plain
+804,Adware,5,kmeans_plain
+805,Alexandra Elbakyan,5,kmeans_plain
+806,BitTorrent (software),5,kmeans_plain
+807,BitTorrent tracker,5,kmeans_plain
+808,Blockchain.info,5,kmeans_plain
+809,Blocking of YouTube videos in Germany,5,kmeans_plain
+810,Children's Online Privacy Protection Act,5,kmeans_plain
+811,Clickjacking,5,kmeans_plain
+812,Communications Decency Act,5,kmeans_plain
+813,Communications security,5,kmeans_plain
+814,Copyright infringement,5,kmeans_plain
+815,Countries blocking access to The Pirate Bay,5,kmeans_plain
+816,Cryptocurrency tumbler,5,kmeans_plain
+817,Cyberterrorism,5,kmeans_plain
+818,Darknet,5,kmeans_plain
+819,Deep linking,5,kmeans_plain
+820,Disposable email address,5,kmeans_plain
+821,Domain parking,5,kmeans_plain
+822,Drive-by download,5,kmeans_plain
+823,Evercookie,5,kmeans_plain
+824,Facebookcorewwwi.onion,5,kmeans_plain
+825,Football Leaks,5,kmeans_plain
+826,Gottfrid Svartholm,5,kmeans_plain
+827,Great Firewall,5,kmeans_plain
+828,Hyperledger,5,kmeans_plain
+829,Information warfare,5,kmeans_plain
+830,InterPlanetary File System,5,kmeans_plain
+831,Internet censorship in India,5,kmeans_plain
+832,Internet censorship in South Korea,5,kmeans_plain
+833,Internet in North Korea,5,kmeans_plain
+834,IsoHunt,5,kmeans_plain
+835,Kazaa,5,kmeans_plain
+836,Liberator (gun),5,kmeans_plain
+837,Litecoin,5,kmeans_plain
+838,Malvertising,5,kmeans_plain
+839,Music piracy,5,kmeans_plain
+840,OVH,5,kmeans_plain
+841,Open government,5,kmeans_plain
+842,Open proxy,5,kmeans_plain
+843,Pirate Party,5,kmeans_plain
+844,Private Internet Access,5,kmeans_plain
+845,Right to Internet access,5,kmeans_plain
+846,Shadowsocks,5,kmeans_plain
+847,Spambot,5,kmeans_plain
+848,Tempora,5,kmeans_plain
+849,Torrent file,5,kmeans_plain
+850,Typosquatting,5,kmeans_plain
+851,Ultrasurf,5,kmeans_plain
+852,VirusTotal,5,kmeans_plain
+853,Warrant canary,5,kmeans_plain
+854,WebMoney,5,kmeans_plain
+855,Zcash,5,kmeans_plain
+856,Ahmia,5,kmeans_plain
+857,Identity theft,5,kmeans_plain
+858,QBittorrent,5,kmeans_plain
+859,Shodan (website),5,kmeans_plain
+860,Websites blocked in India,5,kmeans_plain
+861,Glossary of BitTorrent terms,5,kmeans_plain
+862,Websites blocked in mainland China,5,kmeans_plain
+863,.ca,6,kmeans_plain
+864,.xxx,6,kmeans_plain
+865,.au,6,kmeans_plain
+866,.io,6,kmeans_plain
+867,.uk,6,kmeans_plain
+868,.us,6,kmeans_plain
+869,Chinese Wikipedia,6,kmeans_plain
+870,Country code top-level domain,6,kmeans_plain
+871,Email address,6,kmeans_plain
+872,ICANN,6,kmeans_plain
+873,Internationalized domain name,6,kmeans_plain
+874,Top-level domain,6,kmeans_plain
+875,Verisign,6,kmeans_plain
+876,.br,6,kmeans_plain
+877,.cc,6,kmeans_plain
+878,.co,6,kmeans_plain
+879,.com,6,kmeans_plain
+880,.edu,6,kmeans_plain
+881,.gov,6,kmeans_plain
+882,.mobi,6,kmeans_plain
+883,.net,6,kmeans_plain
+884,.nl,6,kmeans_plain
+885,.org,6,kmeans_plain
+886,.pl,6,kmeans_plain
+887,.ru,6,kmeans_plain
+888,.se,6,kmeans_plain
+889,.su,6,kmeans_plain
+890,.tk,6,kmeans_plain
+891,Alternative DNS root,6,kmeans_plain
+892,Domain name,6,kmeans_plain
+893,Languages used on the Internet,6,kmeans_plain
+894,Punycode,6,kmeans_plain
+895,.biz,6,kmeans_plain
+896,.gg,6,kmeans_plain
+897,.xyz,6,kmeans_plain

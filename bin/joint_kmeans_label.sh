@@ -48,7 +48,7 @@ do
         --vectors ${exp_dir}/vanilla_vectors.csv \
         --k 8 \
         --weight 0.5 \
-        --article_keywords /Users/research/Documents/Projects/cartograph-alg/data/${i}/article_keywords.csv \
+        --article_keywords data/${i}/article_keywords.csv \
         --country_names ${exp_dir}/country_labels.csv\
         --articles_to_labels data/${i}/${article_label_csv} \
         --label_names data/${i}/${label_name_csv} \
@@ -56,7 +56,9 @@ do
         --label_score tfidf \
         --cluster_groups /original_cluster_groups.csv \
         --output_file /country_labels.csv \
-        --num_candidates 4
+        --num_candidates 4 \
+        --purpose experiment \
+        --label_path na
     options="original new score"
     for j in $options
     do
@@ -69,7 +71,10 @@ do
             --country_labels ${j}_country_labels.csv \
             --cluster_groups ${j}_cluster_groups.csv \
             --embeddings xy_embeddings.csv \
-            --output_name ${j}_domain.json
+            --output_name ${j}_domain.json \
+            --purpose experiment \
+            --label_path na
+
 
         # draw boundary
         python -m cartograph.border_creator \
@@ -84,7 +89,9 @@ do
         --color_palette muted \
         --json_file ${j}_domain.json \
         --output_file ${j}_graph.svg \
-        --country_labels ${j}_country_labels.csv
+        --country_labels ${j}_country_labels.csv \
+        --purpose experiment \
+        --label_path na
 
     done
 done

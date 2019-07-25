@@ -47,23 +47,26 @@ def main(experiment_directory, evaluation_json, params_json, graph_path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--experiment', required=True)
+    parser.add_argument('--purpose', required=True)
+    parser.add_argument('--label_path')
     args = parser.parse_args()
 
     experiment_directory = str(args.experiment)
-    evaluation_json = experiment_directory + "/evaluation.json"
+    label_path = str(args.label_path)
+
     params_json = experiment_directory + "/params.json"
-    graph_path = experiment_directory + "/graph.svg"
 
-    file = open(experiment_directory + "/index.html", "w+")
-    file.write(main(experiment_directory, evaluation_json, params_json, graph_path))
-    file.close()
+    if args.purpose == 'study':
+        evaluation_json = label_path + "/evaluation.json"
+        graph_path = label_path + "/graph.svg"
 
+        file = open(label_path + "/index.html", "w+")
+        file.write(main(label_path, evaluation_json, params_json, graph_path))
+        file.close()
+    else:
+        evaluation_json = experiment_directory + "/evaluation.json"
+        graph_path = experiment_directory + "/graph.svg"
 
-
-# html = main("../experiments/food/0001", "../experiments/food/0001/evaluation.json", "../experiments/food/0001/params.json")
-# file = open("../experiments/food/0001/index.html", "w+")
-# file.write(html)
-# file.close()
-#
-# # doc = minidom.parse("../experiments/food/0001/graph.svg")
-# # print(doc.toxml())
+        file = open(experiment_directory + "/index.html", "w+")
+        file.write(main(experiment_directory, evaluation_json, params_json, graph_path))
+        file.close()
