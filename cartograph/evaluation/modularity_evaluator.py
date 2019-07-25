@@ -23,8 +23,8 @@ import logging
 import json
 
 
-def preprocess(x_y_embeddings_csv):
-    df = x_y_embeddings_csv
+def preprocess(x_y_embeddings_df):
+    df = x_y_embeddings_df
     feature_space = []
     indices_to_id = {}
 
@@ -100,22 +100,22 @@ def build_network(distances_lst, neighbors_lst, indices_to_id):
     return G.simplify(combine_edges=max)
 
 
-def calc_modularity(Graph, cluster_groups_csv):
+def calc_modularity(Graph, cluster_groups_df):
     """
     Here We could choose 9 different measurement to test the modularity score
     The higher the better the cluster we produce
     Reference: https://yoyoinwanderland.github.io/2017/08/08/Community-Detection-in-Python/
     """
-    cluster_groups = cluster_groups_csv
-    country = cluster_groups['country'].tolist()
+    country = cluster_groups_df['country'].tolist()
 
     #vertex_clustering = Graph.community_multilevel(weights='weight')
     return Graph.modularity(country)
 
 
-def main(xy_embedding_csv, cluster_groups_csv, method='nn'):
-    xy_embeddings_csv = pd.read_csv(args.xy_embeddings_csv)
-    feature_space, indices_to_id = preprocess(xy_embeddings_csv)
+def main(xy_embeddings_csv, cluster_groups_csv, method='nn'):
+    xy_embeddings_df = pd.read_csv(xy_embeddings_csv)
+    cluster_groups_df = pd.read_csv(cluster_groups_csv)
+    feature_space, indices_to_id = preprocess(xy_embeddings_df)
 
     if method == 'nn':
         distance_lst, indices_lst = find_k_near_neighbors(feature_space)
@@ -123,8 +123,8 @@ def main(xy_embedding_csv, cluster_groups_csv, method='nn'):
         distance_lst, indices_lst = find_neighbors_within_d_distance(feature_space)
 
     G = build_network(distance_lst, indices_lst, indices_to_id)
-    mod_score = calc_modularity(G, cluster_groups_csv)
-    print(str(json.dumps(mod_score)))
+    mod_score = calc_modularity(G, cluster_groups_df)
+    print(str(json.dumps({"Modularity Score": mod_score})))
     # logging.warning("Modularity Score: %.6f", mod_score)
 
 
@@ -132,9 +132,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Augment the original article vectors with label matrix or '
                                                  'cluster matrix.')
     parser.add_argument('--experiment', required=True)
-    parser.add_argument('--xy_embeddings_csv', required=True)
     parser.add_argument('--method', required=True)
-    parser.add_argument('--cluster_groups_csv', required=True)
     args = parser.parse_args()
-    cluster_vectors = pd.read_csv(args.cluster_groups_csv)
-    main(args.xy_embeddings_csv, cluster_vectors, args.method)
+
+    main(args.experiment + '/xy_embeddings.csv', args.experiment + '/cluster_groups.csv', args.method)

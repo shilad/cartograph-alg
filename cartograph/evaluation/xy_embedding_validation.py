@@ -22,19 +22,18 @@ def evaluate_xy_embed(x, x_embed):
     return trustworthiness(x, x_embed)
 
 
-def main(map_directory, embedding):
-    X = pd.read_csv(map_directory+"/vanilla_vectors.csv").iloc[:, 1:].to_numpy()
-    X_embed = pd.read_csv(map_directory + embedding).iloc[:, 1:].to_numpy()
+def main(experiment):
+    X = pd.read_csv(experiment+"/vanilla_vectors.csv").iloc[:, 1:].to_numpy()
+    X_embed = pd.read_csv(experiment + '/xy_embeddings.csv').iloc[:, 1:].to_numpy()
     tw = evaluate_xy_embed(X, X_embed)
-    #print("\n Trustworthiness: " + str(tw))
-    print(str(json.dumps(tw)))
+    print(str(json.dumps({"Trustworthiness": tw})))
 
 
 if __name__ == '__main__':
     import sys
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 2:
         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
         sys.exit(1)
 
-    map_directory, embedding= sys.argv[1:]
-    main(map_directory, embedding)
+    experiment = sys.argv[1]
+    main(experiment)
