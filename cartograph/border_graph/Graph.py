@@ -23,7 +23,6 @@ from cartograph.border_graph.Edge import Edge
 
 class Graph:
     def __init__(self, points, cluster_list, article_id_list):
-        plt.figure()
         self.points = points
         self.cluster_list = cluster_list
         self.article_id_list = article_id_list

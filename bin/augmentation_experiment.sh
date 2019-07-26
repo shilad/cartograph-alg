@@ -52,6 +52,7 @@ do
         --vectors ${exp_dir}/${initial_vector_for_clustering[$i]} \
         --clustering kmeans \
         --k 8
+
     python -m cartograph.label_selector \
         --experiment ${exp_dir} \
         --articles_to_labels data/food/${article_label_csv} \

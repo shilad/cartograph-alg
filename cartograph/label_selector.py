@@ -113,6 +113,7 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     df = pd.DataFrame(final_labels,  index=[0]).T
     df['country'] = df.index
     df['label_id'] = np.array(list(final_scores.values())).T
+    df.columns = ['label_name', 'country', 'label_id']
     df.to_csv(experiment_dir + output_file, index=True)
 
 
@@ -135,5 +136,6 @@ if __name__ == '__main__':
     label_names = pd.read_csv(args.label_names)
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
+    print("article_labels_____________________", article_labels)
 
     main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates)

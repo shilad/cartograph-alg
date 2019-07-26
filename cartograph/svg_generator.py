@@ -75,7 +75,7 @@ def set_colors(countries_csv, color_palette):
     colors = {}
     palette = sns.color_palette(color_palette, len(countries)).as_hex()
     for i in range(len(countries['country'])):
-        colors[countries.iloc[i]['label_name']] = palette[countries.iloc[i][0]]
+        colors[countries.iloc[i]['label_name']] = palette[countries.iloc[i]['country']]
     return colors
 
 
@@ -91,7 +91,7 @@ def draw_elevation(elevation_csv, drawing):
     df = pd.read_csv(elevation_csv).dropna(how='all')
     for index, row in df.iterrows():
         temp = np.array(df.iloc[index].values.flatten().tolist())
-        temp = temp[temp!='nan']
+        temp = temp[temp != 'nan']
         polygon = draw.Path(stroke_width=0.001, stroke_opacity=0.7, fill=temp[-1])
         polygon.M(float(temp[0])*XY_RATIO, float(temp[1])*XY_RATIO)   # start path at initial point
         for i in range(2, len(temp)-2, 2):
