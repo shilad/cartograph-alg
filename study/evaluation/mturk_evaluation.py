@@ -149,28 +149,28 @@ def main(responses):
     # label_scores = get_most_popular_label(responses)
     # print(label_scores)
 
-    cluster_labels = get_cluster_labels(responses)
-    top_cluster_labels = get_top_cluster_labels(cluster_labels)
-
-    for project in top_cluster_labels:
-        for cluster_type in top_cluster_labels[project]:
-            df = pd.DataFrame.from_dict(top_cluster_labels[project][cluster_type], orient='index')
-            df['country'] = df.index
-            df = df.set_index('country')
-            df.to_csv('study/' + project + '/' + cluster_type + '/gold_standard_labels.csv')
-
-    cluster_scores = get_most_popular_cluster(responses)
-    print(cluster_scores)
-
-    cleaned_user_labels = clean_user_labels(responses)
-
-    for project in cleaned_user_labels:
-        for cluster_type in cleaned_user_labels[project]:
-            df = pd.DataFrame.from_dict(cleaned_user_labels[project][cluster_type], orient='index')
-            df['country'] = df.index
-            df = df.set_index('country')
-            df.to_csv('study/' + project + '/' + cluster_type + '/user_chosen_labels.csv')
-
+    # cluster_labels = get_cluster_labels(responses)
+    # top_cluster_labels = get_top_cluster_labels(cluster_labels)
+    #
+    # for project in top_cluster_labels:
+    #     for cluster_type in top_cluster_labels[project]:
+    #         df = pd.DataFrame.from_dict(top_cluster_labels[project][cluster_type], orient='index')
+    #         df['country'] = df.index
+    #         df = df.set_index('country')
+    #         df.to_csv('study/' + project + '/' + cluster_type + '/gold_standard_labels.csv')
+    #
+    # cluster_scores = get_most_popular_cluster(responses)
+    # print(cluster_scores)
+    #
+    # cleaned_user_labels = clean_user_labels(responses)
+    #
+    # for project in cleaned_user_labels:
+    #     for cluster_type in cleaned_user_labels[project]:
+    #         df = pd.DataFrame.from_dict(cleaned_user_labels[project][cluster_type], orient='index')
+    #         df['country'] = df.index
+    #         df = df.set_index('country')
+    #         df.to_csv('study/' + project + '/' + cluster_type + '/user_chosen_labels.csv')
+    return
 
 mturk_responses = pd.read_csv('study/evaluation/cleaned_mturk_results.csv')
 main(mturk_responses)

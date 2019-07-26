@@ -59,7 +59,7 @@ def add_tfidf_scores(labels_df):
     return labels_df
 
 
-def assign_country_label_ids(country_scores, label_score, soft_labeling, num_candidates):
+def assign_country_label_ids(country_scores, label_score, num_candidates, soft_labeling=False):
     """Output: Dictionary --> key = country, value = label"""
 
     ps = PorterStemmer()
@@ -68,6 +68,7 @@ def assign_country_label_ids(country_scores, label_score, soft_labeling, num_can
     used_stems = set()
 
     if soft_labeling:
+        print('USING SOFT LABELING')
         final_labels = defaultdict(set)
         final_ids = defaultdict(set)
 
@@ -167,14 +168,12 @@ if __name__ == '__main__':
     parser.add_argument('--label_score', required=True)
     parser.add_argument('--cluster_groups', required=True)
     parser.add_argument('--output_file', required=True)
-    parser.add_argument('--soft_labeling', required=True)
+    parser.add_argument('--soft_labeling', required=True, type=bool)
     parser.add_argument('--num_candidates', required=True, type=int)
     parser.add_argument('--purpose', required=True)
-    parser.add_argument('--label_path')
+    parser.add_argument('--label_path', required=True)
 
     args = parser.parse_args()
-
-    label_path = str(args.label_path)
 
     article_labels = pd.read_csv(args.articles_to_labels)
 
@@ -183,4 +182,4 @@ if __name__ == '__main__':
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
 
-    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates, args.purpose, label_path)
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates, args.purpose, args.label_path)
