@@ -10,9 +10,9 @@
  set -e
  set -x
 
-topic=food
+topic=media
 
-# Assign variable name for label candidate we want (categories, links, keywork, etc)
+# Assign variable name for label candidate we want (categories, links, keywords, etc)
 article_label_csv=article_keyphrases.csv
 label_name_csv=keyphrases_names.csv
 label_type=keyphrases
@@ -35,7 +35,7 @@ do
 
     # Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
     # The example below passes the equivalent of { "spread" : "17", "target_weight" : "0.5" }.
-    write_experiment_params ${exp_dir} num_clusters 7 labels ${label_type} xy_embedding tsne percentile 0.3 label_score tfidf
+    write_experiment_params ${exp_dir} num_clusters 7 labels ${label_type} xy_embedding tsne percentile 1 label_score tfidf
 
     if (($i == 1)); then
         write_experiment_params ${exp_dir} vectors augmented
@@ -43,7 +43,7 @@ do
         python -m cartograph.vector_augmenter \
                 --experiment ${exp_dir} \
                 --vectors ${exp_dir}/vanilla_vectors.csv \
-                --label_vectors data/${topic}/${article_label_csv} \
+                --label_vectors data/${topic}/article_labels_combined.csv \
                 --method label \
                 --output_file ${initial_vector_for_clustering[$i]}
     else
@@ -54,13 +54,13 @@ do
         --experiment ${exp_dir} \
         --vectors ${exp_dir}/${initial_vector_for_clustering[$i]} \
         --clustering kmeans \
-        --k 8
+        --k 7
     python -m cartograph.label_selector \
             --experiment ${exp_dir} \
             --articles_to_labels data/${topic}/${article_label_csv} \
             --label_names data/${topic}/${label_name_csv} \
             --label_score tfidf \
-            --percentile 0.3 \
+            --percentile 1 \
             --purpose experiment \
             --label_path NA \
             --cluster_groups /cluster_groups.csv \
@@ -74,7 +74,7 @@ do
         python -m cartograph.vector_augmenter \
                 --experiment ${exp_dir} \
                 --vectors ${exp_dir}/vanilla_vectors.csv \
-                --label_vectors data/${topic}/${article_label_csv} \
+                --label_vectors data/${topic}/article_labels_combined.csv \
                 --method cluster \
                 --cluster_vectors ${exp_dir}/cluster_groups.csv \
                 --output_file ${vector_format_for_embedding[$i]}

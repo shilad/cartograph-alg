@@ -8,7 +8,9 @@ from collections import defaultdict
 import numpy as np
 import pandas as pd
 from gensim.parsing.porter import PorterStemmer
-import os
+
+
+BLACK_LIST = ['food', 'foods', 'food and drink', 'media', 'internet', 'technology']
 
 
 def add_country_label_counts(labels_df):
@@ -73,7 +75,7 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, soft_l
         final_ids = defaultdict(set)
 
         for row in country_scores.itertuples():
-            if len(final_labels[row.country]) <= num_candidates and row.stem not in used_stems:
+            if len(final_labels[row.country]) <= num_candidates and row.stem not in used_stems and row.stem not in BLACK_LIST:
                 final_labels[row.country].add(row.label.replace('_', ' '))
                 final_ids[row.country].add(int(row.label_id))
                 used_stems.add(row.stem)
@@ -82,7 +84,7 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, soft_l
         final_ids = {}
 
         for row in country_scores.itertuples():
-            if row.country not in final_labels and row.stem not in used_stems:
+            if row.country not in final_labels and row.stem not in used_stems and row.stem not in BLACK_LIST:
                 final_labels[row.country] = row.label.replace('_', ' ')
                 final_ids[row.country] = row.label_id
                 used_stems.add(row.stem)
