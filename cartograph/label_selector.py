@@ -114,6 +114,7 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     df['country'] = df.index
     df['label_id'] = np.array(list(final_scores.values())).T
     df.columns = ['label_name', 'country', 'label_id']
+    print(output_file + df)
     df.to_csv(experiment_dir + output_file, index=True)
 
 
@@ -126,7 +127,7 @@ if __name__ == '__main__':
     parser.add_argument('--label_score', required=True)
     parser.add_argument('--cluster_groups', required=True)
     parser.add_argument('--output_file', required=True)
-    parser.add_argument('--soft_labeling', required=True)
+    parser.add_argument('--soft_labeling', required=True, type=bool)
     parser.add_argument('--num_candidates', required=True, type=int)
 
     args = parser.parse_args()

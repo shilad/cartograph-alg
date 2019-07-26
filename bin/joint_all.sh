@@ -19,7 +19,7 @@ do
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=0028 #$(get_experiment_id)
+    exp_id=0030 #$(get_experiment_id)
 
     # $(get_experiment_id)
 
@@ -54,7 +54,7 @@ do
         --label_score tfidf \
         --cluster_groups /original_cluster_groups.csv \
         --output_file /country_labels.csv \
-        --num_candidates 1
+        --num_candidates 1  >>${exp_dir}/experiment_params.json
 
     python -m cartograph.xy_embed.umap_embed \
         --map_directory ${exp_dir} \
