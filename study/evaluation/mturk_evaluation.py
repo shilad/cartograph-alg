@@ -145,6 +145,48 @@ def clean_user_labels(responses):
     return cleaned_labels
 
 
+def get_cluster_counts(responses):
+    cluster_counts = {}
+    for proj in PROJECTS:
+        cluster_counts[proj] = {}
+        for cluster in CLUSTER_TYPES:
+            cluster_counts[proj][cluster] = {}
+            for i in range(7):
+                cluster_counts[proj][cluster][i] = defaultdict(int)
+    for index, row in responses.iterrows():
+        for column in responses.columns:
+            if 'Answer.dont-belong' in column:
+                project_num = re.findall("(?<=_)(.*)(?=_)", column)[0]
+                project = row['Input.project_' + project_num]
+                if 'LDA' in row['Input.group_id_' + project_num]:
+                    cluster_type = re.findall("^[^_]+(?=_)", row['Input.group_id_' + project_num])[0]
+                else:
+                    cluster_type = re.findall("^[^_]*_[^_]*", row['Input.group_id_' + project_num])[0]
+                cluster_num = re.findall("(?<=_c)(.*)(?=_)", row['Input.group_id_' + project_num])[0]
+                article_num = re.findall("(?<=\.)[^.]*$", column)[0]
+                article_name = row['Input.article_' + project_num + '_' + article_num]
+                if not row[column]:
+                    cluster_counts[project][cluster_type][int(cluster_num)][article_name] += 1
+    return cluster_counts
+
+
+def get_gold_standard_clusters(cluster_counts):
+    gold_standard_clusters = {}
+    for proj in PROJECTS:
+        gold_standard_clusters[proj] = {}
+        for cluster in CLUSTER_TYPES:
+            gold_standard_clusters[proj][cluster] = {}
+            for i in range(7):
+                gold_standard_clusters[proj][cluster][i] = []
+    for project in PROJECTS:
+        for cluster_type in CLUSTER_TYPES:
+            for i in range(7):
+                for article in cluster_counts[project][cluster_type][i]:
+                    if cluster_counts[project][cluster_type][i][article] > 2:
+                        gold_standard_clusters[project][cluster_type][i].append(article)
+    return gold_standard_clusters
+
+
 def main(responses):
     # label_scores = get_most_popular_label(responses)
     # print(label_scores)
@@ -170,7 +212,16 @@ def main(responses):
     #         df['country'] = df.index
     #         df = df.set_index('country')
     #         df.to_csv('study/' + project + '/' + cluster_type + '/user_chosen_labels.csv')
-    return
+    cluster_counts = get_cluster_counts(responses)
+    gold_standard_clusters = get_gold_standard_clusters(cluster_counts)
+
+    for project in gold_standard_clusters:
+        for cluster_type in gold_standard_clusters[project]:
+            df = pd.DataFrame.from_dict(gold_standard_clusters[project][cluster_type], orient='index')
+            df['country'] = df.index
+            df = df.set_index('country')
+            df.to_csv('study/' + project + '/' + cluster_type + '/gold_standard_clusters.csv')
+
 
 mturk_responses = pd.read_csv('study/evaluation/cleaned_mturk_results.csv')
 main(mturk_responses)

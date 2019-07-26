@@ -10,7 +10,7 @@
  set -e
  set -x
 
-topic=media
+topic=food
 
 # Assign variable name for label candidate we want (categories, links, keywords, etc)
 article_label_csv=article_keyphrases.csv
@@ -35,7 +35,7 @@ do
 
     # Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
     # The example below passes the equivalent of { "spread" : "17", "target_weight" : "0.5" }.
-    write_experiment_params ${exp_dir} num_clusters 7 labels ${label_type} xy_embedding tsne percentile 1 label_score tfidf
+    write_experiment_params ${exp_dir} num_clusters 7 labels ${label_type} xy_embedding umap percentile 1 label_score tfidf
 
     if (($i == 1)); then
         write_experiment_params ${exp_dir} vectors augmented
@@ -81,9 +81,9 @@ do
     fi
 
     # Step 5
-    python -m cartograph.xy_embed.tsne_embed \
-            --experiment ${exp_dir} \
-           --vectors ${exp_dir}/${vector_format_for_embedding[$i]}
+    python -m cartograph.xy_embed.umap_embed \
+            --map_directory ${exp_dir} \
+            --vectors ${exp_dir}/vanilla_vectors.csv
 
     # draw boundary
     python -m cartograph.border_creator \
