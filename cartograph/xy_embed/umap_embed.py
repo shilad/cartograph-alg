@@ -7,7 +7,7 @@ import pandas as pd
 import umap
 import os
 import argparse
-
+import numpy as np
 
 def create_embeddings(vector_directory, spread=20.0, tw=0.5, clusters=None):
     df = pd.read_csv(vector_directory)
@@ -16,6 +16,8 @@ def create_embeddings(vector_directory, spread=20.0, tw=0.5, clusters=None):
         df = pd.merge(df, cluster_groups, on='article_id')
         points = umap.UMAP(metric='cosine', spread=spread, target_weight=tw).fit_transform(df.iloc[:, 1:-1], y=df.iloc[:, -1])
     else:
+        print("what!!!!!")
+        print(np.where(np.isnan(df.iloc[:, 1:-1])))
         points = umap.UMAP(metric='cosine', spread=spread).fit_transform(df.iloc[:, 1:-1])
     xy_embedding = pd.DataFrame({'article_id': df['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
     return xy_embedding

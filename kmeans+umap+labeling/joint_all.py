@@ -22,7 +22,6 @@ class KMeans:
         self.centroids = {}
 
     def fit(self, data):
-        print("original")
         N, D = data.shape
         K = self.k
 
@@ -68,7 +67,8 @@ class KMeans:
         centroids = np.stack(data[:K])
         assert centroids.shape == (K, D)
         centroids2 = np.stack(embeddings[:K])   # low dimensional clustering
-
+        print("weight:" + str(weight))
+        print("label_scores * weight * 0.9 + low_dim_dist * weight * 0.001")
         # begin iterations
         for i in range(self.max_iterations):
             high_dim_dist = cosine_distances(data, centroids)  # get cosine distance betw each point and the cenroids, N x k
@@ -85,8 +85,6 @@ class KMeans:
 
             dis_mat = high_dim_dist * (1 - weight) - label_scores * weight * 0.9 + low_dim_dist * weight * 0.001
 
-            print("weight:" + str(weight))
-            print(str(label_scores * weight * 0.9 + low_dim_dist * weight * 0.001))
             best_group = np.argmin(dis_mat, axis=1)
             assert best_group.shape == (N,)
 
@@ -170,7 +168,7 @@ def get_final_labels(keyword_scores, final_groups, candidates, k):
     sparse_article_label_scores = create_label_matrix(article_label_scores)
     lists = final_groups.groupby('country')['article_id'].apply(list)
     candidates = pd.read_csv(candidates)
-    print("new labels df: ---------", candidates)
+    # print("new labels df: ---------", candidates)
     country_ids = candidates['country']
     label_ids = candidates['label_id']
     label_ids = np.vstack(np.array(list(literal_eval(label_ids[i]))) for i in range(k))
@@ -186,7 +184,7 @@ def get_final_labels(keyword_scores, final_groups, candidates, k):
     xiix = pd.DataFrame(filtered_sparse)
     xiix = xiix.join(country_ids)
     xiix.columns = ['label_id', 'country']
-    print("filtered!", xiix)
+    # print("filtered!", xiix)
 
     return filtered_sparse, country_ids
 
@@ -261,7 +259,8 @@ if __name__ == '__main__':
     new_labels_df = country_ids.join(new_labels_df)
     # new_labels_df = new_labels_df.join(country_ids)
     new_labels_df.columns = ['country', 'label_id', 'label_name']
-    print("final!", new_labels_df)
+    print("score_country_labels")
+    print(new_labels_df['label_name'].values)
     new_labels_df.to_csv(args.experiment_directory + "/score_country_labels.csv", index=True)
 
 
