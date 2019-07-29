@@ -85,11 +85,12 @@ def get_top_cluster_labels(cluster_labels):
         for cluster_type in CLUSTER_TYPES:
             for i in range(7):
                 sorted_labels = sorted(cluster_labels[proj][cluster_type][i].items(), key=lambda kv: kv[1], reverse=True)
-                x = 0
-                while len(top_cluster_labels[proj][cluster_type][i]) < 5:
-                    if sorted_labels[x][0] not in BLACK_LIST:
-                        top_cluster_labels[proj][cluster_type][i].append(sorted_labels[x][0])
-                    x += 1
+                for label in sorted_labels:
+                    if len(top_cluster_labels[proj][cluster_type][i]) >= 10:
+                        break
+                    else:
+                        if label[0] not in BLACK_LIST:
+                            top_cluster_labels[proj][cluster_type][i].append(label[0])
     return top_cluster_labels
 
 

@@ -1,8 +1,8 @@
-country,0,1,2,3,4
-0,web development,web software,communications protocols,world wide web,application layer protocols
-1,technology in society,internet archive,information,computing and society,crowdsourcing
-2,online services,online,entertainment websites,internet companies,e-commerce
-3,internet,internet ethics,internet culture,cybercrime,information
-4,wikipedia,wikipedia community,wikimedia_foundation,wikimedia,english wikipedia
-5,internet,network,domains,domain name system,information technology by country
-6,digital marketing,website,online advertising,search engine software,search
+country,0,1,2,3,4,5,6,7,8,9
+0,web development,web software,communications protocols,world wide web,application layer protocols,web browser,software,world wide web consortium,browser,web
+1,technology in society,internet archive,information,computing and society,crowdsourcing,online,people,blog,social media,main topic classifications
+2,online services,online,entertainment websites,internet companies,e-commerce,website,websites by topic,company,service,video
+3,internet,internet ethics,internet culture,cybercrime,information,computer law,privacy,website,malware,content
+4,wikipedia,wikipedia community,wikimedia_foundation,wikimedia,english wikipedia,wikimedia foundation,foundation,living people,people by status,references
+5,internet,network,domains,domain name system,information technology by country,top-level domain,it infrastructure,internet by country,exchange,domain
+6,digital marketing,website,online advertising,search engine software,search,internet search engines,web search engine,search engine,service,marketing

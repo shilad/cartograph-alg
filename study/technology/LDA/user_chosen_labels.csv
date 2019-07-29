@@ -1,8 +1,8 @@
 country,0,1,2,3,4,5,6,7,8,9,10,11,12
-0,applied science,phone world,technological concepts,invention of new technology,technology related people and companies,smart work,technology in media,technology companies,technology world,"technological advancements, technology in the 21st century",information,mobile technology,digital watches
-1,niches in technology,engineering,innovative,"production, industrial technology",production technolgy,chemical industrial manufacturing,equipment,,,,,,
-2,electrical technolgoy,"conductors, semi conductors",tech power,means of electricity,tech devices,electrical technology,modern electronic tools,,,,,,
-3,cyber human science,various stages of new technology product,all names above were suffice,engineering technology,technological design,medical information technology / infrastructure,system technologies,technology systems,,,,,
-4,motor vehicle tech,world of vehicle,energy technology,transportation technology,technology advantages,speedometer,auto technology,,,,,,
-5,to create the new structure device,defence systems,range of weapons,sensor,war development technology,war,,,,,,,
-6,old technology,engineering,inventions,,,,,,,,,,
+0,mobile technology,technological concepts,invention of new technology,technology in media,technology world,technology related people and companies,information,digital watches,"technological advancements, technology in the 21st century",technology companies,phone world,applied science,smart work
+1,"production, industrial technology",equipment,engineering,production technolgy,chemical industrial manufacturing,niches in technology,innovative,,,,,,
+2,modern electronic tools,electrical technolgoy,means of electricity,tech devices,electrical technology,tech power,"conductors, semi conductors",,,,,,
+3,various stages of new technology product,engineering technology,system technologies,all names above were suffice,medical information technology / infrastructure,technology systems,cyber human science,technological design,,,,,
+4,transportation technology,technology advantages,energy technology,auto technology,motor vehicle tech,world of vehicle,speedometer,,,,,,
+5,war,defence systems,war development technology,range of weapons,sensor,to create the new structure device,,,,,,,
+6,inventions,old technology,engineering,,,,,,,,,,

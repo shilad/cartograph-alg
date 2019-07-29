@@ -1,8 +1,8 @@
 country,0,1,2,3,4,5,6,7,8,9
-0,media world of us,world journalism,conspiracy,media hype,"journalism in the united states, professional media,",media news,journalists and new sources,us media world,military media,
-1,world of media,mass media communications,ad making,information distribution,different types of communication,media sciences,media information,news,,
-2,media outlets of the united states,news light,media companies,media outlet,media corporations,media sources,media corporation,broadcasting and personalities,media broadcasting,broadcasting networks
+0,conspiracy,us media world,world journalism,media hype,media world of us,military media,"journalism in the united states, professional media,",journalists and new sources,media news,
+1,world of media,mass media communications,information distribution,news,media sciences,media information,ad making,different types of communication,,
+2,media corporations,news light,broadcasting networks,media companies,media corporation,media outlets of the united states,media sources,broadcasting and personalities,media outlet,media broadcasting
 3,video technology,,,,,,,,,
-4,media outlets in india,indian media,,,,,,,,
-5,music application,video and music events,entertainment media,mass media world,media types,limelight,music streaming,production credits,,
-6,broadcast media,media brands,"news stations, news groups",media outlets,international media,media outlets outside of the united states,news channels worldwide,,,
+4,indian media,media outlets in india,,,,,,,,
+5,mass media world,entertainment media,production credits,video and music events,limelight,media types,music application,music streaming,,
+6,media brands,media outlets outside of the united states,media outlets,"news stations, news groups",international media,broadcast media,news channels worldwide,,,
