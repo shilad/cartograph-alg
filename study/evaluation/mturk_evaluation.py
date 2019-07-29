@@ -1,6 +1,8 @@
 import pandas as pd
 import re
 from collections import defaultdict
+import argparse
+import json
 
 
 PROJECTS = ['food', 'internet', 'media', 'technology']
@@ -19,10 +21,7 @@ def get_most_popular_label(responses):
     Points: +5 for being selected as the #1 label for the group, +4 for being selected as #2, etc.
     """
     label_scores = defaultdict(int)
-    x = 0
     for index, row in responses.iterrows():
-        if x % 100 == 0:
-            print(str(x) + ' rows completed')
         for column in responses.columns:
             if 'Answer.chosen_label' in column:
                 project_num = re.findall("(?<=label_)(.*)(?=_)", column)[0]
@@ -45,7 +44,6 @@ def get_most_popular_label(responses):
                             if label in df[str(col)].values:
                                 rank = re.findall('.$', column)[0]
                                 label_scores[type] += 5 - int(rank) + 1
-        x += 1
     return label_scores
 
 
@@ -189,7 +187,7 @@ def get_gold_standard_clusters(cluster_counts):
 
 def main(responses):
     label_scores = get_most_popular_label(responses)
-    print(label_scores)
+    print(str(json.dumps({"label_scores": label_scores})))
 
     cluster_labels = get_cluster_labels(responses)
     top_cluster_labels = get_top_cluster_labels(cluster_labels)
@@ -202,7 +200,7 @@ def main(responses):
             df.to_csv('study/' + project + '/' + cluster_type + '/gold_standard_labels.csv')
 
     cluster_scores = get_most_popular_cluster(responses)
-    print(cluster_scores)
+    print(str(json.dumps({"cluster_scores": cluster_scores})))
 
     cleaned_user_labels = clean_user_labels(responses)
 
@@ -223,5 +221,14 @@ def main(responses):
             df.to_csv('study/' + project + '/' + cluster_type + '/gold_standard_clusters.csv')
 
 
-mturk_responses = pd.read_csv('study/evaluation/cleaned_mturk_results.csv')
-main(mturk_responses)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Evaluation mturk study responses')
+    parser.add_argument('--responses', required=True)
+
+    args = parser.parse_args()
+
+    mturk_responses = pd.read_csv(args.responses)
+    main(mturk_responses)
+
+# mturk_responses = pd.read_csv('study/evaluation/cleaned_mturk_results.csv')
+# main(mturk_responses)

@@ -1,8 +1,8 @@
 country,0,1,2,3,4,5,6,7,8
-0,food science,feed technologies,food items names,processed foods,sustenance,supplements,food processes,vegetarian,preservatives
-1,american food & drink brands,food companies,food brands,candy,consumer brands,,,,
+0,food processes,feed technologies,vegetarian,sustenance,preservatives,food science,food items names,supplements,processed foods
+1,consumer brands,american food & drink brands,food companies,candy,food brands,,,,
 2,chef masters,,,,,,,,
-3,specialty wines and beverages,fruit extract,beverage companies,alcohol companies,drinking,beverages,,,
+3,drinking,alcohol companies,beverage companies,fruit extract,specialty wines and beverages,beverages,,,
 4,exotic foods,exotic meats,,,,,,,
-5,tasty,international cusines,world cuisine,foods around the world,food groups,food by culture,multi cuisine,grill chicken,
-6,food plant types,culinary,types of plants,foods provided by plants,exotic fruits and plants,edible food plants,,,
+5,foods around the world,grill chicken,tasty,world cuisine,food by culture,food groups,international cusines,multi cuisine,
+6,foods provided by plants,types of plants,exotic fruits and plants,food plant types,edible food plants,culinary,,,

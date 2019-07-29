@@ -1,8 +1,8 @@
 country,0,1,2,3,4,5,6,7
-0,automobile world,car internals,factory,spares,,,,
-1,mechanics in technology,industrial engineering,engineering,manufacturing tech,"satellite, navigation",new technologies,,
+0,factory,automobile world,spares,car internals,,,,
+1,industrial engineering,"satellite, navigation",manufacturing tech,engineering,mechanics in technology,new technologies,,
 2,world of technology,military terminology,tech world,,,,,
-3,types of technology,na,technology shifts,technology and society,societal changes in technology,information innovation,"technological gadgets, technological firms",technology world around my world
-4,electronic technology,electronic processes,automation,internet technology,technology world remains,,,
-5,optical technology,hardcore electronics,electronic technology,electrical technology,applications of electronics,,,
-6,technological revolution,functional creations,inventions,patents throughout history,inventions in history,tools,,
+3,societal changes in technology,technology shifts,technology world around my world,information innovation,types of technology,technology and society,na,"technological gadgets, technological firms"
+4,automation,technology world remains,electronic technology,electronic processes,internet technology,,,
+5,electronic technology,optical technology,electrical technology,hardcore electronics,applications of electronics,,,
+6,tools,technological revolution,functional creations,inventions,inventions in history,patents throughout history,,

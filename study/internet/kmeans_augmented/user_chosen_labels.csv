@@ -1,8 +1,8 @@
 country,0,1,2,3,4,5,6,7,8,9
-0,telenet,network signals,internet providers,,,,,,,
-1,internet media,internet scandalous,social media,internet memes through the years,internet entertainment,online media,humor based sites,influencers,internet pop culture,internet usage
-2,silicon valley,online commerce,virtual commerce,web companies and services,online media,web technology,media corporations,noo,internet world,
-3,"file sharing, digital currency",deep web,surveillance,internet activities,internet world ethics,domain,software,,,
-4,web clients,web world,internet ethics,"data processors, end to end encryption",web technology,internet world,,,,
-5,seo,internet tools,internet analytics,internet technology,informatics,web technology,internet terminology,"internet, internet terms,",e-commerce,
+0,internet providers,telenet,network signals,,,,,,,
+1,internet usage,humor based sites,online media,internet media,social media,internet entertainment,internet pop culture,internet memes through the years,influencers,internet scandalous
+2,virtual commerce,online media,web technology,noo,media corporations,web companies and services,silicon valley,online commerce,internet world,
+3,internet activities,software,surveillance,deep web,"file sharing, digital currency",domain,internet world ethics,,,
+4,web world,web technology,internet ethics,internet world,"data processors, end to end encryption",web clients,,,,
+5,internet analytics,internet tools,web technology,"internet, internet terms,",internet technology,e-commerce,internet terminology,informatics,seo,
 6,,,,,,,,,,

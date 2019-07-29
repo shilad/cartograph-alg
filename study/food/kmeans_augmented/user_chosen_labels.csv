@@ -1,8 +1,8 @@
 country,0,1,2,3,4,5,6,7,8,9
-0,food technology,food ingredients,health foods,nutrition hype and trends,food additions,chemicals hazards in food,food world around,food sciences,food world around me,
-1,types of food,custom cuisines,"foods, food varieties",world foods,dishes name,varieties of food,food world,international foods,,
-2,master chefs,famous chefs,food factory,,,,,,,
-3,food industry brands,food products world,candy bar companies,popular food companies,food companies,food world near me,fast food brands,food brands,food and drink companies in the united states,"food companies, foods, food and drink"
-4,alcoholic drinks,alcohol and cocktails,cheer drinks,"spirits, alcoholic beverages",beverage world,specialty beverages,liquors,,,
+0,food sciences,nutrition hype and trends,chemicals hazards in food,food additions,health foods,food ingredients,food world around,food technology,food world around me,
+1,food world,international foods,dishes name,custom cuisines,types of food,"foods, food varieties",world foods,varieties of food,,
+2,famous chefs,master chefs,food factory,,,,,,,
+3,food and drink companies in the united states,fast food brands,"food companies, foods, food and drink",food industry brands,candy bar companies,food companies,food products world,food world near me,popular food companies,food brands
+4,liquors,beverage world,alcoholic drinks,"spirits, alcoholic beverages",specialty beverages,cheer drinks,alcohol and cocktails,,,
 5,seafood inustry,ocean animals,,,,,,,,
-6,vegetables,exotic fruit,"edibles, food and herbs, plants and herbs",fruits and vegetables,food plants,plant based foods,grains,healthy edibles,,
+6,grains,vegetables,exotic fruit,plant based foods,healthy edibles,"edibles, food and herbs, plants and herbs",fruits and vegetables,food plants,,

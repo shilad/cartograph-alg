@@ -1,8 +1,8 @@
 country,0,1,2,3,4,5,6,7,8,9,10
-0,book,food and tea,,,,,,,,,
-1,np,"fruits, vegetables and herbs",nourishment,nature or food chain,edible foods,food culture,finger foods,plant species,home pot seed food,eatable seeds,edible flora
-2,meals,world foods,vegetarian dishes,world favorite cuisine,prepared foods,"spices, flavours and food",food world,international foods,chef,food ingredient world,kitchen cabinet
-3,tv shows about food,types of restaurants,food industry,people associated with food,restaurant world,food critics and expertss,chefs,,,,
+0,food and tea,book,,,,,,,,,
+1,nature or food chain,eatable seeds,home pot seed food,plant species,edible flora,finger foods,np,nourishment,food culture,edible foods,"fruits, vegetables and herbs"
+2,food world,prepared foods,international foods,world favorite cuisine,meals,chef,vegetarian dishes,"spices, flavours and food",kitchen cabinet,world foods,food ingredient world
+3,people associated with food,food critics and expertss,chefs,types of restaurants,food industry,tv shows about food,restaurant world,,,,
 4,alcohol world,beverages,,,,,,,,,
-5,edibles,food genres and brands,food brands,foodie world,food and drink products,food manufacturing by country,,,,,
-6,diet,"vitamins, minerals, and supplements",food nutrition,food safety,ingredients,grill chicken,super foods,food world,,,
+5,edibles,food genres and brands,foodie world,food brands,food manufacturing by country,food and drink products,,,,,
+6,food world,diet,ingredients,grill chicken,food nutrition,food safety,super foods,"vitamins, minerals, and supplements",,,
