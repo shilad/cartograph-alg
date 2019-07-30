@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 from collections import defaultdict
+import argparse
 
 
 PROJECTS = ['food', 'internet', 'media', 'technology']
@@ -94,5 +95,15 @@ def main(responses):
     df.to_csv('study/evaluation/label_matrix.csv')
 
 
-mturk_responses = pd.read_csv('study/evaluation/cleaned_mturk_results.csv')
-main(mturk_responses)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Evaluation mturk study responses')
+    parser.add_argument('--responses', required=True)
+
+    args = parser.parse_args()
+
+    mturk_responses = pd.read_csv(args.responses)
+    main(mturk_responses)
+
+
+# mturk_responses = pd.read_csv('study/evaluation/cleaned_mturk_results.csv')
+# main(mturk_responses)
