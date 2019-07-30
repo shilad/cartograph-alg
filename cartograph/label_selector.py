@@ -61,7 +61,7 @@ def add_tfidf_scores(labels_df):
     return labels_df
 
 
-def assign_country_label_ids(country_scores, label_score, num_candidates, use_label_candidates=False):
+def assign_country_label_ids(country_scores, label_score, num_candidates, use_label_candidates):
     """Output: Dictionary --> key = country, value = label"""
 
     ps = PorterStemmer()
@@ -69,8 +69,8 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, use_la
     country_scores = country_scores.sort_values(by=label_score, ascending=False)
     used_stems = set()
 
-    if use_label_candidates:
-        print('USING SOFT LABELING')
+    if use_label_candidates is True:
+        # print('USING SOFT LABELING')
         final_labels = defaultdict(set)
         final_ids = defaultdict(set)
 
@@ -80,6 +80,7 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, use_la
                 final_ids[row.country].add(int(row.label_id))
                 used_stems.add(row.stem)
     else:
+
         final_labels = {}
         final_ids = {}
 
@@ -111,7 +112,7 @@ def get_top_labels(country_scores, label_score):
 def main(experiment_dir, article_labels, percentile, label_score, output_file, use_label_candidates, num_candidates, purpose, label_path):
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
-        print("Selecting labels with noise filtering------------------------------")
+        # print("Selecting labels with noise filtering------------------------------")
         mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
         article_labels = article_labels[mask]
 
@@ -130,7 +131,7 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, u
     else:
         country_labels = article_labels.drop(columns=['article_id']).drop_duplicates()
 
-    final_labels, final_scores = assign_country_label_ids(country_labels, label_score, use_label_candidates, num_candidates)
+    final_labels, final_scores = assign_country_label_ids(country_labels, label_score, num_candidates, use_label_candidates)
 
     # # Create results data frame
     df = pd.DataFrame(final_labels,  index=[0]).T
