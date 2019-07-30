@@ -13,7 +13,8 @@ import seaborn as sns
 import numpy as np
 import operator
 from collections import defaultdict
-
+import argparse
+import sys
 
 XY_RATIO = 7
 FONT_RATIO = 10
@@ -118,7 +119,8 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, 
         size = sizes[v['Article']]  # Augment the font_size and circle size correspondingly
         drawing.append(draw.Circle(x, y, size, fill=colors[country]))
         if size > .5:
-            drawing.append(draw.Text(title, int(size), x, y))
+            adjusted_x, adjusted_y = x - 0.5*len(title)*XY_RATIO, y - 0.5*size
+            drawing.append(draw.Text(title, int(size), adjusted_x, adjusted_y))
     # Draw country labels
     country_labels_xy = get_country_labels_xy(json_articles)
     draw_country_labels(drawing, country_labels_xy, country_font_size, colors)
@@ -175,20 +177,41 @@ def create_svg_file(directory, d, output_file):
     d.saveSvg(directory + output_file)
 
 
-def main(map_directory, width, height, color_palette, json_file, output_file, country_labels):
-    articles = get_articles_json(map_directory + json_file)
-    colors = set_colors(map_directory + country_labels, color_palette)
+def main(map_directory, width, height, color_palette, json_file, output_file, country_labels, purpose, label_path):
+    if purpose == 'study':
+        articles = get_articles_json(label_path + json_file)
+        colors = set_colors(label_path + country_labels, color_palette)
+    else:
+        articles = get_articles_json(map_directory + json_file)
+        colors = set_colors(map_directory + country_labels, color_palette)
     sizes = get_sizes(articles)
     drawing = draw_svg(articles, float(width), float(height), colors, sizes, directory=map_directory)
-    create_svg_file(map_directory, drawing, output_file)
+
+    if purpose == 'study':
+        create_svg_file(label_path, drawing, output_file)
+    else:
+        create_svg_file(map_directory, drawing, output_file)
 
 
 if __name__ == '__main__':
-    import sys
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--map_directory', required=True)
+    parser.add_argument('--width', required=True)
+    parser.add_argument('--height', required=True)
+    parser.add_argument('--color_palette', required=True)
+    parser.add_argument('--json_file', required=True)
+    parser.add_argument('--output_file', required=True)
+    parser.add_argument('--country_labels', required=True)
+    parser.add_argument('--purpose', required=True)
+    parser.add_argument('--label_path')
+    args = parser.parse_args()
 
-    if len(sys.argv) != 8:
-        sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-        sys.exit(1)
-
-    map_directory, width, height, color_palette, json_file, output_file, country_labels = sys.argv[1:]
-    main(map_directory, width, height, color_palette, json_file, output_file, country_labels)
+    main(args.map_directory,
+         args.width,
+         args.height,
+         args.color_palette,
+         args.json_file,
+         args.output_file,
+         args.country_labels,
+         args.purpose,
+         args.label_path)

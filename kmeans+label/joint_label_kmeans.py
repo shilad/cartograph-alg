@@ -176,6 +176,8 @@ if __name__ == '__main__':
     parser.add_argument('--label_score', required=True)
     parser.add_argument('--cluster_groups', required=True)
     parser.add_argument('--output_file', required=True)
+    parser.add_argument('--purpose', required=True)
+    parser.add_argument('--label_path')
     # arguments for Label Scoring
     parser.add_argument('--article_keywords', required=True)
     parser.add_argument('--country_names', required=True)
@@ -200,8 +202,8 @@ if __name__ == '__main__':
     label_names = pd.read_csv(args.label_names)
     article_labels_orig = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, "/original_country_labels.csv", False, args.num_candidates)
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.output_file, True, args.num_candidates)
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, "/original_country_labels.csv", False, args.num_candidates, args.purpose, args.label_path)
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.output_file, True, args.num_candidates, args.purpose, args.label_path)
 
     # Combined Clustering & Labeling
     joint_fit_groups, distance_with_y = km.fit_with_y(X, args.article_keywords, args.country_names, ids, args.k, args.weight)
@@ -215,7 +217,7 @@ if __name__ == '__main__':
 
     article_labels_new = pd.merge(article_labels, joint_fit_groups, on='article_id')
     article_labels_new = pd.merge(article_labels_new, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv', False, args.num_candidates)
+    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv', False, args.num_candidates, args.purpose, args.label_path)
 
     # get labels based on label scores instead of running tfidf again
     new_labels = get_final_labels(args.article_keywords, joint_fit_groups, args.country_names, args.k)

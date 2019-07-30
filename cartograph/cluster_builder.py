@@ -12,14 +12,10 @@ from scipy import spatial
 from sklearn.cluster import KMeans
 import pandas as pd
 import warnings
+warnings.filterwarnings('ignore')
 import argparse
 import numpy as np
-
-with warnings.catch_warnings():
-    # filter sklearn\externals\joblib\parallel.py:268:
-    # DeprecationWarning: check_pickle is deprecated
-    warnings.simplefilter("ignore", category=DeprecationWarning)
-    from hdbscan import HDBSCAN
+from hdbscan import HDBSCAN
 
 
 def mag(x):
@@ -107,6 +103,8 @@ if __name__ == '__main__':
     # article_vectors = normalize_vectors(pd.read_csv(args.vectors))
 
     article_vectors = pd.read_csv(args.vectors)
+    print('max article id is ', article_vectors['article_id'].max())
+
     if args.clustering == 'kmeans':
         cluster_df = get_kmeans(article_vectors, args.k)
     elif args.clustering == 'hdbscan':
@@ -117,8 +115,10 @@ if __name__ == '__main__':
         hdbscan = hdbscan.drop(columns=['country'])
         cluster_df = pd.merge(hdbscan, kmeans, on='article_id')
     else:
-        sys.stderr.write("Unkonwn clustering method: %s\n" + args.clustering)
+        sys.stderr.write("Unknown clustering method: %s\n" + args.clustering)
         sys.exit(1)
+
+    print('max article id is ', cluster_df['article_id'].max())
 
     cluster_df.to_csv('%s/cluster_groups.csv' % (args.experiment, ), index=False)
 

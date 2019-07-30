@@ -21,7 +21,7 @@ do
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=0000 #$(get_experiment_id)
+    exp_id=$(get_experiment_id)
 
     # $(get_experiment_id)
 
@@ -88,14 +88,33 @@ do
             --gold_standard  /Users/research/Documents/Projects/cartograph-alg/study/internet/kmeans_plain/gold_standard_labels.csv \
             --label_set ${exp_dir}/${j}_country_labels.csv \
             --k 7 >>${exp_dir}/label_evaluation.json
+
     # Step 6: Generate JSON
-    python -m cartograph.json_generator data/internet ${exp_dir}/ kk  ${j}_country_labels.csv ${j}_cluster_groups.csv ${j}_xy_embeddings.csv ${j}_domain.json
+    python -m cartograph.json_generator \
+    --map_directory data/internet \
+    --experiment ${exp_dir}/ \
+    --filter_method kk  \
+    --country_labels ${j}_country_labels.csv \
+    --cluster_groups ${j}_cluster_groups.csv \
+    --embeddings ${j}_xy_embeddings.csv \
+    --output_name ${j}_domain.json \
+    --purpose experiment \
+    --label_path na
 
     # draw boundary
     python -m cartograph.border_creator ${exp_dir}/ ${j}_xy_embeddings.csv ${j}_cluster_groups.csv
 
     # Step 7: Run evaluation metrics and generate HTML & SVG
-    python -m cartograph.svg_generator ${exp_dir}/ 1500 1500 hls ${j}_domain.json ${j}_graph.svg ${j}_country_labels.csv
+    python -m cartograph.svg_generator \
+    --map_directory ${exp_dir}/ \
+    --width 1500 \
+    --height 1500 \
+    --color_palette muted \
+    --json_file ${j}_domain.json \
+    --output_file ${j}_graph.svg \
+    --country_labels ${j}_country_labels.csv \
+    --purpose experiment \
+    --label_path na
 
     python -m cartograph.evaluation.modularity_evaluator --experiment ${exp_dir} \
                                                  --xy_embeddings_csv ${exp_dir}/${j}_xy_embeddings.csv \

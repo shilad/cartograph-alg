@@ -4,20 +4,22 @@ Given vectors for domain concepts, produces (x, y) embeddings using UMAP.
 Author: Jonathan Scott
 """
 import pandas as pd
-import umap
+
 import os
 import argparse
-import numpy as np
+import umap
+import warnings
+warnings.filterwarnings('ignore')
+
+
 
 def create_embeddings(vector_directory, spread=20.0, tw=0.5, clusters=None):
     df = pd.read_csv(vector_directory)
     if clusters is not None:
-        cluster_groups = pd.read_csv(clusters)
+        cluster_groups = pd.read_csv(clusters) #cluster
         df = pd.merge(df, cluster_groups, on='article_id')
         points = umap.UMAP(metric='cosine', spread=spread, target_weight=tw).fit_transform(df.iloc[:, 1:-1], y=df.iloc[:, -1])
     else:
-        print("what!!!!!")
-        print(np.where(np.isnan(df.iloc[:, 1:-1])))
         points = umap.UMAP(metric='cosine', spread=spread).fit_transform(df.iloc[:, 1:-1])
     xy_embedding = pd.DataFrame({'article_id': df['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
     return xy_embedding
@@ -40,12 +42,12 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Reduce dimensionality of vectors to 2D using UMAP.')
     parser.add_argument('--map_directory', required=True)
     parser.add_argument('--vectors', required=True)
-    parser.add_argument('--spread', default=20.0)
+    parser.add_argument('--spread', default=20.0, type=float)
     parser.add_argument('--clusters', default=None)
-    parser.add_argument('--tw', default=0.5, )
+    parser.add_argument('--tw', default=0.5, type=float)
     parser.add_argument('--output_file')
 
     args = parser.parse_args()
-    main(args.map_directory, args.vectors, float(args.spread), float(args.tw), args.clusters, args.output_file)
+    main(args.map_directory, args.vectors, args.spread, args.tw, args.clusters, args.output_file)
 
 

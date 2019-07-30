@@ -124,9 +124,7 @@ def main(xy_embedding_csv, cluster_groups_csv, method='nn'):
 
     G = build_network(distance_lst, indices_lst, indices_to_id)
     mod_score = calc_modularity(G, cluster_groups_csv)
-    print(str(json.dumps(mod_score)))
-    # logging.warning("Modularity Score: %.6f", mod_score)
-
+    print(str(json.dumps({"Modularity Score: %.6f": mod_score})))
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Augment the original article vectors with label matrix or '

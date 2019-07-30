@@ -5,18 +5,22 @@ to generate a JSON output where each key is an article/domain concept id and the
 is a dictionary containing each of the described attributes.
 Author: Jonathan Scott
 """
-
 import json
 import pandas as pd
 from functools import reduce
+import argparse
 
 
-def create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings):
+def create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings, purpose, label_path):
     domain_concepts_df = pd.read_csv(map_directory+'/domain_concept.csv')
     pop_scores_df = pd.read_csv(map_directory + '/popularity_score.csv')
     xy_df = pd.read_csv(experiment_directory + embeddings)
 
-    country_label_df = pd.read_csv(experiment_directory + country_labels)
+    if purpose == 'study':
+        country_label_df = pd.read_csv(label_path + country_labels)
+    else:
+        country_label_df = pd.read_csv(experiment_directory + country_labels)
+
     cluster_groups_df = pd.read_csv(experiment_directory + cluster_groups)
     countries_df = pd.merge(cluster_groups_df, country_label_df, on='country')
     countries_df = countries_df.drop(columns=['country'])
@@ -29,7 +33,7 @@ def create_merged_df(map_directory, experiment_directory, country_labels, cluste
 def create_list_article_data(merged_df, method):
     article_data = {}
     for i, row in merged_df.iterrows():
-        article_data[row['article_id']] = {'Article': row['article_name'], # Should clean this up maybe get rid of one of the columns my fault
+        article_data[row['article_id']] = {'Article': row['article_name'],
                                           'Popularity': row['popularity_score'],
                                           'Country': row['country'],
                                           'x': row['x'],
@@ -40,23 +44,42 @@ def create_list_article_data(merged_df, method):
     return article_data
 
 
-def generate_json(experiment_directory, article_data, output_name):
-    with open(experiment_directory + output_name, 'w') as outfile:
-        json.dump(article_data, outfile)
+def generate_json(experiment_directory, article_data, output_name, purpose, label_path):
+    if purpose == 'study':
+        with open(label_path + output_name, 'w') as outfile:
+            json.dump(article_data, outfile)
+    else:
+        with open(experiment_directory + output_name, 'w') as outfile:
+            json.dump(article_data, outfile)
     return
 
 
-def main(map_directory, experiment_directory, method, country_labels, cluster_groups, embeddings, output_name):
-    merged_article_df = create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings)
+def main(map_directory, experiment_directory, method, country_labels, cluster_groups, embeddings, output_name, purpose, label_path):
+    merged_article_df = create_merged_df(map_directory, experiment_directory, country_labels, cluster_groups, embeddings, purpose, label_path)
     article_data = create_list_article_data(merged_article_df, method)
-    generate_json(experiment_directory, article_data, output_name)
+    generate_json(experiment_directory, article_data, output_name, purpose, label_path)
 
 
 if __name__ == '__main__':
-    import sys
-    if len(sys.argv) != 8:
-        sys.stderr.write('Usage: %s map_directory experiment_directory' % sys.argv[0])
-        sys.exit(1)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--map_directory', required=True)
+    parser.add_argument('--experiment', required=True)
+    parser.add_argument('--filter_method', required=True)
+    parser.add_argument('--country_labels', required=True)
+    parser.add_argument('--cluster_groups', required=True)
+    parser.add_argument('--embeddings', required=True)
+    parser.add_argument('--output_name', required=True)
+    parser.add_argument('--purpose', required=True)
+    parser.add_argument('--label_path')
 
-    map_directory, experiment_directory, method, country_labels, cluster_groups, embeddings, output_name = sys.argv[1:]
-    main(map_directory, experiment_directory, method, country_labels, cluster_groups, embeddings, output_name)
+    args = parser.parse_args()
+
+    main(args.map_directory,
+         args.experiment,
+         args.filter_method,
+         args.country_labels,
+         args.cluster_groups,
+         args.embeddings,
+         args.output_name,
+         args.purpose,
+         args.label_path)

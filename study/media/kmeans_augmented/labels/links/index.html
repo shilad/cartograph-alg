@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Graph of labels (experiment links)</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link href="style.css" rel="stylesheet">
+        <script src="script.js" type="text/javascript"></script>
+        <style>
+            table, th, td {
+              border: 1px solid #cccccc;
+              border-collapse: collapse;
+            }
+            th, td {
+              padding: 5px;
+              text-align: left;
+            }
+
+            svg {
+                height: 1000px;
+                width: 100%;
+            }
+            h2 {
+                margin-top: 20px;
+                font-size: x-large;
+                font-weight: normal;
+            }
+
+            .graph{
+                border:solid 1px #cccccc;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Graph of labels (experiment links)</h1>
+            <div class="row">
+                <div class="col-6">
+                    <h2> Experiment parameters:</h2>
+                    <table>
+                        
+                        <tr>
+                            <th>timestamp</th>
+                            <td>Thu Jul 18 11:11:03 2019</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>directory</th>
+                            <td>study/media/kmeans_augmented/labels/links</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>vectors</th>
+                            <td>augmented</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>num_clusters</th>
+                            <td>7</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>xy_embedding</th>
+                            <td>tsne</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>percentile</th>
+                            <td>1</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>labeling</th>
+                            <td>tfidf</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+
+                <div class="col-6">
+                    <h2> Experiment results:</h2>
+                    <table>
+                        
+                        <tr>
+                            <th>trustworthiness</th>
+                            <td>0.513</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>modularity</th>
+                            <td>0.769</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>silhouette score</th>
+                            <td>0.490</td>
+                        </tr>
+                        
+                        <tr>
+                            <th>ch score:</th>
+                            <td>8960.155</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            </div>
+
+            <h2> Visualization:</h2>
+            <div class="container graph">
+                <?xml version="1.0" ?><svg height="3000.0" viewBox="-750.0 -750.0 1500.0 1500.0" width="3000.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+</defs>
+<circle cx="1.86308108" cy="12.793165700000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="299.80244000000005" cy="-29.308524" fill="#d65f5f" r="0.5"/>
+<circle cx="-125.84427099999999" cy="45.8344299" fill="#dc7ec0" r="0.5"/>
+<circle cx="43.782151" cy="-89.725727" fill="#dc7ec0" r="0.5"/>
+<circle cx="1.6554391" cy="-82.621077" fill="#dc7ec0" r="0.5"/>
+<circle cx="2.0209889" cy="-82.83156000000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="124.97814000000001" cy="11.9780444" fill="#d65f5f" r="0.5"/>
+<circle cx="-79.94383250000001" cy="-31.7272781" fill="#dc7ec0" r="0.5"/>
+<circle cx="-32.797156" cy="9.749082000000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-86.227379" cy="-113.48791299999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="1.55018101" cy="-79.804935" fill="#dc7ec0" r="0.5"/>
+<circle cx="1.9929839999999999" cy="12.970341299999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="15.276501099999997" cy="57.242856999999994" fill="#dc7ec0" r="0.5"/>
+<circle cx="81.369526" cy="4.26507095" fill="#d65f5f" r="0.5"/>
+<circle cx="133.528115" cy="-83.346046" fill="#d65f5f" r="0.5"/>
+<circle cx="191.042425" cy="97.54470250000001" fill="#d65f5f" r="2"/>
+<text font-size="2" x="191.042425" y="97.54470250000001">Al Franken</text>
+<circle cx="88.93687599999998" cy="47.5663958" fill="#d65f5f" r="8"/>
+<text font-size="8" x="88.93687599999998" y="47.5663958">Anonymous (group)</text>
+<circle cx="174.68766" cy="23.239977600000003" fill="#d65f5f" r="0.5"/>
+<circle cx="-80.680453" cy="-32.7005245" fill="#dc7ec0" r="0.5"/>
+<circle cx="213.51978900000003" cy="-81.836671" fill="#d65f5f" r="0.5"/>
+<circle cx="57.990681" cy="-92.264088" fill="#d65f5f" r="0.5"/>
+<circle cx="157.769206" cy="64.58477200000002" fill="#d65f5f" r="0.5"/>
+<circle cx="45.67353" cy="-54.63128999999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="29.315482" cy="151.76114800000002" fill="#6acc64" r="0.5"/>
+<circle cx="-52.7017372" cy="-114.65334999999999" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-52.7017372" y="-114.65334999999999">Entertainment</text>
+<circle cx="300.95583" cy="-28.904843800000002" fill="#d65f5f" r="0.5"/>
+<circle cx="299.94265" cy="-29.3696445" fill="#d65f5f" r="0.5"/>
+<circle cx="52.55945800000001" cy="-87.68609500000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="75.74259" cy="59.978156" fill="#dc7ec0" r="0.5"/>
+<circle cx="176.946735" cy="97.05060399999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-140.009828" cy="69.960499" fill="#8c613c" r="0.5"/>
+<circle cx="46.1963012" cy="-55.353787999999994" fill="#dc7ec0" r="0.5"/>
+<circle cx="224.12733000000003" cy="70.812448" fill="#d65f5f" r="0.5"/>
+<circle cx="170.860816" cy="82.56773700000001" fill="#d65f5f" r="0.5"/>
+<circle cx="44.39358" cy="-105.7854" fill="#dc7ec0" r="0.5"/>
+<circle cx="-91.326648" cy="-89.94979" fill="#dc7ec0" r="0.5"/>
+<circle cx="-202.96117100000004" cy="-296.975798" fill="#956cb4" r="8"/>
+<text font-size="8" x="-202.96117100000004" y="-296.975798">PlayStation</text>
+<circle cx="86.62509800000001" cy="49.923225099999996" fill="#d65f5f" r="0.5"/>
+<circle cx="-167.435184" cy="-296.052302" fill="#956cb4" r="0.5"/>
+<circle cx="51.451968400000005" cy="-88.64410099999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="145.353929" cy="-8.369988900000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-16.2689954" cy="-106.22968300000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="241.56168399999999" cy="44.427718999999996" fill="#d65f5f" r="0.5"/>
+<circle cx="169.23564" cy="176.047592" fill="#d65f5f" r="0.5"/>
+<circle cx="305.283328" cy="-28.512749999999997" fill="#dc7ec0" r="0.5"/>
+<circle cx="222.888225" cy="-43.306284000000005" fill="#d65f5f" r="0.5"/>
+<circle cx="26.692249500000003" cy="70.948864" fill="#6acc64" r="0.5"/>
+<circle cx="-296.18729" cy="101.766868" fill="#8c613c" r="0.5"/>
+<circle cx="-206.622269" cy="139.78643" fill="#8c613c" r="15"/>
+<text font-size="15" x="-206.622269" y="139.78643">Al Jazeera</text>
+<circle cx="-202.911016" cy="140.743358" fill="#8c613c" r="0.5"/>
+<circle cx="130.529812" cy="14.052451000000001" fill="#d65f5f" r="0.5"/>
+<circle cx="30.2184218" cy="171.49944" fill="#6acc64" r="8"/>
+<text font-size="8" x="30.2184218" y="171.49944">American Broadcasting Company</text>
+<circle cx="208.18578200000002" cy="71.695239" fill="#d65f5f" r="0.5"/>
+<circle cx="-22.8889003" cy="-152.09380199999998" fill="#dc7ec0" r="15"/>
+<text font-size="15" x="-22.8889003" y="-152.09380199999998">Andy Warhol</text>
+<circle cx="150.521938" cy="60.751214999999995" fill="#d65f5f" r="0.5"/>
+<circle cx="142.26842" cy="99.76884400000002" fill="#d65f5f" r="0.5"/>
+<circle cx="174.581512" cy="114.15557999999999" fill="#d65f5f" r="0.5"/>
+<circle cx="103.807081" cy="-277.18432" fill="#ee854a" r="8"/>
+<text font-size="8" x="103.807081" y="-277.18432">Blog</text>
+<circle cx="311.85251999999997" cy="-0.48861203999999997" fill="#d65f5f" r="0.5"/>
+<circle cx="-159.235608" cy="-68.857915" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-159.235608" y="-68.857915">Blues</text>
+<circle cx="74.344921" cy="61.683258" fill="#dc7ec0" r="0.5"/>
+<circle cx="153.578845" cy="115.48435500000001" fill="#d65f5f" r="0.5"/>
+<circle cx="170.90434199999999" cy="-145.25800099999998" fill="#d65f5f" r="2"/>
+<text font-size="2" x="170.90434199999999" y="-145.25800099999998">Buckminster Fuller</text>
+<circle cx="88.42722699999999" cy="156.810304" fill="#6acc64" r="2"/>
+<text font-size="2" x="88.42722699999999" y="156.810304">CNBC</text>
+<circle cx="98.35233099999999" cy="159.09500599999998" fill="#6acc64" r="8"/>
+<text font-size="8" x="98.35233099999999" y="159.09500599999998">CNN</text>
+<circle cx="165.06581" cy="40.899879999999996" fill="#d65f5f" r="0.5"/>
+<circle cx="117.409124" cy="317.901962" fill="#6acc64" r="8"/>
+<text font-size="8" x="117.409124" y="317.901962">Canadian Broadcasting Corporation</text>
+<circle cx="118.048112" cy="321.593552" fill="#6acc64" r="0.5"/>
+<circle cx="164.135923" cy="-72.196516" fill="#d65f5f" r="2"/>
+<text font-size="2" x="164.135923" y="-72.196516">Censorship</text>
+<circle cx="209.1054" cy="52.791949" fill="#d65f5f" r="8"/>
+<text font-size="8" x="209.1054" y="52.791949">Christopher Hitchens</text>
+<circle cx="-187.96866899999998" cy="-203.8652" fill="#956cb4" r="0.5"/>
+<circle cx="55.863472" cy="179.938808" fill="#6acc64" r="8"/>
+<text font-size="8" x="55.863472" y="179.938808">Comcast</text>
+<circle cx="138.979148" cy="291.01275" fill="#d65f5f" r="2"/>
+<text font-size="2" x="138.979148" y="291.01275">Conrad Black</text>
+<circle cx="-199.04486" cy="-275.245418" fill="#956cb4" r="2"/>
+<text font-size="2" x="-199.04486" y="-275.245418">DVD</text>
+<circle cx="-105.74640300000002" cy="98.73146500000001" fill="#8c613c" r="0.5"/>
+<circle cx="25.6335205" cy="-54.660209800000004" fill="#dc7ec0" r="0.5"/>
+<circle cx="42.226121" cy="269.464405" fill="#6acc64" r="2"/>
+<text font-size="2" x="42.226121" y="269.464405">ESPN</text>
+<circle cx="188.2678" cy="89.487832" fill="#d65f5f" r="0.5"/>
+<circle cx="233.42942" cy="-15.972767299999997" fill="#d65f5f" r="0.5"/>
+<circle cx="2.3003715" cy="-13.3083664" fill="#dc7ec0" r="0.5"/>
+<circle cx="-11.6411568" cy="-278.214111" fill="#ee854a" r="0.5"/>
+<circle cx="-179.180827" cy="180.4201" fill="#8c613c" r="0.5"/>
+<circle cx="41.704263999999995" cy="119.069629" fill="#6acc64" r="0.5"/>
+<circle cx="81.42731099999999" cy="55.8826779" fill="#d65f5f" r="0.5"/>
+<circle cx="174.297998" cy="59.676302" fill="#d65f5f" r="0.5"/>
+<circle cx="-88.464817" cy="-81.464908" fill="#dc7ec0" r="0.5"/>
+<circle cx="-286.51956199999995" cy="-43.83217509999999" fill="#4878d0" r="0.5"/>
+<circle cx="133.78806699999998" cy="-83.269067" fill="#d65f5f" r="15"/>
+<text font-size="15" x="133.78806699999998" y="-83.269067">George Orwell</text>
+<circle cx="57.027971" cy="-196.505141" fill="#ee854a" r="0.5"/>
+<circle cx="117.00247999999999" cy="-71.806" fill="#d65f5f" r="0.5"/>
+<circle cx="14.231609" cy="-200.050116" fill="#ee854a" r="0.5"/>
+<circle cx="-47.023546499999995" cy="-62.655866" fill="#dc7ec0" r="15"/>
+<text font-size="15" x="-47.023546499999995" y="-62.655866">Howard Hughes</text>
+<circle cx="-159.16761" cy="-71.77210600000001" fill="#dc7ec0" r="8"/>
+<text font-size="8" x="-159.16761" y="-71.77210600000001">Jazz</text>
+<circle cx="165.60658099999998" cy="-141.13834" fill="#d65f5f" r="0.5"/>
+<circle cx="-61.6186935" cy="-1.72626741" fill="#dc7ec0" r="0.5"/>
+<circle cx="83.67716" cy="-4.983563200000001" fill="#d65f5f" r="2"/>
+<text font-size="2" x="83.67716" y="-4.983563200000001">LGBT in Islam</text>
+<circle cx="300.87780799999996" cy="4.8498002" fill="#d65f5f" r="0.5"/>
+<circle cx="-151.318454" cy="-196.96756799999997" fill="#956cb4" r="8"/>
+<text font-size="8" x="-151.318454" y="-196.96756799999997">Light</text>
+<circle cx="29.010625" cy="-1.04309695" fill="#dc7ec0" r="0.5"/>
+<circle cx="98.98125999999999" cy="153.958049" fill="#6acc64" r="2"/>
+<text font-size="2" x="98.98125999999999" y="153.958049">MSNBC</text>
+<circle cx="254.85859" cy="-68.151685" fill="#d65f5f" r="0.5"/>
+<circle cx="143.44778" cy="-185.329102" fill="#ee854a" r="0.5"/>
+<circle cx="-97.41515" cy="63.4344025" fill="#dc7ec0" r="0.5"/>
+<circle cx="175.890302" cy="51.488521" fill="#d65f5f" r="0.5"/>
+<circle cx="-130.678331" cy="98.10770899999999" fill="#8c613c" r="0.5"/>
+<circle cx="67.47725600000001" cy="-265.591578" fill="#ee854a" r="0.5"/>
+<circle cx="136.17023" cy="-222.553814" fill="#ee854a" r="0.5"/>
+<circle cx="117.830643" cy="317.45266000000004" fill="#6acc64" r="0.5"/>
+<circle cx="-197.97621199999998" cy="190.083481" fill="#8c613c" r="0.5"/>
+<circle cx="-211.629075" cy="190.005606" fill="#8c613c" r="0.5"/>
+<circle cx="70.568449" cy="-78.326017" fill="#dc7ec0" r="0.5"/>
+<circle cx="131.449122" cy="229.81385" fill="#d65f5f" r="15"/>
+<text font-size="15" x="131.449122" y="229.81385">Michael Bloomberg</text>
+<circle cx="205.76098199999998" cy="8.066989000000001" fill="#d65f5f" r="0.5"/>
+<circle cx="31.213361199999998" cy="168.84627899999998" fill="#6acc64" r="8"/>
+<text font-size="8" x="31.213361199999998" y="168.84627899999998">NBC</text>
+<circle cx="54.219742499999995" cy="180.457858" fill="#6acc64" r="2"/>
+<text font-size="2" x="54.219742499999995" y="180.457858">NBCUniversal</text>
+<circle cx="-42.013328" cy="-23.087652700000003" fill="#dc7ec0" r="0.5"/>
+<circle cx="75.53287" cy="-200.89176799999998" fill="#ee854a" r="0.5"/>
+<circle cx="-262.273935" cy="-0.8475233200000001" fill="#4878d0" r="2"/>
+<text font-size="2" x="-262.273935" y="-0.8475233200000001">Newspaper</text>
+<circle cx="240.42974900000002" cy="59.465749" fill="#d65f5f" r="0.5"/>
+<circle cx="-181.47647" cy="-187.485536" fill="#956cb4" r="0.5"/>
+<circle cx="148.791258" cy="88.0773565" fill="#d65f5f" r="2"/>
+<text font-size="2" x="148.791258" y="88.0773565">Pat Robertson</text>
+<circle cx="-15.5819335" cy="-208.005483" fill="#ee854a" r="2"/>
+<text font-size="2" x="-15.5819335" y="-208.005483">Photography</text>
+<circle cx="218.28123100000002" cy="36.607004" fill="#d65f5f" r="0.5"/>
+<circle cx="39.2692202" cy="-188.875204" fill="#ee854a" r="0.5"/>
+<circle cx="154.35252" cy="32.8303409" fill="#d65f5f" r="15"/>
+<text font-size="15" x="154.35252" y="32.8303409">RT (TV network)</text>
+<circle cx="128.476145" cy="-37.9672139" fill="#d65f5f" r="0.5"/>
+<circle cx="-150.854109" cy="-66.71620899999999" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-150.854109" y="-66.71620899999999">Reggae</text>
+<circle cx="179.23472" cy="82.367516" fill="#d65f5f" r="0.5"/>
+<circle cx="90.30236599999999" cy="186.527019" fill="#6acc64" r="15"/>
+<text font-size="15" x="90.30236599999999" y="186.527019">Rupert Murdoch</text>
+<circle cx="-172.778291" cy="-201.300218" fill="#956cb4" r="8"/>
+<text font-size="8" x="-172.778291" y="-201.300218">Satellite</text>
+<circle cx="168.441175" cy="90.565125" fill="#d65f5f" r="2"/>
+<text font-size="2" x="168.441175" y="90.565125">Sean Hannity</text>
+<circle cx="252.60739" cy="104.853259" fill="#d65f5f" r="2"/>
+<text font-size="2" x="252.60739" y="104.853259">Serial (podcast)</text>
+<circle cx="217.814289" cy="31.871294" fill="#d65f5f" r="0.5"/>
+<circle cx="-145.498815" cy="88.587387" fill="#8c613c" r="0.5"/>
+<circle cx="28.642039999999998" cy="193.475002" fill="#6acc64" r="0.5"/>
+<circle cx="-134.229991" cy="-288.34274" fill="#956cb4" r="2"/>
+<text font-size="2" x="-134.229991" y="-288.34274">Smart TV</text>
+<circle cx="-156.05632" cy="-64.758477" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-156.05632" y="-64.758477">Soul music</text>
+<circle cx="-154.659722" cy="-193.88191199999997" fill="#956cb4" r="2"/>
+<text font-size="2" x="-154.659722" y="-193.88191199999997">Sound</text>
+<circle cx="40.701885000000004" cy="272.438201" fill="#6acc64" r="0.5"/>
+<circle cx="69.443297" cy="186.260536" fill="#6acc64" r="0.5"/>
+<circle cx="-207.253942" cy="232.72591999999997" fill="#8c613c" r="0.5"/>
+<circle cx="-20.342374500000002" cy="239.828855" fill="#6acc64" r="0.5"/>
+<circle cx="-75.31759199999999" cy="79.031106" fill="#d65f5f" r="8"/>
+<text font-size="8" x="-75.31759199999999" y="79.031106">The Guardian</text>
+<circle cx="136.149041" cy="-227.993738" fill="#ee854a" r="0.5"/>
+<circle cx="231.718011" cy="53.9846699" fill="#d65f5f" r="8"/>
+<text font-size="8" x="231.718011" y="53.9846699">The Washington Post</text>
+<circle cx="-181.369328" cy="-185.64410199999998" fill="#dc7ec0" r="15"/>
+<text font-size="15" x="-181.369328" y="-185.64410199999998">Thomas Edison</text>
+<circle cx="241.98869100000002" cy="55.407281999999995" fill="#d65f5f" r="2"/>
+<text font-size="2" x="241.98869100000002" y="55.407281999999995">Time (magazine)</text>
+<circle cx="128.33460499999998" cy="309.49223900000004" fill="#6acc64" r="0.5"/>
+<circle cx="227.085278" cy="55.245043" fill="#d65f5f" r="2"/>
+<text font-size="2" x="227.085278" y="55.245043">USA Today</text>
+<circle cx="63.685727" cy="188.243384" fill="#6acc64" r="2"/>
+<text font-size="2" x="63.685727" y="188.243384">Viacom</text>
+<circle cx="-200.50814" cy="-280.18935" fill="#956cb4" r="0.5"/>
+<circle cx="-30.972314100000002" cy="-99.439438" fill="#dc7ec0" r="8"/>
+<text font-size="8" x="-30.972314100000002" y="-99.439438">Video game</text>
+<circle cx="-159.47253" cy="106.63527699999999" fill="#8c613c" r="0.5"/>
+<circle cx="-163.15208" cy="101.674013" fill="#8c613c" r="0.5"/>
+<circle cx="-62.024515" cy="-8.7569195" fill="#dc7ec0" r="8"/>
+<text font-size="8" x="-62.024515" y="-8.7569195">Vision (Marvel Comics)</text>
+<circle cx="-119.378126" cy="-289.48838800000004" fill="#956cb4" r="0.5"/>
+<circle cx="-105.69294400000001" cy="-282.45728" fill="#956cb4" r="0.5"/>
+<circle cx="-60.968635000000006" cy="-3.6963980199999997" fill="#dc7ec0" r="0.5"/>
+<circle cx="131.034414" cy="346.241" fill="#6acc64" r="0.5"/>
+<circle cx="-1.04871172" cy="-31.081031799999998" fill="#dc7ec0" r="30"/>
+<text font-size="30" x="-1.04871172" y="-31.081031799999998">YouTube</text>
+<circle cx="82.295535" cy="187.69906400000002" fill="#6acc64" r="2"/>
+<text font-size="2" x="82.295535" y="187.69906400000002">21st Century Fox</text>
+<circle cx="48.501256999999995" cy="187.397469" fill="#6acc64" r="0.5"/>
+<circle cx="103.5060005" cy="154.60689299999999" fill="#6acc64" r="0.5"/>
+<circle cx="-294.44532599999997" cy="98.26858299999999" fill="#8c613c" r="0.5"/>
+<circle cx="-155.87472599999998" cy="-192.45013200000002" fill="#956cb4" r="0.5"/>
+<circle cx="166.920579" cy="-121.105656" fill="#d65f5f" r="0.5"/>
+<circle cx="64.152354" cy="-240.85528599999998" fill="#ee854a" r="8"/>
+<text font-size="8" x="64.152354" y="-240.85528599999998">Advertising</text>
+<circle cx="206.206119" cy="23.968856099999996" fill="#d65f5f" r="0.5"/>
+<circle cx="-117.705217" cy="163.40701299999998" fill="#8c613c" r="0.5"/>
+<circle cx="187.72742100000002" cy="92.727915" fill="#d65f5f" r="0.5"/>
+<circle cx="-213.293199" cy="140.84605499999998" fill="#8c613c" r="0.5"/>
+<circle cx="-209.9279" cy="150.337684" fill="#8c613c" r="0.5"/>
+<circle cx="-184.24347200000003" cy="219.565549" fill="#8c613c" r="0.5"/>
+<circle cx="-295.57654" cy="-4.7456892" fill="#4878d0" r="0.5"/>
+<circle cx="-161.821954" cy="-275.64502" fill="#956cb4" r="0.5"/>
+<circle cx="109.56236200000001" cy="299.593" fill="#6acc64" r="0.5"/>
+<circle cx="175.403585" cy="1.4844773299999998" fill="#d65f5f" r="0.5"/>
+<circle cx="21.620283999999998" cy="225.60879600000004" fill="#6acc64" r="0.5"/>
+<circle cx="137.422117" cy="267.460914" fill="#dc7ec0" r="0.5"/>
+<circle cx="-248.241301" cy="175.86118199999999" fill="#8c613c" r="0.5"/>
+<circle cx="-143.546319" cy="82.48594200000001" fill="#8c613c" r="15"/>
+<text font-size="15" x="-143.546319" y="82.48594200000001">BBC</text>
+<circle cx="-166.884046" cy="75.449878" fill="#956cb4" r="0.5"/>
+<circle cx="-149.135322" cy="57.93897200000001" fill="#8c613c" r="0.5"/>
+<circle cx="-146.737486" cy="84.381437" fill="#8c613c" r="0.5"/>
+<circle cx="-150.01127400000001" cy="92.922116" fill="#8c613c" r="0.5"/>
+<circle cx="210.782859" cy="-79.594459" fill="#d65f5f" r="0.5"/>
+<circle cx="-98.28571199999999" cy="112.848897" fill="#8c613c" r="0.5"/>
+<circle cx="164.76334" cy="12.9550008" fill="#d65f5f" r="0.5"/>
+<circle cx="-165.797856" cy="149.94196" fill="#8c613c" r="0.5"/>
+<circle cx="164.911369" cy="-45.5204274" fill="#d65f5f" r="0.5"/>
+<circle cx="128.733948" cy="231.07378" fill="#6acc64" r="2"/>
+<text font-size="2" x="128.733948" y="231.07378">Bloomberg L.P.</text>
+<circle cx="-199.30151500000002" cy="-270.202555" fill="#956cb4" r="0.5"/>
+<circle cx="29.565953900000004" cy="169.690556" fill="#6acc64" r="8"/>
+<text font-size="8" x="29.565953900000004" y="169.690556">CBS</text>
+<circle cx="61.669216000000006" cy="181.312481" fill="#6acc64" r="0.5"/>
+<circle cx="-207.426366" cy="-271.61729" fill="#956cb4" r="0.5"/>
+<circle cx="94.375491" cy="321.16193200000004" fill="#6acc64" r="0.5"/>
+<circle cx="-189.141204" cy="136.14965" fill="#8c613c" r="0.5"/>
+<circle cx="20.167788199999997" cy="184.409911" fill="#6acc64" r="0.5"/>
+<circle cx="-129.90285" cy="-218.958082" fill="#956cb4" r="2"/>
+<text font-size="2" x="-129.90285" y="-218.958082">Camera</text>
+<circle cx="-113.23158700000002" cy="-220.9375" fill="#956cb4" r="0.5"/>
+<circle cx="109.453071" cy="310.040129" fill="#6acc64" r="0.5"/>
+<circle cx="274.338855" cy="-59.118556" fill="#d65f5f" r="0.5"/>
+<circle cx="-125.599299" cy="-96.758914" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-125.599299" y="-96.758914">Celebrity</text>
+<circle cx="162.97529500000002" cy="-75.236175" fill="#d65f5f" r="0.5"/>
+<circle cx="130.88632199999998" cy="-222.310725" fill="#ee854a" r="0.5"/>
+<circle cx="241.79135399999998" cy="101.77517" fill="#d65f5f" r="0.5"/>
+<circle cx="-267.92521" cy="145.159917" fill="#8c613c" r="0.5"/>
+<circle cx="1.6543652999999998" cy="-17.594262" fill="#dc7ec0" r="0.5"/>
+<circle cx="-159.394291" cy="-256.95614" fill="#956cb4" r="0.5"/>
+<circle cx="202.340481" cy="73.338027" fill="#d65f5f" r="0.5"/>
+<circle cx="-70.51188900000001" cy="-124.39462" fill="#dc7ec0" r="0.5"/>
+<circle cx="-6.5108616999999995" cy="-213.629654" fill="#ee854a" r="2"/>
+<text font-size="2" x="-6.5108616999999995" y="-213.629654">Color theory</text>
+<circle cx="98.58121" cy="-224.83115199999997" fill="#ee854a" r="15"/>
+<text font-size="15" x="98.58121" y="-224.83115199999997">Communication</text>
+<circle cx="-167.437662" cy="-247.72271999999998" fill="#956cb4" r="0.5"/>
+<circle cx="-127.484665" cy="140.577423" fill="#8c613c" r="0.5"/>
+<circle cx="167.843669" cy="-19.8031134" fill="#d65f5f" r="0.5"/>
+<circle cx="-138.84551100000002" cy="165.312945" fill="#8c613c" r="0.5"/>
+<circle cx="-193.08307200000002" cy="-291.88446" fill="#956cb4" r="0.5"/>
+<circle cx="97.08580700000002" cy="316.042216" fill="#6acc64" r="0.5"/>
+<circle cx="-256.96755" cy="66.32894100000001" fill="#8c613c" r="2"/>
+<text font-size="2" x="-256.96755" y="66.32894100000001">Country code top-level domain</text>
+<circle cx="63.762748" cy="156.11859199999998" fill="#6acc64" r="0.5"/>
+<circle cx="129.966151" cy="-174.669698" fill="#ee854a" r="0.5"/>
+<circle cx="-52.8972689" cy="-262.314311" fill="#956cb4" r="0.5"/>
+<circle cx="-196.295358" cy="-253.64752" fill="#956cb4" r="0.5"/>
+<circle cx="-200.622884" cy="-271.60364" fill="#956cb4" r="0.5"/>
+<circle cx="-145.232591" cy="208.411448" fill="#8c613c" r="0.5"/>
+<circle cx="143.096709" cy="-170.10632099999998" fill="#ee854a" r="0.5"/>
+<circle cx="41.628225799999996" cy="145.36964400000002" fill="#6acc64" r="0.5"/>
+<circle cx="-173.020302" cy="184.575825" fill="#8c613c" r="2"/>
+<text font-size="2" x="-173.020302" y="184.575825">Deutsche Welle</text>
+<circle cx="104.97788" cy="-217.628278" fill="#ee854a" r="0.5"/>
+<circle cx="-164.91776" cy="-88.461548" fill="#dc7ec0" r="0.5"/>
+<circle cx="-218.329832" cy="-266.394989" fill="#956cb4" r="0.5"/>
+<circle cx="-157.911222" cy="-308.99404200000004" fill="#956cb4" r="0.5"/>
+<circle cx="-186.424826" cy="-263.64835000000005" fill="#956cb4" r="0.5"/>
+<circle cx="-182.362173" cy="-283.10100000000006" fill="#956cb4" r="0.5"/>
+<circle cx="48.556788" cy="-216.18372300000001" fill="#ee854a" r="0.5"/>
+<circle cx="-127.63887499999998" cy="-222.854016" fill="#956cb4" r="0.5"/>
+<circle cx="-174.75087000000002" cy="-218.21610299999998" fill="#956cb4" r="0.5"/>
+<circle cx="-183.64702300000002" cy="-234.455109" fill="#956cb4" r="0.5"/>
+<circle cx="-184.092426" cy="-241.88908800000002" fill="#956cb4" r="0.5"/>
+<circle cx="-168.7322" cy="-225.589112" fill="#956cb4" r="0.5"/>
+<circle cx="-131.543895" cy="-283.159618" fill="#956cb4" r="0.5"/>
+<circle cx="86.765973" cy="-98.80297" fill="#dc7ec0" r="0.5"/>
+<circle cx="43.0544702" cy="-52.3953444" fill="#dc7ec0" r="0.5"/>
+<circle cx="-19.7110522" cy="174.29620599999998" fill="#6acc64" r="2"/>
+<text font-size="2" x="-19.7110522" y="174.29620599999998">Discovery Channel</text>
+<circle cx="170.617321" cy="-46.59459700000001" fill="#d65f5f" r="0.5"/>
+<circle cx="63.661716999999996" cy="150.023524" fill="#ee854a" r="0.5"/>
+<circle cx="-60.377793" cy="-9.9563429" fill="#dc7ec0" r="0.5"/>
+<circle cx="136.989237" cy="-4.468379580000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-62.35226200000001" cy="-102.801797" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-62.35226200000001" y="-102.801797">Documentary film</text>
+<circle cx="119.180698" cy="234.446779" fill="#6acc64" r="0.5"/>
+<circle cx="70.528052" cy="226.55205999999998" fill="#6acc64" r="0.5"/>
+<circle cx="-134.693321" cy="-36.4468755" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-134.693321" y="-36.4468755">EMI</text>
+<circle cx="-129.057292" cy="162.07663499999998" fill="#8c613c" r="0.5"/>
+<circle cx="-244.85818" cy="187.81146999999999" fill="#8c613c" r="0.5"/>
+<circle cx="-34.491667" cy="-261.17251999999996" fill="#ee854a" r="0.5"/>
+<circle cx="3.0582037499999997" cy="164.293374" fill="#6acc64" r="0.5"/>
+<circle cx="3.25880205" cy="164.33627" fill="#6acc64" r="2"/>
+<text font-size="2" x="3.25880205" y="164.33627">FX (TV channel)</text>
+<circle cx="-87.92765800000001" cy="144.960221" fill="#8c613c" r="0.5"/>
+<circle cx="147.202104" cy="-45.9741961" fill="#d65f5f" r="0.5"/>
+<circle cx="-57.79109700000001" cy="-116.33565999999999" fill="#dc7ec0" r="8"/>
+<text font-size="8" x="-57.79109700000001" y="-116.33565999999999">Film</text>
+<circle cx="-74.748247" cy="-106.17184900000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="221.514405" cy="18.0705154" fill="#d65f5f" r="0.5"/>
+<circle cx="23.229262000000002" cy="170.631272" fill="#6acc64" r="2"/>
+<text font-size="2" x="23.229262000000002" y="170.631272">Fox Broadcasting Company</text>
+<circle cx="89.445468" cy="153.91006399999998" fill="#6acc64" r="0.5"/>
+<circle cx="-197.763909" cy="203.20412" fill="#8c613c" r="0.5"/>
+<circle cx="-296.533678" cy="101.648288" fill="#8c613c" r="0.5"/>
+<circle cx="-160.13214" cy="-318.64761599999997" fill="#956cb4" r="0.5"/>
+<circle cx="98.40534199999999" cy="-181.947689" fill="#ee854a" r="0.5"/>
+<circle cx="143.978919" cy="47.90817919999999" fill="#d65f5f" r="8"/>
+<text font-size="8" x="143.978919" y="47.90817919999999">Gavin McInnes</text>
+<circle cx="-254.155405" cy="183.592668" fill="#8c613c" r="0.5"/>
+<circle cx="272.87997100000007" cy="-1.3204135000000001" fill="#d65f5f" r="0.5"/>
+<circle cx="295.44991" cy="9.7537132" fill="#d65f5f" r="0.5"/>
+<circle cx="-157.494099" cy="-271.24246800000003" fill="#956cb4" r="2"/>
+<text font-size="2" x="-157.494099" y="-271.24246800000003">High Efficiency Video Coding</text>
+<circle cx="63.647352999999995" cy="-237.570858" fill="#ee854a" r="0.5"/>
+<circle cx="63.24384500000001" cy="-234.40249" fill="#ee854a" r="0.5"/>
+<circle cx="-158.9014" cy="-83.34668300000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="156.623089" cy="-58.560803" fill="#d65f5f" r="0.5"/>
+<circle cx="-146.587546" cy="-200.003566" fill="#956cb4" r="2"/>
+<text font-size="2" x="-146.587546" y="-200.003566">Holography</text>
+<circle cx="-50.7241049" cy="-21.309770999999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="88.461023" cy="116.60152000000001" fill="#6acc64" r="0.5"/>
+<circle cx="-167.716374" cy="-230.74669799999998" fill="#956cb4" r="0.5"/>
+<circle cx="113.84643899999998" cy="-67.8832" fill="#d65f5f" r="0.5"/>
+<circle cx="55.8047252" cy="-205.867914" fill="#ee854a" r="2"/>
+<text font-size="2" x="55.8047252" y="-205.867914">Information Age</text>
+<circle cx="150.608507" cy="-239.31088999999997" fill="#ee854a" r="0.5"/>
+<circle cx="83.281758" cy="-161.405657" fill="#ee854a" r="0.5"/>
+<circle cx="-72.57403300000001" cy="-76.31082900000001" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-72.57403300000001" y="-76.31082900000001">Ingmar Bergman</text>
+<circle cx="154.38535000000002" cy="-219.62816400000003" fill="#ee854a" r="0.5"/>
+<circle cx="56.148427999999996" cy="-211.10019" fill="#ee854a" r="15"/>
+<text font-size="15" x="56.148427999999996" y="-211.10019">Internet</text>
+<circle cx="206.162019" cy="23.977428299999996" fill="#d65f5f" r="0.5"/>
+<circle cx="100.85651100000001" cy="214.29680299999998" fill="#6acc64" r="0.5"/>
+<circle cx="29.484916999999996" cy="295.873312" fill="#6acc64" r="0.5"/>
+<circle cx="32.5531318" cy="301.12964" fill="#6acc64" r="0.5"/>
+<circle cx="88.39132400000001" cy="116.697476" fill="#6acc64" r="0.5"/>
+<circle cx="137.12299299999998" cy="-14.178177999999999" fill="#d65f5f" r="0.5"/>
+<circle cx="77.64701" cy="-173.54020599999998" fill="#ee854a" r="2"/>
+<text font-size="2" x="77.64701" y="-173.54020599999998">Journalism</text>
+<circle cx="83.160973" cy="-172.05399400000002" fill="#ee854a" r="0.5"/>
+<circle cx="-99.435574" cy="54.545123499999995" fill="#dc7ec0" r="0.5"/>
+<circle cx="-143.46059699999998" cy="-293.85267799999997" fill="#956cb4" r="2"/>
+<text font-size="2" x="-143.46059699999998" y="-293.85267799999997">Kodi (software)</text>
+<circle cx="81.841207" cy="-8.387788500000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-83.82855599999999" cy="82.055379" fill="#d65f5f" r="0.5"/>
+<circle cx="104.05877300000002" cy="-293.69907" fill="#ee854a" r="0.5"/>
+<circle cx="164.132486" cy="-184.17649600000004" fill="#ee854a" r="0.5"/>
+<circle cx="15.6636431" cy="210.615048" fill="#6acc64" r="0.5"/>
+<circle cx="151.739945" cy="-15.3248298" fill="#d65f5f" r="0.5"/>
+<circle cx="46.550447999999996" cy="-71.742251" fill="#dc7ec0" r="0.5"/>
+<circle cx="-209.271454" cy="-266.24922100000003" fill="#956cb4" r="0.5"/>
+<circle cx="-61.184703999999996" cy="-2.8749434" fill="#dc7ec0" r="0.5"/>
+<circle cx="29.5328355" cy="300.58203000000003" fill="#6acc64" r="0.5"/>
+<circle cx="62.673393999999995" cy="-258.093675" fill="#ee854a" r="8"/>
+<text font-size="8" x="62.673393999999995" y="-258.093675">Marketing</text>
+<circle cx="73.969973" cy="-207.483451" fill="#ee854a" r="2"/>
+<text font-size="2" x="73.969973" y="-207.483451">Mass media</text>
+<circle cx="32.5153101" cy="-308.055888" fill="#ee854a" r="0.5"/>
+<circle cx="175.66093999999998" cy="62.016871" fill="#d65f5f" r="0.5"/>
+<circle cx="39.698561000000005" cy="226.48374" fill="#6acc64" r="0.5"/>
+<circle cx="178.12645199999997" cy="49.8986719" fill="#d65f5f" r="0.5"/>
+<circle cx="187.4285" cy="-11.9312165" fill="#d65f5f" r="0.5"/>
+<circle cx="174.488615" cy="43.407664999999994" fill="#d65f5f" r="0.5"/>
+<circle cx="-49.58989" cy="55.7677085" fill="#d65f5f" r="0.5"/>
+<circle cx="144.48370999999997" cy="-57.169343000000005" fill="#d65f5f" r="0.5"/>
+<circle cx="137.368175" cy="16.6464991" fill="#d65f5f" r="0.5"/>
+<circle cx="-193.768988" cy="205.763831" fill="#8c613c" r="0.5"/>
+<circle cx="-147.705131" cy="56.59395699999999" fill="#8c613c" r="0.5"/>
+<circle cx="96.33218" cy="-191.46164800000003" fill="#ee854a" r="0.5"/>
+<circle cx="-224.238588" cy="164.215639" fill="#8c613c" r="0.5"/>
+<circle cx="-209.546855" cy="209.002262" fill="#8c613c" r="0.5"/>
+<circle cx="-222.731922" cy="181.88835" fill="#8c613c" r="0.5"/>
+<circle cx="-294.88815999999997" cy="-5.829197150000001" fill="#4878d0" r="0.5"/>
+<circle cx="-227.38387" cy="186.505067" fill="#8c613c" r="0.5"/>
+<circle cx="-240.66111999999998" cy="74.598279" fill="#8c613c" r="0.5"/>
+<circle cx="-212.83296300000003" cy="154.475776" fill="#8c613c" r="0.5"/>
+<circle cx="-206.26244100000002" cy="168.54114900000002" fill="#8c613c" r="0.5"/>
+<circle cx="74.64758" cy="-77.37321200000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="119.53461799999998" cy="-218.95734700000003" fill="#ee854a" r="0.5"/>
+<circle cx="-166.481672" cy="164.76644100000001" fill="#8c613c" r="0.5"/>
+<circle cx="88.750291" cy="-100.00013799999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="193.681761" cy="70.612031" fill="#d65f5f" r="8"/>
+<text font-size="8" x="193.681761" y="70.612031">Michael Moore</text>
+<circle cx="176.792735" cy="124.78742500000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-209.61098900000002" cy="128.198049" fill="#8c613c" r="0.5"/>
+<circle cx="-132.796965" cy="-57.430477999999994" fill="#dc7ec0" r="0.5"/>
+<circle cx="-191.39358000000001" cy="-314.43209" fill="#956cb4" r="0.5"/>
+<circle cx="31.7708909" cy="-311.815602" fill="#ee854a" r="0.5"/>
+<circle cx="-157.457769" cy="-85.99238199999999" fill="#dc7ec0" r="8"/>
+<text font-size="8" x="-157.457769" y="-85.99238199999999">Music</text>
+<circle cx="231.385938" cy="-29.829842" fill="#d65f5f" r="0.5"/>
+<circle cx="37.462677" cy="158.807243" fill="#6acc64" r="0.5"/>
+<circle cx="-165.975096" cy="-242.476472" fill="#956cb4" r="0.5"/>
+<circle cx="6.917284499999999" cy="-40.5044619" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="6.917284499999999" y="-40.5044619">Napster</text>
+<circle cx="140.8848" cy="-217.30305099999998" fill="#ee854a" r="0.5"/>
+<circle cx="-131.013946" cy="3.82607722" fill="#dc7ec0" r="0.5"/>
+<circle cx="132.280729" cy="301.5327" fill="#d65f5f" r="0.5"/>
+<circle cx="122.02269800000002" cy="-189.675675" fill="#ee854a" r="0.5"/>
+<circle cx="62.10719900000001" cy="-171.953201" fill="#ee854a" r="2"/>
+<text font-size="2" x="62.10719900000001" y="-171.953201">News</text>
+<circle cx="-104.84747699999998" cy="113.08122" fill="#8c613c" r="0.5"/>
+<circle cx="-97.93252000000001" cy="99.716827" fill="#8c613c" r="0.5"/>
+<circle cx="181.049834" cy="52.16480219999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-112.33711299999999" cy="-221.40500199999997" fill="#956cb4" r="0.5"/>
+<circle cx="-134.61808499999998" cy="77.768229" fill="#8c613c" r="0.5"/>
+<circle cx="-149.82177000000001" cy="-299.286505" fill="#956cb4" r="0.5"/>
+<circle cx="39.4694615" cy="-110.829201" fill="#dc7ec0" r="0.5"/>
+<circle cx="159.742884" cy="-59.859050999999994" fill="#d65f5f" r="0.5"/>
+<circle cx="-166.139785" cy="-242.97455000000002" fill="#956cb4" r="0.5"/>
+<circle cx="26.904535699999997" cy="-69.300378" fill="#dc7ec0" r="0.5"/>
+<circle cx="77.169078" cy="178.78099400000002" fill="#6acc64" r="0.5"/>
+<circle cx="168.908817" cy="-91.373604" fill="#d65f5f" r="0.5"/>
+<circle cx="198.11463000000003" cy="-10.9765502" fill="#d65f5f" r="0.5"/>
+<circle cx="-153.49138" cy="-74.931661" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-153.49138" y="-74.931661">Popular music</text>
+<circle cx="117.817651" cy="302.75784" fill="#6acc64" r="0.5"/>
+<circle cx="113.849708" cy="-164.065384" fill="#ee854a" r="0.5"/>
+<circle cx="177.35557" cy="31.807146000000003" fill="#d65f5f" r="0.5"/>
+<circle cx="-17.317027" cy="-124.55485" fill="#dc7ec0" r="0.5"/>
+<circle cx="158.042899" cy="-59.120516" fill="#d65f5f" r="2"/>
+<text font-size="2" x="158.042899" y="-59.120516">Propaganda</text>
+<circle cx="119.97732599999999" cy="-39.36896599999999" fill="#d65f5f" r="0.5"/>
+<circle cx="68.5718565" cy="-255.46216500000003" fill="#ee854a" r="2"/>
+<text font-size="2" x="68.5718565" y="-255.46216500000003">Public relations</text>
+<circle cx="268.69157" cy="57.026788" fill="#d65f5f" r="2"/>
+<text font-size="2" x="268.69157" y="57.026788">Pulitzer Prize</text>
+<circle cx="-203.24620399999998" cy="-219.65089999999998" fill="#956cb4" r="0.5"/>
+<circle cx="170.084922" cy="95.471866" fill="#d65f5f" r="8"/>
+<text font-size="8" x="170.084922" y="95.471866">Rachel Maddow</text>
+<circle cx="180.20266600000002" cy="-8.9339726" fill="#d65f5f" r="0.5"/>
+<circle cx="-177.63612300000003" cy="-206.169817" fill="#956cb4" r="2"/>
+<text font-size="2" x="-177.63612300000003" y="-206.169817">Radio</text>
+<circle cx="-164.702181" cy="78.67979700000001" fill="#8c613c" r="0.5"/>
+<circle cx="163.221184" cy="24.812994500000002" fill="#d65f5f" r="2"/>
+<text font-size="2" x="163.221184" y="24.812994500000002">Reuters</text>
+<circle cx="-160.062021" cy="-66.419227" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-160.062021" y="-66.419227">Rock and roll</text>
+<circle cx="31.722588800000004" cy="307.13116" fill="#6acc64" r="0.5"/>
+<circle cx="98.455147" cy="307.59747899999996" fill="#6acc64" r="0.5"/>
+<circle cx="129.972549" cy="151.70231299999998" fill="#6acc64" r="0.5"/>
+<circle cx="168.24000199999998" cy="85.12585899999999" fill="#d65f5f" r="2"/>
+<text font-size="2" x="168.24000199999998" y="85.12585899999999">Rush Limbaugh</text>
+<circle cx="169.985704" cy="72.74214500000001" fill="#d65f5f" r="0.5"/>
+<circle cx="195.4127" cy="-100.869867" fill="#d65f5f" r="0.5"/>
+<circle cx="-189.445228" cy="97.52939699999999" fill="#8c613c" r="0.5"/>
+<circle cx="81.688383" cy="-51.1169141" fill="#dc7ec0" r="0.5"/>
+<circle cx="-96.61177400000001" cy="51.094715" fill="#dc7ec0" r="0.5"/>
+<circle cx="189.758149" cy="-15.056589800000001" fill="#d65f5f" r="0.5"/>
+<circle cx="46.56943199999999" cy="-78.133398" fill="#dc7ec0" r="0.5"/>
+<circle cx="98.575253" cy="313.67329" fill="#6acc64" r="0.5"/>
+<circle cx="-63.487032" cy="-128.357838" fill="#dc7ec0" r="0.5"/>
+<circle cx="106.391733" cy="-271.88098" fill="#ee854a" r="15"/>
+<text font-size="15" x="106.391733" y="-271.88098">Social media</text>
+<circle cx="104.39282" cy="-263.50977100000006" fill="#ee854a" r="0.5"/>
+<circle cx="126.8029" cy="-275.05541" fill="#ee854a" r="0.5"/>
+<circle cx="185.13195399999998" cy="-42.464790199999996" fill="#d65f5f" r="0.5"/>
+<circle cx="-183.60216" cy="-226.925489" fill="#956cb4" r="0.5"/>
+<circle cx="-182.313614" cy="-296.382695" fill="#956cb4" r="0.5"/>
+<circle cx="-18.157286" cy="-158.49251600000002" fill="#dc7ec0" r="0.5"/>
+<circle cx="-169.795647" cy="-69.001884" fill="#dc7ec0" r="0.5"/>
+<circle cx="106.211742" cy="-213.154466" fill="#ee854a" r="0.5"/>
+<circle cx="-181.88632" cy="-218.145711" fill="#956cb4" r="0.5"/>
+<circle cx="-121.87877099999999" cy="85.441965" fill="#8c613c" r="0.5"/>
+<circle cx="-195.47518200000002" cy="-253.57616199999995" fill="#956cb4" r="0.5"/>
+<circle cx="6.69045062" cy="-110.769407" fill="#dc7ec0" r="0.5"/>
+<circle cx="155.006495" cy="-124.743192" fill="#ee854a" r="0.5"/>
+<circle cx="43.569502199999995" cy="207.76562100000004" fill="#6acc64" r="0.5"/>
+<circle cx="94.12470199999998" cy="174.86441" fill="#6acc64" r="8"/>
+<text font-size="8" x="94.12470199999998" y="174.86441">Ted Turner</text>
+<circle cx="-185.33263699999998" cy="-204.17480999999998" fill="#956cb4" r="8"/>
+<text font-size="8" x="-185.33263699999998" y="-204.17480999999998">Television</text>
+<circle cx="-18.9893368" cy="-123.823245" fill="#dc7ec0" r="0.5"/>
+<circle cx="-211.883301" cy="224.62741" fill="#8c613c" r="0.5"/>
+<circle cx="15.7375414" cy="181.84607" fill="#6acc64" r="0.5"/>
+<circle cx="-75.35045699999999" cy="79.068248" fill="#d65f5f" r="2"/>
+<text font-size="2" x="-75.35045699999999" y="79.068248">The Daily Telegraph</text>
+<circle cx="-75.18714" cy="78.573173" fill="#d65f5f" r="2"/>
+<text font-size="2" x="-75.18714" y="78.573173">The Independent</text>
+<circle cx="117.286904" cy="33.717621" fill="#d65f5f" r="0.5"/>
+<circle cx="-121.95817199999999" cy="77.871381" fill="#8c613c" r="0.5"/>
+<circle cx="-113.664593" cy="98.658497" fill="#8c613c" r="0.5"/>
+<circle cx="237.07538399999999" cy="55.18103500000001" fill="#d65f5f" r="15"/>
+<text font-size="15" x="237.07538399999999" y="55.18103500000001">The New York Times</text>
+<circle cx="239.36206" cy="51.32628199999999" fill="#d65f5f" r="2"/>
+<text font-size="2" x="239.36206" y="51.32628199999999">The New Yorker</text>
+<circle cx="-309.775151" cy="-13.7426471" fill="#4878d0" r="2"/>
+<text font-size="2" x="-309.775151" y="-13.7426471">The Times of India</text>
+<circle cx="11.650443000000001" cy="218.03536999999997" fill="#6acc64" r="0.5"/>
+<circle cx="63.471842" cy="159.04565599999998" fill="#6acc64" r="15"/>
+<text font-size="15" x="63.471842" y="159.04565599999998">The Walt Disney Company</text>
+<circle cx="159.739755" cy="45.8478818" fill="#d65f5f" r="2"/>
+<text font-size="2" x="159.739755" y="45.8478818">The Young Turks</text>
+<circle cx="121.79582099999999" cy="257.72628000000003" fill="#6acc64" r="2"/>
+<text font-size="2" x="121.79582099999999" y="257.72628000000003">Thomson Reuters</text>
+<circle cx="-127.61189" cy="-277.57961" fill="#956cb4" r="0.5"/>
+<circle cx="-181.558496" cy="-296.621045" fill="#956cb4" r="0.5"/>
+<circle cx="-80.573528" cy="-97.76428200000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="72.454564" cy="222.669741" fill="#6acc64" r="0.5"/>
+<circle cx="168.90617799999998" cy="92.69393" fill="#d65f5f" r="15"/>
+<text font-size="15" x="168.90617799999998" y="92.69393">Tucker Carlson</text>
+<circle cx="91.732361" cy="170.98102" fill="#6acc64" r="2"/>
+<text font-size="2" x="91.732361" y="170.98102">Turner Broadcasting System</text>
+<circle cx="16.1069041" cy="-202.13379899999998" fill="#ee854a" r="2"/>
+<text font-size="2" x="16.1069041" y="-202.13379899999998">Typewriter</text>
+<circle cx="-146.124412" cy="-255.67004399999996" fill="#956cb4" r="2"/>
+<text font-size="2" x="-146.124412" y="-255.67004399999996">Ultra-high-definition television</text>
+<circle cx="-50.2135459" cy="-160.76018" fill="#dc7ec0" r="0.5"/>
+<circle cx="-14.523348" cy="229.478655" fill="#6acc64" r="0.5"/>
+<circle cx="110.86964" cy="-279.544475" fill="#ee854a" r="0.5"/>
+<circle cx="135.135189" cy="53.569712" fill="#6acc64" r="0.5"/>
+<circle cx="141.76920099999998" cy="49.4067686" fill="#d65f5f" r="0.5"/>
+<circle cx="-182.988218" cy="-266.19425" fill="#956cb4" r="2"/>
+<text font-size="2" x="-182.988218" y="-266.19425">Video</text>
+<circle cx="-111.130068" cy="-285.059558" fill="#956cb4" r="2"/>
+<text font-size="2" x="-111.130068" y="-285.059558">Video on demand</text>
+<circle cx="3.5674898" cy="-24.403629600000002" fill="#dc7ec0" r="0.5"/>
+<circle cx="122.047317" cy="355.118918" fill="#6acc64" r="0.5"/>
+<circle cx="54.970600999999995" cy="172.196878" fill="#6acc64" r="0.5"/>
+<circle cx="5.76366245" cy="227.33853100000002" fill="#6acc64" r="0.5"/>
+<circle cx="27.73428" cy="228.21128400000003" fill="#6acc64" r="0.5"/>
+<circle cx="-44.958858" cy="119.501053" fill="#8c613c" r="0.5"/>
+<circle cx="216.731571" cy="-86.948127" fill="#d65f5f" r="0.5"/>
+<circle cx="-133.093863" cy="37.4140739" fill="#dc7ec0" r="0.5"/>
+<circle cx="104.660199" cy="-171.56073899999998" fill="#ee854a" r="0.5"/>
+<circle cx="220.32056899999998" cy="-71.675338" fill="#d65f5f" r="0.5"/>
+<circle cx="53.4220638" cy="-13.440019600000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="175.000735" cy="-35.46580519999999" fill="#d65f5f" r="2"/>
+<text font-size="2" x="175.000735" y="-35.46580519999999">Whataboutism</text>
+<circle cx="204.97191400000003" cy="19.5220004" fill="#d65f5f" r="2"/>
+<text font-size="2" x="204.97191400000003" y="19.5220004">Whistleblower</text>
+<circle cx="280.471198" cy="-2.0509405000000003" fill="#d65f5f" r="0.5"/>
+<circle cx="283.113019" cy="27.193901" fill="#d65f5f" r="0.5"/>
+<circle cx="-150.713276" cy="-79.47415000000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-144.18782" cy="-299.067006" fill="#956cb4" r="0.5"/>
+<circle cx="247.78156199999998" cy="-7.256113900000001" fill="#d65f5f" r="2"/>
+<text font-size="2" x="247.78156199999998" y="-7.256113900000001">Yellow journalism</text>
+<circle cx="-235.13614600000002" cy="206.28058499999997" fill="#8c613c" r="0.5"/>
+<circle cx="-208.52128499999998" cy="-8.7412234" fill="#8c613c" r="0.5"/>
+<circle cx="-2.7883050999999996" cy="-25.549753600000003" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-2.7883050999999996" y="-25.549753600000003">YouTube Rewind</text>
+<circle cx="138.75243899999998" cy="38.8148306" fill="#d65f5f" r="0.5"/>
+<circle cx="108.778971" cy="201.538512" fill="#6acc64" r="0.5"/>
+<circle cx="36.420398" cy="-127.497629" fill="#dc7ec0" r="0.5"/>
+<circle cx="218.339513" cy="-60.57692200000001" fill="#d65f5f" r="0.5"/>
+<circle cx="192.037496" cy="-4.451745900000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-160.674997" cy="66.89417700000001" fill="#8c613c" r="0.5"/>
+<circle cx="-129.57416500000002" cy="-257.503624" fill="#956cb4" r="0.5"/>
+<circle cx="37.2419369" cy="23.507774500000004" fill="#d65f5f" r="0.5"/>
+<circle cx="-32.9049721" cy="177.10527100000002" fill="#6acc64" r="0.5"/>
+<circle cx="-223.788383" cy="-259.128065" fill="#956cb4" r="0.5"/>
+<circle cx="97.62102" cy="147.830928" fill="#6acc64" r="0.5"/>
+<circle cx="-333.543868" cy="-11.564798" fill="#4878d0" r="0.5"/>
+<circle cx="-301.25853800000004" cy="101.48531399999999" fill="#8c613c" r="0.5"/>
+<circle cx="-250.764192" cy="216.35081999999997" fill="#8c613c" r="0.5"/>
+<circle cx="14.1780331" cy="-274.002078" fill="#ee854a" r="0.5"/>
+<circle cx="76.76302899999999" cy="-290.978065" fill="#ee854a" r="0.5"/>
+<circle cx="97.05249400000001" cy="223.851131" fill="#6acc64" r="0.5"/>
+<circle cx="60.428445" cy="-245.26366199999995" fill="#ee854a" r="0.5"/>
+<circle cx="54.34856" cy="-267.298185" fill="#ee854a" r="0.5"/>
+<circle cx="27.552609" cy="-166.826205" fill="#ee854a" r="0.5"/>
+<circle cx="76.154022" cy="-238.75991999999997" fill="#ee854a" r="0.5"/>
+<circle cx="149.671837" cy="-240.20801" fill="#ee854a" r="0.5"/>
+<circle cx="-216.900572" cy="145.527753" fill="#8c613c" r="0.5"/>
+<circle cx="-216.926045" cy="135.823338" fill="#8c613c" r="0.5"/>
+<circle cx="-202.25500399999999" cy="131.60380099999998" fill="#8c613c" r="0.5"/>
+<circle cx="190.63653000000002" cy="3.28513192" fill="#d65f5f" r="0.5"/>
+<circle cx="19.5489189" cy="159.315611" fill="#6acc64" r="0.5"/>
+<circle cx="305.80102" cy="2.0912815" fill="#d65f5f" r="0.5"/>
+<circle cx="-114.582594" cy="189.36078000000003" fill="#8c613c" r="0.5"/>
+<circle cx="-208.653851" cy="218.321768" fill="#8c613c" r="2"/>
+<text font-size="2" x="-208.653851" y="218.321768">All-Russia State Television and Radio Broadcasting Company</text>
+<circle cx="125.354859" cy="198.152374" fill="#6acc64" r="0.5"/>
+<circle cx="37.7632605" cy="145.44933899999998" fill="#6acc64" r="0.5"/>
+<circle cx="83.89724" cy="248.967992" fill="#6acc64" r="0.5"/>
+<circle cx="-259.43717799999996" cy="212.841804" fill="#8c613c" r="0.5"/>
+<circle cx="-255.38824499999998" cy="208.149501" fill="#8c613c" r="0.5"/>
+<circle cx="146.13843300000002" cy="-222.853981" fill="#ee854a" r="0.5"/>
+<circle cx="-138.650932" cy="-268.638188" fill="#956cb4" r="0.5"/>
+<circle cx="43.280517" cy="-260.212421" fill="#ee854a" r="0.5"/>
+<circle cx="-89.435668" cy="-158.380691" fill="#dc7ec0" r="0.5"/>
+<circle cx="155.93271399999998" cy="1.26627438" fill="#d65f5f" r="0.5"/>
+<circle cx="260.146838" cy="15.739791200000003" fill="#d65f5f" r="0.5"/>
+<circle cx="-202.586265" cy="168.575008" fill="#8c613c" r="0.5"/>
+<circle cx="-336.10038000000003" cy="-25.0852105" fill="#4878d0" r="0.5"/>
+<circle cx="-268.866822" cy="184.24903" fill="#8c613c" r="0.5"/>
+<circle cx="113.55990100000001" cy="-192.725638" fill="#ee854a" r="0.5"/>
+<circle cx="-221.400431" cy="121.39600899999999" fill="#8c613c" r="0.5"/>
+<circle cx="197.82790999999997" cy="58.553712000000004" fill="#d65f5f" r="0.5"/>
+<circle cx="209.740636" cy="32.552702000000004" fill="#d65f5f" r="0.5"/>
+<circle cx="-157.084662" cy="168.275296" fill="#8c613c" r="0.5"/>
+<circle cx="-349.8719" cy="10.2312007" fill="#4878d0" r="0.5"/>
+<circle cx="6.1142216099999995" cy="139.504862" fill="#6acc64" r="0.5"/>
+<circle cx="76.04567599999999" cy="-278.94878900000003" fill="#ee854a" r="0.5"/>
+<circle cx="-333.058971" cy="26.786015200000005" fill="#4878d0" r="0.5"/>
+<circle cx="-85.03872999999999" cy="-128.480219" fill="#dc7ec0" r="0.5"/>
+<circle cx="147.19616100000002" cy="-47.565525" fill="#d65f5f" r="0.5"/>
+<circle cx="209.34263" cy="-41.083777" fill="#d65f5f" r="0.5"/>
+<circle cx="50.953595" cy="-225.301762" fill="#ee854a" r="0.5"/>
+<circle cx="47.089966000000004" cy="-159.792416" fill="#ee854a" r="0.5"/>
+<circle cx="49.188852999999995" cy="-290.03382100000005" fill="#ee854a" r="0.5"/>
+<circle cx="42.5950105" cy="-214.204606" fill="#ee854a" r="0.5"/>
+<circle cx="-7.2563225" cy="-199.299086" fill="#ee854a" r="0.5"/>
+<circle cx="-204.21655800000002" cy="-246.95043099999998" fill="#956cb4" r="0.5"/>
+<circle cx="-139.67828" cy="188.419602" fill="#8c613c" r="0.5"/>
+<circle cx="55.10737400000001" cy="-82.399681" fill="#dc7ec0" r="0.5"/>
+<circle cx="163.420215" cy="-111.442443" fill="#d65f5f" r="0.5"/>
+<circle cx="-110.18198799999999" cy="128.547545" fill="#8c613c" r="0.5"/>
+<circle cx="-203.12039299999998" cy="124.984006" fill="#8c613c" r="0.5"/>
+<circle cx="102.248125" cy="314.098246" fill="#6acc64" r="0.5"/>
+<circle cx="64.028944" cy="169.435959" fill="#6acc64" r="0.5"/>
+<circle cx="265.741889" cy="4.59610655" fill="#d65f5f" r="0.5"/>
+<circle cx="-125.111392" cy="155.45186999999999" fill="#8c613c" r="0.5"/>
+<circle cx="-81.84507799999999" cy="-146.80915199999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="187.605684" cy="29.429325099999996" fill="#d65f5f" r="0.5"/>
+<circle cx="122.004288" cy="137.610949" fill="#6acc64" r="0.5"/>
+<circle cx="160.81575999999998" cy="-116.74757500000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-11.3576988" cy="-278.436571" fill="#ee854a" r="0.5"/>
+<circle cx="113.103445" cy="212.85006400000003" fill="#6acc64" r="0.5"/>
+<circle cx="127.111425" cy="-58.835154" fill="#d65f5f" r="0.5"/>
+<circle cx="122.49045199999998" cy="295.735314" fill="#6acc64" r="0.5"/>
+<circle cx="-149.204146" cy="-313.849319" fill="#956cb4" r="0.5"/>
+<circle cx="50.064042" cy="246.560622" fill="#6acc64" r="0.5"/>
+<circle cx="180.671904" cy="71.63350600000001" fill="#d65f5f" r="0.5"/>
+<circle cx="253.28173499999997" cy="-72.691822" fill="#d65f5f" r="0.5"/>
+<circle cx="-126.82852" cy="212.87842100000003" fill="#8c613c" r="0.5"/>
+<circle cx="-184.441446" cy="177.892673" fill="#8c613c" r="0.5"/>
+<circle cx="-100.944515" cy="45.486935900000006" fill="#dc7ec0" r="0.5"/>
+<circle cx="118.25103499999999" cy="245.834358" fill="#6acc64" r="0.5"/>
+<circle cx="-176.337161" cy="-222.9808" fill="#956cb4" r="0.5"/>
+<circle cx="-159.030809" cy="-238.24363499999998" fill="#956cb4" r="0.5"/>
+<circle cx="52.775960999999995" cy="252.98546" fill="#6acc64" r="0.5"/>
+<circle cx="15.152855200000001" cy="183.05662199999998" fill="#6acc64" r="0.5"/>
+<circle cx="-122.12237099999999" cy="46.706172800000004" fill="#dc7ec0" r="0.5"/>
+<circle cx="25.040301299999996" cy="235.656449" fill="#6acc64" r="0.5"/>
+<circle cx="109.4108085" cy="294.04330899999997" fill="#6acc64" r="0.5"/>
+<circle cx="-138.47423799999999" cy="162.91733499999998" fill="#8c613c" r="0.5"/>
+<circle cx="-37.4063235" cy="-41.2644855" fill="#dc7ec0" r="0.5"/>
+<circle cx="108.326876" cy="234.39433499999998" fill="#6acc64" r="0.5"/>
+<circle cx="126.93337300000002" cy="139.770806" fill="#6acc64" r="0.5"/>
+<circle cx="132.71904800000002" cy="323.450848" fill="#6acc64" r="0.5"/>
+<circle cx="-200.311377" cy="-220.95843000000002" fill="#956cb4" r="0.5"/>
+<circle cx="160.267338" cy="119.574952" fill="#d65f5f" r="0.5"/>
+<circle cx="-218.642466" cy="129.05354000000003" fill="#8c613c" r="0.5"/>
+<circle cx="195.92692" cy="-2.6760888000000005" fill="#d65f5f" r="0.5"/>
+<circle cx="-14.378828799999997" cy="238.15568000000002" fill="#6acc64" r="0.5"/>
+<circle cx="-216.403509" cy="230.89829" fill="#8c613c" r="0.5"/>
+<circle cx="149.79377" cy="9.253142500000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-106.97952999999998" cy="51.6797141" fill="#dc7ec0" r="0.5"/>
+<circle cx="174.420771" cy="88.74502000000001" fill="#d65f5f" r="0.5"/>
+<circle cx="8.201443600000001" cy="204.606969" fill="#6acc64" r="0.5"/>
+<circle cx="-67.43639" cy="-139.90673900000002" fill="#dc7ec0" r="0.5"/>
+<circle cx="122.33007500000001" cy="324.22544" fill="#6acc64" r="0.5"/>
+<circle cx="-181.862758" cy="-318.32955000000004" fill="#956cb4" r="0.5"/>
+<circle cx="-11.5775695" cy="-81.214504" fill="#dc7ec0" r="0.5"/>
+<circle cx="28.943564999999996" cy="263.9371" fill="#6acc64" r="0.5"/>
+<circle cx="-58.710841" cy="-64.348067" fill="#dc7ec0" r="0.5"/>
+<circle cx="-217.2233" cy="-254.69996999999998" fill="#956cb4" r="0.5"/>
+<circle cx="-186.526914" cy="212.02272" fill="#8c613c" r="0.5"/>
+<circle cx="259.372855" cy="-42.45955" fill="#d65f5f" r="0.5"/>
+<circle cx="-20.8374327" cy="-142.753212" fill="#dc7ec0" r="0.5"/>
+<circle cx="-222.389699" cy="144.736438" fill="#8c613c" r="0.5"/>
+<circle cx="152.10559" cy="-70.79145499999998" fill="#d65f5f" r="0.5"/>
+<circle cx="-17.848523" cy="-14.3627351" fill="#dc7ec0" r="0.5"/>
+<circle cx="25.4240518" cy="272.42017599999997" fill="#6acc64" r="2"/>
+<text font-size="2" x="25.4240518" y="272.42017599999997">Charissa Thompson</text>
+<circle cx="168.334789" cy="113.159676" fill="#d65f5f" r="0.5"/>
+<circle cx="90.05612" cy="-298.76860999999997" fill="#ee854a" r="0.5"/>
+<circle cx="-170.90549" cy="58.214618" fill="#8c613c" r="0.5"/>
+<circle cx="115.33008899999999" cy="168.224021" fill="#6acc64" r="0.5"/>
+<circle cx="-159.792458" cy="-250.18949200000003" fill="#956cb4" r="0.5"/>
+<circle cx="144.321751" cy="-265.39674" fill="#ee854a" r="0.5"/>
+<circle cx="-74.859246" cy="-125.271265" fill="#dc7ec0" r="0.5"/>
+<circle cx="91.97817300000001" cy="-174.169366" fill="#ee854a" r="0.5"/>
+<circle cx="-139.450374" cy="66.969294" fill="#8c613c" r="0.5"/>
+<circle cx="-79.064468" cy="-137.93469199999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="54.865874000000005" cy="-256.96937" fill="#ee854a" r="0.5"/>
+<circle cx="200.605769" cy="60.25837299999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-167.647389" cy="-273.31024" fill="#956cb4" r="0.5"/>
+<circle cx="269.69712" cy="-46.049220000000005" fill="#d65f5f" r="0.5"/>
+<circle cx="-223.08073900000002" cy="187.00506999999996" fill="#8c613c" r="0.5"/>
+<circle cx="-29.121399999999998" cy="-153.638163" fill="#dc7ec0" r="0.5"/>
+<circle cx="-188.604367" cy="89.73643" fill="#8c613c" r="0.5"/>
+<circle cx="188.35593" cy="41.718331199999994" fill="#d65f5f" r="0.5"/>
+<circle cx="-340.46677" cy="29.145246199999995" fill="#4878d0" r="0.5"/>
+<circle cx="16.153684400000003" cy="-229.88755999999998" fill="#ee854a" r="0.5"/>
+<circle cx="117.134059" cy="-223.558818" fill="#ee854a" r="0.5"/>
+<circle cx="96.87880999999999" cy="-224.84704200000002" fill="#ee854a" r="0.5"/>
+<circle cx="41.062693" cy="119.090125" fill="#6acc64" r="0.5"/>
+<circle cx="73.33854500000001" cy="-259.876309" fill="#ee854a" r="0.5"/>
+<circle cx="152.39722400000002" cy="-71.409765" fill="#d65f5f" r="0.5"/>
+<circle cx="66.6155" cy="-293.231491" fill="#ee854a" r="0.5"/>
+<circle cx="92.747466" cy="219.619743" fill="#6acc64" r="0.5"/>
+<circle cx="43.566047000000005" cy="-225.31960500000002" fill="#ee854a" r="0.5"/>
+<circle cx="119.866243" cy="-205.158968" fill="#ee854a" r="0.5"/>
+<circle cx="31.606888599999998" cy="-267.181922" fill="#ee854a" r="0.5"/>
+<circle cx="38.545572099999994" cy="-229.79602100000002" fill="#ee854a" r="0.5"/>
+<circle cx="192.16966999999997" cy="-77.86746099999999" fill="#d65f5f" r="0.5"/>
+<circle cx="101.38081100000001" cy="-231.26649000000003" fill="#ee854a" r="0.5"/>
+<circle cx="-228.83317100000005" cy="-282.202452" fill="#956cb4" r="0.5"/>
+<circle cx="54.2317489" cy="-244.8803" fill="#ee854a" r="0.5"/>
+<circle cx="93.756586" cy="-158.131953" fill="#ee854a" r="0.5"/>
+<circle cx="-149.97913" cy="171.12470199999998" fill="#8c613c" r="0.5"/>
+<circle cx="39.068838199999995" cy="-269.6519" fill="#ee854a" r="0.5"/>
+<circle cx="247.27625999999998" cy="-61.849676" fill="#d65f5f" r="0.5"/>
+<circle cx="34.597318" cy="232.51272100000003" fill="#6acc64" r="0.5"/>
+<circle cx="87.299464" cy="239.902418" fill="#6acc64" r="0.5"/>
+<circle cx="22.488473" cy="-235.966976" fill="#ee854a" r="0.5"/>
+<circle cx="-4.696286" cy="-237.095705" fill="#dc7ec0" r="0.5"/>
+<circle cx="82.368853" cy="-260.83106000000004" fill="#ee854a" r="0.5"/>
+<circle cx="144.732392" cy="-68.089756" fill="#d65f5f" r="2"/>
+<text font-size="2" x="144.732392" y="-68.089756">Cult of personality</text>
+<circle cx="164.63480599999997" cy="-192.676533" fill="#ee854a" r="0.5"/>
+<circle cx="161.39162199999998" cy="-118.10616999999999" fill="#d65f5f" r="0.5"/>
+<circle cx="180.017404" cy="-50.60027" fill="#d65f5f" r="0.5"/>
+<circle cx="71.87042100000001" cy="133.919716" fill="#6acc64" r="0.5"/>
+<circle cx="114.012486" cy="137.444706" fill="#6acc64" r="0.5"/>
+<circle cx="-324.58344800000003" cy="-17.485063399999998" fill="#4878d0" r="0.5"/>
+<circle cx="-162.290485" cy="-280.52559499999995" fill="#956cb4" r="0.5"/>
+<circle cx="-319.87573100000003" cy="-21.0447188" fill="#4878d0" r="0.5"/>
+<circle cx="-317.12198" cy="-21.9489368" fill="#4878d0" r="0.5"/>
+<circle cx="157.08231" cy="100.66917699999999" fill="#d65f5f" r="0.5"/>
+<circle cx="224.3311" cy="41.9411069" fill="#d65f5f" r="0.5"/>
+<circle cx="31.644809000000002" cy="300.730381" fill="#6acc64" r="0.5"/>
+<circle cx="153.05299800000003" cy="114.78636399999999" fill="#d65f5f" r="0.5"/>
+<circle cx="212.208878" cy="79.06414600000001" fill="#d65f5f" r="0.5"/>
+<circle cx="143.08728000000002" cy="-270.88173000000006" fill="#ee854a" r="0.5"/>
+<circle cx="-68.599202" cy="-78.0510255" fill="#dc7ec0" r="0.5"/>
+<circle cx="128.389842" cy="267.94458599999996" fill="#6acc64" r="0.5"/>
+<circle cx="-109.31872" cy="191.065189" fill="#8c613c" r="0.5"/>
+<circle cx="-43.0516261" cy="-20.3476252" fill="#dc7ec0" r="0.5"/>
+<circle cx="-9.335237799999998" cy="-16.163422100000002" fill="#dc7ec0" r="0.5"/>
+<circle cx="92.86139100000001" cy="-175.29772400000002" fill="#ee854a" r="0.5"/>
+<circle cx="88.53411000000001" cy="-241.747618" fill="#ee854a" r="0.5"/>
+<circle cx="167.463688" cy="-53.22287599999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-46.600512" cy="120.42190999999998" fill="#8c613c" r="0.5"/>
+<circle cx="147.22551900000002" cy="-27.5248421" fill="#d65f5f" r="0.5"/>
+<circle cx="47.312288099999996" cy="178.341142" fill="#6acc64" r="0.5"/>
+<circle cx="-139.87145199999998" cy="187.73311199999998" fill="#8c613c" r="0.5"/>
+<circle cx="116.25821200000001" cy="26.0906506" fill="#d65f5f" r="0.5"/>
+<circle cx="-190.734208" cy="-319.32023200000003" fill="#956cb4" r="0.5"/>
+<circle cx="30.190251" cy="-254.25161999999995" fill="#ee854a" r="0.5"/>
+<circle cx="-213.730979" cy="-300.24318800000003" fill="#956cb4" r="0.5"/>
+<circle cx="141.56471" cy="-196.938462" fill="#ee854a" r="0.5"/>
+<circle cx="-131.691602" cy="-290.01161" fill="#956cb4" r="0.5"/>
+<circle cx="-183.50542" cy="-243.43045999999998" fill="#956cb4" r="0.5"/>
+<circle cx="-179.728493" cy="-261.91320399999995" fill="#956cb4" r="0.5"/>
+<circle cx="-85.591065" cy="-120.25594000000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="79.415651" cy="57.024961000000005" fill="#d65f5f" r="0.5"/>
+<circle cx="-86.087953" cy="-155.35985499999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="164.8878" cy="103.50695599999999" fill="#d65f5f" r="0.5"/>
+<circle cx="162.629103" cy="56.829730999999995" fill="#d65f5f" r="0.5"/>
+<circle cx="-222.329989" cy="120.771672" fill="#8c613c" r="0.5"/>
+<circle cx="181.653332" cy="-67.20165200000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-179.3533" cy="205.456174" fill="#8c613c" r="0.5"/>
+<circle cx="36.365912099999996" cy="177.34810099999999" fill="#6acc64" r="2"/>
+<text font-size="2" x="36.365912099999996" y="177.34810099999999">E!</text>
+<circle cx="-134.18086499999998" cy="-36.180192999999996" fill="#dc7ec0" r="0.5"/>
+<circle cx="-226.20261999999997" cy="135.626428" fill="#8c613c" r="0.5"/>
+<circle cx="-250.33022" cy="202.73493100000002" fill="#8c613c" r="0.5"/>
+<circle cx="-352.17434000000003" cy="29.810606000000003" fill="#4878d0" r="0.5"/>
+<circle cx="71.231601" cy="202.87892799999997" fill="#6acc64" r="0.5"/>
+<circle cx="-175.135772" cy="192.43157499999998" fill="#8c613c" r="0.5"/>
+<circle cx="12.447761199999999" cy="55.3383362" fill="#dc7ec0" r="0.5"/>
+<circle cx="185.32926999999998" cy="-37.434775" fill="#d65f5f" r="0.5"/>
+<circle cx="-118.895154" cy="140.089628" fill="#8c613c" r="0.5"/>
+<circle cx="26.7604036" cy="-297.11591" fill="#ee854a" r="0.5"/>
+<circle cx="67.460925" cy="238.81774000000001" fill="#6acc64" r="0.5"/>
+<circle cx="-333.71884" cy="-23.9248401" fill="#4878d0" r="0.5"/>
+<circle cx="-40.582524500000005" cy="237.378785" fill="#8c613c" r="0.5"/>
+<circle cx="-8.321138" cy="216.541178" fill="#6acc64" r="0.5"/>
+<circle cx="-133.46320400000002" cy="171.285898" fill="#8c613c" r="0.5"/>
+<circle cx="-141.881271" cy="-222.69384200000002" fill="#956cb4" r="0.5"/>
+<circle cx="67.401544" cy="-212.45053900000002" fill="#ee854a" r="0.5"/>
+<circle cx="-126.06878899999998" cy="-303.247875" fill="#956cb4" r="0.5"/>
+<circle cx="-153.340145" cy="-225.89644000000004" fill="#956cb4" r="0.5"/>
+<circle cx="205.515009" cy="-0.97431712" fill="#d65f5f" r="0.5"/>
+<circle cx="-110.24159999999999" cy="54.076675099999996" fill="#dc7ec0" r="0.5"/>
+<circle cx="-170.65430899999998" cy="58.43642" fill="#8c613c" r="0.5"/>
+<circle cx="108.123939" cy="-221.00133300000002" fill="#ee854a" r="0.5"/>
+<circle cx="-90.096076" cy="-27.3171906" fill="#dc7ec0" r="0.5"/>
+<circle cx="-164.705709" cy="232.44731999999996" fill="#8c613c" r="0.5"/>
+<circle cx="-357.804692" cy="11.5257513" fill="#4878d0" r="0.5"/>
+<circle cx="90.993049" cy="-187.85871999999998" fill="#ee854a" r="0.5"/>
+<circle cx="44.938555199999996" cy="144.063311" fill="#6acc64" r="0.5"/>
+<circle cx="-177.340534" cy="118.53578099999999" fill="#8c613c" r="0.5"/>
+<circle cx="-65.690835" cy="-119.61870900000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-304.253824" cy="140.044261" fill="#dc7ec0" r="0.5"/>
+<circle cx="-304.434872" cy="140.09506" fill="#dc7ec0" r="0.5"/>
+<circle cx="125.43706" cy="-228.679598" fill="#ee854a" r="0.5"/>
+<circle cx="-37.8637035" cy="231.94395" fill="#6acc64" r="0.5"/>
+<circle cx="-96.123167" cy="-120.63703399999999" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-96.123167" y="-120.63703399999999">Executive producer</text>
+<circle cx="59.61481400000001" cy="-224.25557" fill="#ee854a" r="0.5"/>
+<circle cx="74.936351" cy="-136.14167" fill="#ee854a" r="0.5"/>
+<circle cx="116.428102" cy="-294.00224000000003" fill="#ee854a" r="0.5"/>
+<circle cx="211.173256" cy="-61.150362" fill="#d65f5f" r="0.5"/>
+<circle cx="-75.255887" cy="137.25204499999998" fill="#8c613c" r="0.5"/>
+<circle cx="181.94855700000002" cy="42.6978601" fill="#d65f5f" r="0.5"/>
+<circle cx="-30.955014999999996" cy="-89.688452" fill="#dc7ec0" r="0.5"/>
+<circle cx="-161.34154400000003" cy="125.58377999999999" fill="#8c613c" r="0.5"/>
+<circle cx="78.154902" cy="-140.295281" fill="#ee854a" r="0.5"/>
+<circle cx="-76.07786899999999" cy="-118.78344100000001" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-76.07786899999999" y="-118.78344100000001">Film director</text>
+<circle cx="-78.96747599999999" cy="-119.821583" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-78.96747599999999" y="-119.821583">Film producer</text>
+<circle cx="-126.15420999999998" cy="-225.02429600000002" fill="#956cb4" r="0.5"/>
+<circle cx="-167.345871" cy="-313.228265" fill="#956cb4" r="0.5"/>
+<circle cx="-50.5214269" cy="-48.8410979" fill="#dc7ec0" r="0.5"/>
+<circle cx="-76.1014415" cy="-137.38977" fill="#dc7ec0" r="0.5"/>
+<circle cx="196.82176500000003" cy="100.27035199999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-82.090169" cy="-97.961416" fill="#dc7ec0" r="0.5"/>
+<circle cx="154.992838" cy="127.328124" fill="#d65f5f" r="0.5"/>
+<circle cx="98.627655" cy="164.292681" fill="#6acc64" r="0.5"/>
+<circle cx="214.322129" cy="111.089594" fill="#d65f5f" r="0.5"/>
+<circle cx="149.52784" cy="-173.703404" fill="#ee854a" r="0.5"/>
+<circle cx="229.32877100000002" cy="128.76533600000002" fill="#6acc64" r="0.5"/>
+<circle cx="1.42315173" cy="-87.769997" fill="#dc7ec0" r="0.5"/>
+<circle cx="-61.228972000000006" cy="26.4879629" fill="#dc7ec0" r="0.5"/>
+<circle cx="75.042282" cy="-75.19616299999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="-82.610507" cy="-144.70340499999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="-12.716218200000002" cy="-86.9013215" fill="#dc7ec0" r="0.5"/>
+<circle cx="-224.017864" cy="17.876970999999998" fill="#8c613c" r="0.5"/>
+<circle cx="-208.01916799999998" cy="228.32223399999998" fill="#8c613c" r="0.5"/>
+<circle cx="184.23883800000002" cy="151.131393" fill="#d65f5f" r="0.5"/>
+<circle cx="-9.376771600000001" cy="-119.724528" fill="#dc7ec0" r="0.5"/>
+<circle cx="103.657442" cy="250.893195" fill="#6acc64" r="0.5"/>
+<circle cx="-122.311854" cy="92.109451" fill="#8c613c" r="0.5"/>
+<circle cx="62.722555" cy="105.145229" fill="#6acc64" r="0.5"/>
+<circle cx="231.07126" cy="3.5726774999999997" fill="#d65f5f" r="2"/>
+<text font-size="2" x="231.07126" y="3.5726774999999997">Gonzo journalism</text>
+<circle cx="-224.054901" cy="17.9533116" fill="#8c613c" r="0.5"/>
+<circle cx="-330.08605" cy="-39.634741999999996" fill="#4878d0" r="0.5"/>
+<circle cx="18.103768900000002" cy="-221.84900500000003" fill="#ee854a" r="0.5"/>
+<circle cx="-29.719598999999995" cy="-94.823295" fill="#dc7ec0" r="0.5"/>
+<circle cx="-81.686857" cy="-146.218569" fill="#dc7ec0" r="0.5"/>
+<circle cx="-110.26344000000002" cy="55.616673" fill="#dc7ec0" r="0.5"/>
+<circle cx="-138.04329" cy="147.528213" fill="#8c613c" r="0.5"/>
+<circle cx="-110.57573099999999" cy="120.03708499999999" fill="#8c613c" r="0.5"/>
+<circle cx="163.892925" cy="-5.68632715" fill="#d65f5f" r="0.5"/>
+<circle cx="30.107528499999997" cy="189.00136500000002" fill="#6acc64" r="0.5"/>
+<circle cx="-316.369641" cy="-13.10211" fill="#4878d0" r="0.5"/>
+<circle cx="39.321153900000006" cy="-41.57139" fill="#dc7ec0" r="0.5"/>
+<circle cx="-122.461962" cy="115.58185799999998" fill="#8c613c" r="0.5"/>
+<circle cx="98.84768949999999" cy="-246.57651199999998" fill="#ee854a" r="0.5"/>
+<circle cx="98.48572300000001" cy="-246.53520500000002" fill="#ee854a" r="0.5"/>
+<circle cx="7.442073100000002" cy="-125.669579" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="7.442073100000002" y="-125.669579">Heart (symbol)</text>
+<circle cx="-250.281934" cy="206.679067" fill="#8c613c" r="0.5"/>
+<circle cx="88.534656" cy="135.096549" fill="#6acc64" r="0.5"/>
+<circle cx="-145.04490700000002" cy="113.962485" fill="#8c613c" r="0.5"/>
+<circle cx="-151.405324" cy="-275.67701" fill="#956cb4" r="0.5"/>
+<circle cx="-156.624279" cy="-276.68018" fill="#956cb4" r="0.5"/>
+<circle cx="-147.779485" cy="-258.397132" fill="#956cb4" r="0.5"/>
+<circle cx="-225.782151" cy="-258.52582" fill="#956cb4" r="0.5"/>
+<circle cx="-315.778414" cy="-21.1876063" fill="#4878d0" r="0.5"/>
+<circle cx="-312.700374" cy="-15.434617099999999" fill="#4878d0" r="0.5"/>
+<circle cx="-224.75215" cy="75.287611" fill="#8c613c" r="0.5"/>
+<circle cx="170.011618" cy="43.6933462" fill="#d65f5f" r="0.5"/>
+<circle cx="-263.91666" cy="-2.66358652" fill="#4878d0" r="0.5"/>
+<circle cx="-51.4340309" cy="-260.843352" fill="#956cb4" r="0.5"/>
+<circle cx="-44.037133000000004" cy="-105.733572" fill="#dc7ec0" r="0.5"/>
+<circle cx="-42.677252100000004" cy="-79.764132" fill="#dc7ec0" r="0.5"/>
+<circle cx="-54.1905" cy="-32.257981" fill="#dc7ec0" r="0.5"/>
+<circle cx="288.82370999999995" cy="54.738112099999995" fill="#d65f5f" r="0.5"/>
+<circle cx="175.74991" cy="-74.72276000000001" fill="#d65f5f" r="0.5"/>
+<circle cx="57.075935" cy="214.45496099999997" fill="#6acc64" r="0.5"/>
+<circle cx="-152.017005" cy="-87.451238" fill="#dc7ec0" r="0.5"/>
+<circle cx="267.012998" cy="-44.89691499999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-150.470824" cy="-260.89007" fill="#956cb4" r="0.5"/>
+<circle cx="-193.22937899999997" cy="102.48902300000002" fill="#8c613c" r="0.5"/>
+<circle cx="-167.929755" cy="-58.988258" fill="#dc7ec0" r="0.5"/>
+<circle cx="-50.859711" cy="124.148675" fill="#8c613c" r="0.5"/>
+<circle cx="-113.137367" cy="106.66026" fill="#8c613c" r="0.5"/>
+<circle cx="50.1650135" cy="-36.741495" fill="#dc7ec0" r="0.5"/>
+<circle cx="-103.025461" cy="74.0717355" fill="#8c613c" r="0.5"/>
+<circle cx="12.0877113" cy="-194.904766" fill="#ee854a" r="0.5"/>
+<circle cx="231.62587000000002" cy="6.052440379999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-93.509983" cy="-24.536904" fill="#dc7ec0" r="0.5"/>
+<circle cx="-146.205976" cy="136.317846" fill="#8c613c" r="0.5"/>
+<circle cx="105.310597" cy="141.834154" fill="#6acc64" r="0.5"/>
+<circle cx="-105.11725700000001" cy="106.698592" fill="#8c613c" r="0.5"/>
+<circle cx="155.934933" cy="-208.448947" fill="#ee854a" r="0.5"/>
+<circle cx="99.272138" cy="-191.61750999999998" fill="#ee854a" r="0.5"/>
+<circle cx="16.5906118" cy="-231.54719" fill="#ee854a" r="0.5"/>
+<circle cx="143.101434" cy="-246.96682499999997" fill="#ee854a" r="0.5"/>
+<circle cx="164.933951" cy="49.799547000000004" fill="#d65f5f" r="0.5"/>
+<circle cx="174.91208" cy="36.370852" fill="#d65f5f" r="0.5"/>
+<circle cx="209.421226" cy="52.2740701" fill="#d65f5f" r="0.5"/>
+<circle cx="-192.21643" cy="222.157418" fill="#8c613c" r="0.5"/>
+<circle cx="-231.13725600000004" cy="201.71888800000002" fill="#8c613c" r="0.5"/>
+<circle cx="99.73084800000001" cy="-209.68327799999997" fill="#ee854a" r="0.5"/>
+<circle cx="21.725844" cy="273.35294" fill="#6acc64" r="0.5"/>
+<circle cx="132.035253" cy="6.074121899999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-37.92228300000001" cy="114.54268" fill="#d65f5f" r="0.5"/>
+<circle cx="-359.46272600000003" cy="-7.2650921" fill="#4878d0" r="8"/>
+<text font-size="8" x="-359.46272600000003" y="-7.2650921">Jalsha Movies</text>
+<circle cx="-17.1358775" cy="-73.857581" fill="#dc7ec0" r="0.5"/>
+<circle cx="-206.2438" cy="-11.730691700000001" fill="#ee854a" r="0.5"/>
+<circle cx="90.06391099999999" cy="109.45255300000001" fill="#d65f5f" r="0.5"/>
+<circle cx="2.79933248" cy="-34.957027" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="2.79933248" y="-34.957027">Jawed Karim</text>
+<circle cx="26.896054499999998" cy="-56.78964199999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="154.018655" cy="3.2893186200000004" fill="#d65f5f" r="0.5"/>
+<circle cx="289.075241" cy="83.091925" fill="#d65f5f" r="0.5"/>
+<circle cx="266.974015" cy="26.8465239" fill="#d65f5f" r="0.5"/>
+<circle cx="-167.684517" cy="224.046172" fill="#8c613c" r="0.5"/>
+<circle cx="128.146445" cy="282.8875" fill="#6acc64" r="0.5"/>
+<circle cx="137.45148899999998" cy="-193.158357" fill="#ee854a" r="0.5"/>
+<circle cx="135.20408300000003" cy="207.2595" fill="#6acc64" r="0.5"/>
+<circle cx="-78.910461" cy="148.736329" fill="#8c613c" r="0.5"/>
+<circle cx="71.52158299999999" cy="231.37911999999997" fill="#6acc64" r="0.5"/>
+<circle cx="76.77524399999999" cy="168.03642100000002" fill="#6acc64" r="8"/>
+<text font-size="8" x="76.77524399999999" y="168.03642100000002">Julie Chen</text>
+<circle cx="-302.661744" cy="101.304931" fill="#8c613c" r="0.5"/>
+<circle cx="-302.742685" cy="28.5641818" fill="#4878d0" r="0.5"/>
+<circle cx="27.482041999999996" cy="271.421115" fill="#6acc64" r="2"/>
+<text font-size="2" x="27.482041999999996" y="271.421115">Katie Nolan</text>
+<circle cx="130.38031999999998" cy="269.52699900000005" fill="#6acc64" r="0.5"/>
+<circle cx="84.914158" cy="-5.4316745" fill="#d65f5f" r="0.5"/>
+<circle cx="-210.738724" cy="-293.65105" fill="#956cb4" r="0.5"/>
+<circle cx="-31.233425999999998" cy="251.78017899999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="-149.38841399999998" cy="171.209234" fill="#8c613c" r="0.5"/>
+<circle cx="281.252608" cy="-1.70504411" fill="#d65f5f" r="0.5"/>
+<circle cx="-152.05344" cy="148.32374199999998" fill="#8c613c" r="0.5"/>
+<circle cx="-123.25857599999999" cy="161.010444" fill="#8c613c" r="0.5"/>
+<circle cx="-152.54687" cy="-58.169447000000005" fill="#dc7ec0" r="0.5"/>
+<circle cx="73.074659" cy="60.136314" fill="#dc7ec0" r="0.5"/>
+<circle cx="-34.118916999999996" cy="113.06407" fill="#dc7ec0" r="0.5"/>
+<circle cx="78.96389199999999" cy="244.42935999999997" fill="#6acc64" r="0.5"/>
+<circle cx="-55.133682099999994" cy="-69.896491" fill="#dc7ec0" r="0.5"/>
+<circle cx="82.832302" cy="200.751761" fill="#6acc64" r="0.5"/>
+<circle cx="73.160367" cy="-225.584814" fill="#ee854a" r="0.5"/>
+<circle cx="-71.142134" cy="-145.876367" fill="#dc7ec0" r="0.5"/>
+<circle cx="2.17008176" cy="-28.442287999999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="-134.148868" cy="-74.780615" fill="#dc7ec0" r="0.5"/>
+<circle cx="161.35755999999998" cy="33.1235751" fill="#d65f5f" r="2"/>
+<text font-size="2" x="161.35755999999998" y="33.1235751">LiveLeak</text>
+<circle cx="-166.40071" cy="-215.77899000000002" fill="#956cb4" r="0.5"/>
+<circle cx="-88.883928" cy="-132.162079" fill="#dc7ec0" r="0.5"/>
+<circle cx="35.074106900000004" cy="162.97454599999998" fill="#6acc64" r="0.5"/>
+<circle cx="122.900386" cy="175.060991" fill="#6acc64" r="0.5"/>
+<circle cx="119.30525599999999" cy="212.14678800000002" fill="#6acc64" r="0.5"/>
+<circle cx="118.217015" cy="132.312831" fill="#6acc64" r="0.5"/>
+<circle cx="-211.761816" cy="252.31611999999996" fill="#8c613c" r="0.5"/>
+<circle cx="-166.581009" cy="-264.38727" fill="#956cb4" r="0.5"/>
+<circle cx="-168.74933600000003" cy="-264.311418" fill="#956cb4" r="0.5"/>
+<circle cx="-163.00438" cy="-267.75881999999996" fill="#956cb4" r="0.5"/>
+<circle cx="-23.291939999999997" cy="234.22881999999998" fill="#6acc64" r="0.5"/>
+<circle cx="107.58163499999999" cy="316.57660999999996" fill="#6acc64" r="0.5"/>
+<circle cx="45.48014310000001" cy="-186.77327200000002" fill="#ee854a" r="2"/>
+<text font-size="2" x="45.48014310000001" y="-186.77327200000002">Magazine</text>
+<circle cx="-15.555990099999997" cy="-70.85482599999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="-307.28544" cy="-28.8100785" fill="#4878d0" r="0.5"/>
+<circle cx="40.4741141" cy="-83.958364" fill="#dc7ec0" r="0.5"/>
+<circle cx="175.01833299999998" cy="2.52201866" fill="#d65f5f" r="0.5"/>
+<circle cx="-291.62819" cy="104.78340599999999" fill="#8c613c" r="0.5"/>
+<circle cx="-107.442538" cy="-220.21295800000001" fill="#956cb4" r="0.5"/>
+<circle cx="-71.399972" cy="68.99424" fill="#d65f5f" r="0.5"/>
+<circle cx="135.12715300000002" cy="-180.76662100000001" fill="#ee854a" r="0.5"/>
+<circle cx="58.675743" cy="-300.611101" fill="#ee854a" r="0.5"/>
+<circle cx="107.62711399999999" cy="247.45345799999998" fill="#6acc64" r="0.5"/>
+<circle cx="108.82718" cy="224.933079" fill="#6acc64" r="0.5"/>
+<circle cx="143.81773" cy="121.36097400000001" fill="#d65f5f" r="0.5"/>
+<circle cx="209.83899999999997" cy="150.87912699999998" fill="#d65f5f" r="0.5"/>
+<circle cx="-13.880946799999998" cy="-44.2094562" fill="#dc7ec0" r="0.5"/>
+<circle cx="93.84001900000001" cy="-219.0181" fill="#ee854a" r="2"/>
+<text font-size="2" x="93.84001900000001" y="-219.0181">Mass communication</text>
+<circle cx="24.724966" cy="293.17918000000003" fill="#6acc64" r="0.5"/>
+<circle cx="164.62121900000002" cy="-137.418456" fill="#d65f5f" r="0.5"/>
+<circle cx="191.88866199999998" cy="51.340562" fill="#d65f5f" r="0.5"/>
+<circle cx="72.95932" cy="-210.533148" fill="#ee854a" r="2"/>
+<text font-size="2" x="72.95932" y="-210.533148">Media (communication)</text>
+<circle cx="-147.37443" cy="54.2121685" fill="#8c613c" r="0.5"/>
+<circle cx="100.372482" cy="-173.794166" fill="#ee854a" r="0.5"/>
+<circle cx="76.64965699999999" cy="-138.550076" fill="#ee854a" r="0.5"/>
+<circle cx="151.65243099999998" cy="-177.695763" fill="#ee854a" r="0.5"/>
+<circle cx="-301.78888599999993" cy="4.7542298999999995" fill="#4878d0" r="0.5"/>
+<circle cx="53.311416900000005" cy="-274.603616" fill="#ee854a" r="0.5"/>
+<circle cx="196.99360099999998" cy="-78.987797" fill="#d65f5f" r="0.5"/>
+<circle cx="80.274621" cy="188.842066" fill="#6acc64" r="0.5"/>
+<circle cx="121.26461900000001" cy="-175.071099" fill="#ee854a" r="0.5"/>
+<circle cx="82.73861400000001" cy="-250.65658100000002" fill="#ee854a" r="0.5"/>
+<circle cx="-236.27766400000004" cy="71.713215" fill="#8c613c" r="0.5"/>
+<circle cx="-292.20286899999996" cy="-12.8797368" fill="#4878d0" r="0.5"/>
+<circle cx="97.278363" cy="349.37843499999997" fill="#6acc64" r="0.5"/>
+<circle cx="42.988663900000006" cy="-296.5648" fill="#ee854a" r="0.5"/>
+<circle cx="111.1982795" cy="-149.434929" fill="#ee854a" r="0.5"/>
+<circle cx="24.5320516" cy="213.503017" fill="#6acc64" r="0.5"/>
+<circle cx="-13.3083853" cy="194.327665" fill="#8c613c" r="0.5"/>
+<circle cx="49.0813701" cy="-295.803249" fill="#ee854a" r="0.5"/>
+<circle cx="30.225871900000005" cy="-287.7441" fill="#ee854a" r="0.5"/>
+<circle cx="-234.72001" cy="77.612094" fill="#8c613c" r="0.5"/>
+<circle cx="-221.67163200000002" cy="155.880949" fill="#8c613c" r="0.5"/>
+<circle cx="-164.566395" cy="225.39535899999998" fill="#8c613c" r="0.5"/>
+<circle cx="-236.75665999999995" cy="78.291248" fill="#8c613c" r="0.5"/>
+<circle cx="-240.56454800000003" cy="160.840904" fill="#8c613c" r="0.5"/>
+<circle cx="-230.75674999999998" cy="82.80847750000001" fill="#8c613c" r="0.5"/>
+<circle cx="-239.560328" cy="160.30016799999999" fill="#8c613c" r="0.5"/>
+<circle cx="-300.728001" cy="29.05784" fill="#4878d0" r="0.5"/>
+<circle cx="-217.448539" cy="201.94181" fill="#8c613c" r="0.5"/>
+<circle cx="-4.94150622" cy="238.93812599999998" fill="#6acc64" r="0.5"/>
+<circle cx="-195.09080500000002" cy="209.18600500000002" fill="#8c613c" r="0.5"/>
+<circle cx="-289.466975" cy="18.631153799999996" fill="#4878d0" r="0.5"/>
+<circle cx="-264.469471" cy="135.685305" fill="#8c613c" r="0.5"/>
+<circle cx="-287.47154800000004" cy="122.34114199999999" fill="#8c613c" r="0.5"/>
+<circle cx="-287.57589" cy="118.98755399999999" fill="#8c613c" r="0.5"/>
+<circle cx="-236.01165" cy="81.276923" fill="#8c613c" r="0.5"/>
+<circle cx="-239.79106899999996" cy="197.84386300000003" fill="#8c613c" r="0.5"/>
+<circle cx="-222.632816" cy="127.50262000000001" fill="#8c613c" r="0.5"/>
+<circle cx="-119.89901699999999" cy="105.006517" fill="#8c613c" r="0.5"/>
+<circle cx="242.88326999999998" cy="20.446981799999996" fill="#d65f5f" r="0.5"/>
+<circle cx="58.651362000000006" cy="-271.010768" fill="#ee854a" r="0.5"/>
+<circle cx="149.729342" cy="23.7815186" fill="#d65f5f" r="0.5"/>
+<circle cx="150.870727" cy="-125.18328899999999" fill="#ee854a" r="0.5"/>
+<circle cx="92.45423600000001" cy="185.359286" fill="#6acc64" r="0.5"/>
+<circle cx="114.74779400000001" cy="-200.898299" fill="#ee854a" r="0.5"/>
+<circle cx="119.14529199999998" cy="-194.37466300000003" fill="#ee854a" r="0.5"/>
+<circle cx="91.28714" cy="-168.964425" fill="#ee854a" r="0.5"/>
+<circle cx="170.092251" cy="62.99254500000001" fill="#d65f5f" r="0.5"/>
+<circle cx="126.013741" cy="-214.582452" fill="#ee854a" r="0.5"/>
+<circle cx="-261.626281" cy="210.72136400000002" fill="#8c613c" r="0.5"/>
+<circle cx="169.827756" cy="-98.98734999999999" fill="#d65f5f" r="0.5"/>
+<circle cx="72.848713" cy="232.65757899999997" fill="#6acc64" r="0.5"/>
+<circle cx="87.95983" cy="-226.98489800000002" fill="#ee854a" r="0.5"/>
+<circle cx="-91.924154" cy="98.437178" fill="#8c613c" r="0.5"/>
+<circle cx="18.8726419" cy="293.189141" fill="#6acc64" r="0.5"/>
+<circle cx="6.7188723" cy="-124.060328" fill="#dc7ec0" r="0.5"/>
+<circle cx="-207.79541999999998" cy="-287.37093" fill="#956cb4" r="0.5"/>
+<circle cx="-222.67603400000002" cy="-278.14318000000003" fill="#956cb4" r="0.5"/>
+<circle cx="178.357284" cy="-45.331902" fill="#d65f5f" r="0.5"/>
+<circle cx="199.55684000000002" cy="-54.15881309999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-156.523759" cy="199.83480299999997" fill="#8c613c" r="0.5"/>
+<circle cx="111.972441" cy="-220.400761" fill="#ee854a" r="2"/>
+<text font-size="2" x="111.972441" y="-220.400761">Models of communication</text>
+<circle cx="-178.81943099999998" cy="162.77957500000002" fill="#8c613c" r="0.5"/>
+<circle cx="-131.058529" cy="-44.149539" fill="#dc7ec0" r="0.5"/>
+<circle cx="184.796605" cy="148.314278" fill="#d65f5f" r="0.5"/>
+<circle cx="-195.83802" cy="-281.33126" fill="#956cb4" r="0.5"/>
+<circle cx="-50.20362200000001" cy="-123.53943" fill="#dc7ec0" r="0.5"/>
+<circle cx="113.415029" cy="-19.844433" fill="#d65f5f" r="0.5"/>
+<circle cx="-140.712299" cy="-322.65569000000005" fill="#956cb4" r="0.5"/>
+<circle cx="282.41565099999997" cy="26.3687578" fill="#d65f5f" r="0.5"/>
+<circle cx="248.65155000000001" cy="-7.356235600000001" fill="#d65f5f" r="0.5"/>
+<circle cx="41.29258419999999" cy="-288.41829800000005" fill="#ee854a" r="0.5"/>
+<circle cx="-181.163171" cy="-247.00269999999998" fill="#956cb4" r="0.5"/>
+<circle cx="114.27201799999999" cy="-210.735476" fill="#ee854a" r="0.5"/>
+<circle cx="43.398382999999995" cy="-216.950174" fill="#ee854a" r="2"/>
+<text font-size="2" x="43.398382999999995" y="-216.950174">Multimedia</text>
+<circle cx="36.283436" cy="-217.068614" fill="#ee854a" r="0.5"/>
+<circle cx="38.067204" cy="-206.505285" fill="#ee854a" r="0.5"/>
+<circle cx="-151.67014799999998" cy="-269.882571" fill="#956cb4" r="0.5"/>
+<circle cx="-158.05791399999998" cy="-95.780321" fill="#ee854a" r="0.5"/>
+<circle cx="-165.780125" cy="-80.33131399999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="-156.32662499999998" cy="-78.132278" fill="#dc7ec0" r="0.5"/>
+<circle cx="-225.1011" cy="221.675272" fill="#8c613c" r="0.5"/>
+<circle cx="-319.31518500000004" cy="-3.6023309" fill="#4878d0" r="0.5"/>
+<circle cx="-144.027758" cy="-251.359395" fill="#956cb4" r="0.5"/>
+<circle cx="-157.45230899999999" cy="131.53497000000002" fill="#8c613c" r="0.5"/>
+<circle cx="-118.43584899999999" cy="184.79290899999998" fill="#8c613c" r="0.5"/>
+<circle cx="-151.88145" cy="189.87935399999998" fill="#8c613c" r="0.5"/>
+<circle cx="85.152333" cy="205.377984" fill="#6acc64" r="0.5"/>
+<circle cx="183.605968" cy="-25.692618" fill="#d65f5f" r="0.5"/>
+<circle cx="77.73794699999999" cy="-186.759363" fill="#ee854a" r="0.5"/>
+<circle cx="-136.982069" cy="-328.03792" fill="#dc7ec0" r="0.5"/>
+<circle cx="-312.989271" cy="-25.424713999999998" fill="#4878d0" r="0.5"/>
+<circle cx="-246.81771799999999" cy="205.323993" fill="#8c613c" r="0.5"/>
+<circle cx="230.983095" cy="3.6562742999999998" fill="#d65f5f" r="0.5"/>
+<circle cx="95.756346" cy="-199.22916999999998" fill="#ee854a" r="0.5"/>
+<circle cx="-45.356815" cy="-103.31976900000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="101.92145599999999" cy="-203.765422" fill="#ee854a" r="0.5"/>
+<circle cx="-239.457232" cy="61.273023" fill="#ee854a" r="0.5"/>
+<circle cx="93.645755" cy="235.66055799999998" fill="#6acc64" r="0.5"/>
+<circle cx="-89.675537" cy="144.241286" fill="#8c613c" r="0.5"/>
+<circle cx="-115.278884" cy="163.09797" fill="#8c613c" r="0.5"/>
+<circle cx="108.53353700000001" cy="159.93635700000002" fill="#6acc64" r="0.5"/>
+<circle cx="6.4903706" cy="98.30844100000002" fill="#dc7ec0" r="0.5"/>
+<circle cx="97.48826500000001" cy="-285.72264" fill="#ee854a" r="0.5"/>
+<circle cx="-138.724908" cy="-325.731084" fill="#956cb4" r="0.5"/>
+<circle cx="9.672439" cy="131.08361" fill="#6acc64" r="0.5"/>
+<circle cx="6.4604624" cy="137.518045" fill="#6acc64" r="0.5"/>
+<circle cx="5.31361005" cy="143.415622" fill="#6acc64" r="0.5"/>
+<circle cx="121.707229" cy="193.93612" fill="#6acc64" r="0.5"/>
+<circle cx="-111.56504100000001" cy="-228.94678800000003" fill="#956cb4" r="0.5"/>
+<circle cx="196.993321" cy="-55.190244899999996" fill="#d65f5f" r="0.5"/>
+<circle cx="198.17010500000004" cy="-51.409561" fill="#d65f5f" r="0.5"/>
+<circle cx="18.065758900000002" cy="-260.083418" fill="#ee854a" r="0.5"/>
+<circle cx="-161.28872199999998" cy="-58.08720400000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-273.396032" cy="200.488995" fill="#8c613c" r="0.5"/>
+<circle cx="140.609133" cy="321.94736" fill="#dc7ec0" r="0.5"/>
+<circle cx="130.350073" cy="331.96105600000004" fill="#6acc64" r="0.5"/>
+<circle cx="184.4941" cy="-51.768248" fill="#d65f5f" r="0.5"/>
+<circle cx="-158.46201" cy="226.00196499999998" fill="#8c613c" r="0.5"/>
+<circle cx="76.934984" cy="-201.22935" fill="#ee854a" r="0.5"/>
+<circle cx="219.41913" cy="100.804214" fill="#d65f5f" r="0.5"/>
+<circle cx="140.72275" cy="-17.2979625" fill="#d65f5f" r="0.5"/>
+<circle cx="50.9807662" cy="-265.892949" fill="#ee854a" r="0.5"/>
+<circle cx="189.20748" cy="-33.951974" fill="#d65f5f" r="0.5"/>
+<circle cx="153.99545" cy="-236.37427799999998" fill="#ee854a" r="0.5"/>
+<circle cx="-165.027583" cy="-239.46565999999996" fill="#956cb4" r="0.5"/>
+<circle cx="100.75645300000001" cy="247.03534800000003" fill="#6acc64" r="0.5"/>
+<circle cx="23.933497" cy="-222.56331999999998" fill="#ee854a" r="0.5"/>
+<circle cx="-317.124962" cy="-47.639585000000004" fill="#4878d0" r="0.5"/>
+<circle cx="87.976616" cy="-211.12712599999998" fill="#ee854a" r="0.5"/>
+<circle cx="-162.41318099999998" cy="170.316223" fill="#8c613c" r="0.5"/>
+<circle cx="146.247514" cy="-210.684838" fill="#ee854a" r="0.5"/>
+<circle cx="108.613463" cy="145.734575" fill="#6acc64" r="0.5"/>
+<circle cx="7.8765666" cy="-217.652029" fill="#ee854a" r="0.5"/>
+<circle cx="156.81000999999998" cy="-30.547905500000002" fill="#d65f5f" r="0.5"/>
+<circle cx="-112.95657800000001" cy="-221.014234" fill="#956cb4" r="0.5"/>
+<circle cx="47.7052142" cy="-281.00447899999995" fill="#ee854a" r="0.5"/>
+<circle cx="-198.37331500000002" cy="145.53189" fill="#8c613c" r="0.5"/>
+<circle cx="234.92440999999997" cy="77.95215400000001" fill="#d65f5f" r="0.5"/>
+<circle cx="253.844794" cy="-66.215954" fill="#d65f5f" r="0.5"/>
+<circle cx="-92.808394" cy="-102.171426" fill="#dc7ec0" r="0.5"/>
+<circle cx="81.86675" cy="9.049488" fill="#d65f5f" r="0.5"/>
+<circle cx="-151.246333" cy="154.55417599999998" fill="#8c613c" r="0.5"/>
+<circle cx="-222.92455500000003" cy="-264.70324999999997" fill="#956cb4" r="0.5"/>
+<circle cx="83.152188" cy="148.879605" fill="#6acc64" r="0.5"/>
+<circle cx="25.8527815" cy="197.27015" fill="#6acc64" r="0.5"/>
+<circle cx="118.70183499999999" cy="-255.99747599999998" fill="#ee854a" r="0.5"/>
+<circle cx="106.315188" cy="-189.270767" fill="#ee854a" r="0.5"/>
+<circle cx="85.637685" cy="-178.45716" fill="#ee854a" r="0.5"/>
+<circle cx="67.47727" cy="-249.320582" fill="#ee854a" r="0.5"/>
+<circle cx="-345.76572100000004" cy="28.920798900000005" fill="#4878d0" r="0.5"/>
+<circle cx="-92.00716700000001" cy="-137.665528" fill="#dc7ec0" r="0.5"/>
+<circle cx="-93.778804" cy="-134.641038" fill="#dc7ec0" r="0.5"/>
+<circle cx="-78.577618" cy="-127.32734" fill="#dc7ec0" r="0.5"/>
+<circle cx="15.91982" cy="211.13376199999996" fill="#6acc64" r="0.5"/>
+<circle cx="15.891642200000001" cy="120.56762199999999" fill="#6acc64" r="0.5"/>
+<circle cx="48.515789000000005" cy="-237.86872899999997" fill="#ee854a" r="0.5"/>
+<circle cx="178.528504" cy="-59.30381800000001" fill="#d65f5f" r="0.5"/>
+<circle cx="154.30835" cy="-53.967760000000006" fill="#d65f5f" r="0.5"/>
+<circle cx="64.958656" cy="-189.453831" fill="#ee854a" r="0.5"/>
+<circle cx="-344.319549" cy="-28.5525261" fill="#4878d0" r="0.5"/>
+<circle cx="-90.297963" cy="93.6306" fill="#8c613c" r="0.5"/>
+<circle cx="228.79745" cy="-26.238022299999997" fill="#d65f5f" r="0.5"/>
+<circle cx="194.396762" cy="-225.73029499999996" fill="#d65f5f" r="0.5"/>
+<circle cx="42.7297661" cy="-189.921158" fill="#ee854a" r="0.5"/>
+<circle cx="-44.555441" cy="-130.213489" fill="#dc7ec0" r="0.5"/>
+<circle cx="28.306894" cy="-65.75389799999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="-319.053098" cy="-31.134228999999998" fill="#4878d0" r="0.5"/>
+<circle cx="-30.4458105" cy="-19.773037900000002" fill="#dc7ec0" r="0.5"/>
+<circle cx="198.84815999999998" cy="41.0473315" fill="#d65f5f" r="0.5"/>
+<circle cx="-207.57027899999997" cy="-242.51506999999998" fill="#956cb4" r="0.5"/>
+<circle cx="111.755245" cy="306.58396999999997" fill="#6acc64" r="0.5"/>
+<circle cx="-193.031482" cy="216.62553499999999" fill="#8c613c" r="0.5"/>
+<circle cx="-168.16195199999999" cy="149.78978" fill="#8c613c" r="0.5"/>
+<circle cx="-201.84821300000002" cy="197.05600600000002" fill="#8c613c" r="0.5"/>
+<circle cx="189.280728" cy="25.861731000000002" fill="#d65f5f" r="0.5"/>
+<circle cx="-309.60332200000005" cy="1.2054287000000001" fill="#4878d0" r="0.5"/>
+<circle cx="-213.971093" cy="217.621376" fill="#8c613c" r="0.5"/>
+<circle cx="49.4791731" cy="-252.14623" fill="#ee854a" r="0.5"/>
+<circle cx="22.7117401" cy="247.34213000000005" fill="#6acc64" r="0.5"/>
+<circle cx="-232.47674800000004" cy="190.83192100000002" fill="#8c613c" r="0.5"/>
+<circle cx="-321.717774" cy="-24.988571999999998" fill="#4878d0" r="0.5"/>
+<circle cx="25.487882000000003" cy="-3.22245441" fill="#dc7ec0" r="0.5"/>
+<circle cx="42.071449" cy="-43.680151900000006" fill="#dc7ec0" r="0.5"/>
+<circle cx="48.773193000000006" cy="-272.711285" fill="#ee854a" r="0.5"/>
+<circle cx="36.3987869" cy="242.47937000000002" fill="#6acc64" r="0.5"/>
+<circle cx="-255.36744800000002" cy="113.360408" fill="#8c613c" r="0.5"/>
+<circle cx="189.85573599999998" cy="65.520189" fill="#d65f5f" r="0.5"/>
+<circle cx="160.45974" cy="71.947197" fill="#d65f5f" r="0.5"/>
+<circle cx="-10.3264721" cy="194.185516" fill="#6acc64" r="0.5"/>
+<circle cx="62.979612499999995" cy="-280.94724" fill="#ee854a" r="0.5"/>
+<circle cx="-128.135294" cy="-278.023641" fill="#956cb4" r="0.5"/>
+<circle cx="123.27067199999999" cy="258.335742" fill="#8c613c" r="0.5"/>
+<circle cx="41.6060491" cy="194.338522" fill="#6acc64" r="0.5"/>
+<circle cx="187.418" cy="82.445426" fill="#d65f5f" r="0.5"/>
+<circle cx="-150.625678" cy="190.02058599999998" fill="#8c613c" r="0.5"/>
+<circle cx="-193.131925" cy="215.963006" fill="#8c613c" r="0.5"/>
+<circle cx="-145.09844999999999" cy="-38.7987215" fill="#dc7ec0" r="0.5"/>
+<circle cx="-112.28911399999998" cy="82.597508" fill="#8c613c" r="0.5"/>
+<circle cx="128.147796" cy="271.217688" fill="#6acc64" r="0.5"/>
+<circle cx="-218.361927" cy="221.71382100000002" fill="#8c613c" r="0.5"/>
+<circle cx="150.297021" cy="33.40135190000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-222.06656500000003" cy="237.303269" fill="#8c613c" r="0.5"/>
+<circle cx="-341.046601" cy="-7.6162569" fill="#4878d0" r="0.5"/>
+<circle cx="117.88595" cy="170.730168" fill="#6acc64" r="0.5"/>
+<circle cx="9.3953755" cy="52.645400499999994" fill="#dc7ec0" r="0.5"/>
+<circle cx="-136.233958" cy="-60.7104015" fill="#dc7ec0" r="0.5"/>
+<circle cx="252.76335000000003" cy="105.0208215" fill="#d65f5f" r="0.5"/>
+<circle cx="-64.88321" cy="-145.936728" fill="#dc7ec0" r="0.5"/>
+<circle cx="213.69037899999998" cy="114.91846799999999" fill="#d65f5f" r="0.5"/>
+<circle cx="86.534238" cy="302.26385" fill="#6acc64" r="0.5"/>
+<circle cx="-87.706192" cy="-94.857462" fill="#dc7ec0" r="0.5"/>
+<circle cx="-84.60036199999999" cy="-135.11684200000002" fill="#dc7ec0" r="0.5"/>
+<circle cx="-133.40086200000002" cy="-299.541998" fill="#956cb4" r="0.5"/>
+<circle cx="36.55229550000001" cy="-115.57781200000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-43.9543202" cy="-261.53148" fill="#956cb4" r="0.5"/>
+<circle cx="38.137792" cy="-183.53430899999998" fill="#ee854a" r="0.5"/>
+<circle cx="-151.804982" cy="-288.25789999999995" fill="#956cb4" r="0.5"/>
+<circle cx="63.83898500000001" cy="-106.019186" fill="#dc7ec0" r="0.5"/>
+<circle cx="70.525959" cy="185.89361" fill="#6acc64" r="0.5"/>
+<circle cx="82.544119" cy="229.790785" fill="#6acc64" r="0.5"/>
+<circle cx="28.472297" cy="71.40392000000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-199.87568299999998" cy="114.10252000000001" fill="#8c613c" r="0.5"/>
+<circle cx="149.076165" cy="-178.286094" fill="#ee854a" r="0.5"/>
+<circle cx="9.0722912" cy="193.393837" fill="#6acc64" r="0.5"/>
+<circle cx="-277.57036999999997" cy="131.881764" fill="#8c613c" r="0.5"/>
+<circle cx="59.306295999999996" cy="-290.425555" fill="#ee854a" r="0.5"/>
+<circle cx="98.58387699999999" cy="-304.459008" fill="#ee854a" r="0.5"/>
+<circle cx="-256.62308" cy="210.76099100000002" fill="#8c613c" r="0.5"/>
+<circle cx="27.911365999999997" cy="-167.253107" fill="#ee854a" r="0.5"/>
+<circle cx="80.507938" cy="-219.708608" fill="#ee854a" r="0.5"/>
+<circle cx="117.64379900000002" cy="-257.90907799999997" fill="#ee854a" r="0.5"/>
+<circle cx="120.447446" cy="-292.511478" fill="#ee854a" r="0.5"/>
+<circle cx="67.99856700000001" cy="-202.60824499999998" fill="#ee854a" r="0.5"/>
+<circle cx="114.40069900000002" cy="-272.687149" fill="#ee854a" r="0.5"/>
+<circle cx="39.533815999999995" cy="-291.861178" fill="#ee854a" r="0.5"/>
+<circle cx="58.41006499999999" cy="-309.129079" fill="#ee854a" r="0.5"/>
+<circle cx="-293.34511499999996" cy="128.82002" fill="#d65f5f" r="0.5"/>
+<circle cx="19.6413294" cy="221.712134" fill="#6acc64" r="0.5"/>
+<circle cx="194.78027799999998" cy="-26.3913419" fill="#d65f5f" r="0.5"/>
+<circle cx="95.24176200000001" cy="239.16589899999997" fill="#6acc64" r="0.5"/>
+<circle cx="29.423365999999998" cy="223.60929499999997" fill="#6acc64" r="0.5"/>
+<circle cx="29.6371635" cy="220.748815" fill="#6acc64" r="0.5"/>
+<circle cx="196.69638100000003" cy="-45.695685000000005" fill="#d65f5f" r="0.5"/>
+<circle cx="59.514854" cy="-263.17396" fill="#ee854a" r="0.5"/>
+<circle cx="-289.50012" cy="18.297759900000003" fill="#4878d0" r="0.5"/>
+<circle cx="35.526610000000005" cy="22.838189500000002" fill="#6acc64" r="0.5"/>
+<circle cx="-357.18911199999997" cy="-7.063288399999999" fill="#4878d0" r="8"/>
+<text font-size="8" x="-357.18911199999997" y="-7.063288399999999">Star Jalsha</text>
+<circle cx="-189.42091699999997" cy="200.24408599999998" fill="#8c613c" r="0.5"/>
+<circle cx="-182.91385" cy="89.44581099999999" fill="#8c613c" r="0.5"/>
+<circle cx="155.34456699999998" cy="75.213005" fill="#d65f5f" r="0.5"/>
+<circle cx="-31.507188999999997" cy="-55.7454149" fill="#dc7ec0" r="0.5"/>
+<circle cx="105.84889000000001" cy="-292.020085" fill="#ee854a" r="0.5"/>
+<circle cx="-34.775412" cy="-160.92566" fill="#dc7ec0" r="0.5"/>
+<circle cx="222.37354299999998" cy="-17.0027956" fill="#d65f5f" r="0.5"/>
+<circle cx="134.813273" cy="206.35828499999997" fill="#6acc64" r="0.5"/>
+<circle cx="-6.52036329" cy="-239.484308" fill="#ee854a" r="0.5"/>
+<circle cx="-336.22134000000005" cy="-3.5618338" fill="#4878d0" r="0.5"/>
+<circle cx="106.508717" cy="-113.429176" fill="#dc7ec0" r="0.5"/>
+<circle cx="257.666381" cy="-13.958154700000001" fill="#d65f5f" r="0.5"/>
+<circle cx="119.05522300000001" cy="302.88805399999995" fill="#6acc64" r="0.5"/>
+<circle cx="-326.956749" cy="24.312243900000002" fill="#4878d0" r="0.5"/>
+<circle cx="-105.91245" cy="92.12179900000001" fill="#8c613c" r="0.5"/>
+<circle cx="121.86524" cy="78.450351" fill="#d65f5f" r="0.5"/>
+<circle cx="92.44352599999999" cy="-77.281288" fill="#d65f5f" r="0.5"/>
+<circle cx="-345.604868" cy="24.226908299999998" fill="#4878d0" r="0.5"/>
+<circle cx="-261.394315" cy="199.43222599999999" fill="#8c613c" r="0.5"/>
+<circle cx="-71.140139" cy="96.478788" fill="#d65f5f" r="0.5"/>
+<circle cx="-164.47997999999998" cy="95.714101" fill="#8c613c" r="0.5"/>
+<circle cx="106.499155" cy="-309.264088" fill="#ee854a" r="0.5"/>
+<circle cx="42.550032" cy="-243.570005" fill="#ee854a" r="0.5"/>
+<circle cx="177.00214" cy="19.7066961" fill="#d65f5f" r="0.5"/>
+<circle cx="30.3711359" cy="-224.780871" fill="#ee854a" r="0.5"/>
+<circle cx="154.817789" cy="122.954629" fill="#d65f5f" r="0.5"/>
+<circle cx="-109.48798" cy="190.80845" fill="#8c613c" r="0.5"/>
+<circle cx="51.595352899999995" cy="193.951142" fill="#6acc64" r="0.5"/>
+<circle cx="-25.727470999999998" cy="239.098636" fill="#6acc64" r="0.5"/>
+<circle cx="-268.39197" cy="184.148391" fill="#8c613c" r="0.5"/>
+<circle cx="-218.82076999999998" cy="201.897717" fill="#8c613c" r="0.5"/>
+<circle cx="148.797488" cy="108.103625" fill="#d65f5f" r="0.5"/>
+<circle cx="147.67882500000002" cy="-193.309004" fill="#ee854a" r="0.5"/>
+<circle cx="-275.1644" cy="113.70772699999999" fill="#8c613c" r="0.5"/>
+<circle cx="217.64288000000002" cy="108.719674" fill="#d65f5f" r="0.5"/>
+<circle cx="-312.59265800000003" cy="-39.6152589" fill="#4878d0" r="0.5"/>
+<circle cx="-26.5792919" cy="0.84168518" fill="#dc7ec0" r="0.5"/>
+<circle cx="44.4068275" cy="50.406293000000005" fill="#dc7ec0" r="0.5"/>
+<circle cx="110.571279" cy="-238.833371" fill="#ee854a" r="0.5"/>
+<circle cx="-23.048646599999998" cy="-151.873141" fill="#dc7ec0" r="0.5"/>
+<circle cx="125.42623799999998" cy="309.78493" fill="#6acc64" r="0.5"/>
+<circle cx="-307.13570999999996" cy="-13.3376383" fill="#4878d0" r="2"/>
+<text font-size="2" x="-307.13570999999996" y="-13.3376383">The Hindu</text>
+<circle cx="-55.07644380000001" cy="-89.470738" fill="#dc7ec0" r="0.5"/>
+<circle cx="282.64698" cy="-32.058033" fill="#d65f5f" r="0.5"/>
+<circle cx="-207.409874" cy="-10.0993802" fill="#d65f5f" r="0.5"/>
+<circle cx="-54.3225081" cy="71.62362200000001" fill="#d65f5f" r="0.5"/>
+<circle cx="-47.6501991" cy="-74.207721" fill="#dc7ec0" r="0.5"/>
+<circle cx="53.8321035" cy="272.332291" fill="#6acc64" r="0.5"/>
+<circle cx="127.600571" cy="86.65832" fill="#d65f5f" r="0.5"/>
+<circle cx="188.71681500000003" cy="35.5036731" fill="#d65f5f" r="0.5"/>
+<circle cx="-133.69412699999998" cy="57.66261200000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-67.298728" cy="76.27601800000001" fill="#d65f5f" r="0.5"/>
+<circle cx="223.056869" cy="110.10412" fill="#d65f5f" r="0.5"/>
+<circle cx="-315.60536" cy="-9.9475348" fill="#4878d0" r="0.5"/>
+<circle cx="118.364001" cy="32.332946099999994" fill="#d65f5f" r="0.5"/>
+<circle cx="133.38199699999998" cy="-167.406141" fill="#ee854a" r="0.5"/>
+<circle cx="230.58116199999998" cy="68.70017" fill="#d65f5f" r="0.5"/>
+<circle cx="132.795873" cy="-206.54099200000002" fill="#ee854a" r="0.5"/>
+<circle cx="125.73663200000001" cy="264.36949000000004" fill="#6acc64" r="0.5"/>
+<circle cx="271.00692499999997" cy="-46.544579899999995" fill="#d65f5f" r="0.5"/>
+<circle cx="98.171556" cy="224.44429000000002" fill="#6acc64" r="0.5"/>
+<circle cx="-181.727924" cy="-257.263965" fill="#956cb4" r="0.5"/>
+<circle cx="77.90823599999999" cy="255.81308900000002" fill="#6acc64" r="0.5"/>
+<circle cx="-150.697925" cy="78.706348" fill="#8c613c" r="0.5"/>
+<circle cx="-158.64732800000002" cy="119.69097699999999" fill="#8c613c" r="0.5"/>
+<circle cx="176.334263" cy="-12.964686" fill="#d65f5f" r="0.5"/>
+<circle cx="249.86160500000003" cy="75.399597" fill="#d65f5f" r="0.5"/>
+<circle cx="-137.007206" cy="82.58313" fill="#8c613c" r="0.5"/>
+<circle cx="223.974968" cy="28.5184998" fill="#d65f5f" r="0.5"/>
+<circle cx="-37.734141199999996" cy="-25.572652" fill="#dc7ec0" r="0.5"/>
+<circle cx="-19.151750099999997" cy="174.320692" fill="#6acc64" r="0.5"/>
+<circle cx="-59.77122200000001" cy="-103.97326100000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="187.056254" cy="13.370891100000001" fill="#d65f5f" r="0.5"/>
+<circle cx="139.151901" cy="307.903015" fill="#dc7ec0" r="0.5"/>
+<circle cx="19.546420599999998" cy="-206.64576799999998" fill="#ee854a" r="0.5"/>
+<circle cx="-116.88102300000001" cy="122.25477599999999" fill="#8c613c" r="0.5"/>
+<circle cx="84.53004" cy="-194.799542" fill="#ee854a" r="0.5"/>
+<circle cx="-153.33418799999998" cy="-256.73991" fill="#956cb4" r="0.5"/>
+<circle cx="153.65630000000002" cy="-34.411638800000006" fill="#d65f5f" r="0.5"/>
+<circle cx="-242.91012899999996" cy="186.48115500000003" fill="#8c613c" r="0.5"/>
+<circle cx="-20.469752800000002" cy="243.98499999999999" fill="#6acc64" r="0.5"/>
+<circle cx="-16.7365681" cy="236.17363000000003" fill="#6acc64" r="0.5"/>
+<circle cx="-22.098307" cy="-33.39994" fill="#dc7ec0" r="0.5"/>
+<circle cx="21.057971900000002" cy="-23.59525" fill="#dc7ec0" r="0.5"/>
+<circle cx="146.840064" cy="-5.40141532" fill="#d65f5f" r="0.5"/>
+<circle cx="0.0304034402" cy="-33.0985781" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="0.0304034402" y="-33.0985781">Vevo</text>
+<circle cx="68.405638" cy="177.941428" fill="#6acc64" r="0.5"/>
+<circle cx="307.36734" cy="1.41140069" fill="#d65f5f" r="0.5"/>
+<circle cx="-6.902559999999999" cy="-16.700168799999997" fill="#dc7ec0" r="0.5"/>
+<circle cx="-38.945466" cy="-157.711435" fill="#dc7ec0" r="0.5"/>
+<circle cx="-134.184911" cy="-219.66915600000002" fill="#956cb4" r="0.5"/>
+<circle cx="96.23808600000001" cy="-153.669579" fill="#ee854a" r="0.5"/>
+<circle cx="-289.875208" cy="114.908248" fill="#8c613c" r="0.5"/>
+<circle cx="-10.1935967" cy="-33.105359" fill="#dc7ec0" r="0.5"/>
+<circle cx="-137.157398" cy="-38.2949651" fill="#dc7ec0" r="0.5"/>
+<circle cx="-159.29483499999998" cy="107.836309" fill="#8c613c" r="0.5"/>
+<circle cx="-194.06937899999997" cy="-249.72141600000003" fill="#956cb4" r="0.5"/>
+<circle cx="10.6577849" cy="-224.05732999999998" fill="#ee854a" r="0.5"/>
+<circle cx="137.58556" cy="-236.40509200000002" fill="#ee854a" r="0.5"/>
+<circle cx="-169.99241" cy="138.21730300000002" fill="#8c613c" r="0.5"/>
+<circle cx="-202.05001600000003" cy="216.65664299999997" fill="#8c613c" r="0.5"/>
+<circle cx="-218.717646" cy="222.533689" fill="#8c613c" r="0.5"/>
+<circle cx="120.24179299999999" cy="212.757804" fill="#6acc64" r="0.5"/>
+<circle cx="15.123687599999997" cy="242.736879" fill="#6acc64" r="0.5"/>
+<circle cx="13.617649499999999" cy="228.77228499999995" fill="#6acc64" r="0.5"/>
+<circle cx="44.8714511" cy="221.002215" fill="#6acc64" r="0.5"/>
+<circle cx="16.475632599999997" cy="239.313648" fill="#6acc64" r="0.5"/>
+<circle cx="15.9651401" cy="239.481179" fill="#6acc64" r="0.5"/>
+<circle cx="4.5914218" cy="233.06226999999998" fill="#6acc64" r="0.5"/>
+<circle cx="14.1504188" cy="226.83444000000003" fill="#6acc64" r="0.5"/>
+<circle cx="229.635378" cy="-16.289973" fill="#d65f5f" r="0.5"/>
+<circle cx="150.98764800000004" cy="-77.651742" fill="#d65f5f" r="0.5"/>
+<circle cx="-17.022229" cy="-73.737944" fill="#dc7ec0" r="0.5"/>
+<circle cx="-74.704826" cy="138.80607999999998" fill="#8c613c" r="0.5"/>
+<circle cx="97.19498600000001" cy="-272.439692" fill="#ee854a" r="0.5"/>
+<circle cx="284.68125000000003" cy="-33.999049" fill="#d65f5f" r="0.5"/>
+<circle cx="33.359473" cy="-251.765759" fill="#ee854a" r="0.5"/>
+<circle cx="-12.3453953" cy="-31.508469999999996" fill="#dc7ec0" r="0.5"/>
+<circle cx="-146.614755" cy="-280.087108" fill="#956cb4" r="0.5"/>
+<circle cx="-31.526983599999994" cy="-55.743016000000004" fill="#dc7ec0" r="2"/>
+<text font-size="2" x="-31.526983599999994" y="-55.743016000000004">Wilhelm scream</text>
+<circle cx="110.78706799999999" cy="201.980394" fill="#6acc64" r="0.5"/>
+<circle cx="-68.641055" cy="-33.3753399" fill="#dc7ec0" r="0.5"/>
+<circle cx="-107.339834" cy="-133.904505" fill="#dc7ec0" r="0.5"/>
+<circle cx="184.736965" cy="59.971135000000004" fill="#d65f5f" r="0.5"/>
+<circle cx="61.747014" cy="-171.80926" fill="#ee854a" r="0.5"/>
+<circle cx="-158.232459" cy="-264.78015899999997" fill="#956cb4" r="0.5"/>
+<circle cx="122.83835199999999" cy="34.5142581" fill="#d65f5f" r="0.5"/>
+<circle cx="22.7191797" cy="-98.691838" fill="#dc7ec0" r="0.5"/>
+<circle cx="-342.349252" cy="9.020977000000002" fill="#4878d0" r="0.5"/>
+<circle cx="-257.22473" cy="65.477265" fill="#ee854a" r="0.5"/>
+<circle cx="-101.498866" cy="-263.00743" fill="#956cb4" r="0.5"/>
+<circle cx="-349.53408" cy="-12.992158899999998" fill="#4878d0" r="0.5"/>
+<circle cx="-329.147749" cy="-1.08117807" fill="#4878d0" r="0.5"/>
+<circle cx="-327.91866799999997" cy="1.64781841" fill="#4878d0" r="2"/>
+<text font-size="2" x="-327.91866799999997" y="1.64781841">Aaj Tak</text>
+<circle cx="-234.37393000000003" cy="50.8095238" fill="#dc7ec0" r="0.5"/>
+<circle cx="55.473537" cy="-279.07957" fill="#ee854a" r="0.5"/>
+<circle cx="227.675329" cy="127.01922100000002" fill="#dc7ec0" r="0.5"/>
+<circle cx="194.17810999999998" cy="120.76266999999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-113.66847800000001" cy="-289.105845" fill="#956cb4" r="0.5"/>
+<circle cx="-104.061412" cy="123.43527" fill="#8c613c" r="0.5"/>
+<circle cx="-267.27708" cy="136.00203399999998" fill="#8c613c" r="0.5"/>
+<circle cx="-280.98087499999997" cy="139.92461" fill="#dc7ec0" r="0.5"/>
+<circle cx="-29.533616000000002" cy="239.384544" fill="#6acc64" r="0.5"/>
+<circle cx="-156.906939" cy="67.709838" fill="#8c613c" r="0.5"/>
+<circle cx="-335.92636" cy="-30.821483" fill="#4878d0" r="0.5"/>
+<circle cx="257.80651400000005" cy="-15.4224371" fill="#d65f5f" r="0.5"/>
+<circle cx="-201.01739" cy="127.14081100000001" fill="#8c613c" r="0.5"/>
+<circle cx="-265.165376" cy="124.41621500000001" fill="#8c613c" r="0.5"/>
+<circle cx="-216.69529" cy="-288.392531" fill="#956cb4" r="0.5"/>
+<circle cx="-106.44813200000002" cy="192.45858100000004" fill="#8c613c" r="0.5"/>
+<circle cx="-216.41746" cy="-279.39298800000006" fill="#956cb4" r="0.5"/>
+<circle cx="-126.77402500000001" cy="213.15096599999998" fill="#8c613c" r="0.5"/>
+<circle cx="70.243054" cy="187.891816" fill="#6acc64" r="0.5"/>
+<circle cx="-82.967941" cy="111.633067" fill="#dc7ec0" r="0.5"/>
+<circle cx="-146.794025" cy="61.66122200000001" fill="#8c613c" r="0.5"/>
+<circle cx="-327.551315" cy="8.935213000000001" fill="#4878d0" r="0.5"/>
+<circle cx="109.668678" cy="290.81038" fill="#6acc64" r="0.5"/>
+<circle cx="-225.358966" cy="229.03220900000002" fill="#8c613c" r="0.5"/>
+<circle cx="-101.991533" cy="-126.21977899999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="-267.47648200000003" cy="135.279025" fill="#8c613c" r="0.5"/>
+<circle cx="193.957708" cy="-225.78880099999998" fill="#ee854a" r="0.5"/>
+<circle cx="257.35311" cy="19.5449247" fill="#d65f5f" r="0.5"/>
+<circle cx="278.59078100000005" cy="16.2327081" fill="#d65f5f" r="0.5"/>
+<circle cx="254.78725999999997" cy="18.1784771" fill="#d65f5f" r="0.5"/>
+<circle cx="-55.9585971" cy="64.534911" fill="#d65f5f" r="0.5"/>
+<circle cx="-132.678126" cy="-130.46509" fill="#dc7ec0" r="0.5"/>
+<circle cx="94.625916" cy="249.62973000000002" fill="#6acc64" r="0.5"/>
+<circle cx="-73.0448495" cy="-68.40162000000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="118.960709" cy="-63.604912" fill="#d65f5f" r="0.5"/>
+<circle cx="13.986299599999999" cy="-101.49027350000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="41.146791" cy="-278.818638" fill="#ee854a" r="0.5"/>
+<circle cx="115.303104" cy="349.735505" fill="#6acc64" r="0.5"/>
+<circle cx="38.750649" cy="-285.945905" fill="#ee854a" r="0.5"/>
+<circle cx="-284.354" cy="-44.3851212" fill="#4878d0" r="0.5"/>
+<circle cx="96.402866" cy="-308.62916" fill="#ee854a" r="0.5"/>
+<circle cx="-228.035395" cy="72.13870299999999" fill="#8c613c" r="0.5"/>
+<circle cx="143.803436" cy="-164.293521" fill="#ee854a" r="0.5"/>
+<circle cx="145.757304" cy="-31.1865715" fill="#d65f5f" r="0.5"/>
+<circle cx="1.7154466" cy="-235.752769" fill="#ee854a" r="0.5"/>
+<circle cx="165.63663200000002" cy="-194.88116199999996" fill="#ee854a" r="0.5"/>
+<circle cx="-234.958836" cy="51.8034755" fill="#ee854a" r="0.5"/>
+<circle cx="-97.360368" cy="3.7895683" fill="#dc7ec0" r="0.5"/>
+<circle cx="-33.852489999999996" cy="119.641606" fill="#6acc64" r="0.5"/>
+<circle cx="-181.89444000000003" cy="-319.05391" fill="#956cb4" r="0.5"/>
+<circle cx="-225.38285" cy="117.34508799999999" fill="#8c613c" r="0.5"/>
+<circle cx="-327.395558" cy="12.991946099999998" fill="#4878d0" r="0.5"/>
+<circle cx="111.54298399999999" cy="-229.206208" fill="#ee854a" r="0.5"/>
+<circle cx="-214.69210700000002" cy="-318.295082" fill="#956cb4" r="0.5"/>
+<circle cx="-245.44449999999998" cy="189.51237200000003" fill="#8c613c" r="0.5"/>
+<circle cx="101.384213" cy="299.615239" fill="#6acc64" r="0.5"/>
+<circle cx="-75.847268" cy="-75.85113199999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="-19.659696" cy="-128.15992" fill="#dc7ec0" r="0.5"/>
+<circle cx="-206.13199600000002" cy="-283.01588000000004" fill="#956cb4" r="0.5"/>
+<circle cx="66.53444700000001" cy="252.52642100000003" fill="#6acc64" r="0.5"/>
+<circle cx="15.178785999999999" cy="-100.71826100000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="120.54937999999999" cy="134.95163499999998" fill="#6acc64" r="0.5"/>
+<circle cx="-155.455146" cy="132.627908" fill="#8c613c" r="0.5"/>
+<circle cx="102.221196" cy="-201.958456" fill="#ee854a" r="0.5"/>
+<circle cx="-105.263732" cy="-259.88928" fill="#956cb4" r="0.5"/>
+<circle cx="-129.077879" cy="110.387984" fill="#8c613c" r="0.5"/>
+<circle cx="-212.54716" cy="-282.972165" fill="#956cb4" r="0.5"/>
+<circle cx="38.543428000000006" cy="282.51180999999997" fill="#6acc64" r="0.5"/>
+<circle cx="-262.613729" cy="219.537122" fill="#8c613c" r="0.5"/>
+<circle cx="-28.058772" cy="229.73532400000002" fill="#6acc64" r="0.5"/>
+<circle cx="-302.671894" cy="-23.408491400000003" fill="#4878d0" r="0.5"/>
+<circle cx="-131.29102" cy="-243.3564" fill="#956cb4" r="0.5"/>
+<circle cx="-68.84318" cy="-99.439424" fill="#dc7ec0" r="0.5"/>
+<circle cx="-325.790311" cy="-6.3658874999999995" fill="#4878d0" r="0.5"/>
+<circle cx="-329.400995" cy="0.37947059499999997" fill="#4878d0" r="0.5"/>
+<circle cx="-321.81937899999997" cy="1.08805333" fill="#4878d0" r="0.5"/>
+<circle cx="-193.96832" cy="86.788611" fill="#8c613c" r="0.5"/>
+<circle cx="130.050438" cy="-195.394017" fill="#ee854a" r="0.5"/>
+<circle cx="48.559588" cy="161.93875599999998" fill="#6acc64" r="0.5"/>
+<circle cx="-219.78203800000003" cy="78.204623" fill="#dc7ec0" r="0.5"/>
+<circle cx="-173.371856" cy="149.96914800000002" fill="#8c613c" r="0.5"/>
+<circle cx="127.189279" cy="-185.07157899999999" fill="#ee854a" r="0.5"/>
+<circle cx="60.254565" cy="228.11243000000002" fill="#6acc64" r="0.5"/>
+<circle cx="-9.110906700000001" cy="-4.841261950000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-122.81444" cy="91.790391" fill="#8c613c" r="0.5"/>
+<circle cx="-103.221279" cy="74.260739" fill="#8c613c" r="0.5"/>
+<circle cx="-82.38246099999999" cy="-151.03319000000002" fill="#dc7ec0" r="0.5"/>
+<circle cx="179.71198" cy="109.678695" fill="#d65f5f" r="0.5"/>
+<circle cx="-265.59787800000004" cy="218.09267899999998" fill="#8c613c" r="0.5"/>
+<circle cx="-152.50193" cy="146.84493600000002" fill="#8c613c" r="0.5"/>
+<circle cx="-247.90786999999995" cy="228.69944999999998" fill="#8c613c" r="0.5"/>
+<circle cx="-275.21449900000005" cy="46.654552" fill="#8c613c" r="0.5"/>
+<circle cx="118.22342699999999" cy="146.540842" fill="#6acc64" r="0.5"/>
+<circle cx="-229.0057" cy="210.419125" fill="#8c613c" r="0.5"/>
+<circle cx="-234.923535" cy="192.78329000000002" fill="#8c613c" r="0.5"/>
+<circle cx="-154.402332" cy="197.276996" fill="#8c613c" r="0.5"/>
+<circle cx="-348.565518" cy="44.72237" fill="#4878d0" r="0.5"/>
+<circle cx="-100.677878" cy="-209.18169999999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="91.69796649999999" cy="-201.17393800000002" fill="#ee854a" r="0.5"/>
+<circle cx="-135.238264" cy="119.442505" fill="#8c613c" r="0.5"/>
+<circle cx="-320.598712" cy="28.176469999999995" fill="#4878d0" r="0.5"/>
+<circle cx="106.46721399999998" cy="-197.25149499999998" fill="#ee854a" r="0.5"/>
+<circle cx="-108.61682300000001" cy="-255.5756" fill="#956cb4" r="0.5"/>
+<circle cx="70.45658900000001" cy="-192.699325" fill="#ee854a" r="0.5"/>
+<circle cx="38.942994999999996" cy="-242.12647899999996" fill="#ee854a" r="0.5"/>
+<circle cx="-276.69481" cy="114.361296" fill="#8c613c" r="0.5"/>
+<circle cx="-135.085965" cy="99.54972300000001" fill="#8c613c" r="0.5"/>
+<circle cx="-276.367049" cy="45.3936154" fill="#4878d0" r="0.5"/>
+<circle cx="-234.82398799999999" cy="159.907384" fill="#8c613c" r="0.5"/>
+<circle cx="-208.94362300000003" cy="208.753734" fill="#8c613c" r="0.5"/>
+<circle cx="69.79602" cy="-261.95848" fill="#ee854a" r="0.5"/>
+<circle cx="79.739282" cy="-266.262598" fill="#ee854a" r="0.5"/>
+<circle cx="114.26737000000001" cy="-179.503961" fill="#ee854a" r="0.5"/>
+<circle cx="69.81862999999998" cy="189.853853" fill="#6acc64" r="0.5"/>
+<circle cx="-111.66344699999999" cy="105.12510400000001" fill="#8c613c" r="0.5"/>
+<circle cx="216.42313000000001" cy="11.2154014" fill="#d65f5f" r="0.5"/>
+<circle cx="11.3663676" cy="-234.520909" fill="#ee854a" r="0.5"/>
+<circle cx="-37.814567" cy="-261.06605" fill="#ee854a" r="0.5"/>
+<circle cx="-323.959699" cy="1.47627095" fill="#4878d0" r="0.5"/>
+<circle cx="-320.5937" cy="10.3785829" fill="#4878d0" r="0.5"/>
+<circle cx="-111.767936" cy="196.812756" fill="#8c613c" r="0.5"/>
+<circle cx="-302.252125" cy="-19.829768" fill="#4878d0" r="0.5"/>
+<circle cx="-29.301712999999996" cy="221.22161599999998" fill="#6acc64" r="0.5"/>
+<circle cx="-317.21851" cy="15.2403608" fill="#4878d0" r="0.5"/>
+<circle cx="-315.793772" cy="1.80113955" fill="#4878d0" r="0.5"/>
+<circle cx="-331.381232" cy="3.4268954999999997" fill="#4878d0" r="0.5"/>
+<circle cx="74.496107" cy="-171.631285" fill="#ee854a" r="0.5"/>
+<circle cx="248.22846999999996" cy="19.492158" fill="#d65f5f" r="0.5"/>
+<circle cx="11.826914400000001" cy="120.27510599999998" fill="#6acc64" r="0.5"/>
+<circle cx="-185.84179600000002" cy="247.51684999999998" fill="#d65f5f" r="0.5"/>
+<circle cx="192.366594" cy="-62.026216000000005" fill="#d65f5f" r="0.5"/>
+<circle cx="-134.147265" cy="156.345112" fill="#8c613c" r="0.5"/>
+<circle cx="221.009292" cy="99.07545199999998" fill="#d65f5f" r="0.5"/>
+<circle cx="-156.271724" cy="-308.453761" fill="#956cb4" r="0.5"/>
+<circle cx="-88.791493" cy="154.872263" fill="#8c613c" r="0.5"/>
+<circle cx="-88.044138" cy="150.917088" fill="#8c613c" r="0.5"/>
+<circle cx="220.82844" cy="-2.58268409" fill="#d65f5f" r="0.5"/>
+<circle cx="-283.881612" cy="-44.58094199999999" fill="#4878d0" r="0.5"/>
+<circle cx="-282.446304" cy="-54.983785499999996" fill="#4878d0" r="0.5"/>
+<circle cx="-181.323016" cy="95.874996" fill="#8c613c" r="0.5"/>
+<circle cx="-163.621143" cy="168.442477" fill="#8c613c" r="0.5"/>
+<circle cx="9.608907" cy="112.46273500000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-231.870009" cy="-306.985448" fill="#956cb4" r="0.5"/>
+<circle cx="-70.484253" cy="63.91135099999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-115.667335" cy="112.509999" fill="#8c613c" r="0.5"/>
+<circle cx="207.51671500000003" cy="-4.2976016999999995" fill="#d65f5f" r="0.5"/>
+<circle cx="19.8225181" cy="-246.435" fill="#ee854a" r="0.5"/>
+<circle cx="225.65442899999996" cy="-18.407020099999997" fill="#d65f5f" r="0.5"/>
+<circle cx="4.244947" cy="180.138595" fill="#6acc64" r="0.5"/>
+<circle cx="-77.8672895" cy="153.457409" fill="#8c613c" r="0.5"/>
+<circle cx="-226.14466" cy="68.200349" fill="#8c613c" r="0.5"/>
+<circle cx="-214.27711899999997" cy="-279.27293099999997" fill="#956cb4" r="0.5"/>
+<circle cx="-323.884554" cy="23.369047799999997" fill="#4878d0" r="0.5"/>
+<circle cx="-257.74469" cy="115.567585" fill="#8c613c" r="0.5"/>
+<circle cx="84.40478199999998" cy="318.432065" fill="#6acc64" r="0.5"/>
+<circle cx="28.0153041" cy="151.13697200000001" fill="#6acc64" r="0.5"/>
+<circle cx="-152.062064" cy="-50.419688900000004" fill="#dc7ec0" r="0.5"/>
+<circle cx="-54.535683999999996" cy="-62.15251000000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="-88.078284" cy="144.62051799999998" fill="#8c613c" r="0.5"/>
+<circle cx="56.720622000000006" cy="204.17422200000001" fill="#6acc64" r="0.5"/>
+<circle cx="35.853342" cy="223.27369399999998" fill="#6acc64" r="0.5"/>
+<circle cx="95.002446" cy="23.4789051" fill="#d65f5f" r="0.5"/>
+<circle cx="194.06974300000002" cy="120.671201" fill="#d65f5f" r="0.5"/>
+<circle cx="-95.04100199999999" cy="-126.35480199999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="-91.67853099999999" cy="-75.746797" fill="#dc7ec0" r="0.5"/>
+<circle cx="72.90089800000001" cy="-133.517475" fill="#ee854a" r="0.5"/>
+<circle cx="-263.993681" cy="125.61794000000002" fill="#8c613c" r="0.5"/>
+<circle cx="-97.44910700000001" cy="3.836352100000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="38.420595500000005" cy="-294.61642" fill="#ee854a" r="0.5"/>
+<circle cx="40.543167" cy="-300.54997000000003" fill="#ee854a" r="0.5"/>
+<circle cx="-354.97861" cy="-0.41871131400000006" fill="#4878d0" r="0.5"/>
+<circle cx="-111.679988" cy="-231.88893" fill="#956cb4" r="0.5"/>
+<circle cx="58.34338999999999" cy="214.20753200000001" fill="#6acc64" r="0.5"/>
+<circle cx="60.610977000000005" cy="213.71620199999998" fill="#6acc64" r="0.5"/>
+<circle cx="-128.290078" cy="-219.809611" fill="#956cb4" r="0.5"/>
+<circle cx="-155.0479" cy="190.68413" fill="#8c613c" r="0.5"/>
+<circle cx="32.7684371" cy="-192.935925" fill="#ee854a" r="0.5"/>
+<circle cx="69.42170200000001" cy="-301.20246099999997" fill="#ee854a" r="0.5"/>
+<circle cx="-219.863994" cy="227.774904" fill="#8c613c" r="0.5"/>
+<circle cx="-288.15003" cy="2.57561094" fill="#4878d0" r="0.5"/>
+<circle cx="-110.93832400000001" cy="111.267436" fill="#8c613c" r="0.5"/>
+<circle cx="93.662569" cy="307.960506" fill="#6acc64" r="0.5"/>
+<circle cx="-28.651812" cy="243.53461999999996" fill="#6acc64" r="0.5"/>
+<circle cx="-175.788445" cy="-284.705449" fill="#956cb4" r="0.5"/>
+<circle cx="230.23509600000003" cy="113.492106" fill="#d65f5f" r="0.5"/>
+<circle cx="-146.777736" cy="-33.5488321" fill="#dc7ec0" r="0.5"/>
+<circle cx="117.216862" cy="45.024412999999996" fill="#d65f5f" r="0.5"/>
+<circle cx="-46.391328900000005" cy="-117.532275" fill="#dc7ec0" r="0.5"/>
+<circle cx="-57.267433999999994" cy="-56.636594" fill="#dc7ec0" r="0.5"/>
+<circle cx="112.52385899999999" cy="35.374634400000005" fill="#d65f5f" r="0.5"/>
+<circle cx="-293.350589" cy="-26.403957300000002" fill="#4878d0" r="0.5"/>
+<circle cx="266.478408" cy="-61.864215" fill="#d65f5f" r="0.5"/>
+<circle cx="260.79015899999996" cy="84.211757" fill="#d65f5f" r="0.5"/>
+<circle cx="49.13500619999999" cy="233.450735" fill="#6acc64" r="0.5"/>
+<circle cx="-291.813382" cy="-27.1998118" fill="#4878d0" r="0.5"/>
+<circle cx="87.45394" cy="-260.70982" fill="#ee854a" r="0.5"/>
+<circle cx="-320.06561999999997" cy="1.60394829" fill="#4878d0" r="0.5"/>
+<circle cx="-277.874611" cy="131.880203" fill="#8c613c" r="0.5"/>
+<circle cx="144.769415" cy="69.639773" fill="#d65f5f" r="0.5"/>
+<circle cx="203.98707" cy="-23.6459965" fill="#d65f5f" r="0.5"/>
+<circle cx="184.92897499999998" cy="48.4575112" fill="#d65f5f" r="0.5"/>
+<circle cx="223.426595" cy="-69.762091" fill="#d65f5f" r="0.5"/>
+<circle cx="-140.83909000000003" cy="152.598138" fill="#8c613c" r="0.5"/>
+<circle cx="159.27352000000002" cy="90.217113" fill="#d65f5f" r="0.5"/>
+<circle cx="-11.9048405" cy="-23.4061128" fill="#dc7ec0" r="0.5"/>
+<circle cx="61.199943" cy="191.86619199999998" fill="#6acc64" r="0.5"/>
+<circle cx="-74.63389500000001" cy="138.91908099999998" fill="#8c613c" r="0.5"/>
+<circle cx="195.97340000000003" cy="88.646894" fill="#d65f5f" r="0.5"/>
+<circle cx="-128.33632699999998" cy="-55.7769541" fill="#dc7ec0" r="0.5"/>
+<circle cx="-208.43025" cy="-281.10278000000005" fill="#956cb4" r="0.5"/>
+<circle cx="164.327457" cy="-44.3883321" fill="#d65f5f" r="0.5"/>
+<circle cx="72.753492" cy="-294.205135" fill="#ee854a" r="0.5"/>
+<circle cx="-191.036895" cy="-312.52937099999997" fill="#956cb4" r="0.5"/>
+<circle cx="30.576791" cy="194.245086" fill="#6acc64" r="0.5"/>
+<circle cx="-230.90026400000005" cy="127.595699" fill="#8c613c" r="0.5"/>
+<circle cx="-357.38433499999996" cy="-8.477993999999999" fill="#4878d0" r="8"/>
+<text font-size="8" x="-357.38433499999996" y="-8.477993999999999">Zee Bangla</text>
+<circle cx="-332.22504000000004" cy="11.029026400000001" fill="#4878d0" r="0.5"/>
+<circle cx="-339.84635999999995" cy="1.12165928" fill="#4878d0" r="0.5"/>
+<circle cx="-338.610685" cy="15.602735400000002" fill="#4878d0" r="0.5"/>
+<circle cx="-342.8523" cy="10.3761994" fill="#4878d0" r="2"/>
+<text font-size="2" x="-342.8523" y="10.3761994">Zee TV</text>
+<circle cx="-196.05051899999998" cy="233.81609999999998" fill="#8c613c" r="0.5"/>
+<circle cx="-13.1319902" cy="67.04285" fill="#dc7ec0" r="0.5"/>
+<circle cx="-208.53443800000002" cy="170.04589" fill="#8c613c" r="0.5"/>
+<circle cx="-208.48284800000002" cy="174.171767" fill="#8c613c" r="0.5"/>
+<circle cx="70.89529300000001" cy="-235.30488100000002" fill="#ee854a" r="0.5"/>
+<circle cx="-187.534333" cy="-317.932671" fill="#956cb4" r="0.5"/>
+<circle cx="-152.198704" cy="-241.20135199999999" fill="#956cb4" r="0.5"/>
+<circle cx="106.632722" cy="-113.36123399999998" fill="#dc7ec0" r="0.5"/>
+<circle cx="-130.77563800000001" cy="-94.305568" fill="#dc7ec0" r="0.5"/>
+<circle cx="-254.67266999999995" cy="5.264905100000001" fill="#8c613c" r="0.5"/>
+<circle cx="-133.13912499999998" cy="-92.96770000000001" fill="#dc7ec0" r="0.5"/>
+<circle cx="143.321346" cy="-184.80637699999997" fill="#ee854a" r="0.5"/>
+<circle cx="88.264435" cy="350.74788" fill="#6acc64" r="0.5"/>
+<circle cx="92.09460399999999" cy="335.25435999999996" fill="#6acc64" r="0.5"/>
+<circle cx="93.016462" cy="339.69458599999996" fill="#6acc64" r="0.5"/>
+<circle cx="92.14219" cy="356.389628" fill="#6acc64" r="0.5"/>
+<circle cx="96.06482199999999" cy="341.594974" fill="#6acc64" r="0.5"/>
+<circle cx="98.44306500000002" cy="334.18924000000004" fill="#6acc64" r="0.5"/>
+<circle cx="106.66806500000001" cy="344.76159199999995" fill="#6acc64" r="0.5"/>
+<circle cx="104.363588" cy="332.297322" fill="#6acc64" r="0.5"/>
+<circle cx="120.187865" cy="334.00906" fill="#6acc64" r="0.5"/>
+<circle cx="112.544929" cy="341.264581" fill="#6acc64" r="0.5"/>
+<circle cx="100.875243" cy="338.917425" fill="#6acc64" r="0.5"/>
+<circle cx="104.16214199999999" cy="350.22701" fill="#6acc64" r="0.5"/>
+<circle cx="84.925757" cy="346.723342" fill="#6acc64" r="0.5"/>
+<circle cx="106.03900300000001" cy="339.674986" fill="#6acc64" r="0.5"/>
+<circle cx="100.277408" cy="352.786658" fill="#6acc64" r="0.5"/>
+<circle cx="98.520597" cy="342.647305" fill="#6acc64" r="0.5"/>
+<circle cx="98.35893200000001" cy="345.399978" fill="#6acc64" r="0.5"/>
+<circle cx="118.069896" cy="335.86749000000003" fill="#6acc64" r="0.5"/>
+<circle cx="109.075694" cy="325.50917" fill="#6acc64" r="0.5"/>
+<circle cx="105.580951" cy="344.761508" fill="#6acc64" r="0.5"/>
+<circle cx="107.75844800000002" cy="359.459975" fill="#6acc64" r="0.5"/>
+<circle cx="106.43982999999999" cy="335.954549" fill="#6acc64" r="0.5"/>
+<circle cx="-260.089319" cy="1.05766304" fill="#4878d0" r="0.5"/>
+<circle cx="254.78509000000003" cy="26.966705499999996" fill="#d65f5f" r="0.5"/>
+<circle cx="113.22558099999998" cy="-150.05190199999998" fill="#ee854a" r="0.5"/>
+<circle cx="-53.140758999999996" cy="-32.78333799999999" fill="#dc7ec0" r="0.5"/>
+<circle cx="115.09384599999998" cy="-146.65015400000001" fill="#ee854a" r="0.5"/>
+<circle cx="271.66851599999995" cy="51.2744512" fill="#d65f5f" r="0.5"/>
+<circle cx="286.18296" cy="77.423598" fill="#d65f5f" r="0.5"/>
+<circle cx="265.11184000000003" cy="70.65031400000001" fill="#d65f5f" r="0.5"/>
+<circle cx="258.79548100000005" cy="61.20401" fill="#d65f5f" r="0.5"/>
+<circle cx="258.227242" cy="51.6997782" fill="#d65f5f" r="0.5"/>
+<circle cx="254.60701" cy="69.979917" fill="#d65f5f" r="0.5"/>
+<circle cx="262.31690100000003" cy="61.275935000000004" fill="#d65f5f" r="0.5"/>
+<circle cx="260.971529" cy="63.898911999999996" fill="#d65f5f" r="0.5"/>
+<circle cx="285.30068" cy="75.597074" fill="#d65f5f" r="0.5"/>
+<circle cx="261.71453" cy="56.818985999999995" fill="#d65f5f" r="0.5"/>
+<circle cx="272.916" cy="61.44475750000001" fill="#d65f5f" r="0.5"/>
+<circle cx="264.83252600000003" cy="66.389428" fill="#d65f5f" r="0.5"/>
+<circle cx="269.288859" cy="72.654624" fill="#d65f5f" r="0.5"/>
+<circle cx="255.876271" cy="63.51955400000001" fill="#d65f5f" r="0.5"/>
+<circle cx="268.43266099999994" cy="65.4471055" fill="#d65f5f" r="0.5"/>
+<circle cx="-35.648109" cy="11.1255879" fill="#dc7ec0" r="0.5"/>
+<circle cx="-164.80156" cy="-225.57073" fill="#956cb4" r="0.5"/>
+<circle cx="115.039176" cy="4.882948699999999" fill="#d65f5f" r="0.5"/>
+<circle cx="-93.62724" cy="-53.8870409" fill="#dc7ec0" r="0.5"/>
+<circle cx="267.724632" cy="7.2304176" fill="#d65f5f" r="0.5"/>
+<text fill="#dc7ec0" font-size="30.0" stroke="black" stroke-width="0.4" text-anchor="middle" transform="translate(0,15.0)" x="-50.3674864" y="-69.5984345">FILM</text>
+<text fill="#d65f5f" font-size="30.0" stroke="black" stroke-width="0.4" text-anchor="middle" transform="translate(0,15.0)" x="181.94855700000002" y="23.977428299999996">THE NEW</text>
+<text fill="#d65f5f" font-size="30.0" stroke="black" stroke-width="0.4" text-anchor="middle" transform="translate(0,15.0)" x="181.94855700000002" y="53.9774283">YORK TIMES</text>
+<text fill="#6acc64" font-size="30.0" stroke="black" stroke-width="0.4" text-anchor="middle" transform="translate(0,15.0)" x="71.696002" y="223.730213">UNITED STATES</text>
+<text fill="#8c613c" font-size="30.0" stroke="black" stroke-width="0.4" text-anchor="middle" transform="translate(0,15.0)" x="-185.48418" y="145.060069">NEWSPAPER</text>
+<text fill="#956cb4" font-size="30.0" stroke="black" stroke-width="0.4" text-anchor="middle" transform="translate(0,15.0)" x="-166.4908595" y="-264.34934400000003">SONY</text>
+<text fill="#ee854a" font-size="30.0" stroke="black" stroke-width="0.4" text-anchor="middle" transform="translate(0,15.0)" x="76.76302899999999" y="-222.553814">ADVERTISING</text>
+<text fill="#4878d0" font-size="30.0" stroke="black" stroke-width="0.4" text-anchor="middle" transform="translate(0,15.0)" x="-320.596206" y="-3.11271016">INDIA</text>
+</svg>
+            </div>
+
+        </div>
+    </body>
+</html>
