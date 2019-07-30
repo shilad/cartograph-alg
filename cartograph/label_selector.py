@@ -84,15 +84,14 @@ def assign_country_label_ids(country_scores, label_score, soft_labeling, num_can
                 final_labels[row.country] = row.label
                 final_ids[row.country] = row.label_id
                 used_stems.add(row.stem)
-        print(list(final_labels.values()))
     return final_labels, final_ids
 
 
 def main(experiment_dir, article_labels, percentile, label_score, output_file, soft_labeling, num_candidates):
-    print(output_file)
+    # print(output_file)
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
-        # print("Selecting labels with noise filtering------------------------------")
+        print("Selecting labels with noise filtering------------------------------")
         mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
         article_labels = article_labels[mask]
 
@@ -102,6 +101,8 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     article_labels = add_country_counts(article_labels)
     article_labels = add_totals(article_labels)
     article_labels = add_tfidf_scores(article_labels)
+    tf_idf_score = article_labels[['article_id', 'label_id', 'tfidf']]
+    tf_idf_score.to_csv(experiment_dir + "/tf_idf_score.csv")
     article_labels = add_pmi(article_labels)
 
     if 'distance' in article_labels.columns:
@@ -116,8 +117,6 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     df['country'] = df.index
     df['label_id'] = np.array(list(final_scores.values())).T
     df.columns = ['label_name', 'country', 'label_id']
-    # print(output_file)
-    # print(df['label_name'].values)
     df.to_csv(experiment_dir + output_file, index=True)
 
 
@@ -134,13 +133,11 @@ if __name__ == '__main__':
     parser.add_argument('--num_candidates', required=True, type=int)
 
     args = parser.parse_args()
-    print(args.output_file)
 
     article_labels = pd.read_csv(args.articles_to_labels)
     country_clusters = pd.read_csv(args.experiment + args.cluster_groups)
     label_names = pd.read_csv(args.label_names)
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
-    print("article_labels_____________________", article_labels)
 
     main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates)
