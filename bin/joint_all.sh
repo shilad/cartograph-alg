@@ -44,7 +44,7 @@ do
         --experiment ${exp_dir} \
         --vectors ${exp_dir}/vanilla_vectors.csv \
         --k 7 \
-        --weight 0.01 \
+        --weight 0.5 \
         --xy_embeddings ${exp_dir}/original_xy_embeddings.csv\
         --article_keywords /Users/research/Documents/Projects/cartograph-alg/data/internet/$article_label_csv \
         --country_labels ${exp_dir}/country_labels.csv\
@@ -55,7 +55,7 @@ do
         --cluster_groups /original_cluster_groups.csv \
         --output_file /country_labels.csv \
         --tf_idf_score_file /tf_idf_score.csv \
-        --num_candidates 1  >>${exp_dir}/centroid.json
+        --num_candidates 4  >>${exp_dir}/centroid.json
 
     python -m cartograph.xy_embed.umap_embed \
         --map_directory ${exp_dir} \
@@ -87,7 +87,7 @@ do
             --experiment_directory ${exp_dir} \
             --gold_standard  /Users/research/Documents/Projects/cartograph-alg/study/internet/kmeans_plain/gold_standard_labels.csv \
             --label_set ${exp_dir}/${j}_country_labels.csv \
-            --k 7 >>${exp_dir}/experiment_params.json
+            --k 7 >>${exp_dir}/label_evaluation.json
     # Step 6: Generate JSON
     python -m cartograph.json_generator data/internet ${exp_dir}/ kk  ${j}_country_labels.csv ${j}_cluster_groups.csv ${j}_xy_embeddings.csv ${j}_domain.json
 
