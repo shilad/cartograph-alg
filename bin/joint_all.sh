@@ -46,7 +46,7 @@ do
         --k 7 \
         --weight 0.5 \
         --xy_embeddings ${exp_dir}/original_xy_embeddings.csv\
-        --article_keywords /Users/research/Documents/Projects/cartograph-alg/data/internet/$article_label_csv \
+        --article_keywords data/internet/$article_label_csv \
         --country_labels ${exp_dir}/country_labels.csv\
         --articles_to_labels data/internet/${article_label_csv} \
         --label_names data/internet/${label_name_csv} \
@@ -85,7 +85,7 @@ do
 
     python -m cartograph.evaluation.label_evaluator_against_study_gold_standards \
             --experiment_directory ${exp_dir} \
-            --gold_standard  /Users/research/Documents/Projects/cartograph-alg/study/internet/kmeans_plain/gold_standard_labels.csv \
+            --gold_standard  study/internet/kmeans_plain/gold_standard_labels.csv \
             --label_set ${exp_dir}/${j}_country_labels.csv \
             --k 7 >>${exp_dir}/label_evaluation.json
 
