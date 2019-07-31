@@ -59,13 +59,13 @@ do
     exp_dir=$(prepare_experiment_dir ${exp_id})
 
 
-    # Step 3: Run LDA:
-    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 10 /LDA_labels.csv /article_topic_distribution.csv
-    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 50 /LDA_labels_50.csv /article_topic_distribution_50.csv
-
-
-    # Step 4: create cluster csv for label_selector:
-    python -m study.data.LDA_cluster_builder ${exp_dir}
+#    # Step 3: Run LDA:
+#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 10 /LDA_labels.csv /article_topic_distribution.csv
+#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 50 /LDA_labels_50.csv /article_topic_distribution_50.csv
+#
+#
+#    # Step 4: create cluster csv for label_selector:
+#    python -m study.data.LDA_cluster_builder ${exp_dir}
 
 
     for x in {0..3}
@@ -74,17 +74,22 @@ do
 
         # Step 4: Run other labeling schemes:
         python -m cartograph.label_selector \
-        --experiment ${exp_dir} \
-        --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
-        --label_names data/${projects[$i]}/${label_name_csv[$x]} \
-        --label_score ${label_score} \
-        --percentile 1 \
-        --label_path ${label_path}
+            --experiment ${exp_dir} \
+            --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
+            --label_names data/${projects[$i]}/${label_name_csv[$x]} \
+            --label_score ${label_score} \
+            --percentile 1 \
+            --purpose study \
+            --label_path ${label_path} \
+            --cluster_groups /cluster_groups.csv \
+            --output_file /final_labels.csv \
+            --soft_labeling false \
+            --num_candidates 0
     done
 
 
-    # Step 5: Create lda_labels
-    python -m cartograph.data.label_creator_lda data/${projects[$i]} ${exp_dir}/article_topic_distribution.csv ${exp_dir}/labels/LDA_labels/LDA_labels_50.csv
+#    # Step 5: Create lda_labels
+#    python -m cartograph.data.label_creator_lda data/${projects[$i]} ${exp_dir}/article_topic_distribution.csv ${exp_dir}/labels/LDA_labels/LDA_labels_50.csv
 
 
 done

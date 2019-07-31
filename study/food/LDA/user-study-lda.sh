@@ -59,13 +59,13 @@ do
     exp_dir=$(prepare_experiment_dir ${exp_id})
 
 
-    # Step 3: Run LDA:
-    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 10 /LDA_labels.csv /article_topic_distribution.csv
-    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 50 /LDA_labels_50.csv /article_topic_distribution_50.csv
-
-
-    # Step 4: create cluster csv for label_selector:
-    python -m study.data.LDA_cluster_builder ${exp_dir}
+#    # Step 3: Run LDA:
+#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 10 /LDA_labels.csv /article_topic_distribution.csv
+#    python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 50 /LDA_labels_50.csv /article_topic_distribution_50.csv
+#
+#
+#    # Step 4: create cluster csv for label_selector:
+#    python -m study.data.LDA_cluster_builder ${exp_dir}
 
 
     for x in {0..3}
@@ -88,8 +88,8 @@ do
     done
 
 
-    # Step 5: Create lda_labels
-    python -m cartograph.data.label_creator_lda data/${projects[$i]} ${exp_dir}/article_topic_distribution.csv ${exp_dir}/labels/LDA_labels/LDA_labels_50.csv
+#    # Step 5: Create lda_labels
+#    python -m cartograph.data.label_creator_lda data/${projects[$i]} ${exp_dir}/article_topic_distribution.csv ${exp_dir}/labels/LDA_labels/LDA_labels_50.csv
 
 
 done

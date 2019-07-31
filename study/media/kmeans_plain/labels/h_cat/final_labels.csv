@@ -1,8 +1,8 @@
-country,0
-0,Media in India by city
-4,Media technology
-3,Communication
-1,Establishments by year and country
-5,Television in the United States
-2,Entertainment
-6,Media in the United States
+country,label_name,tfidf,pmi
+0,media in india by city,0.028905251062534613,0.21398951620980938
+4,media technology,0.02053709095933235,0.07914254586055665
+3,communication,0.019370788249821632,0.054471783223936227
+1,establishments by year and country,0.010934111229231155,0.031952961933623666
+5,television in the united states,0.008954701927828313,0.03293939884517835
+2,entertainment,0.007981519310790035,0.023022377046724506
+6,media in the united states,0.004916284079437301,0.01406477069694719

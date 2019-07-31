@@ -1,8 +1,8 @@
-country,0
-4,Alcoholic drinks
-1,Edible plants
-2,Cuisine
-6,Nutrition
-0,Cookbooks
-5,Food product brands
-3,Restaurants by year of establishment
+country,label_name,tfidf,pmi
+4,alcoholic drinks,0.0244056599458926,0.12331750907567718
+1,edible plants,0.021406509001798083,0.06814170327476875
+2,cuisine,0.021356312713822816,0.05264564276657345
+6,nutrition,0.020801037019673726,0.08132839518117059
+0,cookbooks,0.020320770590205522,0.16918848316764937
+5,food product brands,0.013445469557200995,0.04403294976890042
+3,restaurants by year of establishment,0.008841342021951654,0.026023462689019453

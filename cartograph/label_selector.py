@@ -76,7 +76,7 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, soft_l
 
         for row in country_scores.itertuples():
             if len(final_labels[row.country]) <= num_candidates and row.stem not in used_stems and row.stem not in BLACK_LIST:
-                final_labels[row.country].add([row.label.replace('_', ' '), row.tfidf, row.pmi])
+                final_labels[row.country].add([row.label.lower().replace('_', ' ').strip(), row.tfidf, row.pmi])
                 final_ids[row.country].add(int(row.label_id))
                 used_stems.add(row.stem)
     else:
@@ -85,7 +85,7 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, soft_l
 
         for row in country_scores.itertuples():
             if row.country not in final_labels and row.stem not in used_stems and row.stem not in BLACK_LIST:
-                final_labels[row.country] = [row.label.replace('_', ' '), row.tfidf, row.pmi]
+                final_labels[row.country] = [row.label.lower().replace('_', ' ').strip(), row.tfidf, row.pmi]
                 final_ids[row.country] = row.label_id
                 used_stems.add(row.stem)
     return final_labels, final_ids
@@ -103,7 +103,7 @@ def get_top_labels(country_scores, label_score):
     for row in country_scores.itertuples():
         if row.stem not in used_stems:
             if len(top_labels[row.country]) < 30:
-                top_labels[row.country].extend([row.label, row.tfidf, row.pmi])
+                top_labels[row.country].extend([row.label.lower().replace('_', ' ').strip(), row.tfidf, row.pmi])
                 used_stems.add(row.stem)
     return top_labels
 

@@ -1,3 +1,2 @@
-{"label_scores": {"h_cat": 9945, "links": 4730, "key_phrases": 4892, "lda": 4349, "key_words": 4413}}
+{"label_scores": {"h_cat": 10118, "links": 4730, "key_phrases": 4954, "lda": 4349, "key_words": 4413}}
 {"cluster_scores": {"LDA": 1841, "kmeans_augmented": 1635, "kmeans_plain": 1697}}
-

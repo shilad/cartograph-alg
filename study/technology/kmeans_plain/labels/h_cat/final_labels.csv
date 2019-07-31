@@ -1,8 +1,8 @@
-country,0
-3,Vehicle technology
-5,Building engineering
-1,Optics
-0,Weapons
-6,Main topic classifications
-4,Equipment
-2,Computer-related introductions by year
+country,label_name,tfidf,pmi
+3,vehicle technology,0.04977580630341088,0.22335083053118554
+5,building engineering,0.021416819598160886,0.06776490093432688
+1,optics,0.020166019571983967,0.08154029708588335
+0,weapons,0.016233452059839948,0.09872018507521774
+6,main topic classifications,0.015949830487857586,0.04920418371987267
+4,equipment,0.01255096650629928,0.03365699283739902
+2,computer-related introductions by year,0.01082744813522948,0.040601353908609056

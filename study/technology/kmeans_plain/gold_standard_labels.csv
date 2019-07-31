@@ -1,8 +1,8 @@
-,0,1,2,3,4
-0,military science,military technology,aerospace engineering,radar,weapons
-1,electronics,electrical engineering,optics,integrated circuit,electricity
-2,software,computers,computer-related introductions by year,technology by year,services
-3,automotive technologies,vehicle technology,automotive industry,vehicle parts,automobile
-4,tools,industrial revolution,invented,manufactured goods,equipment
-5,industrial processes,manufacturing,chemical engineering,building engineering,materials
-6,information technology,technological change,technological,engineering,innovation
+country,0,1,2,3,4,5,6,7,8,9
+0,military science,military technology,aerospace engineering,radar,weapons,navy,aircraft,force,war,particle
+1,electronics,electrical engineering,optics,integrated circuit,electricity,voltage,magnetic field,optical,devices,measurement
+2,software,computers,computer-related introductions by year,technology by year,services,smartphone,mobile phones,product introductions by year,support,android
+3,automotive technologies,vehicle technology,automotive industry,vehicle parts,automobile,internal combustion engine,vehicle,engines,car,vehicles
+4,tools,industrial revolution,invented,manufactured goods,equipment,machine,inventions by country,produced,idea,history
+5,industrial processes,manufacturing,chemical engineering,building engineering,materials,processes,chemistry,material,battery,polymer
+6,information technology,technological change,technological,engineering,innovation,computer,subfields by academic discipline,main topic classifications,academic disciplines,research

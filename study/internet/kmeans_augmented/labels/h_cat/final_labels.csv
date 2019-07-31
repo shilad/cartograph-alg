@@ -1,8 +1,8 @@
-country,0
-6,Domain names
-0,Internet architecture
-4,Web software
-5,Human–computer interaction
-3,Computer law
-2,Online services
-1,History of the Internet
+country,label_name,tfidf,pmi
+6,domain names,0.042947964284607384,0.20120653926837467
+0,internet architecture,0.019640078701028938,0.0716613952477142
+4,web software,0.015837119419437967,0.0447819511992345
+5,human–computer interaction,0.013173774330924308,0.036467729191302034
+3,computer law,0.0123112015980787,0.03744905245467235
+2,online services,0.008432082150147928,0.02085267050406409
+1,history of the internet,0.006957501181311746,0.018607054584572503

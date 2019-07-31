@@ -1,8 +1,8 @@
-country,0
-4,Foods
-2,Cuisine by country
-0,Food and drink
-3,Food product brands
-1,Categories by type
-5,Cuisine
-6,Food and drink by country
+country,label_name,tfidf,pmi
+5,fishing,0.038768918345361066,0.3056119760906384
+6,edible plants,0.024691042857334502,0.07628642043029611
+4,alcoholic drinks by country,0.021283537585553135,0.0939387476190363
+0,food politics,0.01918128001940493,0.07706224011288978
+1,cuisine,0.01856050509836678,0.04373120367997796
+3,companies by industry and year of establishment,0.012073334151378406,0.03379536947498805
+2,births by decade,0.011184037806178425,0.04858006611585158
