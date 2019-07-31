@@ -79,9 +79,8 @@ def main():
     rand_index = adjusted_rand_score(cluster_a['country'], cluster_b['country'])
     mutual_info = adjusted_mutual_info_score(cluster_a['country'], cluster_b['country'])
 
-    # print(str(json.dumps({'rand_index score': rand_index})))
-    # print(str(json.dumps(mutual_info)))
-
+    print(str(json.dumps(rand_index)))
+    print(str(json.dumps(mutual_info)))
     print(str(json.dumps(silhouette_score)))
     print(str(json.dumps(ch_score)))
     # print(str(json.dumps(sdb_w_score)))

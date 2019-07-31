@@ -61,7 +61,7 @@ def add_tfidf_scores(labels_df):
     return labels_df
 
 
-def assign_country_label_ids(country_scores, label_score, num_candidates, soft_labeling=False):
+def assign_country_label_ids(country_scores, label_score, num_candidates, use_label_candidates):
     """Output: Dictionary --> key = country, value = label"""
 
     ps = PorterStemmer()
@@ -69,8 +69,8 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, soft_l
     country_scores = country_scores.sort_values(by=label_score, ascending=False)
     used_stems = set()
 
-    if soft_labeling:
-        print('USING SOFT LABELING')
+    if use_label_candidates is True:
+        # print('USING SOFT LABELING')
         final_labels = defaultdict(set)
         final_ids = defaultdict(set)
 
@@ -80,6 +80,7 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, soft_l
                 final_ids[row.country].add(int(row.label_id))
                 used_stems.add(row.stem)
     else:
+
         final_labels = {}
         final_ids = {}
 
@@ -108,11 +109,10 @@ def get_top_labels(country_scores, label_score):
     return top_labels
 
 
-def main(experiment_dir, article_labels, percentile, label_score, output_file, soft_labeling, num_candidates, purpose, label_path):
-
+def main(experiment_dir, article_labels, percentile, label_score, output_file, use_label_candidates, num_candidates, purpose, label_path):
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
-        print("Selecting labels with noise filtering------------------------------")
+        # print("Selecting labels with noise filtering------------------------------")
         mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
         article_labels = article_labels[mask]
 
@@ -122,6 +122,8 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     article_labels = add_country_counts(article_labels)
     article_labels = add_totals(article_labels)
     article_labels = add_tfidf_scores(article_labels)
+    tf_idf_score = article_labels[['article_id', 'label_id', 'tfidf']]
+    tf_idf_score.to_csv(experiment_dir + "/tf_idf_score.csv")
     article_labels = add_pmi(article_labels)
 
     if 'distance' in article_labels.columns:
@@ -129,7 +131,7 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     else:
         country_labels = article_labels.drop(columns=['article_id']).drop_duplicates()
 
-    final_labels, final_scores = assign_country_label_ids(country_labels, label_score, soft_labeling, num_candidates)
+    final_labels, final_scores = assign_country_label_ids(country_labels, label_score, num_candidates, use_label_candidates)
 
     # # Create results data frame
     df = pd.DataFrame(final_labels,  index=[0]).T
@@ -170,8 +172,8 @@ if __name__ == '__main__':
     parser.add_argument('--label_score', required=True)
     parser.add_argument('--cluster_groups', required=True)
     parser.add_argument('--output_file', required=True)
-    parser.add_argument('--soft_labeling', required=True, type=bool)
-    parser.add_argument('--num_candidates', required=True, type=int)
+    parser.add_argument('--use_label_candidates', required=True, type=bool)
+    parser.add_argument('--num_candidates', required=False, type=int)
     parser.add_argument('--purpose', required=True)
     parser.add_argument('--label_path', required=True)
 
@@ -184,4 +186,4 @@ if __name__ == '__main__':
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
 
-    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.soft_labeling, args.num_candidates, args.purpose, args.label_path)
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.use_label_candidates, args.num_candidates, args.purpose, args.label_path)
