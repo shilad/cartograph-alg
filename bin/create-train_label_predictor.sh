@@ -23,6 +23,7 @@ exp_id=0007 #$(get_experiment_id)
 
 # Step 2: Prepare an experiment directory for a specific map.
 exp_dir=$(prepare_experiment_dir food ${exp_id})
+label_mat=study/evaluation/label_matrix.csv
 #gold_standard=study/food/kmeans_augmented/gold_standard_labels.csv
 
 # Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
@@ -37,7 +38,7 @@ exp_dir=$(prepare_experiment_dir food ${exp_id})
 
 python -m cartograph.label_quality_predictor \
         --experiment ${exp_dir} \
-        --dataset ${exp_dir}/labeling_training_data.csv
+        --dataset ${label_mat}
         #--output_file ${gold_standard}
 
 
