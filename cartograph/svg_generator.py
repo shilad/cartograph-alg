@@ -25,20 +25,18 @@ def get_sizes(articles):
     cities = {}
     for value in articles.values():
         cities[value['Article']] = value['Popularity']
-    x = 0
-    for key, value in sorted(cities.items(), key=operator.itemgetter(1), reverse=True):
+
+    for x, (key, value) in enumerate(sorted(cities.items(), key=operator.itemgetter(1), reverse=True)):
         if x == 0:
             sizes[key] = 30
-            x += 1
         elif x <= 15:
-            sizes[key] = 15
-            x += 1
+            sizes[key] = 18
         elif x <= 45:
-            sizes[key] = 8
-            x += 1
-        elif x <= 135:
-            sizes[key] = 2
-            x += 1
+            sizes[key] = 10
+        elif x <= 100:
+            sizes[key] = 6
+        elif x <= 250:
+            sizes[key] = 3
     return sizes
 
 
@@ -117,8 +115,8 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, 
         y = v["y"] * XY_RATIO  # The original x, y are too small to visualize
         country = v["Country"]
         size = sizes[v['Article']]  # Augment the font_size and circle size correspondingly
-        drawing.append(draw.Circle(x, y, size, fill=colors[country]))
-        if size > .5:
+        drawing.append(draw.Circle(x, y, size, **{ 'fill' : colors[country], 'fill-opacity' : 0.6 }))
+        if size > 0.2:
             adjusted_x, adjusted_y = x - 0.5*len(title)*XY_RATIO, y - 0.5*size
             drawing.append(draw.Text(title, int(size), adjusted_x, adjusted_y))
     # Draw country labels
