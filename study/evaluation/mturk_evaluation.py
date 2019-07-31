@@ -14,7 +14,7 @@ USER_LABEL_BLACK_LIST = ['i can', 'i can\'t', 'i cannot', 'i could', 'i think', 
                          'chosen are suitable', 'some better name', 'a good name', 'yes']
 
 
-def get_most_popular_label(responses):
+def get_most_popular_label_type(responses):
     """
     Input: Cleaned mturk responses
     Output: A default dictionary where keys = label type and values = number of points that label received
@@ -48,6 +48,12 @@ def get_most_popular_label(responses):
 
 
 def get_cluster_labels(responses):
+    """
+    Input: Cleaned mturk responses
+    Output: A dictionary in the form: {project: {cluster_type: {cluster_number: {default dict}}}} where the keys in the
+    default dict are labels for that cluster, and the values are the number of points that label received
+    Points: +5 for being selected as the #1 label for the group, +4 for being selected as #2, etc.
+    """
     cluster_labels = {}
     for proj in PROJECTS:
         cluster_labels[proj] = {}
@@ -74,6 +80,12 @@ def get_cluster_labels(responses):
 
 
 def get_top_cluster_labels(cluster_labels):
+    """
+    Input: Dictionary from get_cluster_labels()
+    Output: A dictionary in the same form as cluster_labels, but the values for each cluster is a list of the top
+    10 labels for that cluster (or less if that cluster did not have at least 10 labels that were selected as top
+    choices by a user)
+    """
     top_cluster_labels = {}
     for proj in cluster_labels:
         top_cluster_labels[proj] = {}
@@ -95,6 +107,11 @@ def get_top_cluster_labels(cluster_labels):
 
 
 def get_most_popular_cluster(responses):
+    """
+    Input: Cleaned mturk responses
+    Output: Default dictionary where keys = type of cluster, values = number of points it received
+    Points: +5 if user gave the cluster coherency a 5, +4 for a 4, etc.
+    """
     cluster_scores = defaultdict(int)
     for index, row in responses.iterrows():
         for column in responses.columns:
@@ -110,6 +127,11 @@ def get_most_popular_cluster(responses):
 
 
 def clean_user_labels(responses):
+    """
+    Input: Cleaned mturk responses
+    Output: Dictionary in the form {project: {cluster_type: {cluster_number: {set}}}} where the values in the set
+    are the additional user-generated labels from the study (cleaned for useless answers)
+    """
     user_labels, cleaned_labels = {}, {}
     for proj in PROJECTS:
         user_labels[proj], cleaned_labels[proj] = {}, {}
@@ -145,6 +167,10 @@ def clean_user_labels(responses):
 
 
 def get_cluster_counts(responses):
+    """
+    Input:
+    Output:
+    """
     cluster_counts = {}
     for proj in PROJECTS:
         cluster_counts[proj] = {}
@@ -187,7 +213,7 @@ def get_gold_standard_clusters(cluster_counts):
 
 
 def main(responses):
-    label_scores = get_most_popular_label(responses)
+    label_scores = get_most_popular_label_type(responses)
     print(str(json.dumps({"label_scores": label_scores})))
 
     cluster_labels = get_cluster_labels(responses)

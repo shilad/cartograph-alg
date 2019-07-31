@@ -76,7 +76,7 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, soft_l
 
         for row in country_scores.itertuples():
             if len(final_labels[row.country]) <= num_candidates and row.stem not in used_stems and row.stem not in BLACK_LIST:
-                final_labels[row.country].add(row.label.replace('_', ' '))
+                final_labels[row.country].add([row.label.replace('_', ' '), row.tfidf, row.pmi])
                 final_ids[row.country].add(int(row.label_id))
                 used_stems.add(row.stem)
     else:
@@ -85,7 +85,7 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, soft_l
 
         for row in country_scores.itertuples():
             if row.country not in final_labels and row.stem not in used_stems and row.stem not in BLACK_LIST:
-                final_labels[row.country] = row.label.replace('_', ' ')
+                final_labels[row.country] = [row.label.replace('_', ' '), row.tfidf, row.pmi]
                 final_ids[row.country] = row.label_id
                 used_stems.add(row.stem)
     return final_labels, final_ids
@@ -102,8 +102,8 @@ def get_top_labels(country_scores, label_score):
 
     for row in country_scores.itertuples():
         if row.stem not in used_stems:
-            if len(top_labels[row.country]) < 10:
-                top_labels[row.country].append(row.label)
+            if len(top_labels[row.country]) < 30:
+                top_labels[row.country].extend([row.label, row.tfidf, row.pmi])
                 used_stems.add(row.stem)
     return top_labels
 
@@ -132,12 +132,11 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     final_labels, final_scores = assign_country_label_ids(country_labels, label_score, soft_labeling, num_candidates)
 
     # # Create results data frame
-    df = pd.DataFrame(final_labels,  index=[0]).T
+    df = pd.DataFrame.from_dict(final_labels,  orient='index', columns=['label_name', 'tfidf', 'pmi'])
     df['country'] = df.index
 
     if purpose == 'study':
         df = df.set_index('country')
-        df.columns = ['label_name']
         df.to_csv(label_path + '/final_labels.csv', index=True)
     else:
         df['label_id'] = np.array(list(final_scores.values())).T
@@ -150,8 +149,11 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, s
     column_names = []
     for i in range(1, 11):
         column_names.append(str(i))
+        column_names.append('tfidf_' + str(i))
+        column_names.append('pmi_' + str(i))
 
-    top_df = pd.DataFrame.from_records(top, columns=column_names)
+    top_df = pd.DataFrame([cluster for cluster in top], columns=column_names)
+
     top_df['country'] = top_df.index
     top_df = top_df.set_index('country')
 

@@ -1,8 +1,8 @@
-country,0,1,2,3,4,5,6,7,8,9
-0,vehicle parts,automotive technologies,automobile,internal combustion engine,engines,automotive industry,vehicle technology,car,vehicle,element
-1,building engineering,manufacturing,industrial processes,materials,processes,chemistry,electricity,material,metal,process
-2,military technology,aerospace engineering,military science,aircraft,weapons,war,weapon,particle,force,submarine
-3,information technology,technological change,innovation,technological,information,main topic classifications,science,management,research,engineering
-4,technology by year,computer-related introductions by year,computers,product introductions by year,software,smartphone,company,features,released,mobile phones
-5,electrical engineering,electronics,devices,optics,electricity,application,signal,operation,semiconductor,measurement
-6,industrial revolution,equipment,tools,invented,inventions by country,manufactured goods,machine,produced,idea,history
+,0,1,2,3,4
+0,vehicle parts,automotive technologies,automobile,internal combustion engine,engines
+1,building engineering,manufacturing,industrial processes,materials,processes
+2,military technology,aerospace engineering,military science,aircraft,weapons
+3,information technology,technological change,innovation,technological,information
+4,technology by year,computer-related introductions by year,computers,product introductions by year,software
+5,electrical engineering,electronics,devices,optics,electricity
+6,industrial revolution,equipment,tools,invented,inventions by country

@@ -9,14 +9,10 @@ LABEL_TYPES = ['h_cat', 'key_phrases', 'key_words', 'lda', 'links']
 CLUSTER_TYPES = ['kmeans_plain', 'kmeans_augmented', 'LDA']
 
 
-def get_cluster_labels(responses):
-    label_counts = {}
-    for proj in PROJECTS:
-        label_counts[proj] = {}
-        for cluster in CLUSTER_TYPES:
-            label_counts[proj][cluster] = {}
-            for i in range(7):
-                label_counts[proj][cluster][i] = defaultdict(int)
+def get_labels(responses):
+    label_votes = defaultdict(lambda: defaultdict(int))
+    label_exposures = defaultdict(lambda: defaultdict(int))
+
     for index, row in responses.iterrows():
         for column in responses.columns:
             if 'Answer.chosen_label' in column:
@@ -28,71 +24,85 @@ def get_cluster_labels(responses):
                     cluster_type = re.findall("^[^_]*_[^_]*", row['Input.group_id_' + project_num])[0]
                 if not row[column] == -1:
                     label = row['Input.label_' + str(project_num) + '_' + str(row[column])]
-                    cluster_num = re.findall("(?<=_c)(.*)(?=_)", row['Input.group_id_' + project_num])[0]
-                    label_counts[project][cluster_type][int(cluster_num)][label] += 1
-    return label_counts
-
-
-def create_dataframe(responses, label_counts):
-    columns = ['cluster_id', 'label', 'tfidf', 'pmi', 'h_cat', 'key_phrases', 'key_words', 'lda', 'links', 'score']
-    df = pd.DataFrame(columns=columns)
-    labels = set()
-    x = 0
-    for index, row in responses.iterrows():
-        if x % 100 == 0:
-            print(str(x) + ' rows completed')
-        for column in responses.columns:
-            label_row = []
+                    cluster_id = re.findall("(?<=_c)(.*)(?=_)", row['Input.group_id_' + project_num])[0]
+                    group_id = project + '_' + cluster_type + '_' + str(cluster_id)
+                    label_votes[group_id][label] += 1
             if 'Input.label' in column:
                 if not str(row[column]) == 'nan':
-                    if row[column] not in labels:
-                        project_num = re.findall("(?<=label_)(.*)(?=_)", column)[0]
-                        project = row['Input.project_' + project_num]
-                        if 'LDA' in row['Input.group_id_' + project_num]:
-                            cluster_type = re.findall("^[^_]+(?=_)", row['Input.group_id_' + project_num])[0]
-                        else:
-                            cluster_type = re.findall("^[^_]*_[^_]*", row['Input.group_id_' + project_num])[0]
-                        cluster_num = re.findall("(?<=_c)(.*)(?=_)", row['Input.group_id_' + project_num])[0]
-                        cluster_id = project + '_' + cluster_type + '_' + cluster_num
-                        label_row.extend([cluster_id, row[column], 1, 0])
-                        label_type = get_label_type(row[column], project, cluster_type)
-                        for i in range(5):
-                            if label_type == LABEL_TYPES[i]:
-                                label_row.extend([1])
-                            else:
-                                label_row.extend([0])
-                        counts = label_counts[project][cluster_type][int(cluster_num)][row[column]]
-                        label_row.extend([counts])
-                        labels.add(row[column])
+                    project_num = re.findall("(?<=label_)(.*)(?=_)", column)[0]
+                    project = row['Input.project_' + project_num]
+                    if 'LDA' in row['Input.group_id_' + project_num]:
+                        cluster_type = re.findall("^[^_]+(?=_)", row['Input.group_id_' + project_num])[0]
+                    else:
+                        cluster_type = re.findall("^[^_]*_[^_]*", row['Input.group_id_' + project_num])[0]
+                    cluster_id = re.findall("(?<=_c)(.*)(?=_)", row['Input.group_id_' + project_num])[0]
+                    group_id = project + '_' + cluster_type + '_' + str(cluster_id)
+                    label_exposures[group_id][row[column]] += 1
 
-                        df_row = {}
-                        for i in range(10):
-                            df_row[columns[i]] = label_row[i]
-                        df = df.append(df_row, ignore_index=True)
+    rows = []
+    for group_id in label_votes:
+        for label in label_votes[group_id]:
+            row = {
+                'group_id': group_id,
+                'label': label,
+                'score': label_votes[group_id][label] / label_exposures[group_id][label]
+            }
+            rows.append(row)
+    df = pd.DataFrame(rows)
 
-        x += 1
     return df
 
 
-def get_label_type(label, project, cluster_type):
-    for type in LABEL_TYPES:
-        if type == 'lda' and cluster_type == 'LDA':
-            df = pd.read_csv('study/' + project + '/' + cluster_type +
-                             '/labels/LDA_labels/LDA_labels.csv')
-        else:
-            df = pd.read_csv('study/' + project + '/' + cluster_type + '/labels/' + type +
-                             '/top_labels.csv')
-        for col in df.columns[1:]:
-            df[str(col)] = df[str(col)].astype(str).str.lower()
-            if label in df[str(col)].values:
-                return type
-    return -1
+def get_label_scores():
+    cluster_label_info = defaultdict(lambda: defaultdict(dict))
+    for project in PROJECTS:
+        for cluster_type in CLUSTER_TYPES:
+            for type in LABEL_TYPES:
+                if type == 'lda' and cluster_type == 'LDA':
+                    df = pd.read_csv('study/' + project + '/LDA/labels/LDA_labels/LDA_labels.csv')
+                    for cluster_id, row in df.iterrows():
+                        group_id = project + '_' + cluster_type + '_' + str(cluster_id)
+                        for i in range(10):
+                            label = row['label' + str(i)].lower()
+                            prob = row['prob' + str(i)]
+                            cluster_label_info[group_id][label]['lda_prob'] = prob
+                else:
+                    df = pd.read_csv('study/' + project + '/' + cluster_type + '/labels/' + type +
+                                     '/top_labels.csv')
+                    for cluster_id, row in df.iterrows():
+                        group_id = project + '_' + cluster_type + '_' + str(cluster_id)
+                        for i in range(1, 11):
+                            label = row[str(i)].lower()
+                            tfidf = row['tfidf_' + str(i)]
+                            pmi = row['pmi_' + str(i)]
+                            cluster_label_info[group_id][label][type + '_tfidf'] = tfidf
+                            cluster_label_info[group_id][label][type + '_pmi'] = pmi
+
+    rows = []
+    for group_id in cluster_label_info:
+        for label in cluster_label_info[group_id]:
+            scores = cluster_label_info[group_id][label]
+            row = {
+                'group_id' : group_id,
+                'label' : label,
+                'lda_prob' : scores.get('lda_prob', 0.0)
+            }
+            for type in LABEL_TYPES:
+                for suffix in ('pmi', 'tfidf'):
+                    key = type + '_' + suffix
+                    row[key] = scores.get(key, 0.0)
+            rows.append(row)
+    df = pd.DataFrame(rows)
+    return df
 
 
 def main(responses):
-    label_counts = get_cluster_labels(responses)
-    df = create_dataframe(responses, label_counts)
-    df.to_csv('study/evaluation/label_matrix.csv')
+    scores_df = get_label_scores()
+    label_df = get_labels(responses)
+    label_matrix = pd.merge(scores_df, label_df, on=['group_id', 'label'], how='outer')
+    print(label_matrix['h_cat_tfidf'].isna().sum())
+    print(label_matrix)
+    label_matrix.to_csv('study/evaluation/label_matrix.csv')
 
 
 if __name__ == '__main__':

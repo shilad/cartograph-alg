@@ -10,8 +10,8 @@ set -e
 set -x
 
 exp_dir=study/evaluation
-python -m study.evaluation.mturk_evaluation \
-            --responses ${exp_dir}/cleaned_mturk_results.csv >>${exp_dir}/evaluation.json
+#python -m study.evaluation.mturk_evaluation \
+#            --responses ${exp_dir}/cleaned_mturk_results.csv >>${exp_dir}/evaluation.json
 
 python -m study.evaluation.label_classifier_matrix \
             --responses ${exp_dir}/cleaned_mturk_results.csv

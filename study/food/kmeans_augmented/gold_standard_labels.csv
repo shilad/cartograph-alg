@@ -1,8 +1,8 @@
-country,0,1,2,3,4,5,6,7,8,9
-0,food additives,nutrition,organic compound,health,intake,processing,food politics,chemical formula,diet,
-1,cuisine,dishes,food and drink by country,cuisine by country,cuisine by region,dish,cooked,traditional,culture by country,cheese
-2,celebrity chef,kitchen,food network,restaurant,chef,award,people,survivors,,
-3,food product brands,brands,fast food,food and drink companies by year of establishment,brand,stores,company,soft drink,chain,marketing
-4,alcoholic beverage,alcohol,alcoholic drinks by country,alcoholic drinks,fermented drinks,cocktail,brewery,new york,wines,wine
-5,seafood,fishing industry,fishing,fisheries,animal-based seafood,fish,atlantic ocean,species,sea,
-6,edible plants,plant products,types of food,plants,plants and humans,cooking,cultivation,cultivar,flowering plant,plant
+,0,1,2,3,4
+0,food additives,nutrition,organic compound,health,intake
+1,cuisine,dishes,food and drink by country,cuisine by country,cuisine by region
+2,celebrity chef,kitchen,food network,restaurant,chef
+3,food product brands,brands,fast food,food and drink companies by year of establishment,brand
+4,alcoholic beverage,alcohol,alcoholic drinks by country,alcoholic drinks,fermented drinks
+5,seafood,fishing industry,fishing,fisheries,animal-based seafood
+6,edible plants,plant products,types of food,plants,plants and humans
