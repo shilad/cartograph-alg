@@ -39,8 +39,8 @@ do
     # Step 5: Run algorithmic steps that are necessary.
     python -m cartograph.xy_embed.umap_embed \
             --map_directory ${exp_dir} \
-            --vectors ${exp_dir}/vanilla_vectors.csv
-
+            --vectors ${exp_dir}/vanilla_vectors.csv\
+            --output_file xy_embedding.csv
 
 
     python -m kmeans+label.joint_label_kmeans \
