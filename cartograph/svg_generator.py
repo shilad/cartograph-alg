@@ -25,20 +25,18 @@ def get_sizes(articles):
     cities = {}
     for value in articles.values():
         cities[value['Article']] = value['Popularity']
-    x = 0
-    for key, value in sorted(cities.items(), key=operator.itemgetter(1), reverse=True):
+
+    for x, (key, value) in enumerate(sorted(cities.items(), key=operator.itemgetter(1), reverse=True)):
         if x == 0:
             sizes[key] = 30
-            x += 1
         elif x <= 15:
-            sizes[key] = 15
-            x += 1
+            sizes[key] = 18
         elif x <= 45:
-            sizes[key] = 8
-            x += 1
-        elif x <= 135:
-            sizes[key] = 2
-            x += 1
+            sizes[key] = 10
+        elif x <= 100:
+            sizes[key] = 6
+        elif x <= 250:
+            sizes[key] = 3
     return sizes
 
 
@@ -75,7 +73,6 @@ def set_colors(countries_csv, color_palette):
     countries = pd.read_csv(countries_csv)
     colors = {}
     palette = sns.color_palette(color_palette, len(countries)).as_hex()
-
     for i in range(len(countries['country'])):
         colors[countries.iloc[i]['label_name']] = palette[countries.iloc[i]['country']]
     return colors
@@ -93,7 +90,7 @@ def draw_elevation(elevation_csv, drawing):
     df = pd.read_csv(elevation_csv).dropna(how='all')
     for index, row in df.iterrows():
         temp = np.array(df.iloc[index].values.flatten().tolist())
-        temp = temp[temp!='nan']
+        temp = temp[temp != 'nan']
         polygon = draw.Path(stroke_width=0.001, stroke_opacity=0.7, fill=temp[-1])
         polygon.M(float(temp[0])*XY_RATIO, float(temp[1])*XY_RATIO)   # start path at initial point
         for i in range(2, len(temp)-2, 2):
@@ -118,8 +115,8 @@ def draw_svg(json_articles, width, height, colors, sizes, country_font_size=30, 
         y = v["y"] * XY_RATIO  # The original x, y are too small to visualize
         country = v["Country"]
         size = sizes[v['Article']]  # Augment the font_size and circle size correspondingly
-        drawing.append(draw.Circle(x, y, size, fill=colors[country]))
-        if size > .5:
+        drawing.append(draw.Circle(x, y, size, **{ 'fill' : colors[country], 'fill-opacity' : 0.6 }))
+        if size > 0.2:
             adjusted_x, adjusted_y = x - 0.5*len(title)*XY_RATIO, y - 0.5*size
             drawing.append(draw.Text(title, int(size), adjusted_x, adjusted_y))
     # Draw country labels

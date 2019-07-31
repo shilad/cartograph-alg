@@ -26,8 +26,7 @@ def main(map_directory, embedding):
     X = pd.read_csv(map_directory+"/vanilla_vectors.csv").iloc[:, 1:].to_numpy()
     X_embed = pd.read_csv(map_directory + embedding).iloc[:, 1:].to_numpy()
     tw = evaluate_xy_embed(X, X_embed)
-    #print("\n Trustworthiness: " + str(tw))
-    print(str(json.dumps(tw)))
+    print(str(json.dumps({"Trustworthiness" : tw})))
 
 
 if __name__ == '__main__':

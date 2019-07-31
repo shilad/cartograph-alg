@@ -1,8 +1,8 @@
-country,0
-4,Vehicle technology
-2,Electrical engineering
-1,Materials
-3,Management by type
-5,Optics
-6,Manufactured goods
-0,Computer-related introductions by year
+country,label_name,tfidf,pmi
+4,vehicle technology,0.03927787857026761,0.17951003768991083
+2,electrical engineering,0.02798469634875537,0.11238238747011324
+1,materials,0.0255244310757952,0.0845655434409064
+3,management by type,0.018314163664127442,0.09036359600710275
+5,optics,0.01587425571303066,0.07730040904991038
+6,manufactured goods,0.011126509905267193,0.032693551743481174
+0,computer-related introductions by year,0.00673084000994305,0.017412090163249277

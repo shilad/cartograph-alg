@@ -7,14 +7,15 @@
 #
 # Author: Yuren "Rock" Pang, Shilad Sen
 
-# set -e
-# set -x
+ set -e
+ set -x
 
-topic=internet
+topic=food
 
-# Assign variable name for label candidate we want (categories, links, keywork, etc)
-article_label_csv=article_keywords.csv
-label_name_csv=keyword_names.csv
+# Assign variable name for label candidate we want (categories, links, keywords, etc)
+article_label_csv=article_keyphrases.csv
+label_name_csv=keyphrases_names.csv
+label_type=keyphrases
 
 # the vector we would like to use
 initial_vector_for_clustering=(vanilla_vectors.csv label_augmented_vectors.csv)
@@ -34,7 +35,7 @@ do
 
     # Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
     # The example below passes the equivalent of { "spread" : "17", "target_weight" : "0.5" }.
-    write_experiment_params ${exp_dir} num_clusters 8 labels links xy_embedding tsne
+    write_experiment_params ${exp_dir} num_clusters 7 labels ${label_type} xy_embedding umap percentile 1 label_score tfidf
 
     if (($i == 1)); then
         write_experiment_params ${exp_dir} vectors augmented
@@ -42,7 +43,7 @@ do
         python -m cartograph.vector_augmenter \
                 --experiment ${exp_dir} \
                 --vectors ${exp_dir}/vanilla_vectors.csv \
-                --label_vectors data/${topic}/${article_label_csv} \
+                --label_vectors data/${topic}/article_labels_combined.csv \
                 --method label \
                 --output_file ${initial_vector_for_clustering[$i]}
     else
@@ -53,13 +54,19 @@ do
         --experiment ${exp_dir} \
         --vectors ${exp_dir}/${initial_vector_for_clustering[$i]} \
         --clustering kmeans \
-        --k 8
+        --k 7
     python -m cartograph.label_selector \
-        --experiment ${exp_dir} \
-        --articles_to_labels data/${topic}/${article_label_csv} \
-        --label_names data/${topic}/${label_name_csv} \
-        --label_score tfidf \
-        --percentile 0.3
+            --experiment ${exp_dir} \
+            --articles_to_labels data/${topic}/${article_label_csv} \
+            --label_names data/${topic}/${label_name_csv} \
+            --label_score tfidf \
+            --percentile 1 \
+            --purpose experiment \
+            --label_path NA \
+            --cluster_groups /cluster_groups.csv \
+            --output_file /final_labels.csv \
+            --soft_labeling False \
+            --num_candidates 0
 
 
     # Step 4(2)(b): If you needed to generate augmented vectors
@@ -67,40 +74,63 @@ do
         python -m cartograph.vector_augmenter \
                 --experiment ${exp_dir} \
                 --vectors ${exp_dir}/vanilla_vectors.csv \
-                --label_vectors data/${topic}/${article_label_csv} \
+                --label_vectors data/${topic}/article_labels_combined.csv \
                 --method cluster \
                 --cluster_vectors ${exp_dir}/cluster_groups.csv \
                 --output_file ${vector_format_for_embedding[$i]}
     fi
 
     # Step 5
-    python -m cartograph.xy_embed.tsne_embed \
-            --experiment ${exp_dir} \
-           --vectors ${exp_dir}/${vector_format_for_embedding[$i]}
+    python -m cartograph.xy_embed.umap_embed \
+            --map_directory ${exp_dir} \
+            --vectors ${exp_dir}/vanilla_vectors.csv
 
     # draw boundary
-    python -m cartograph.border_creator ${exp_dir}
+    python -m cartograph.border_creator \
+                ${exp_dir} /xy_embeddings.csv \
+                /cluster_groups.csv
 
     # Step 6: Generate JSON, noise refers to using noise filtering algorithm (k means distance)
-    python -m cartograph.json_generator data/${topic} ${exp_dir} noise
+    python -m cartograph.json_generator \
+            --map_directory data/${topic} \
+            --experiment ${exp_dir} \
+            --filter_method kk  \
+            --country_labels /final_labels.csv \
+            --cluster_groups /cluster_groups.csv \
+            --embeddings /xy_embeddings.csv \
+            --output_name /domain.json \
+            --purpose experiment \
+            --label_path NA
 
 
     # Step 7: Run evaluation metrics and generate HTML & SVG
 
-    python -m cartograph.svg_generator ${exp_dir} 1500 1500 muted
-    python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} >>${exp_dir}/evaluation.json
+    python -m cartograph.svg_generator \
+            --map_directory ${exp_dir} \
+            --width 1500 \
+            --height 1500 \
+            --color_palette muted \
+            --json_file /domain.json \
+            --output_file /graph.svg \
+            --country_labels /final_labels.csv \
+            --purpose experiment \
+            --label_path NA
+    python -m cartograph.evaluation.xy_embedding_validation ${exp_dir} /xy_embeddings.csv >>${exp_dir}/evaluation.json
     python -m cartograph.evaluation.modularity_evaluator \
             --experiment ${exp_dir} \
             --xy_embeddings_csv ${exp_dir}/xy_embeddings.csv \
             --method nn \
             --cluster_groups_csv ${exp_dir}/cluster_groups.csv >> ${exp_dir}/evaluation.json
-    python -m cartograph.evaluation.cluster_validation_metrics \
-            --experiment ${exp_dir} \
-            --vectors ${exp_dir}/vanilla_vectors.csv \
-            --groups ${exp_dir}/cluster_groups.csv >> ${exp_dir}/evaluation.json
+#    python -m cartograph.evaluation.cluster_validation_metrics \
+#            --experiment ${exp_dir} \
+#            --vectors ${exp_dir}/vanilla_vectors.csv \
+#            --groups ${exp_dir}/cluster_groups.csv >> ${exp_dir}/evaluation.json
 
 
     # Step 8: Output the html for visualization
-    python -m cartograph.html_generator ${exp_dir}
+    python -m cartograph.html_generator \
+           --experiment ${exp_dir} \
+           --purpose experiment \
+           --label_path NA
 
 done

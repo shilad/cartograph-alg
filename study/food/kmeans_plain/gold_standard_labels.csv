@@ -1,8 +1,8 @@
-country,0,1,2,3,4
-0,nutrition,food additives,health,beverage,processing
-1,food product brands,fast food,brands,chain,food and drink companies by year of establishment
-2,food network,celebrity chef,chef,restaurant,kitchen
-3,alcoholic beverage,alcoholic drinks,alcohol,fermented drinks,alcoholic drinks by country
-4,seafood,animal-based seafood,fish,sea,fishing
-5,cuisine,food and drink by country,cuisine by country,cuisine by region,dishes
-6,types of food,edible plants,plant products,fruit,plant
+country,0,1,2,3,4,5,6,7,8,9
+0,nutrition,food additives,health,beverage,processing,diet,chemical formula,food politics,organic compound,carbohydrate
+1,food product brands,fast food,brands,chain,food and drink companies by year of establishment,company,brand,marketing,stores,companies by industry and year of establishment
+2,food network,celebrity chef,chef,restaurant,kitchen,years,births by decade,california,greek,work
+3,alcoholic beverage,alcoholic drinks,alcohol,fermented drinks,alcoholic drinks by country,beer,bottle,cocktail,wines,brewery
+4,seafood,animal-based seafood,fish,sea,fishing,fishing industry,crustacean,species,,
+5,cuisine,food and drink by country,cuisine by country,cuisine by region,dishes,dish,cooked,preparation,culture by country,traditional
+6,types of food,edible plants,plant products,fruit,plant,plants,dessert,cooking,cultivars,flowering plant

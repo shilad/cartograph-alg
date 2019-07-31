@@ -24,11 +24,7 @@ def create_merged_df(map_directory, experiment_directory, country_labels, cluste
     cluster_groups_df = pd.read_csv(experiment_directory + cluster_groups)
     countries_df = pd.merge(cluster_groups_df, country_label_df, on='country')
     countries_df = countries_df.drop(columns=['country'])
-    if 'label_name' in countries_df.columns:
-        countries_df = countries_df.rename(columns={'label_name': 'country'})
-    else:
-        countries_df = countries_df.rename(columns={'0': 'country'})
-
+    countries_df = countries_df.rename(columns={'label_name': 'country'})
     df_list = [domain_concepts_df, pop_scores_df, countries_df, xy_df]
     df = reduce(lambda df1, df2: pd.merge(df1, df2, on='article_id'), df_list) #reduce(pd.merge, df_list)
     return df

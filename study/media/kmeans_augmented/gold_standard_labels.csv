@@ -1,8 +1,8 @@
-country,0,1,2,3,4
-0,media in the united states,american journalism,journalism,american journalists,reporting
-1,communication,mass media,communication studies,social media,information
-2,broadcasting,television in the united states,television broadcasting companies of the united states,media companies of the united states,programming
-3,information and communications technology,video,media technology,film and video technology,electronics
-4,media companies of india,media in india,news media of india,media in india by medium,media in india by city
-5,entertainment,entertainment occupations,broadcasting,filmmaking,music
-6,media by country,media in europe by country,news,broadcast,radio
+country,0,1,2,3,4,5,6,7,8,9
+0,media in the united states,american journalism,journalism,american journalists,reporting,propaganda,politics of the united states,life,american,times
+1,communication,mass media,communication studies,social media,information,advertising,marketing,society,social sciences,form
+2,broadcasting,television in the united states,television broadcasting companies of the united states,media companies of the united states,programming,cable television,network,media companies by year of establishment,nbc,corporation
+3,information and communications technology,video,media technology,film and video technology,electronics,software,audio,moving picture experts group,,
+4,media companies of india,media in india,news media of india,media in india by medium,media in india by city,indian,channels,references,hindi,editorial
+5,entertainment,entertainment occupations,broadcasting,filmmaking,music,film,production,films,youtube,arts
+6,media by country,media in europe by country,news,broadcast,radio,establishments in europe by year,tv,service,reporters without borders,edition

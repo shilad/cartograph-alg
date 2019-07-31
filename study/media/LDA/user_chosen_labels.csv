@@ -1,8 +1,8 @@
-,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19
-0,journalism,news sources,editor,media publishers,"news providers, news channels",information,media companies,types of media,,,,,,,,,,,,
+country,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19
+0,information,editor,media publishers,"news providers, news channels",news sources,types of media,journalism,media companies,,,,,,,,,,,,
 1,international media,worlds media,,,,,,,,,,,,,,,,,,
-2,communication media,"advertising bias, news media journalism, broadcast news",pen point,media controversy,broadcasting and narrowcasting medium,societal science,media in society,social media information,medias world,propaganda,media theories,media influence,types of media,,,,,,,
-3,media personalities,news companies and casters,best journalist,influential media,writers,media sensations,entertainment awards and projects,journalists,media journalists,popular people and organizations in media,"media, news, news corporation",,,,,,,,,
-4,production,movie-making,film in media,media world of canada,,,,,,,,,,,,,,,,
-5,digital entertainment,media innovations,digital media formats,media systems,types of media,,,,,,,,,,,,,,,
-6,news outlets,publishing,international media,broadcasting,world media channels,entertainment,news media brands,website,news,media outlets,television media world,"media outlets, media",media companies worldwide,communication,media brands,"television, media",information,paid programming,media networks,satellite television
+2,media theories,media in society,social media information,broadcasting and narrowcasting medium,pen point,societal science,communication media,"advertising bias, news media journalism, broadcast news",medias world,propaganda,media influence,media controversy,types of media,,,,,,,
+3,entertainment awards and projects,popular people and organizations in media,best journalist,media sensations,influential media,media journalists,"media, news, news corporation",news companies and casters,writers,journalists,media personalities,,,,,,,,,
+4,film in media,movie-making,production,media world of canada,,,,,,,,,,,,,,,,
+5,digital media formats,media innovations,media systems,digital entertainment,types of media,,,,,,,,,,,,,,,
+6,information,"television, media",communication,media companies worldwide,world media channels,media networks,news media brands,broadcasting,television media world,news,website,publishing,news outlets,entertainment,media brands,international media,media outlets,paid programming,"media outlets, media",satellite television

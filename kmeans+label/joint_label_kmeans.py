@@ -21,7 +21,7 @@ class K_Means:
         self.centroids = {}
 
 
-    def fit(self, data, ids):
+    def fit(self, data):
         print("original")
         N, D = data.shape
         K = self.k
@@ -72,7 +72,7 @@ class K_Means:
             high_dim_dist = cosine_distances(data, centroids)  # get cosine distance betw each point and the cenroids, N x k
             assert high_dim_dist.shape == (N, K)
             label_scores = label_affinity(article_keywords, country_names, ids, k)  # get the homogeneity vector, 4097 *
-            dis_mat = high_dim_dist * (1 - weight) - label_scores * weight  # get the distance matrix, 4097 * 8
+            dis_mat = high_dim_dist * (1 - weight) - label_scores * weight # get the distance matrix, 4097 * 8
             best_group = np.argmin(dis_mat, axis=1)
             assert best_group.shape == (N,)
 
@@ -190,7 +190,7 @@ if __name__ == '__main__':
     ids = pd.DataFrame(article_vectors['article_id'])
     X = article_vectors.iloc[:, 1:].values
     km = K_Means(int(args.k))
-    init_groups, init_distance = km.fit(X, ids)
+    init_groups, init_distance = km.fit(X)
     init_groups = ids.join(pd.DataFrame(init_groups))
     init_groups.columns = ['article_id', 'country']
     init_groups['distance'] = init_distance

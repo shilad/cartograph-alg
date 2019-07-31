@@ -37,6 +37,7 @@ prepare_experiment_dir () {
     cp -p $0 ${exp_dir}
 
     # Link in the vanilla vector file
+    rm ${exp_dir}/vanilla_vectors.csv >& /dev/null
     ln data/${map_name}/article_vectors.csv ${exp_dir}/vanilla_vectors.csv
 
     # Create empty parameters file

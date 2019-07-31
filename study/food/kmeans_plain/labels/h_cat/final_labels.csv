@@ -1,8 +1,8 @@
-country,0
-4,Fishing
-6,Edible plants
-3,Alcoholic drinks by country
-0,Food politics
-5,Cuisine
-1,Companies by industry and year of establishment
-2,Births by decade
+country,label_name,tfidf,pmi
+4,fishing,0.03704296626823756,0.28892729344859036
+6,edible plants,0.02464944998268968,0.07612675226764047
+3,alcoholic drinks by country,0.021283537585553135,0.0939387476190363
+0,food politics,0.01945058764397653,0.07836233139479745
+5,cuisine,0.01858738218344358,0.04382438984191515
+1,companies by industry and year of establishment,0.012080227406813283,0.03381466490004514
+2,births by decade,0.011169573350320889,0.048517236909256745

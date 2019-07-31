@@ -1,8 +1,8 @@
-country,0
-5,Telecommunications by country
-6,Digital marketing
-0,Software
-3,Computer law
-4,Life
-1,Main topic classifications
-2,Websites by topic
+country,label_name,tfidf,pmi
+5,telecommunications by country,0.018745972599404512,0.06704532257992188
+6,digital marketing,0.015097115473878153,0.0566886948954339
+0,software,0.012281466278041879,0.035587444317828655
+3,computer law,0.011304518540360247,0.033213924034796546
+4,life,0.00952408125192932,0.0615247517446695
+1,main topic classifications,0.008848935113535622,0.03022892090922269
+2,websites by topic,0.008297402423677103,0.02298465112743577
