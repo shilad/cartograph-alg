@@ -1,0 +1,756 @@
+,cluster_id,label,tfidf,pmi,h_cat,key_phrases,key_words,lda,links,score
+0,technology_LDA_6,history,1,0,0,0,1,0,0,4
+1,technology_LDA_6,construction,1,0,1,0,0,0,0,5
+2,technology_LDA_6,large,1,0,0,0,0,1,0,0
+3,technology_LDA_6,machine,1,0,0,1,0,0,0,1
+4,technology_LDA_6,references,1,0,0,1,0,0,0,0
+5,technology_LDA_6,early,1,0,0,0,0,1,0,0
+6,technology_LDA_6,works,1,0,0,0,1,0,0,1
+7,technology_LDA_6,tools,1,0,1,0,0,0,0,2
+8,technology_LDA_6,century,1,0,0,0,1,0,0,0
+9,technology_LDA_6,machines,1,0,1,0,0,0,0,6
+10,technology_LDA_6,iron,1,0,0,1,0,0,0,0
+11,technology_LDA_6,steel,1,0,0,1,0,0,0,0
+12,technology_LDA_6,design,1,0,0,1,0,0,0,4
+13,technology_LDA_6,history of technology,1,0,1,0,0,0,0,4
+14,technology_LDA_6,hardlines (retail),1,0,1,0,0,0,0,0
+15,technology_LDA_6,kent,1,0,0,0,0,0,1,1
+16,technology_LDA_6,england,1,0,0,0,0,0,1,0
+17,technology_LDA_6,mill,1,0,0,1,0,0,0,0
+18,technology_LDA_6,tool,1,0,0,1,0,0,0,4
+19,technology_LDA_6,work,1,0,0,0,0,1,0,1
+20,technology_LDA_6,equipment,1,0,1,0,0,0,0,5
+21,technology_LDA_6,industrial revolution,1,0,0,0,0,0,1,4
+22,internet_LDA_2,company,1,0,0,1,0,0,0,7
+23,internet_LDA_2,online,1,0,0,1,0,0,0,18
+24,internet_LDA_2,entertainment websites,1,0,1,0,0,0,0,15
+25,internet_LDA_2,awards,1,0,0,1,0,0,0,0
+26,internet_LDA_2,app,1,0,0,1,0,0,0,1
+27,internet_LDA_2,launched,1,0,0,1,0,0,0,0
+28,internet_LDA_2,video,1,0,0,1,0,0,0,3
+29,internet_LDA_2,united states,1,0,0,0,0,0,1,2
+30,internet_LDA_2,official,1,0,0,0,1,0,0,0
+31,internet_LDA_2,ebay,1,0,0,0,0,0,1,1
+32,internet_LDA_2,websites by topic,1,0,1,0,0,0,0,8
+33,internet_LDA_2,youtube,1,0,0,1,0,0,0,1
+34,internet_LDA_2,e-commerce,1,0,1,0,0,0,0,14
+35,internet_LDA_2,music,1,0,0,1,0,0,0,1
+36,internet_LDA_2,online services,1,0,1,0,0,0,0,23
+37,internet_LDA_2,website,1,0,0,0,1,0,0,13
+38,internet_LDA_2,san francisco,1,0,0,0,0,0,1,0
+39,internet_LDA_2,announced,1,0,0,1,0,0,0,0
+40,internet_LDA_2,service,1,0,0,0,0,1,0,4
+41,internet_LDA_2,internet companies,1,0,1,0,0,0,0,18
+42,food_kmeans_augmented_3,locations,1,0,0,1,0,0,0,0
+43,food_kmeans_augmented_3,food and drink companies by year of establishment,1,0,1,0,0,0,0,9
+44,food_kmeans_augmented_3,white,1,0,0,0,0,1,0,0
+45,food_kmeans_augmented_3,fast food,1,0,1,0,0,0,0,10
+46,food_kmeans_augmented_3,cultivate,1,0,0,0,0,1,0,1
+47,food_kmeans_augmented_3,green,1,0,0,0,0,1,0,0
+48,food_kmeans_augmented_3,stores,1,0,0,1,0,0,0,5
+49,food_kmeans_augmented_3,brand,1,0,0,0,0,0,0,6
+50,food_kmeans_augmented_3,chain,1,0,0,1,0,0,0,3
+51,food_kmeans_augmented_3,companies by industry and year of establishment,1,0,1,0,0,0,0,1
+52,food_kmeans_augmented_3,food product brands,1,0,1,0,0,0,0,19
+53,food_kmeans_augmented_3,establishments in the united states by year,1,0,1,0,0,0,0,1
+54,food_kmeans_augmented_3,juice,1,0,0,0,0,1,0,1
+55,food_kmeans_augmented_3,soft drink,1,0,0,0,0,0,1,5
+56,food_kmeans_augmented_3,brands,1,0,1,0,0,0,0,13
+57,food_kmeans_augmented_3,the coca-cola company,1,0,0,0,0,0,1,1
+58,food_kmeans_augmented_3,operations,1,0,0,0,1,0,0,2
+59,food_kmeans_augmented_3,united kingdom,1,0,0,0,0,0,1,0
+60,food_kmeans_augmented_3,marketing,1,0,0,0,1,0,0,3
+61,food_kmeans_augmented_3,united,1,0,0,0,1,0,0,0
+62,media_kmeans_augmented_6,establishments by country and year,1,0,1,0,0,0,0,1
+63,media_kmeans_augmented_6,serve,1,0,0,0,0,1,0,0
+64,media_kmeans_augmented_6,london,1,0,0,0,0,0,1,0
+65,media_kmeans_augmented_6,media in europe by country,1,0,1,0,0,0,0,9
+66,media_kmeans_augmented_6,media,1,0,0,1,0,0,0,14
+67,media_kmeans_augmented_6,community,1,0,0,0,0,1,0,0
+68,media_kmeans_augmented_6,media by country,1,0,1,0,0,0,0,13
+69,media_kmeans_augmented_6,radio,1,0,0,1,0,0,0,2
+70,media_kmeans_augmented_6,news,1,0,0,1,0,0,0,11
+71,media_kmeans_augmented_6,bbc,1,0,0,1,0,0,0,0
+72,media_kmeans_augmented_6,establishments by year and country,1,0,1,0,0,0,0,0
+73,media_kmeans_augmented_6,radio station,1,0,0,0,0,0,0,0
+74,media_kmeans_augmented_6,reference,1,0,0,0,0,1,0,0
+75,media_kmeans_augmented_6,establishments in europe by year,1,0,1,0,0,0,0,2
+76,media_kmeans_augmented_6,regional,1,0,0,0,1,0,0,1
+77,media_kmeans_augmented_6,reporters without borders,1,0,0,0,0,0,1,1
+78,media_kmeans_augmented_6,broadcast,1,0,0,1,0,0,0,10
+79,media_kmeans_augmented_6,tv,1,0,0,1,0,0,0,2
+80,media_kmeans_augmented_6,group,1,0,0,1,0,0,0,1
+81,media_kmeans_augmented_6,edition,1,0,0,0,0,1,0,1
+82,media_kmeans_augmented_6,newspaper,1,0,0,1,0,0,0,1
+83,media_kmeans_augmented_6,government,1,0,0,1,0,0,0,1
+84,food_kmeans_plain_6,plant,1,0,0,1,0,0,0,6
+85,food_kmeans_plain_6,fruit,1,0,0,1,0,0,0,8
+86,food_kmeans_plain_6,types of food,1,0,1,0,0,0,0,19
+87,food_kmeans_plain_6,preparation,1,0,0,0,1,0,0,0
+88,food_kmeans_plain_6,edible plants,1,0,1,0,0,0,0,18
+89,food_kmeans_plain_6,cultivar,1,0,0,0,0,0,1,1
+90,food_kmeans_plain_6,plants,1,0,0,0,1,0,0,5
+91,food_kmeans_plain_6,dessert,1,0,0,0,0,1,0,5
+92,food_kmeans_plain_6,version,1,0,0,0,0,1,0,0
+93,food_kmeans_plain_6,plant products,1,0,1,0,0,0,0,16
+94,food_kmeans_plain_6,genus,1,0,0,0,0,0,1,1
+95,food_kmeans_plain_6,flora by continent,1,0,1,0,0,0,0,2
+96,food_kmeans_plain_6,cultivars,1,0,0,1,0,0,0,5
+97,food_kmeans_plain_6,leaves,1,0,0,1,0,0,0,0
+98,food_kmeans_plain_6,plants and humans,1,0,1,0,0,0,0,5
+99,food_kmeans_plain_6,flowers,1,0,0,1,0,0,0,1
+100,food_kmeans_plain_6,potato,1,0,0,0,0,1,0,2
+101,food_kmeans_plain_6,flowering plant,1,0,0,0,0,0,1,4
+102,food_kmeans_plain_6,tree,1,0,0,1,0,0,0,2
+103,food_kmeans_plain_6,cooking,1,0,0,0,0,1,0,7
+104,food_kmeans_plain_6,seeds,1,0,0,1,0,0,0,3
+105,food_kmeans_plain_6,cultivation,1,0,0,0,1,0,0,3
+106,technology_kmeans_augmented_6,term,1,0,0,0,0,1,0,0
+107,technology_kmeans_augmented_6,communication,1,0,0,0,0,1,0,1
+108,technology_kmeans_augmented_6,inventions by country,1,0,1,0,0,0,0,7
+109,technology_kmeans_augmented_6,wood,1,0,0,1,0,0,0,0
+110,technology_kmeans_augmented_6,printing,1,0,0,1,0,0,0,0
+111,technology_kmeans_augmented_6,paper,1,0,0,1,0,0,0,0
+112,technology_kmeans_augmented_6,focus,1,0,0,0,0,1,0,0
+113,technology_kmeans_augmented_6,idea,1,0,0,0,0,1,0,4
+114,technology_kmeans_augmented_6,establish,1,0,0,0,0,1,0,1
+115,technology_kmeans_augmented_6,invented,1,0,0,0,1,0,0,9
+116,technology_kmeans_augmented_6,cast iron,1,0,0,0,0,0,1,0
+117,technology_kmeans_augmented_6,manufactured goods,1,0,1,0,0,0,0,9
+118,technology_kmeans_augmented_6,produced,1,0,0,0,1,0,0,4
+119,media_kmeans_plain_6,propaganda,1,0,0,1,0,0,0,11
+120,media_kmeans_plain_6,president,1,0,0,0,1,0,0,0
+121,media_kmeans_plain_6,pulitzer prize,1,0,0,0,0,0,1,2
+122,media_kmeans_plain_6,times,1,0,0,0,1,0,0,0
+123,media_kmeans_plain_6,politics of the united states,1,0,1,0,0,0,0,8
+124,media_kmeans_plain_6,life,1,0,0,0,0,1,0,1
+125,media_kmeans_plain_6,american,1,0,0,1,0,0,0,2
+126,media_kmeans_plain_6,new york times,1,0,0,0,0,0,0,0
+127,media_kmeans_plain_6,production,1,0,0,1,0,0,0,2
+128,media_kmeans_plain_6,births by decade,1,0,1,0,0,0,0,0
+129,media_kmeans_plain_6,the new york times,1,0,0,0,0,0,1,2
+130,media_kmeans_plain_6,reporting,1,0,0,1,0,0,0,22
+131,media_kmeans_plain_6,media in the united states,1,0,1,0,0,0,0,21
+132,media_kmeans_plain_6,years,1,0,1,0,0,0,0,0
+133,media_kmeans_plain_6,post,1,0,0,0,1,0,0,2
+134,media_kmeans_plain_6,war,1,0,0,1,0,0,0,1
+135,media_kmeans_plain_6,find,1,0,0,0,0,1,0,1
+136,media_kmeans_plain_6,american journalists,1,0,1,0,0,0,0,17
+137,media_kmeans_plain_6,claim,1,0,0,0,0,1,0,3
+138,media_kmeans_plain_6,msnbc,1,0,0,0,0,0,1,1
+139,media_kmeans_plain_6,cbs,1,0,0,0,0,1,0,0
+140,media_kmeans_plain_6,isbn,1,0,0,1,0,0,0,0
+141,media_kmeans_plain_6,abc news,1,0,0,0,0,0,1,1
+142,media_kmeans_plain_6,states,1,0,0,0,1,0,0,1
+143,food_kmeans_augmented_1,bread,1,0,0,1,0,0,0,1
+144,food_kmeans_augmented_1,meat,1,0,1,0,0,0,0,3
+145,food_kmeans_augmented_1,range,1,0,0,0,0,1,0,1
+146,food_kmeans_augmented_1,cooked,1,0,0,0,1,0,0,7
+147,food_kmeans_augmented_1,served,1,0,0,1,0,0,0,4
+148,food_kmeans_augmented_1,cuisine by country,1,0,1,0,0,0,0,11
+149,food_kmeans_augmented_1,cheese,1,0,0,1,0,0,0,3
+150,food_kmeans_augmented_1,pork,1,0,0,0,0,0,1,1
+151,food_kmeans_augmented_1,occur,1,0,0,0,0,1,0,2
+152,food_kmeans_augmented_1,sugar,1,0,0,1,0,0,0,0
+153,food_kmeans_augmented_1,beef,1,0,0,0,0,0,1,0
+154,food_kmeans_augmented_1,dish,1,0,0,1,0,0,0,9
+155,food_kmeans_augmented_1,cuisine by region,1,0,1,0,0,0,0,11
+156,food_kmeans_augmented_1,salmon,1,0,0,0,0,1,0,1
+157,food_kmeans_augmented_1,abalone,1,0,0,0,0,1,0,1
+158,food_kmeans_augmented_1,cuisine,1,0,1,0,0,0,0,20
+159,food_kmeans_augmented_1,traditional,1,0,0,0,1,0,0,5
+160,food_kmeans_augmented_1,dishes,1,0,0,0,1,0,0,14
+161,food_kmeans_augmented_1,sea,1,0,0,0,1,0,0,0
+162,food_kmeans_augmented_1,food and drink by country,1,0,1,0,0,0,0,16
+163,food_kmeans_augmented_1,culture by country,1,0,1,0,0,0,0,4
+164,media_kmeans_plain_1,russian,1,0,0,1,0,0,0,0
+165,technology_kmeans_plain_4,inventor,1,0,0,0,0,0,1,1
+166,internet_LDA_0,application layer protocols,1,0,1,0,0,0,0,12
+167,internet_LDA_0,browser,1,0,0,1,0,0,0,5
+168,internet_LDA_0,world wide web consortium,1,0,0,0,0,0,1,7
+169,internet_LDA_0,use,1,0,0,0,1,0,0,0
+170,internet_LDA_0,web development,1,0,1,0,0,0,0,20
+171,internet_LDA_0,world wide web,1,0,0,0,0,0,1,15
+172,internet_LDA_0,javascript,1,0,0,0,0,0,1,5
+173,internet_LDA_0,web software,1,0,1,0,0,0,0,22
+174,internet_LDA_0,support,1,0,0,1,0,0,0,0
+175,internet_LDA_0,html,1,0,0,1,0,0,0,6
+176,internet_LDA_0,web browser,1,0,0,0,0,0,1,12
+177,internet_LDA_0,web,1,0,0,1,0,0,0,5
+178,internet_LDA_0,user,1,0,0,1,0,0,0,0
+179,internet_LDA_0,communications protocols,1,0,1,0,0,0,0,20
+180,internet_LDA_0,browsers,1,0,0,0,1,0,0,5
+181,internet_LDA_0,client,1,0,0,1,0,0,0,1
+182,internet_LDA_0,software,1,0,1,0,0,0,0,10
+183,internet_LDA_0,server,1,0,0,1,0,0,0,1
+184,internet_LDA_6,search,1,0,0,1,0,0,0,4
+185,internet_LDA_6,search engine software,1,0,1,0,0,0,0,4
+186,internet_LDA_6,yahoo!,1,0,0,0,0,0,1,0
+187,internet_LDA_6,search_engine,1,0,0,1,0,0,0,1
+188,internet_LDA_6,digital marketing,1,0,1,0,0,0,0,5
+189,internet_LDA_6,google,1,0,0,1,0,0,0,0
+190,internet_LDA_6,web search engine,1,0,0,0,0,0,1,3
+191,internet_LDA_6,advertising,1,0,0,1,0,0,0,1
+192,internet_LDA_6,yahoo,1,0,0,1,0,0,0,0
+193,internet_LDA_6,advertising by medium,1,0,1,0,0,0,0,1
+194,internet_LDA_6,search engine,1,0,0,0,0,0,1,4
+195,internet_LDA_6,internet search engines,1,0,1,0,0,0,0,6
+196,internet_LDA_6,advertisers,1,0,0,0,1,0,0,0
+197,internet_LDA_6,online advertising,1,0,1,0,0,0,0,4
+198,media_LDA_6,network,1,0,0,1,0,0,0,20
+199,media_LDA_6,pay television,1,0,0,0,0,0,1,4
+200,media_LDA_6,media companies by country,1,0,1,0,0,0,0,17
+201,media_LDA_6,television by year,1,0,1,0,0,0,0,1
+202,media_LDA_6,media companies by year of establishment,1,0,1,0,0,0,0,10
+203,media_LDA_6,channel,1,0,0,1,0,0,0,8
+204,media_LDA_6,programming,1,0,0,1,0,0,0,10
+205,media_LDA_6,television by country,1,0,1,0,0,0,0,5
+206,media_LDA_6,cable television,1,0,0,0,0,0,1,16
+207,media_LDA_6,television networks by country,1,0,1,0,0,0,0,16
+208,media_LDA_6,india,1,0,0,0,0,0,1,1
+209,food_LDA_6,health,1,0,1,0,0,0,0,9
+210,food_LDA_6,food,1,0,0,1,0,0,0,10
+211,food_LDA_6,carbohydrate,1,0,0,0,0,0,1,1
+212,food_LDA_6,high,1,0,0,0,1,0,0,0
+213,food_LDA_6,water,1,0,0,1,0,0,0,1
+214,food_LDA_6,wine,1,0,0,1,0,0,0,0
+215,food_LDA_6,grapes,1,0,0,1,0,0,0,1
+216,food_LDA_6,nutrition,1,0,1,0,0,0,0,14
+217,food_LDA_6,vineyards,1,0,0,1,0,0,0,1
+218,food_LDA_6,food and drink,1,0,1,0,0,0,0,10
+219,food_LDA_6,protein,1,0,0,0,0,0,1,1
+220,food_LDA_6,proteins,1,0,0,1,0,0,0,1
+221,food_LDA_6,levels,1,0,0,0,1,0,0,0
+222,food_LDA_6,organic compound,1,0,0,0,0,0,1,5
+223,food_LDA_6,diet,1,0,0,1,0,0,0,8
+224,food_LDA_6,effects,1,0,0,0,1,0,0,0
+225,food_LDA_6,branches of biology,1,0,1,0,0,0,0,1
+226,food_LDA_6,produce,1,0,0,0,0,1,0,3
+227,food_LDA_6,food politics,1,0,1,0,0,0,0,7
+228,food_LDA_6,increased,1,0,0,0,1,0,0,0
+229,food_LDA_6,studies,1,0,0,0,1,0,0,0
+230,internet_kmeans_plain_4,information,1,0,1,0,0,0,0,2
+231,internet_kmeans_plain_4,web page,1,0,0,0,0,0,1,3
+232,internet_kmeans_plain_4,people,1,0,0,1,0,0,0,0
+233,internet_kmeans_plain_4,require,1,0,0,0,0,1,0,0
+234,internet_kmeans_plain_4,different,1,0,0,0,1,0,0,0
+235,internet_kmeans_plain_4,packet,1,0,0,1,0,0,0,1
+236,internet_kmeans_plain_4,example,1,0,0,0,1,0,0,0
+237,internet_kmeans_plain_4,social,1,0,0,1,0,0,0,0
+238,internet_kmeans_plain_4,method,1,0,0,0,0,1,0,0
+239,internet_kmeans_plain_4,human–computer interaction,1,0,1,0,0,0,0,4
+240,internet_kmeans_plain_4,key,1,0,0,0,0,1,0,2
+241,internet_kmeans_plain_4,information economy,1,0,1,0,0,0,0,8
+242,internet_kmeans_plain_4,search engine optimization,1,0,0,0,0,0,1,9
+243,internet_kmeans_plain_4,content,1,0,0,1,0,0,0,3
+244,internet_kmeans_plain_4,traffic,1,0,0,0,0,1,0,2
+245,technology_kmeans_plain_5,plastic,1,0,0,1,0,0,0,1
+246,technology_kmeans_plain_5,process,1,0,0,1,0,0,0,2
+247,technology_kmeans_plain_5,battery,1,0,0,0,0,1,0,1
+248,technology_kmeans_plain_5,manufacturing,1,0,1,0,0,0,0,14
+249,technology_kmeans_plain_5,valve,1,0,0,0,0,0,1,0
+250,technology_kmeans_plain_5,tube,1,0,0,0,0,1,0,1
+251,technology_kmeans_plain_5,electricity,1,0,1,0,0,0,0,1
+252,technology_kmeans_plain_5,pressure,1,0,0,1,0,0,0,0
+253,technology_kmeans_plain_5,polymer,1,0,0,0,0,0,1,1
+254,technology_kmeans_plain_5,metal,1,0,0,0,0,0,1,2
+255,technology_kmeans_plain_5,chemistry,1,0,1,0,0,0,0,4
+256,technology_kmeans_plain_5,material,1,0,0,1,0,0,0,3
+257,technology_kmeans_plain_5,flow,1,0,0,1,0,0,0,1
+258,technology_kmeans_plain_5,materials,1,0,1,0,0,0,0,6
+259,technology_kmeans_plain_5,output,1,0,0,0,0,1,0,2
+260,technology_kmeans_plain_5,industrial processes,1,0,1,0,0,0,0,15
+261,technology_kmeans_plain_5,building engineering,1,0,1,0,0,0,0,9
+262,technology_kmeans_plain_5,chemical engineering,1,0,1,0,0,0,0,10
+263,technology_kmeans_plain_5,processes,1,0,0,0,1,0,0,4
+264,technology_kmeans_plain_5,fire,1,0,0,0,0,1,0,2
+265,technology_kmeans_plain_5,temperature,1,0,0,1,0,0,0,0
+266,media_kmeans_plain_5,owned,1,0,0,0,1,0,0,0
+267,media_kmeans_plain_5,canada,1,0,0,1,0,0,0,0
+268,media_kmeans_plain_5,new york city,1,0,0,0,0,0,1,0
+269,media_kmeans_plain_5,media companies of the united states,1,0,1,0,0,0,0,8
+270,media_kmeans_plain_5,stations,1,0,0,1,0,0,0,5
+271,media_kmeans_plain_5,broadcasting,1,0,0,0,1,0,0,10
+272,media_kmeans_plain_5,platform,1,0,0,0,0,1,0,2
+273,media_kmeans_plain_5,offer,1,0,0,0,0,1,0,0
+274,media_kmeans_plain_5,cable,1,0,0,1,0,0,0,1
+275,media_kmeans_plain_5,access,1,0,0,0,0,1,0,0
+276,media_kmeans_plain_5,nbc,1,0,0,0,0,1,0,0
+277,media_kmeans_plain_5,television in the united states,1,0,1,0,0,0,0,8
+278,media_kmeans_plain_5,television broadcasting companies of the united states,1,0,1,0,0,0,0,7
+279,food_kmeans_plain_0,beverage,1,0,0,0,0,1,0,4
+280,food_kmeans_plain_0,acid,1,0,0,1,0,0,0,0
+281,food_kmeans_plain_0,intake,1,0,0,1,0,0,0,2
+282,food_kmeans_plain_0,start,1,0,0,0,0,1,0,0
+283,food_kmeans_plain_0,increase,1,0,0,0,1,0,0,0
+284,food_kmeans_plain_0,operate,1,0,0,0,0,1,0,0
+285,food_kmeans_plain_0,processing,1,0,0,0,1,0,0,4
+286,food_kmeans_plain_0,food additives,1,0,1,0,0,0,0,11
+287,food_kmeans_plain_0,chemical formula,1,0,0,0,0,0,1,3
+288,internet_kmeans_augmented_5,know,1,0,0,0,0,1,0,0
+289,internet_kmeans_augmented_5,results,1,0,0,0,1,0,0,1
+290,technology_kmeans_plain_3,automotive industry,1,0,1,0,0,0,0,6
+291,technology_kmeans_plain_3,vehicle,1,0,0,1,0,0,0,3
+292,technology_kmeans_plain_3,car,1,0,0,1,0,0,0,1
+293,technology_kmeans_plain_3,volkswagen group,1,0,0,0,0,0,1,0
+294,technology_kmeans_plain_3,crankshaft,1,0,0,1,0,0,0,0
+295,technology_kmeans_plain_3,cars,1,0,0,0,1,0,0,0
+296,technology_kmeans_plain_3,motors,1,0,0,0,1,0,0,0
+297,technology_kmeans_plain_3,engines,1,0,1,0,0,0,0,3
+298,technology_kmeans_plain_3,function,1,0,0,0,0,1,0,1
+299,technology_kmeans_plain_3,value,1,0,0,0,0,1,0,0
+300,technology_kmeans_plain_3,automotive technologies,1,0,1,0,0,0,0,9
+301,technology_kmeans_plain_3,engine,1,0,0,1,0,0,0,0
+302,technology_kmeans_plain_3,element,1,0,0,0,0,1,0,0
+303,technology_kmeans_plain_3,case,1,0,0,0,0,1,0,0
+304,technology_kmeans_plain_3,automobile,1,0,0,0,0,0,1,4
+305,technology_kmeans_plain_3,vehicle parts,1,0,1,0,0,0,0,6
+306,technology_kmeans_plain_3,vehicles,1,0,0,0,1,0,0,1
+307,technology_kmeans_plain_3,speed,1,0,0,0,1,0,0,0
+308,technology_kmeans_plain_3,vehicle technology,1,0,1,0,0,0,0,7
+309,technology_kmeans_plain_3,cylinder,1,0,0,1,0,0,0,0
+310,technology_kmeans_plain_3,approach,1,0,0,0,0,1,0,0
+311,technology_kmeans_plain_3,internal combustion engine,1,0,1,0,0,0,0,4
+312,internet_kmeans_plain_2,history of the internet,1,0,1,0,0,0,0,4
+313,internet_kmeans_plain_2,computing culture,1,0,1,0,0,0,0,5
+314,internet_kmeans_plain_2,web series,1,0,0,0,0,0,1,3
+315,internet_kmeans_plain_2,ip address,1,0,0,0,0,0,1,0
+316,internet_kmeans_plain_2,rfc,1,0,0,1,0,0,0,0
+317,internet_kmeans_plain_2,spam,1,0,0,0,0,1,0,0
+318,internet_kmeans_plain_2,book,1,0,0,1,0,0,0,1
+319,internet_kmeans_plain_2,internet properties by year of establishment,1,0,1,0,0,0,0,2
+320,internet_kmeans_plain_2,site,1,0,0,1,0,0,0,4
+321,internet_kmeans_plain_2,alexa internet,1,0,0,0,0,0,1,1
+322,internet_kmeans_plain_2,twitter,1,0,0,1,0,0,0,0
+323,internet_kmeans_plain_2,define,1,0,0,0,0,1,0,1
+324,internet_kmeans_plain_2,series,1,0,0,1,0,0,0,2
+325,technology_kmeans_plain_2,steam,1,0,0,0,0,1,0,0
+326,technology_kmeans_plain_2,apple inc.,1,0,0,0,0,0,1,2
+327,technology_kmeans_plain_2,services,1,0,0,0,1,0,0,9
+328,technology_kmeans_plain_2,wi-fi,1,0,0,0,0,0,1,2
+329,technology_kmeans_plain_2,unit,1,0,0,0,0,1,0,0
+330,technology_kmeans_plain_2,released,1,0,0,0,1,0,0,0
+331,technology_kmeans_plain_2,phone,1,0,0,1,0,0,0,2
+332,technology_kmeans_plain_2,technology by year,1,0,1,0,0,0,0,9
+333,technology_kmeans_plain_2,computers,1,0,1,0,0,0,0,11
+334,technology_kmeans_plain_2,smartphone,1,0,0,0,0,0,1,8
+335,technology_kmeans_plain_2,motor,1,0,0,0,0,1,0,0
+336,technology_kmeans_plain_2,android,1,0,0,1,0,0,0,3
+337,technology_kmeans_plain_2,cut,1,0,0,1,0,0,0,0
+338,technology_kmeans_plain_2,computer-related introductions by year,1,0,1,0,0,0,0,9
+339,technology_kmeans_plain_2,building,1,0,0,0,0,1,0,1
+340,technology_kmeans_plain_2,users,1,0,0,1,0,0,0,1
+341,technology_kmeans_plain_2,mobile phones,1,0,1,0,0,0,0,4
+342,technology_kmeans_plain_2,product introductions by year,1,0,1,0,0,0,0,4
+343,media_kmeans_augmented_1,social media,1,0,0,0,0,0,1,8
+344,media_kmeans_augmented_1,communication studies,1,0,1,0,0,0,0,9
+345,media_kmeans_augmented_1,go,1,0,0,0,0,1,0,0
+346,media_kmeans_augmented_1,character,1,0,0,1,0,0,0,0
+347,media_kmeans_augmented_1,style,1,0,0,0,0,1,0,1
+348,media_kmeans_augmented_1,society,1,0,1,0,0,0,0,3
+349,media_kmeans_augmented_1,interview,1,0,0,0,0,1,0,0
+350,media_kmeans_augmented_1,come,1,0,0,0,0,1,0,0
+351,media_kmeans_augmented_1,form,1,0,0,0,1,0,0,1
+352,media_kmeans_augmented_1,behavior,1,0,1,0,0,0,0,1
+353,media_kmeans_augmented_1,mass media,1,0,1,0,0,0,0,15
+354,media_kmeans_augmented_1,social sciences,1,0,1,0,0,0,0,2
+355,food_kmeans_plain_2,victims,1,0,1,0,0,0,0,0
+356,food_kmeans_plain_2,20th-century births,1,0,1,0,0,0,0,0
+357,food_kmeans_plain_2,note,1,0,0,0,0,1,0,0
+358,food_kmeans_plain_2,celebrity chef,1,0,0,0,0,0,1,4
+359,food_kmeans_plain_2,german,1,0,0,0,0,1,0,0
+360,food_kmeans_plain_2,opened,1,0,0,0,1,0,0,0
+361,food_kmeans_plain_2,food network,1,0,0,0,0,0,1,4
+362,food_kmeans_plain_2,street,1,0,0,1,0,0,0,0
+363,food_kmeans_plain_2,california,1,0,0,0,0,1,0,1
+364,food_kmeans_plain_2,kitchen,1,0,0,1,0,0,0,3
+365,food_kmeans_plain_2,make,1,0,0,0,0,1,0,0
+366,food_kmeans_plain_2,greek,1,0,0,0,0,1,0,1
+367,food_kmeans_plain_2,chef,1,0,0,1,0,0,0,3
+368,food_kmeans_plain_2,restaurant,1,0,0,1,0,0,0,3
+369,food_kmeans_plain_2,award,1,0,0,0,1,0,0,0
+370,internet_kmeans_plain_0,protocol,1,0,0,1,0,0,0,1
+371,internet_kmeans_plain_0,law,1,0,0,1,0,0,0,0
+372,internet_kmeans_plain_0,provide,1,0,0,0,1,0,0,0
+373,internet_kmeans_plain_0,report,1,0,0,0,0,1,0,0
+374,internet_kmeans_plain_0,internet protocol,1,0,0,0,0,0,1,6
+375,internet_kmeans_plain_0,internet standards,1,0,1,0,0,0,0,8
+376,internet_kmeans_plain_0,internet protocols,1,0,1,0,0,0,0,11
+377,internet_kmeans_plain_0,state,1,0,0,0,0,1,0,0
+378,internet_kmeans_plain_0,networking standards,1,0,1,0,0,0,0,8
+379,internet_kmeans_plain_0,wikipedia,1,0,0,0,0,1,0,0
+380,internet_kmeans_plain_0,internet service provider,1,0,0,0,0,0,1,4
+381,internet_kmeans_plain_0,internet engineering task force,1,0,0,0,0,0,1,2
+382,internet_kmeans_plain_0,transmission control protocol,1,0,0,0,0,0,1,3
+383,internet_kmeans_plain_0,internet architecture,1,0,1,0,0,0,0,14
+384,internet_kmeans_plain_0,telecommunications,1,0,1,0,0,0,0,2
+385,internet_kmeans_plain_0,internet,1,0,0,1,0,0,0,8
+386,internet_kmeans_plain_0,ipv6,1,0,0,0,0,0,1,0
+387,internet_kmeans_plain_0,block,1,0,0,0,0,1,0,1
+388,technology_LDA_3,engineering,1,0,0,0,0,0,1,8
+389,technology_LDA_3,main topic classifications,1,0,1,0,0,0,0,5
+390,technology_LDA_3,subfields by academic discipline,1,0,1,0,0,0,0,3
+391,technology_LDA_3,requirements,1,0,0,0,1,0,0,0
+392,technology_LDA_3,technology,1,0,1,0,0,0,0,11
+393,technology_LDA_3,product,1,0,1,0,0,0,0,1
+394,technology_LDA_3,management,1,0,0,1,0,0,0,0
+395,technology_LDA_3,information technology,1,0,0,0,0,0,1,8
+396,technology_LDA_3,systems,1,0,0,1,0,0,0,6
+397,technology_LDA_3,system,1,0,0,0,0,1,0,4
+398,technology_LDA_3,analysis,1,0,0,1,0,0,0,1
+399,technology_LDA_3,academic disciplines,1,0,1,0,0,0,0,3
+400,technology_LDA_3,model,1,0,0,0,1,0,0,1
+401,technology_LDA_3,management by type,1,0,1,0,0,0,0,0
+402,technology_LDA_3,systems science,1,0,1,0,0,0,0,13
+403,technology_LDA_3,examples,1,0,0,0,1,0,0,0
+404,internet_kmeans_augmented_3,the guardian,1,0,0,0,0,0,1,1
+405,internet_kmeans_augmented_3,law by issue,1,0,1,0,0,0,0,0
+406,internet_kmeans_augmented_3,story,1,0,0,0,0,1,0,0
+407,internet_kmeans_augmented_3,file sharing,1,0,1,0,0,0,0,8
+408,internet_kmeans_augmented_3,digital rights,1,0,1,0,0,0,0,15
+409,internet_kmeans_augmented_3,electronic frontier foundation,1,0,0,0,0,0,1,0
+410,internet_kmeans_augmented_3,event,1,0,0,0,0,1,0,0
+411,internet_kmeans_augmented_3,tor,1,0,0,1,0,0,0,1
+412,internet_kmeans_augmented_3,malware,1,0,0,0,0,0,1,2
+413,internet_kmeans_augmented_3,later,1,0,0,0,0,1,0,0
+414,internet_kmeans_augmented_3,act,1,0,0,1,0,0,0,0
+415,internet_kmeans_augmented_3,privacy,1,0,0,1,0,0,0,15
+416,internet_kmeans_augmented_3,computer law,1,0,1,0,0,0,0,11
+417,internet_kmeans_augmented_3,bittorrent,1,0,0,0,0,0,0,1
+418,internet_kmeans_augmented_3,security,1,0,0,1,0,0,0,10
+419,internet_kmeans_augmented_3,cyberpunk themes,1,0,1,0,0,0,0,4
+420,internet_kmeans_augmented_3,write,1,0,0,0,0,1,0,0
+421,food_kmeans_plain_3,fermented drinks,1,0,1,0,0,0,0,5
+422,food_kmeans_plain_3,alcoholic beverage,1,0,0,0,0,0,1,11
+423,food_kmeans_plain_3,bottle,1,0,0,0,1,0,0,2
+424,food_kmeans_plain_3,wines,1,0,0,0,1,0,0,3
+425,food_kmeans_plain_3,cocktail,1,0,0,0,0,0,1,3
+426,food_kmeans_plain_3,alcoholic drinks by country,1,0,1,0,0,0,0,5
+427,food_kmeans_plain_3,take,1,0,0,0,0,1,0,0
+428,food_kmeans_plain_3,alcoholic drinks,1,0,1,0,0,0,0,11
+429,food_kmeans_plain_3,place,1,0,0,0,0,1,0,0
+430,food_kmeans_plain_3,describe,1,0,0,0,0,1,0,0
+431,food_kmeans_plain_3,brewery,1,0,0,1,0,0,0,2
+432,food_kmeans_plain_3,episode,1,0,0,0,0,1,0,0
+433,food_kmeans_plain_3,alcohol,1,0,1,0,0,0,0,9
+434,food_kmeans_plain_3,new york,1,0,0,0,0,0,0,0
+435,food_kmeans_plain_3,beers,1,0,0,0,1,0,0,1
+436,food_kmeans_plain_3,beer,1,0,1,0,0,0,0,3
+437,media_kmeans_augmented_2,corporation,1,0,0,0,1,0,0,4
+438,food_LDA_2,rice,1,0,0,1,0,0,0,0
+439,food_LDA_2,call,1,0,0,0,0,1,0,0
+440,food_LDA_2,ingredients,1,0,0,0,1,0,0,11
+441,food_LDA_2,cuisine by continent,1,0,1,0,0,0,0,12
+442,media_kmeans_plain_2,artists,1,0,0,1,0,0,0,3
+443,media_kmeans_plain_2,filmmaking,1,0,1,0,0,0,0,9
+444,media_kmeans_plain_2,programme,1,0,0,0,0,1,0,3
+445,media_kmeans_plain_2,april,1,0,0,0,0,1,0,0
+446,media_kmeans_plain_2,films,1,0,0,0,1,0,0,3
+447,media_kmeans_plain_2,film,1,0,1,0,0,0,0,5
+448,media_kmeans_plain_2,abc,1,0,0,0,0,1,0,1
+449,media_kmeans_plain_2,fox,1,0,0,0,0,1,0,0
+450,media_kmeans_plain_2,screenplay,1,0,0,0,0,0,1,1
+451,media_kmeans_plain_2,entertainment,1,0,1,0,0,0,0,16
+452,media_kmeans_plain_2,arts,1,0,1,0,0,0,0,9
+453,media_kmeans_plain_2,film theory,1,0,1,0,0,0,0,1
+454,media_kmeans_plain_2,features,1,0,0,0,1,0,0,3
+455,media_kmeans_plain_2,jazz,1,0,0,0,0,0,1,0
+456,technology_kmeans_plain_6,university,1,0,0,0,1,0,0,0
+457,technology_kmeans_plain_6,number,1,0,0,0,0,1,0,0
+458,technology_kmeans_plain_6,innovation,1,0,0,0,0,1,0,8
+459,technology_kmeans_plain_6,like,1,0,0,0,0,1,0,0
+460,technology_kmeans_plain_6,institute,1,0,0,0,1,0,0,0
+461,technology_kmeans_plain_6,technological change,1,0,1,0,0,0,0,13
+462,technology_kmeans_plain_6,introduce,1,0,0,0,0,1,0,0
+463,technology_kmeans_plain_6,sell,1,0,0,0,0,1,0,0
+464,technology_kmeans_plain_6,computer,1,0,0,0,0,0,1,4
+465,technology_kmeans_plain_6,research,1,0,0,1,0,0,0,3
+466,technology_kmeans_plain_6,human,1,0,0,1,0,0,0,0
+467,technology_kmeans_plain_6,technological,1,0,0,0,1,0,0,11
+468,technology_kmeans_augmented_3,science,1,0,0,1,0,0,0,4
+469,internet_kmeans_plain_1,advertiser,1,0,0,0,0,1,0,0
+470,internet_kmeans_plain_1,hypertext transfer protocol clients,1,0,1,0,0,0,0,8
+471,internet_kmeans_plain_1,microsoft,1,0,0,0,1,0,0,1
+472,internet_kmeans_plain_1,web browsers,1,0,1,0,0,0,0,8
+473,internet_kmeans_plain_1,sale,1,0,0,0,0,1,0,1
+474,internet_kmeans_plain_1,mobile,1,0,0,0,0,1,0,2
+475,internet_kmeans_plain_1,pay,1,0,0,0,0,1,0,0
+476,food_LDA_1,ethnobotany,1,0,1,0,0,0,0,2
+477,food_LDA_1,specie,1,0,0,0,0,1,0,1
+478,food_LDA_1,family,1,0,0,0,0,0,0,1
+479,food_LDA_1,species,1,0,0,1,0,0,0,7
+480,food_LDA_1,seed,1,0,0,0,0,1,0,3
+481,food_LDA_1,grow,1,0,0,0,1,0,0,5
+482,internet_kmeans_augmented_2,format,1,0,0,0,0,1,0,0
+483,internet_kmeans_augmented_2,inc,1,0,0,1,0,0,0,0
+484,internet_kmeans_augmented_2,facebook,1,0,0,0,0,0,1,0
+485,internet_kmeans_augmented_2,acquired,1,0,0,1,0,0,0,0
+486,internet_kmeans_augmented_2,business,1,0,0,0,1,0,0,5
+487,internet_kmeans_augmented_2,text,1,0,0,0,0,1,0,0
+488,internet_kmeans_augmented_2,economics by year,1,0,1,0,0,0,0,1
+489,internet_kmeans_augmented_2,companies by year of establishment,1,0,1,0,0,0,0,1
+490,internet_kmeans_augmented_2,tag,1,0,0,0,0,1,0,0
+491,media_LDA_3,new_york,1,0,0,1,0,0,0,3
+492,media_LDA_3,john,1,0,0,0,1,0,0,0
+493,media_LDA_3,survivors,1,0,1,0,0,0,0,3
+494,media_LDA_3,worked,1,0,0,0,1,0,0,3
+495,media_LDA_3,gold,1,0,0,0,0,0,0,0
+496,media_LDA_3,career,1,0,0,1,0,0,0,6
+497,media_LDA_3,year,1,0,0,0,0,1,0,1
+498,media_LDA_3,cnn,1,0,0,0,0,0,1,2
+499,media_LDA_3,producer,1,0,0,1,0,0,0,7
+500,media_LDA_5,uses,1,0,0,0,1,0,0,0
+501,media_LDA_5,dvd,1,0,0,0,0,0,1,1
+502,media_LDA_5,media formats,1,0,1,0,0,0,0,12
+503,media_LDA_5,high efficiency video coding,1,0,0,0,0,0,1,0
+504,media_LDA_5,media technology,1,0,1,0,0,0,0,10
+505,media_LDA_5,developed,1,0,0,0,1,0,0,0
+506,media_LDA_5,digital media,1,0,1,0,0,0,0,7
+507,media_LDA_5,audio,1,0,0,1,0,0,0,4
+508,media_LDA_5,record,1,0,0,0,0,1,0,0
+509,media_LDA_5,moving picture experts group,1,0,0,0,0,0,1,2
+510,media_LDA_5,standard,1,0,0,1,0,0,0,0
+511,media_LDA_5,electronics,1,0,1,0,0,0,0,5
+512,media_LDA_5,standards,1,0,0,0,1,0,0,0
+513,technology_LDA_0,new,1,0,0,0,1,0,0,1
+514,internet_LDA_3,reported,1,0,0,0,1,0,0,1
+515,internet_LDA_3,cybercrime,1,0,1,0,0,0,0,17
+516,internet_LDA_3,internet ethics,1,0,1,0,0,0,0,18
+517,internet_LDA_3,internet culture,1,0,1,0,0,0,0,18
+518,internet_LDA_3,crimes,1,0,1,0,0,0,0,1
+519,technology_LDA_4,rotating machines,1,0,1,0,0,0,0,4
+520,technology_LDA_4,power,1,0,0,1,0,0,0,1
+521,media_kmeans_augmented_0,american journalism,1,0,1,0,0,0,0,13
+522,media_kmeans_augmented_0,man,1,0,0,0,0,1,0,0
+523,media_kmeans_augmented_0,journalism,1,0,1,0,0,0,0,10
+524,technology_LDA_1,artificial materials,1,0,1,0,0,0,0,10
+525,technology_LDA_1,glass,1,0,0,0,0,0,1,1
+526,technology_LDA_1,surface,1,0,0,1,0,0,0,1
+527,media_kmeans_augmented_5,entertainment occupations,1,0,1,0,0,0,0,6
+528,food_kmeans_augmented_5,fishing,1,0,0,0,1,0,0,2
+529,food_kmeans_augmented_5,cake,1,0,0,0,0,1,0,0
+530,food_kmeans_augmented_5,fisheries,1,0,0,0,1,0,0,2
+531,food_kmeans_augmented_5,fish,1,0,0,1,0,0,0,1
+532,food_kmeans_augmented_5,females,1,0,0,0,1,0,0,0
+533,food_kmeans_augmented_5,atlantic ocean,1,0,0,0,0,0,1,1
+534,food_kmeans_augmented_5,fishing industry,1,0,0,0,0,0,0,3
+535,food_kmeans_augmented_5,vegetable,1,0,0,0,0,1,0,0
+536,food_kmeans_augmented_5,soup,1,0,0,0,0,1,0,0
+537,food_kmeans_augmented_5,fry,1,0,0,0,0,1,0,0
+538,food_kmeans_augmented_5,salt,1,0,0,1,0,0,0,0
+539,food_kmeans_augmented_5,animal-based seafood,1,0,0,0,0,0,0,3
+540,food_kmeans_augmented_5,primary industries,1,0,0,0,0,0,0,0
+541,food_kmeans_augmented_5,mollusc,1,0,0,0,0,0,1,0
+542,food_kmeans_augmented_5,crustacean,1,0,0,0,0,0,1,0
+543,food_kmeans_augmented_5,waters,1,0,0,0,1,0,0,0
+544,food_kmeans_augmented_5,seafood,1,0,0,0,0,0,0,4
+545,technology_kmeans_plain_1,magnetic field,1,0,0,0,0,0,1,5
+546,technology_kmeans_plain_1,electron,1,0,0,0,1,0,0,1
+547,technology_kmeans_plain_1,boat,1,0,0,0,0,1,0,0
+548,technology_kmeans_plain_1,signal,1,0,0,1,0,0,0,0
+549,technology_kmeans_plain_1,light,1,0,0,1,0,0,0,1
+550,technology_kmeans_plain_1,voltage,1,0,0,1,0,0,0,4
+551,technology_kmeans_plain_1,application,1,0,0,0,1,0,0,3
+552,technology_kmeans_plain_1,electrical engineering,1,0,1,0,0,0,0,8
+553,technology_kmeans_plain_1,space,1,0,0,0,0,1,0,2
+554,technology_kmeans_plain_1,bridge,1,0,0,0,0,1,0,0
+555,technology_kmeans_plain_1,frequency,1,0,0,1,0,0,0,3
+556,technology_kmeans_plain_1,optical,1,0,0,1,0,0,0,3
+557,technology_kmeans_plain_1,image,1,0,0,1,0,0,0,0
+558,technology_kmeans_plain_1,optics,1,0,1,0,0,0,0,5
+559,technology_kmeans_plain_1,devices,1,0,0,0,1,0,0,3
+560,technology_kmeans_plain_1,measurement,1,0,1,0,0,0,0,2
+561,technology_kmeans_plain_1,integrated circuit,1,0,0,0,0,0,1,6
+562,media_kmeans_plain_3,humanities,1,0,1,0,0,0,0,2
+563,media_LDA_0,newspaper of record,1,0,0,0,0,0,1,2
+564,media_LDA_0,publish,1,0,0,0,0,1,0,3
+565,media_LDA_0,newspapers,1,0,1,0,0,0,0,8
+566,media_LDA_0,publication,1,0,0,1,0,0,0,5
+567,media_LDA_0,published,1,0,0,1,0,0,0,2
+568,media_LDA_0,publisher,1,0,0,0,1,0,0,6
+569,media_LDA_0,magazine,1,0,0,0,0,1,0,5
+570,media_LDA_0,establishments by year,1,0,1,0,0,0,0,0
+571,media_LDA_0,editor,1,0,0,1,0,0,0,1
+572,media_LDA_0,circulation,1,0,0,1,0,0,0,1
+573,media_LDA_0,publications by decade of establishment,1,0,1,0,0,0,0,4
+574,media_LDA_0,broadsheet,1,0,0,0,0,0,1,1
+575,media_LDA_0,newspapers by country,1,0,1,0,0,0,0,4
+576,media_LDA_0,weekly newspaper,1,0,0,0,0,0,1,5
+577,media_LDA_0,newspaper stubs,1,0,1,0,0,0,0,0
+578,internet_kmeans_plain_5,peer-to-peer,1,0,0,0,0,0,1,2
+579,internet_kmeans_plain_5,attack,1,0,0,1,0,0,0,0
+580,technology_kmeans_augmented_1,building materials,1,0,1,0,0,0,0,2
+581,internet_LDA_1,crowdsourcing,1,0,0,0,0,0,1,6
+582,internet_LDA_1,internet archive,1,0,0,0,0,0,1,9
+583,internet_LDA_1,technology in society,1,0,1,0,0,0,0,8
+584,internet_LDA_1,blog,1,0,0,0,0,0,1,4
+585,internet_LDA_1,world,1,0,0,0,1,0,0,0
+586,internet_LDA_1,computing and society,1,0,1,0,0,0,0,7
+587,technology_LDA_2,signals,1,0,0,0,1,0,0,1
+588,technology_LDA_2,circuit,1,0,0,1,0,0,0,0
+589,technology_LDA_2,transistor,1,0,0,0,0,0,1,2
+590,technology_LDA_2,device,1,0,0,0,0,1,0,1
+591,technology_LDA_2,electromagnetism,1,0,1,0,0,0,0,4
+592,technology_LDA_2,electrical components,1,0,1,0,0,0,0,9
+593,technology_LDA_2,alternating current,1,0,0,0,0,0,1,2
+594,food_LDA_3,restaurant chain,1,0,0,0,0,0,1,7
+595,food_LDA_3,city,1,0,0,0,1,0,0,0
+596,food_LDA_3,restaurants by year of establishment,1,0,1,0,0,0,0,2
+597,food_LDA_3,location,1,0,0,0,1,0,0,1
+598,food_LDA_3,restaurants,1,0,1,0,0,0,0,6
+599,food_LDA_3,time,1,0,0,0,0,1,0,0
+600,food_LDA_3,restaurants by century of establishment,1,0,1,0,0,0,0,1
+601,food_LDA_3,restaurants by time,1,0,1,0,0,0,0,1
+602,food_LDA_3,menu,1,0,0,1,0,0,0,0
+603,food_LDA_3,restaurants by type,1,0,1,0,0,0,0,8
+604,media_LDA_2,social_media,1,0,0,1,0,0,0,9
+605,media_LDA_2,medium,1,0,0,0,0,1,0,3
+606,technology_LDA_5,radar,1,0,0,1,0,0,0,1
+607,technology_LDA_5,aircraft,1,0,0,1,0,0,0,1
+608,technology_LDA_5,submarine,1,0,0,0,0,0,1,2
+609,technology_LDA_5,world war ii,1,0,0,0,0,0,1,1
+610,technology_LDA_5,weapon,1,0,0,1,0,0,0,2
+611,technology_LDA_5,weapons,1,0,1,0,0,0,0,6
+612,technology_LDA_5,sensor,1,0,0,0,0,1,0,2
+613,technology_LDA_5,effect,1,0,0,0,1,0,0,0
+614,technology_LDA_5,target,1,0,0,1,0,0,0,1
+615,technology_LDA_5,laser,1,0,0,0,0,0,1,2
+616,technology_LDA_5,measuring instruments,1,0,1,0,0,0,0,6
+617,technology_LDA_5,flight,1,0,0,1,0,0,0,3
+618,technology_LDA_5,force,1,0,0,0,1,0,0,2
+619,technology_LDA_5,military technology,1,0,1,0,0,0,0,10
+620,food_LDA_0,books by type,1,0,1,0,0,0,0,0
+621,food_LDA_0,tea,1,0,0,1,0,0,0,2
+622,food_LDA_0,elizabeth david,1,0,0,0,0,0,1,0
+623,food_LDA_0,english,1,0,0,1,0,0,0,0
+624,food_LDA_0,handbooks and manuals by subject,1,0,1,0,0,0,0,1
+625,food_LDA_0,camellia sinensis,1,0,0,0,0,0,1,1
+626,food_LDA_0,recipes,1,0,0,1,0,0,0,1
+627,food_LDA_0,chinese,1,0,0,1,0,0,0,1
+628,food_LDA_0,cookery book,1,0,0,0,0,0,1,1
+629,food_LDA_0,cookery,1,0,0,1,0,0,0,2
+630,food_LDA_0,cookbook,1,0,0,1,0,0,0,1
+631,food_LDA_0,cookbooks,1,0,1,0,0,0,0,0
+632,food_LDA_0,books about food and drink,1,0,1,0,0,0,0,0
+633,food_LDA_0,recipe,1,0,0,0,0,1,0,1
+634,food_LDA_0,british cuisine,1,0,1,0,0,0,0,1
+635,media_LDA_1,freedom,1,0,0,0,1,0,0,0
+636,media_LDA_1,mass media by location,1,0,1,0,0,0,0,4
+637,media_LDA_1,freedom house,1,0,0,0,0,0,1,0
+638,media_LDA_1,news_agency,1,0,0,1,0,0,0,2
+639,media_LDA_1,cultural media,1,0,1,0,0,0,0,3
+640,media_LDA_1,country,1,0,0,0,0,1,0,0
+641,media_LDA_1,news agency,1,0,0,0,0,0,1,4
+642,media_LDA_1,woman,1,0,0,0,0,1,0,0
+643,media_LDA_1,press,1,0,0,1,0,0,0,3
+644,media_LDA_1,journalist,1,0,0,0,0,1,0,0
+645,media_LDA_1,sage publications,1,0,0,0,0,0,1,0
+646,media_LDA_1,journalists,1,0,0,1,0,0,0,1
+647,media_LDA_1,academic journal,1,0,0,0,0,0,1,2
+648,media_LDA_1,communications by country,1,0,1,0,0,0,0,1
+649,internet_kmeans_augmented_1,internet humor,1,0,1,0,0,0,0,14
+650,media_kmeans_augmented_4,media in india by city,1,0,1,0,0,0,0,4
+651,media_kmeans_augmented_4,hindi,1,0,0,1,0,0,0,1
+652,media_kmeans_augmented_4,media in india,1,0,1,0,0,0,0,6
+653,media_kmeans_augmented_4,editorial,1,0,0,0,0,1,0,1
+654,media_kmeans_augmented_4,mumbai,1,0,0,1,0,0,0,0
+655,media_kmeans_augmented_4,channels,1,0,0,0,1,0,0,2
+656,media_kmeans_augmented_4,washington post,1,0,0,0,0,0,0,0
+657,media_kmeans_augmented_4,media in india by medium,1,0,1,0,0,0,0,4
+658,media_kmeans_augmented_4,national,1,0,0,0,1,0,0,0
+659,media_kmeans_augmented_4,indian,1,0,0,1,0,0,0,2
+660,media_kmeans_augmented_4,political,1,0,0,0,0,1,0,0
+661,media_kmeans_augmented_4,media companies of india,1,0,1,0,0,0,0,7
+662,media_kmeans_augmented_4,pakistan,1,0,0,0,0,0,1,0
+663,media_kmeans_augmented_4,news media of india,1,0,1,0,0,0,0,4
+664,media_kmeans_augmented_4,delhi,1,0,0,0,0,0,1,0
+665,food_LDA_5,products,1,0,0,1,0,0,0,4
+666,food_LDA_5,food and drink companies by country,1,0,1,0,0,0,0,6
+667,food_LDA_5,brands by company,1,0,1,0,0,0,0,10
+668,food_LDA_5,supermarket,1,0,0,0,0,0,1,4
+669,food_LDA_5,market,1,0,0,1,0,0,0,1
+670,food_LDA_5,coca-cola,1,0,0,0,0,0,1,0
+671,internet_LDA_5,icann,1,0,0,1,0,0,0,1
+672,internet_LDA_5,domains,1,0,0,0,1,0,0,6
+673,internet_LDA_5,external_links,1,0,0,1,0,0,0,1
+674,internet_LDA_5,cctld,1,0,0,0,0,0,1,0
+675,internet_LDA_5,internet by country,1,0,1,0,0,0,0,3
+676,internet_LDA_5,exchange,1,0,0,0,1,0,0,2
+677,internet_LDA_5,it infrastructure,1,0,1,0,0,0,0,4
+678,internet_LDA_5,domain name system,1,0,1,0,0,0,0,4
+679,internet_LDA_5,level domain,1,0,0,0,1,0,0,3
+680,internet_LDA_5,country code,1,0,0,0,0,0,1,0
+681,internet_LDA_5,telecommunications by country,1,0,1,0,0,0,0,1
+682,internet_LDA_5,iana,1,0,0,1,0,0,0,0
+683,internet_LDA_5,top-level domain,1,0,0,0,0,0,1,4
+684,internet_LDA_5,information technology by country,1,0,1,0,0,0,0,4
+685,internet_LDA_5,domain,1,0,0,1,0,0,0,2
+686,media_LDA_4,lists of canadian media,1,0,1,0,0,0,0,2
+687,media_LDA_4,film crew,1,0,0,0,0,0,1,4
+688,media_LDA_4,dt,1,0,0,1,0,0,0,0
+689,media_LDA_4,lenses,1,0,0,1,0,0,0,1
+690,media_LDA_4,lists of media by city in canada,1,0,1,0,0,0,0,1
+691,media_LDA_4,lens,1,0,0,1,0,0,0,0
+692,media_LDA_4,lists by city in canada,1,0,1,0,0,0,0,0
+693,media_LDA_4,required,1,0,0,0,1,0,0,0
+694,media_LDA_4,categories by city in canada,1,0,1,0,0,0,0,1
+695,media_LDA_4,canada-related lists,1,0,1,0,0,0,0,0
+696,media_LDA_4,television,1,0,0,1,0,0,0,3
+697,media_LDA_4,ctv,1,0,0,1,0,0,0,0
+698,media_LDA_4,cameras,1,0,0,0,1,0,0,2
+699,media_LDA_4,camera,1,0,0,1,0,0,0,1
+700,media_LDA_4,cbc,1,0,0,0,1,0,0,0
+701,technology_kmeans_augmented_2,particle,1,0,0,0,0,1,0,1
+702,technology_kmeans_augmented_2,aerospace engineering,1,0,1,0,0,0,0,3
+703,technology_kmeans_augmented_2,ship,1,0,0,1,0,0,0,0
+704,technology_kmeans_augmented_2,remove,1,0,0,0,0,1,0,0
+705,technology_kmeans_augmented_2,navy,1,0,0,1,0,0,0,0
+706,technology_kmeans_augmented_2,part,1,0,0,0,0,1,0,0
+707,technology_kmeans_augmented_2,fiber,1,0,0,0,0,1,0,0
+708,technology_kmeans_augmented_2,air,1,0,0,1,0,0,0,0
+709,technology_kmeans_augmented_2,dry,1,0,0,0,0,1,0,0
+710,technology_kmeans_augmented_2,military science,1,0,1,0,0,0,0,2
+711,technology_kmeans_augmented_2,british,1,0,0,1,0,0,0,0
+712,internet_LDA_4,foundation,1,0,0,1,0,0,0,2
+713,internet_LDA_4,wikimedia,1,0,0,1,0,0,0,3
+714,internet_LDA_4,wikimedia_foundation,1,0,0,1,0,0,0,3
+715,internet_LDA_4,wikipedia community,1,0,0,0,0,0,1,5
+716,internet_LDA_4,english wikipedia,1,0,0,0,0,0,1,3
+717,internet_LDA_4,article,1,0,0,0,0,1,0,0
+718,internet_LDA_4,january,1,0,0,0,1,0,0,0
+719,internet_LDA_4,living people,1,0,1,0,0,0,0,1
+720,internet_LDA_4,founded,1,0,0,1,0,0,0,0
+721,internet_LDA_4,board,1,0,0,1,0,0,0,0
+722,internet_LDA_4,people by status,1,0,1,0,0,0,0,1
+723,internet_LDA_4,articles,1,0,0,1,0,0,0,0
+724,internet_LDA_4,jimmy wales,1,0,0,0,0,0,1,0
+725,internet_LDA_4,wikimedia foundation,1,0,0,0,0,0,1,2
+726,internet_LDA_4,project,1,0,0,0,1,0,0,0
+727,internet_LDA_4,march,1,0,0,0,0,1,0,0
+728,technology_kmeans_augmented_5,operation,1,0,0,0,1,0,0,2
+729,technology_kmeans_augmented_5,semiconductor,1,0,0,0,0,0,1,3
+730,media_kmeans_plain_4,optical disc,1,0,0,0,0,0,1,1
+731,media_kmeans_plain_4,tape,1,0,0,0,0,1,0,0
+732,media_kmeans_plain_4,information and communications technology,1,0,1,0,0,0,0,7
+733,media_kmeans_plain_4,single,1,0,0,0,0,1,0,1
+734,media_kmeans_plain_4,sony,1,0,0,0,0,0,1,0
+735,media_kmeans_plain_4,formats,1,0,0,0,1,0,0,3
+736,media_kmeans_plain_4,develop,1,0,0,0,0,1,0,0
+737,internet_kmeans_plain_6,registration,1,0,0,1,0,0,0,0
+738,internet_kmeans_plain_6,order,1,0,0,0,0,1,0,0
+739,internet_kmeans_plain_6,united state,1,0,0,0,0,0,0,0
+740,internet_kmeans_plain_6,whois information,1,0,0,0,0,0,0,0
+741,internet_kmeans_plain_6,court,1,0,0,0,0,1,0,0
+742,internet_kmeans_plain_6,1 (number),1,0,1,0,0,0,0,0
+743,internet_kmeans_plain_6,china,1,0,0,0,0,1,0,0
+744,internet_kmeans_plain_6,names,1,0,0,0,1,0,0,0
+745,internet_kmeans_plain_6,country code top-level domain,1,0,0,0,0,0,1,1
+746,internet_kmeans_plain_6,domain names,1,0,1,0,0,0,0,2
+747,internet_kmeans_plain_6,internet assigned numbers authority,1,0,1,0,0,0,0,2
+748,internet_kmeans_plain_6,top-level domains,1,0,1,0,0,0,0,3
+749,media_kmeans_augmented_3,film and video technology,1,0,1,0,0,0,0,2
+750,food_LDA_4,brewing,1,0,0,1,0,0,0,0
+751,food_LDA_4,drink,1,0,0,1,0,0,0,4
+752,food_LDA_4,alcohol by volume,1,0,0,0,0,0,1,1
+753,food_LDA_4,drug culture,1,0,1,0,0,0,0,0
+754,internet_kmeans_augmented_6,issue,1,0,0,0,0,1,0,0

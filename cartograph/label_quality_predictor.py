@@ -1,3 +1,8 @@
+"""
+This script creates a regression model to predict the 'quality' of the a label.
+Author: Jonathan Scott
+"""
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -19,7 +24,6 @@ def sort_label_scores(test_X, test_y, pred_y):
     df["pred_rank_min"] = df.groupby("cluster_id")["pred_y"].rank("min", ascending=False)
     df["actual_rank"] = df.groupby("cluster_id")["actual_y"].rank("min", ascending=False)
     #print(df.sort_values(by=['cluster_id', 'pred_y'], ascending=False))
-
     return df
 
 #
@@ -72,7 +76,6 @@ def main(data):
                                     filled=True,
                                     rounded=True)
     graph = graphviz.Source(dot_data)
-
     graph.render("label_regressor")
 
     ranks_df = sort_label_scores(X, y, y_pred)
@@ -88,6 +91,5 @@ if __name__ == '__main__':
     parser.add_argument('--dataset', required=True)
     parser.add_argument('--output_file', required=False)
     args = parser.parse_args()
-
     data = pd.read_csv(args.dataset)
     main(data)
