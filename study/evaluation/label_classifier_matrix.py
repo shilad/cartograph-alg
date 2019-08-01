@@ -70,14 +70,12 @@ def get_label_scores():
                 else:
                     df = pd.read_csv('study/' + project + '/' + cluster_type + '/labels/' + type +
                                      '/top_labels.csv')
-                    for cluster_id, row in df.iterrows():
-                        group_id = project + '_' + cluster_type + '_' + str(cluster_id)
-                        for i in range(1, 11):
-                            label = row[str(i)]
-                            tfidf = row['tfidf_' + str(i)]
-                            pmi = row['pmi_' + str(i)]
-                            cluster_label_info[group_id][label][type + '_tfidf'] = tfidf
-                            cluster_label_info[group_id][label][type + '_pmi'] = pmi
+
+                    for row_id, row in df.iterrows():
+                        group_id = project + '_' + cluster_type + '_' + str(row['country'])
+                        label = row['label']
+                        cluster_label_info[group_id][label][type + '_tfidf'] = row['tfidf']
+                        cluster_label_info[group_id][label][type + '_pmi'] = row['pmi']
 
     rows = []
     for group_id in cluster_label_info:
@@ -101,8 +99,8 @@ def main(responses):
     scores_df = get_label_scores()
     label_df = get_labels(responses)
     label_matrix = pd.merge(scores_df, label_df, on=['group_id', 'label'], how='outer')
-    label_matrix = label_matrix.fillna(0)
-    print(label_matrix)
+    # label_matrix = label_matrix.fillna(0)
+    print(label_matrix[label_matrix['h_cat_pmi'].isna()])
     label_matrix.to_csv('study/evaluation/label_matrix.csv')
 
 

@@ -83,8 +83,7 @@ do
             --label_path ${label_path} \
             --cluster_groups /cluster_groups.csv \
             --output_file /final_labels.csv \
-            --soft_labeling false \
-            --num_candidates 0
+            --num_candidates 10
     done
 
 

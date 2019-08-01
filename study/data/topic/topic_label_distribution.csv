@@ -1,0 +1,9 @@
+topic,label0,prob0,label1,prob1,label2,prob2,label3,prob3,label4,prob4,label5,prob5,label6,prob6,label7,prob7,label8,prob8,label9,prob9
+0,fish,0.013,dish,0.011,bread,0.01,meat,0.01,sauce,0.009,banana,0.009,cook,0.008,bacon,0.007,onion,0.007,cake,0.007
+1,restaurant,0.024,food,0.007,american,0.006,open,0.006,year,0.006,chef,0.006,know,0.005,bar,0.005,good,0.005,work,0.005
+2,specie,0.017,fruit,0.015,plant,0.015,grow,0.012,know,0.011,seed,0.009,family,0.008,tree,0.008,leave,0.007,variety,0.006
+3,company,0.041,brand,0.025,product,0.016,sell,0.016,market,0.011,brewery,0.011,store,0.01,united_state,0.01,chain,0.009,food,0.009
+4,dish,0.024,cuisine,0.022,rice,0.013,chinese,0.011,food,0.011,chicken,0.009,popular,0.008,meat,0.008,serve,0.008,oil,0.007
+5,food,0.026,product,0.008,produce,0.007,use,0.006,process,0.006,animal,0.005,form,0.005,water,0.005,contain,0.005,diet,0.005
+6,beer,0.02,wine,0.02,produce,0.012,drink,0.011,tea,0.009,chocolate,0.008,region,0.007,flavor,0.006,country,0.006,grape,0.005
+7,cheese,0.014,alcohol,0.012,meal,0.01,pizza,0.008,state,0.008,cuisine,0.006,serve,0.005,local,0.005,eat,0.004,place,0.004

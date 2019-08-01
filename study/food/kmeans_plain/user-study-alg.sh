@@ -98,8 +98,7 @@ do
             --label_path ${label_path} \
             --cluster_groups /cluster_groups.csv \
             --output_file /final_labels.csv \
-            --soft_labeling false \
-            --num_candidates 0
+            --num_candidates 10
 
 #        # Step 6: Generate JSON, noise refers to using noise filtering algorithm (k means distance)
 #        python -m cartograph.json_generator \
