@@ -47,7 +47,7 @@ do
         --weight 0.5 \
         --xy_embeddings ${exp_dir}/original_xy_embeddings.csv\
         --article_keywords data/internet/$article_label_csv \
-        --country_labels ${exp_dir}/country_labels.csv\
+        --country_labels ${exp_dir}/country_labels.csv \
         --articles_to_labels data/internet/${article_label_csv} \
         --label_names data/internet/${label_name_csv} \
         --percentile 0.5 \

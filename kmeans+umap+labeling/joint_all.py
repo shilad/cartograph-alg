@@ -284,8 +284,7 @@ if __name__ == '__main__':
     article_labels_orig = pd.merge(article_labels, orig_groups, on='article_id')
     article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
 
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, "/original_country_labels.csv", False, args.num_candidates, "else", "na")
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.output_file, True, args.num_candidates, "else", "na")
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.country_labels, args.num_candidates, "else", "na")
 
     # Joint Clustering
     tf_idf_score = pd.read_csv(args.experiment_directory + args.tf_idf_score_file)
@@ -300,7 +299,7 @@ if __name__ == '__main__':
     # Joint Labeling
     article_labels_new = pd.merge(article_labels, joint_alg_groups, on='article_id')
     article_labels_new = pd.merge(article_labels_new, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv', False, args.num_candidates, "else", "na")
+    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv',args.num_candidates, "else", "na")
 
     # get labels based on label scores instead of running tfidf again
     score_based_labels = get_final_labels(args.article_keywords, joint_alg_groups, args.country_labels, args.k, tf_idf_score)
