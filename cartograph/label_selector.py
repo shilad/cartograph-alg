@@ -100,7 +100,7 @@ def get_top_labels(country_scores, label_score, num_candidates):
     return top_labels
 
 
-def main(experiment_dir, article_labels, percentile, label_score, output_file, num_candidates, purpose, label_path):
+def main(experiment_dir, article_labels, percentile, label_score, output_file, num_candidates):
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
         # print("Selecting labels with noise filtering------------------------------")
@@ -128,23 +128,15 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, n
     df = pd.DataFrame.from_dict(final_labels,  orient='index', columns=['label_name', 'tfidf', 'pmi'])
     df['country'] = df.index
 
-    if purpose == 'study':
-        df = df.set_index('country')
-        df.to_csv(label_path + '/final_labels.csv', index=True)
-    else:
-        df['label_id'] = np.array(list(final_scores.values())).T
-        df.columns = ['label_name', 'tfidf', 'pmi', 'country', 'label_id']
-        df.to_csv(experiment_dir + output_file, index=True)
+    df['label_id'] = np.array(list(final_scores.values())).T
+    df.columns = ['label_name', 'tfidf', 'pmi', 'country', 'label_id']
+    df.to_csv(output_file, index=True)
 
     # # Get top label candidates
     top = get_top_labels(country_labels, label_score, num_candidates)
 
     top_df = pd.DataFrame(top, columns=['country', 'label_id', 'label', 'tfidf', 'pmi'])
-
-    if purpose == 'study':
-        top_df.to_csv(label_path + '/top_labels.csv')
-    else:
-        top_df.to_csv(experiment_dir + '/top_labels.csv')
+    top_df.to_csv(experiment_dir + '/top_labels.csv')
 
 
 if __name__ == '__main__':
@@ -157,7 +149,6 @@ if __name__ == '__main__':
     parser.add_argument('--cluster_groups', required=True)
     parser.add_argument('--output_file', required=True)
     parser.add_argument('--num_candidates', required=False, type=int)
-    parser.add_argument('--purpose', required=True)
     parser.add_argument('--label_path', required=True)
 
     args = parser.parse_args()
@@ -169,4 +160,4 @@ if __name__ == '__main__':
     article_labels = pd.merge(article_labels, country_clusters, on='article_id')
     article_labels = pd.merge(article_labels, label_names, on='label_id')
 
-    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.num_candidates, args.purpose, args.label_path)
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.output_file, args.num_candidates, args.label_path)

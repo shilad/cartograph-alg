@@ -9,7 +9,7 @@ import sys
 
 
 def normalize(article):
-    return article.lower().replace(' ', '_')
+    return '_'.join(article.lower().split())
 
 VALIDATION_ARTICLES = {
     normalize(a) for a in
@@ -37,6 +37,7 @@ class ClusterResponse(object):
         self.flagged_articles = set()
         self.num_valid_seen = 0
         self.num_valid_flagged = 0
+        self.suggested_label = None
 
 
 def parse_and_filter(path='mturk_results.csv'):
@@ -65,6 +66,10 @@ def parse_hits(path='mturk_results.csv'):
             assert(int(cluster_num) == int(country))
             resp = ClusterResponse(worker, hit, proj, cluster_alg, cluster_num)
 
+            other = row['Answer.other_label_' + str(p)]
+            if type(other) == str and normalize(other):
+                resp.suggested_label = normalize(other)
+
             for a in range(30):
                 article = row['Input.article_%d_%d' % (p, a)]
                 if type(article) is str: # not NaN
@@ -88,9 +93,14 @@ def parse_hits(path='mturk_results.csv'):
             for c in range(1, 6):
                 c = row['Answer.chosen_label_%d_%d' % (p, c)]
                 if c >= 0:
-                    resp.chosen_labels.append(resp.labels[c])
+                    l = resp.labels[c]
+                    if l and l not in INVALID_LABELS:
+                        resp.chosen_labels.append(l)
 
-            resp.labels = [l for l in resp.labels if l is not None] # filter out NAs
+            resp.labels = [
+                l for l in resp.labels
+                if l is not None and l not in INVALID_LABELS  # filter out NAs and food, technology, etc.
+            ]
             responses.append(resp)
 
     logging.info('found %d cluster responses for %d hits and %d workers in %s',
