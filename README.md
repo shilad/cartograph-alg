@@ -11,15 +11,20 @@ Team members: Lily Irvin, Lu Li, Yuren "Rock" Pang, Jonathan Scott, Shilad Sen.
    * brew install git-lfs
    * sudo git lfs install
    * sudo git lfs install --system
-* NLTK. Instructions on OS-X:
-    * pip install -U nltk
-    * sudo mkdir -p /usr/local/share/nltk_data
-    * sudo python -m nltk.downloader -d usr/local/share/nltk_data all
+* PyCharm Ultimate
 * iGraph. Instructions on OS-X:
     * brew install cairo
     * brew install pkg-config
     * brew install igraph
-    * sudo pip install python-igraph
+
+## IDE Setup
+
+* Clone this repo
+* In the repo, run git lfs install
+* Launch PyCharm, select "open" and the cloned directory.
+* In preferences, go to the project settings, add interpreter -> New virtualenv environment with default settings.
+* Open requirements.txt. PyCharm will ask you to install everything. Do it. It will take some time.
+* Maybe necessary, but we aren't sure: Mark some of the top-level directories as src directories.
 
 ## Creating and updating maps
 
