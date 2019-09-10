@@ -16,6 +16,7 @@ Team members: Lily Irvin, Lu Li, Yuren "Rock" Pang, Jonathan Scott, Shilad Sen.
     * brew install cairo
     * brew install pkg-config
     * brew install igraph
+    * On OS-X Mojave, Shilad needed to run `sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /`
 
 ## IDE Setup
 
