@@ -111,6 +111,7 @@ def get_final_labels(label_scores, final_groups, country_labels, k, tf_idf_score
 
     for i in range(len(score_labels_ids)):
         labels.append(label_names[label_names['label_id'] == score_labels_ids[i]].label.values[0])
+    print(labels)
     score_labels_df['label_name'] = labels
     country_ids = pd.DataFrame(country_ids)
     score_labels_df = country_ids.join(score_labels_df)
@@ -278,7 +279,7 @@ if __name__ == '__main__':
     article_labels_orig = pd.merge(article_labels, orig_groups, on='article_id')
     article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
 
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.country_labels, args.num_candidates)
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.experiment_directory + '/original_country_labels.csv', args.num_candidates)
 
     # Joint Clustering
     tf_idf_score = pd.read_csv(args.experiment_directory + args.tf_idf_score_file)
