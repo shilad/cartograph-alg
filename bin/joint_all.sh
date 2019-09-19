@@ -70,7 +70,7 @@ do
         --cluster ${exp_dir}/score_cluster_groups.csv
 
 
-    options1="original new"
+    options1="original"
     for j in $options1
     do
         python -m cartograph.evaluation.cluster_validation_metrics --experiment ${exp_dir} \
@@ -78,16 +78,16 @@ do
                                                            --groups ${exp_dir}/${j}_cluster_groups.csv >>${exp_dir}/cluster_evaluation.json
 
     done
-    options2="original new score"
+    options2="original"
 
     for j in $options2
     do
 
-    python -m cartograph.evaluation.label_evaluator_against_study_gold_standards \
-            --experiment_directory ${exp_dir} \
-            --gold_standard  study/internet/kmeans_plain/gold_standard_labels.csv \
-            --label_set ${exp_dir}/${j}_country_labels.csv \
-            --k 7 >>${exp_dir}/label_evaluation.json
+#    python -m cartograph.evaluation.label_evaluator_against_study_gold_standards \
+#            --experiment_directory ${exp_dir} \
+#            --gold_standard  study/internet/kmeans_plain/gold_standard_labels.csv \
+#            --label_set ${exp_dir}/${j}_country_labels.csv \
+#            --k 7 >>${exp_dir}/label_evaluation.json
 
     # Step 6: Generate JSON
     python -m cartograph.json_generator \
