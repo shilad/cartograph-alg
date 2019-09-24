@@ -37,4 +37,5 @@ main(projects, algs)
 #         sys.exit(1)
 #
 #     projects, algs = sys.argv[1:]
-#     main(list(projects), list(algs))
+#     main(list(projects), l
+#     ist(algs))
