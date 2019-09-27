@@ -62,29 +62,29 @@ do
       # Step 2: Prepare an experiment directory for a specific map.
       exp_dir=$(prepare_experiment_dir ${projects[$i]})
 
-      for x in {0..4}
-      # looping through the label sources
-
-      do
-          label_path=${exp_dir}/labels/${label_types[$x]}
-
-          # Step 6 label selection
-          python -m study.data.ml_labels \
-              --experiment ${exp_dir} \
-              --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
-              --label_names data/${projects[$i]}/${label_name_csv[$x]} \
-              --label_score ${label_score} \
-              --percentile 1 \
-              --purpose study \
-              --label_path ${label_path} \
-              --cluster_groups /cluster_groups.csv \
-              --output_file /final_labels.csv \
-              --use_label_candidates false \
-              --num_candidates 0 \
-              --alg ${exp_id[$j]} \
-              --label_source ${label_types[$x]}
-      done
-      python -m study.data.generate_final_labels ${exp_dir}
+#      for x in {0..4}
+#      # looping through the label sources
+#
+#      do
+#          label_path=${exp_dir}/labels/${label_types[$x]}
+#
+#          # Step 6 label selection
+#          python -m study.data.ml_labels \
+#              --experiment ${exp_dir} \
+#              --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
+#              --label_names data/${projects[$i]}/${label_name_csv[$x]} \
+#              --label_score ${label_score} \
+#              --percentile 1 \
+#              --purpose study \
+#              --label_path ${label_path} \
+#              --cluster_groups /cluster_groups.csv \
+#              --output_file /final_labels.csv \
+#              --use_label_candidates false \
+#              --num_candidates 0 \
+#              --alg ${exp_id[$j]} \
+#              --label_source ${label_types[$x]}
+#      done
+      python -m study.data.generate_final_labels ${exp_dir} ${exp_id[$j]}
 
   done
 done
