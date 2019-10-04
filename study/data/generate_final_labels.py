@@ -11,6 +11,8 @@ def main(directory, alg):
         lda = pd.read_csv(directory + '/labels/LDA_labels/top_labels.csv')
 
     final = pd.concat([categories, key_phrases, key_words, links, lda], ignore_index=True)
+    final = final.fillna(0)
+
     print(final)
     final.to_csv(directory + '/candidate_labels.csv')
 
