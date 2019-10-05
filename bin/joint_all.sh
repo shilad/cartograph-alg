@@ -6,7 +6,7 @@
 set -e
 set -x
 
-listVar1="internet technology internet media science"
+listVar1="food"
 list2="0.5"
 listVar1="0 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.95"
 
@@ -26,7 +26,7 @@ do
     # $(get_experiment_id)
 
     # Step 2: Prepare an experiment directory for a specific map.
-    exp_dir=$(prepare_experiment_dir internet ${exp_id})
+    exp_dir=$(prepare_experiment_dir food ${exp_id})
 
     # Step 3: You MUST pass any configuration parameters important to the experiment as key-value pairs.
     # The example below passes the equivalent of { "spread" : "17", "target_weight" : "0.5" }.
@@ -46,10 +46,10 @@ do
         --k 7 \
         --weight 0.5 \
         --xy_embeddings ${exp_dir}/original_xy_embeddings.csv\
-        --article_keywords data/internet/$article_label_csv \
-        --country_labels ${exp_dir}/country_labels.csv\
-        --articles_to_labels data/internet/${article_label_csv} \
-        --label_names data/internet/${label_name_csv} \
+        --article_keywords data/food/$article_label_csv \
+        --country_labels ${exp_dir}/country_labels.csv \
+        --articles_to_labels data/food/${article_label_csv} \
+        --label_names data/food/${label_name_csv} \
         --percentile 0.5 \
         --label_score tfidf \
         --cluster_groups /original_cluster_groups.csv \
@@ -70,7 +70,7 @@ do
         --cluster ${exp_dir}/score_cluster_groups.csv
 
 
-    options1="original"
+    options1="original new"
     for j in $options1
     do
         python -m cartograph.evaluation.cluster_validation_metrics --experiment ${exp_dir} \
@@ -78,20 +78,20 @@ do
                                                            --groups ${exp_dir}/${j}_cluster_groups.csv >>${exp_dir}/cluster_evaluation.json
 
     done
-    options2="original"
+    options2="original new"
 
     for j in $options2
     do
 
 #    python -m cartograph.evaluation.label_evaluator_against_study_gold_standards \
 #            --experiment_directory ${exp_dir} \
-#            --gold_standard  study/internet/kmeans_plain/gold_standard_labels.csv \
+#            --gold_standard  study/food/kmeans_plain/gold_standard_labels.csv \
 #            --label_set ${exp_dir}/${j}_country_labels.csv \
 #            --k 7 >>${exp_dir}/label_evaluation.json
 
     # Step 6: Generate JSON
     python -m cartograph.json_generator \
-    --map_directory data/internet \
+    --map_directory data/food \
     --experiment ${exp_dir}/ \
     --filter_method kk  \
     --country_labels ${j}_country_labels.csv \

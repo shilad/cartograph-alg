@@ -78,12 +78,10 @@ do
     --articles_to_labels data/food/${article_label_csv} \
     --label_names data/food/${label_name_csv} \
     --label_score tfidf \
-    --percentile 0.3 \
+    --percentile 1 \
     --cluster_groups /original_cluster_groups.csv\
     --output_file /original_country_labels.csv \
-    --purpose experiment \
     --label_path na \
-    --soft_labeling False \
     --num_candidates 0 \
 
     # draw boundary

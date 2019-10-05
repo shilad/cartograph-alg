@@ -46,18 +46,14 @@ def get_label_score_matrix(article_labels, country_labels, article_ids, k, tf_id
 
     article_labels = pd.read_csv(article_labels)
     country_labels = pd.read_csv(country_labels)
-    label_ids = country_labels['label_id']
 
     sparse_label_matrix = create_sparse_label_matrix(article_labels, tf_idf_score)
-
-    # stack the label id sets into a matrix
-    label_ids_matrix = np.vstack(np.array(list(literal_eval(label_ids[i]))) for i in range(k))
-    label_ids_matrix = pd.DataFrame(label_ids_matrix)
 
     # the matrix of only the articles
     article_country_score_matrix = pd.DataFrame()
     for country in range(k):
-        candidate_label_ids = label_ids_matrix.loc[country]
+        # Get label ids for country
+        candidate_label_ids = country_labels[country_labels.country == country].label_id.values
         # get the entire columns of label scores given a candidate label id set
         label_score_columns = sparse_label_matrix[candidate_label_ids]
         # sum up label scores between each article and each label candidate set
@@ -95,9 +91,6 @@ def get_final_labels(label_scores, final_groups, country_labels, k, tf_idf_score
     """Returns the labels with the highest sum of scores based on the articles within each cluster."""
     article_label_scores = pd.read_csv(label_scores)
     country_labels = pd.read_csv(country_labels)
-    label_ids = country_labels['label_id']
-    label_ids = np.vstack(np.array(list(literal_eval(label_ids[i]))) for i in range(k))
-    label_ids = pd.DataFrame(label_ids)
 
     sparse_label_scores = create_sparse_label_matrix(article_label_scores, tf_idf_score)
     lists_of_articles_by_country = final_groups.groupby('country')['article_id'].apply(list)
@@ -106,7 +99,8 @@ def get_final_labels(label_scores, final_groups, country_labels, k, tf_idf_score
 
     score_labels_ids = []
     for country in range(k):
-        label_id = label_ids.loc[country]
+        # Get label ids for country
+        label_id = country_labels[country_labels.country == country].label_id.values
         label_score_column = sparse_label_scores[label_id]
         country_members = articles_by_country_df['article_id'].iloc[country]
         potential_labels = label_score_column.ix[country_members].sum(axis=0)
@@ -117,6 +111,7 @@ def get_final_labels(label_scores, final_groups, country_labels, k, tf_idf_score
 
     for i in range(len(score_labels_ids)):
         labels.append(label_names[label_names['label_id'] == score_labels_ids[i]].label.values[0])
+    print(labels)
     score_labels_df['label_name'] = labels
     country_ids = pd.DataFrame(country_ids)
     score_labels_df = country_ids.join(score_labels_df)
@@ -284,12 +279,11 @@ if __name__ == '__main__':
     article_labels_orig = pd.merge(article_labels, orig_groups, on='article_id')
     article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
 
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, "/original_country_labels.csv", False, args.num_candidates, "else", "na")
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.output_file, True, args.num_candidates, "else", "na")
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.experiment_directory + '/original_country_labels.csv', args.num_candidates)
 
     # Joint Clustering
     tf_idf_score = pd.read_csv(args.experiment_directory + args.tf_idf_score_file)
-    joint_alg_groups, joint_distance_list, joint_average_distance = km.fit_joint_all(X, args.article_keywords, args.country_labels, ids, args.k, args.weight, xy_embeddings, tf_idf_score)
+    joint_alg_groups, joint_distance_list, joint_average_distance = km.fit_joint_all(X, args.article_keywords, args.experiment_directory + '/top_labels.csv', ids, args.k, args.weight, xy_embeddings, tf_idf_score)
     joint_alg_groups = pd.DataFrame(joint_alg_groups)
     joint_alg_groups = ids.join(joint_alg_groups)
     joint_alg_groups.columns = ['article_id', 'country']
@@ -300,10 +294,10 @@ if __name__ == '__main__':
     # Joint Labeling
     article_labels_new = pd.merge(article_labels, joint_alg_groups, on='article_id')
     article_labels_new = pd.merge(article_labels_new, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, '/new_country_labels.csv', False, args.num_candidates, "else", "na")
+    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, args.experiment_directory + '/new_country_labels.csv',args.num_candidates)
 
     # get labels based on label scores instead of running tfidf again
-    score_based_labels = get_final_labels(args.article_keywords, joint_alg_groups, args.country_labels, args.k, tf_idf_score)
+    score_based_labels = get_final_labels(args.article_keywords, joint_alg_groups, args.experiment_directory + '/top_labels.csv', args.k, tf_idf_score)
     score_based_labels.to_csv(args.experiment_directory + "/score_country_labels.csv", index=True)
 
     print(str(json.dumps(orig_average_distance)))
