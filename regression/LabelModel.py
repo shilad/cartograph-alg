@@ -54,4 +54,7 @@ class LabelModel:
 
             lst_of_predictors.append(entry_row[col])
 
-        return self.model.predict(np.array(lst_of_predictors))
+        return self.model.predict(np.array([lst_of_predictors]))[0][0]
+#
+# model = LabelModel("/Users/senresearch/PycharmProjects/cartograph-alg/regression/bug_fixed.csv")
+# print(model.model.predict([[0.02032077059020552, 0.16918848316764934, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])[0][0])

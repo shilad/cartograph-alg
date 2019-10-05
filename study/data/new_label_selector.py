@@ -66,23 +66,38 @@ def assign_country_label_ids(country_scores, label_score, num_candidates, use_la
                 final_ids[row.country] = row.label_id
                 used_stems.add(row.stem)
     return final_labels, final_ids
-def get_top_labels(country_scores, label_score):
+
+
+def get_top_labels(country_scores):
     """Output: Dictionary --> key = country, value = list of top labels"""
     ps = PorterStemmer()
     country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
-    country_scores = country_scores.sort_values(by=label_score, ascending=False)
+    country_scores = country_scores.sort_values(by="tfidf", ascending=False)
+    country_scores_pmi = country_scores.sort_values(by="pmi", ascending=False)
     top_labels = [[] for x in range(country_scores['num_countries'][0])]
+    top_labels_pmi = [[] for x in range(country_scores_pmi['num_countries'][0])]
+
     used_stems = set()
+    used_stems_pmi = set()
     for row in country_scores.itertuples():
         if row.stem not in used_stems:
             if len(top_labels[row.country]) < 30:
                 top_labels[row.country].extend([row.label.lower().replace('_', ' ').strip(), row.tfidf, row.pmi])
                 used_stems.add(row.stem)
-    return top_labels
+    for row in country_scores_pmi.itertuples():
+        if row.stem not in used_stems_pmi:
+            if len(top_labels_pmi[row.country]) < 30:
+                top_labels_pmi[row.country].extend([row.label.lower().replace('_', ' ').strip(), row.tfidf, row.pmi])
+                used_stems_pmi.add(row.stem)
+
+    pmi = pd.DataFrame(top_labels_pmi)
+
+    return top_labels, top_labels_pmi
+
+
 def main(experiment_dir, article_labels, percentile, label_score, output_file, use_label_candidates, num_candidates, purpose, label_path, alg, label_source):
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
-        # print("Selecting labels with noise filtering------------------------------")
         mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
         article_labels = article_labels[mask]
     # Calculate tf-idf scores
@@ -109,64 +124,34 @@ def main(experiment_dir, article_labels, percentile, label_score, output_file, u
         df.to_csv(experiment_dir + "/labels/LDA_labels" + '/final_labels.csv', index=True)
     else:
         df.to_csv(label_path + '/final_labels.csv', index=True)
-    # else:
-    #     df['label_id'] = np.array(list(final_scores.values())).T
-    #     df.columns = ['label_name', 'country', 'label_id']
-    #     df.to_csv(experiment_dir + output_file, index=True)
-    # # Get top label candidates
-    top = get_top_labels(country_labels, label_score)
+
+    # Get top label candidates
+    top, top_pmi = get_top_labels(country_labels)
     top = [item for sublist in top for item in sublist]
+    top_pmi = [item for sublist in top_pmi for item in sublist]
+
+
     top = np.reshape(top, (-1,3))
+    top_pmi = np.reshape(top_pmi, (-1,3))
+
     column_names = ["label", "tfidf", "pmi"]
     top = pd.DataFrame(top, columns=column_names)
-    if label_source == "h_cat":
-        top['h_cat'] = 1
-        top['key_phrases'] = 0
-        top['key_words'] = 0
-        top['lda_label'] = 0
-        top['links'] = 0
-    if label_source == "key_phrases":
-        top['h_cat'] = 0
-        top['key_phrases'] = 1
-        top['key_words'] = 0
-        top['lda_label'] = 0
-        top['links'] = 0
-    if label_source == "key_words":
-        top['h_cat'] = 0
-        top['key_phrases'] = 0
-        top['key_words'] = 1
-        top['lda_label'] = 0
-        top['links'] = 0
-    if label_source == "lda":
-        top['h_cat'] = 0
-        top['key_phrases'] = 0
-        top['key_words'] = 0
-        top['lda_label'] = 1
-        top['links'] = 0
-    if label_source == "links":
-        top['h_cat'] = 0
-        top['key_phrases'] = 0
-        top['key_words'] = 0
-        top['lda_label'] = 0
-        top['links'] = 1
-    top['cluster_alg'] = alg
-    if alg == "kmeans_augmented":
-        top['augmented'] = 1
-        top['LDA'] = 0
-        top['plain'] = 0
-    if alg == "kmeans_plain":
-        top['augmented'] = 0
-        top['LDA'] = 0
-        top['plain'] = 1
-    if alg == "LDA":
-        top['augmented'] = 0
-        top['LDA'] = 1
-        top['plain'] = 0
+    top['country'] = np.repeat((0,1,2,3,4,5,6), 10)
+    top_pmi = pd.DataFrame(top_pmi, columns=column_names)
+    top_pmi['country'] = np.repeat((0,1,2,3,4,5,6), 10)
+
+    top = pd.merge(top, top_pmi, how="outer")
+
+    top[label_source] = 1
+    top["alg"] = str(alg)
+    top[alg] = 1
+
     if alg == "LDA" and label_source == "lda":
         top.to_csv(experiment_dir + "/labels/"  + "LDA_labels"  + '/top_labels.csv')
     else:
         top.to_csv(experiment_dir + "/labels/" + label_source +'/top_labels.csv')
-        print("---------------------------------------" + experiment_dir + "/labels/" + label_source +'/top_labels.csv')
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Select labels for cluster.')
     parser.add_argument('--experiment', required=True)
