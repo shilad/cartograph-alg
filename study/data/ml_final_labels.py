@@ -12,11 +12,10 @@ def main(projects, algs):
     # print(candidates[0]['lda_label'])
     final = pd.concat(candidates)
     final = final.iloc[:, 2:]
-    print(final.columns)
 
     borda = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study/hit_labels.csv")
     borda = borda[['name', 'share', 'avg_borda', 'cluster_alg', 'cluster_num']]
-    print(borda.columns)
+
     final= final.replace(' ', '_', regex=True)
     for index, row in final.iterrows():
         final.loc[index, "h_cat_tfidf"] = row['h_cat'] * row['tfidf']
@@ -34,24 +33,19 @@ def main(projects, algs):
 
     merged = merged.groupby('label', as_index=False).sum()
 
-    print(merged['label'])
-
-
     merged = pd.merge(final, borda, how="inner", right_on=("name", "cluster_alg", "cluster_num" ), left_on=("label", "alg", "country"))
     merged = merged.drop(columns=['cluster_alg', 'name' ])
     merged = merged.drop_duplicates()
-    print(merged['label'])
 
     merged.to_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study/labels_for_ml_study.csv")
 
-    rows = merged.set_index('label')['value'].to_dict(orient='list')
-
-    print(type(rows))
+    rows = merged.to_dict('records')
+    print(rows)
     model = LabelModel("/Users/senresearch/PycharmProjects/cartograph-alg/regression/bug_fixed.csv")
     for row in rows:
         row['avg_borda'] = model.predict(row)
 
-    rows.to_csv("results.csv")
+    print(pd.DataFrame(rows))
 
 projects = ["food"]
 algs = ["kmeans_augmented", "kmeans_plain", "LDA"]
