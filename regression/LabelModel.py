@@ -55,7 +55,3 @@ class LabelModel:
             lst_of_predictors.append(entry_row[col])
 
         return self.model.predict(np.array(lst_of_predictors))
-
-
-mod = LabelModel("bug_fixed.csv")
-print(mod.model.coef_)
