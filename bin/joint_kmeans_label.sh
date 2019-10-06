@@ -22,7 +22,7 @@ do
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=$(get_experiment_id)
+    exp_id=0007 #$(get_experiment_id)
 
     # $(get_experiment_id)
 
@@ -46,7 +46,7 @@ do
     python -m kmeans+label.joint_label_kmeans \
         --experiment ${exp_dir} \
         --vectors ${exp_dir}/vanilla_vectors.csv \
-        --k 8 \
+        --k 7 \
         --weight 0.5 \
         --article_keywords data/${i}/article_keywords.csv \
         --country_names ${exp_dir}/country_labels.csv\
