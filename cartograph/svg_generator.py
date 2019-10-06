@@ -69,10 +69,10 @@ def scale(data):
     return data
 
 
-def set_colors(countries_csv, color_palette):
+def set_colors(countries_csv, color_palette='hls'):
     countries = pd.read_csv(countries_csv)
     colors = {}
-    palette = sns.color_palette(color_palette, len(countries)).as_hex()
+    palette = sns.color_palette(color_palette, len(countries)).as_hex()    # palette
     for i in range(len(countries['country'])):
         colors[countries.iloc[i]['label_name']] = palette[countries.iloc[i]['country']]
     return colors
