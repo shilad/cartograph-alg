@@ -2,21 +2,17 @@ import pandas as pd
 
 from regression.LabelModel import LabelModel
 
+def main(experiment_dir):
+    label_lst = ["h_cat", "key_phrases", "key_words", "lda", "links"]
+    final = []
 
-def main(projects, algs):
-    candidates = []
-    for project in projects:
-        for alg in algs:
-            candidates.append(pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study/" + project +"/"+ alg + '/candidate_labels.csv'))
+    for label_type in label_lst:
+        file = experiment_dir + "/" + label_type + "_top_labels.csv"
+        df = pd.read_csv(file)
+        final.append(df)
 
-    # print(candidates[0]['lda_label'])
-    final = pd.concat(candidates)
-    final = final.iloc[:, 2:]
+    final = pd.concat(final)
 
-    borda = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study/hit_labels.csv")
-    borda = borda[['name', 'share', 'avg_borda', 'cluster_alg', 'cluster_num']]
-
-    final= final.replace(' ', '_', regex=True)
     for index, row in final.iterrows():
         final.loc[index, "h_cat_tfidf"] = row['h_cat'] * row['tfidf']
         final.loc[index, "h_cat_pmi"] = row['h_cat'] * row['pmi']
@@ -28,36 +24,22 @@ def main(projects, algs):
         final.loc[index, "key_phrases_pmi"] = row['key_phrases'] * row['pmi']
         final.loc[index, "lda_tfidf"] = row['lda'] * row['tfidf']
         final.loc[index, "lda_pmi"] = row['lda'] * row['pmi']
-    final.to_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study/ml_final_labels.csv")
-    merged = final.drop(columns=['h_cat', 'links', 'lda', 'key_words', 'key_phrases'])
 
-    merged = merged.groupby('label', as_index=False).sum()
-
-    merged = pd.merge(final, borda, how="inner", right_on=("name", "cluster_alg", "cluster_num" ), left_on=("label", "alg", "country"))
-    merged = merged.drop(columns=['cluster_alg', 'name' ])
-    merged = merged.drop_duplicates()
-
-    merged.to_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study/labels_for_ml_study.csv")
-
-    rows = merged.to_dict('records')
-    print(rows)
-    model = LabelModel("/Users/senresearch/PycharmProjects/cartograph-alg/regression/bug_fixed.csv")
+    final = final.groupby('label', as_index=False).sum()
+    final = final.fillna(0)
+    rows = final.to_dict('records')
+    model = LabelModel("/Users/senresearchlab/PycharmProjects/cartograph-alg/regression/bug_fixed.csv")
     for row in rows:
         row['avg_borda'] = model.predict(row)
 
-    print(pd.DataFrame(rows))
+    pd.DataFrame(rows).to_csv(experiment_dir + "/" + "predicted_borda.csv")
 
-projects = ["food"]
-algs = ["kmeans_augmented", "kmeans_plain", "LDA"]
-main(projects, algs)
 
-# if __name__ == '__main__':
-#     import sys
-#
-#     if len(sys.argv) != 3:
-#         sys.stderr.write('Usage: %s map_directory' % sys.argv[0])
-#         sys.exit(1)
-#
-#     projects, algs = sys.argv[1:]
-#     main(list(projects), l
-#     ist(algs))
+if __name__ == '__main__':
+    import sys
+
+    if len(sys.argv) != 2:
+        sys.exit()
+
+    experiment_dir = sys.argv[1]
+    main(experiment_dir)

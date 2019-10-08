@@ -80,7 +80,7 @@ def assign_country_label_ids(country_scores, label_score):
     return final_labels, final_ids
 
 
-def get_top_labels(country_scores, label_score, num_candidates):
+def get_top_labels(country_scores, label_score, num_candidates=5):
     """Output: Dictionary --> key = country, value = list of top labels"""
 
     ps = PorterStemmer()
@@ -100,7 +100,7 @@ def get_top_labels(country_scores, label_score, num_candidates):
     return top_labels
 
 
-def main(experiment_dir, article_labels, percentile, label_score, output_file, num_candidates):
+def main(experiment_dir, article_labels, percentile, label_score, output_file, num_candidates=5):
     # choose the best percentile labels
     if 'distance' in article_labels.columns:
         # print("Selecting labels with noise filtering------------------------------")

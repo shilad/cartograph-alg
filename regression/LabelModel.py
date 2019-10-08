@@ -53,7 +53,6 @@ class LabelModel:
                 break
 
             lst_of_predictors.append(entry_row[col])
-
         return self.model.predict(np.array([lst_of_predictors]))[0][0]
 #
 # model = LabelModel("/Users/senresearch/PycharmProjects/cartograph-alg/regression/bug_fixed.csv")
