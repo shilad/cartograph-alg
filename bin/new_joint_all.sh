@@ -21,7 +21,7 @@ do
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
-    exp_id=0000 #$(get_experiment_id)
+    exp_id=$(get_experiment_id)
 
     # $(get_experiment_id)
 
@@ -109,7 +109,7 @@ do
     --map_directory ${exp_dir}/ \
     --width 1500 \
     --height 1500 \
-    --color_palette muted \
+    --color_palette hls \
     --json_file ${j}_domain.json \
     --output_file ${j}_graph.svg \
     --country_labels ${j}_country_labels.csv \

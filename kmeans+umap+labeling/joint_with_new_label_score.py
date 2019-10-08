@@ -61,7 +61,6 @@ def get_label_score_new_matrix(article_labels, tf_idf_score, best_group, ids):
     # print(filtered.shape)
     distance = cosine_distances(filtered, top_scores_list)
     distance = pd.DataFrame(distance)
-    print(distance.shape)
     return distance
 def get_label_score_matrix(article_labels, country_labels, article_ids, k, tf_idf_score):
     """
@@ -237,12 +236,10 @@ class KMeans:
                 best_group = res
             # else: best_group = best_group
             dis_mat = high_dim_dist * (0.95 - weight) + low_dim_dist * 0.05
-            print(dis_mat)
             best_group = np.argmin(dis_mat, axis=1)
 
             label_scores = get_label_score_new_matrix(article_labels, tf_idf_score, best_group, ids)
             dis_mat_2 = dis_mat - label_scores * weight
-            print(dis_mat_2)
             best_group = np.argmin(dis_mat_2.values.tolist(), axis=1)
             assert best_group.shape == (N,)
 
