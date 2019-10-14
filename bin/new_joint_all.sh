@@ -40,7 +40,7 @@ do
             --vectors ${exp_dir}/vanilla_vectors.csv \
             --output_file /original_xy_embeddings.csv
 
-    python -m kmeans+umap+labeling.joint_with_new_label_score \
+    python -m kmeans+umap+labeling.modified \
         --experiment ${exp_dir} \
         --vectors ${exp_dir}/vanilla_vectors.csv \
         --k 7 \
@@ -62,12 +62,6 @@ do
         --vectors ${exp_dir}/vanilla_vectors.csv \
         --output_file /new_xy_embeddings.csv \
         --cluster ${exp_dir}/new_cluster_groups.csv
-
-    python -m cartograph.xy_embed.umap_embed \
-        --map_directory ${exp_dir} \
-        --vectors ${exp_dir}/vanilla_vectors.csv \
-        --output_file /score_xy_embeddings.csv \
-        --cluster ${exp_dir}/score_cluster_groups.csv
 
 
     options1="original new"

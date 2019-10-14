@@ -203,6 +203,7 @@ class KMeans:
             low_dim_dist /= max_dist
 
             label_scores = get_label_score_matrix(article_keywords, country_labels, ids, k, tf_idf_score)
+            print(label_scores)
 
             dis_mat = high_dim_dist * (0.95 - weight) - label_scores * weight + low_dim_dist * 0.05
 
@@ -228,6 +229,7 @@ class KMeans:
 
             centroids2 = new_centroids2
             ave_distance = get_centroid_distance(data, centroids, best_group)
+            print(max_centroid_change)
 
             # break out of the main loop if the results are optimal, ie. the centroids don't change their positions
             # much(more than our tolerance)

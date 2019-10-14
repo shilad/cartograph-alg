@@ -17,6 +17,7 @@ import argparse
 from sklearn.metrics.pairwise import cosine_distances, euclidean_distances
 from pandas._libs import json
 warnings.simplefilter(action='ignore', category=FutureWarning)
+from sklearn.preprocessing import normalize
 
 
 def create_sparse_label_matrix(article_labels, tf_idf_score):
@@ -36,73 +37,13 @@ def create_sparse_label_matrix(article_labels, tf_idf_score):
             output_matrix[row.article_id][row.label_id] = row.score
     output_matrix = pd.DataFrame(output_matrix)
     output_matrix.index.name = 'article_id'
-    # output_matrix = output_matrix.rename(columns= lambda x: "label_id_" + str(x) )
-    # print(output_matrix)
-
     return output_matrix
 
-def get_label_score_new_matrix(article_labels, tf_idf_score, best_group, ids):
-    if "distance" in best_group.columns:
-        ids_with_group = best_group.drop(columns=["distance"])
-    else:
-        ids_with_group = ids.join(best_group)
-    ids_with_group = pd.DataFrame(ids_with_group)
-    print(best_group)
-    ids_with_group.columns = ['article_id', 'country']
-    country_articles = ids_with_group.groupby('country')['article_id'].apply(list)
-    sparse = create_sparse_label_matrix(article_labels, tf_idf_score)
-    sparse2 = sparse.iloc[ids['article_id'].values.tolist()]
-    top_labels_list = []
-    top_scores_list = []
-    for i in range(country_articles.shape[0]):
-        scores = sparse.iloc[country_articles[i]].mean(axis=0)
-        scores_df = pd.DataFrame(scores)
-        scores_df.columns = ['label_score']
-        top = scores_df.sort_values(by=['label_score'], ascending=False)[0:20]
-        top_scores_list.append(top['label_score'].values.tolist())
-        top_labels_list.append(top.index.values.tolist())
-    filtered = sparse2.iloc[:, top_labels_list[0]]
-    # print(filtered.shape)
-    distance = cosine_distances(filtered, top_scores_list)
-    distance = pd.DataFrame(distance)
-    print(distance.shape)
+def get_label_score_new_matrix(sparse_matrix, coutry_label_score):
+    print("dddd")
+    distance = cosine_distances(sparse_matrix, coutry_label_score)
+    distance = normalize(distance, axis=1)
     return distance
-def get_label_score_matrix(article_labels, country_labels, article_ids, k, tf_idf_score):
-    """
-    :param country_labels: a data frame of label candidate sets and the corresponding sets of label ids.
-    :return: a matrix that contains the label score between each article and each candidate label set
-    """
-    n = len(article_ids)
-
-    article_labels = pd.read_csv(article_labels)
-    country_labels = pd.read_csv(country_labels)
-
-    sparse_label_matrix = create_sparse_label_matrix(article_labels, tf_idf_score)
-
-    # the matrix of only the articles
-    article_country_score_matrix = pd.DataFrame()
-    for country in range(k):
-        # Get label ids for country
-        candidate_label_ids = country_labels[country_labels.country == country].label_id.values
-        # get the entire columns of label scores given a candidate label id set
-        label_score_columns = sparse_label_matrix[candidate_label_ids]
-        # sum up label scores between each article and each label candidate set
-        label_score_sum = label_score_columns.sum(axis=1)
-        article_country_score_matrix[str(country)] = label_score_sum  # append the label score as a new column
-
-    merged_cluster_label_score = pd.merge(ids, article_country_score_matrix, on='article_id')
-    merged_cluster_label_score = merged_cluster_label_score.values[:, 1:]
-
-    # some articles do not have keyword label scores, the code below is to make up the missing rows
-    # by appending rows of zeros
-    if n != merged_cluster_label_score.shape[0]:
-        extra_zeros = np.zeros((article_ids.shape[0] - merged_cluster_label_score.shape[0], k))
-        assert extra_zeros.shape[1] == merged_cluster_label_score.shape[1] - 1
-        label_score_mat = np.vstack((merged_cluster_label_score.values[:, 1:], extra_zeros))
-    else:
-        label_score_mat = merged_cluster_label_score
-    assert label_score_mat.shape == (n, k)
-    return label_score_mat
 
 
 def get_vector_centroid_distance(article_vectors, centroids, membership):
@@ -115,6 +56,21 @@ def get_vector_centroid_distance(article_vectors, centroids, membership):
         dist = np.abs(distances[i, membership[i]])
         distance.append(dist)
     return distance
+
+
+def generate_country_matrix(groups):
+    """Creates a matrix that contains article ids and label ids,
+    the entry of which is the label score from gensim (if available) or tf-idf score."""
+
+    num_row = max(groups.iloc[:,1]) + 1
+    num_col = max(groups.iloc[:,0]) + 1
+    output_matrix = csr_matrix((num_row, num_col), dtype=np.float).toarray()
+    print("a")
+    for row in groups.itertuples():
+        output_matrix[row.country][row.article_id] = 1
+    print("b")
+
+    return output_matrix
 
 
 def get_final_labels(label_scores, final_groups, country_labels, k, tf_idf_score):
@@ -159,9 +115,47 @@ def get_centroid_distance(data, centroids, membership):
     mean_distance = total_distance / data.shape[0]
     return mean_distance
 
+def get_label_score_matrix(article_labels, country_labels, article_ids, k, tf_idf_score):
+    """
+    :param country_labels: a data frame of label candidate sets and the corresponding sets of label ids.
+    :return: a matrix that contains the label score between each article and each candidate label set
+    """
+    n = len(article_ids)
+
+    article_labels = pd.read_csv(article_labels)
+    country_labels = pd.read_csv(country_labels)
+
+    sparse_label_matrix = create_sparse_label_matrix(article_labels, tf_idf_score)
+
+    # the matrix of only the articles
+    article_country_score_matrix = pd.DataFrame()
+    for country in range(k):
+        # Get label ids for country
+        candidate_label_ids = country_labels[country_labels.country == country].label_id.values
+        # get the entire columns of label scores given a candidate label id set
+        label_score_columns = sparse_label_matrix[candidate_label_ids]
+        # sum up label scores between each article and each label candidate set
+        label_score_sum = label_score_columns.sum(axis=1)
+        article_country_score_matrix[str(country)] = label_score_sum  # append the label score as a new column
+
+    merged_cluster_label_score = pd.merge(ids, article_country_score_matrix, on='article_id')
+    merged_cluster_label_score = merged_cluster_label_score.values[:, 1:]
+
+    # some articles do not have keyword label scores, the code below is to make up the missing rows
+    # by appending rows of zeros
+    if n != merged_cluster_label_score.shape[0]:
+        extra_zeros = np.zeros((article_ids.shape[0] - merged_cluster_label_score.shape[0], k))
+        assert extra_zeros.shape[1] == merged_cluster_label_score.shape[1] - 1
+        label_score_mat = np.vstack((merged_cluster_label_score.values[:, 1:], extra_zeros))
+    else:
+        label_score_mat = merged_cluster_label_score
+    assert label_score_mat.shape == (n, k)
+    return label_score_mat
+
+
 
 class KMeans:
-    def __init__(self, k=7, tolerance=0.00001, max_iterations=500):
+    def __init__(self, k=7, tolerance=0.00005, max_iterations=500):
         self.k = k
         self.tolerance = tolerance
         self.max_iterations = max_iterations
@@ -211,18 +205,18 @@ class KMeans:
         distance = get_vector_centroid_distance(data, centroids, best_group)
         return best_group, distance, average_distance
 
-    def fit_joint_all(self, data, original_groups, ids, weight, embeddings, tf_idf_score):
+    def fit_joint_all(self, data, original_groups, ids, weight, embeddings, sparse_matrix, sparse_matrix_2):
         N, D = data.shape
         K = self.k
         embeddings = embeddings.iloc[:, 1:].values
         best_group = original_groups
-
 
         # initialize the first 'k' elements in the dataset to be the initial centroids
         centroids = np.stack(data[:K])
         assert centroids.shape == (K, D)
         centroids2 = np.stack(embeddings[:K])   # low dimensional clustering
         # begin iterations
+        print("1")
         for i in range(self.max_iterations):
             high_dim_dist = cosine_distances(data, centroids)  # get cosine distance betw each point and the cenroids, N x k
             assert high_dim_dist.shape == (N, K)
@@ -232,24 +226,24 @@ class KMeans:
             xy_range = (np.max(embeddings) - np.min(embeddings))
             max_dist = np.sqrt(xy_range * xy_range + xy_range * xy_range)
             low_dim_dist /= max_dist
-
-            # else: best_group = best_group
-            label_scores = get_label_score_new_matrix(article_labels, tf_idf_score, best_group, ids)
-
-            dis_mat = high_dim_dist * (0.95 - weight) + low_dim_dist * 0.05 - label_scores * weight
-            print(dis_mat.shape)
-            best_group = np.argmin(dis_mat.values, axis=1)
-
-            # dis_mat_2 = dis_mat - label_scores * weight
-            # print(dis_mat_2)
-            # best_group = np.argmin(dis_mat_2.values.tolist(), axis=1)
-            assert best_group.shape == (N,)
+            country_matrix = generate_country_matrix(best_group)
+            country_label = country_matrix.dot(sparse_matrix)
+            # country_label = normalize(country_label, axis=1)
+            print("5")
+            label_scores = get_label_score_new_matrix(sparse_matrix_2, country_label)
+            print(label_scores)
+            dis_mat = high_dim_dist * (0.95 - weight) + low_dim_dist * 0.05 + label_scores * weight
+            dis_mat = pd.DataFrame(dis_mat)
+            best_group = dis_mat.idxmin(axis=1)
+            best_group = pd.DataFrame(best_group, columns=["country"])
+            best_group = ids.join(best_group)
+            best_group = pd.DataFrame(best_group)
+            assert best_group.shape == (N,2)
 
             points_per_group = np.zeros(K) + 1e-6
-            np.add.at(points_per_group, best_group, 1)
-
+            np.add.at(points_per_group, best_group['country'], 1)
             new_centroids = np.zeros((K, D))
-            np.add.at(new_centroids, best_group, data)
+            np.add.at(new_centroids, best_group['country'], data)
             new_centroids /= points_per_group.repeat(D).reshape(K, D)
 
             centroid_changes = np.sum(np.abs(new_centroids - centroids), axis=1)
@@ -257,19 +251,20 @@ class KMeans:
             max_centroid_change = np.max(centroid_changes)
 
             new_centroids2 = np.zeros((K, 2))
-            np.add.at(new_centroids2, best_group, embeddings)
+            np.add.at(new_centroids2, best_group['country'], embeddings)
             new_centroids2 /= points_per_group.repeat(2).reshape(K, 2)
 
             centroids = new_centroids
 
             centroids2 = new_centroids2
-            ave_distance = get_centroid_distance(data, centroids, best_group)
+            ave_distance = get_centroid_distance(data, centroids, best_group['country'])
             # break out of the main loop if the results are optimal, ie. the centroids don't change their positions
             # much(more than our tolerance)
+            print(max_centroid_change)
 
             if max_centroid_change < self.tolerance:
                 break
-        distance = get_vector_centroid_distance(data, centroids, best_group)
+        distance = get_vector_centroid_distance(data, centroids, best_group['country'])
         return best_group, distance, ave_distance
 
 
@@ -319,9 +314,11 @@ if __name__ == '__main__':
 
     # Joint Clustering
     tf_idf_score = pd.read_csv(args.experiment_directory + args.tf_idf_score_file)
-    joint_alg_groups, joint_distance_list, joint_average_distance = km.fit_joint_all(X, orig_groups, ids, args.weight, xy_embeddings, tf_idf_score)
+    sparse_matrix = create_sparse_label_matrix(article_labels, tf_idf_score)
+    sparse_matrix_2 = sparse_matrix.iloc[ids['article_id'].values]
+    joint_alg_groups, joint_distance_list, joint_average_distance = km.fit_joint_all(X, orig_groups, ids, args.weight, xy_embeddings, sparse_matrix, sparse_matrix_2)
     joint_alg_groups = pd.DataFrame(joint_alg_groups)
-    joint_alg_groups = ids.join(joint_alg_groups)
+    # joint_alg_groups = ids.join(joint_alg_groups)
     joint_alg_groups.columns = ['article_id', 'country']
     joint_alg_groups['distance'] = joint_distance_list
     joint_alg_groups.to_csv('%s/new_cluster_groups.csv' % (args.experiment_directory,), index=False)

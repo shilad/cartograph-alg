@@ -6,16 +6,13 @@ as well as low dimensional embeddings.
 Authors: Jonathan Scott, Lu Li
 
 """
-from ast import literal_eval
 import numpy as np
-import random
 import pandas as pd
 import warnings
 import cartograph.label_selector as ls
 from scipy.sparse import csr_matrix
 import argparse
 from sklearn.metrics.pairwise import cosine_distances, euclidean_distances
-from pandas._libs import json
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
@@ -36,9 +33,6 @@ def create_sparse_label_matrix(article_labels, tf_idf_score):
             output_matrix[row.article_id][row.label_id] = row.score
     output_matrix = pd.DataFrame(output_matrix)
     output_matrix.index.name = 'article_id'
-    # output_matrix = output_matrix.rename(columns= lambda x: "label_id_" + str(x) )
-    # print(output_matrix)
-
     return output_matrix
 
 def get_label_score_new_matrix(article_labels, tf_idf_score, best_group, ids):
@@ -62,42 +56,6 @@ def get_label_score_new_matrix(article_labels, tf_idf_score, best_group, ids):
     distance = cosine_distances(filtered, top_scores_list)
     distance = pd.DataFrame(distance)
     return distance
-def get_label_score_matrix(article_labels, country_labels, article_ids, k, tf_idf_score):
-    """
-    :param country_labels: a data frame of label candidate sets and the corresponding sets of label ids.
-    :return: a matrix that contains the label score between each article and each candidate label set
-    """
-    n = len(article_ids)
-
-    article_labels = pd.read_csv(article_labels)
-    country_labels = pd.read_csv(country_labels)
-
-    sparse_label_matrix = create_sparse_label_matrix(article_labels, tf_idf_score)
-
-    # the matrix of only the articles
-    article_country_score_matrix = pd.DataFrame()
-    for country in range(k):
-        # Get label ids for country
-        candidate_label_ids = country_labels[country_labels.country == country].label_id.values
-        # get the entire columns of label scores given a candidate label id set
-        label_score_columns = sparse_label_matrix[candidate_label_ids]
-        # sum up label scores between each article and each label candidate set
-        label_score_sum = label_score_columns.sum(axis=1)
-        article_country_score_matrix[str(country)] = label_score_sum  # append the label score as a new column
-
-    merged_cluster_label_score = pd.merge(ids, article_country_score_matrix, on='article_id')
-    merged_cluster_label_score = merged_cluster_label_score.values[:, 1:]
-
-    # some articles do not have keyword label scores, the code below is to make up the missing rows
-    # by appending rows of zeros
-    if n != merged_cluster_label_score.shape[0]:
-        extra_zeros = np.zeros((article_ids.shape[0] - merged_cluster_label_score.shape[0], k))
-        assert extra_zeros.shape[1] == merged_cluster_label_score.shape[1] - 1
-        label_score_mat = np.vstack((merged_cluster_label_score.values[:, 1:], extra_zeros))
-    else:
-        label_score_mat = merged_cluster_label_score
-    assert label_score_mat.shape == (n, k)
-    return label_score_mat
 
 
 def get_vector_centroid_distance(article_vectors, centroids, membership):
@@ -227,14 +185,7 @@ class KMeans:
             xy_range = (np.max(embeddings) - np.min(embeddings))
             max_dist = np.sqrt(xy_range * xy_range + xy_range * xy_range)
             low_dim_dist /= max_dist
-            if(i == 0):
-                res = []
 
-                for j in range(data.shape[0]):
-                    res.append(random.randint(0, 6))
-
-                best_group = res
-            # else: best_group = best_group
             dis_mat = high_dim_dist * (0.95 - weight) + low_dim_dist * 0.05
             best_group = np.argmin(dis_mat, axis=1)
 
@@ -264,6 +215,7 @@ class KMeans:
             ave_distance = get_centroid_distance(data, centroids, best_group)
             # break out of the main loop if the results are optimal, ie. the centroids don't change their positions
             # much(more than our tolerance)
+            print(max_centroid_change)
             if max_centroid_change < self.tolerance:
                 break
         distance = get_vector_centroid_distance(data, centroids, best_group)

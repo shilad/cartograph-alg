@@ -28,6 +28,7 @@ def main(projects, algs):
         final.loc[index, "key_phrases_pmi"] = row['key_phrases'] * row['pmi']
         final.loc[index, "lda_tfidf"] = row['lda'] * row['tfidf']
         final.loc[index, "lda_pmi"] = row['lda'] * row['pmi']
+
     final.to_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study/ml_final_labels.csv")
     merged = final.drop(columns=['h_cat', 'links', 'lda', 'key_words', 'key_phrases'])
 
