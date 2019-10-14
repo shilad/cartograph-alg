@@ -240,9 +240,11 @@ if __name__ == '__main__':
 
     # arguments for Label Scoring
     parser.add_argument('--article_keywords', required=True)
-    parser.add_argument('--country_labels', required=True)
-    parser.add_argument('--num_candidates', required=True, type=int)
+    parser.add_argument('--country_labels', required=False)
+    parser.add_argument('--num_candidates', required=False, type=int)
     parser.add_argument('--tf_idf_score_file', required=True)
+    parser.add_argument('--output_cluster_groups', required=True)
+
 
     args = parser.parse_args()
     xy_embeddings = pd.read_csv(args.xy_embeddings)
@@ -264,7 +266,7 @@ if __name__ == '__main__':
     article_labels_orig = pd.merge(article_labels, orig_groups, on='article_id')
     article_labels_orig = pd.merge(article_labels_orig, label_names, on='label_id')
 
-    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.experiment_directory + '/original_country_labels.csv', args.num_candidates)
+    ls.main(args.experiment_directory, article_labels_orig, args.percentile, args.label_score, args.experiment_directory + '/original_country_labels.csv')
 
     # Joint Clustering
     tf_idf_score = pd.read_csv(args.experiment_directory + args.tf_idf_score_file)
@@ -273,17 +275,17 @@ if __name__ == '__main__':
     joint_alg_groups = ids.join(joint_alg_groups)
     joint_alg_groups.columns = ['article_id', 'country']
     joint_alg_groups['distance'] = joint_distance_list
-    joint_alg_groups.to_csv('%s/new_cluster_groups.csv' % (args.experiment_directory,), index=False)
+    joint_alg_groups.to_csv( args.experiment_directory + args.output_cluster_groups, index=False)
     joint_alg_groups.to_csv('%s/score_cluster_groups.csv' % (args.experiment_directory,), index=False)
 
     # Joint Labeling
-    article_labels_new = pd.merge(article_labels, joint_alg_groups, on='article_id')
-    article_labels_new = pd.merge(article_labels_new, label_names, on='label_id')
-    ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, args.experiment_directory + '/new_country_labels.csv',args.num_candidates)
+    # article_labels_new = pd.merge(article_labels, joint_alg_groups, on='article_id')
+    # article_labels_new = pd.merge(article_labels_new, label_names, on='label_id')
+    # ls.main(args.experiment_directory, article_labels_new, args.percentile, args.label_score, args.experiment_directory + '/new_country_labels.csv',args.num_candidates)
 
     # get labels based on label scores instead of running tfidf again
-    score_based_labels = get_final_labels(args.article_keywords, joint_alg_groups, args.experiment_directory + '/top_labels.csv', args.k, tf_idf_score)
-    score_based_labels.to_csv(args.experiment_directory + "/score_country_labels.csv", index=True)
+    # score_based_labels = get_final_labels(args.article_keywords, joint_alg_groups, args.experiment_directory + '/top_labels.csv', args.k, tf_idf_score)
+    # score_based_labels.to_csv(args.experiment_directory + "/score_country_labels.csv", index=True)
     #
     # print(str(json.dumps(orig_average_distance)))
     # print(str(json.dumps(joint_average_distance)))
