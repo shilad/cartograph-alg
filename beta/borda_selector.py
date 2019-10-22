@@ -8,7 +8,7 @@ def main(experiment_dir, borda_file):
 
     lst = []
     for index, row in df_top_borda.iterrows():
-        lst.append({"country" : row["country"], "label_name" : row["label"]})
+        lst.append({"country" : row["country"], "label_name" : row["label_name"]})
 
     pd.DataFrame(lst).to_csv(experiment_dir + "/final_labels.csv")
 
