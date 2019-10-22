@@ -1,5 +1,6 @@
 """
-Given cluster groups, article label dataframe, outputs a dataframe with country, label name, and tfidf score.
+Given cluster groups, article label dataframe, outputs a dataframe with country, label name, tfidf score, cluster algorithm,
+and label source.
 
 Author: Lily Irvin
 
