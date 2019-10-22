@@ -1,9 +1,13 @@
 """
-Given two data frames (one containing article id's and label id's, and one including article id's and country clusters),
-outputs a list countries and their labels.
+Given cluster groups, article label dataframe, outputs a dataframe with country, label name, and tfidf score.
+
 Author: Lily Irvin
+
+Modified for feature data gathering by Lu Li.
+
 """
 import argparse
+from collections import defaultdict
 import numpy as np
 import pandas as pd
 from gensim.parsing.porter import PorterStemmer
@@ -68,6 +72,7 @@ def assign_country_label_ids(country_scores, label_score):
     country_scores = country_scores.sort_values(by=label_score, ascending=False)
     used_stems = set()
 
+
     final_labels = {}
     final_ids = {}
 
@@ -76,10 +81,29 @@ def assign_country_label_ids(country_scores, label_score):
             final_labels[row.country] = [row.label.lower().replace('_', ' ').strip(), row.tfidf, row.pmi]
             final_ids[row.country] = row.label_id
             used_stems.add(row.stem)
+
     return final_labels, final_ids
 
 
-def main(experiment_dir, article_labels, cluster_groups):
+def get_top_labels(country_scores, label_score):
+    """Output: Dictionary --> key = country, value = list of top labels"""
+
+    ps = PorterStemmer()
+    country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
+    country_scores = country_scores.sort_values(by=label_score, ascending=False)
+    top_labels = [[] for x in range(country_scores['num_countries'][0])]
+    used_stems = set()
+
+    for row in country_scores.itertuples():
+        if row.stem not in used_stems:
+            if len(top_labels[row.country]) < 30:
+                top_labels[row.country].extend([row.country, row.label.lower().replace(' ', '_').strip(), row.tfidf])
+                used_stems.add(row.stem)
+    return top_labels
+
+def prepare_article_labels(experiment_dir, article_labels, cluster_groups):
+
+    """prepares tfidf scores used by the joint clustering algorithm. """
     article_labels = pd.merge(article_labels, cluster_groups, on='article_id')
     # Calculate tf-idf scores
     article_labels = add_country_label_counts(article_labels)
@@ -88,19 +112,62 @@ def main(experiment_dir, article_labels, cluster_groups):
     article_labels = add_totals(article_labels)
     article_labels = add_tfidf_scores(article_labels)
     tf_idf_score = article_labels[['article_id', 'label_id', 'tfidf']]
-    print("what !!!!!!!!!!!!!!!")
     tf_idf_score.to_csv(experiment_dir + "/tf_idf_score.csv")
 
+
+def main(experiment_dir, article_labels, percentile, label_score, label_path, label_source, alg, project, out_put_file, purpose):
+    # choose the best percentile labels
+    if 'distance' in article_labels.columns:
+        # print("Selecting labels with noise filtering------------------------------")
+        mask = article_labels['distance'] < article_labels['distance'].quantile(float(percentile))
+        article_labels = article_labels[mask]
+
+    # Calculate tf-idf scores
+    article_labels = add_country_label_counts(article_labels)
+    article_labels = add_label_counts(article_labels)
+    article_labels = add_country_counts(article_labels)
+    article_labels = add_totals(article_labels)
+    article_labels = add_tfidf_scores(article_labels)
+    article_labels = add_pmi(article_labels)
+
+    if 'distance' in article_labels.columns:
+        country_labels = article_labels.drop(columns=['article_id', 'distance']).drop_duplicates()
+    else:
+        country_labels = article_labels.drop(columns=['article_id']).drop_duplicates()
+
+    top = get_top_labels(country_labels, label_score)
+    top = np.reshape(top, (-1, 3))
+    top_df = pd.DataFrame(top, columns=['country', 'label_name', 'tfidf'])
+    top_df[label_source] = 1
+    top_df['cluster_alg'] = alg
+    top_df["project"] = project
+    if (purpose == "training"):
+        top_df.to_csv(label_path + '/top_labels.csv')
+    if (purpose == "feature"):
+        top_df.to_csv(experiment_dir + out_put_file)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Select labels for cluster.')
     parser.add_argument('--experiment', required=True)
     parser.add_argument('--articles_to_labels', required=True)
+    parser.add_argument('--label_names', required=True)
+    parser.add_argument('--percentile', required=True)
+    parser.add_argument('--label_score', required=True)
     parser.add_argument('--cluster_groups', required=True)
     parser.add_argument('--output_file', required=True)
+    parser.add_argument('--label_path', required=True)
+    parser.add_argument('--label_source', required=True)
+    parser.add_argument('--cluster_alg', required=True)
+    parser.add_argument('--project', required=True)
+    parser.add_argument('--purpose', required=True)
 
     args = parser.parse_args()
-    article_to_labels = pd.read_csv(args.articles_to_labels)
-    cluster_groups = pd.read_csv(args.cluster_groups)
-    main(args.experiment, article_to_labels, cluster_groups)
 
+    article_labels = pd.read_csv(args.articles_to_labels)
+
+    country_clusters = pd.read_csv(args.experiment + args.cluster_groups)
+    label_names = pd.read_csv(args.label_names)
+    article_labels = pd.merge(article_labels, country_clusters, on='article_id')
+    article_labels = pd.merge(article_labels, label_names, on='label_id')
+
+    main(args.experiment, article_labels, args.percentile, args.label_score, args.label_path, args.label_source, args.cluster_alg, args.project, args.output_file, args.purpose)
