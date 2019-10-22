@@ -15,8 +15,9 @@ class LabelModel:
             logging.warning("Predictor not found")
         else:
             self.df = pd.read_csv(training_fro_user_study_csv).iloc[:, 1:]
-            self.predictors_seq = ["h_cat_tfidf", "h_cat_pmi", "links_tfidf", "links_pmi", "key_words_tfidf",
-                                   "key_words_pmi", "key_phrases_tfidf", "key_phrases_pmi", "lda_tfidf", "lda_pmi"]
+            # self.predictors_seq = ["h_cat_tfidf", "h_cat_pmi", "links_tfidf", "links_pmi", "key_words_tfidf",
+            #                        "key_words_pmi", "key_phrases_tfidf", "key_phrases_pmi", "lda_tfidf", "lda_pmi"]
+            self.predictors_seq = ["h_cat_tfidf", "key_words_tfidf", "key_phrases_tfidf",  "links_tfidf", "lda_tfidf" ]
             self.predictors = self.df[self.predictors_seq].copy().values
             self.response = self.df[[metric_share_or_avg_borda]].copy().values
             self.model = None
@@ -26,6 +27,7 @@ class LabelModel:
         # convert df to 2d np array
         model = LinearRegression()
         model.fit(self.predictors, self.response)
+        print(model.coef_)
         self.model = model
         self.modelType = "Linear"
 
@@ -65,6 +67,9 @@ class LabelModel:
                 break
 
             lst_of_predictors.append(entry_row[col])
+        # print(np.array([lst_of_predictors]))
+
+        # print(self.predictors_seq)
         return self.model.predict(np.array([lst_of_predictors]))[0][0]
 #
 # model = LabelModel("/Users/senresearch/PycharmProjects/cartograph-alg/regression/bug_fixed.csv")

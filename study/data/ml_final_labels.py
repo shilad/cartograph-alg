@@ -1,6 +1,6 @@
 import pandas as pd
 
-from regression.LabelModel import LabelModel
+from prior_work.regression.LabelModel import LabelModel
 
 def main(experiment_dir):
     label_lst = ["h_cat", "key_phrases", "key_words", "lda", "links"]
