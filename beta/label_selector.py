@@ -12,23 +12,20 @@ def main(experiment_dir):
         final.append(df)
 
     final = pd.concat(final)
+    final = final.fillna(0)
+    final['h_cat_tfidf'] = final['h_cat'] * final['tfidf']
+    final['key_words_tfidf'] = final['key_words'] * final['tfidf']
+    final['key_phrases_tfidf'] = final['key_phrases'] * final['tfidf']
+    final['links_tfidf'] = final['links'] * final['tfidf']
+    final['lda_tfidf'] = final['lda'] * final['tfidf']
 
-    for index, row in final.iterrows():
-        final.loc[index, "h_cat_tfidf"] = row['h_cat'] * row['tfidf']
-        final.loc[index, "h_cat_pmi"] = row['h_cat'] * row['pmi']
-        final.loc[index, "links_tfidf"] = row['links'] * row['tfidf']
-        final.loc[index, "links_pmi"] = row['links'] * row['pmi']
-        final.loc[index, "key_words_tfidf"] = row['key_words'] * row['tfidf']
-        final.loc[index, "key_words_pmi"] = row['key_words'] * row['pmi']
-        final.loc[index, "key_phrases_tfidf"] = row['key_phrases'] * row['tfidf']
-        final.loc[index, "key_phrases_pmi"] = row['key_phrases'] * row['pmi']
-        final.loc[index, "lda_tfidf"] = row['lda'] * row['tfidf']
-        final.loc[index, "lda_pmi"] = row['lda'] * row['pmi']
 
-    final = final.groupby(['label', 'country'], as_index=False).sum()
+    final = final.groupby(['cluster_alg', 'country', 'label_name']).sum().reset_index()
+    final['label_name'] = final['label_name'].str.replace('_', ' ')
+
     final = final.fillna(0)
     rows = final.to_dict('records')
-    model = LabelModel("./regression/bug_fixed.csv")
+    model = LabelModel("./beta/regression/final_labels.csv")
     model.run_linear_regression()
 
     for row in rows:
