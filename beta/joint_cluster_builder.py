@@ -1,10 +1,9 @@
 from beta.cluster_generator import KMeans
-import beta.tfidf_pmi_generator as tfidf_generator
+import beta.label_selector_for_feature_data as tfidf_generator
 from scipy.sparse import csr_matrix
 import pandas as pd
 import numpy as np
 import argparse
-import logging
 
 
 def create_sparse_label_matrix(article_labels, tf_idf_score):
@@ -22,14 +21,13 @@ def create_sparse_label_matrix(article_labels, tf_idf_score):
             output_matrix[row.article_id][row.label_id] = row.score
     return output_matrix
 
-def main(experiment_directory, article_ids, xy_embeddings,
+def main(article_ids, xy_embeddings,
          articles_to_labels, tf_idf_score_file, loss_weight, output_file):
     # joint cluster
     sparse_matrix = create_sparse_label_matrix(articles_to_labels, tf_idf_score_file)  # #article * #labels wide matrix
     filtered_matrix = sparse_matrix[article_ids['article_id'].values]   # only valid articles to cluster
     joint_alg_groups, joint_average_distance = km.fit_joint_all(vectors, orig_groups, article_ids, xy_embeddings, sparse_matrix, filtered_matrix, loss_weight)
     joint_alg_groups = pd.DataFrame(joint_alg_groups)
-    # joint_alg_groups = article_ids.join(joint_alg_groups) # todo: fix!!!!!!!
     joint_alg_groups.columns = ['article_id', 'country']
     joint_alg_groups.to_csv(output_file, index=False)
 
@@ -59,10 +57,10 @@ if __name__ == '__main__':
     orig_groups = article_ids.join(pd.DataFrame(orig_groups))
     orig_groups.columns = ['article_id', 'country']
     orig_groups.to_csv('%s/orig_cluster_groups.csv' % (experiment_directory,), index=False)
-    tfidf_generator.main(experiment_directory, articles_to_labels, orig_groups)
+    tfidf_generator.prepare_article_labels(experiment_directory, articles_to_labels, orig_groups)
     tf_idf_score_file = pd.read_csv(args.tf_idf_score_file)
 
-    main(experiment_directory, article_ids, xy_embeddings, articles_to_labels, tf_idf_score_file, loss_weight, args.output_file)
+    main(article_ids, xy_embeddings, articles_to_labels, tf_idf_score_file, loss_weight, args.output_file)
 
 
 
