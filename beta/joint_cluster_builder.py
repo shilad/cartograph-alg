@@ -1,5 +1,5 @@
 from beta.cluster_generator import KMeans
-import beta.label_selector_for_feature_data as tfidf_generator
+import beta.feature_data_generator as tfidf_generator
 from scipy.sparse import csr_matrix
 import pandas as pd
 import numpy as np
