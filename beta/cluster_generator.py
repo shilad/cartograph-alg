@@ -16,16 +16,17 @@ def get_mean_centroid_distance(data, centroids, membership):
     mean_distance = total_distance / data.shape[0]
     return mean_distance
 
-def generate_country_matrix(groups):
+def generate_country_matrix(groups, article_ids):
     """
     Creates a matrix that contains article ids and label ids,
-    the entry of which is the label score from gensim (if available) or tf-idf score.
+    the entry of which is 1 is an article belongs to a country.
     """
     num_row = max(groups.iloc[:,1]) + 1
     num_col = max(groups.iloc[:,0]) + 1
     output_matrix = csr_matrix((num_row, num_col), dtype=np.float).toarray()
     for row in groups.itertuples():
         output_matrix[row.country][row.article_id] = 1
+    output_matrix = output_matrix[:, article_ids['article_id'].values]
     return output_matrix
 
 def assign_best_groups(dist_mat, article_ids):
@@ -105,9 +106,8 @@ class KMeans:
             xy_range = (np.max(embeddings) - np.min(embeddings))
             max_dist = np.sqrt(xy_range * xy_range + xy_range * xy_range)
             low_dim_dist /= max_dist
-
-            country_matrix = generate_country_matrix(best_group)
-            country_label = country_matrix.dot(sparse_matrix) #Todo: fixed num articles
+            country_matrix = generate_country_matrix(best_group, article_ids)
+            country_label = country_matrix.dot(filtered_matrix)
             #Todo: Ask Shilad
             # country_label = normalize(country_label, axis=1)
             label_scores = cosine_distances(filtered_matrix, country_label)
