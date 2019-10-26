@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from scipy.sparse import csr_matrix
 from sklearn.metrics.pairwise import cosine_distances, euclidean_distances
+from sklearn.preprocessing import normalize
 
 
 def get_mean_centroid_distance(data, centroids, membership):
@@ -109,7 +110,7 @@ class KMeans:
             country_matrix = generate_country_matrix(best_group, article_ids)
             country_label = country_matrix.dot(filtered_matrix)
             #Todo: Ask Shilad
-            # country_label = normalize(country_label, axis=1)
+            country_label = normalize(country_label, axis=1)
             label_scores = cosine_distances(filtered_matrix, country_label)
 
             # Calculate loss

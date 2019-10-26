@@ -1,5 +1,4 @@
 import pandas as pd
-
 from beta.regression.LabelModel import LabelModel
 
 def main(experiment_dir):
@@ -20,7 +19,7 @@ def main(experiment_dir):
     final['lda_tfidf'] = final['lda'] * final['tfidf']
 
 
-    final = final.groupby(['cluster_alg', 'country', 'label_name']).sum().reset_index()
+    final = final.groupby(['country', 'label_name']).sum().reset_index()
     final['label_name'] = final['label_name'].str.replace('_', ' ')
 
     final = final.fillna(0)
