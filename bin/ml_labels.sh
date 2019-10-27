@@ -3,7 +3,7 @@
 # run using ./bin/ml-labels.sh
 set -e
 set -x
-​
+
 # Assign wikiproject for data directory
 ​
 projects=(food internet technology)
@@ -72,15 +72,8 @@ do
               --experiment ${exp_dir} \
               --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
               --label_names data/${projects[$i]}/${label_name_csv[$x]} \
-              --label_score ${label_score} \
-              --percentile 1 \
-              --purpose study \
-              --label_path ${label_path} \
               --cluster_groups /cluster_groups.csv \
               --output_file /final_labels.csv \
-              --use_label_candidates false \
-              --num_candidates 0 \
-              --alg ${exp_id[$j]} \
               --label_source ${label_types[$x]}
       done
       python -m study.data.generate_final_labels ${exp_dir} ${exp_id[$j]}

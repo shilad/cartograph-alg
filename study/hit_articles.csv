@@ -1,4 +1,4 @@
-,project,cluster_alg,cluster_num,name,exposures,flags
+,project,cluster_alg,cluster_num,article_name,exposures,flags
 0,internet,LDA,1,scp_foundation,6,1
 1,internet,LDA,1,electronic_portfolio,6,0
 2,internet,LDA,1,reddit,6,0

@@ -1,4 +1,4 @@
-,project,cluster_alg,cluster_num,name,exposures,count,share,borda,avg_borda
+,project,cluster_alg,cluster_num,label_name,exposures,count,share,borda,avg_borda
 0,internet,LDA,1,world,13,0,0.0,0,0.0
 1,internet,LDA,1,work,13,0,0.0,0,0.0
 2,internet,LDA,1,society,13,1,0.07692307692307693,3,0.23076923076923078

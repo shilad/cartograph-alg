@@ -1,39 +1,31 @@
-# Generate data for machine learning algorithms to take in.
+# Generate the training feature dataset for machine learning algorithm to take in.
 # Author: Lu Li
 # run using ./bin/ml-labels.sh
 set -e
 set -x
 # Assign wikiproject for data directory
 
-projects=(food internet technology)
+projects=(Media food internet technology)
 
-algs=('kmeans_augmented' 'kmeans_plain' 'LDA')
+algs=('kmeans_augmented' 'kmeans_plain')
 
 # Assign variable name for label candidate we want (categories, links, keyword, etc)
-label_types=(h_cat key_phrases key_words lda links)
-article_label_csv=(article_hierarchical_categories.csv article_keyphrases.csv article_keywords.csv article_lda_labels.csv article_links.csv)
-label_name_csv=(hierarchical_category_names.csv keyphrases_names.csv keyword_names.csv lda_label_names.csv link_names.csv)
-label_score=tfidf
 
 # the vector we would like to use
 initial_vector_for_clustering=label_augmented_vectors.csv
-vector_format_for_embedding=cluster_augmented_vectors.csv
+algs=(kmeans_augmented kmeans_plain)
 
 # Step 0: Import the experiment utilities functions
 source ./bin/experiment-utils.sh
 
-# Step 1: Get the experiment id.
-# An experiment id can be used for multiple maps.
-exp_id=(kmeans_augmented kmeans_plain LDA)
 
-
-for j in {0..2}
+# looping through the projects
+for topic in {0..3}
 do
-
   prepare_experiment_dir () {
       map_name=$1
 
-      exp_dir=study/${map_name}/${exp_id[$j]}
+      exp_dir=study/feature
       # Prepares an experiment directory
       # Returns the name of the experiment directory for the map
 
@@ -52,37 +44,42 @@ do
 
       echo ${exp_dir}
   }
+    # Step 2: Prepare an experiment directory for a specific map.
+    exp_dir=$(prepare_experiment_dir ${projects[$topic]})
+
+    # using kmeans plain to get cluster groups
+#    python -m cartograph.cluster_builder \
+#      --experiment ${exp_dir} \
+#      --vectors ${exp_dir}/vanilla_vectors.csv \
+#      --k 7 \
+#      --output_file ${exp_dir}/${projects[$topic]}_kmeans_plain_cluster_groups.csv
+#
+#    # using kmeans augmented to get cluster groups
+#    python -m cartograph.vector_augmenter \
+#        --experiment ${exp_dir} \
+#        --vectors ${exp_dir}/vanilla_vectors.csv \
+#        --label_vectors data/${projects[$topic]}/article_labels_combined.csv \
+#        --method label \
+#        --output_file /${initial_vector_for_clustering}
+#    python -m cartograph.cluster_builder \
+#        --experiment ${exp_dir} \
+#        --vectors ${exp_dir}/${initial_vector_for_clustering} \
+#        --k 7 \
+#        --output_file ${exp_dir}/${projects[$topic]}_kmeans_augmented_cluster_groups.csv
 
 
-  for i in {0..2}
-  # looping through the projects
-  do
-      # Step 2: Prepare an experiment directory for a specific map.
-      exp_dir=$(prepare_experiment_dir ${projects[$i]})
+    # using LDA to get cluster groups
+    # TODO: fix LDA
 
-      for x in {0..4}
-      # looping through the label sources
-
-      do
-          label_path=${exp_dir}/labels/${label_types[$x]}
+#      python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 10 /LDA_labels.csv /article_topic_distribution.csv
+#      python -m cartograph.topic_finder ${exp_dir} data/${projects[$i]} 50 /LDA_labels_50.csv /article_topic_distribution_50.csv
+#      python -m study-old.data.LDA_cluster_builder ${exp_dir}/LDA_
 
 #           Step 6 label selection
-          python -m study.data.new_label_selector \
-              --experiment ${exp_dir} \
-              --articles_to_labels data/${projects[$i]}/${article_label_csv[$x]} \
-              --label_names data/${projects[$i]}/${label_name_csv[$x]} \
-              --label_score ${label_score} \
-              --percentile 1 \
-              --purpose study \
-              --label_path ${label_path} \
-              --cluster_groups /cluster_groups.csv \
-              --output_file /final_labels.csv \
-              --use_label_candidates false \
-              --num_candidates 0 \
-              --alg ${exp_id[$j]} \
-              --label_source ${label_types[$x]}
-      done
-      python -m study.data.generate_final_labels ${exp_dir} ${exp_id[$j]}
+      python -m study.data.new_label_selector \
+              --label_dir data/ \
+              --cluster_groups ${exp_dir}/${projects[$topic]}_ \
+              --output_file ${exp_dir}/top_label_tfidfs.csv
 
-  done
 done
+

@@ -25,7 +25,7 @@ def create_cluster_df(article_topic_distribution_df):
 def main(directory):
     article_topic_distribution_df = pd.read_csv(directory + '/article_topic_distribution.csv')
     country_clusters = create_cluster_df(article_topic_distribution_df)
-    country_clusters.to_csv(directory + '/cluster_groups.csv')
+    country_clusters.to_csv(directory + 'cluster_groups.csv')
 
 
 if __name__ == '__main__':
