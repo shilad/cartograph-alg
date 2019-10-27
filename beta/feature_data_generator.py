@@ -4,27 +4,9 @@ import numpy as np
 import pandas as pd
 import argparse
 
-def get_top_labels(country_scores, label_score):
-    """
-    Output: Dictionary --> key = country, value = list of top labels
-    """
-    ps = PorterStemmer()
-    country_scores['stem'] = ps.stem_documents([str(word) for word in country_scores['label']])
-    country_scores = country_scores.sort_values(by=label_score, ascending=False)
-    top_labels = [[] for x in range(country_scores['num_countries'][0])]
-    used_stems = set()
-
-    for row in country_scores.itertuples():
-        if row.stem not in used_stems:
-            if len(top_labels[row.country]) < 30:
-                top_labels[row.country].extend([row.country, row.label.lower().replace(' ', '_').strip(), row.tfidf])
-                used_stems.add(row.stem)
-    return top_labels
-
-
 
 def main(experiment_dir, article_labels, cluster_groups, label_source, output_file):
-    tfidf = utils.calc_tfidf(article_labels, cluster_groups, ['article_id', 'label_id', 'label', 'tfidf', 'num_countries', 'country'])
+    tfidf = utils.calc_tfidf(article_labels, cluster_groups, ['article_id', 'label_id', 'label', 'tfidf', 'num_countries', 'country', 'country_label_count', 'num_country_labels', 'num_articles', 'label_count', 'label_count_project', 'tf', 'idf'])
     top_labels = utils.get_top_labels(tfidf)
     top_labels[label_source] = 1
     top_labels.to_csv(experiment_dir + "/" + output_file)

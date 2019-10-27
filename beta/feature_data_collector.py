@@ -2,7 +2,7 @@ import pandas as pd
 from beta.regression.LabelModel import LabelModel
 
 def main(experiment_dir):
-    label_lst = ["h_cat", "key_phrases", "key_words", "lda", "links"]
+    label_lst = ["h_cat", "key_phrases", "lda", "links"]
     final = []
 
     for label_type in label_lst:
@@ -13,7 +13,7 @@ def main(experiment_dir):
     final = pd.concat(final)
     final = final.fillna(0)
     final['h_cat_tfidf'] = final['h_cat'] * final['tfidf']
-    final['key_words_tfidf'] = final['key_words'] * final['tfidf']
+    # final['key_words_tfidf'] = final['key_words'] * final['tfidf']
     final['key_phrases_tfidf'] = final['key_phrases'] * final['tfidf']
     final['links_tfidf'] = final['links'] * final['tfidf']
     final['lda_tfidf'] = final['lda'] * final['tfidf']

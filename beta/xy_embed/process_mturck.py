@@ -59,19 +59,31 @@ labels.update({'h_cat': [], 'key_words':[], 'key_phrases': [], 'links': [], 'lda
 for alg in algs:
     for project in projects:
         for label_source in label_sources:
-            if(alg == "LDA"):
-                top_labels = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study-old/" + project + "/" + alg + "/labels/" + "LDA_labels" + "/top_labels.csv")
-            else:
-                top_labels = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study-old/" + project + "/" + alg + "/labels/" + label_source + "/top_labels.csv")
-                top_labels = pd.DataFrame(top_labels)
-                if "label" in top_labels.columns:
-                    tops = top_labels['label']
-                if "label_name" in top_labels.columns:
-                    tops = top_labels['label_name']
-                labels[label_source].extend(tops.values)
+            top_labels = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study-old/" + project + "/" + alg + "/labels/" + label_source + "/top_labels.csv")
+            top_labels = pd.DataFrame(top_labels)
+            if "label" in top_labels.columns:
+                tops = top_labels['label']
+            if "label_name" in top_labels.columns:
+                tops = top_labels['label_name']
+            labels[label_source].extend(tops.values)
+print("e")
+# for project in projects:
+#     for label_source in label_sources:
+#         if label_source == "lda":
+#             lda = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study-old/" + project + "/LDA/labels/LDA_labels/LDA_labels.csv")
+#             lda = lda.iloc[:, 1:].iloc[1:].iloc[:, ::2].values
+#             tops = [item for sublist in lda for item in sublist]
+#             labels[label_source].extend(tops)
+#         else:
+#             lda = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study-old/" + project + "/LDA/labels/" + label_source + "/top_labels.csv")
+#             top_labels = pd.DataFrame(top_labels)
+#             if "label" in top_labels.columns:
+#                 tops = top_labels['label']
+#             if "label_name" in top_labels.columns:
+#                 tops = top_labels['label_name']
+#             labels[label_source].extend(tops.values)
 
-print(labels.get('links'))
-
+print(labels['links'])
 def main(hit_labels, hit_articles, labels):
 
     # Calculate tf-idf scores
@@ -86,15 +98,18 @@ def main(hit_labels, hit_articles, labels):
     for key in labels.keys():
         for index, row in top_df.iterrows():
             if row.label_name in labels.get(key):
+                if(row.label_name == "social media"):
+                    print("shit", key)
                 top_df.loc[index, key] = 1
     final = top_df.fillna(0)
     final['h_cat_tfidf'] = final['h_cat'] * final['tfidf']
-    final['key_words_tfidf'] = final['key_words'] * final['tfidf']
+    # final['key_words_tfidf'] = final['key_words'] * final['tfidf']
     final['key_phrases_tfidf'] = final['key_phrases'] * final['tfidf']
     final['links_tfidf'] = final['links'] * final['tfidf']
     final['lda_tfidf'] = final['lda'] * final['tfidf']
-    print(final[final['label_name'] == 'celebrity chef'])
+    print(final[final['label_name'] == 'social media'])
 
     final.to_csv("/Users/senresearch/PycharmProjects/cartograph-alg/beta/regression/final_labels.csv")
 
 main(hit_labels, hit_articles, labels)
+

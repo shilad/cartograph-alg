@@ -17,7 +17,7 @@ class LabelModel:
             self.df = pd.read_csv(training_fro_user_study_csv).iloc[:, 1:]
             # self.predictors_seq = ["h_cat_tfidf", "h_cat_pmi", "links_tfidf", "links_pmi", "key_words_tfidf",
             #                        "key_words_pmi", "key_phrases_tfidf", "key_phrases_pmi", "lda_tfidf", "lda_pmi"]
-            self.predictors_seq = ["h_cat_tfidf", "key_words_tfidf", "key_phrases_tfidf",  "links_tfidf", "lda_tfidf" ]
+            self.predictors_seq = ["h_cat_tfidf", "key_phrases_tfidf", "links_tfidf", "lda_tfidf" ]
             self.predictors = self.df[self.predictors_seq].copy().values
             self.response = self.df[[metric_share_or_avg_borda]].copy().values
             self.model = None

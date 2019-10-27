@@ -18,19 +18,19 @@ label_name_csv=(hierarchical_category_names.csv keyphrases_names.csv keyword_nam
 
 
 
-for topic in {1..1}
+for topic in {0..2}
 do
 #
       # Step 1: Initialize
-      exp_id=1111 #$(get_experiment_id)
+      exp_id=0002 #$(get_experiment_id)
       exp_dir=$(prepare_experiment_dir ${project[$topic]} ${exp_id})
       write_experiment_params ${exp_dir} weight 1
 
       # Step 2: run UMAP
-#      python -m beta.xy_embed.umap_embed \
-#              --map_directory ${exp_dir} \
-#              --vectors ${exp_dir}/vanilla_vectors.csv \
-#              --output_file /original_xy_embeddings.csv
+      python -m beta.xy_embed.umap_embed \
+              --map_directory ${exp_dir} \
+              --vectors ${exp_dir}/vanilla_vectors.csv \
+              --output_file /original_xy_embeddings.csv
 
       # Step 3: start looping through five label sources
       for i in {0..4}
@@ -44,12 +44,6 @@ do
               --output_file ${exp_dir}/${label_types[$i]}_cluster_groups.csv \
               --label_names data/${project[$topic]}/${label_name_csv[$i]}
 
-          # Step 3.b. run UMAP
-          python -m beta.xy_embed.umap_embed \
-              --map_directory ${exp_dir} \
-              --vectors ${exp_dir}/vanilla_vectors.csv \
-              --output_file /new_xy_embeddings.csv \
-              --cluster ${exp_dir}/${label_types[$i]}_cluster_groups.csv
 
           # Step 3.c. get top labels, country, tfidf score, cluster algorithm, and label source.
           python -m beta.feature_data_generator \
@@ -63,6 +57,13 @@ do
 
       # Step 4: gathers feature data from all label sources, flatten them, and run the model on it.
       python -m beta.feature_data_collector ${exp_dir}
+
+      # Step 3.b. run UMAP
+      python -m beta.xy_embed.umap_embed \
+          --map_directory ${exp_dir} \
+          --vectors ${exp_dir}/vanilla_vectors.csv \
+          --output_file /new_xy_embeddings.csv \
+          --cluster ${exp_dir}/h_cat_cluster_groups.csv
 
       # Step 5: selects the label with top predicted borda as labels
 
