@@ -18,19 +18,19 @@ label_name_csv=(hierarchical_category_names.csv keyphrases_names.csv keyword_nam
 
 
 
-for topic in {0..0}
+for topic in {1..1}
 do
 #
       # Step 1: Initialize
-      exp_id=0067 #$(get_experiment_id)
+      exp_id=1111 #$(get_experiment_id)
       exp_dir=$(prepare_experiment_dir ${project[$topic]} ${exp_id})
       write_experiment_params ${exp_dir} weight 1
 
       # Step 2: run UMAP
-      python -m beta.xy_embed.umap_embed \
-              --map_directory ${exp_dir} \
-              --vectors ${exp_dir}/vanilla_vectors.csv \
-              --output_file /original_xy_embeddings.csv
+#      python -m beta.xy_embed.umap_embed \
+#              --map_directory ${exp_dir} \
+#              --vectors ${exp_dir}/vanilla_vectors.csv \
+#              --output_file /original_xy_embeddings.csv
 
       # Step 3: start looping through five label sources
       for i in {0..4}
@@ -41,9 +41,8 @@ do
               --vectors ${exp_dir}/vanilla_vectors.csv \
               --xy_embeddings ${exp_dir}/original_xy_embeddings.csv\
               --articles_to_labels data/${project[$topic]}/${article_label_csv[$i]} \
-              --tf_idf_score_file ${exp_dir}/tf_idf_score.csv \
-              --loss_weight 0.5 \
-              --output_file ${exp_dir}/${label_types[$i]}_cluster_groups.csv
+              --output_file ${exp_dir}/${label_types[$i]}_cluster_groups.csv \
+              --label_names data/${project[$topic]}/${label_name_csv[$i]}
 
           # Step 3.b. run UMAP
           python -m beta.xy_embed.umap_embed \
@@ -57,16 +56,9 @@ do
             --experiment ${exp_dir} \
             --articles_to_labels data/${project[$topic]}/${article_label_csv[$i]} \
             --label_names data/${project[$topic]}/${label_name_csv[$i]} \
-            --label_score tfidf \
-            --percentile 1 \
-            --label_path doe \
             --cluster_groups /${label_types[$i]}_cluster_groups.csv \
             --output_file /${label_types[$i]}_top_labels.csv \
-            --label_source ${label_types[$i]} \
-            --cluster_alg kmeans_plain \
-            --project ${project[$topic]} \
-            --purpose feature # feature for feature data colleciton, training for training date collection
-
+            --label_source ${label_types[$i]}
       done
 
       # Step 4: gathers feature data from all label sources, flatten them, and run the model on it.
