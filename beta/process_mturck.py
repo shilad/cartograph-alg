@@ -1,16 +1,14 @@
 import pandas as pd
 import numpy as np
-from gensim.parsing.porter import PorterStemmer
+pd.set_option('mode.chained_assignment', None)
 
-hit_labels = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study/hit_labels.csv")
-hit_articles = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study/hit_articles.csv")
 
+hit_labels = pd.read_csv("../study/hit_labels.csv")
+hit_articles = pd.read_csv("../study/hit_articles.csv")
 hit_labels = hit_labels[['project', 'cluster_alg', 'cluster_num', 'label_name', 'avg_borda']]
 hit_articles = hit_articles[['project', 'cluster_alg', 'cluster_num', 'article_name']]
 
 merged = pd.merge(hit_articles, hit_labels, on=['cluster_num', 'cluster_alg', 'project'])
-pd.set_option('display.max_columns', 500)
-pd.set_option('display.max_rows', 500)
 
 
 def add_country_label_counts(labels_df):
@@ -22,7 +20,7 @@ def add_country_label_counts(labels_df):
 def add_label_counts(labels_df):
     """Add counts per label to the data frame as "label_count", counting how many times a label appears selected for a specific project"""
     counts = labels_df.groupby(["label_name"]).size().reset_index(name="label_count")
-    return pd.merge(labels_df, counts, on=["label_name" ])
+    return pd.merge(labels_df, counts, on=["label_name"])
 
 
 def add_country_counts(labels_df, articles_df):
@@ -51,39 +49,34 @@ def add_tfidf_scores(labels_df):
     return labels_df
 
 
-algs = ["kmeans_plain", "kmeans_augmented"]
+algs = ["kmeans_plain", "kmeans_augmented", "LDA"]
 projects = ["food", "internet", "technology", "media"]
-label_sources = ["h_cat", "key_phrases", "key_words", "lda", "links"]
+label_sources = ["h_cat", "key_phrases", "lda", "links"]
 labels = {}
 labels.update({'h_cat': [], 'key_words':[], 'key_phrases': [], 'links': [], 'lda': []})
 for alg in algs:
     for project in projects:
         for label_source in label_sources:
-            top_labels = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study-old/" + project + "/" + alg + "/labels/" + label_source + "/top_labels.csv")
-            top_labels = pd.DataFrame(top_labels)
-            if "label" in top_labels.columns:
-                tops = top_labels['label']
-            if "label_name" in top_labels.columns:
-                tops = top_labels['label_name']
-            labels[label_source].extend(tops.values)
-print("e")
-# for project in projects:
-#     for label_source in label_sources:
-#         if label_source == "lda":
-#             lda = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study-old/" + project + "/LDA/labels/LDA_labels/LDA_labels.csv")
-#             lda = lda.iloc[:, 1:].iloc[1:].iloc[:, ::2].values
-#             tops = [item for sublist in lda for item in sublist]
-#             labels[label_source].extend(tops)
-#         else:
-#             lda = pd.read_csv("/Users/senresearch/PycharmProjects/cartograph-alg/study-old/" + project + "/LDA/labels/" + label_source + "/top_labels.csv")
-#             top_labels = pd.DataFrame(top_labels)
-#             if "label" in top_labels.columns:
-#                 tops = top_labels['label']
-#             if "label_name" in top_labels.columns:
-#                 tops = top_labels['label_name']
-#             labels[label_source].extend(tops.values)
+            if alg == "LDA" and label_source == "lda":
 
-print(labels['links'])
+                lda = pd.read_csv("../study-old/" + project + "/" + alg + "/labels/LDA_labels/LDA_labels_50.csv")
+                lda = pd.DataFrame(lda)
+                lda = lda.iloc[:, 1:].iloc[0:].iloc[:, ::2].values
+                tops = [item for sublist in lda for item in sublist]
+                tops = [str(w).replace('_', ' ') for w in tops]
+                labels[label_source].extend(tops)
+
+            else:
+                top_labels = pd.read_csv("../study-old/" + project + "/" + alg + "/labels/" + label_source + "/top_labels.csv")
+
+                top_labels = pd.DataFrame(top_labels)
+                top_labels = top_labels.iloc[:, 1:].iloc[0:].iloc[:, ::3].values
+
+                tops = [item for sublist in top_labels for item in sublist]
+                tops = [str(w).replace('_', ' ') for w in tops]
+                labels[label_source].extend(tops)
+
+
 def main(hit_labels, hit_articles, labels):
 
     # Calculate tf-idf scores
@@ -93,23 +86,19 @@ def main(hit_labels, hit_articles, labels):
     hit_labels = add_totals(hit_labels, hit_articles)
     hit_labels = add_tfidf_scores(hit_labels)
     top_df = hit_labels[['cluster_num', 'label_name', 'tfidf', 'project', 'cluster_alg', 'avg_borda']]
-    top_df['label_name'] = top_df['label_name'].str.replace('_', ' ')
+    top_df.loc['label_name'] = top_df['label_name'].str.replace('_', ' ')
 
     for key in labels.keys():
         for index, row in top_df.iterrows():
             if row.label_name in labels.get(key):
-                if(row.label_name == "social media"):
-                    print("shit", key)
                 top_df.loc[index, key] = 1
     final = top_df.fillna(0)
     final['h_cat_tfidf'] = final['h_cat'] * final['tfidf']
-    # final['key_words_tfidf'] = final['key_words'] * final['tfidf']
     final['key_phrases_tfidf'] = final['key_phrases'] * final['tfidf']
     final['links_tfidf'] = final['links'] * final['tfidf']
     final['lda_tfidf'] = final['lda'] * final['tfidf']
-    print(final[final['label_name'] == 'social media'])
 
-    final.to_csv("/Users/senresearch/PycharmProjects/cartograph-alg/beta/regression/final_labels.csv")
+    final.to_csv("../beta/regression/final_labels.csv")
 
 main(hit_labels, hit_articles, labels)
 
