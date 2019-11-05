@@ -55,7 +55,7 @@ def fetch_multiple_level_categories_from_json(domain_concept):
     temp_layer = []
     deep_categories.extend(curr_layer)
 
-    for level in range(2):
+    for level in range(1):
         for concept in curr_layer:
             concept = "Category:" + concept
             if concept not in memo:
@@ -87,6 +87,7 @@ def create_labels(domain_concept_csv):
         article_id = row[0]
         domain_concept = row[1]
         for cat in fetch_multiple_level_categories_from_json(domain_concept):
+            cat = cat.lower().strip()
             if cat not in labels_to_id:
                 labels_to_id[cat] = len(labels_to_id)
             id = labels_to_id.get(cat, len(labels_to_id))
