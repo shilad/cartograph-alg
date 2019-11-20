@@ -39,7 +39,7 @@ def assign_best_groups(dist_mat, article_ids):
 
 
 class KMeans:
-    def __init__(self, k=7, tolerance=0.00005, max_iterations=500):
+    def __init__(self, k=9, tolerance=0.00005, max_iterations=500):
         self.k = k
         self.tolerance = tolerance
         self.max_iterations = max_iterations
@@ -99,17 +99,19 @@ class KMeans:
         low_centroid = np.stack(embeddings[:K])   # low dimensional clustering
 
         for i in range(self.max_iterations):
-            high_dim_dist = cosine_distances(vectors, high_centroid)   # get cosine distance betw each point and the cenroids, N x k
+            # get cosine distance betw each point and the cenroids, N x k
+            high_dim_dist = cosine_distances(vectors, high_centroid)
             assert high_dim_dist.shape == (N, K)
 
-            # Calculate normalized euclidean distance
+            # Calculate normalized euclidean distance in low dimensional space
             low_dim_dist = euclidean_distances(embeddings, low_centroid)
             xy_range = (np.max(embeddings) - np.min(embeddings))
             max_dist = np.sqrt(xy_range * xy_range + xy_range * xy_range)
             low_dim_dist /= max_dist
+
+            # Calculate the label distance
             country_matrix = generate_country_matrix(best_group, article_ids)
             country_label = country_matrix.dot(filtered_matrix)
-            #Todo: Ask Shilad
             country_label = normalize(country_label, axis=1)
             label_scores = cosine_distances(filtered_matrix, country_label)
 
@@ -131,14 +133,13 @@ class KMeans:
             np.add.at(low_centroid_new, best_group['country'], embeddings)
             low_centroid_new /= points_per_group.repeat(2).reshape(K, 2)
 
-            high_centroid = high_centroid_new
-            low_centroid = low_centroid_new
-
             # break out of the main loop if the results are optimal, ie. the centroids don't change their positions
             # much(more than our tolerance)
             centroid_changes = np.sum(np.abs(high_centroid_new - high_centroid), axis=1)
             assert centroid_changes.shape == (K,)
             max_centroid_change = np.max(centroid_changes)
+            high_centroid = high_centroid_new
+            low_centroid = low_centroid_new
             if max_centroid_change < self.tolerance:
                 break
         mean_distance = get_mean_centroid_distance(vectors, high_centroid, best_group['country'])
