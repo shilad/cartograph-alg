@@ -3,15 +3,15 @@ import pandas as pd
 
 def main(experiment_dir, borda_file):
     df = pd.read_csv(experiment_dir + "/" + borda_file)
-    df_top_borda = df.loc[df.reset_index().groupby(['country'])['new_tfidf'].idxmax()]
-    pd.set_option('display.max_columns', 500)
-    pd.set_option('display.width', 1000)
+    df_top_borda = df.loc[df.reset_index().groupby(['country'])['tfidf'].idxmax()]
+    # pd.set_option('display.max_columns', 500)
+    # pd.set_option('display.width', 1000)
 
     print(df_top_borda)
 
     lst = []
     for index, row in df_top_borda.iterrows():
-        lst.append({"country" : row["country"], "label_name" : row["new_label"]})
+        lst.append({"country" : row["country"], "label_name" : row["label_name"]})
 
     pd.DataFrame(lst).to_csv(experiment_dir + "/final_labels.csv")
 
