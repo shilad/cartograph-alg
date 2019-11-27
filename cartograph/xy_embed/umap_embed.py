@@ -12,7 +12,6 @@ import warnings
 warnings.filterwarnings('ignore')
 
 
-
 def create_embeddings(vector_directory, spread=20.0, tw=0.5, clusters=None):
     df = pd.read_csv(vector_directory)
     if clusters is not None:
