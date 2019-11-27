@@ -15,7 +15,7 @@ wiki_wiki = wikipediaapi.Wikipedia(language='en', extract_format=wikipediaapi.Ex
 
 
 def fetch_text(article_name):
-    page = wiki_wiki.page(article_name).summary.lower()
+    page = wiki_wiki.page(article_name).text
     return page
 
 
@@ -45,7 +45,7 @@ def main(directory):
     text_df = create_df(df)
     logging.warning("Time Spent: %.3f", time.time() - start)
 
-    text_df.to_csv(directory + "/article_text_summary_don_forget_delete.csv", index=False)
+    text_df.to_csv(directory + "/article_text.csv", index=False)
 
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@
 """
 
 import pandas as pd
-from beta.regression.LabelModel import LabelModel
+from prior_work.beta.regression import LabelModel
 
 def main(experiment_dir):
     label_lst = ["h_cat", "key_words", "key_phrases", "links", "lda"]  #"lda"

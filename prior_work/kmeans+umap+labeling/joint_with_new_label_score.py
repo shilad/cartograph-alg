@@ -6,16 +6,15 @@ as well as low dimensional embeddings.
 Authors: Jonathan Scott, Lu Li
 
 """
-from ast import literal_eval
 import numpy as np
 import random
 import pandas as pd
 import warnings
-import cartograph.label_selector as ls
+import prior_work.cartograph.label_selector as ls
 from scipy.sparse import csr_matrix
 import argparse
 from sklearn.metrics.pairwise import cosine_distances, euclidean_distances
-from pandas._libs import json
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 

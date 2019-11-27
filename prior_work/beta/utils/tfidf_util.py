@@ -6,7 +6,7 @@ import pandas as pd
 from nltk.stem import PorterStemmer, WordNetLemmatizer
 
 
-BLACK_LIST = ['foods', "food and drink", "food", "year", "used", "also", "species", "may", "made", "two"]
+BLACK_LIST = ["food"]
 
 
 def add_country_label_counts(labels_df):
@@ -71,7 +71,7 @@ def get_top_labels(label_article_cluster, num_top_labels):
     for row in label_article_cluster.itertuples():
         lowercase = row.label
         if (lowercase not in used_stems) and (lowercase not in BLACK_LIST):
-            if len(top_labels[row.country]) < num_top_labels:
+            if len(top_labels[row.country]) < num_top_labels * 10:
                 # cluster_id, label_name, tfidf
                 top_labels[row.country].extend([row.country, row.label.lower().replace(' ', '_').strip(), row.tfidf, row.country_label_count, row.num_country_labels, row.num_articles, row.label_count, row. label_count_project, row.idf, row.tf])
                 used_stems.add(lowercase)
@@ -90,7 +90,7 @@ def calc_tfidf(article_labels, cluster_groups, selected_columns):
 
     tf = label_article_cluster['country_label_count'] / label_article_cluster['num_country_labels']
     idf = np.log(label_article_cluster['num_articles'] /
-                 (label_article_cluster['label_count_project'] - label_article_cluster['country_label_count'] + 10))
+                 (label_article_cluster['label_count_project'] + 10))
 
     label_article_cluster['tf'] = tf
     label_article_cluster['idf'] = idf

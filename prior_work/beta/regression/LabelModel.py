@@ -2,11 +2,14 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import KFold
 from sklearn.ensemble import GradientBoostingRegressor
-from math import sqrt
+from sklearn.tree import DecisionTreeRegressor
 import pandas as pd
 import numpy as np
 import logging
 import sys
+
+from prior_work.beta.data.learning2rank.rank import ListNet, RankNet
+from prior_work.beta.data.learning2rank.regression import NN
 
 
 class LabelModel:
@@ -17,7 +20,9 @@ class LabelModel:
             self.df = pd.read_csv(training_fro_user_study_csv).iloc[:, 1:]
             # self.predictors_seq = ["h_cat_tfidf", "h_cat_pmi", "links_tfidf", "links_pmi", "key_words_tfidf",
             #                        "key_words_pmi", "key_phrases_tfidf", "key_phrases_pmi", "lda_tfidf", "lda_pmi"]
-            self.predictors_seq = ["h_cat_tfidf", "key_phrases_tfidf", "links_tfidf", "lda_tfidf" ]
+            self.predictors_seq = ["h_cat_tfidf", "key_words_tfidf", "key_phrases_tfidf", "links_tfidf", "lda_tfidf"] #,
+            # self.predictors_seq = ["key_phrases_tfidf"] #, "lda_tfidf"
+
             self.predictors = self.df[self.predictors_seq].copy().values
             self.response = self.df[[metric_share_or_avg_borda]].copy().values
             self.model = None
@@ -36,6 +41,31 @@ class LabelModel:
         model.fit(self.predictors, self.response)
         self.model = model
         self.modelType = "GradientBoost"
+
+    def run_learning2rank(self):
+        model = RankNet.RankNet()
+        model.fit(self.predictors, self.response)
+        self.model = model
+        self.modelType = "Learning2Rank"
+
+    def run_listNet(self):
+        model = ListNet.ListNet()
+        model.fit(self.predictors, self.response)
+        self.model = model
+        self.modelType = "ListNet"
+
+    def run_NN(self):
+        model = NN.NN()
+        model.fit(self.predictors, self.response)
+        self.model = model
+        self.modelType = "NN"
+
+    def run_decisionTree(self):
+        model = DecisionTreeRegressor()
+        model.fit(self.predictors, self.response)
+        self.model = model
+        self.modelType = "DecisionTree"
+
 
     def print_mse(self):
         # 10-fold cross validation, and fit model
@@ -70,7 +100,10 @@ class LabelModel:
         # print(np.array([lst_of_predictors]))
 
         # print(self.predictors_seq)
-        return self.model.predict(np.array([lst_of_predictors]))[0][0]
+        if self.modelType in ["GradientBoost", "DecisionTree"]:
+            return self.model.predict(np.array([lst_of_predictors]))[0]
+        else:
+            return self.model.predict(np.array([lst_of_predictors]))[0][0]
 #
 # model = LabelModel("/Users/senresearch/PycharmProjects/cartograph-alg/regression/bug_fixed.csv")
 # print(model.model.predict([[0.02032077059020552, 0.16918848316764934, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])[0][0])

@@ -1,6 +1,6 @@
-from beta.cluster_generator import KMeans
+from prior_work.beta.cluster_generator import KMeans
 from scipy.sparse import csr_matrix
-import beta.utils.tfidf_util as utils
+import prior_work.beta.utils.tfidf_util as utils
 import pandas as pd
 import numpy as np
 import argparse
