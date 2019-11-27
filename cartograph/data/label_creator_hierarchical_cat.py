@@ -39,7 +39,14 @@ def fetch_categories_from_json(domain_concept):
         page_info = data['query']['pages'][page_ids[0]]
         try:
             for cat_info in page_info['categories']:
-                categories.append(cat_info['title'].replace("Category:", ""))
+                title = cat_info['title']
+                if " by" in title:
+                    title = title[:title.index(" by")]
+                elif "Types of " in title:
+
+                    title = title[title.index("Types of ") + 9 :].capitalize()
+                print(title)
+                categories.append(title.replace("Category:", ""))
         except KeyError or IndexError:
             logging.warning('%s: article found, but no category appears.', page_info["title"])
     else:
@@ -55,9 +62,10 @@ def fetch_multiple_level_categories_from_json(domain_concept):
     temp_layer = []
     deep_categories.extend(curr_layer)
 
-    for level in range(2):
+    for level in range(1):
         for concept in curr_layer:
-            concept = "Category:" + concept
+            if "Category:" not in concept:
+                concept = "Category:" + concept
             if concept not in memo:
                 next_layer = fetch_categories_from_json(concept)
                 memo[concept] = next_layer
@@ -87,6 +95,10 @@ def create_labels(domain_concept_csv):
         article_id = row[0]
         domain_concept = row[1]
         for cat in fetch_multiple_level_categories_from_json(domain_concept):
+            cat = cat.lower().strip()
+            # cat = lemmatizer.lemmatize(cat.lower())
+            if 'redirect' in cat or 'disambiguation' in cat:
+                continue
             if cat not in labels_to_id:
                 labels_to_id[cat] = len(labels_to_id)
             id = labels_to_id.get(cat, len(labels_to_id))
