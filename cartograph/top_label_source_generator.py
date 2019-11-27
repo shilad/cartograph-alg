@@ -1,5 +1,4 @@
-from gensim.parsing.porter import PorterStemmer
-import beta.utils.tfidf_util as utils
+import cartograph.utils.tfidf_util as utils
 import numpy as np
 import pandas as pd
 import argparse

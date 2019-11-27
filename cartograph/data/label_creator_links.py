@@ -62,10 +62,12 @@ def create_links(domain_concept_csv):
     count = 0
 
     for index, row in df.iterrows():  # test df.head(10).iterrows()
-        if count == 500: print("This is %d th article", count)
+        if count % 500 is 0:
+            print("This is ", count, "th article")
         article_id = row[0]
         domain_concept = row[1]
         for link in fetch_links_from_api(domain_concept):
+            link = link.lower()
             if link not in links_to_id:
                 links_to_id[link] = len(links_to_id)
             id = links_to_id.get(link, len(links_to_id))
