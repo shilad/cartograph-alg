@@ -16,8 +16,8 @@ do
     source ./bin/experiment-utils.sh
 
     # Assign variable name for label candidate we want (categories, links, keywork, etc)
-    article_label_csv=article_hierarchical_categories.csv
-    label_name_csv=hierarchical_category_names.csv
+    article_label_csv=article_keyphrases.csv
+    label_name_csv=keyphrases_names.csv
 
     # Step 1: Get the experiment id. This is *not* map specific.
     # An experiment id can be used for multiple maps.
@@ -40,7 +40,7 @@ do
             --vectors ${exp_dir}/vanilla_vectors.csv \
             --output_file /original_xy_embeddings.csv
 
-    python -m kmeans+umap+labeling.joint_all \
+    python -m prior_work.kmeans+umap+labeling.joint_all \
         --experiment ${exp_dir} \
         --vectors ${exp_dir}/vanilla_vectors.csv \
         --k 7 \
