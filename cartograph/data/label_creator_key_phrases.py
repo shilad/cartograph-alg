@@ -20,6 +20,9 @@ print(my_stop_words)
 for stop_word in my_stop_words:
     lexeme = nlp.vocab[stop_word]
     lexeme.is_stop = True
+
+from nltk import WordNetLemmatizer
+lemmatizer = WordNetLemmatizer()
 def tokenize_sentences(domain_concept, text):
     sentences = []
     if not isinstance(text, float):
@@ -32,12 +35,14 @@ def tokenize_sentences(domain_concept, text):
             for w in sentence:
                 if (not w.is_stop) and (not w.is_punct) and (not w.like_num) and (not w.like_url) and \
                         ('\n' not in w.text) and (' ' not in w.text) and (len(w.text) > 1):
-                    sent.append(w.text.strip())
+                    sent.append(lemmatizer.lemmatize(w.text.strip()))
             sentences.append(sent)
     else:
         logging.warning(domain_concept + ": does not have summary")
         pass
     return sentences
+
+
 def phrasify(article_text):
     """
     Given the summary of each domain concept, remove stop words, punctuations, numbers, and newline,
@@ -62,6 +67,8 @@ def phrasify(article_text):
     assert len(phrases2) == len(phrases1) == len(corpus)
     phrase_corpus = [(doc[0], doc[1], sentence) for (doc, sentence) in zip(corpus, phrases2)]
     return phrase_corpus
+
+
 def fetch_key_phrases(domain_concept, text, bigram, trigram):
     key_phrases = set()
     sentences = tokenize_sentences(domain_concept, text)
@@ -78,6 +85,8 @@ def fetch_key_phrases(domain_concept, text, bigram, trigram):
         for word in keywords(cleaned_summary, lemmatize=True):
             key_phrases.add(word.split('\n'))
     return key_phrases
+
+
 def create_labels(phrase_corpus):
     """
     Find the text of each domain concept and creates a data frame with articles and keyword labels

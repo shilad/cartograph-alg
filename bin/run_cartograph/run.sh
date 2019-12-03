@@ -8,8 +8,8 @@ set -e
 set -x
 # Step 0: Import the experiment utilities functions
 source ./bin/experiment-utils.sh
-topic=education
-labels_num=150
+topic=food
+labels_num=70
 
 for cluster in {8..8}
 do
@@ -35,8 +35,7 @@ do
       --label_names data/$topic/keyphrases_names.csv \
       --k $cluster
 
-  # Step 4: get top labels,
-  # TODO : Check this comments --> Step 4: get top labels, country, tfidf score, cluster algorithm, and label source.
+  # Step 4: get top labels, country, tfidf score, cluster algorithm, and label source.
   python -m cartograph.top_label_source_generator \
     --experiment ${exp_dir} \
     --articles_to_labels data/$topic/article_keyphrases.csv \

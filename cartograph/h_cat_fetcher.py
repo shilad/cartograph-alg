@@ -39,13 +39,14 @@ def fetch_categories_from_json(domain_concept):
         page_info = data['query']['pages'][page_ids[0]]
         try:
             for cat_info in page_info['categories']:
-                # title = cat_info["title"]
-                # # Remove categories "by ..." and "Types of ..."
-                # if " by" in title:
-                #     title = title[:title.index(" by")]
-                # elif "Types of " in title:
-                #     title = title[title.index("Types of ") + 9:].capitalize()
-                categories.append(cat_info["title"].replace("Category:", ""))
+                title = cat_info["title"]
+                # Remove categories "by ..." and "Types of ..."
+                if " by" in title:
+                    title = title[:title.index(" by")]
+                elif "Types of " in title:
+                    title = title[title.index("Types of ") + 9:].capitalize()
+                categories.append(title.replace("Category:", ""))
+                # categories.append(cat_info["title"].replace("Category:", ""))
         except KeyError or IndexError:
             logging.warning('%s: article found, but no category appears.', page_info["title"])
     else:
@@ -103,7 +104,7 @@ def normalize_within_country(h_cat):
 def generate_new_matrix(predicted):
     labels = []
     new_labels = []
-    black_list = ["wikipedia", "categories", "redirect", "disambiguation", "categories"]
+    black_list = ["wikipedia", "categories", "redirect", "disambiguation", "categories", "pages including"]
     lemmatizer = WordNetLemmatizer()  # remove noise
 
     for row in predicted.itertuples():

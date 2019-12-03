@@ -197,7 +197,7 @@ def main(map_directory):
     if not os.path.exists(map_directory):
         os.makedirs(map_directory)
 
-    article_text = pd.read_csv(map_directory + '/article_text_summary_don_forget_delete.csv')
+    article_text = pd.read_csv(map_directory + '/article_text_gloss.csv')
     labels_to_id, label_df = create_labels(article_text)
     create_article_label_csv(label_df, map_directory)
     create_label_id_str_csv(map_directory, labels_to_id)
