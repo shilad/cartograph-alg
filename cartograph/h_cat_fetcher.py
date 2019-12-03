@@ -41,12 +41,12 @@ def fetch_categories_from_json(domain_concept):
             for cat_info in page_info['categories']:
                 title = cat_info["title"]
                 # Remove categories "by ..." and "Types of ..."
-                if " by" in title:
-                    title = title[:title.index(" by")]
-                elif "Types of " in title:
-                    title = title[title.index("Types of ") + 9:].capitalize()
-                categories.append(title.replace("Category:", ""))
-                # categories.append(cat_info["title"].replace("Category:", ""))
+                # if " by" in title:
+                #     title = title[:title.index(" by")]
+                # elif "Types of " in title:
+                #     title = title[title.index("Types of ") + 9:].capitalize()
+                # categories.append(title.replace("Category:", ""))
+                categories.append(cat_info["title"].replace("Category:", ""))
         except KeyError or IndexError:
             logging.warning('%s: article found, but no category appears.', page_info["title"])
     else:
@@ -101,6 +101,12 @@ def normalize_within_country(h_cat):
     return h_cat
 
 
+def sum_tfidf(h_cat):
+    sum = h_cat.groupby(["country", "new_label"])['tfidf'].sum().reset_index(name="sum")
+    h_cat = pd.merge(h_cat, sum, on=['country', 'new_label'])
+    return h_cat
+
+
 def generate_new_matrix(predicted):
     labels = []
     new_labels = []
@@ -128,7 +134,7 @@ def generate_new_matrix(predicted):
         h_cat.loc[index, 'tf'] = ((row['country_label_count']) / row['num_country_labels'])
         h_cat.loc[index, 'idf'] = np.log((row['num_articles']) / (row['label_count'] * 6))
 
-    h_cat['new_tfidf'] = h_cat['tf'] * h_cat['idf'] * h_cat['normalized_tfidf']
+    h_cat['new_tfidf'] = h_cat['tf'] * h_cat['idf'] * h_cat['sum']
     return h_cat
 
 

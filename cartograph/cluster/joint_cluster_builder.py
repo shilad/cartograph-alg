@@ -7,7 +7,7 @@
 
 from cartograph.cluster.cluster_generator import KMeans
 from scipy.sparse import csr_matrix
-import prior_work.beta.utils.tfidf_util as utils
+import cartograph.utils.tfidf_util as utils
 import pandas as pd
 import numpy as np
 import argparse
@@ -48,7 +48,6 @@ def main(article_ids, xy_embeddings, articles_to_labels, output_file, label_name
     filtered_matrix = sparse_matrix[article_ids['article_id'].values]   # only valid articles to cluster
 
     joint_alg_groups, joint_average_distance = km.fit_joint_all(vectors, orig_groups, article_ids, xy_embeddings, sparse_matrix, filtered_matrix, loss_weight)
-    # joint_alg_groups = article_ids.join(pd.DataFrame(joint_alg_groups))   #TODO: Check this line
     joint_alg_groups = pd.DataFrame(joint_alg_groups)
     joint_alg_groups.columns = ['article_id', 'country']
     joint_alg_groups.to_csv(output_file, index=False)
