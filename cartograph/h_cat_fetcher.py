@@ -62,19 +62,19 @@ def fetch_multiple_level_categories_from_json(domain_concept):
     temp_layer = []
     deep_categories.extend(curr_layer)
 
-    for level in range(1):
-        for concept in curr_layer:
-            concept = "Category:" + concept
-            if concept not in memo:
-                next_layer = fetch_categories_from_json(concept)
-                memo[concept] = next_layer
-            else:
-                next_layer = memo[concept]
-            temp_layer.extend(next_layer)
-            deep_categories.extend(curr_layer)
-
-        curr_layer = temp_layer.copy()
-        temp_layer.clear()
+    # for level in range(1):
+    #     for concept in curr_layer:
+    #         concept = "Category:" + concept
+    #         if concept not in memo:
+    #             next_layer = fetch_categories_from_json(concept)
+    #             memo[concept] = next_layer
+    #         else:
+    #             next_layer = memo[concept]
+    #         temp_layer.extend(next_layer)
+    #         deep_categories.extend(curr_layer)
+    #
+    #     curr_layer = temp_layer.copy()
+    #     temp_layer.clear()
     return list(set(deep_categories))
 
 
@@ -102,8 +102,8 @@ def normalize_within_country(h_cat):
 
 
 def sum_tfidf(h_cat):
-    sum = h_cat.groupby(["country", "new_label"])['tfidf'].sum().reset_index(name="sum")
-    h_cat = pd.merge(h_cat, sum, on=['country', 'new_label'])
+    sum = h_cat.groupby(["country", "new_name"])['tfidf'].sum().reset_index(name="sum")
+    h_cat = pd.merge(h_cat, sum, on=['country', 'new_name'])
     return h_cat
 
 
@@ -125,10 +125,11 @@ def generate_new_matrix(predicted):
     dic = pd.DataFrame( {'label_name': labels, 'new_name': new_labels})
     final = pd.merge(predicted, dic, how="outer", on="label_name")
     h_cat = final[['country', 'label_name', 'new_name', 'tfidf']]
-    #h_cat = h_cat.drop_duplicates()   # TODO: are you sure this doesn't matter?
+
 
     h_cat = get_tfidf(h_cat)
     h_cat = normalize_within_country(h_cat)
+    h_cat = sum_tfidf(h_cat)
 
     for index, row in h_cat.iterrows():
         h_cat.loc[index, 'tf'] = ((row['country_label_count']) / row['num_country_labels'])
@@ -156,8 +157,7 @@ def main(experiment_dir):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Select labels for label picker.')
     parser.add_argument('--experiment', required=True)
-    # TODO: Remove ?
-    #  parser.add_argument('--num_top_labels', required=True, type=int)
+
     args = parser.parse_args()
 
     main(args.experiment)
