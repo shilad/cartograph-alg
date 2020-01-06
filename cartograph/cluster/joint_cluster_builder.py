@@ -27,7 +27,7 @@ def create_sparse_label_matrix(article_labels, tf_idf_score):
     return output_matrix
 
 
-def main(article_ids, xy_embeddings, articles_to_labels, output_file, label_names, k=9, loss_weight=float(0.2)):
+def main(article_ids, xy_embeddings, articles_to_labels, output_file, label_names, k=9, loss_weight=float(0.08)):
     """
     Generate ${label_types[$i]}_cluster_groups.csv file by joint algorithm minimizing high+low+label loss
     In order to compute label loss, we need an initial tf-idf score after generating original_cluster_groups.csv
