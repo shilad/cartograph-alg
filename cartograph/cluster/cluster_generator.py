@@ -87,7 +87,7 @@ class KMeans:
         average_distance = get_mean_centroid_distance(data, centroids, best_group)
         return best_group, average_distance
 
-    def fit_joint_all(self, vectors, orig_groups, article_ids, xy_embeddings, sparse_matrix, filtered_matrix, loss_weight):
+    def fit_joint_all(self, vectors, orig_groups, article_ids, xy_embeddings, sparse_matrix, filtered_matrix, loss_weight, low_weight=0.05):
         N, D = vectors.shape
         K = self.k
         embeddings = xy_embeddings.iloc[:, 1:].values
@@ -116,7 +116,7 @@ class KMeans:
             label_scores = cosine_distances(filtered_matrix, country_label)
 
             # Calculate loss
-            dis_mat = high_dim_dist * (0.95 - loss_weight) + low_dim_dist * 0.05 + label_scores * loss_weight
+            dis_mat = high_dim_dist * (1 - low_weight - loss_weight) + low_dim_dist * low_weight - label_scores * loss_weight
             best_group = assign_best_groups(dis_mat, article_ids)
             assert best_group.shape == (N, 2)
 
