@@ -1,11 +1,26 @@
+"""
+Author: Rock Pang
+
+When there are too many experiments, we need to a way to keep track of what map we are exactly looking at
+
+This script creates an interface to visualize a map of certain
+1) project, 2) cluster number, 3) number of h_cat, and 4) simple/complex algorithms
+(simple/complex algorithms mean if we adopt the 'sum' when picking the final label)
+
+To run it, make sure install flask and jinja in your project
+Also make sure line 53 points to your experiments directory
+"""
+
 from flask import Flask, render_template, request
 import logging, os, re
 
 app = Flask(__name__, template_folder='../../template')
 
+
 @app.route('/')
 def home():
     return render_template("study.html")
+
 
 @app.route("/test", methods=["GET", "POST"])
 def forward():
@@ -17,6 +32,7 @@ def forward():
     directory = find_file(mode, cluster, num_h_cat, project)
     body = match_body(directory)
     return render_template("study.html", cartograph=body)
+
 
 def match_body(directory):
     with open(directory) as f:
@@ -56,6 +72,7 @@ def find_file(mode, cluster, num_h_cat, project):
         logging.warning("Couldn't find an experiment. Please run it on the shell script.")
         return
     return directory
+
 
 if __name__ == '__main__':
     app.run(debug=True)
