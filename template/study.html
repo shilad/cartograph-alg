@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+            table, th, td {
+              border: 1px solid #cccccc;
+              border-collapse: collapse;
+            }
+            th, td {
+              padding: 5px;
+              text-align: left;
+            }
+
+            svg {
+                height: 1000px;
+                width: 100%;
+            }
+            h2 {
+                margin-top: 20px;
+                font-size: x-large;
+                font-weight: normal;
+            }
+
+            .graph{
+                border:solid 1px #cccccc;
+            }
+        </style>
+</head>
+<body>
+    <header>
+        <form action="/test" method="POST" class="container">
+            <select name="simple-complex">
+                <option value="selected">Simple or Complex</option>
+                <option value="True">Simple</option>
+                <option value="False">Complex</option>
+            </select>
+
+            <select name="cluster">
+                <option value="selected">Clusters</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="8">9</option>
+                <option value="8">10</option>
+            </select>
+
+            <select name="num_h_cat">
+                <option value="selected">num_h_cat</option>
+                <option value="60">60</option>
+                <option value="70">70</option>
+                <option value="80">80</option>
+                <option value="95">95</option>
+                <option value="105">105</option>
+                <option value="120">120</option>
+                <option value="180">180</option>
+                <option value="250">250</option>
+            </select>
+
+            <select name="project">
+                <option value="selected">Project</option>
+                <option value="food">Food</option>
+                <option value="education">Education</option>
+                <option value="georgraphy">Geography</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </header>
+
+    <hr>
+    <br>
+
+    <div id="graph-section">
+        {{ cartograph | safe}}
+    </div>
+</body>
+</html>
