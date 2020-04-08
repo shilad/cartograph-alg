@@ -12,6 +12,9 @@ class Center:
         self.article_id = article_id
         self.is_water = is_water
 
+        #added
+        self.is_border = False
+
         self.neighbors = set()  # neighboring Voronoi centers
         self.border = set()    # voronoi bordering edges
         self.corners = []   # voronoi polygon corners
@@ -29,6 +32,9 @@ class Center:
 
     def update_elevation(self, elevation):
         self.elevation = elevation
+
+    def update_is_border(self, is_border):
+        self.is_border = is_border
 
     def sort_clockwise(self):
         points = np.array([np.array(corner.position) for corner in self.corners])
