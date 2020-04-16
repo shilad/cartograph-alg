@@ -35,7 +35,12 @@ class Region:
                coords[id][1] = float(coords[id][1])
             interior_points.append(coords)
 
-        return geojson.Polygon([
+        if len(interior_points) == 0:
+            return geojson.Polygon([
+                exterior_points
+            ])['coordinates']
+        else:
+            return geojson.Polygon([
             exterior_points,
             interior_points
         ])['coordinates']
