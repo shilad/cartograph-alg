@@ -155,16 +155,16 @@ def main(experiment_dir, isSumInKeyPhrase):
     label_source = pd.read_csv(experiment_dir + "/key_phrases_top_labels.csv")
     # h_cat = generate_new_df(predicted)
     cache = {}
-    target = '/Users/senresearchlab/PycharmProjects/cartograph-alg/data/h_cat_from_top_labels_one_level.pkl'
+    target = './data/h_cat_from_top_labels_one_level.pkl'
     if os.path.getsize(target) <= 0:
         h_cat, dic = generate_new_matrix(label_source, isSumInKeyPhrase, cache)
     else:
-        file = open('/Users/senresearchlab/PycharmProjects/cartograph-alg/data/h_cat_from_top_labels_one_level.pkl', "rb")
+        file = open('./data/h_cat_from_top_labels_one_level.pkl', "rb")
         cache = pickle.load(file)
         h_cat, dic = generate_new_matrix(label_source, isSumInKeyPhrase, cache)
         file.close()
 
-    file = open('/Users/senresearchlab/PycharmProjects/cartograph-alg/data/h_cat_from_top_labels_one_level.pkl', "wb")
+    file = open('./data/h_cat_from_top_labels_one_level.pkl', "wb")
     pickle.dump(dic, file, protocol=pickle.HIGHEST_PROTOCOL)
     file.close()
     h_cat.to_csv(experiment_dir + "/check.csv")
