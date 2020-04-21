@@ -10,16 +10,15 @@ import math
 import numpy as np
 import pandas as pd
 # import seaborn as sns
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 from scipy.spatial import Voronoi
 from pygsp import graphs, filters
-from matplotlib.patches import Polygon
-from matplotlib.collections import PatchCollection
+# from matplotlib.patches import Polygon
+# from matplotlib.collections import PatchCollection
 from cartograph.border_graph.Center import Center
 from cartograph.border_graph.Corner import Corner
 from cartograph.border_graph.Edge import Edge
-from cartograph.border_graph.Country import Country
 from cartograph.border_graph.Region import Region
 
 
@@ -38,16 +37,6 @@ class Graph:
         self.add_water_points(self.points)
         self.denoise_cluster(self.points, len(set(self.cluster_list)))
 
-        # self.res = {}
-        # for article_id, point in enumerate(self.points):
-        #     self.res[article_id] = {}
-        #     self.res[article_id]['x'] = self.points[article_id][0]
-        #     self.res[article_id]['y'] = self.points[article_id][1]
-        #     self.res[article_id]['cluster'] = self.cluster_list[article_id]
-        #     self.res[article_id]['keep'] = self.keep[article_id]
-        # import pickle
-        # with open("/home/rock/Desktop/cartograph-alg/experiments/dic.pickle", "wb") as file:
-        #     pickle.dump(self.res, file)
 
         self.vor = Voronoi(self.points)
 
@@ -164,9 +153,6 @@ class Graph:
             if dominant_cluster[index] == int(self.cluster_list[index]):
                 vor_points.append(coor)
                 vor_clusters.append(self.cluster_list[index])
-            #     self.keep[index] = True
-            # else:
-            #     self.keep[index] = False
 
         self.points = vor_points
         self.cluster_list = vor_clusters
