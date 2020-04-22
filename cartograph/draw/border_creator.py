@@ -82,5 +82,5 @@ country_multipolygons = g.get_countries()
 country_names_dic = get_country_name(experiment_directory / final_labels)
 print(country_names_dic)
 
-export_geojson(experiment_directory / "countries_2.geojson", country_multipolygons,
+export_geojson(experiment_directory / "countries_new_try.geojson", country_multipolygons,
               country_names_dic)
