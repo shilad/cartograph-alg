@@ -34,8 +34,8 @@ def main(article_ids, xy_embeddings, articles_to_labels, output_file, label_name
     """
     # original cluster
     km = KMeans(k)
-    vectors = vanilla_vectors.iloc[:, 1:].values
-    orig_groups, orig_average_distance = km.fit_original_kmeans(vectors)
+    # vectors = vanilla_vectors.iloc[:, 1:].values
+    orig_groups, orig_average_distance, centroids = km.fit_original_kmeans(vanilla_vectors)
     orig_groups = article_ids.join(pd.DataFrame(orig_groups))
     orig_groups.columns = ['article_id', 'country']
     orig_groups.to_csv('%s/orig_cluster_groups.csv' % (experiment_directory,), index=False)
@@ -47,7 +47,7 @@ def main(article_ids, xy_embeddings, articles_to_labels, output_file, label_name
     sparse_matrix = create_sparse_label_matrix(articles_to_labels, tf_idf_score)  # #article * #labels wide matrix
     filtered_matrix = sparse_matrix[article_ids['article_id'].values]   # only valid articles to cluster
 
-    joint_alg_groups, joint_average_distance = km.fit_joint_all(vectors, orig_groups, article_ids, xy_embeddings, sparse_matrix, filtered_matrix, loss_weight)
+    joint_alg_groups, joint_average_distance = km.fit_joint_all(vanilla_vectors, orig_groups, article_ids, xy_embeddings, sparse_matrix, filtered_matrix, loss_weight)
     joint_alg_groups = pd.DataFrame(joint_alg_groups)
     joint_alg_groups.columns = ['article_id', 'country']
     joint_alg_groups.to_csv(output_file, index=False)
