@@ -6,11 +6,14 @@ from sklearn.preprocessing import normalize
 import umap
 import random
 
-def get_mean_centroid_distance(data, centroids, membership):
+def get_mean_centroid_distance(data, centroids, membership, dimenstion="high"):
     """
     Calculate the mean high dimensional distances between each point and its cluster's centroid
     """
-    distances = cosine_distances(data, centroids)
+    if dimenstion is "high":
+        distances = cosine_distances(data, centroids)
+    else:
+        distances = euclidean_distances(data, centroids)
     total_distance = 0
     for article in range(data.shape[0]):
         dist = np.abs(distances[article, membership[article]])
@@ -88,7 +91,7 @@ class KMeans:
         average_distance = get_mean_centroid_distance(data, centroids, best_group)
         return best_group, average_distance, centroids
 
-    def fit_joint_all(self, vectors, orig_groups, article_ids, xy_embeddings, sparse_matrix, filtered_matrix, loss_weight, low_weight=0.05):
+    def fit_joint_all(self, vectors, orig_groups, article_ids, xy_embeddings, sparse_matrix, filtered_matrix, loss_weight, low_weight, output_embedding):
         data = vectors.iloc[:, 1:].values
         N, D = data.shape
         K = self.k
@@ -99,7 +102,6 @@ class KMeans:
         (high_centroid, dist, centroids) = self.fit_original_kmeans(vectors, 3)
 
         # random embeddings
-
         max_val, min_val = xy_embeddings[["x", "y"]].max(axis=0), xy_embeddings[["x", "y"]].min(axis=0)
         max_x, max_y = max_val['x'], max_val['y']
         min_x, min_y = min_val['x'], min_val['y']
@@ -108,6 +110,7 @@ class KMeans:
         embeddings = np.column_stack((random_x, random_y))
 
         high_centroid = np.stack(centroids[:K])
+        print(high_centroid.shape)
         assert high_centroid.shape == (K, D)
         low_centroid = np.stack(embeddings[:K])   # low dimensional clustering
         points = "spectral"
@@ -151,7 +154,7 @@ class KMeans:
             # perform umap again and feed in the new best group as the cluster information
             # df = pd.merge(vectors, best_group, on='article_id')
 
-            points = umap.UMAP(metric='cosine', spread=20.0, target_weight=0.5, n_epochs=30, init=points).fit_transform(
+            points = umap.UMAP(metric='cosine', spread=1.0, min_dist=0.1, n_epochs=100, init=points).fit_transform(
                 vectors.iloc[:, 1:], y=best_group['country'])
             embeddings = pd.DataFrame({'article_id': vectors['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
             embeddings = pd.DataFrame(embeddings, columns=['article_id', 'x', 'y']).iloc[:, 1:].values
@@ -163,11 +166,28 @@ class KMeans:
             max_centroid_change = np.max(centroid_changes)
             high_centroid = high_centroid_new
             low_centroid = low_centroid_new
-            print(max_centroid_change)
+
+            print(centroid_changes)
+
             if max_centroid_change < self.tolerance:
                 break
-        print("iterations!")
-        print(iterations)
-        mean_distance = get_mean_centroid_distance(data, high_centroid, best_group['country'])
-        return best_group, mean_distance
+        # finalize
+        points = umap.UMAP(metric='cosine', spread=1.0, min_dist=0.1, n_epochs=100, init=points).fit_transform(
+            vectors.iloc[:, 1:], y=best_group['country'])
+        embeddings = pd.DataFrame({'article_id': vectors['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
+        embeddings.to_csv(output_embedding)
+        embeddings = pd.DataFrame(embeddings, columns=['article_id', 'x', 'y']).iloc[:, 1:].values
+
+        mean_distance_high = get_mean_centroid_distance(data, high_centroid, best_group['country'], dimenstion="high")
+        mean_distance_low = get_mean_centroid_distance(embeddings, low_centroid, best_group['country'], dimenstion="low")
+
+        import logging
+        logging.warning(filtered_matrix.shape)
+        label_D = filtered_matrix.shape[1]
+        label_centroid = np.zeros((K, label_D))
+        np.add.at(label_centroid, best_group['country'], filtered_matrix)
+        label_centroid /= points_per_group.repeat(label_D).reshape(K, label_D)
+
+        mean_distance_label = get_mean_centroid_distance(filtered_matrix, label_centroid, best_group['country'], dimenstion="high")
+        return best_group, mean_distance_high, mean_distance_low, mean_distance_label
 

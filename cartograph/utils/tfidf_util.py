@@ -23,9 +23,9 @@ def add_label_counts(labels_df):
     final = []
     for project in projects:
         final.append(pd.read_csv(
-            "data/" + project + "/hierarchical_category_names.csv"))
+            "/home/rockpang/Desktop/cartograph-alg/data/" + project + "/hierarchical_category_names.csv"))
         final.append(
-            pd.read_csv("data/" + project + "/keyphrases_names.csv"))
+            pd.read_csv("/home/rockpang/Desktop/cartograph-alg/data/" + project + "/keyphrases_names.csv"))
         # final.append(pd.read_csv("data/" + project + "/keyword_names.csv"))
         # final.append(pd.read_csv("data/" + project + "/lda_label_names.csv"))
         # final.append(pd.read_csv("data/" + project + "/link_names.csv"))
