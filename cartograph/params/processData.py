@@ -25,9 +25,7 @@ def process(data_col_name, project_name):
     df.to_csv(project_name + "_" + data_col_name + ".csv")
     # print(np.min(df))
 
-process("low_dist", "food")
-process("label_dist", "food")
-process("high_dist", "food")
+
 # process("silhouette_score", "technology")
 # process("mod", "technology")
 # process("trustworthiness", "technology")
@@ -47,11 +45,19 @@ def generateCSV(text_file):
                 row = ast.literal_eval(str[begin : end + 1])
                 rows += row
             curr += 1
+        row = ast.literal_eval(str[begin: end + 1])
+        rows += row
         df = pd.DataFrame(rows)
         df.to_csv("/home/rockpang/Desktop/cartograph-alg/cartograph/params/food_para_results.csv", index=False)
         print(df)
 
 
-
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', -1)
+process("low_dist", "food")
+process("label_dist", "food")
+process("high_dist", "food")
 #
 # generateCSV("source.txt")
