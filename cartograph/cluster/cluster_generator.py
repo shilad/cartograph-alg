@@ -135,10 +135,12 @@ class KMeans:
 
             # Calculate loss
             dis_mat = high_dim_dist * (1 - low_weight - loss_weight) + low_dim_dist * low_weight - label_scores * loss_weight
+            # TODO: Print them out
             best_group = assign_best_groups(dis_mat, article_ids)
             assert best_group.shape == (N, 2)
 
             # calculate the # of articles per group
+            points_per_group = 0
             points_per_group = np.zeros(K) + 1e-6
             np.add.at(points_per_group, best_group['country'], 1)
 
@@ -154,7 +156,7 @@ class KMeans:
             # perform umap again and feed in the new best group as the cluster information
             # df = pd.merge(vectors, best_group, on='article_id')
 
-            points = umap.UMAP(metric='cosine', spread=1.0, min_dist=0.1, n_epochs=100, init=points).fit_transform(
+            points = umap.UMAP(metric='cosine', spread=1.0, min_dist=0.1, n_epochs=200, init=points).fit_transform(
                 vectors.iloc[:, 1:], y=best_group['country'])
             embeddings = pd.DataFrame({'article_id': vectors['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
             embeddings = pd.DataFrame(embeddings, columns=['article_id', 'x', 'y']).iloc[:, 1:].values
@@ -172,7 +174,7 @@ class KMeans:
             if max_centroid_change < self.tolerance:
                 break
         # finalize
-        points = umap.UMAP(metric='cosine', spread=1.0, min_dist=0.1, n_epochs=100, init=points).fit_transform(
+        points = umap.UMAP(metric='cosine', spread=1.0, min_dist=0.1, n_epochs=200, init=points).fit_transform(
             vectors.iloc[:, 1:], y=best_group['country'])
         embeddings = pd.DataFrame({'article_id': vectors['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
         embeddings.to_csv(output_embedding)
@@ -181,12 +183,11 @@ class KMeans:
         mean_distance_high = get_mean_centroid_distance(data, high_centroid, best_group['country'], dimenstion="high")
         mean_distance_low = get_mean_centroid_distance(embeddings, low_centroid, best_group['country'], dimenstion="low")
 
-        import logging
-        logging.warning(filtered_matrix.shape)
+        points_per_group = np.zeros(K) + 1e-6
         label_D = filtered_matrix.shape[1]
         label_centroid = np.zeros((K, label_D))
         np.add.at(label_centroid, best_group['country'], filtered_matrix)
-        label_centroid /= points_per_group.repeat(label_D).reshape(K, label_D)
+        label_centroid /= points_per_group.repeat(label_D).reshape(K, label_D)  #TODO: if it repeats along the same axis
 
         mean_distance_label = get_mean_centroid_distance(filtered_matrix, label_centroid, best_group['country'], dimenstion="high")
         return best_group, mean_distance_high, mean_distance_low, mean_distance_label

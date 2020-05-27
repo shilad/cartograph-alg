@@ -22,7 +22,10 @@ def create_sparse_label_matrix(article_labels, tf_idf_score):
 
     return output_matrix
 
-weights = [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+low_weights = [0.14, 0.15, 0.11]
+# low_weights = [0.09]
+# label_weights = [0.12, 0.13, 0.14, 0.15]
+# label_weights = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.11, 0.12, 0.13, 0.14, 0.15]
 experiment_directory = "/home/rockpang/Desktop/cartograph-alg/experiments/food/0001/"
 experiment_path = "/home/rockpang/Desktop/cartograph-alg/experiments/food/0001/"
 data_path = "/home/rockpang/Desktop/cartograph-alg/data/food/"
@@ -43,10 +46,12 @@ k = 9
 
 rows = []
 
-for low_weight in weights:
-    for label_weight in weights:
-        low_weight = 0
-        label_weight = 0.2
+for low_weight in low_weights:
+    if low_weight is 0.14:
+        label_weights = [0.14, 0.15]
+    else:
+        label_weights = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1, 0.12, 0.13, 0.14, 0.15]
+    for label_weight in label_weights:
         print(low_weight, " ", label_weight)
         if low_weight + label_weight > 1.0: break
 
@@ -74,7 +79,7 @@ for low_weight in weights:
 
 
         # calcualte siluette
-        silhouette_score = metrics.cluster.silhouette_score(vanilla_vectors, joint_alg_groups.drop(columns=['article_id']).values.ravel())
+        silhouette_score = metrics.cluster.silhouette_score(vanilla_vectors.iloc[:, 1:].values, joint_alg_groups.drop(columns=['article_id']).values.ravel(), metric='cosine')
 
         # high, low, label average
         rows.append({"low" : low_weight, "label" : label_weight, "high" : 1 - low_weight - label_weight, "silhouette_score" : silhouette_score,
