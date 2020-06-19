@@ -27,15 +27,15 @@ def create_sparse_label_matrix(article_labels, tf_idf_score):
     return output_matrix
 
 
-def main(article_ids, xy_embeddings, articles_to_labels, output_file, label_names, k=9, loss_weight=float(0.08)):
+def main(article_ids, xy_embeddings, articles_to_labels, output_file, output_embedding, label_names, k, label_weight, low_weight):
     """
     Generate ${label_types[$i]}_cluster_groups.csv file by joint algorithm minimizing high+low+label loss
     In order to compute label loss, we need an initial tf-idf score after generating original_cluster_groups.csv
     """
     # original cluster
     km = KMeans(k)
-    vectors = vanilla_vectors.iloc[:, 1:].values
-    orig_groups, orig_average_distance = km.fit_original_kmeans(vectors)
+    # vectors = vanilla_vectors.iloc[:, 1:].values
+    orig_groups, orig_average_distance, centroids = km.fit_original_kmeans(vanilla_vectors)
     orig_groups = article_ids.join(pd.DataFrame(orig_groups))
     orig_groups.columns = ['article_id', 'country']
     orig_groups.to_csv('%s/orig_cluster_groups.csv' % (experiment_directory,), index=False)
@@ -47,7 +47,7 @@ def main(article_ids, xy_embeddings, articles_to_labels, output_file, label_name
     sparse_matrix = create_sparse_label_matrix(articles_to_labels, tf_idf_score)  # #article * #labels wide matrix
     filtered_matrix = sparse_matrix[article_ids['article_id'].values]   # only valid articles to cluster
 
-    joint_alg_groups, joint_average_distance = km.fit_joint_all(vectors, orig_groups, article_ids, xy_embeddings, sparse_matrix, filtered_matrix, loss_weight)
+    joint_alg_groups, joint_average_distance, mean_distance_low, mean_distance_label, iterations = km.fit_joint_all(vanilla_vectors, orig_groups, article_ids, xy_embeddings, filtered_matrix, label_weight, low_weight, output_embedding)
     joint_alg_groups = pd.DataFrame(joint_alg_groups)
     joint_alg_groups.columns = ['article_id', 'country']
     joint_alg_groups.to_csv(output_file, index=False)
@@ -61,6 +61,9 @@ if __name__ == '__main__':
     parser.add_argument('--articles_to_labels', required=True)
     parser.add_argument('--output_file', required=True)
     parser.add_argument('--label_names', required=True)
+    parser.add_argument('--label_weight', required=True, type=float)
+    parser.add_argument('--low_weight', required=True, type=float)
+    parser.add_argument('--embedding_output_file', required=True)
     parser.add_argument('--k', required=True, type=int)
 
     args = parser.parse_args()
@@ -72,8 +75,5 @@ if __name__ == '__main__':
     articles_to_labels = pd.read_csv(args.articles_to_labels)
     label_names = pd.read_csv(args.label_names)
 
-    main(article_ids, xy_embeddings, articles_to_labels, args.output_file, label_names, args.k)
-
-
-
-
+    main(article_ids, xy_embeddings, articles_to_labels, args.output_file, args.embedding_output_file, label_names, args.k, args.label_weight,
+         args.low_weight)
