@@ -41,6 +41,11 @@ See `bin/make-food-map.sh` for an example template. Run the script.
 ## Running experiments
 
 1. Create an experiment script, similar to example-experiment.sh
-2. Run the script (e.g. `./bin/example-experiment.sh`.
+2. Run the script (e.g. `./bin/run-joint.sh`.
 3. The script will tell you where it sends output.
 4. Only check in "final" experiments.
+
+## Before cartograph-server
+
+1. You need to locate your `experiment` folder and copy `domain_concept.csv` and `popularity_score.csv` from `data/[you topic]` to `experiment/[your topic]/[your experiment]`.
+2. Copy this experiment folder to [catograph-server](https://github.com/shilad/cartograph-server) under the `data` directory. See instruction at [catograph-server](https://github.com/shilad/cartograph-server) to proceed.
