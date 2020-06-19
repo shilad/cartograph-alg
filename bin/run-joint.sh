@@ -34,8 +34,8 @@ do
           --articles_to_labels data/${topic}/article_keyphrases.csv \
           --output_file ${exp_dir}/key_phrases_cluster_groups.csv \
           --label_names data/$topic/keyphrases_names.csv \
-          --label_weight 0.08 \
-          --low_weight 0.1 \
+          --label_weight 0.09 \
+          --low_weight 0.2 \
           --embedding_output_file ${exp_dir}/new_xy_embeddings.csv\
           --k $cluster
 
@@ -47,7 +47,7 @@ do
           --cluster_groups /key_phrases_cluster_groups.csv \
           --output_file /key_phrases_top_labels.csv \
           --label_source key_phrases \
-          --num_top_labels ${labels_num} # comment
+          --num_top_labels ${labels_num} # number of top keyphrases labels 
 
    #Step 5: Fetch hierarchical categories from key phrases
   python -m cartograph.h_cat_fetcher \
@@ -57,7 +57,7 @@ do
   # Step 6
   python -m cartograph.user_study_label \
           --experiment ${exp_dir} \
-          --num_top_labels 10  # comment
+          --num_top_labels 10  # number of top hierarchical category labels we want to use for user study
 
   # Step 7: Output the stats and graph
   python -m cartograph.draw.border_creator \
