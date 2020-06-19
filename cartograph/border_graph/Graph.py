@@ -6,7 +6,6 @@ Reference:  For denoising function: https://github.com/shilad/cartograph/blob/de
 """
 import random
 import queue
-
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -14,12 +13,12 @@ import matplotlib.pyplot as plt
 
 from scipy.spatial import Voronoi
 from pygsp import graphs, filters
-from matplotlib.patches import Polygon
+from shapely.geometry.polygon import Polygon
+import matplotlib.patches
 from matplotlib.collections import PatchCollection
 from cartograph.border_graph.Center import Center
 from cartograph.border_graph.Corner import Corner
 from cartograph.border_graph.Edge import Edge
-
 
 class Graph:
     def __init__(self, points, cluster_list, article_id_list, color_palette='hls'):
@@ -34,6 +33,8 @@ class Graph:
         self.num_points = len(self.points)
         self.add_water_points(self.points)
         self.denoise_cluster(self.points, len(set(self.cluster_list)))
+
+
         self.vor = Voronoi(self.points)
 
         # dictionary to store all centers, corners, edges in the graph
@@ -48,6 +49,9 @@ class Graph:
         self.assign_elevation()
         self.clockwise_all_corners()
         self.noise_border()
+
+        self.region_dic = {} # region_id : Region
+        self.country_dic = {} # cluster : Regions
 
     def create_bounding_box(self, points):
         max_coord = np.amax(points, axis=0)
@@ -112,7 +116,7 @@ class Graph:
         water_point_id = len(set(self.cluster_list))
         for index in range(num_points, len(self.points)):
             self.cluster_list = np.append(self.cluster_list, water_point_id)
-            self.article_id_list = np.append(self.article_id_list, -1)
+            self.article_id_list = np.append(self.article_id_list, 'w' + str(len(self.article_id_list)))
 
     def denoise_cluster(self, points, num_cluster, tau=10):
         """
@@ -180,6 +184,8 @@ class Graph:
             # add edges 2 points and 2 vertices
             edge_id = len(self.edge_dic)
             if center_1.cluster != center_2.cluster:
+                center_1.update_is_border(True)
+                center_2.update_is_border(True)
                 edge = Edge(len(self.edge_dic), center_1, center_2, corner_1, corner_2, True)
             else:
                 edge = Edge(len(self.edge_dic), center_1, center_2, corner_1, corner_2, False)
@@ -348,7 +354,7 @@ class Graph:
 
             if b:
                 color = '#AADAFF' if center.is_water else colors[center.cluster][int(center.elevation)]
-                patches.append(Polygon(polygon, color=color))
+                patches.append(matplotlib.patches.Polygon(polygon, color=color))
 
         p = PatchCollection(patches, alpha=0.8, match_original=True)
         ax.add_collection(p)
@@ -371,6 +377,8 @@ class Graph:
         for center in self.centers_dic.values():
             b = True
             polygon = []
+            # check if the polygon outside of the bounding box is water or
+            # a valid polygon that can't be ignored
             for vertex in center.corners:
                 if vertex.position[0] < self.bounding_box[0] - 0.1 or vertex.position[0] > self.bounding_box[1] + 0.1 or \
                    vertex.position[1] < self.bounding_box[2] - 0.1 or vertex.position[1] > self.bounding_box[3] + 0.1:
@@ -391,3 +399,165 @@ class Graph:
                 row_list.append(temp)
 
         pd.DataFrame.from_records(row_list).to_csv(directory + '/elevation.csv', index=False)
+
+    def create_regions(self):
+        # dictionary { region_id : (cluster_id, set(center_ids)) }
+        region_dic = {}
+        visited_centers = set()
+
+        for center_id, center in self.centers_dic.items():
+            if center_id in visited_centers: continue
+            visited_centers.add(center_id)
+
+            if center.is_water: continue
+
+            region_id = len(region_dic)
+            cluster_id = center.cluster
+            center_set = set()
+
+            q = queue.Queue(maxsize=len(self.corners_dic))
+            q.put(center_id)
+            center_set.add(center_id)
+
+            while q.qsize() > 0:
+                curr_center = self.centers_dic[q.get()]
+
+                for adjacent_center in curr_center.neighbors:
+                    id = adjacent_center.id
+                    if id in visited_centers: continue
+                    if adjacent_center.cluster == cluster_id:
+                        center_set.add(id)
+                        visited_centers.add(id)
+                        q.put(id)
+
+            region_dic[region_id] = (cluster_id, center_set)
+
+        return region_dic
+
+    def find_giant_polygon(self, center_set):
+        ####################### Helper function ###########################
+        def create_edge_list(center_set):
+            edge_list = []
+            for center_id in center_set:
+                center = self.centers_dic[center_id]
+                for edge in center.border:
+                    if edge.is_border:
+                        edge_list.append(edge)
+            return edge_list
+
+        def find_next_edge(curr_corner, edge_list):
+            for edge in curr_corner.protrudes:
+                if edge in edge_list:
+                    return edge
+
+        def convert_corner_to_point(polygon):
+            # input: list of Corner
+            # output: list of Corner's position [(x1,y1), (), ..]
+            ret = []
+            for corner in polygon:
+                ret.append((corner.position[0], corner.position[1]))
+            return ret
+
+        def generate_multipolygon_with_correct_format(multipolygons):
+            # Reference: https://pypi.org/project/geojson/#multipolygon for correct Multipolygon format
+            # without holes
+            if len(multipolygons) == 1:
+                exterior_points = list(multipolygons[0].exterior.coords) # convert CoordinateSequence to list (json)
+                return (exterior_points, )
+
+            # with holes
+            # find the outer polygon
+            polygon_with_hole = tuple()  # should have correct format [[exterior], [hole1], [hole2]]
+            first_polygon = multipolygons[0]
+            outmost_index = 0
+            for i in range(1, len(multipolygons)):
+                curr_polygon = multipolygons[i]
+                if first_polygon.contains(curr_polygon):
+                    exterior_points = list(first_polygon.exterior.coords)
+                if curr_polygon.contains(first_polygon):
+                    outmost_index = i
+                    exterior_points = list(curr_polygon.exterior.coords)
+            polygon_with_hole = polygon_with_hole + (exterior_points,)
+
+            # append holes inside
+            for i in range(len(multipolygons)):
+                if i is outmost_index:
+                    continue
+                polygon_with_hole = polygon_with_hole + (list(multipolygons[i].exterior.coords),)
+
+            return polygon_with_hole
+
+        ################################################################
+
+        """
+        Given all centers in a region, find coordinates of corners on the border
+        (prepare for polygon generation in geojson format in the future)
+        """
+
+        edge_list = create_edge_list(center_set)
+        multipolygons = []  # [[Region1, Region2, Region5], [Region3, Region4]]
+        while len(edge_list) > 0:  # this considers if there is hole inside
+            # find a starting edge
+            polygon = []
+            start_edge = edge_list[0]
+            edge_list.remove(start_edge)
+            polygon.append(start_edge.v0)
+            polygon.append(start_edge.v1)
+
+            start_corner = start_edge.v0
+
+            # find the second edge
+            # a for loop avoids going back to the starting corner start_edge.v0
+            for edge in start_edge.v1.protrudes:
+                if edge.is_border and edge in edge_list:
+                    vertex0, vertex1 = edge.v0, edge.v1
+                    if (vertex0 is not start_edge.v0) and (vertex1 is not start_edge.v0):
+                        curr_edge = edge
+                        if vertex0 is start_edge.v1:
+                            polygon.append(vertex1)
+                        else:
+                            polygon.append(vertex0)
+
+            # iteratively find the bordering coordinates
+            curr_corner = polygon[len(polygon)-1]
+            while curr_corner != start_corner:
+                # this takes cares of the last edge
+                # (start_edge has been deleted, no way to find start_corner to close the polygon)
+                if len(edge_list) < 2: break
+
+                polygon.append(curr_corner)
+                edge_list.remove(curr_edge)
+                curr_edge = find_next_edge(curr_corner, edge_list)
+                v0, v1 = curr_edge.v0, curr_edge.v1
+                if v0 is curr_corner:
+                    curr_corner = v1
+                else:
+                    curr_corner = v0
+
+            # remove last edge
+            polygon.append(start_corner)
+            edge_list.remove(find_next_edge(start_corner, edge_list))
+            points = convert_corner_to_point(polygon)
+            multipolygons.append(Polygon(points))
+
+        return generate_multipolygon_with_correct_format(multipolygons)
+
+    def export_multipolygon(self):
+        """
+        Find centers in a region and find all bordering corners' coordinates
+        Return a all coordinates corresponding to a specific cluster (might have multiple regions)
+        """
+        #  Create region and all centers in that region along with corresponding cluster_id
+        # { region_id : (cluster_id, center_set) }  # { int : tuple(int, set()) }
+        dic = self.create_regions()
+
+        # Transform dic to { cluster_id : [coordinates] }
+        # coordinates in a correct geojson format
+        multipolgon_dic = {}
+
+        for region_id, (cluster_id, center_set) in dic.items():
+            if cluster_id not in multipolgon_dic:
+                multipolgon_dic[cluster_id] = []
+            polygon = self.find_giant_polygon(center_set)
+            multipolgon_dic[cluster_id].append(polygon)
+        return multipolgon_dic
