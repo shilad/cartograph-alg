@@ -49,46 +49,22 @@ def get_country_name(final_labels):
 
    return dic
 
-# if __name__ == '__main__':
-#     import sys
-#     from pathlib import Path
-#
-#     if len(sys.argv) != 4:
-#         sys.stderr.write('Usage: % map_directory' % sys.argv[0])
-#         sys.exit(1)
-#
-#     # takes in experiment_directory, xy_embeddings, cluster_groups, and final_labels
-#     experiment_directory = Path(sys.argv[1])
-#     xy_embeddings, cluster_groups, final_labels = sys.argv[2:]
-#
-#     points, cluster_list, article_id_list = preprocess_file(experiment_directory / xy_embeddings,
-#                                                             experiment_directory / cluster_groups)
-#     g = Graph(points, cluster_list, article_id_list)
-#     country_multipolygons = g.get_countries()
-#     country_names_dic = get_country_name(experiment_directory / final_labels)
-#
-#
-#     export_geojson(experiment_directory / "countries_new_try.geojson", country_multipolygons,
-#                    country_names_dic)
+if __name__ == '__main__':
+    import sys
+    from pathlib import Path
 
-from pathlib import Path
+    if len(sys.argv) != 4:
+        sys.stderr.write('Usage: % map_directory' % sys.argv[0])
+        sys.exit(1)
 
-experiment_directory, xy_embeddings, cluster_groups, final_labels = \
-   Path("../../experiments/0015/"), \
-   "original_xy_embeddings.csv", \
-   "orig_cluster_groups.csv", \
-   "final_labels.csv"
+    # takes in experiment_directory, xy_embeddings, cluster_groups, and final_labels
+    experiment_directory = Path(sys.argv[1])
+    xy_embeddings, cluster_groups, final_labels = sys.argv[2:]
 
-points, cluster_list, article_id_list = preprocess_file(experiment_directory / xy_embeddings,
-                                                       experiment_directory / cluster_groups)
-g = Graph(points, cluster_list, article_id_list)
-g.draw_graph()
-# g.find_giant_polygon()
-# g.export_multipolygon()
-# g.create_regions()
-country_multipolygons = g.export_multipolygon()
-country_names_dic = get_country_name(experiment_directory / final_labels)
-# print(country_names_dic)
-#
-export_geojson(experiment_directory / "countries_why.geojson", country_multipolygons,
-              country_names_dic)
+    points, cluster_list, article_id_list = preprocess_file(experiment_directory / xy_embeddings,
+                                                            experiment_directory / cluster_groups)
+    g = Graph(points, cluster_list, article_id_list)
+    country_multipolygons = g.export_multipolygon()
+    country_names_dic = get_country_name(experiment_directory / final_labels)
+    export_geojson(experiment_directory / "countries.geojson", country_multipolygons,
+                   country_names_dic)
