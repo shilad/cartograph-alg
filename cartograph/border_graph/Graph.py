@@ -6,22 +6,19 @@ Reference:  For denoising function: https://github.com/shilad/cartograph/blob/de
 """
 import random
 import queue
-import math
 import numpy as np
 import pandas as pd
-# import seaborn as sns
-# import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 from scipy.spatial import Voronoi
 from pygsp import graphs, filters
-# from matplotlib.patches import Polygon
-# from matplotlib.collections import PatchCollection
+from shapely.geometry.polygon import Polygon
+import matplotlib.patches
+from matplotlib.collections import PatchCollection
 from cartograph.border_graph.Center import Center
 from cartograph.border_graph.Corner import Corner
 from cartograph.border_graph.Edge import Edge
-from cartograph.border_graph.Region import Region
-
-
 
 class Graph:
     def __init__(self, points, cluster_list, article_id_list, color_palette='hls'):
@@ -51,7 +48,7 @@ class Graph:
         self.max_elevation = 0  # track the max elevation for the color gradient
         self.assign_elevation()
         self.clockwise_all_corners()
-        self.noise_border()
+        # self.noise_border()
 
         self.region_dic = {} # region_id : Region
         self.country_dic = {} # cluster : Regions
@@ -357,7 +354,7 @@ class Graph:
 
             if b:
                 color = '#AADAFF' if center.is_water else colors[center.cluster][int(center.elevation)]
-                patches.append(Polygon(polygon, color=color))
+                patches.append(matplotlib.patches.Polygon(polygon, color=color))
 
         p = PatchCollection(patches, alpha=0.8, match_original=True)
         ax.add_collection(p)
@@ -380,6 +377,8 @@ class Graph:
         for center in self.centers_dic.values():
             b = True
             polygon = []
+            # check if the polygon outside of the bounding box is water or
+            # a valid polygon that can't be ignored
             for vertex in center.corners:
                 if vertex.position[0] < self.bounding_box[0] - 0.1 or vertex.position[0] > self.bounding_box[1] + 0.1 or \
                    vertex.position[1] < self.bounding_box[2] - 0.1 or vertex.position[1] > self.bounding_box[3] + 0.1:
@@ -401,173 +400,776 @@ class Graph:
 
         pd.DataFrame.from_records(row_list).to_csv(directory + '/elevation.csv', index=False)
 
-    def convert_corner_to_position(self, corner_list):
-        single_multipolygon = []
-        for corner_id in corner_list:
-            corner = self.corners_dic[corner_id]
-            single_multipolygon.append((corner.position[0], corner.position[1]))
-        return single_multipolygon
-
-    def find_edge_on_border(self, curr_center):
-        for edge in curr_center.border:
-            if edge.is_border:
-                return edge
-        raise Exception("Couldn't find an edge on the border")
-
-    def find_next_center(self, curr_center, curr_corner, visited_centers):
-        for neighbor in curr_center.neighbors:
-            if neighbor.is_border and (curr_center.cluster == neighbor.cluster):
-                if curr_corner in neighbor.corners:
-                    return neighbor
-
-    def find_next_corner_in_one_polygon(self, prev_corner, curr_corner, curr_center):
-        # the next corner in this polygon
-        for edge in curr_corner.protrudes:
-            if edge.is_border:
-                corner_1, corner_2 = edge.v0, edge.v1
-                if corner_1.id is curr_corner.id:
-                    curr_corner = corner_1
-                    next_corner = corner_2
-                else:
-                    curr_corner = corner_2
-                    next_corner = corner_1
-
-                if next_corner.id is prev_corner.id: continue
-
-                if next_corner in curr_center.corners:
-                    return next_corner, curr_center
-
-        return None, None
-
-    def find_next_corner_another_polygon(self, curr_corner, next_center):
-        for edge in curr_corner.protrudes:
-            if edge.is_border:
-                center_1, center_2 = edge.d0, edge.d1
-                corner_1, corner_2 = edge.v0, edge.v1
-                if (center_1.id is next_center.id) or (center_2.id is next_center.id):
-                    if corner_1.id == curr_corner.id:
-                        return corner_2
-                    else:
-                        return corner_1
-
-    def find_next_corner_and_center(self, prev_corner, curr_corner, curr_center, visited_centers):
-        # the next corner in this polygon
-        next_corner, center = self.find_next_corner_in_one_polygon(prev_corner, curr_corner, curr_center)
-        if next_corner is not None and center is not None:
-            return next_corner, center
-
-        # the next corner in the next polygon
-        next_center = self.find_next_center(curr_center, curr_corner, visited_centers)
-        next_corner = self.find_next_corner_another_polygon(curr_corner, next_center)
-        return next_corner, next_center
-
-    def find_roots(self):
-        inside_regions = []
-        for curr_id, curr_region in self.region_dic.items():
-            curr_region = curr_region[1]
-            for id, inner_region in self.region_dic.items():
-                inner_region = inner_region[1]
-                if id is curr_id: continue
-                if not curr_region.is_outside(inner_region):
-                    break
-                curr_region.add_region(inner_region)
-            curr_region.is_root = True
-            inside_regions.append(curr_region)
-
-        return inside_regions
-
-    def find_hierarchy(self, outmost):
-        """
-        Recursively find the hierarchy in the graph
-        """
-        if outmost is None:
-            return
-
-        inside_regions = outmost.inner_regions
-        for inner in inside_regions:
-            for other in inside_regions:
-                if inner.id is other.id: continue
-                if not inner.is_outside(other):
-                    break
-            outmost.add_direct_region(inner)
-            self.find_hierarchy(inner)
-
-
-    def find_countries(self):
-        outmost_regions = self.find_roots()
-
-        for outmost in outmost_regions:
-            self.find_hierarchy(outmost)
-
-
-    def get_countries(self):
-        multipolygons = []
+    def create_regions(self):
+        # dictionary { region_id : (cluster_id, set(center_ids)) }
+        region_dic = {}
         visited_centers = set()
 
-        # find the exteriors of all polygons ignoring holes
         for center_id, center in self.centers_dic.items():
-
-            if center_id in visited_centers:
-                continue
-
+            if center_id in visited_centers: continue
             visited_centers.add(center_id)
-            if center.is_water or (not center.is_border):
-                continue
 
-            corner_list = []
-            cluster = center.cluster
-            edge_on_border = self.find_edge_on_border(center)
-            start_corner = edge_on_border.v0
-            corner_list.append(start_corner.id)
-            corner_list.append(edge_on_border.v1.id)
+            if center.is_water: continue
 
-            curr_corner = None
-            curr_center = center
+            region_id = len(region_dic)
+            cluster_id = center.cluster
+            center_set = set()
 
-            while curr_corner is None or curr_corner.id is not start_corner.id:
-                prev_corner = self.corners_dic[corner_list[-2]]
-                curr_corner = self.corners_dic[corner_list[-1]]
-                next_corner, next_center = self.find_next_corner_and_center(prev_corner, curr_corner,
-                                                                            curr_center, visited_centers)
-                corner_list.append(next_corner.id)
+            q = queue.Queue(maxsize=len(self.corners_dic))
+            q.put(center_id)
+            center_set.add(center_id)
 
-                curr_corner = next_corner
-                curr_center = next_center
-                if curr_center.id not in visited_centers:
-                    visited_centers.add(curr_center.id)
+            while q.qsize() > 0:
+                curr_center = self.centers_dic[q.get()]
 
-            polygon = self.convert_corner_to_position(corner_list)
-            region_id = len(self.region_dic)
-            region = Region(region_id, polygon)
-            self.region_dic[region_id] = [cluster, region]
-            multipolygons.append([cluster, polygon])
+                for adjacent_center in curr_center.neighbors:
+                    id = adjacent_center.id
+                    if id in visited_centers: continue
+                    if adjacent_center.cluster == cluster_id:
+                        center_set.add(id)
+                        visited_centers.add(id)
+                        q.put(id)
 
-        # remove holes inside a polygon
-        self.find_countries()
+            region_dic[region_id] = (cluster_id, center_set)
 
-        # output
-        multipolgon_dic = {} # cluster_id, coordinates
-        for id, tuple in self.region_dic.items():
-            cluster, region = tuple[0], tuple[1]
-            if cluster not in multipolgon_dic:
-                multipolgon_dic[cluster] = []
+        return region_dic
 
-            polygon = region.get_polygon_coordinates()
-            multipolgon_dic[cluster].append(polygon)
+    def find_giant_polygon(self, center_set):
+        def create_edge_list(center_set):
+            edge_list = []
+            for center_id in center_set:
+                center = self.centers_dic[center_id]
+                for edge in center.border:
+                    if edge.is_border:
+                        edge_list.append(edge)  # if should be list or set
+            return edge_list
 
+        def find_next_edge(curr_corner, edge_list):
+            for edge in curr_corner.protrudes:
+                if edge in edge_list:
+                    return edge
+
+                # if edge.is_border:
+                #     if edge in edge_list:
+
+        def convert_corner_to_point(polygon):
+            # input: list of Corner
+            # output: list of Corner's position [[x1,y1], [], ..]
+            ret = []
+            for corner in polygon:
+                ret.append((corner.position[0], corner.position[1]))
+            return ret
+
+        def generate_multipolygon_with_correct_format(multipolygons):
+            if len(multipolygons) == 1:
+                exterior_points = list(multipolygons[0].exterior.coords) # convert CoordinateSequence to list (json)
+                return (exterior_points, )
+                # return geojson.Polygon([
+                #     exterior_points
+                # ])['coordinates']
+            # with holes
+            polygon_with_hole = tuple()  # should have correct format [[exterior], [hole1], [hole2]]
+            first_polygon = multipolygons[0]
+            outmost_index = 0
+            for i in range(1, len(multipolygons)):
+                curr_polygon = multipolygons[i]
+                if first_polygon.contains(curr_polygon):
+                    exterior_points = list(first_polygon.exterior.coords)
+                if curr_polygon.contains(first_polygon):
+                    outmost_index = i
+                    exterior_points = list(curr_polygon.exterior.coords)
+            polygon_with_hole = polygon_with_hole + (exterior_points,)
+
+            for i in range(len(multipolygons)):
+                if i is outmost_index:
+                    continue
+                # coords = [[x, y] for (x, y) in list(multipolygons[i].exterior.coords)]
+                polygon_with_hole = polygon_with_hole + (list(multipolygons[i].exterior.coords),)
+
+            print(polygon_with_hole)
+            return polygon_with_hole
+            # return geojson.Polygon([
+            #     polygon_with_hole
+            # ])['coordinates']
+
+
+        edge_list = create_edge_list(center_set)
+        multipolygons = []  # [[Region1, Region2, Region5], [Region3, Region4]]
+        while len(edge_list) > 0:
+            polygon = []
+            start_edge = edge_list[0]
+            edge_list.remove(start_edge)
+            polygon.append(start_edge.v0)
+            polygon.append(start_edge.v1)
+
+            start_corner = start_edge.v0
+
+            for edge in start_edge.v1.protrudes:
+                if edge.is_border and edge in edge_list:
+                    vertex0, vertex1 = edge.v0, edge.v1
+                    if (vertex0 is not start_edge.v0) and (vertex1 is not start_edge.v0):
+                        curr_edge = edge
+                        if vertex0 is start_edge.v1:
+                            polygon.append(vertex1)
+                        else:
+                            polygon.append(vertex0)
+
+            curr_corner = polygon[len(polygon)-1]
+            while curr_corner != start_corner:
+                if len(edge_list) < 2: break
+                polygon.append(curr_corner)
+
+                edge_list.remove(curr_edge)
+
+                curr_edge = find_next_edge(curr_corner, edge_list)
+                v0, v1 = curr_edge.v0, curr_edge.v1
+                if v0 is curr_corner:
+                    curr_corner = v1
+                else:
+                    curr_corner = v0
+
+            # remove last edge
+            polygon.append(start_corner)
+            edge_list.remove(find_next_edge(start_corner, edge_list))
+            points = convert_corner_to_point(polygon)
+            multipolygons.append(Polygon(points))
+
+        return generate_multipolygon_with_correct_format(multipolygons)
+
+    def export_multipolygon(self):
+        dic = self.create_regions()
+        multipolgon_dic = {}  # cluster_id, coordinates
+
+        for region_id, (cluster_id, center_set) in dic.items():
+            if cluster_id not in multipolgon_dic:
+                multipolgon_dic[cluster_id] = []
+            # [[exterior_points], [interior_points]]
+            # [[[x,y], [a,b]], [[p,q], [c,d]]]
+            polygon = self.find_giant_polygon(center_set)
+            multipolgon_dic[cluster_id].append(polygon)
         return multipolgon_dic
 
-
-
-
-        # from geojson import FeatureCollection, Feature, MultiPolygon, MultiLineString, Polygon, dumps
-        # feature_list = []
-        # for cluster, polygon in multipolygons:
-        #     print(polygon)
-        #     properties = {"clusterID": int(cluster)}
-        #     feature_list.append(Feature(geometry=Polygon([polygon]), properties=properties))
+        # self.find_countries()
         #
-        # collection = FeatureCollection(feature_list)
-        # with open(directory, "w") as file:
-        #     file.write(dumps(collection))
+        # multipolgon_dic = {}  # cluster_id, coordinates
+        # for region_id, (cluster_id, region) in self.region_dic.items():
+        #     if cluster_id not in multipolgon_dic:
+        #         multipolgon_dic[cluster_id] = []
+        #
+        #     polygon = region.get_polygon_coordinates()
+        #     multipolgon_dic[cluster_id].append(polygon)
 
+    #     ax = plt.subplot()
+    #     patches = []
+    #     colors = self._create_color()
+    #     for cluster_id, multipolgon in multipolgon_dic.items():
+    #         color = colors[cluster_id][1]
+    #
+    #         for polygon in multipolgon:
+    #             patches.append(Polygon(polygon, color=color))
+    #     p = PatchCollection(patches, alpha=0.8, match_original=True)
+    #     ax.add_collection(p)
+    #     plt.xlim(-80, 80)
+    #     plt.ylim(-80, 80)
+    #     plt.show()
+    #
+    #     return multipolgon_dic
+    #
+    #
+    #
+    #
+    #
+    #
+    # # def convert_corner_to_position(self, corner_list):
+    # #     single_multipolygon = []
+    # #     for corner_id in corner_list:
+    # #         corner = self.corners_dic[corner_id]
+    # #         single_multipolygon.append((corner.position[0], corner.position[1]))
+    # #     return single_multipolygon
+    # #
+    # # def find_edge_on_border(self, curr_center):
+    # #     for edge in curr_center.border:
+    # #         if edge.is_border:
+    # #             return edge
+    # #     raise Exception("Couldn't find an edge on the border")
+    # #
+    # # def find_next_center(self, curr_center, curr_corner, visited_centers):
+    # #     for neighbor in curr_center.neighbors:
+    # #         if neighbor.is_border and (curr_center.cluster == neighbor.cluster):
+    # #             if curr_corner in neighbor.corners:
+    # #                 return neighbor
+    # #
+    # # def find_next_corner_in_one_polygon(self, prev_corner, curr_corner, curr_center):
+    # #     # the next corner in this polygon
+    # #     for edge in curr_corner.protrudes:
+    # #         if edge.is_border:
+    # #             corner_1, corner_2 = edge.v0, edge.v1
+    # #             if corner_1.id is curr_corner.id:
+    # #                 curr_corner = corner_1
+    # #                 next_corner = corner_2
+    # #             else:
+    # #                 curr_corner = corner_2
+    # #                 next_corner = corner_1
+    # #
+    # #             if next_corner.id is prev_corner.id: continue
+    # #
+    # #             if next_corner in curr_center.corners:
+    # #                 return next_corner, curr_center
+    # #
+    # #     return None, None
+    # #
+    # # def find_next_corner_another_polygon(self, curr_corner, next_center):
+    # #     for edge in curr_corner.protrudes:
+    # #         if edge.is_border:
+    # #             center_1, center_2 = edge.d0, edge.d1
+    # #             corner_1, corner_2 = edge.v0, edge.v1
+    # #             if (center_1.id is next_center.id) or (center_2.id is next_center.id):
+    # #                 if corner_1.id == curr_corner.id:
+    # #                     return corner_2
+    # #                 else:
+    # #                     return corner_1
+    # #
+    # # def find_next_corner_and_center(self, prev_corner, curr_corner, curr_center, visited_centers):
+    # #     # the next corner in this polygon
+    # #     next_corner, center = self.find_next_corner_in_one_polygon(prev_corner, curr_corner, curr_center)
+    # #     if next_corner is not None and center is not None:
+    # #         return next_corner, center
+    # #
+    # #     # the next corner in the next polygon
+    # #     next_center = self.find_next_center(curr_center, curr_corner, visited_centers)
+    # #     next_corner = self.find_next_corner_another_polygon(curr_corner, next_center)
+    # #     return next_corner, next_center
+    # #
+    # # def find_roots(self):
+    # #     inside_regions = []
+    # #     for curr_id, curr_region in self.region_dic.items():
+    # #         curr_region = curr_region[1]
+    # #         for id, inner_region in self.region_dic.items():
+    # #             inner_region = inner_region[1]
+    # #             if id is curr_id: continue
+    # #             if not curr_region.is_outside(inner_region):
+    # #                 break
+    # #             curr_region.add_region(inner_region)
+    # #         curr_region.is_root = True
+    # #         inside_regions.append(curr_region)
+    # #
+    # #     return inside_regions
+    # #
+    # # def find_hierarchy(self, outmost):
+    # #     """
+    # #     Recursively find the hierarchy in the graph
+    # #     """
+    # #     if outmost is None:
+    # #         return
+    # #
+    # #     inside_regions = outmost.inner_regions
+    # #     for inner in inside_regions:
+    # #         for other in inside_regions:
+    # #             if inner.id is other.id: continue
+    # #             if not inner.is_outside(other):
+    # #                 break
+    # #         outmost.add_direct_region(inner)
+    # #         self.find_hierarchy(inner)
+    # #
+    # #
+    # # def find_countries(self):
+    # #     outmost_regions = self.find_roots()
+    # #
+    # #     for outmost in outmost_regions:
+    # #         self.find_hierarchy(outmost)
+    # #
+    # #
+    # # def get_countries(self):
+    # #     multipolygons = []
+    # #     visited_centers = set()
+    # #
+    # #     # find the exteriors of all polygons ignoring holes
+    # #     for center_id, center in self.centers_dic.items():
+    # #
+    # #         if center_id in visited_centers:
+    # #             continue
+    # #
+    # #         visited_centers.add(center_id)
+    # #         if center.is_water or (not center.is_border):
+    # #             continue
+    # #
+    # #         corner_list = []
+    # #         cluster = center.cluster
+    # #         edge_on_border = self.find_edge_on_border(center)
+    # #         start_corner = edge_on_border.v0
+    # #         corner_list.append(start_corner.id)
+    # #         corner_list.append(edge_on_border.v1.id)
+    # #
+    # #         curr_corner = None
+    # #         curr_center = center
+    # #
+    # #         while curr_corner is None or curr_corner.id is not start_corner.id:
+    # #             prev_corner = self.corners_dic[corner_list[-2]]
+    # #             curr_corner = self.corners_dic[corner_list[-1]]
+    # #             next_corner, next_center = self.find_next_corner_and_center(prev_corner, curr_corner,
+    # #                                                                         curr_center, visited_centers)
+    # #             corner_list.append(next_corner.id)
+    # #
+    # #             curr_corner = next_corner
+    # #             curr_center = next_center
+    # #             if curr_center.id not in visited_centers:
+    # #                 visited_centers.add(curr_center.id)
+    # #
+    # #         polygon = self.convert_corner_to_position(corner_list)
+    # #         region_id = len(self.region_dic)
+    # #         region = Region(region_id, polygon)
+    # #         self.region_dic[region_id] = [cluster, region]
+    # #         multipolygons.append([cluster, polygon])
+    # #
+    # #     # remove holes inside a polygon
+    # #     self.find_countries()
+    # #
+    # #     # output
+    # #     multipolgon_dic = {} # cluster_id, coordinates
+    # #     for id, tuple in self.region_dic.items():
+    # #         cluster, region = tuple[0], tuple[1]
+    # #         if cluster not in multipolgon_dic:
+    # #             multipolgon_dic[cluster] = []
+    # #
+    # #         polygon = region.get_polygon_coordinates()
+    # #         multipolgon_dic[cluster].append(polygon)
+    # #
+    # #     return multipolgon_dic
+    #
+    #
+    #
+    #
+    #     # from geojson import FeatureCollection, Feature, MultiPolygon, MultiLineString, Polygon, dumps
+    #     # feature_list = []
+    #     # for cluster, polygon in multipolygons:
+    #     #     print(polygon)
+    #     #     properties = {"clusterID": int(cluster)}
+    #     #     feature_list.append(Feature(geometry=Polygon([polygon]), properties=properties))
+    #     #
+    #     # collection = FeatureCollection(feature_list)
+    #     # with open(directory, "w") as file:
+    #     #     file.write(dumps(collection))
+
+    #
+    #
+    # def find_giant_polygon(self, center_set):
+    #     def create_center_on_border_lst(center_set):
+    #         center_on_border_lst = []
+    #         for center_id in center_set:
+    #             if self.centers_dic[center_id].is_border:
+    #                 center_on_border_lst.append(center_id)
+    #         return center_on_border_lst
+    #
+    #     def find_border_edges(center):
+    #         corner_id_occ = {}
+    #         edge_set = set()
+    #
+    #         for edge in center.border:
+    #             if edge.is_border:
+    #                 v0, v1 = edge.v0, edge.v1
+    #                 if v0.id not in corner_id_occ: corner_id_occ[v0.id] = 0
+    #                 if v1.id not in corner_id_occ: corner_id_occ[v1.id] = 0
+    #                 corner_id_occ[v0.id] += 1
+    #                 corner_id_occ[v1.id] += 1
+    #                 edge_set.add(edge.id)
+    #
+    #         return edge_set, corner_id_occ
+    #
+    #     def find_start_edge(edge_set, corner_id_occ):
+    #         for edge_id in edge_set:
+    #             curr_edge = self.edge_dic[edge_id]
+    #             v0, v1 = curr_edge.v0, curr_edge.v1
+    #             if corner_id_occ[v0.id] == 1:
+    #                 return curr_edge, v0
+    #             elif corner_id_occ[v1.id] == 1:
+    #                 return curr_edge, v1
+    #
+    #
+    #     def find_start_corner(center):
+    #         edge_set, corner_id_occ = find_border_edges(center)
+    #         return find_start_edge(edge_set, corner_id_occ)[1]
+    #
+    #     def find_curr_center(prev_center, prev_corner, center_on_border_lst):
+    #         for neighbor in prev_center.neighbors:
+    #             if neighbor.is_border and (neighbor.id in center_on_border_lst) \
+    #                     and (prev_corner in neighbor.corners):
+    #                 return neighbor
+    #
+    #     def find_coord(center, corner):
+    #         edge_set = find_border_edges(center)[0]
+    #         if edge_set == None: return None
+    #         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    #         print("edge_set", edge_set)
+    #         for edge in edge_set:
+    #             edge=self.edge_dic[edge]
+    #             print("edge_id:", edge.id, "corners:", edge.v0.id, edge.v1.id)
+    #         corner_list, coor_list = [], []
+    #         prev_corner = corner
+    #         for edge_id in edge_set:
+    #             edge = self.edge_dic[edge_id]
+    #             v0, v1 = edge.v0, edge.v1
+    #             if v0 is corner:
+    #                 corner_list.append(v0)
+    #                 start_edge = edge
+    #                 break
+    #             elif v1 is corner:
+    #                 corner_list.append(v1)
+    #                 start_edge = edge
+    #                 break
+    #         curr_edge = start_edge
+    #         print("start_edge_id", start_edge.id)
+    #
+    #         while len(edge_set) > 0:
+    #             if curr_edge.id in edge_set:
+    #                 edge_set.remove(curr_edge.id)
+    #             else:
+    #                 break
+    #             print("edge_set:", edge_set)
+    #             if curr_edge.v0.id == prev_corner.id:
+    #                 corner_list.append(curr_edge.v1)
+    #             elif curr_edge.v1.id == prev_corner.id:
+    #                 corner_list.append(curr_edge.v0)
+    #             prev_corner = corner_list[len(corner_list) - 1]
+    #
+    #             print("corner_list", [corner.id for corner in corner_list])
+    #             for edge_id in edge_set:
+    #                 edge = self.edge_dic[edge_id]
+    #                 print("edge_id: ", edge.id, "corners: ", edge.v0.id, edge.v1.id)
+    #                 if edge.v0.id == prev_corner.id or edge.v1.id == prev_corner.id:
+    #                     curr_edge = edge
+    #                     break
+    #             # if curr_edge.id == removed:
+    #             #     print("Didn't remove. Removal incorrect")
+    #         print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    #         return corner_list
+    #
+    #     def combine(main_list, added_list):
+    #         if len(main_list) == 0:
+    #             for element in added_list:
+    #                 main_list.append(element)
+    #         else:
+    #             last = main_list[len(main_list)-1]
+    #             for element in added_list:
+    #                 if element is last: continue
+    #                 main_list.append(element)
+    #         return main_list
+    #
+    #     xs, ys = [], []
+    #     center_on_border_lst = create_center_on_border_lst(center_set)
+    #     print("Check center_on_border_lst")
+    #     print(len(center_on_border_lst))
+    #     print("##############################")
+    #     is_hole, iter = False, 0
+    #     giant_polygon = []
+    #     while len(center_on_border_lst) > 0:
+    #         # do this because there might be holes inside
+    #         iter += 1
+    #         if iter > 1: is_hole = True
+    #
+    #         polygon = []
+    #         start_center = self.centers_dic[center_on_border_lst[0]]
+    #         start_corner = find_start_corner(start_center)
+    #         start_coord = find_coord(start_center, start_corner)  # potential bug here
+    #         print("start_coord:", [corner.id for corner in start_coord])
+    #         polygon = combine(polygon, start_coord)
+    #         center_on_border_lst.remove(start_center.id)
+    #
+    #         prev_center = start_center
+    #         curr_id = -1
+    #         while curr_id != start_center.id:
+    #             prev_corner = polygon[len(polygon)-1]
+    #             curr_center = find_curr_center(prev_center, prev_corner, center_on_border_lst)
+    #             if curr_center is None: break
+    #             polygon = combine(polygon, find_coord(curr_center, prev_corner))
+    #             center_on_border_lst.remove(curr_center.id)
+    #
+    #             prev_center = curr_center
+    #             curr_id = curr_center.id
+    #
+    #         xs, ys = [],[]
+    #         for corner in polygon:
+    #             x, y = corner.position[0], corner.position[1]
+    #             xs.append(x)
+    #             ys.append(y)
+    #         plt.plot(xs, ys)
+    #         plt.xlim(-80, 80)
+    #         plt.ylim(-80, 80)
+    #         plt.show()
+    #         giant_polygon.append(polygon)
+    #
+
+    #     start_center = center_on_border_lst[0]
+    #     start_edge_set, start_corner_id_occ = find_border_edges(start_center)
+    #     start_edge, start_corner = find_start_edge(start_edge_set, start_corner_id_occ)
+    #     lst = start_coord(start_center, start_corner, start_edge_set)
+    #     center_on_border_lst.remove(start_center)
+    #
+    #     giant_polygon = [] # [corner_1, corner_2, ...]
+    #     giant_polygon = combine(giant_polygon, lst)
+    #     prev_center = start_center
+    #     curr_id = -1
+    #
+    #     while curr_id != start_center.id:
+    #         prev_corner = giant_polygon[len(giant_polygon) - 1]
+    #         curr_center = find_curr_center(prev_center, prev_corner, center_on_border_lst)
+    #
+    #         curr_edge_set = find_border_edges(curr_center)[0]
+    #         lst = find_corner_list(curr_center, prev_corner, curr_edge_set)
+    #         giant_polygon = combine(giant_polygon, lst)
+    #
+    #         center_on_border_lst.remove(curr_center)
+    #         prev_center = curr_center
+    #         curr_id = curr_center.id
+    #     return giant_polygon
+    #
+    # def find_roots(self):
+    #     inside_regions = []
+    #     for curr_id, curr_region in self.region_dic.items():
+    #         curr_region = curr_region[1]
+    #         for id, inner_region in self.region_dic.items():
+    #             inner_region = inner_region[1]
+    #             if id is curr_id: continue
+    #             if not curr_region.is_outside(inner_region):
+    #                 break
+    #             curr_region.add_region(inner_region)
+    #         curr_region.is_root = True
+    #         inside_regions.append(curr_region)
+    #
+    #     return inside_regions
+    #
+    # def find_hierarchy(self, outmost):
+    #     """
+    #     Recursively find the hierarchy in the graph
+    #     """
+    #     if outmost is None:
+    #         return
+    #
+    #     inside_regions = outmost.inner_regions
+    #     for inner in inside_regions:
+    #         for other in inside_regions:
+    #             if inner.id is other.id: continue
+    #             if not inner.is_outside(other):
+    #                 break
+    #         outmost.add_direct_region(inner)
+    #         self.find_hierarchy(inner)
+    #
+    #
+    # def find_countries(self):
+    #     outmost_regions = self.find_roots()
+    #
+    #     for outmost in outmost_regions:
+    #         self.find_hierarchy(outmost)
+    #
+    # def find_next_corner(self, curr_corner_id, last_corner_id):
+    #     for edge in self.corners_dic[curr_corner_id].protrudes:
+    #         if edge.is_border:
+    #             v0, v1 = edge.v0, edge.v1
+    #             if v0.id != last_corner_id and v1.id != last_corner_id:
+    #                 if v0.id == curr_corner_id:
+    #                     return v1.id
+    #                 else:
+    #                     return v0.id
+    #
+    # def draw_all_edge_in__center(self, center):
+    #     edge_list = []
+    #     for edge in center.border:
+    #         if edge.is_border:
+    #             edge_list.append(edge)
+    #     return edge_list
+    #
+    # def initiate_start_center(self, center_set):
+    #     iter = 0
+    #     for center_id in center_set:
+    #         center = self.centers_dic[center_id]
+    #         if center.is_border:
+    #             return center
+    #
+    #
+    # def find_corner_list(self, curr_center, last_corner):
+    #     edge_set = set()
+    #     start_edge = None
+    #     for edge in curr_center.border:
+    #         if edge.is_border:
+    #             if last_corner is None or \
+    #                 (edge.v0.id == last_corner.id or edge.v1.id == last_corner.id):
+    #                 start_edge = edge
+    #             edge_set.add(edge.id)
+    #
+    #     if last_corner is None:
+    #         corner_id_set = {}
+    #         for edge_id in edge_set:
+    #             curr_edge = self.edge_dic[edge_id]
+    #             v0, v1 = curr_edge.v0, curr_edge.v1
+    #             if v0.id not in corner_id_set: corner_id_set[v0.id] = 0
+    #             if v1.id not in corner_id_set: corner_id_set[v1.id] = 0
+    #             corner_id_set[v0.id] += 1
+    #             corner_id_set[v1.id] += 1
+    #
+    #         for edge_id in edge_set:
+    #             curr_edge = self.edge_dic[edge_id]
+    #             v0, v1 = curr_edge.v0, curr_edge.v1
+    #             if corner_id_set[v0.id] == 1 or corner_id_set[v1.id] == 1:
+    #                 start_edge = curr_edge
+    #                 break
+    #
+    #
+    #     # visited = set()
+    #     corner_list, coor_list =[], []
+    #     curr_edge = start_edge
+    #     prev_corner = last_corner
+    #     iter = 0
+    #
+    #     for edge in edge_set:
+    #         edge = self.edge_dic[edge]
+    #         print("id", edge.id, " ", edge.v0.id, " ", edge.v1.id)
+    #
+    #     while len(edge_set) > 0:
+    #         iter += 1
+    #         # visited.add(curr_edge)
+    #         print(curr_edge.id)
+    #         edge_set.remove(curr_edge.id)
+    #         if prev_corner is None:
+    #             corner_list.append(curr_edge.v0)
+    #             corner_list.append(curr_edge.v1)
+    #         elif curr_edge.v0.id == prev_corner.id:
+    #             corner_list.append(curr_edge.v1)
+    #         elif curr_edge.v1.id == prev_corner.id:
+    #             corner_list.append(curr_edge.v0)
+    #         prev_corner = corner_list[len(corner_list)-1]
+    #         print("prev_corner", prev_corner.id)
+    #         for edge_id in edge_set:
+    #             edge = self.edge_dic[edge_id]
+    #
+    #
+    #             print("id", edge.id, " ", edge.v0.id, " ", edge.v1.id)
+    #
+    #             if prev_corner is None or\
+    #                     (edge.v0.id == prev_corner.id or edge.v1.id == prev_corner.id):
+    #                 curr_edge = edge
+    #                 break
+    #         # for edge in prev_corner.protrudes:
+    #         #     if edge.id in edge_set:
+    #         #         curr_edge = edge
+    #     return corner_list
+    #
+    # def find_curr_center(self, prev_center, prev_corner, center_set):
+    #     for neighbor in prev_center.neighbors:
+    #         if neighbor.is_border and (neighbor.id in center_set) \
+    #             and (prev_corner in neighbor.corners):
+    #             return neighbor
+    #
+    #
+    # # def find_giant_polygon(self, center_set):
+    # #     xs, ys = [], []
+    # #     giant_polygon = [] # contains [corner_1, corner_2, ...]
+    # #     start_center = self.initiate_start_center(center_set)
+    # #
+    # #     lst = self.find_corner_list(start_center, None)
+    # #
+    # #     for ele in lst:
+    # #         giant_polygon.append(ele)
+    # #
+    # #     for element in lst:
+    # #         element = element.position
+    # #         xs.append(element[0])
+    # #         ys.append(element[1])
+    # #     # giant_polygon.append(self.find_corner_list(start_center, None))
+    # #
+    # #     prev_center = start_center
+    # #     curr_center_id = -1
+    # #
+    # #     iter = 0
+    # #     while curr_center_id != start_center.id:
+    # #         print("?")
+    # #         iter += 1
+    # #         prev_corner = giant_polygon[len(giant_polygon)-1]
+    # #         curr_center = self.find_curr_center(prev_center, prev_corner, center_set)
+    # #
+    # #         lst = self.find_corner_list(prev_center, None)
+    # #         for ele in lst:
+    # #             giant_polygon.append(ele)
+    # #
+    # #         for element in lst:
+    # #             element = element.position
+    # #             xs.append(element[0])
+    # #             ys.append(element[1])
+    # #         # giant_polygon.append(self.find_corner_list(curr_center, prev_corner))
+    # #         curr_center_id = curr_center.id
+    # #         prev_center = curr_center
+    # #
+    # #         plt.plot(xs, ys)
+    # #         plt.xlim(-80, 80)
+    # #         plt.ylim(-80, 80)
+    # #         plt.show()
+    # #
+    # #     return giant_polygon
+    #
+    #
+    # # def find_giant_polygon(self, center_set):
+    # #     giant_polygon = []
+    # #     coords = []
+    # #     start_center = None
+    # #     for center_id in center_set:
+    # #         center = self.centers_dic[center_id]
+    # #         if center.is_border:
+    # #             start_center = center
+    # #             break
+    # #
+    # #     curr_center = None
+    # #     for neighbor in start_center.neighbors:
+    # #         if neighbor.is_border and neighbor.id in center_set:
+    # #             curr_center = neighbor
+    # #             break
+    # #
+    # #     while curr_center.id != start_center.id:
+    # #         draw_all_edge_in_this_center
+    # #         find_next_center
+    # #
+    # #             for edge in center.border:
+    # #                 if edge.is_border:
+    # #                     giant_polygon.append(edge.v0.id)
+    # #                     coords.append(edge.v0.position)
+    # #                     giant_polygon.append(edge.v1.id)
+    # #                     coords.append(edge.v1.position)
+    # #                     break
+    # #             break
+    # #
+    # #     for neighbor in center.neighbors:
+    # #
+    # #     print("UUU")
+    # #     visited_corners = set()
+    # #     xs, ys = [], []
+    # #
+    # #     last_corner_id = giant_polygon[len(giant_polygon) - 2]
+    # #     visited_corners.add(last_corner_id)
+    # #     xs.append(self.corners_dic[last_corner_id].position[0])
+    # #     ys.append(self.corners_dic[last_corner_id].position[1])
+    # #
+    # #     curr_corner_id = giant_polygon[len(giant_polygon) - 1]
+    # #     visited_corners.add(curr_corner_id)
+    # #     xs.append(self.corners_dic[curr_corner_id].position[0])
+    # #     ys.append(self.corners_dic[curr_corner_id].position[1])
+    # #
+    # #     next_corner_id = self.find_next_corner(curr_corner_id, last_corner_id)
+    # #     end_id = last_corner_id
+    # #     iter = 0
+    # #     while next_corner_id != end_id:
+    # #         iter += 1
+    # #         last_corner_id = curr_corner_id
+    # #         curr_corner_id = next_corner_id
+    # #
+    # #         xs.append(self.corners_dic[curr_corner_id].position[0])
+    # #         ys.append(self.corners_dic[curr_corner_id].position[1])
+    # #         if iter % 20 == 0:
+    # #             plt.plot(xs, ys)
+    # #             plt.xlim(-80, 80)
+    # #             plt.ylim(-80, 80)
+    # #             plt.show()
+    # #         print("???")
+    # #         giant_polygon.append(curr_corner_id)
+    # #         coords.append(self.corners_dic[curr_corner_id].position)
+    # #         visited_corners.add(curr_corner_id)
+    # #         next_corner_id = self.find_next_corner(curr_corner_id, last_corner_id)
+    # #
+    # #     print("Non-stop")
+    # #     return coords

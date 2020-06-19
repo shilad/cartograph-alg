@@ -17,6 +17,9 @@ def preprocess_file(xy_embedding_csv, cluster_group_csv):
    cluster_list = combined_df['country'].values.astype(int)
    article_id_list = combined_df['article_id'].values.astype(int)
 
+   print(points)
+   print(cluster_list)
+   print(article_id_list)
    return points, cluster_list, article_id_list
 
 def read_label(label_csv):
@@ -29,6 +32,7 @@ def read_label(label_csv):
 def export_geojson(directory, multipolgon_dic, label_dic):
    feature_list = []
    for cluster, polygon in multipolgon_dic.items():
+       print(polygon)
        properties = {"clusterID": int(cluster), "label" : label_dic[int(cluster)]}
        feature_list.append(Feature(geometry=MultiPolygon(polygon), properties=properties))
    collection = FeatureCollection(feature_list)
@@ -70,17 +74,21 @@ def get_country_name(final_labels):
 from pathlib import Path
 
 experiment_directory, xy_embeddings, cluster_groups, final_labels = \
-   Path("../../experiments/food/0004/"), \
-   "new_xy_embeddings.csv", \
-   "key_phrases_cluster_groups.csv", \
+   Path("../../experiments/0015/"), \
+   "original_xy_embeddings.csv", \
+   "orig_cluster_groups.csv", \
    "final_labels.csv"
 
 points, cluster_list, article_id_list = preprocess_file(experiment_directory / xy_embeddings,
                                                        experiment_directory / cluster_groups)
 g = Graph(points, cluster_list, article_id_list)
-country_multipolygons = g.get_countries()
+g.draw_graph()
+# g.find_giant_polygon()
+# g.export_multipolygon()
+# g.create_regions()
+country_multipolygons = g.export_multipolygon()
 country_names_dic = get_country_name(experiment_directory / final_labels)
-print(country_names_dic)
-
-export_geojson(experiment_directory / "countries_new_try.geojson", country_multipolygons,
+# print(country_names_dic)
+#
+export_geojson(experiment_directory / "countries_why.geojson", country_multipolygons,
               country_names_dic)
