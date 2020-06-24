@@ -155,7 +155,7 @@ class KMeans:
             # perform umap again and feed in the new best group as the cluster information
             # df = pd.merge(vectors, best_group, on='article_id')
 
-            points = umap.UMAP(metric='cosine', spread=1.0, min_dist=0.1, n_epochs=200, init=points).fit_transform(
+            points = umap.UMAP(metric='cosine', spread=1.0, n_epochs=200, init=points).fit_transform(
                 vectors.iloc[:, 1:], y=best_group['country'])
             embeddings = pd.DataFrame({'article_id': vectors['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
             embeddings = pd.DataFrame(embeddings, columns=['article_id', 'x', 'y']).iloc[:, 1:].values
@@ -171,7 +171,7 @@ class KMeans:
             if max_centroid_change < self.tolerance:
                 break
         # finalize
-        points = umap.UMAP(metric='cosine', spread=20.0, min_dist=0.1, n_epochs=200, init=points).fit_transform(
+        points = umap.UMAP(metric='cosine', spread=30.0, init=points).fit_transform(
             vectors.iloc[:, 1:], y=best_group['country'])
 
         embeddings = pd.DataFrame({'article_id': vectors['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
