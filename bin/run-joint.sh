@@ -19,9 +19,7 @@ do
   exp_dir=$(prepare_experiment_dir $topic ${exp_id})
   # Write down parameters that'll be on the html file
   write_experiment_params ${exp_dir} weight 1
-  python -m cartograph.draw.zpop_creator \
-            --experiment ${exp_dir} \
-            --popularity_score data/${topic}/popularity_score.csv
+
   # Step 2: run UMAP
   python -m cartograph.xy_embed.umap_embed \
           --map_directory ${exp_dir} \
