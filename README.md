@@ -40,7 +40,7 @@ See `bin/make-food-map.sh` for an example template. Run the script.
 
 ## Running experiments
 
-1. Create an experiment script, similar to example-experiment.sh
-2. Run the script (e.g. `./bin/example-experiment.sh`.
+1. The first time you run it,  `git lfs pull` and unzip the file `data.zip`. 
+2. Run the script `./bin/run-joint.sh`.
 3. The script will tell you where it sends output.
 4. Only check in "final" experiments.
