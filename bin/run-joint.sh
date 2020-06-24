@@ -15,7 +15,7 @@ isSumInKeyPhrase=False
 for cluster in {8..8}
 do
    # Step 1: Initialize
-  exp_id=0003 #$(get_experiment_id)
+  exp_id=$(get_experiment_id)
   exp_dir=$(prepare_experiment_dir $topic ${exp_id})
   # Write down parameters that'll be on the html file
   write_experiment_params ${exp_dir} weight 1
