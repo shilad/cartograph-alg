@@ -1,11 +1,25 @@
 import pandas as pd
+import random
 
 """
-This script creates the user study candidate labels for each map. 
+This script creates the user study candidate labels for each map.
 """
 
 
-def union_label_candidates(path, k):
+def union_label_candidates(path, k, project):
+    dum = pd.read_csv("./data/" + project + "/dummy_labels.csv")
+    used = set()
+    dummy = pd.DataFrame()
+    for k in range(7):
+        i = random.randint(0, dum.shape[0] - 1)
+        dum_label = dum.iloc[:, 1][i]
+        for l in range(2):
+            while dum_label in used:
+                i = random.randint(0, dum.shape[0] - 1)
+                dum_label = dum.iloc[:, 1][i]
+            used.add(dum_label)
+            dummy = dummy.append({'country': int(k), 'new_name': dum_label, 'simple': 0, 'complex': 0, 'isDummy': True},
+                                 ignore_index=True)
     all_labels = pd.read_csv(path + "/check.csv")
     all_labels['complex'] = all_labels['tf'] * all_labels['idf'] * all_labels['sum']
     all_labels['simple'] = all_labels['tf'] * all_labels['idf']
@@ -13,7 +27,9 @@ def union_label_candidates(path, k):
     simple = all_labels.sort_values('simple', ascending=False).groupby("country").head(k).sort_values('country')
     complex = all_labels.sort_values('complex', ascending=False).groupby("country").head(k).sort_values('country')
     union = pd.concat([simple, complex]).drop_duplicates().sort_values('country').reset_index().drop(columns=['index'])
-    union.to_csv(path + "/candidate_labels.csv")
+    u = pd.DataFrame(pd.concat([union, dummy]))[['country', 'new_name', 'simple', 'complex', 'isDummy']]
+    u = u.astype({"country": int})
+    u.to_csv(path + "/candidate_labels.csv")
     return union
 
 if __name__ == '__main__':
@@ -21,7 +37,14 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='path to the check.csv file')
     parser.add_argument('--experiment', required=True)
     parser.add_argument('--num_top_labels', required=True, type=int)
+    parser.add_argument('--project', required=True)
+
 
     args = parser.parse_args()
 
-    union_label_candidates(args.experiment, args.num_top_labels)
+    union_label_candidates(args.experiment, args.num_top_labels, args.project)
+
+
+
+project = "food"
+candi = pd.read_csv("/Users/luli/PycharmProjects/cartograph-alg/experiments/food/0296/candidate_labels.csv")
