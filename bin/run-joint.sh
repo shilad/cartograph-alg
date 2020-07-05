@@ -12,7 +12,7 @@ topic=food
 labels_num=70
 isSumInKeyPhrase=False
 
-for cluster in {8..8}
+for cluster in {7..7}
 do
    # Step 1: Initialize
   exp_id=$(get_experiment_id)
