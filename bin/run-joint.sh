@@ -62,8 +62,8 @@ do
   # Step 6
   python -m cartograph.user_study_label \
           --experiment ${exp_dir} \
-          --num_top_labels 10  # number of top hierarchical category labels we want to use for user study
-
+          --num_top_labels 10 \
+          --project ${topic}  # number of top hierarchical category labels we want to use for user study
   # Step 7: Output the stats and graph
   python -m cartograph.draw.border_creator \
           ${exp_dir} new_xy_embeddings.csv \
