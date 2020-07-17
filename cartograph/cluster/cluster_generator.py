@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from scipy.sparse import csr_matrix
+from scipy import sparse
 from sklearn.metrics.pairwise import cosine_distances, euclidean_distances
 from sklearn.preprocessing import normalize
 import umap
@@ -29,10 +29,11 @@ def generate_country_matrix(groups, article_ids):
     """
     num_row = max(groups.iloc[:,1]) + 1
     num_col = max(groups.iloc[:,0]) + 1
-    output_matrix = csr_matrix((num_row, num_col), dtype=np.float).toarray()
-    for row in groups.itertuples():
-        output_matrix[row.country][row.article_id] = 1
-    output_matrix = output_matrix[:, article_ids['article_id'].values]
+    I = groups["country"]
+    J = groups["article_id"]
+    V = np.ones(len(article_ids["article_id"]))
+    output_matrix = sparse.coo_matrix((V, (I, J)), shape=(num_row, num_col)).tocsc()
+    output_matrix = output_matrix[:, article_ids["article_id"]]
     return output_matrix
 
 

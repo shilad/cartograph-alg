@@ -8,7 +8,7 @@ set -e
 set -x
 # Step 0: Import the experiment utilities functions
 source ./bin/experiment-utils.sh
-topic=food
+topic=georgraphy
 labels_num=70
 isSumInKeyPhrase=False
 
