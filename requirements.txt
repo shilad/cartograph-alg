@@ -18,3 +18,5 @@ gensim
 spacy
 pygsp
 umap-learn
+shapely
+geojson
