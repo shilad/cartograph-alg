@@ -19,11 +19,15 @@ isSumInKeyPhrase=False
 
 for cluster in {7..7}
 do
+
    # Step 1: Initialize
   exp_id=$(get_experiment_id)
   exp_dir=$(prepare_experiment_dir $topic ${exp_id})
   # Write down parameters that'll be on the html file
   write_experiment_params ${exp_dir} weight 1
+
+  # Copy over domain concepts
+  cp -p ./data/$topic/domain_concept.csv $exp_dir/
 
   # Step 2: run UMAP
   python -m cartograph.xy_embed.umap_embed \
