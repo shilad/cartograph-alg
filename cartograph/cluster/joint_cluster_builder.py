@@ -6,24 +6,22 @@
 
 
 from cartograph.cluster.cluster_generator import KMeans
-from scipy.sparse import csr_matrix
+from scipy import sparse
 import cartograph.utils.tfidf_util as utils
 import pandas as pd
-import numpy as np
 import argparse
 
 
-def create_sparse_label_matrix(article_labels, tf_idf_score):
+def create_sparse_label_matrix(article_labels, tf_idf_score, article_ids):
     """Creates a matrix that contains article ids and label ids,
     the entry of which is the label score from gensim (if available) or tf-idf score."""
-    num_row = max(article_labels['article_id']) + 1
     num_col = max(article_labels['label_id']) + 1
-    output_matrix = csr_matrix((num_row, num_col), dtype=np.float).toarray()
-    # if 'score' not in article_labels.columns:
-    article_labels = article_labels.merge(tf_idf_score, on=['article_id', 'label_id'])
-    for row in article_labels.itertuples():
-        output_matrix[row.article_id][row.label_id] = row.tfidf
-
+    num_row = max(article_ids['article_id']) + 1
+    I = tf_idf_score["article_id"]
+    J = tf_idf_score["label_id"]
+    V = tf_idf_score["tfidf"]
+    output_matrix = sparse.coo_matrix((V, (I, J)), shape=(num_row, num_col)).tocsr()
+    output_matrix = output_matrix[article_ids["article_id"]]
     return output_matrix
 
 
@@ -42,12 +40,9 @@ def main(article_ids, xy_embeddings, articles_to_labels, output_file, output_emb
     articles_to_labels = pd.merge(articles_to_labels, label_names, on="label_id")
 
     tf_idf_score = utils.calc_tfidf(articles_to_labels, orig_groups, ['article_id', 'label_id', 'tfidf'])
-
     # joint cluster
-    sparse_matrix = create_sparse_label_matrix(articles_to_labels, tf_idf_score)  # #article * #labels wide matrix
-    filtered_matrix = sparse_matrix[article_ids['article_id'].values]   # only valid articles to cluster
-
-    joint_alg_groups, joint_average_distance, mean_distance_low, mean_distance_label, iterations = km.fit_joint_all(vanilla_vectors, orig_groups, article_ids, xy_embeddings, filtered_matrix, label_weight, low_weight, output_embedding)
+    filtered_sparse_matrix = create_sparse_label_matrix(articles_to_labels, tf_idf_score, article_ids)  # #article * #labels wide matrix
+    joint_alg_groups, joint_average_distance, mean_distance_low, mean_distance_label, iterations = km.fit_joint_all(vanilla_vectors, orig_groups, article_ids, xy_embeddings, filtered_sparse_matrix, label_weight, low_weight, output_embedding)
     joint_alg_groups = pd.DataFrame(joint_alg_groups)
     joint_alg_groups.columns = ['article_id', 'country']
     joint_alg_groups.to_csv(output_file, index=False)
