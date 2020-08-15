@@ -4,21 +4,30 @@
 # This shell scripts run a joint algorithm of embedding and clustering. The loss function (from joint algorithm)
 # preserves semantic and visual spaces.
 # It generate labels from clusters using key phrases label candidates and fetch h_cat labels from the top key phrases
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 map_name" >&2
+    exit 1
+fi
+
 set -e
 set -x
 # Step 0: Import the experiment utilities functions
 source ./bin/experiment-utils.sh
-topic=georgraphy
+topic=$1
 labels_num=70
 isSumInKeyPhrase=False
 
 for cluster in {7..7}
 do
+
    # Step 1: Initialize
   exp_id=$(get_experiment_id)
   exp_dir=$(prepare_experiment_dir $topic ${exp_id})
   # Write down parameters that'll be on the html file
   write_experiment_params ${exp_dir} weight 1
+
+  # Copy over domain concepts
+  cp -p ./data/$topic/domain_concept.csv $exp_dir/
 
   # Step 2: run UMAP
   python -m cartograph.xy_embed.umap_embed \
