@@ -74,14 +74,16 @@ do
           --num_top_labels 10 \
           --project ${topic}  # number of top hierarchical category labels we want to use for user study
 
-  python -m cartograph.centroid_finder \
-          --experiment ${exp_dir}
 
   # Step 7: Output the stats and graph
   python -m cartograph.draw.border_creator \
           ${exp_dir} new_xy_embeddings.csv \
           key_phrases_cluster_groups.csv \
           final_labels.csv
+
+  python -m cartograph.centroid_finder \
+          --experiment ${exp_dir}
+
   python -m cartograph.draw.json_generator \
           --map_directory data/${topic} \
           --experiment ${exp_dir} \

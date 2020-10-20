@@ -29,7 +29,6 @@ def read_label(label_csv):
 def export_geojson(directory, multipolgon_dic, label_dic):
    feature_list = []
    for cluster, polygon in multipolgon_dic.items():
-       print(polygon)
        properties = {"clusterID": int(cluster), "label" : label_dic[int(cluster)]}
        feature_list.append(Feature(geometry=MultiPolygon(polygon), properties=properties))
    collection = FeatureCollection(feature_list)
