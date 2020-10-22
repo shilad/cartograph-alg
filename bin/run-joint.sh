@@ -71,7 +71,7 @@ do
   # Step 6
   python -m cartograph.user_study_label \
           --experiment ${exp_dir} \
-          --num_top_labels 10 \
+          --num_top_labels 15 \
           --project ${topic}  # number of top hierarchical category labels we want to use for user study
 
 
