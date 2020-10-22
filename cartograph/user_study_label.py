@@ -14,7 +14,10 @@ def union_label_candidates(path, k, project):
     all_labels = all_labels[['country', 'new_name', 'simple', 'complex']].drop_duplicates()
     simple = all_labels.sort_values('simple', ascending=False).groupby("country").head(k).sort_values('country')
     complex = all_labels.sort_values('complex', ascending=False).groupby("country").head(k).sort_values('country')
-    union = pd.concat([simple, complex]).drop_duplicates().sort_values('country').reset_index().drop(columns=['index'])
+    union = pd.concat([simple, complex])\
+        .drop_duplicates()\
+        .sort_values('country')\
+        .groupby("country").head(k).reset_index().drop(columns=['index'])
     # add dummy labels
     dum = pd.read_csv("./data/" + project + "/dummy_labels.csv")
     used = set()
@@ -29,7 +32,7 @@ def union_label_candidates(path, k, project):
             used.add(dum_label)
             dummy = dummy.append({'country': int(k), 'new_name': dum_label, 'simple': 0, 'complex': 0, 'isDummy': True}, ignore_index=True)
 
-    u = pd.DataFrame(pd.concat([union, dummy]))[['country', 'new_name', 'simple', 'complex', 'isDummy']]
+    u = pd.DataFrame(pd.concat([union, dummy], sort=True))[['country', 'new_name', 'simple', 'complex', 'isDummy']]
     u = u.astype({"country": int})
     u.to_csv(path + "/candidate_labels.csv")
     return union

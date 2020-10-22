@@ -129,7 +129,6 @@ def generate_new_matrix(predicted, isSumInKeyPhrase, cache):
                 if cat.lower() == "food": continue
                 labels.append(row.label_name)
                 new_labels.append(cat)
-        print(cache[row.label_name])
 
     # dic that matches old labels to new h_cat labels
     dic = pd.DataFrame( {'label_name': labels, 'new_name': new_labels})
