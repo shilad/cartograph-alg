@@ -175,7 +175,9 @@ class KMeans:
         points = umap.UMAP(metric='cosine', spread=30.0, init=points).fit_transform(
             vectors.iloc[:, 1:], y=best_group['country'])
 
-        embeddings = pd.DataFrame({'article_id': vectors['article_id'], 'x': points[:, 0], 'y': points[:, 1]})
+        embeddings = pd.DataFrame({'article_id': vectors['article_id'], 'x': points[:, 0]/10, 'y': points[:, 1]/10})
+        # we are dividing x, y by 10 because to generate the geojson file for user study, we need to make sure the x, and y
+        # are both within the range of reasonable latitude and longitude.
         embeddings.to_csv(output_embedding)
         embeddings = pd.DataFrame(embeddings, columns=['article_id', 'x', 'y']).iloc[:, 1:].values
 

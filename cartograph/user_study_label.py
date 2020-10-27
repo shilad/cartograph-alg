@@ -34,6 +34,15 @@ def union_label_candidates(path, k, project):
 
     u = pd.DataFrame(pd.concat([union, dummy], sort=True))[['country', 'new_name', 'simple', 'complex', 'isDummy']]
     u = u.astype({"country": int})
+    u = u.reset_index()
+    # title case capitalized
+    for idx, row in u.iterrows():
+        words = row["new_name"].split(' ')
+        whitelist = {'and', 'the', 'a', 'of', 'in', 'with', 'for', 'or', 'an', 'nor', 'but', 'yet', 'so', 'around',
+                     'by', 'after', 'along', 'from', 'on', 'to', 'without'}
+        capitalized = ' '.join([word.title() if word not in whitelist else word for word in words])
+        u.loc[idx, "new_name"] = capitalized
+    u = u.drop(columns=["index"])
     u.to_csv(path + "/candidate_labels.csv")
     return union
 

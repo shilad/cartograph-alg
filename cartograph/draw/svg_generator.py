@@ -16,7 +16,7 @@ from collections import defaultdict
 import argparse
 import sys
 
-XY_RATIO = 7
+XY_RATIO = 5
 FONT_RATIO = 10
 
 
@@ -171,7 +171,7 @@ def draw_country_labels(d, country_labels_xy, font_size, colors):
 
 
 def create_svg_file(directory, d, output_file):
-    d.setPixelScale(2)  # Set number of pixels per geometry unit
+    d.setPixelScale(1)  # Set number of pixels per geometry unit
     d.saveSvg(directory + output_file)
 
 
