@@ -7,9 +7,9 @@ import logging, requests
 import pandas as pd
 from nltk.stem import WordNetLemmatizer
 import numpy as np
+import pickle, os
 
 memo = {}
-
 
 
 def fetch_categories_from_json(domain_concept):
@@ -41,12 +41,12 @@ def fetch_categories_from_json(domain_concept):
             for cat_info in page_info['categories']:
                 title = cat_info["title"]
                 # Remove categories "by ..." and "Types of ..."
-                # if " by" in title:
-                #     title = title[:title.index(" by")]
-                # elif "Types of " in title:
-                #     title = title[title.index("Types of ") + 9:].capitalize()
-                # categories.append(title.replace("Category:", ""))
-                categories.append(cat_info["title"].replace("Category:", ""))
+                if " by" in title:
+                    title = title[:title.index(" by")]
+                elif "Types of " in title:
+                    title = title[title.index("Types of ") + 9:].capitalize()
+                categories.append(title.replace("Category:", ""))
+                # categories.append(cat_info["title"].replace("Category:", ""))
         except KeyError or IndexError:
             logging.warning('%s: article found, but no category appears.', page_info["title"])
     else:
@@ -107,25 +107,34 @@ def sum_tfidf(h_cat):
     return h_cat
 
 
-def generate_new_matrix(predicted):
+def generate_new_matrix(predicted, isSumInKeyPhrase, cache):
     labels = []
     new_labels = []
-    black_list = ["wikipedia", "categories", "redirect", "disambiguation", "categories", "pages including"]
+    black_list = ["wikipedia", "categories", "redirect", "disambiguation", "categories", "pages including", "main topic articles"]
     lemmatizer = WordNetLemmatizer()  # remove noise
 
     for row in predicted.itertuples():
-        for cat in fetch_multiple_level_categories_from_json(lemmatizer.lemmatize(row.label_name.title())):
-            cat = lemmatizer.lemmatize(cat.lower())
-            if True in ((black_word in cat) for black_word in black_list):
-                continue
-            labels.append(row.label_name)
-            new_labels.append(cat)
+        if row.label_name in cache:
+            for cat in cache[row.label_name]:
+                if cat.lower() == "food": continue
+                labels.append(row.label_name)
+                new_labels.append(cat)
+        else:
+            cache[row.label_name] = []
+            for cat in fetch_multiple_level_categories_from_json(lemmatizer.lemmatize(row.label_name.title())):
+                cat = lemmatizer.lemmatize(cat.lower())
+                if True in ((black_word in cat) for black_word in black_list):
+                    continue
+                cache[row.label_name].append(cat)
+                if cat.lower() == "food": continue
+                labels.append(row.label_name)
+                new_labels.append(cat)
+        print(cache[row.label_name])
 
     # dic that matches old labels to new h_cat labels
     dic = pd.DataFrame( {'label_name': labels, 'new_name': new_labels})
     final = pd.merge(predicted, dic, how="outer", on="label_name")
     h_cat = final[['country', 'label_name', 'new_name', 'tfidf']]
-
 
     h_cat = get_tfidf(h_cat)
     h_cat = normalize_within_country(h_cat)
@@ -135,17 +144,32 @@ def generate_new_matrix(predicted):
         h_cat.loc[index, 'tf'] = ((row['country_label_count']) / row['num_country_labels'])
         h_cat.loc[index, 'idf'] = np.log((row['num_articles']) / (row['label_count'] * 6))
 
-    h_cat['new_tfidf'] = h_cat['tf'] * h_cat['idf'] * h_cat['sum']
-    return h_cat
+    if isSumInKeyPhrase:
+        h_cat['new_tfidf'] = h_cat['tf'] * h_cat['idf'] * h_cat['sum']
+    else:
+        h_cat['new_tfidf'] = h_cat['tf'] * h_cat['idf']
+    return h_cat, cache
 
 
-def main(experiment_dir):
+def main(experiment_dir, isSumInKeyPhrase):
     label_source = pd.read_csv(experiment_dir + "/key_phrases_top_labels.csv")
     # h_cat = generate_new_df(predicted)
-    h_cat = generate_new_matrix(label_source)
+    cache = {}
+    target = './data/h_cat_from_top_labels_one_level.pkl'
+    if os.path.getsize(target) <= 0:
+        h_cat, dic = generate_new_matrix(label_source, isSumInKeyPhrase, cache)
+    else:
+        file = open('./data/h_cat_from_top_labels_one_level.pkl', "rb")
+        cache = pickle.load(file)
+        h_cat, dic = generate_new_matrix(label_source, isSumInKeyPhrase, cache)
+        file.close()
 
+    file = open('./data/h_cat_from_top_labels_one_level.pkl', "wb")
+    pickle.dump(dic, file, protocol=pickle.HIGHEST_PROTOCOL)
+    file.close()
+    h_cat.to_csv(experiment_dir + "/check.csv")
     label_choice = h_cat.loc[h_cat.reset_index().groupby(['country'])['new_tfidf'].idxmax()]
-    # label_choice.to_csv(experiment_dir + "/final_labels.csv")
+
     lst = []
     for index, row in label_choice.iterrows():
         lst.append({"country": row["country"], "label_name": row["new_name"]})
@@ -157,7 +181,8 @@ def main(experiment_dir):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Select labels for label picker.')
     parser.add_argument('--experiment', required=True)
+    parser.add_argument('--isSumInKeyPhrase', required=True, type=bool)
 
     args = parser.parse_args()
 
-    main(args.experiment)
+    main(args.experiment, args.isSumInKeyPhrase)
